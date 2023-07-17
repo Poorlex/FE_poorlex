@@ -19,8 +19,12 @@ class _LandingPageState extends State<LandingPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image(image: AssetImage('assets/img_main_login.png')),
-            Text('풀렉스에서 다른 거지 친구들과 함께'),
-            Text('재미있게 절약해요'),
+            SizedBox(height: 50),
+            Text('풀렉스에서 다른 거지 친구들과 함께', 
+              style: TextStyle(fontSize: 16),),
+            Text('재미있게 절약해요',
+              style: TextStyle(fontSize: 16),),
+            SizedBox(height: 150),
           ]
         )
       )
