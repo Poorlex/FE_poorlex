@@ -18,31 +18,36 @@ class NavBar extends StatelessWidget implements PreferredSizeWidget {
         child: Column(
           children: [
             Row(
-              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Icon(Icons.flag),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    const Text(
-                      '70,000원',
-                    ),
-                    const SizedBox(
-                      width: 20,
-                    ),
-                    Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(6),
-                        color: Colors.grey.shade700,
-                      ),
-                      child: const Padding(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 9, vertical: 1),
-                        child: Text('D-7'),
-                      ),
+                    Row(
+                      // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Icon(Icons.flag),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        const Text(
+                          '70,000원',
+                        ),
+                        const SizedBox(
+                          width: 20,
+                        ),
+                        Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(6),
+                            color: Colors.grey.shade700,
+                          ),
+                          child: const Padding(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 9, vertical: 1),
+                            child: Text('D-7'),
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),
@@ -78,13 +83,17 @@ class NavBar extends StatelessWidget implements PreferredSizeWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Row(
+                Row(
                   children: [
-                    Icon(Icons.money),
                     SizedBox(
+                      height: 30,
+                      width: 30,
+                      child: Image.asset('assets/coin.png'),
+                    ),
+                    const SizedBox(
                       width: 15,
                     ),
-                    Text('38,000'),
+                    const Text('38,000'),
                   ],
                 ),
                 Text('-32,000원',
