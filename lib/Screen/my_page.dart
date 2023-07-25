@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:poorlex/Widget/MyPageWidget/mypage_level.dart';
 import 'package:poorlex/Widget/MyPageWidget/mypage_profile.dart';
 
 class MyPage extends StatefulWidget {
@@ -32,12 +33,19 @@ class _MyPageState extends State<MyPage> {
         ),
       ),
       body: const SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            // 프로필, 이름 , 명언
-            MyPageProfile()
-          ],
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 15, vertical: 2),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              // 프로필, 이름 , 명언
+              MyPageProfile(),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 30),
+                child: MyPageLevel(),
+              ),
+            ],
+          ),
         ),
       ),
     );
