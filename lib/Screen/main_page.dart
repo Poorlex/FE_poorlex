@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:poorlex/Screen/main_carousel.dart';
+import 'package:poorlex/Widget/main_carousel.dart';
 import 'package:poorlex/Widget/nav_bar.dart';
 
 class MainPage extends StatelessWidget {
@@ -8,7 +8,6 @@ class MainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(fontFamily: 'NeoDunggeunmoPro-Regular'),
       home: Scaffold(
         appBar: const NavBar(),
         body: Column(
