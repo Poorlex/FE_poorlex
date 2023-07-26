@@ -52,7 +52,7 @@ class NavBar extends StatelessWidget implements PreferredSizeWidget {
                   ],
                 ),
                 const SizedBox(
-                  width: 161,
+                  width: 140,
                 ),
                 IconButton(
                   onPressed: () {},

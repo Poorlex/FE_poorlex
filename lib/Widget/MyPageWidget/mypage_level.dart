@@ -73,7 +73,7 @@ class _MyPageLevelState extends State<MyPageLevel> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                '180P',
+                                '180 P',
                                 style: TextStyle(
                                     color: Colors.white, fontSize: 30),
                               )

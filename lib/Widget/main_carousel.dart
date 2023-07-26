@@ -80,7 +80,7 @@ class _MainCarouselState extends State<MainCarousel> {
                                                           Colors.amber.shade800,
                                                       width: 2)),
                                               width: 60,
-                                              height: 60,
+                                              height: 70,
                                               child: Column(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment.center,

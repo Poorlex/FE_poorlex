@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:poorlex/Widget/MyPageWidget/mypage_level.dart';
+import 'package:poorlex/Widget/MyPageWidget/mypage_myauth.dart';
+import 'package:poorlex/Widget/MyPageWidget/mypage_myfriends.dart';
 import 'package:poorlex/Widget/MyPageWidget/mypage_profile.dart';
+
+import '../Widget/MyPageWidget/announcement_list.dart';
 
 class MyPage extends StatefulWidget {
   const MyPage({super.key});
@@ -38,11 +42,17 @@ class _MyPageState extends State<MyPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              // 프로필, 이름 , 명언
               MyPageProfile(),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 10, vertical: 30),
-                child: MyPageLevel(),
+                child: Column(
+                  children: [
+                    MyPageLevel(),
+                    MyFriends(),
+                    MyPageMyAuth(),
+                    AnnounceMent()
+                  ],
+                ),
               ),
             ],
           ),

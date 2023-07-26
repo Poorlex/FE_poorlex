@@ -23,14 +23,14 @@ class MyPageProfile extends StatelessWidget {
                     )
                   ],
                 ),
-                width: 200,
+                width: 100,
                 clipBehavior: Clip.hardEdge,
                 // child: Image.network(webtoon.thumb),
                 child: Image.network(
-                    'https://a-static.besthdwallpaper.com/newjeans-haerin-omg-mv-shoot-wallpaper-2560x1600-108329_7.jpg'),
+                    'https://search.pstatic.net/common?type=b&size=144&expire=1&refresh=true&quality=100&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2FprofileImg%2Fa7af039a-27e3-4bb5-9f29-efd35b052948.jpg'),
               ),
               const SizedBox(
-                height: 30,
+                height: 10,
               ),
               const Text(
                 '해린',

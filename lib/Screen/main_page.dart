@@ -8,6 +8,7 @@ class MainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(fontFamily: 'NeoDunggeunmoPro-Regular'),
       home: Scaffold(
         appBar: const NavBar(),
         body: Column(
