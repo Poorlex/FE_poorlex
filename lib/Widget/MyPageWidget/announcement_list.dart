@@ -29,13 +29,13 @@ class _AnnounceMentState extends State<AnnounceMent> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               SizedBox(
-                height: 50,
+                height: 20,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
                       box[0],
-                      style: const TextStyle(color: Colors.white, fontSize: 20),
+                      style: const TextStyle(color: Colors.white, fontSize: 18),
                     ),
                   ],
                 ),
@@ -44,26 +44,60 @@ class _AnnounceMentState extends State<AnnounceMent> {
                 onPressed: () {},
                 icon: const Icon(Icons.arrow_forward_ios_rounded,
                     color: Colors.white),
-                iconSize: 20,
+                iconSize: 18,
               ),
             ],
           ),
         const SizedBox(
-          height: 25,
+          height: 10,
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
-              appVersion[0],
-              style: const TextStyle(color: Colors.white, fontSize: 20),
+            SizedBox(
+              height: 20,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    appVersion[0],
+                    style: const TextStyle(color: Colors.white, fontSize: 18),
+                  ),
+                ],
+              ),
             ),
             Text(
               appVersion[1],
-              style: const TextStyle(color: Colors.white, fontSize: 20),
+              style: const TextStyle(color: Colors.white, fontSize: 18),
             )
           ],
-        )
+        ),
+        const SizedBox(
+          height: 10,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            const SizedBox(
+              height: 20,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    '로그 아웃',
+                    style: TextStyle(color: Colors.white24, fontSize: 18),
+                  ),
+                ],
+              ),
+            ),
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(Icons.arrow_forward_ios_rounded,
+                  color: Colors.white24),
+              iconSize: 18,
+            ),
+          ],
+        ),
       ],
     );
   }

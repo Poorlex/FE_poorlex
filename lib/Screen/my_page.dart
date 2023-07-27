@@ -26,12 +26,12 @@ class _MyPageState extends State<MyPage> {
             IconButton(
               onPressed: () {},
               icon: const Icon(Icons.settings),
-              iconSize: 35,
+              iconSize: 26,
             ),
             IconButton(
               onPressed: () {},
               icon: const Icon(Icons.notifications_none_rounded),
-              iconSize: 35,
+              iconSize: 26,
             )
           ],
         ),

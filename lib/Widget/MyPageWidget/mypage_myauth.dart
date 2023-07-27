@@ -24,10 +24,10 @@ class _MyPageMyAuthState extends State<MyPageMyAuth> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             const Text('내 인증',
-                style: TextStyle(color: Colors.white, fontSize: 25)),
+                style: TextStyle(color: Colors.white, fontSize: 18)),
             const SizedBox(width: 10),
             Text('${samples.length}',
-                style: TextStyle(color: Colors.purple.shade600, fontSize: 25)),
+                style: TextStyle(color: Colors.purple.shade600, fontSize: 18)),
           ],
         ),
         Padding(

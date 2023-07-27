@@ -19,35 +19,46 @@ class _MyPageLevelState extends State<MyPageLevel> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Padding(
-            padding: const EdgeInsets.all(25),
+            // padding: const EdgeInsets.all(25),
+            padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Column(
-              // mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
+                const SizedBox(height: 14),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    const Padding(
-                      padding: EdgeInsets.only(right: 50),
+                    Padding(
+                      padding: const EdgeInsets.only(right: 20),
                       child: Column(
                         children: [
-                          Text(
+                          const Text(
                             '거지 레벨',
                             style:
-                                TextStyle(color: Colors.white38, fontSize: 15),
+                                TextStyle(color: Colors.white38, fontSize: 14),
                           ),
-                          SizedBox(height: 15),
+                          const SizedBox(height: 6),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Icon(Icons.emoji_emotions_rounded,
-                                  size: 30, color: Colors.amber),
-                              SizedBox(
-                                width: 10,
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  SizedBox(
+                                    width: 30,
+                                    height: 20,
+                                    child: Image.asset(
+                                        'assets/my_page/icon_level.png'),
+                                  ),
+                                ],
                               ),
-                              Text(
+                              const SizedBox(
+                                width: 12,
+                              ),
+                              const Text(
                                 'LV.4',
                                 style: TextStyle(
-                                    color: Colors.white, fontSize: 30),
+                                    color: Colors.white, fontSize: 20),
                               ),
                             ],
                           ),
@@ -55,27 +66,29 @@ class _MyPageLevelState extends State<MyPageLevel> {
                       ),
                     ),
                     Container(
-                      height: 100,
-                      width: 2,
+                      height: 68,
+                      width: 1,
                       decoration: const BoxDecoration(color: Colors.white12),
                     ),
-                    const Padding(
-                      padding: EdgeInsets.only(left: 50),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 20),
                       child: Column(
                         children: [
-                          Text(
+                          const Text(
                             '보유 포인트',
                             style:
-                                TextStyle(color: Colors.white38, fontSize: 15),
+                                TextStyle(color: Colors.white38, fontSize: 14),
                           ),
-                          SizedBox(height: 15),
+                          const SizedBox(height: 6),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(
-                                '180 P',
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 30),
+                              Container(
+                                child: const Text(
+                                  '180 P',
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 20),
+                                ),
                               )
                             ],
                           ),
@@ -106,92 +119,95 @@ class _MyPageLevelState extends State<MyPageLevel> {
                         ),
                         Text(
                           '더 모으면 레벨 업 !',
-                          style: TextStyle(color: Colors.amber, fontSize: 15),
+                          style: TextStyle(color: Colors.white38, fontSize: 15),
                         ),
                       ],
                     ),
                   ),
                 ),
-                const SizedBox(height: 30),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const Column(
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.all(10),
-                          child: Text(
-                            '성공',
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 28),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Column(
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.all(10),
+                            child: Text(
+                              '성공',
+                              style: TextStyle(
+                                color: Colors.white38,
+                                fontSize: 20,
+                              ),
+                            ),
+                          ),
+                          Text(
+                            '17',
                             style: TextStyle(
-                              color: Colors.white38,
+                              color: Colors.white,
                               fontSize: 20,
                             ),
                           ),
-                        ),
-                        Text(
-                          '17',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20,
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.symmetric(),
+                            child: Image.asset(
+                                width: 60,
+                                height: 42,
+                                'assets/my_page/icon_gold.png'),
                           ),
-                        ),
-                      ],
-                    ),
-                    Column(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(10),
-                          child: Image.network(
-                              width: 30,
-                              height: 30,
-                              'https://cdn-icons-png.flaticon.com/512/179/179249.png'),
-                        ),
-                        const Text(
-                          '4',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20,
+                          const Text(
+                            '4',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20,
+                            ),
                           ),
-                        ),
-                      ],
-                    ),
-                    Column(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(10),
-                          child: Image.network(
-                              width: 30,
-                              height: 30,
-                              'https://cdn-icons-png.flaticon.com/512/179/179251.png'),
-                        ),
-                        const Text(
-                          '3',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20,
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(0),
+                            child: Image.asset(
+                                width: 60,
+                                height: 42,
+                                'assets/my_page/icon_silver.png'),
                           ),
-                        ),
-                      ],
-                    ),
-                    Column(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(10),
-                          child: Image.network(
-                              width: 30,
-                              height: 30,
-                              'https://cdn-icons-png.flaticon.com/512/625/625396.png'),
-                        ),
-                        const Text(
-                          '10',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20,
+                          const Text(
+                            '3',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20,
+                            ),
                           ),
-                        ),
-                      ],
-                    ),
-                  ],
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(0),
+                            child: Image.asset(
+                                width: 60,
+                                height: 42,
+                                'assets/my_page/icon_cooper.png'),
+                          ),
+                          const Text(
+                            '10',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 )
               ],
             ),

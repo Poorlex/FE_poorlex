@@ -6,11 +6,11 @@ class MyPageProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
+      // mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Center(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
                 decoration: BoxDecoration(
@@ -23,49 +23,72 @@ class MyPageProfile extends StatelessWidget {
                     )
                   ],
                 ),
-                width: 100,
                 clipBehavior: Clip.hardEdge,
                 // child: Image.network(webtoon.thumb),
-                child: Image.network(
-                    'https://search.pstatic.net/common?type=b&size=144&expire=1&refresh=true&quality=100&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2FprofileImg%2Fa7af039a-27e3-4bb5-9f29-efd35b052948.jpg'),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              const Text(
-                '해린',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 30,
+                child: SizedBox(
+                  width: 120,
+                  height: 120,
+                  child: Image.asset('assets/my_page/icon_profile.png'),
                 ),
               ),
               const SizedBox(
-                height: 30,
+                height: 18,
               ),
               const SizedBox(
-                width: 100,
-                height: 40,
-                child: Text(
-                  'Hype Boy',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20,
+                width: 300,
+                height: 80,
+                child: Column(
+                  children: [
+                    Text(
+                      '최지출',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 14,
+                    ),
+                    SizedBox(
+                      width: 250,
+                      // 폰트 사이즈 15 일 때 , height 가 29면 픽셀안에 걸려서 39로 수정합니다.
+                      height: 40,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Text(
+                            '돈을 많이 모아야 \n돈을 많이 쓸 수 있다.',
+                            textAlign: TextAlign.justify,
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 15,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(
+                height: 0,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 5),
+                child: OutlinedButton(
+                  style: OutlinedButton.styleFrom(
+                    side: const BorderSide(width: 1.0, color: Colors.amber),
                   ),
-                ),
-              ),
-              OutlinedButton(
-                style: OutlinedButton.styleFrom(
-                  side: const BorderSide(width: 1.0, color: Colors.amber),
-                ),
-                onPressed: () {},
-                child: const Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 70,
-                    vertical: 10,
-                  ),
-                  child: Text(
-                    '프로필 편집',
-                    style: TextStyle(color: Colors.amber, fontSize: 15),
+                  onPressed: () {},
+                  child: const Padding(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 70,
+                      vertical: 10,
+                    ),
+                    child: Text(
+                      '프로필 편집',
+                      style: TextStyle(color: Colors.amber, fontSize: 15),
+                    ),
                   ),
                 ),
               )

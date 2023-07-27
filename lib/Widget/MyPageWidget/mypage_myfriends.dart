@@ -13,39 +13,46 @@ class _MyFriendsState extends State<MyFriends> {
   final List<List<String>> friendsImages = [
     [
       'https://search.pstatic.net/common?type=b&size=144&expire=1&refresh=true&quality=100&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2FprofileImg%2Fbd7fff23-8e54-4f0a-86e5-a1140dd8a98a.jpg',
-      '하니'
+      '하니',
+      'friends'
     ],
     [
       'https://search.pstatic.net/common?type=b&size=144&expire=1&refresh=true&quality=100&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2FprofileImg%2Fcdd163b6-fabd-4f95-9775-cc2f80d362ac.jpg',
-      '민지'
+      '민지',
+      'friends'
     ],
     [
       'https://search.pstatic.net/common?type=b&size=144&expire=1&refresh=true&quality=100&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2FprofileImg%2Fa0f317ad-e2e4-43dd-a7e2-a9d93a5c2099.jpg',
-      '다니엘'
+      '다니엘',
+      'friends'
     ],
     [
       'https://search.pstatic.net/common?type=b&size=144&expire=1&refresh=true&quality=100&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2FprofileImg%2F74fe64c2-999f-42f4-be5d-2f938330e661.jpg',
-      '혜인'
+      '혜인',
+      'friends'
     ],
   ];
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 30),
+      padding: const EdgeInsets.only(top: 80),
       child: Column(
         children: [
           Row(
             children: [
               const Text(
                 '내 거지 친구',
-                style: TextStyle(color: Colors.white38, fontSize: 25),
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 18,
+                ),
               ),
               const SizedBox(
-                width: 20,
+                width: 10,
               ),
               Text(
                 '${friendsImages.length}',
-                style: TextStyle(color: Colors.purple.shade600, fontSize: 25),
+                style: TextStyle(color: Colors.purple.shade600, fontSize: 18),
               )
             ],
           ),
@@ -62,13 +69,18 @@ class _MyFriendsState extends State<MyFriends> {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(5),
                         ),
-                        child: Image.network(friendsImages[idx][0]),
+                        child: Image.asset(
+                          width: 84,
+                          height: 74,
+                          'assets/my_page/icon_friends.png',
+                          // 'assets/my_page/icon_${friendsImages[idx][2]}'
+                        ),
                       ),
-                      const SizedBox(height: 20),
+                      const SizedBox(height: 10),
                       Text(
                         friendsImages[idx][1],
                         style:
-                            const TextStyle(color: Colors.white, fontSize: 20),
+                            const TextStyle(color: Colors.white, fontSize: 14),
                       )
                     ],
                   );
