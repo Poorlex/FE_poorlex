@@ -30,32 +30,55 @@ class _MyPageMyAuthState extends State<MyPageMyAuth> {
                 style: TextStyle(color: Colors.purple.shade600, fontSize: 18)),
           ],
         ),
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 30),
-          child: Column(
-            children: [
-              SizedBox(
-                width: 500,
-                height: 200,
-                child: ListView.separated(
-                  scrollDirection: Axis.horizontal,
-                  separatorBuilder: (context, index) => const SizedBox(
-                    height: 20,
-                    width: 20,
+        for (int i = 0; i < 4; i += 2)
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 10),
+            child: Row(
+              children: [
+                SizedBox(
+                  width: 150,
+                  height: 153,
+                  child: Image.network(
+                    samples[i],
                   ),
-                  itemCount: samples.length,
-                  itemBuilder: (context, index) {
-                    return Column(
-                      children: [
-                        Image.network(samples[index], width: 150, height: 150)
-                      ],
-                    );
-                  },
                 ),
-              ),
-            ],
+                const SizedBox(
+                  width: 10,
+                ),
+                SizedBox(
+                  width: 163,
+                  height: 153,
+                  child: Image.network(samples[i + 1]),
+                ),
+              ],
+            ),
           ),
-        )
+        OutlinedButton(
+          style: OutlinedButton.styleFrom(
+            side: BorderSide(width: 1.0, color: Colors.purple.shade400),
+          ),
+          onPressed: () {},
+          child: Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 90,
+              vertical: 14,
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Text(
+                  '인증 전체 보기',
+                  style: TextStyle(color: Colors.purple.shade400, fontSize: 14),
+                ),
+                const SizedBox(
+                  width: 5,
+                ),
+                Icon(Icons.arrow_forward_ios_rounded,
+                    color: Colors.purple.shade400, size: 15),
+              ],
+            ),
+          ),
+        ),
       ],
     );
   }

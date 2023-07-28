@@ -24,6 +24,9 @@ class _AnnounceMentState extends State<AnnounceMent> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        const SizedBox(
+          height: 80,
+        ),
         for (var box in announcements)
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

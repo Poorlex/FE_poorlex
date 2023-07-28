@@ -35,7 +35,7 @@ class _MyFriendsState extends State<MyFriends> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 80),
+      padding: const EdgeInsets.only(top: 60),
       child: Column(
         children: [
           Row(
@@ -56,9 +56,9 @@ class _MyFriendsState extends State<MyFriends> {
               )
             ],
           ),
-          const SizedBox(height: 30),
+          const SizedBox(height: 20),
           SizedBox(
-            height: 200,
+            height: 180,
             child: ListView.separated(
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, idx) {
