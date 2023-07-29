@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:poorlex/Screen/my_page.dart';
-// import 'package:poorlex/Screen/main_page.dart';
+// import 'package:poorlex/Screen/my_page.dart';
+import 'package:poorlex/Screen/main_page.dart';
 
 // void main() => runApp(const MyApp());
 
@@ -24,8 +24,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(fontFamily: 'NeoDunggeunmoPro-Regular'),
       // home: LandingPage(),
-      // home: const MainPage(),
-      home: const MyPage(),
+      home: const MainPage(),
+      // home: const MyPage(),
     );
   }
 }

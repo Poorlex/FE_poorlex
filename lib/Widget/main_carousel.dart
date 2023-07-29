@@ -31,7 +31,7 @@ class _MainCarouselState extends State<MainCarousel> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
       child: Expanded(
           child: ListView.separated(
               scrollDirection: Axis.horizontal,
@@ -55,7 +55,7 @@ class _MainCarouselState extends State<MainCarousel> {
                                 color: Colors.black,
                                 borderRadius: BorderRadius.circular(10),
                               ),
-                              width: 390,
+                              width: 380,
                               height: 160,
                               child: Padding(
                                 padding: const EdgeInsets.symmetric(
