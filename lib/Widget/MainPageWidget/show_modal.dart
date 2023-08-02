@@ -94,7 +94,6 @@ class _ShowModalState extends State<ShowModal> {
                   child: ElevatedButton(
                     onPressed: () {
                       addLevel();
-                      print(stageLevel);
                     },
                     style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.amber,

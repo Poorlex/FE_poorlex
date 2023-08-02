@@ -72,6 +72,17 @@ flutter:
     - assets/my_page/icon_silver.png
     - assets/my_page/icon_profile.png
     - assets/main_page/empty_battle.png
+    - assets/main_page/icon_home.png
+    - assets/main_page/icon_home_un.png
+    - assets/main_page/icon_battle.png
+    - assets/main_page/icon_battle_un.png
+    - assets/main_page/icon_calendar.png
+    - assets/main_page/icon_calendar_un.png
+    - assets/main_page/icon_my.png
+    - assets/main_page/icon_my_un.png
+
+
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
