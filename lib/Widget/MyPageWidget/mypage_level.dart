@@ -45,8 +45,8 @@ class _MyPageLevelState extends State<MyPageLevel> {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   SizedBox(
-                                    width: 30,
-                                    height: 20,
+                                    width: 25,
+                                    height: 25,
                                     child: Image.asset(
                                         'assets/my_page/icon_level.png'),
                                   ),
@@ -139,7 +139,7 @@ class _MyPageLevelState extends State<MyPageLevel> {
                               '성공',
                               style: TextStyle(
                                 color: Colors.white38,
-                                fontSize: 20,
+                                fontSize: 14,
                               ),
                             ),
                           ),
