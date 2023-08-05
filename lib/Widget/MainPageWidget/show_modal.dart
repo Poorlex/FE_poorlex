@@ -114,7 +114,7 @@ class _ShowModalState extends State<ShowModal> {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text('거린이:',
+                                  Text('고수거지:',
                                       style: TextStyle(
                                           color: Colors.white, fontSize: 18)),
                                   SizedBox(
