@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:poorlex/Widget/MainPageWidget/bottom_bar.dart';
 import 'package:poorlex/Widget/MyPageWidget/mypage_level.dart';
 import 'package:poorlex/Widget/MyPageWidget/mypage_myauth.dart';
 import 'package:poorlex/Widget/MyPageWidget/mypage_myfriends.dart';
@@ -18,6 +19,9 @@ class _MyPageState extends State<MyPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
+      bottomNavigationBar: const BottomBar(
+        nowPage: 4,
+      ),
       appBar: AppBar(
         backgroundColor: Colors.black,
         title: Row(

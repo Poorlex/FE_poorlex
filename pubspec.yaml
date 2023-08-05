@@ -80,6 +80,12 @@ flutter:
     - assets/main_page/icon_calendar_un.png
     - assets/main_page/icon_my.png
     - assets/main_page/icon_my_un.png
+    - assets/main_page/icon_goal.png
+    - assets/main_page/icon_goal_un.png
+    - assets/main_page/icon_profile_remove.png
+
+
+
 
 
 

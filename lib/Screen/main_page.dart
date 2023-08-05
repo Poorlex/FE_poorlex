@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:poorlex/Widget/MainPageWidget/bottom_bar.dart';
 import 'package:poorlex/Widget/MainPageWidget/carousel_slider.dart';
 import 'package:poorlex/Widget/MainPageWidget/main_bottom.dart';
-import 'package:poorlex/Widget/MainPageWidget/show_modal.dart';
 // import 'package:poorlex/Widget/main_carousel.dart';
 import 'package:poorlex/Widget/nav_bar.dart';
+
+import '../Widget/MainPageWidget/show_modal.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({
@@ -25,20 +27,29 @@ class _MainPageState extends State<MainPage> {
 
   void show(BuildContext context) {
     showModalBottomSheet(
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
       context: context,
       builder: (context) {
-        return const ShowModal();
+        return Wrap(children: [
+          Column(
+            children: [
+              Row(
+                children: [
+                  SizedBox(
+                    width: 140,
+                    height: 140,
+                    child:
+                        Image.asset('assets/main_page/icon_profile_remove.png'),
+                  ),
+                ],
+              ),
+              const ShowModal(),
+            ],
+          ),
+        ]);
       },
     );
-  }
-
-  int _selectedIndex = 0;
-
-  void _onItemTapped(int index) {
-    setState(() {
-      print(index);
-      _selectedIndex = index;
-    });
   }
 
   int modalValue = 0;
@@ -48,148 +59,46 @@ class _MainPageState extends State<MainPage> {
       theme: ThemeData(fontFamily: 'NeoDunggeunmoPro-Regular'),
       home: Scaffold(
         appBar: const NavBar(),
-        bottomNavigationBar: BottomNavigationBar(
-          items: <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: Padding(
-                  padding: const EdgeInsets.all(6),
-                  child: Column(
-                    children: [
-                      if (_selectedIndex == 0) ...[
-                        Image.asset(
-                            width: 22,
-                            height: 22,
-                            'assets/main_page/icon_home.png'),
-                      ] else ...[
-                        Image.asset(
-                            width: 22,
-                            height: 22,
-                            'assets/main_page/icon_home_un.png'),
-                      ]
-                    ],
-                  )),
-              label: '홈',
-            ),
-            BottomNavigationBarItem(
-              icon: Padding(
-                  padding: const EdgeInsets.all(6),
-                  child: Column(
-                    children: [
-                      if (_selectedIndex == 1) ...[
-                        Image.asset(
-                            width: 22,
-                            height: 22,
-                            'assets/main_page/icon_goal.png'),
-                      ] else ...[
-                        Image.asset(
-                            width: 22,
-                            height: 22,
-                            'assets/main_page/icon_goal_un.png'),
-                      ]
-                    ],
-                  )),
-              label: '목표',
-            ),
-            BottomNavigationBarItem(
-              icon: Padding(
-                  padding: const EdgeInsets.all(6),
-                  child: Column(
-                    children: [
-                      if (_selectedIndex == 2) ...[
-                        Image.asset(
-                            width: 22,
-                            height: 22,
-                            'assets/main_page/icon_battle.png'),
-                      ] else ...[
-                        Image.asset(
-                            width: 22,
-                            height: 22,
-                            'assets/main_page/icon_battle_un.png'),
-                      ]
-                    ],
-                  )),
-              label: '배틀',
-            ),
-            BottomNavigationBarItem(
-              icon: Padding(
-                  padding: const EdgeInsets.all(6),
-                  child: Column(
-                    children: [
-                      if (_selectedIndex == 3) ...[
-                        Image.asset(
-                            width: 22,
-                            height: 22,
-                            'assets/main_page/icon_calendar.png'),
-                      ] else ...[
-                        Image.asset(
-                            width: 22,
-                            height: 22,
-                            'assets/main_page/icon_calendar_un.png'),
-                      ]
-                    ],
-                  )),
-              label: '달력',
-            ),
-            BottomNavigationBarItem(
-              icon: Padding(
-                  padding: const EdgeInsets.all(6),
-                  child: Column(
-                    children: [
-                      if (_selectedIndex == 4) ...[
-                        Image.asset(
-                            width: 22,
-                            height: 22,
-                            'assets/main_page/icon_my.png'),
-                      ] else ...[
-                        Image.asset(
-                            width: 22,
-                            height: 22,
-                            'assets/main_page/icon_my_un.png'),
-                      ]
-                    ],
-                  )),
-              label: 'my',
-            ),
-          ],
-          currentIndex: _selectedIndex,
-          selectedItemColor: const Color(0xffFFD600),
-          unselectedItemColor: const Color(0xff666666),
-          onTap: _onItemTapped,
-          backgroundColor: Colors.black,
-          type: BottomNavigationBarType.fixed,
+        bottomNavigationBar: const BottomBar(
+          nowPage: 0,
         ),
         body: Column(
           children: [
-            if (modalValue == 0)
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  IconButton(
-                      onPressed: () {
-                        show(context);
-                      },
-                      icon: const Icon(Icons.abc)),
-                ],
-              ),
-            Flexible(
-              flex: 3,
-              child: Row(
-                children: [
-                  Container(color: Colors.blue),
-                ],
-              ),
-            ),
-            Flexible(
-              flex: 4,
-              child: Container(
-                color: const Color(0xffB59767),
-                child: const Center(
-                  // child: MainCarousel(),
-                  child: MainCarouselSlider(),
+            if (modalValue == 0) ...[
+              Flexible(
+                flex: 2,
+                child: Column(
+                  children: [
+                    Expanded(
+                      child: Container(
+                        color: const Color(0xffE4D4BE),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            IconButton(
+                                onPressed: () {
+                                  show(context);
+                                },
+                                icon: const Icon(Icons.abc)),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
-            ),
-            const MainBottom()
+              Flexible(
+                flex: 2,
+                child: Container(
+                  color: const Color(0xffB59767),
+                  child: const Center(
+                    // child: MainCarousel(),
+                    child: MainCarouselSlider(),
+                  ),
+                ),
+              ),
+              const MainBottom()
+            ]
           ],
         ),
       ),
