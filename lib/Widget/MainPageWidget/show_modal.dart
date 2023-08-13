@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../Controller/modal_controller.dart';
 import '../../Controller/user_controller.dart';
 
 class ShowModal extends StatefulWidget {
@@ -13,6 +14,7 @@ class ShowModal extends StatefulWidget {
 }
 
 class _ShowModalState extends State<ShowModal> {
+  late final ModalController _modal = Get.put(ModalController());
   late int stageLevel = 0;
 
   @override
@@ -38,8 +40,8 @@ class _ShowModalState extends State<ShowModal> {
                   const SizedBox(
                     height: 20,
                   ),
-                  if (stageLevel == 0)
-                    // if (Get.find<ModalController>().modalCount == 0)
+                  // if (stageLevel == 0)
+                  if (_modal.modalCount().modalCount == 0)
                     Column(
                       children: [
                         Row(
@@ -106,6 +108,7 @@ class _ShowModalState extends State<ShowModal> {
                           child: ElevatedButton(
                             onPressed: () {
                               addLevel();
+                              _modal.increase();
                             },
                             style: ElevatedButton.styleFrom(
                                 backgroundColor: const Color(0xffffd600),
@@ -118,7 +121,8 @@ class _ShowModalState extends State<ShowModal> {
                         ),
                       ],
                     ),
-                  if (stageLevel == 1) ...[
+                  if (_modal.modalCount().modalCount == 1) ...[
+                    // if (stageLevel == 1) ...[
                     Column(
                       children: [
                         const Row(
@@ -192,6 +196,7 @@ class _ShowModalState extends State<ShowModal> {
                           child: ElevatedButton(
                             onPressed: () {
                               addLevel();
+                              _modal.increase();
                             },
                             style: ElevatedButton.styleFrom(
                                 backgroundColor: const Color(0xffffd600),
@@ -205,7 +210,7 @@ class _ShowModalState extends State<ShowModal> {
                       ],
                     ),
                   ],
-                  if (stageLevel >= 2)
+                  if (_modal.modalCount().modalCount == 2)
                     Column(
                       children: [
                         const Row(

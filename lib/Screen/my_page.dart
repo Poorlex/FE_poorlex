@@ -18,6 +18,7 @@ class MyPage extends StatefulWidget {
 
 class _MyPageState extends State<MyPage> {
   final UserController _user = Get.put(UserController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

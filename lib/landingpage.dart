@@ -16,6 +16,7 @@ class LandingPage extends StatefulWidget {
 
 class _LandingPageState extends State<LandingPage> {
   final KakaoView = KakaoViewModel(KakaoLogin());
+  final UserController _user = Get.put(UserController());
 
   @override
   Widget build(BuildContext context) {
@@ -52,12 +53,13 @@ class _LandingPageState extends State<LandingPage> {
               child: const Text('카카오로 3초만에 로그인',
                   style: TextStyle(color: Colors.black)),
             ),
-            GetX(
-              init: UserController(),
-              builder: (controller) => Text(
-                  Get.find<UserController>().userInfo().userName,
-                  style: const TextStyle(color: Colors.white)),
-            ),
+            // GetX(
+            //   init: UserController(),
+            //   builder: (controller) => Text(
+            //       Get.find<UserController>().userInfo().userName,
+            //       style: const TextStyle(color: Colors.white)),
+            // ),
+            // Text('${_user.userInfo().userId}')
           ],
         ),
       ),
