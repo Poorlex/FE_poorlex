@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import '../../Controller/user_controller.dart';
 
 class MyPageProfile extends StatelessWidget {
-  const MyPageProfile({super.key});
+  MyPageProfile({super.key});
+
+  late final UserController _user = Get.put(UserController());
 
   @override
   Widget build(BuildContext context) {
     return Column(
-      // mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Center(
           child: Column(
-            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
                 decoration: BoxDecoration(
@@ -24,7 +27,6 @@ class MyPageProfile extends StatelessWidget {
                   ],
                 ),
                 clipBehavior: Clip.hardEdge,
-                // child: Image.network(webtoon.thumb),
                 child: SizedBox(
                   width: 120,
                   height: 120,
@@ -34,22 +36,25 @@ class MyPageProfile extends StatelessWidget {
               const SizedBox(
                 height: 18,
               ),
-              const SizedBox(
+              SizedBox(
                 width: 300,
                 height: 80,
                 child: Column(
                   children: [
-                    Text(
-                      '최지출',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 20,
+                    GetX<UserController>(
+                      init: UserController(),
+                      builder: (_) => Text(
+                        Get.find<UserController>().userInfo().userName,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                        ),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 14,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 250,
                       // 폰트 사이즈 15 일 때 , height 가 29면 픽셀안에 걸려서 39로 수정합니다.
                       height: 40,

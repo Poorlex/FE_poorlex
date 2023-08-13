@@ -1,0 +1,4 @@
+enum LoginPlatform {
+  kakao,
+  apple,
+}
