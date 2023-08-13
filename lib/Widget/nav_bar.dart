@@ -1,13 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:poorlex/Screen/budget_page.dart';
 
-class NavBar extends StatelessWidget implements PreferredSizeWidget {
+// TODO: battleMoney 상태변경을 위해 StatelessWidget 위젯을 StatefulWidget 위젯으로 변경
+class NavBar extends StatefulWidget implements PreferredSizeWidget {
   final int proValue = 10;
   final int value = 0;
 
-  const NavBar({
-    super.key,
-  });
+  const NavBar({super.key});
 
+  @override
+  State<NavBar> createState() => _NavBarState();
+
+  @override
+  Size get preferredSize => const Size.fromHeight(130);
+}
+
+class _NavBarState extends State<NavBar> {
+  String battleMoney = "POORLEX";
   @override
   Widget build(BuildContext context) {
     return AppBar(
@@ -30,7 +39,7 @@ class NavBar extends StatelessWidget implements PreferredSizeWidget {
                         const SizedBox(
                           width: 16,
                         ),
-                        const Text('70,000원', style: TextStyle(fontSize: 16)),
+                        Text('70,000원', style: TextStyle(fontSize: 16)),
                         const SizedBox(
                           width: 16,
                         ),
@@ -94,7 +103,29 @@ class NavBar extends StatelessWidget implements PreferredSizeWidget {
                     const SizedBox(
                       width: 12,
                     ),
-                    const Text('38,000', style: TextStyle(fontSize: 20)),
+                    TextButton(
+                      onPressed: () async {
+                        final result = await Navigator.push<String>(
+                          context,
+                          MaterialPageRoute(builder: (context) => BudgetPage()),
+                        );
+
+                        if (result != null) {
+                          setState(() {
+                            battleMoney = result;
+                          });
+                        }
+                      },
+                      style: ButtonStyle(
+                        overlayColor:
+                            MaterialStateProperty.resolveWith<Color>((states) {
+                          return Colors.transparent; // 포커스 색상을 투명하게 설정합니다.
+                        }),
+                      ),
+                      child: Text(battleMoney,
+                          style: TextStyle(
+                              fontSize: 20, color: Color(0xffFFD600))),
+                    )
                   ],
                 ),
                 const Text(
@@ -108,7 +139,4 @@ class NavBar extends StatelessWidget implements PreferredSizeWidget {
       ),
     );
   }
-
-  @override
-  Size get preferredSize => const Size.fromHeight(130);
 }

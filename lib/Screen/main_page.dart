@@ -58,12 +58,13 @@ class _MainPageState extends State<MainPage> {
     return MaterialApp(
       theme: ThemeData(fontFamily: 'NeoDunggeunmoPro-Regular'),
       home: Scaffold(
-        appBar: const NavBar(),
+        appBar: NavBar(),
         bottomNavigationBar: const BottomBar(
           nowPage: 0,
         ),
         body: Column(
           children: [
+            // Transform.translate(offset: Offset(2, 2), child: BudgetTooltip()),
             if (modalValue == 0) ...[
               Flexible(
                 flex: 2,
