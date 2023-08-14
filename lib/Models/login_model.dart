@@ -1,6 +1,6 @@
 class UserInfo {
-  int userId;
+  String userId;
   String userName;
 
-  UserInfo({this.userId = 0, this.userName = ""});
+  UserInfo({this.userId = '', this.userName = ""});
 }

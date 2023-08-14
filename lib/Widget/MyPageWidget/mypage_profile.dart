@@ -6,7 +6,7 @@ import '../../Controller/user_controller.dart';
 class MyPageProfile extends StatelessWidget {
   MyPageProfile({super.key});
 
-  late final UserController _user = Get.put(UserController());
+  final UserController _user = Get.put(UserController());
 
   @override
   Widget build(BuildContext context) {

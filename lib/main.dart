@@ -4,6 +4,7 @@ import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
 
 import 'landingpage.dart';
+
 // import 'package:poorlex/Screen/my_page.dart';
 // import 'package:poorlex/Screen/main_page.dart';
 
@@ -34,5 +35,6 @@ class MyApp extends StatelessWidget {
         // home: const MyPage());
         // home: const LoginKakao());
         home: const LandingPage());
+    // home: const AppleLogin());
   }
 }

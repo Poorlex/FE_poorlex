@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:poorlex/Screen/main_page.dart';
+import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 import 'Controller/user_controller.dart';
 import 'Widget/Login/kakao_login.dart';
@@ -17,6 +18,32 @@ class LandingPage extends StatefulWidget {
 class _LandingPageState extends State<LandingPage> {
   final KakaoView = KakaoViewModel(KakaoLogin());
   final UserController _user = Get.put(UserController());
+
+  void signInWithApple() async {
+    final bool isAvailable = await SignInWithApple.isAvailable();
+    if (isAvailable) {
+      try {
+        final credential = await SignInWithApple.getAppleIDCredential(
+          scopes: [
+            AppleIDAuthorizationScopes.email,
+            AppleIDAuthorizationScopes.fullName,
+          ],
+        );
+        if (credential.familyName == null) {
+          _user.userUpdateApple('애플', '로그인', credential.identityToken);
+        } else {
+          // 로그인 성공 처리
+          _user.userUpdateApple(credential.familyName, credential.givenName,
+              credential.identityToken);
+        }
+      } catch (error) {
+        // 에러 처리
+        print(error);
+      }
+    } else {
+      print('isAvailale false');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -51,6 +78,16 @@ class _LandingPageState extends State<LandingPage> {
                 Get.to(() => const MainPage());
               },
               child: const Text('카카오로 3초만에 로그인',
+                  style: TextStyle(color: Colors.black)),
+            ),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color.fromARGB(255, 82, 10, 225)),
+              onPressed: () async {
+                signInWithApple();
+                setState(() {});
+              },
+              child: const Text('애플 아이디로 로그인',
                   style: TextStyle(color: Colors.black)),
             ),
             // GetX(

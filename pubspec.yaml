@@ -31,7 +31,7 @@ dependencies:
   flutter:
     sdk: flutter
   carousel_slider: ^4.2.1
-  sign_in_with_apple: ^4.1.0
+  sign_in_with_apple: ^5.0.0
   kakao_flutter_sdk: ^1.5.0
   
 

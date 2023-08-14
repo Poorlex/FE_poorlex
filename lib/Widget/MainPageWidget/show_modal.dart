@@ -14,7 +14,9 @@ class ShowModal extends StatefulWidget {
 }
 
 class _ShowModalState extends State<ShowModal> {
-  late final ModalController _modal = Get.put(ModalController());
+  final ModalController _modal = Get.put(ModalController());
+  final UserController _user = Get.put(UserController());
+
   late int stageLevel = 0;
 
   @override
@@ -70,23 +72,12 @@ class _ShowModalState extends State<ShowModal> {
                                       const SizedBox(
                                         width: 10,
                                       ),
-                                      GetX<UserController>(
-                                        init: UserController(),
-                                        builder: (_) => Text(
-                                          Get.find<UserController>()
-                                              .userInfo()
-                                              .userName,
-                                          style: const TextStyle(
+                                      Text(
+                                        '${_user.userInfo().userName}!',
+                                        style: const TextStyle(
                                             color: Color(0xffffd600),
-                                            fontSize: 20,
-                                          ),
-                                        ),
+                                            fontSize: 20),
                                       ),
-                                      const Text('!',
-                                          style: TextStyle(
-                                            color: Color(0xffffd600),
-                                            fontSize: 20,
-                                          ))
                                     ],
                                   ),
                                   const SizedBox(

@@ -37,6 +37,8 @@
 	</array>
 	<key>CFBundleVersion</key>
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
+	<key>KAKAO_APP_KEY</key>
+	<string>e820bf9c54d06756d8e929f542dbd2e7</string>
 	<key>LSApplicationCategoryType</key>
 	<string></string>
 	<key>LSApplicationQueriesSchemes</key>
@@ -46,6 +48,8 @@
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>Sign In with Apple 사용을 위해 액세스 권한이 필요합니다.</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>
@@ -67,7 +71,5 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<key>KAKAO_APP_KEY</key>
-	<string>e820bf9c54d06756d8e929f542dbd2e7</string>
 </dict>
 </plist>
