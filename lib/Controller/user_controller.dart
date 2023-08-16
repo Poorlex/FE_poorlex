@@ -7,7 +7,8 @@ class UserController extends GetxController {
 
   void userUpdate(dynamic user) {
     userInfo.update((val) {
-      val?.userId = user?.id as String;
+      final userId = user?.id.toString();
+      val?.userId = userId.toString();
       val?.userName = user?.properties['nickname'];
     });
   }
