@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 // import 'package:poorlex/Screen/my_page.dart';
-
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
 import 'landingpage.dart';
-
 // import 'package:poorlex/Screen/my_page.dart';
 // import 'package:poorlex/Screen/main_page.dart';
 
