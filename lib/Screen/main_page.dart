@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:poorlex/Widget/MainPageWidget/bottom_bar.dart';
 import 'package:poorlex/Widget/MainPageWidget/carousel_slider.dart';
 import 'package:poorlex/Widget/MainPageWidget/main_bottom.dart';
 // import 'package:poorlex/Widget/main_carousel.dart';
 import 'package:poorlex/Widget/nav_bar.dart';
 
+import '../Controller/modal_controller.dart';
 import '../Widget/MainPageWidget/show_modal.dart';
 
 class MainPage extends StatefulWidget {
@@ -17,11 +19,14 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
+  final ModalController _modal = Get.put(ModalController());
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      show(context);
+      if (_modal.modalCount().modalCount == 0) {
+        show(context);
+      }
     });
   }
 
