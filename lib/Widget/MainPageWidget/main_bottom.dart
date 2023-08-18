@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:poorlex/Screen/expenditure_input_page.dart';
 
 class MainBottom extends StatelessWidget {
   const MainBottom({super.key});
@@ -8,7 +9,12 @@ class MainBottom extends StatelessWidget {
     return Column(
       children: [
         ElevatedButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => ExpenditureInputPage()), // expenditure_input_page.dart 페이지로 이동
+            );
+          },
           style: ElevatedButton.styleFrom(
               side: const BorderSide(
                 width: 2,
@@ -26,3 +32,4 @@ class MainBottom extends StatelessWidget {
     );
   }
 }
+
