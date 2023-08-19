@@ -57,7 +57,7 @@ class _BudgetPageState extends State<BudgetPage> {
                 onPressed: () {
                   Navigator.pop(context);
                 },
-                icon: Image.asset('budget_page/icon_cancel.png'),
+                icon: Image.asset('assets/budget_page/icon_cancel.png'),
               ),
             ),
             Center(
