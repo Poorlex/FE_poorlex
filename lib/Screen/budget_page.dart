@@ -136,7 +136,8 @@ class _BudgetPageState extends State<BudgetPage> {
                           Positioned(
                             right: 5, // 원하는 위치로 조절
                             top: 15, // 원하는 위치로 조절
-                            child: Image.asset('budget_page/poorlex.png'),
+                            child:
+                                Image.asset('assets/budget_page/poorlex.png'),
                           ),
                       ],
                     )
