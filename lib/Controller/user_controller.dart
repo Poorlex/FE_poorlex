@@ -14,8 +14,7 @@ class UserController extends GetxController {
   }
 
   void userUpdateApple(dynamic family, dynamic name, dynamic token) {
-    print(family);
-    print(name);
+    print(token);
     userInfo.update((val) {
       val?.userId = token;
       val?.userName = '${family + name}';
