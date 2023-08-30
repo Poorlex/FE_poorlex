@@ -10,4 +10,8 @@ class BattleController extends GetxController {
       (val) => val?.PageNumber = number,
     );
   }
+
+  void changeBattleMoneyIndex(int number) {
+    battleIndex.update((val) => val?.MoneyIndex = number);
+  }
 }

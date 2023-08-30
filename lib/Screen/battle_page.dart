@@ -1,13 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:poorlex/Widget/BattlePage/battle_finding.dart';
 
+import '../Controller/battle_controller.dart';
+import '../Widget/BattlePage/battle_finished.dart';
 import '../Widget/BattlePage/battle_option.dart';
+import '../Widget/BattlePage/battle_participant.dart';
 import '../Widget/MainPageWidget/bottom_bar.dart';
 
-class BattlePage extends StatelessWidget {
+class BattlePage extends GetView {
   const BattlePage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    BattleController _battle = BattleController();
+    print(_battle.battleIndex().PageNumber);
     return Scaffold(
       bottomNavigationBar: BottomBar(nowPage: 2),
       backgroundColor: Colors.black,
@@ -46,9 +53,7 @@ class BattlePage extends StatelessWidget {
           SizedBox(
             height: 20,
           ),
-          Row(
-            children: [BattleOption()],
-          )
+          Obx(() => BattleOption(PageIndex: _battle.battleIndex().PageNumber)),
         ],
       ),
     );
