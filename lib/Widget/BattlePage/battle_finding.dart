@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:poorlex/Controller/battle_controller.dart';
 
-import 'battle_container.dart';
+import 'containers/battle_container.dart';
 import 'battle_money.dart';
+import 'containers/finding_container.dart';
 
 class BattleFinding extends GetView {
   final int PageIndex;
@@ -19,7 +20,8 @@ class BattleFinding extends GetView {
         '50,000',
         '1',
         '10',
-        'https://search.pstatic.net/common?type=b&size=144&expire=1&refresh=true&quality=100&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2FprofileImg%2Fbd7fff23-8e54-4f0a-86e5-a1140dd8a98a.jpg'
+        'https://search.pstatic.net/common?type=b&size=144&expire=1&refresh=true&quality=100&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2FprofileImg%2Fbd7fff23-8e54-4f0a-86e5-a1140dd8a98a.jpg',
+        '돈 모은다며, 여행간다며, 차산다며,'
       ],
       [
         'icon_silver',
@@ -28,7 +30,8 @@ class BattleFinding extends GetView {
         '70,000',
         '3',
         '20',
-        'https://search.pstatic.net/common?type=b&size=144&expire=1&refresh=true&quality=100&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2FprofileImg%2Fcdd163b6-fabd-4f95-9775-cc2f80d362ac.jpg'
+        'https://search.pstatic.net/common?type=b&size=144&expire=1&refresh=true&quality=100&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2FprofileImg%2Fcdd163b6-fabd-4f95-9775-cc2f80d362ac.jpg',
+        '월급날 텅장되기 싫으면 들어와 너 거진거 너 빼고 다 알아..😂',
       ],
       [
         'icon_cooper',
@@ -37,7 +40,8 @@ class BattleFinding extends GetView {
         '130,000',
         '5',
         '5',
-        'https://search.pstatic.net/common?type=b&size=144&expire=1&refresh=true&quality=100&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2FprofileImg%2Fa0f317ad-e2e4-43dd-a7e2-a9d93a5c2099.jpg'
+        'https://search.pstatic.net/common?type=b&size=144&expire=1&refresh=true&quality=100&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2FprofileImg%2Fa0f317ad-e2e4-43dd-a7e2-a9d93a5c2099.jpg',
+        '혼자 갚지 말고 같이 갚아요'
       ],
       [
         'icon_gold',
@@ -46,7 +50,9 @@ class BattleFinding extends GetView {
         '30,000',
         '7',
         '10',
-        'https://search.pstatic.net/common?type=b&size=144&expire=1&refresh=true&quality=100&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2FprofileImg%2Fa0f317ad-e2e4-43dd-a7e2-a9d93a5c2099.jpg'
+        'https://search.pstatic.net/common?type=b&size=144&expire=1&refresh=true&quality=100&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2FprofileImg%2Fa0f317ad-e2e4-43dd-a7e2-a9d93a5c2099.jpg',
+        '혼자 갚지 말고 같이 갚아요'
+            ''
       ],
       [
         'icon_cooper',
@@ -55,7 +61,8 @@ class BattleFinding extends GetView {
         '150,000',
         '1',
         '20',
-        'https://search.pstatic.net/common?type=b&size=144&expire=1&refresh=true&quality=100&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2FprofileImg%2Fbd7fff23-8e54-4f0a-86e5-a1140dd8a98a.jpg'
+        'https://search.pstatic.net/common?type=b&size=144&expire=1&refresh=true&quality=100&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2FprofileImg%2Fbd7fff23-8e54-4f0a-86e5-a1140dd8a98a.jpg',
+        '월급날 텅장되기 싫으면 들어와 너 거진거 너 빼고 다 알아..😂'
       ],
       [
         'icon_gold',
@@ -64,7 +71,8 @@ class BattleFinding extends GetView {
         '50,000',
         '13',
         '20',
-        'https://search.pstatic.net/common?type=b&size=144&expire=1&refresh=true&quality=100&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2FprofileImg%2Fbd7fff23-8e54-4f0a-86e5-a1140dd8a98a.jpg'
+        'https://search.pstatic.net/common?type=b&size=144&expire=1&refresh=true&quality=100&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2FprofileImg%2Fbd7fff23-8e54-4f0a-86e5-a1140dd8a98a.jpg',
+        '혼자 갚지 말고 같이 갚아요'
       ],
       [
         'icon_silver',
@@ -73,17 +81,21 @@ class BattleFinding extends GetView {
         '9,000',
         '2',
         '5',
-        'https://search.pstatic.net/common?type=b&size=144&expire=1&refresh=true&quality=100&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2FprofileImg%2Fa0f317ad-e2e4-43dd-a7e2-a9d93a5c2099.jpg'
+        'https://search.pstatic.net/common?type=b&size=144&expire=1&refresh=true&quality=100&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2FprofileImg%2Fa0f317ad-e2e4-43dd-a7e2-a9d93a5c2099.jpg',
+        '월급날 텅장되기 싫으면 들어와 너 거진거 너 빼고 다 알아..😂'
       ],
     ];
 
     BattleController _battle = Get.put(BattleController());
-    print('this is battle finding');
+    print(_battle.battleIndex().MoneyIndex);
 
-    return Column(
-      children: [
-        BattleContainer(dummy: dummy),
-      ],
-    );
+    return Obx(() => Column(
+          children: [
+            BattleMoney(
+              moneyIndex: _battle.battleIndex().MoneyIndex,
+            ),
+            FindingContainer(dummy: dummy)
+          ],
+        ));
   }
 }

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:poorlex/Controller/battle_controller.dart';
-import 'package:poorlex/Widget/BattlePage/battle_container.dart';
+import 'package:poorlex/Widget/BattlePage/containers/battle_container.dart';
 
 import 'battle_money.dart';
+import 'containers/finished_container.dart';
 
 class BattleFinished extends GetView {
   final int PageIndex;
@@ -19,7 +20,8 @@ class BattleFinished extends GetView {
         '50,000',
         '1',
         '10',
-        'https://search.pstatic.net/common?type=b&size=144&expire=1&refresh=true&quality=100&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2FprofileImg%2Fbd7fff23-8e54-4f0a-86e5-a1140dd8a98a.jpg'
+        'https://search.pstatic.net/common?type=b&size=144&expire=1&refresh=true&quality=100&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2FprofileImg%2Fbd7fff23-8e54-4f0a-86e5-a1140dd8a98a.jpg',
+        '2주전'
       ],
       [
         'icon_silver',
@@ -28,7 +30,8 @@ class BattleFinished extends GetView {
         '70,000',
         '3',
         '20',
-        'https://search.pstatic.net/common?type=b&size=144&expire=1&refresh=true&quality=100&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2FprofileImg%2Fcdd163b6-fabd-4f95-9775-cc2f80d362ac.jpg'
+        'https://search.pstatic.net/common?type=b&size=144&expire=1&refresh=true&quality=100&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2FprofileImg%2Fcdd163b6-fabd-4f95-9775-cc2f80d362ac.jpg',
+        '2주전'
       ],
       [
         'icon_cooper',
@@ -37,7 +40,8 @@ class BattleFinished extends GetView {
         '130,000',
         '5',
         '5',
-        'https://search.pstatic.net/common?type=b&size=144&expire=1&refresh=true&quality=100&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2FprofileImg%2Fa0f317ad-e2e4-43dd-a7e2-a9d93a5c2099.jpg'
+        'https://search.pstatic.net/common?type=b&size=144&expire=1&refresh=true&quality=100&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2FprofileImg%2Fa0f317ad-e2e4-43dd-a7e2-a9d93a5c2099.jpg',
+        '3주전'
       ],
       [
         'icon_gold',
@@ -46,7 +50,8 @@ class BattleFinished extends GetView {
         '30,000',
         '7',
         '10',
-        'https://search.pstatic.net/common?type=b&size=144&expire=1&refresh=true&quality=100&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2FprofileImg%2Fa0f317ad-e2e4-43dd-a7e2-a9d93a5c2099.jpg'
+        'https://search.pstatic.net/common?type=b&size=144&expire=1&refresh=true&quality=100&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2FprofileImg%2Fa0f317ad-e2e4-43dd-a7e2-a9d93a5c2099.jpg',
+        '1주전'
       ],
       [
         'icon_cooper',
@@ -55,7 +60,8 @@ class BattleFinished extends GetView {
         '150,000',
         '1',
         '20',
-        'https://search.pstatic.net/common?type=b&size=144&expire=1&refresh=true&quality=100&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2FprofileImg%2Fbd7fff23-8e54-4f0a-86e5-a1140dd8a98a.jpg'
+        'https://search.pstatic.net/common?type=b&size=144&expire=1&refresh=true&quality=100&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2FprofileImg%2Fbd7fff23-8e54-4f0a-86e5-a1140dd8a98a.jpg',
+        '2주전'
       ],
       [
         'icon_gold',
@@ -64,7 +70,8 @@ class BattleFinished extends GetView {
         '50,000',
         '13',
         '20',
-        'https://search.pstatic.net/common?type=b&size=144&expire=1&refresh=true&quality=100&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2FprofileImg%2Fbd7fff23-8e54-4f0a-86e5-a1140dd8a98a.jpg'
+        'https://search.pstatic.net/common?type=b&size=144&expire=1&refresh=true&quality=100&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2FprofileImg%2Fbd7fff23-8e54-4f0a-86e5-a1140dd8a98a.jpg',
+        '1주전'
       ],
       [
         'icon_silver',
@@ -73,15 +80,20 @@ class BattleFinished extends GetView {
         '9,000',
         '2',
         '5',
-        'https://search.pstatic.net/common?type=b&size=144&expire=1&refresh=true&quality=100&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2FprofileImg%2Fa0f317ad-e2e4-43dd-a7e2-a9d93a5c2099.jpg'
+        'https://search.pstatic.net/common?type=b&size=144&expire=1&refresh=true&quality=100&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2FprofileImg%2Fa0f317ad-e2e4-43dd-a7e2-a9d93a5c2099.jpg',
+        '3주전'
       ],
     ];
 
     BattleController _battle = BattleController();
+    print(_battle.battleIndex().MoneyIndex);
 
     return Column(
       children: [
-        BattleContainer(dummy: dummy),
+        BattleMoney(
+          moneyIndex: _battle.battleIndex().MoneyIndex,
+        ),
+        FinishedContainer(dummy: dummy)
       ],
     );
   }

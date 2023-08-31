@@ -173,7 +173,6 @@ class BattleOption extends GetView {
                   ],
                 ],
               ),
-              BattleMoney(),
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [

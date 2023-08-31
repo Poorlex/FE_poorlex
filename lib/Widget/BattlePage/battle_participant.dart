@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:poorlex/Controller/battle_controller.dart';
 
-import 'battle_container.dart';
+import 'containers/battle_container.dart';
 import 'battle_money.dart';
 
 class BattleParticipant extends GetView {
@@ -78,8 +78,13 @@ class BattleParticipant extends GetView {
     ];
 
     BattleController _battle = BattleController();
+    print(_battle.battleIndex().MoneyIndex);
+
     return Column(
       children: [
+        BattleMoney(
+          moneyIndex: _battle.battleIndex().MoneyIndex,
+        ),
         BattleContainer(dummy: dummy),
       ],
     );

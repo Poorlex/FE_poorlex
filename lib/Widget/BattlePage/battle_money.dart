@@ -7,7 +7,8 @@ import '../../Controller/battle_controller.dart';
 import 'battle_participant.dart';
 
 class BattleMoney extends GetView {
-  const BattleMoney({super.key});
+  final int moneyIndex;
+  const BattleMoney({super.key, required this.moneyIndex});
 
   @override
   Widget build(BuildContext context) {
