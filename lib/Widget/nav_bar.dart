@@ -1,13 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:poorlex/Screen/budget_page.dart';
 
-class NavBar extends StatelessWidget implements PreferredSizeWidget {
+// TODO: battleMoney 상태변경을 위해 StatelessWidget 위젯을 StatefulWidget 위젯으로 변경
+class NavBar extends StatefulWidget implements PreferredSizeWidget {
   final int proValue = 10;
   final int value = 0;
 
-  const NavBar({
-    super.key,
-  });
+  const NavBar({super.key});
 
+  @override
+  State<NavBar> createState() => _NavBarState();
+
+  @override
+  Size get preferredSize => const Size.fromHeight(130);
+}
+
+class _NavBarState extends State<NavBar> {
+  String battleMoney = "POORLEX";
   @override
   Widget build(BuildContext context) {
     return AppBar(
@@ -21,20 +30,18 @@ class NavBar extends StatelessWidget implements PreferredSizeWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Row(
-                      // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const Icon(Icons.flag),
+                        const Icon(Icons.flag, size: 16),
                         const SizedBox(
-                          width: 10,
+                          width: 16,
                         ),
-                        const Text(
-                          '70,000원',
-                        ),
+                        Text('70,000원', style: TextStyle(fontSize: 16)),
                         const SizedBox(
-                          width: 20,
+                          width: 16,
                         ),
                         Container(
                           decoration: BoxDecoration(
@@ -44,7 +51,7 @@ class NavBar extends StatelessWidget implements PreferredSizeWidget {
                           child: const Padding(
                             padding: EdgeInsets.symmetric(
                                 horizontal: 9, vertical: 1),
-                            child: Text('D-7'),
+                            child: Text('D-7', style: TextStyle(fontSize: 14)),
                           ),
                         ),
                       ],
@@ -52,11 +59,14 @@ class NavBar extends StatelessWidget implements PreferredSizeWidget {
                   ],
                 ),
                 const SizedBox(
-                  width: 161,
+                  width: 133,
                 ),
-                IconButton(
-                  onPressed: () {},
-                  icon: const Icon(Icons.settings),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 0),
+                  child: IconButton(
+                    onPressed: () {},
+                    icon: const Icon(Icons.settings, size: 16),
+                  ),
                 ),
               ],
             ),
@@ -68,12 +78,12 @@ class NavBar extends StatelessWidget implements PreferredSizeWidget {
               children: [
                 Text(
                   'LV.4',
-                  style: TextStyle(color: Colors.amber),
+                  style: TextStyle(color: Color(0xffFFD600), fontSize: 16),
                 ),
                 Text('Progress Bar'),
                 Text(
-                  '+256P',
-                  style: TextStyle(color: Colors.amber),
+                  '+256 P',
+                  style: TextStyle(color: Color(0xffFFD600), fontSize: 16),
                 ),
               ],
             ),
@@ -86,20 +96,42 @@ class NavBar extends StatelessWidget implements PreferredSizeWidget {
                 Row(
                   children: [
                     SizedBox(
-                      height: 30,
-                      width: 30,
+                      height: 24,
+                      width: 24,
                       child: Image.asset('assets/coin.png'),
                     ),
                     const SizedBox(
-                      width: 15,
+                      width: 12,
                     ),
-                    const Text('38,000'),
+                    TextButton(
+                      onPressed: () async {
+                        final result = await Navigator.push<String>(
+                          context,
+                          MaterialPageRoute(builder: (context) => BudgetPage()),
+                        );
+
+                        if (result != null) {
+                          setState(() {
+                            battleMoney = result;
+                          });
+                        }
+                      },
+                      style: ButtonStyle(
+                        overlayColor:
+                            MaterialStateProperty.resolveWith<Color>((states) {
+                          return Colors.transparent; // 포커스 색상을 투명하게 설정합니다.
+                        }),
+                      ),
+                      child: Text(battleMoney,
+                          style: TextStyle(
+                              fontSize: 20, color: Color(0xffFFD600))),
+                    )
                   ],
                 ),
-                Text('-32,000원',
-                    style: TextStyle(
-                      color: Colors.purple.shade300,
-                    )),
+                const Text(
+                  '-32,000원',
+                  style: TextStyle(color: Color(0xffB265FF), fontSize: 16),
+                ),
               ],
             )
           ],
@@ -107,7 +139,4 @@ class NavBar extends StatelessWidget implements PreferredSizeWidget {
       ),
     );
   }
-
-  @override
-  Size get preferredSize => const Size.fromHeight(130);
 }
