@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:poorlex/Widget/BattlePage/battle_finding.dart';
+import 'package:poorlex/Widget/BattlePage/battle_making.dart';
 
 import '../Controller/battle_controller.dart';
 import '../Widget/BattlePage/battle_finished.dart';
@@ -14,7 +15,6 @@ class BattlePage extends GetView {
   @override
   Widget build(BuildContext context) {
     BattleController _battle = BattleController();
-    print(_battle.battleIndex().PageNumber);
     return Scaffold(
       bottomNavigationBar: BottomBar(nowPage: 2),
       backgroundColor: Colors.black,
@@ -39,7 +39,9 @@ class BattlePage extends GetView {
                       iconSize: 26,
                     ),
                     IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Get.to(BattleMaking());
+                      },
                       icon: Icon(Icons.add),
                       iconSize: 26,
                     ),

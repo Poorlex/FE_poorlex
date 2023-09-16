@@ -1,0 +1,63 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:poorlex/Widget/BattlePage/BattleMaikingWidget/BattleIndexZero.dart';
+
+import '../../Controller/battle_controller.dart';
+import 'BattleMaikingWidget/BattleProcess.dart';
+
+class BattleMaking extends GetView {
+  const BattleMaking({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    BattleController con = Get.put(BattleController());
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.black,
+        title: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text('배틀방 만들기', style: TextStyle(color: Colors.white, fontSize: 17))
+          ],
+        ),
+      ),
+      bottomNavigationBar: Container(
+        width: double.infinity,
+        height: 52,
+        child: ElevatedButton(
+            onPressed: () {
+              con.changeBattleMakingIndex();
+            },
+            child: Text('다음', style: TextStyle(color: Colors.black)),
+            style: ButtonStyle(
+              backgroundColor:
+                  MaterialStateProperty.all<Color>(Color(0xffffd600)),
+            )),
+      ),
+      backgroundColor: Colors.black,
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SizedBox(
+            height: 26,
+          ),
+          BattleProcess(),
+          Obx(() {
+            if (con.battleMakingIndex().BattleIndex == 0) {
+              return BattleIndexZero();
+            } else if (con.battleMakingIndex().BattleIndex == 1) {
+              return Text('hello2', style: TextStyle(color: Colors.white));
+            } else if (con.battleMakingIndex().BattleIndex == 2) {
+              return Text('hello3', style: TextStyle(color: Colors.white));
+            } else if (con.battleMakingIndex().BattleIndex == 3) {
+              return Text('hello4', style: TextStyle(color: Colors.white));
+            } else {
+              return SizedBox.shrink();
+            }
+          }),
+        ],
+      ),
+    );
+  }
+}
