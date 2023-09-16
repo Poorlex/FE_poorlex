@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:poorlex/Widget/BattlePage/BattleMaikingWidget/BattleIndexZero.dart';
+import 'package:poorlex/Widget/BattlePage/BattleMaikingWidget/battle_index_three.dart';
 
 import '../../Controller/battle_controller.dart';
 import 'BattleMaikingWidget/BattleProcess.dart';
+import 'BattleMaikingWidget/battle_index_one.dart';
+import 'BattleMaikingWidget/battle_index_two.dart';
 
 class BattleMaking extends GetView {
   const BattleMaking({super.key});
@@ -47,11 +50,11 @@ class BattleMaking extends GetView {
             if (con.battleMakingIndex().BattleIndex == 0) {
               return BattleIndexZero();
             } else if (con.battleMakingIndex().BattleIndex == 1) {
-              return Text('hello2', style: TextStyle(color: Colors.white));
+              return BattleIndexOne();
             } else if (con.battleMakingIndex().BattleIndex == 2) {
-              return Text('hello3', style: TextStyle(color: Colors.white));
+              return BattleIndexTwo();
             } else if (con.battleMakingIndex().BattleIndex == 3) {
-              return Text('hello4', style: TextStyle(color: Colors.white));
+              return BattleIndexThree();
             } else {
               return SizedBox.shrink();
             }
