@@ -20,7 +20,10 @@ class BattleProcess extends GetView {
           (index) {
             return Row(
               children: [
-                if (con.battleMakingIndex().BattleIndex == colors[index]) ...[
+                if (con.battleMakingIndex().BattleIndex > 3)
+                  ...[]
+                else if (con.battleMakingIndex().BattleIndex ==
+                    colors[index]) ...[
                   Container(
                     width: 5,
                     height: 5,

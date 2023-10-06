@@ -90,6 +90,7 @@ flutter:
     - assets/main_page/icon_profile_remove.png
     - assets/budget_page/icon_cancel.png
     - assets/budget_page/poorlex.png
+    - assets/battle_page/BattleFinishedImg.png
 
 
 

@@ -95,7 +95,7 @@ class BattleIndexOne extends GetView {
       Text('배틀방 소개', style: TextStyle(fontSize: 14, color: Color(0xff999999))),
       SizedBox(
         width: double.infinity,
-        height: 200,
+        height: 150,
         child: TextField(
           maxLines: 9,
           controller: _contentController,

@@ -8,6 +8,7 @@ import '../../Controller/battle_controller.dart';
 import 'BattleMaikingWidget/BattleProcess.dart';
 import 'BattleMaikingWidget/battle_index_one.dart';
 import 'BattleMaikingWidget/battle_index_two.dart';
+import 'BattleMaikingWidget/battle_making_finished.dart';
 
 class BattleMaking extends GetView {
   const BattleMaking({super.key});
@@ -15,6 +16,7 @@ class BattleMaking extends GetView {
   @override
   Widget build(BuildContext context) {
     BattleController con = Get.put(BattleController());
+    // con.battleMakingIndex().BattleIndex = 0;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.black,
@@ -40,7 +42,6 @@ class BattleMaking extends GetView {
       ),
       backgroundColor: Colors.black,
       body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(
             height: 26,
@@ -55,6 +56,8 @@ class BattleMaking extends GetView {
               return BattleIndexTwo();
             } else if (con.battleMakingIndex().BattleIndex == 3) {
               return BattleIndexThree();
+            } else if (con.battleMakingIndex().BattleIndex == 4) {
+              return BattleMakingFinished();
             } else {
               return SizedBox.shrink();
             }

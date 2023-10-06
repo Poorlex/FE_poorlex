@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
         theme: ThemeData(fontFamily: 'NeoDunggeunmoPro-Regular'),
-        // home: LandingPage(),
+        // home: LandingPage());
         // home: const MainPage());
         // home: const MyPage());
         // home: const LoginKakao());

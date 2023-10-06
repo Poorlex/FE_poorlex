@@ -25,6 +25,11 @@ class BattleController extends GetxController {
   Rx<int> selectedIndexTwo = 0.obs;
   Rx<Color> indexTwoColor = Color(0xff999999).obs;
 
+  // IndexThree
+  Rx<int> selectedIndexThree = 0.obs;
+  Rx<Color> indexThreeFirstColor = Color(0xff999999).obs;
+  Rx<Color> indexThreeSecondColor = Color(0xff999999).obs;
+
   void changeBattleIndex(int number) {
     battleIndex.update(
       (val) => val?.PageNumber = number,
@@ -102,5 +107,16 @@ class BattleController extends GetxController {
 
   void changeIndexTwoColorToTen(Color itemColor) {
     indexTwoColor.value = itemColor;
+  }
+
+  void changeIndexThreeColor(int number) {
+    selectedIndexThree.value = number;
+    if (selectedIndexThree.value == 1) {
+      indexThreeFirstColor.value = Color(0xffffd600);
+      indexThreeSecondColor.value = Color(0xff999999);
+    } else if (selectedIndexThree.value == 2) {
+      indexThreeFirstColor.value = Color(0xff999999);
+      indexThreeSecondColor.value = Color(0xffffd600);
+    }
   }
 }

@@ -14,7 +14,7 @@ class BattlePage extends GetView {
 
   @override
   Widget build(BuildContext context) {
-    BattleController _battle = BattleController();
+    BattleController _battle = Get.put(BattleController());
     return Scaffold(
       bottomNavigationBar: BottomBar(nowPage: 2),
       backgroundColor: Colors.black,
