@@ -28,6 +28,3 @@ class BattleMakingFinished extends GetView {
     );
   }
 }
-
-
-// Image.asset('assets/battle_page/BattleFinishedImg.png')

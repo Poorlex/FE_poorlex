@@ -91,6 +91,9 @@ flutter:
     - assets/budget_page/icon_cancel.png
     - assets/budget_page/poorlex.png
     - assets/battle_page/BattleFinishedImg.png
+    - assets/battle_page/IMG_NO_FRIENDS.png
+    - assets/battle_page/IMG_PROFILE.png
+    - assets/battle_page/ICON_LV2.png
 
 
 

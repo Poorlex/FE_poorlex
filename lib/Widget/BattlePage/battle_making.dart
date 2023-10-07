@@ -16,7 +16,7 @@ class BattleMaking extends GetView {
   @override
   Widget build(BuildContext context) {
     BattleController con = Get.put(BattleController());
-    // con.battleMakingIndex().BattleIndex = 0;
+    con.battleMakingIndex().BattleIndex = 0;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.black,
@@ -34,7 +34,9 @@ class BattleMaking extends GetView {
             onPressed: () {
               con.changeBattleMakingIndex();
             },
-            child: Text('다음', style: TextStyle(color: Colors.black)),
+            child: Obx(() => Text(
+                con.battleMakingIndex().BattleIndex == 4 ? '시작' : '다음',
+                style: TextStyle(color: Colors.black))),
             style: ButtonStyle(
               backgroundColor:
                   MaterialStateProperty.all<Color>(Color(0xffffd600)),
@@ -59,7 +61,7 @@ class BattleMaking extends GetView {
             } else if (con.battleMakingIndex().BattleIndex == 4) {
               return BattleMakingFinished();
             } else {
-              return SizedBox.shrink();
+              return BattleMakingFinished();
             }
           }),
         ],

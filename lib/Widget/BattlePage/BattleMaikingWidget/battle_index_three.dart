@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:poorlex/Widget/BattlePage/BattleMaikingWidget/finding_friends.dart';
 
 import '../../../Controller/battle_controller.dart';
 import 'battle_making_finished.dart';
@@ -52,6 +53,11 @@ class BattleIndexThree extends GetView {
                     ),
                     onPressed: () {
                       con.changeIndexThreeColor(1);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => FindingFriends()),
+                      );
                     },
                     child: Padding(
                       padding: const EdgeInsets.symmetric(
