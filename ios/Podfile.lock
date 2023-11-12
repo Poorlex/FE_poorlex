@@ -1,6 +1,6 @@
 PODS:
   - Flutter (1.0.0)
-  - kakao_flutter_sdk_common (1.5.0):
+  - kakao_flutter_sdk_common (1.6.1):
     - Flutter
   - shared_preferences_foundation (0.0.1):
     - Flutter
@@ -31,11 +31,11 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
-  kakao_flutter_sdk_common: ceb36a134b53ae973da184f67f39993142377af4
+  kakao_flutter_sdk_common: 7167cfbf5725acf75252af46bb045b9ad99ed6ce
   shared_preferences_foundation: 5b919d13b803cadd15ed2dc053125c68730e5126
   sign_in_with_apple: f3bf75217ea4c2c8b91823f225d70230119b8440
   webview_flutter_wkwebview: 2e2d318f21a5e036e2c3f26171342e95908bd60a
 
 PODFILE CHECKSUM: 70d9d25280d0dd177a5f637cdb0f0b0b12c6a189
 
-COCOAPODS: 1.13.0
+COCOAPODS: 1.14.2

@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
-import 'Screen/battle_page.dart';
-import 'landingpage.dart';
-// import 'package:poorlex/Screen/my_page.dart';
-// import 'package:poorlex/Screen/main_page.dart';
+
+import 'Screen/battle_page/battle_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
