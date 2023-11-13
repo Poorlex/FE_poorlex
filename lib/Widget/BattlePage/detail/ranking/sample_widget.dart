@@ -104,14 +104,38 @@ class _SampleWidget extends State<SampleWidget>
     return TabBarView(
       controller: tabController,
       children: [
-        // todo: ListView 를 활용해서 구현해주기 (나중에 10개 이상이 될 수 있음)
-        // 1,2,3 번째는 크기가 달라야함
+        // todo: 랭킹 ListView 를 활용해서 등수 표현해주기
+        ListView(
+          padding: const EdgeInsets.all(8),
+          children: <Widget>[
+            Container(
+              height: 50,
+              color: Colors.amber[600],
+              child: const Center(child: Text('Entry A')),
+            ),
+            Container(
+              height: 50,
+              color: Colors.amber[500],
+              child: const Center(child: Text('Entry B')),
+            ),
+            Container(
+              height: 50,
+              color: Colors.amber[100],
+              child: const Center(child: Text('Entry C')),
+            ),
+          ],
+        ),
+        // todo: 인증
         Column(children: [
           Text("200", style: TextStyle(color: Colors.white)),
           Text("200", style: TextStyle(color: Colors.white))
         ]),
-        Column(children: [Text("200", style: TextStyle(color: Colors.white))]),
-        Column(children: [Text("200", style: TextStyle(color: Colors.white))]),
+        // todo: 채팅
+        Container(
+          height: 50,
+          color: Colors.amber[100],
+          child: const Center(child: Text('Entry T')),
+        ),
       ],
     );
   }
