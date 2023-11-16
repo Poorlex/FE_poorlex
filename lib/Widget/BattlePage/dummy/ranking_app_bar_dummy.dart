@@ -1,3 +1,3 @@
-List<List<String>> rankingAppBarDummy = [
+List<List<String>> rankingDummy = [
   [],
 ];
