@@ -108,10 +108,90 @@ class _SampleWidget extends State<SampleWidget>
         ListView(
           padding: const EdgeInsets.all(8),
           children: <Widget>[
-            Container(
-              height: 50,
-              color: Colors.amber[600],
-              child: const Center(child: Text('Entry A')),
+            Column(
+              children: [
+                Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(26, 5, 10, 5),
+                      child: Container(
+                        decoration: BoxDecoration(
+                            color: Color(0xFFFFD600),
+                            borderRadius: BorderRadius.circular(4),
+                            border:
+                                Border.all(color: Color(0xffD07309), width: 2)),
+                        width: 36,
+                        height: 36,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text(
+                              '7',
+                              style: const TextStyle(
+                                  fontSize: 14, color: Color(0xff732900)),
+                            ),
+                            const Text(
+                              '만원',
+                              style: TextStyle(
+                                  fontSize: 10, color: Color(0xff732900)),
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: Text(
+                        '빚갚고 돈모으는 절약방',
+                        style: TextStyle(fontSize: 18, color: Colors.white),
+                      ),
+                    )
+                  ],
+                )
+              ],
+            ),
+            Column(
+              children: [
+                Row(children: [
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(26, 5, 5, 5),
+                    child: Image.asset(
+                      'assets/ranking/icon_people_20_20.png',
+                      width: 20,
+                      height: 20,
+                    ),
+                  ),
+                  Expanded(
+                    child: Text(
+                      '10/10',
+                      style: TextStyle(fontSize: 12, color: Colors.white),
+                    ),
+                  ),
+                ])
+              ],
+            ),
+            SizedBox(
+              height: 80,
+              child: Column(
+                children: [
+                  Row(children: [
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(20, 0, 5, 0),
+                      child: Image.asset(
+                        'assets/ranking/icon_first_24_24.png',
+                        width: 24,
+                        height: 24,
+                      ),
+                    ),
+                    Expanded(
+                      child: Text(
+                        '10/10',
+                        style: TextStyle(fontSize: 12, color: Colors.white),
+                      ),
+                    ),
+                  ]),
+                ],
+              ),
             ),
             Container(
               height: 50,
