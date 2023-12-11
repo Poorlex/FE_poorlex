@@ -6,9 +6,7 @@ class CalenderHeader extends StatelessWidget {
 
   const CalenderHeader(
       int this.current,
-      {
-        super.key,
-      }
+      { super.key }
   );
 
   @override
@@ -37,6 +35,9 @@ class CalenderHeader extends StatelessWidget {
                                 Icon(Icons.arrow_drop_down_sharp, size: 35, color: Colors.white,)
                               ],
                             ),
+                            select: (int current) => {
+                              print(current)
+                            }
                           ),
                           IconButton(
                               icon: Icon(Icons.arrow_forward_ios, size: 25, color: Colors.white,),
