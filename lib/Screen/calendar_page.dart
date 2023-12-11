@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:poorlex/Widget/MainPageWidget/bottom_bar.dart';
 import 'package:poorlex/Widget/CalendarPage/header.dart';
+import 'package:poorlex/Widget/CalendarPage/list.dart';
 
 class CaledarPage extends StatefulWidget {
   const CaledarPage({super.key});
@@ -12,6 +13,12 @@ class CaledarPage extends StatefulWidget {
 
 class _CaledarPageState extends State<CaledarPage> {
   int _current = DateTime.now().millisecondsSinceEpoch;
+
+  void select (int n) {
+    this.setState(() {
+      _current = n;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,25 +34,8 @@ class _CaledarPageState extends State<CaledarPage> {
                 Expanded(
                   child: Column(
                     children: [
-                      CalenderHeader(this._current),
-                      SingleChildScrollView(
-                        child: (
-                            Expanded(
-                              child: (
-                                  Column(
-                                    children: [
-                                      Text(
-                                          '요약',
-                                          style: TextStyle(
-                                              color: Colors.white
-                                          )
-                                      )
-                                    ],
-                                  )
-                              )
-                            )
-                        )
-                      )
+                      CalenderHeader(current: _current, select: select),
+                      List()
                     ],
                     crossAxisAlignment: CrossAxisAlignment.start,
                   )

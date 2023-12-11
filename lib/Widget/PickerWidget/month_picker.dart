@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -157,7 +156,10 @@ class _MonthPickerModalState extends State<MonthPickerModal> {
                                 ElevatedButton(
                                     style: ElevatedButton.styleFrom(backgroundColor: Color(0xFFFFD600), minimumSize: Size.fromHeight(50)),
                                     child: Text('확인', style: TextStyle(color: Colors.black, fontSize: 18),),
-                                    onPressed: () => widget.select(widget.current)
+                                    onPressed: () {
+                                      widget.select(widget.current);
+                                      Navigator.pop(context);
+                                    }
                                 )
                             ),
                           ),
