@@ -23,6 +23,7 @@ class _CaledarPageState extends State<CaledarPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        resizeToAvoidBottomInset : false,
         backgroundColor: Colors.black,
         bottomNavigationBar: const BottomBar(
           nowPage: 3,
@@ -30,17 +31,14 @@ class _CaledarPageState extends State<CaledarPage> {
         body: (
           Container(
               padding: EdgeInsets.fromLTRB(0, MediaQuery.of(context).viewPadding.top + 20, 0, MediaQuery.of(context).viewPadding.bottom),
-              child: (
-                Expanded(
-                  child: Column(
-                    children: [
-                      CalenderHeader(current: _current, select: select),
-                      List()
-                    ],
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                  )
+              child:
+                Column(
+                  children: [
+                    CalenderHeader(current: _current, select: select),
+                    Flexible(flex: 1, child: List())
+                  ],
+                  crossAxisAlignment: CrossAxisAlignment.start,
                 )
-              )
           )
         )
     );

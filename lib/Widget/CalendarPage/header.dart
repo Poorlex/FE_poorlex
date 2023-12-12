@@ -28,8 +28,8 @@ class _CalenderHeaderState extends State<CalenderHeader> {
     return Container(
         padding: EdgeInsets.fromLTRB(16, 0, 16, 0),
         child: (
-            Expanded(
-                child: Column(
+            // Expanded(child:
+              Column(
                   children: [
                     Text('요약', style: TextStyle(fontSize: 24, color: Colors.white)),
                     SizedBox(height: 20),
@@ -64,7 +64,7 @@ class _CalenderHeaderState extends State<CalenderHeader> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                 )
             )
-        )
+        // )
     );
   }
 }
