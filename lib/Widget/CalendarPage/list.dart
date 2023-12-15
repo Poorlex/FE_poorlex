@@ -2,13 +2,29 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class List extends StatefulWidget {
-  const List({super.key});
+  final int current;
+
+  List({
+    super.key,
+    required this.current,
+  });
 
   @override
   State<List> createState() => _ListState();
 }
 
 class _ListState extends State<List> {
+  var openedIndex = [];
+
+  Function onClick (index) {
+    return () {
+      setState(() {
+        if (openedIndex.contains(index)) openedIndex.removeWhere((item) => item == index);
+        else openedIndex.add(index);
+      });
+    };
+  }
+
   @override
   Widget build(BuildContext context) {
     return (
@@ -28,14 +44,14 @@ class _ListState extends State<List> {
               Flexible(flex: 1, child:
                 SingleChildScrollView(scrollDirection: Axis.vertical, child:
                   Column(children: [
-                    WeekItem(),
-                    DayItems(),
+                    WeekItem(onClick: onClick(0)),
+                    DayItems(isOpen: openedIndex.contains(0)),
                     SizedBox(height: 1,),
-                    WeekItem(),
-                    DayItems(),
+                    WeekItem(onClick: onClick(1)),
+                    DayItems(isOpen: openedIndex.contains(1)),
                     SizedBox(height: 1,),
-                    WeekItem(),
-                    DayItems(),
+                    WeekItem(onClick: onClick(2)),
+                    DayItems(isOpen: openedIndex.contains(2)),
                   ]),
                 ),
               )
@@ -45,7 +61,12 @@ class _ListState extends State<List> {
 }
 
 class WeekItem extends StatelessWidget {
-  const WeekItem({super.key});
+  Function onClick;
+
+  WeekItem({
+    super.key,
+    required this.onClick
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -97,54 +118,67 @@ class WeekItem extends StatelessWidget {
               ],
             ),
         ),
-        onPressed: () => print(111),
+        onPressed: () => onClick(),
       );
   }
 }
 
 class DayItems extends StatelessWidget {
-  const DayItems({super.key});
+  bool isOpen;
+  DayItems({
+    super.key,
+    required this.isOpen,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Column(children: [
-      DayItem(),
+      DayItem(isOpen: isOpen),
       Container(color: Colors.grey, child: SizedBox(height: 1)),
-      DayItem(),
+      DayItem(isOpen: isOpen),
       Container(color: Colors.grey, child: SizedBox(height: 1)),
-      DayItem(),
+      DayItem(isOpen: isOpen),
       Container(color: Colors.grey, child: SizedBox(height: 1)),
     ]);
   }
 }
 
 class DayItem extends StatelessWidget {
-  const DayItem({super.key});
+  bool isOpen = false;
+  DayItem({
+    super.key,
+    required this.isOpen,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return AnimatedCrossFade(
+      crossFadeState: isOpen ? CrossFadeState.showSecond : CrossFadeState.showFirst,
+      duration: Duration(milliseconds: 180),
+      firstChild: Container(height: 0,),
+      secondChild: Container(
         color: Colors.black,
         padding: EdgeInsets.fromLTRB(16, 16, 16, 16),
         child:
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Container(
-                width: 64,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text('월', style: TextStyle(color: Colors.white, fontSize: 15),),
-                    Text('07.31', style: TextStyle(color: Colors.white, fontSize: 14),),
-                  ],
-                ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Container(
+              width: 64,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text('월', style: TextStyle(color: Colors.white, fontSize: 15),),
+                  Text('07.31', style: TextStyle(color: Colors.white, fontSize: 14),),
+                ],
               ),
-              Text('-12,000원', style: TextStyle(color: Colors.white, fontSize: 15),),
-            ],
-          ),
+            ),
+            Text('-12,000원', style: TextStyle(color: Colors.white, fontSize: 15),),
+          ],
+        ),
+      ),
     );
   }
 }

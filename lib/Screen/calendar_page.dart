@@ -35,7 +35,7 @@ class _CaledarPageState extends State<CaledarPage> {
                 Column(
                   children: [
                     CalenderHeader(current: _current, select: select),
-                    Flexible(flex: 1, child: List())
+                    Flexible(flex: 1, child: List(current: _current,))
                   ],
                   crossAxisAlignment: CrossAxisAlignment.start,
                 )
