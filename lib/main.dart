@@ -5,6 +5,7 @@ import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
 import 'Screen/battle_page.dart';
 import 'Screen/calendar_page.dart';
+import 'Screen/goal_page.dart';
 import 'landingpage.dart';
 // import 'package:poorlex/Screen/my_page.dart';
 // import 'package:poorlex/Screen/main_page.dart';
@@ -38,6 +39,7 @@ class MyApp extends StatelessWidget {
         // home: const LandingPage());
         // home: const AppleLogin());
         // home: BattlePage());
-        home: CaledarPage());
+        // home: CaledarPage());
+        home: GoalPage());
   }
 }

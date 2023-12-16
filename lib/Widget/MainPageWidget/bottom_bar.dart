@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:poorlex/Screen/goal_page.dart';
 import 'package:poorlex/Screen/main_page.dart';
 import 'package:poorlex/Screen/my_page.dart';
-
-import '/Screen/battle_page.dart';
-import '/Screen/calendar_page.dart';
+import 'package:poorlex/Screen/battle_page.dart';
+import 'package:poorlex/Screen/calendar_page.dart';
 
 class BottomBar extends StatefulWidget {
   final int nowPage;
@@ -27,7 +27,7 @@ class _BottomBarState extends State<BottomBar> {
 
   static const List<Widget> _pages = <Widget>[
     MainPage(),
-    MyPage(),
+    GoalPage(),
     BattlePage(),
     CaledarPage(),
     MyPage(),
