@@ -24,73 +24,44 @@ class _GoalPageState extends State<GoalPage> {
           Container(
             child: SafeArea(child: CustomScrollView(
               slivers: [
-                SliverFixedExtentList(
-                    itemExtent: 24.0,
+                SliverList(
                     delegate: SliverChildBuilderDelegate((BuildContext context, int index) {
                       return Container(
-                        padding: EdgeInsets.fromLTRB(16, 0, 0, 0),
-                        child: Text('요약', style: TextStyle(fontSize: 24, color: Colors.white)),
+                        padding: EdgeInsets.fromLTRB(16, 0, 0, 16),
+                        child: Text('목표', style: TextStyle(fontSize: 24, color: Colors.white)),
                       );
                     }, childCount: 1)
                 ),
                 SliverAppBar(
                     pinned: true,
                     backgroundColor: Colors.black,
-                    title: Row(children: [
-                      Expanded(child:
-                        CustomTab(
-                          selected: 1234,
-                          list: [
-                              CustomTabItem(label: '진행중', value: 1234, onClick: print),
-                              CustomTabItem(label: '완료된', value: 5678, onClick: print),
-                          ]
+                    title: Container(
+                      decoration: BoxDecoration(border: Border(bottom: BorderSide(color: Color(0xFF161616), width: 1))),
+                      child: Row(children: [
+                        Expanded(child:
+                          CustomTab(
+                              selected: 1234,
+                              list: [
+                                CustomTabItem(label: '진행중', value: 1234, onClick: print),
+                                CustomTabItem(label: '완료된', value: 5678, onClick: print),
+                              ]
+                          )
                         )
-                      )
-                    ])
+                      ]),
+                    )
                 ),
-                SliverFixedExtentList(
-                    itemExtent: 12,
+                SliverList(
+                    // itemExtent: 1,
                     delegate: SliverChildBuilderDelegate((BuildContext context, int index) {
                       return Container(
-                        padding: EdgeInsets.fromLTRB(16, 0, 0, 0),
-                        child: Text("11111", style: TextStyle(color: Colors.white),),
+                        child: GoalList()
                       );
                     }, childCount: 1)
-                ),
-              ],
+                )
+              ]
             ))
           )
-            /*Container(
-                padding: EdgeInsets.fromLTRB(0, MediaQuery.of(context).viewPadding.top + 20, 0, MediaQuery.of(context).viewPadding.bottom),
-                child:
-                Column(
-                  children: [
-                    GoalHeader(),
-                    Flexible(flex: 1, child: GoalList())
-                  ],
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                )
-            )*/
         )
     );
   }
-}
-
-List<Widget> _sliverList(int size, int sliverChildCount) {
-  var widgetList = <Widget>[];
-  for (int index = 0; index < size; index++)
-    widgetList
-      ..add(SliverFixedExtentList(
-        itemExtent: 50.0,
-        delegate:
-        SliverChildBuilderDelegate((BuildContext context, int index) {
-          return Container(
-            alignment: Alignment.center,
-            color: Colors.lightBlue[100 * (index % 9)],
-            child: Text('list item $index'),
-          );
-        }, childCount: sliverChildCount),
-      ));
-
-  return widgetList;
 }

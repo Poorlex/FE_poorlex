@@ -30,7 +30,7 @@ class CustomTab extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: list.map((item) {
             return Container(
-              margin: EdgeInsets.fromLTRB(0, 0, 10, 0),
+              margin: EdgeInsets.fromLTRB(0, 0, 36, 0),
               child: TextButton(
                     style: TextButton.styleFrom(padding: EdgeInsets.zero, minimumSize: Size(0, 0), alignment: Alignment.centerLeft),
                     child:
@@ -38,7 +38,7 @@ class CustomTab extends StatelessWidget {
                           padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
                           decoration: selected == item.value ? BoxDecoration(border: Border(bottom: BorderSide(color: Color(0xFFFFD600), width: 2))) : null,
                           child:
-                            Text(item.label, style: TextStyle(color: selected == item.value ? Colors.white : Colors.grey.shade500))
+                            Text(item.label, style: TextStyle(color: selected == item.value ? Colors.white : Colors.grey.shade500, fontSize: 20))
                       ),
                     onPressed: () => item.onClick(item.value)
               )
