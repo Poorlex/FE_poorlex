@@ -27,7 +27,7 @@ class _GoalPageState extends State<GoalPage> {
                 SliverList(
                     delegate: SliverChildBuilderDelegate((BuildContext context, int index) {
                       return Container(
-                        padding: EdgeInsets.fromLTRB(16, 0, 0, 16),
+                        padding: EdgeInsets.fromLTRB(16, 20, 0, 16),
                         child: Text('목표', style: TextStyle(fontSize: 24, color: Colors.white)),
                       );
                     }, childCount: 1)

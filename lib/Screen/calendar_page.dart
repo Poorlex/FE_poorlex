@@ -29,17 +29,19 @@ class _CaledarPageState extends State<CaledarPage> {
           nowPage: 3,
         ),
         body: (
-          Container(
-              padding: EdgeInsets.fromLTRB(0, MediaQuery.of(context).viewPadding.top + 20, 0, MediaQuery.of(context).viewPadding.bottom),
-              child:
-                Column(
-                  children: [
-                    CalenderHeader(current: _current, select: select),
-                    Flexible(flex: 1, child: List(current: _current,))
-                  ],
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                )
-          )
+            SafeArea(child:
+              Container(
+                padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
+                child:
+                  Column(
+                    children: [
+                      CalenderHeader(current: _current, select: select),
+                      Flexible(flex: 1, child: List(current: _current,))
+                    ],
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                  )
+              )
+            )
         )
     );
   }
