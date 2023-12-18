@@ -35,19 +35,27 @@ class _GoalPageState extends State<GoalPage> {
                 SliverAppBar(
                     pinned: true,
                     backgroundColor: Colors.black,
+                    foregroundColor: Colors.black,
+                    elevation: 0,
+                    titleSpacing: 0,
                     title: Container(
-                      decoration: BoxDecoration(border: Border(bottom: BorderSide(color: Color(0xFF161616), width: 1))),
-                      child: Row(children: [
-                        Expanded(child:
-                          CustomTab(
-                              selected: 1234,
-                              list: [
-                                CustomTabItem(label: '진행중', value: 1234, onClick: print),
-                                CustomTabItem(label: '완료된', value: 5678, onClick: print),
-                              ]
+                      decoration: BoxDecoration(
+                          border: Border(bottom: BorderSide(color: Color(0xFF161616), width: 1))
+                      ),
+                      child: Container(
+                        padding: EdgeInsets.fromLTRB(16, 0, 16, 0),
+                        child: Row(children: [
+                          Expanded(child:
+                            CustomTab(
+                                selected: 1234,
+                                list: [
+                                  CustomTabItem(label: '진행중', value: 1234, onClick: print),
+                                  CustomTabItem(label: '완료된', value: 5678, onClick: print),
+                                ]
+                            )
                           )
-                        )
-                      ]),
+                        ]),
+                      )
                     )
                 ),
                 SliverList(
