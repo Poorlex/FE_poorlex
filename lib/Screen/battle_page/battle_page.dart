@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import '../../Controller/battle_controller.dart';
-import '../../Widget/BattlePage/battle_option.dart';
-import '../../Widget/MainPageWidget/bottom_bar.dart';
+import 'package:poorlex/Controller/battle_controller.dart';
+import 'package:poorlex/Widget/BattlePage/battle_option.dart';
+import 'package:poorlex/Widget/MainPageWidget/bottom_bar.dart';
 
 class BattlePage extends GetView {
   const BattlePage({super.key});
