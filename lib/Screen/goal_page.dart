@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import 'package:poorlex/Widget/GoalPage/list.dart';
 import 'package:poorlex/Widget/MainPageWidget/bottom_bar.dart';
@@ -12,6 +13,7 @@ class GoalPage extends StatefulWidget {
 }
 
 class _GoalPageState extends State<GoalPage> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,8 +51,8 @@ class _GoalPageState extends State<GoalPage> {
                             CustomTab(
                                 selected: 1234,
                                 list: [
-                                  CustomTabItem(label: '진행중', value: 1234, onClick: print),
-                                  CustomTabItem(label: '완료된', value: 5678, onClick: print),
+                                  CustomTabItem(label: '진행중', value: 1234, onClick: () => print(123)),
+                                  CustomTabItem(label: '완료된', value: 5678, onClick: () => print(123)),
                                 ]
                             )
                           )
