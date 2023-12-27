@@ -74,6 +74,8 @@ flutter:
     - assets/main_page/
     - assets/my_page/
     - assets/ranking/
+    - assets/battle_page/
+    - assets/sample/
     - assets/coin.png
     - assets/img_main_login.png
 
