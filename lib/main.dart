@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
+import 'package:poorlex/Screen/battle_page/detail/ranking/ranking.dart';
 import 'Screen/calendar_page.dart';
 import 'Screen/goal_page.dart';
 import 'landingpage.dart';
@@ -41,6 +42,7 @@ class MyApp extends StatelessWidget {
         // home: const AppleLogin());
         // home: BattlePage());
         // home: CaledarPage());
-        home: GoalPage());
+        // home: GoalPage());
+        home: Ranking());
   }
 }
