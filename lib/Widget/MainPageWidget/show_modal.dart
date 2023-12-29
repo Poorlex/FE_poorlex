@@ -34,14 +34,10 @@ class _ShowModalState extends State<ShowModal> {
           children: [
             Container(
               height: 400,
-              decoration: const BoxDecoration(
-                color: Colors.black,
-              ),
+              decoration: BoxDecoration(color: Colors.black),
               child: Column(
                 children: [
-                  const SizedBox(
-                    height: 20,
-                  ),
+                  SizedBox(height: 20),
                   // if (stageLevel == 0)
                   if (_modal.modalCount().modalCount == 0)
                     Column(
@@ -49,65 +45,41 @@ class _ShowModalState extends State<ShowModal> {
                         Row(
                           children: [
                             Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 24, vertical: 12),
+                              padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  const Padding(
+                                  Padding(
                                     padding: EdgeInsets.symmetric(vertical: 8),
-                                    child: Text('고수거지:',
-                                        style: TextStyle(
-                                            color: Colors.white, fontSize: 18)),
+                                    child: Text('고수거지:', style: TextStyle(color: Colors.white, fontSize: 18))
                                   ),
-                                  const SizedBox(
-                                    height: 8,
-                                  ),
+                                  SizedBox(height: 8),
                                   Row(
                                     children: [
-                                      const Text('반갑네',
-                                          style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 18)),
-                                      const SizedBox(
-                                        width: 10,
-                                      ),
-                                      Text(
-                                        '${_user.userInfo().userName}!',
-                                        style: const TextStyle(
-                                            color: Color(0xffffd600),
-                                            fontSize: 20),
-                                      ),
+                                      Text('반갑네', style: TextStyle(color: Colors.white, fontSize: 18)),
+                                      SizedBox(width: 10),
+                                      Text('${_user.userInfo().userName}!', style: TextStyle(color: Color(0xffffd600), fontSize: 20)),
                                     ],
                                   ),
-                                  const SizedBox(
-                                    height: 10,
-                                  ),
-                                  const Text('신입 거지로 들어온 것을 환영하네.',
-                                      style: TextStyle(
-                                          color: Colors.white, fontSize: 18)),
-                                  const SizedBox(
-                                    height: 10,
-                                  ),
+                                  SizedBox(height: 10),
+                                  Text('신입 거지로 들어온 것을 환영하네.', style: TextStyle(color: Colors.white, fontSize: 18)),
+                                  SizedBox(height: 10),
                                 ],
                               ),
                             ),
                           ],
                         ),
                         Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 60),
+                          padding: EdgeInsets.symmetric(vertical: 60),
                           child: ElevatedButton(
                             onPressed: () {
                               addLevel();
                               _modal.increase();
                             },
                             style: ElevatedButton.styleFrom(
-                                backgroundColor: const Color(0xffffd600),
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 120, vertical: 16)),
-                            child: const Text('안녕하세요!',
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 18)),
+                                backgroundColor: Color(0xffffd600), padding: EdgeInsets.symmetric(horizontal: 120, vertical: 16)
+                            ),
+                            child: Text('안녕하세요!', style: TextStyle(color: Colors.black, fontSize: 18))
                           ),
                         ),
                       ],
@@ -115,89 +87,58 @@ class _ShowModalState extends State<ShowModal> {
                   if (_modal.modalCount().modalCount == 1) ...[
                     // if (stageLevel == 1) ...[
                     Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const Row(
+                        Row(
                           children: [
                             Padding(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 24, vertical: 12),
+                              padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Padding(
                                     padding: EdgeInsets.symmetric(vertical: 8),
-                                    child: Text('고수거지:',
-                                        style: TextStyle(
-                                            color: Colors.white, fontSize: 18)),
+                                    child: Text('고수거지:', style: TextStyle(color: Colors.white, fontSize: 18)),
                                   ),
-                                  SizedBox(
-                                    height: 8,
-                                  ),
+                                  SizedBox(height: 8),
                                   Row(
                                     children: [
-                                      Text('이 동네 거지들은 모두',
-                                          style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 18)),
-                                      SizedBox(
-                                        width: 10,
-                                      ),
+                                      Text('이 동네 거지들은 모두', style: TextStyle(color: Colors.white, fontSize: 18)),
+                                      SizedBox(width: 10)
                                     ],
                                   ),
-                                  SizedBox(
-                                    height: 10,
-                                  ),
+                                  SizedBox(height: 10),
                                   Row(
                                     children: [
-                                      Text(
-                                        '각자 원하는 삶을 위해',
-                                        style: TextStyle(
-                                            color: Color(0xffffd600),
-                                            fontSize: 18),
-                                      ),
-                                      Text(' 열심히 라네.',
-                                          style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 18))
+                                      Text('각자 원하는 삶을 위해', style: TextStyle(color: Color(0xffffd600), fontSize: 18)),
+                                      Text(' 열심히 라네.', style: TextStyle(color: Colors.white, fontSize: 18))
                                     ],
                                   ),
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                  Text(
-                                    '힘들고 슬플 때도 있겠지만,',
-                                    style: TextStyle(
-                                        color: Colors.white, fontSize: 18),
-                                  ),
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                  Text(
-                                    '함께 웃고 웃으며 살아가고 있지',
-                                    style: TextStyle(
-                                        color: Colors.white, fontSize: 18),
-                                  )
+                                  SizedBox(height: 10),
+                                  Text('힘들고 슬플 때도 있겠지만,', style: TextStyle(color: Colors.white, fontSize: 18)),
+                                  SizedBox(height: 10),
+                                  Text('함께 웃고 웃으며 살아가고 있지', style: TextStyle(color: Colors.white, fontSize: 18))
                                 ],
                               ),
                             ),
                           ],
                         ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 60),
-                          child: ElevatedButton(
-                            onPressed: () {
-                              addLevel();
-                              _modal.increase();
-                            },
-                            style: ElevatedButton.styleFrom(
-                                backgroundColor: const Color(0xffffd600),
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 125, vertical: 16)),
-                            child: const Text('그렇군요',
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 18)),
-                          ),
-                        ),
+                        SizedBox(height: 60,),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            ElevatedButton(
+                              onPressed: () {
+                                addLevel();
+                                _modal.increase();
+                              },
+                              style: ElevatedButton.styleFrom(
+                                  backgroundColor: const Color(0xffffd600),
+                                  padding: const EdgeInsets.symmetric(horizontal: 125, vertical: 16)),
+                              child: const Text('그렇군요', style: TextStyle(color: Colors.black, fontSize: 18)),
+                            ),
+                          ],
+                        )
                       ],
                     ),
                   ],
