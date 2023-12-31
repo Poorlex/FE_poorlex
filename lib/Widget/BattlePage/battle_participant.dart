@@ -81,10 +81,14 @@ class BattleParticipant extends GetView {
 
     return Column(
       children: [
-        BattleMoney(
-          moneyIndex: _battle.battleIndex().MoneyIndex,
-        ),
-        BattleContainer(dummy: dummy),
+        Row(children: [Expanded(child: BattleMoney(moneyIndex: _battle.battleIndex().MoneyIndex))]),
+        SizedBox(height: 8),
+        Expanded(
+          child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [Expanded(child: BattleContainer(dummy: dummy))]
+          ),
+        )
       ],
     );
   }
