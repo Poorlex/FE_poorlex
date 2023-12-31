@@ -24,19 +24,14 @@ class BattlePage extends GetView {
           title: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                '배틀',
-                style: TextStyle(color: Colors.white, fontSize: 26),
-              ),
+              Text('배틀', style: TextStyle(color: Colors.white, fontSize: 26)),
               Container(
                 child: Row(
                   children: [
                     SizedBox(width: 30),
                     IconButton(
                       onPressed: () {},
-                      icon: Icon(
-                        Icons.question_mark,
-                      ),
+                      icon: Icon(Icons.question_mark),
                       iconSize: 26,
                     ),
                     IconButton(
@@ -50,15 +45,18 @@ class BattlePage extends GetView {
                 ),
               ),
             ],
-          )),
-      body: Column(
-        children: [
-          SizedBox(
-            height: 20,
-          ),
-          Obx(() => BattleOption(PageIndex: _battle.battleIndex().PageNumber)),
-        ],
+          )
       ),
+      body: SafeArea(
+        child: Column(
+          children: [
+            SizedBox(height: 20),
+            Expanded(
+              child: BattleOption(PageIndex: _battle.battleIndex().PageNumber),
+            )
+          ],
+        ),
+      )
     );
   }
 }

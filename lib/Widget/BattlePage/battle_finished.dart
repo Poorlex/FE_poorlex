@@ -7,8 +7,7 @@ import 'battle_money.dart';
 import 'containers/finished_container.dart';
 
 class BattleFinished extends GetView {
-  final int PageIndex;
-  const BattleFinished({super.key, required this.PageIndex});
+  const BattleFinished({super.key});
 
   @override
   Widget build(BuildContext context) {
