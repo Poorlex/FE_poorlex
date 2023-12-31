@@ -73,7 +73,7 @@ class PTextStyle {
     );
   }
 
-  static TextStyle caption1(Color color) {
+  TextStyle caption1(Color color) {
     return TextStyle(
       fontSize: 13,
       height: 1.0,
@@ -82,7 +82,7 @@ class PTextStyle {
     );
   }
 
-  static TextStyle caption2(Color color) {
+  TextStyle caption2(Color color) {
     return TextStyle(
       fontSize: 12,
       height: 1.0,
