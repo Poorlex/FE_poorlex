@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:poorlex/design/app_bar.dart';
-import 'package:poorlex/design/font_size.dart';
+import 'package:poorlex/design/p_color.dart';
+import 'package:poorlex/design/p_text_style.dart';
 
 class RankingAppBarWidget extends StatefulWidget
     implements PreferredSizeWidget {
@@ -22,8 +23,7 @@ class _RankingAppBarWidgerState extends State<RankingAppBarWidget> {
       centerTitle: true,
       title: Text(
         '참여중',
-        style: TextStyle(
-            color: Colors.white, fontSize: FontSizeDesign.app_bar_title_detail),
+        style: TextStyle(color: Colors.white, fontSize: 17),
         textAlign: TextAlign.center,
       ),
       actions: [
