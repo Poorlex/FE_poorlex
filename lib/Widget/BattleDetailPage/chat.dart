@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
+import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
 
 class Chat extends StatefulWidget {
   const Chat({super.key});
@@ -13,150 +14,176 @@ class _ChatState extends State<Chat> {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width * 0.9;
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Row(
-          children: [
-            Expanded(
-              child: ChatItem(
-                color: Color(0xff333333),
-                child: Row(
-                  children: [
-                    SizedBox(
-                      height: 22, width: 22,
-                      child: Image.asset('assets/battle_page/icon_notice.png')
-                    ),
-                    SizedBox(width: 6,),
-                    Text('공지', style: TextStyle(color: Color(0xffFFD600))),
-                    SizedBox(width: 6,),
-                    Text('드디어 시작!!!...', style: TextStyle(color: Colors.white)),
-                  ],
-                )
-              ),
-            )
-          ],
-        ),
-        SizedBox(height: 20,),
-        Expanded(
-          flex: 1,
-          child: SingleChildScrollView(
-              scrollDirection: Axis.vertical,
-              child: Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      ChatItem(
-                        color: Color(0xff999999), padding: EdgeInsets.fromLTRB(17, 1, 17, 1),
-                        child: Text('D-7 월', style: TextStyle(color: Colors.white, fontSize: 16)),
-                      )
-                    ],
-                  ),
-                  SizedBox(height: 15,),
-                  Row(
-                    children: [
-                      Container(
-                        width: width,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            UserItem(
-                                image: Image.asset('assets/sample/user.png'),
-                                icon: Image.asset('assets/sample/sample.png'),
-                                name: '김굴비'
-                            ),
-                            SizedBox(height: 10,),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Expanded(
-                                    child: ChatItem(
-                                      child: Text('김굴비 님이 입장했습니다.', style: TextStyle(color: Colors.black)),
-                                    )
-                                )
-                              ],
-                            ),
-                            TimeItem(
-                              time: DateTime.now().microsecondsSinceEpoch,
-                              align: MainAxisAlignment.end,
-                            )
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 10,),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Container(
-                        width: width,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Expanded(
-                                    child: ChatItem(
-                                        color: Color(0xff333333),
-                                        child: Text('최지출 님이 입장했습니다.', style: TextStyle(color: Color(0xffcccccc)))
-                                    )
-                                )
-                              ],
-                            ),
-                            TimeItem(
-                              time: DateTime.now().microsecondsSinceEpoch,
-                              align: MainAxisAlignment.start,
-                            )
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 10,),
-                  Row(
+    return Container(
+      padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Expanded(
+                child: ChatBoxItem(
+                    color: Color(0xff333333),
+                    child: Row(
                       children: [
-                        Container(
-                            width: width,
-                            child: Column(
-                              children: [
-                                UserItem(
-                                    image: Image.asset('assets/sample/user.png'),
-                                    icon: Image.asset('assets/sample/sample.png'),
-                                    name: '김굴비'
-                                ),
-                                SizedBox(height: 10,),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    Expanded(
-                                      child: ChatItem(
-                                          padding: EdgeInsets.fromLTRB(0, 30, 0, 30),
-                                          child: VoteItem(name: '버블티', money: 5000,)
-                                      ),
-                                    )
-                                  ],
-                                ),
-                                TimeItem(
-                                  time: DateTime.now().microsecondsSinceEpoch,
-                                  align: MainAxisAlignment.end,
-                                )
-                              ],
-                            )
-                        )
-                      ]
-                  )
-                ],
+                        SizedBox(
+                            height: 22, width: 22,
+                            child: Image.asset('assets/battle_page/icon_notice.png')
+                        ),
+                        SizedBox(width: 6,),
+                        Text('공지', style: TextStyle(color: Color(0xffFFD600))),
+                        SizedBox(width: 6,),
+                        Text('드디어 시작!!!...', style: TextStyle(color: Colors.white)),
+                      ],
+                    )
+                ),
               )
+            ],
           ),
-        )
-      ],
+          SizedBox(height: 20,),
+          Expanded(
+            flex: 1,
+            child: SingleChildScrollView(
+                scrollDirection: Axis.vertical,
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        ChatBoxItem(
+                          color: Color(0xff999999), padding: EdgeInsets.fromLTRB(17, 1, 17, 1),
+                          child: Text('D-7 월', style: TextStyle(color: Colors.white, fontSize: 16)),
+                        )
+                      ],
+                    ),
+                    SizedBox(height: 15),
+                    ChatItem(
+                      align: MainAxisAlignment.start,
+                      user: UserItem(
+                          image: Image.asset('assets/sample/user.png'),
+                          icon: Image.asset('assets/sample/sample.png'),
+                          name: '김굴비'
+                      ),
+                      child: ChatBoxItem(
+                        child: Text('김굴비 님이 입장했습니다.', style: TextStyle(color: Colors.black)),
+                      ),
+                      time: TimeItem(
+                        time: DateTime.now().microsecondsSinceEpoch,
+                        align: MainAxisAlignment.end,
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    ChatItem(
+                      align: MainAxisAlignment.end,
+                      child: ChatBoxItem(
+                          color: Color(0xff333333),
+                          child: Text('최지출 님이 입장했습니다.', style: TextStyle(color: Color(0xffcccccc)))
+                      ),
+                      time: TimeItem(
+                        time: DateTime.now().microsecondsSinceEpoch,
+                        align: MainAxisAlignment.start,
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    ChatItem(
+                      align: MainAxisAlignment.start,
+                      user: UserItem(
+                          image: Image.asset('assets/sample/user.png'),
+                          icon: Image.asset('assets/sample/sample.png'),
+                          name: '김굴비'
+                      ),
+                      child: ChatBoxItem(
+                          padding: EdgeInsets.fromLTRB(0, 30, 0, 30),
+                          child: VoteItem(name: '버블티', money: 5000,)
+                      ),
+                      time: TimeItem(
+                        time: DateTime.now().microsecondsSinceEpoch,
+                        align: MainAxisAlignment.end,
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    ChatItem(
+                        align: MainAxisAlignment.end,
+                        child: ChatBoxItem(
+                            color: Color(0xff333333),
+                            padding: EdgeInsets.fromLTRB(0, 30, 0, 30),
+                            child: VoteResultItem(name: '버블티', money: 5000, isUp: true)
+                        ),
+                        time: TimeItem(
+                          time: DateTime.now().microsecondsSinceEpoch,
+                          align: MainAxisAlignment.start,
+                        )
+                    ),
+                    SizedBox(height: 10),
+                    ChatItem(
+                      align: MainAxisAlignment.start,
+                      user: UserItem(
+                          image: Image.asset('assets/sample/user.png'),
+                          icon: Image.asset('assets/sample/sample.png'),
+                          name: '김굴비'
+                      ),
+                      child: ChatBoxItem(
+                          padding: EdgeInsets.fromLTRB(0, 30, 0, 30),
+                          child: VoteResultItem(name: '버블티', money: 5000, isUp: false)
+                      ),
+                      time: TimeItem(
+                        time: DateTime.now().microsecondsSinceEpoch,
+                        align: MainAxisAlignment.end,
+                      )
+                    )
+                  ]
+                )
+            ),
+          )
+        ],
+      ),
     );
   }
 }
+
+class ChatItem extends StatelessWidget {
+  MainAxisAlignment align;
+  Widget child;
+  UserItem? user;
+  TimeItem time;
+
+  ChatItem({
+    super.key,
+    this.user,
+    required this.align,
+    required this.child,
+    required this.time
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width * 0.9;
+    return Row(
+        mainAxisAlignment: align,
+        children: [
+          Container(
+              width: width,
+              child: Column(
+                  children: [
+                    user ?? Container(),
+                    SizedBox(height: 10,),
+                    Row(
+                        children: [
+                          Expanded(
+                            child: child
+                          )
+                        ]
+                    ),
+                    time
+                  ]
+              )
+          )
+        ]
+    );
+  }
+}
+
 
 class UserItem extends StatelessWidget {
   Image image;
@@ -188,6 +215,53 @@ class UserItem extends StatelessWidget {
     );
   }
 }
+
+class VoteResultItem extends StatelessWidget {
+  String name;
+  int money;
+  bool isUp;
+
+  VoteResultItem({
+    super.key,
+    required this.name,
+    required this.money,
+    required this.isUp
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+          Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              color: Color(0xffB265FF),
+              width: 240,
+              padding: EdgeInsets.fromLTRB(0, 15, 0, 15),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text('살까말까?', style: TextStyle(fontSize: 20),),
+                  SizedBox(height: 20,),
+                  SizedBox(
+                    width: 100, height: 100,
+                    child: Image.asset(isUp ? 'assets/battle_page/thumb_up_big.png' : 'assets/battle_page/thumb_down_big.png'),
+                  ),
+                  SizedBox(height: 20,),
+                  Text(name, style: TextStyle(fontSize: 20),),
+                  SizedBox(height: 10,),
+                  Text(money.toString() + '원', style: TextStyle(fontSize: 20),),
+                ],
+              ),
+            )
+          ],
+        )
+      ]
+    );
+  }
+}
+
 
 class VoteItem extends StatelessWidget {
   String name;
@@ -305,12 +379,12 @@ class VoteItem extends StatelessWidget {
 
 
 
-class ChatItem extends StatelessWidget {
+class ChatBoxItem extends StatelessWidget {
   Color? color;
   EdgeInsets? padding;
   Widget child;
 
-  ChatItem({
+  ChatBoxItem({
     super.key,
     color,
     padding,
