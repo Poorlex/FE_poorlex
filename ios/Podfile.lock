@@ -1,6 +1,8 @@
 PODS:
   - Flutter (1.0.0)
-  - kakao_flutter_sdk_common (1.6.1):
+  - image_picker_ios (0.0.1):
+    - Flutter
+  - kakao_flutter_sdk_common (1.8.0):
     - Flutter
   - shared_preferences_foundation (0.0.1):
     - Flutter
@@ -12,6 +14,7 @@ PODS:
 
 DEPENDENCIES:
   - Flutter (from `Flutter`)
+  - image_picker_ios (from `.symlinks/plugins/image_picker_ios/ios`)
   - kakao_flutter_sdk_common (from `.symlinks/plugins/kakao_flutter_sdk_common/ios`)
   - shared_preferences_foundation (from `.symlinks/plugins/shared_preferences_foundation/darwin`)
   - sign_in_with_apple (from `.symlinks/plugins/sign_in_with_apple/ios`)
@@ -20,6 +23,8 @@ DEPENDENCIES:
 EXTERNAL SOURCES:
   Flutter:
     :path: Flutter
+  image_picker_ios:
+    :path: ".symlinks/plugins/image_picker_ios/ios"
   kakao_flutter_sdk_common:
     :path: ".symlinks/plugins/kakao_flutter_sdk_common/ios"
   shared_preferences_foundation:
@@ -31,7 +36,8 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
-  kakao_flutter_sdk_common: 7167cfbf5725acf75252af46bb045b9ad99ed6ce
+  image_picker_ios: 4a8aadfbb6dc30ad5141a2ce3832af9214a705b5
+  kakao_flutter_sdk_common: f1f155e0e8a195ec73e0f69acc0b0af510a0e926
   shared_preferences_foundation: 5b919d13b803cadd15ed2dc053125c68730e5126
   sign_in_with_apple: f3bf75217ea4c2c8b91823f225d70230119b8440
   webview_flutter_wkwebview: 2e2d318f21a5e036e2c3f26171342e95908bd60a

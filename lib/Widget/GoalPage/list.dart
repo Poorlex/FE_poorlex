@@ -9,24 +9,45 @@ class GoalList extends StatefulWidget {
 }
 
 class _GoalListState extends State<GoalList> {
+
+  Function onClickOption = (int id, BuildContext context) {
+    Function selectOption = (String mode, int id) {
+      print(mode);
+      print(id);
+    };
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.black,
+      isScrollControlled: true,
+      builder: (BuildContext context) {
+        return OptionButtonModal(selectOption: selectOption);
+      },
+    );
+  };
+
   @override
   Widget build(BuildContext context) {
     return Column(children: [
-      GoalListItem(),
-      GoalListItem(),
-      GoalListItem(),
-      GoalListItem(),
-      GoalListItem(),
-      GoalListItem(),
-      GoalListItem(),
-      GoalListItem(),
-      GoalListItem(),
+      GoalListItem(onClickOption: onClickOption),
+      GoalListItem(onClickOption: onClickOption),
+      GoalListItem(onClickOption: onClickOption),
+      GoalListItem(onClickOption: onClickOption),
+      GoalListItem(onClickOption: onClickOption),
+      GoalListItem(onClickOption: onClickOption),
+      GoalListItem(onClickOption: onClickOption),
+      GoalListItem(onClickOption: onClickOption),
+      GoalListItem(onClickOption: onClickOption),
     ]);
   }
 }
 
 class GoalListItem extends StatelessWidget {
-  const GoalListItem({super.key});
+  Function onClickOption;
+
+  GoalListItem({
+    super.key,
+    required this.onClickOption
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -88,11 +109,66 @@ class GoalListItem extends StatelessWidget {
               width: 24, height: 24,
               ),
             ),
-            onPressed: () => print(111),
+            onPressed: () => onClickOption(111, context),
           )
         ]
       )
     );
   }
 }
+
+class OptionButtonModal extends StatelessWidget {
+  Function selectOption;
+  OptionButtonModal({
+    super.key,
+    required this.selectOption
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 250,
+      child: SafeArea(
+        child: Column(
+          children: [
+            Expanded(
+              child: TextButton(
+                onPressed: () => print(1111),
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text('수정', style: TextStyle(color: Colors.white, fontSize: 18))
+                    ]
+                ),
+              )
+            ),
+            Expanded(
+                child: TextButton(
+                  onPressed: () => print(1111),
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text('완료', style: TextStyle(color: Color(0xFF55E460), fontSize: 18))
+                      ]
+                  ),
+                )
+            ),
+            Expanded(
+                child: TextButton(
+                  onPressed: () => print(1111),
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text('삭제', style: TextStyle(color: Color(0xFF666666), fontSize: 18))
+                      ]
+                  ),
+                )
+            ),
+          ],
+        ),
+      )
+    );
+  }
+}
+
 

@@ -52,22 +52,12 @@ class BattleBox extends StatelessWidget {
                                                 color: Colors.amber.shade800,
                                                 width: 2)),
                                         width: 48,
-                                        height: 56,
+                                        // height: 56,
                                         child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.center,
+                                          mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.center,
                                           children: [
-                                            Text(
-                                              sample[0],
-                                              style:
-                                                  const TextStyle(fontSize: 27),
-                                            ),
-                                            const Text(
-                                              '만원',
-                                              style: TextStyle(fontSize: 15),
-                                            )
+                                            Text(sample[0], style: const TextStyle(fontSize: 27)),
+                                            const Text('만원', style: TextStyle(fontSize: 15))
                                           ],
                                         ),
                                       ),

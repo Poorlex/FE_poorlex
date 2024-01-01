@@ -69,7 +69,7 @@ class _NumberKeypadPageState extends State<NumberKeypadPage> {
                     children: [
                       NumberKey(text: '7', onPressed: () => _onKeyPressed('7')),
                       NumberKey(text: '8', onPressed: () => _onKeyPressed('8')),
-                      NumberKey(text: '9', onPressed: () => _onKeyPressed('9')),
+                      NumberKey(text: '90', onPressed: () => _onKeyPressed('9')),
                     ],
                   ),
                   Row(

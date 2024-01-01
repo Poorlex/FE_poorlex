@@ -35,6 +35,8 @@ dependencies:
   kakao_flutter_sdk: ^1.5.0
   intl: ^0.18.1
 
+  image_picker: ^1.0.4
+  
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -77,6 +79,36 @@ flutter:
     - assets/battle_page/
     - assets/sample/
     - assets/coin.png
+    - assets/my_page/icon_cooper.png
+    - assets/my_page/icon_friends.png
+    - assets/my_page/icon_gold.png
+    - assets/my_page/icon_level.png
+    - assets/my_page/icon_silver.png
+    - assets/my_page/icon_profile.png
+    - assets/main_page/empty_battle.png
+    - assets/main_page/icon_home.png
+    - assets/main_page/icon_home_un.png
+    - assets/main_page/icon_battle.png
+    - assets/main_page/icon_battle_un.png
+    - assets/main_page/icon_calendar.png
+    - assets/main_page/icon_calendar_un.png
+    - assets/main_page/icon_my.png
+    - assets/main_page/icon_my_un.png
+    - assets/main_page/icon_goal.png
+    - assets/main_page/icon_goal_un.png
+    - assets/main_page/icon_profile_remove.png
+    - assets/budget_page/icon_cancel.png
+    - assets/budget_page/poorlex.png
+    - assets/battle_page/BattleFinishedImg.png
+    - assets/battle_page/IMG_NO_FRIENDS.png
+    - assets/battle_page/IMG_PROFILE.png
+    - assets/battle_page/ICON_LV2.png
+
+
+
+
+
+
     - assets/img_main_login.png
 
   # An image asset can refer to one or more resolution-specific "variants", see

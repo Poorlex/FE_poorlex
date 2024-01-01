@@ -6,8 +6,7 @@ import 'containers/battle_container.dart';
 import 'battle_money.dart';
 
 class BattleParticipant extends GetView {
-  final int PageIndex;
-  const BattleParticipant({super.key, required this.PageIndex});
+  const BattleParticipant({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -82,10 +81,14 @@ class BattleParticipant extends GetView {
 
     return Column(
       children: [
-        BattleMoney(
-          moneyIndex: _battle.battleIndex().MoneyIndex,
-        ),
-        BattleContainer(dummy: dummy),
+        Row(children: [Expanded(child: BattleMoney(moneyIndex: _battle.battleIndex().MoneyIndex))]),
+        SizedBox(height: 8),
+        Expanded(
+          child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [Expanded(child: BattleContainer(dummy: dummy))]
+          ),
+        )
       ],
     );
   }

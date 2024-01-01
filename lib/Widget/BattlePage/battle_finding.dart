@@ -7,8 +7,7 @@ import 'battle_money.dart';
 import 'containers/finding_container.dart';
 
 class BattleFinding extends GetView {
-  final int PageIndex;
-  const BattleFinding({super.key, required this.PageIndex});
+  const BattleFinding({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -87,15 +86,20 @@ class BattleFinding extends GetView {
     ];
 
     BattleController _battle = Get.put(BattleController());
-    print(_battle.battleIndex().MoneyIndex);
 
-    return Obx(() => Column(
-          children: [
-            BattleMoney(
-              moneyIndex: _battle.battleIndex().MoneyIndex,
+    return Obx(() => Expanded(
+      child: Column(
+        children: [
+          Row(children: [Expanded(child: BattleMoney(moneyIndex: _battle.battleIndex().MoneyIndex))]),
+          SizedBox(height: 8),
+          Expanded(
+            child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [Expanded(child: FindingContainer(dummy: dummy))]
             ),
-            FindingContainer(dummy: dummy)
-          ],
-        ));
+          )
+        ],
+      )
+    ));
   }
 }

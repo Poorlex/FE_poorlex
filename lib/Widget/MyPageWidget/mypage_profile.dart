@@ -38,7 +38,7 @@ class MyPageProfile extends StatelessWidget {
               ),
               SizedBox(
                 width: 300,
-                height: 80,
+                // height: 80,
                 child: Column(
                   children: [
                     GetX<UserController>(
@@ -57,7 +57,7 @@ class MyPageProfile extends StatelessWidget {
                     const SizedBox(
                       width: 250,
                       // 폰트 사이즈 15 일 때 , height 가 29면 픽셀안에 걸려서 39로 수정합니다.
-                      height: 40,
+                      // height: 40,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
