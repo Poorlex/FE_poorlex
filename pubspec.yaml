@@ -33,7 +33,9 @@ dependencies:
   carousel_slider: ^4.2.1
   sign_in_with_apple: ^5.0.0
   kakao_flutter_sdk: ^1.5.0
-  image_picker: ^0.8.4+4
+  intl: ^0.18.1
+
+  image_picker: ^1.0.4
   
 
 
@@ -42,6 +44,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   kakao_flutter_sdk_user: ^1.5.0
   get: ^4.6.5
+  flutter_svg: ^2.0.9
 
 dev_dependencies:
   flutter_test:
@@ -68,7 +71,11 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/img_main_login.png
+    - assets/app_bar/
+    - assets/budget_page/
+    - assets/main_page/
+    - assets/my_page/
+    - assets/ranking/
     - assets/coin.png
     - assets/my_page/icon_cooper.png
     - assets/my_page/icon_friends.png
@@ -90,12 +97,17 @@ flutter:
     - assets/main_page/icon_profile_remove.png
     - assets/budget_page/icon_cancel.png
     - assets/budget_page/poorlex.png
+    - assets/battle_page/BattleFinishedImg.png
+    - assets/battle_page/IMG_NO_FRIENDS.png
+    - assets/battle_page/IMG_PROFILE.png
+    - assets/battle_page/ICON_LV2.png
 
 
 
 
 
 
+    - assets/img_main_login.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

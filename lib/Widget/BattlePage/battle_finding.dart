@@ -87,7 +87,6 @@ class BattleFinding extends GetView {
     ];
 
     BattleController _battle = Get.put(BattleController());
-    print(_battle.battleIndex().MoneyIndex);
 
     return Obx(() => Column(
           children: [

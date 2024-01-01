@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
-import 'Screen/battle_page.dart';
+import 'Screen/calendar_page.dart';
+import 'Screen/goal_page.dart';
 import 'landingpage.dart';
+
 // import 'package:poorlex/Screen/my_page.dart';
 // import 'package:poorlex/Screen/main_page.dart';
+
+import 'Screen/battle_page/battle_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -36,6 +39,8 @@ class MyApp extends StatelessWidget {
         // home: const LoginKakao());
         // home: const LandingPage());
         // home: const AppleLogin());
-        home: BattlePage());
+        // home: BattlePage());
+        // home: CaledarPage());
+        home: GoalPage());
   }
 }
