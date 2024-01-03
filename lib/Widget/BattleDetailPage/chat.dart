@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
-import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
+
+import 'package:poorlex/Widget/Common/icon.dart';
+import 'package:poorlex/Widget/Common/bar.dart';
 
 class Chat extends StatefulWidget {
   const Chat({super.key});
@@ -131,6 +133,23 @@ class _ChatState extends State<Chat> {
                         time: DateTime.now().microsecondsSinceEpoch,
                         align: MainAxisAlignment.end,
                       )
+                    ),
+                    SizedBox(height: 10),
+                    ChatItem(
+                        align: MainAxisAlignment.start,
+                        user: UserItem(
+                            image: Image.asset('assets/sample/user.png'),
+                            icon: Image.asset('assets/sample/sample.png'),
+                            name: '김굴비'
+                        ),
+                        child: ChatBoxItem(
+                            padding: EdgeInsets.fromLTRB(0, 30, 0, 30),
+                            child: VoteAllResultItem(name: '버블티', money: 5000, upCount: 1, downCount: 2,)
+                        ),
+                        time: TimeItem(
+                          time: DateTime.now().microsecondsSinceEpoch,
+                          align: MainAxisAlignment.end,
+                        )
                     )
                   ]
                 )
@@ -232,26 +251,24 @@ class VoteResultItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-          Row(
+        Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
-              color: Color(0xffB265FF),
-              width: 240,
-              padding: EdgeInsets.fromLTRB(0, 15, 0, 15),
+              color: Color(0xffB265FF), width: 240, padding: EdgeInsets.fromLTRB(0, 15, 0, 15),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Text('살까말까?', style: TextStyle(fontSize: 20),),
-                  SizedBox(height: 20,),
+                  Text('살까말까?', style: TextStyle(fontSize: 20)),
+                  SizedBox(height: 20),
                   SizedBox(
                     width: 100, height: 100,
                     child: Image.asset(isUp ? 'assets/battle_page/thumb_up_big.png' : 'assets/battle_page/thumb_down_big.png'),
                   ),
-                  SizedBox(height: 20,),
-                  Text(name, style: TextStyle(fontSize: 20),),
-                  SizedBox(height: 10,),
-                  Text(money.toString() + '원', style: TextStyle(fontSize: 20),),
+                  SizedBox(height: 20),
+                  Text(name, style: TextStyle(fontSize: 20)),
+                  SizedBox(height: 10),
+                  Text(money.toString() + '원', style: TextStyle(fontSize: 20)),
                 ],
               ),
             )
@@ -262,6 +279,84 @@ class VoteResultItem extends StatelessWidget {
   }
 }
 
+class VoteAllResultItem extends StatelessWidget {
+  String name;
+  int money;
+  int upCount;
+  int downCount;
+
+  VoteAllResultItem({
+    super.key,
+    required this.name,
+    required this.money,
+    required this.upCount,
+    required this.downCount,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              color: Color(0xff808080), width: 240, padding: EdgeInsets.fromLTRB(0, 15, 0, 15),
+              child: Column(
+                children: [
+                  Text('살까말까?', style: TextStyle(fontSize: 20)),
+                  SizedBox(height: 20),
+                  SizedBox(
+                    width: 100, height: 100,
+                    child: Image.asset('assets/battle_page/vote.png'),
+                  ),
+                  SizedBox(height: 20),
+                  Text(name, style: TextStyle(fontSize: 20)),
+                  SizedBox(height: 10),
+                  Text(money.toString() + '원', style: TextStyle(fontSize: 20)),
+                ]
+              )
+            )
+          ]
+        ),
+        SizedBox(height: 20),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              width: 240,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  CustomIcon(icon: 'thumb-up', color: '#B265FF', width: 36, height: 36),
+                  SizedBox(width: 20),
+                  Expanded(child: CustomBar(current: 3, total: 5))
+                ],
+              ),
+            ),
+          ]
+        ),
+        SizedBox(height: 20),
+        Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                width: 240,
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    CustomIcon(icon: 'thumb-down', color: '#666666', width: 36, height: 36),
+                    SizedBox(width: 20),
+                    Expanded(child: CustomBar(current: 2, total: 5, primary: Color(0xff666666),))
+                  ],
+                ),
+              ),
+            ]
+        )
+      ]
+    );
+  }
+}
 
 class VoteItem extends StatelessWidget {
   String name;
@@ -287,22 +382,22 @@ class VoteItem extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Text('살까말까?', style: TextStyle(fontSize: 20),),
-                  SizedBox(height: 20,),
+                  Text('살까말까?', style: TextStyle(fontSize: 20)),
+                  SizedBox(height: 20),
                   SizedBox(
                     width: 100, height: 100,
                     child: Image.asset('assets/battle_page/vote.png'),
                   ),
-                  SizedBox(height: 20,),
-                  Text(name, style: TextStyle(fontSize: 20),),
-                  SizedBox(height: 10,),
-                  Text(money.toString() + '원', style: TextStyle(fontSize: 20),),
-                ],
-              ),
+                  SizedBox(height: 20),
+                  Text(name, style: TextStyle(fontSize: 20)),
+                  SizedBox(height: 10),
+                  Text(money.toString() + '원', style: TextStyle(fontSize: 20)),
+                ]
+              )
             )
-          ],
+          ]
         ),
-        SizedBox(height: 20,),
+        SizedBox(height: 20),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
