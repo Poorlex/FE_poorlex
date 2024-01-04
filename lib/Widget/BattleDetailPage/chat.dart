@@ -150,6 +150,35 @@ class _ChatState extends State<Chat> {
                           time: DateTime.now().microsecondsSinceEpoch,
                           align: MainAxisAlignment.end,
                         )
+                    ),
+                    ChatItem(
+                        align: MainAxisAlignment.start,
+                        child: ChatBoxItem(
+                            padding: EdgeInsets.fromLTRB(0, 30, 0, 30),
+                            child: BuyItem(
+                              image: Image.asset('assets/sample/sample.png'),
+                              money: 27000,
+                            )
+                        ),
+                        time: TimeItem(
+                          time: DateTime.now().microsecondsSinceEpoch,
+                          align: MainAxisAlignment.end,
+                        )
+                    ),
+                    ChatItem(
+                        align: MainAxisAlignment.end,
+                        child: ChatBoxItem(
+                          color: Color(0xff333333),
+                          padding: EdgeInsets.fromLTRB(0, 30, 0, 30),
+                          child: OpinionItem(
+                              isAgree: false,
+                              comment: Text('아픈건 어쩔수 없지만 기왕이면 소금양치하시죠', textAlign: TextAlign.center, style: TextStyle(color: Colors.white, fontSize: 20))
+                          ),
+                        ),
+                        time: TimeItem(
+                          time: DateTime.now().microsecondsSinceEpoch,
+                          align: MainAxisAlignment.start,
+                        )
                     )
                   ]
                 )
@@ -160,6 +189,8 @@ class _ChatState extends State<Chat> {
     );
   }
 }
+
+
 
 class ChatItem extends StatelessWidget {
   MainAxisAlignment align;
@@ -203,7 +234,6 @@ class ChatItem extends StatelessWidget {
   }
 }
 
-
 class UserItem extends StatelessWidget {
   Image image;
   Image icon;
@@ -234,6 +264,64 @@ class UserItem extends StatelessWidget {
     );
   }
 }
+
+class OpinionItem extends StatelessWidget {
+  bool isAgree;
+  Text comment;
+
+  OpinionItem({
+    super.key,
+    required this.isAgree,
+    required this.comment
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Container(
+          width: 240,
+          child: Row(
+            children: [
+              Expanded(
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Row(
+                        children: [
+                          Expanded(child:
+                            Container(
+                              padding: EdgeInsets.fromLTRB(0, 15, 0, 40),
+                              color: Color(0xffB265FF),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Text('혼나야겠어요', style: TextStyle(color: Colors.white, fontSize: 20)),
+                                  SizedBox(height: 25),
+                                  SizedBox(
+                                    width: 140, height: 140,
+                                    child: Image.asset(isAgree ? 'assets/icons/agree.png' : 'assets/icons/disagree.png'),
+                                  )
+                                ],
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                      SizedBox(height: 20),
+                      comment
+                    ]
+                ),
+              )
+            ],
+          ),
+        )
+      ],
+    );
+  }
+}
+
 
 class VoteResultItem extends StatelessWidget {
   String name;
@@ -358,6 +446,124 @@ class VoteAllResultItem extends StatelessWidget {
   }
 }
 
+class BuyItem extends StatelessWidget {
+  Image image;
+  int money;
+
+  BuyItem({
+    super.key,
+    required this.image,
+    required this.money
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              width: 240,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SizedBox(
+                      width: 80, height: 80,
+                      child: image
+                  ),
+                  SizedBox(height: 10),
+                  Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(money.toString(), style: TextStyle(fontSize: 20)),
+                          SizedBox(height: 10),
+                          CustomIcon(icon: 'flex', width: 122, height: 30, color: '#FFD600')
+                        ],
+                      )
+                  )
+                ],
+              )
+            )
+          ],
+        ),
+        SizedBox(height: 20),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              width: 240,
+              child: TextButton(
+                  onPressed: () {}, style: TextButton.styleFrom(padding: EdgeInsets.zero,),
+                  child: Stack(
+                      children: [
+                        Positioned(
+                            top: 0, left: 0, right: 0, bottom: 0,
+                            child: Container(color: Color(0xffc58bff))
+                        ),
+                        Positioned(
+                            top: 6, left: 0, right: 0, bottom: 0,
+                            child: Container(color: Color(0xffB265FF))
+                        ),
+                        Container(
+                          padding: EdgeInsets.fromLTRB(0, 7, 0, 7),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              SizedBox(width: 26, height: 26, child: CustomIcon(icon: 'angry-face', width: 24, height: 22, color: '#ffffff')),
+                              SizedBox(width: 4),
+                              Text('혼내기', style: TextStyle(color: Colors.white, fontSize: 20),)
+                            ],
+                          ),
+                        )
+                      ]
+                  )
+              )
+            )
+          ]
+        ),
+        SizedBox(height: 10),
+        Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                  width: 240,
+                  child: TextButton(
+                      onPressed: () {}, style: TextButton.styleFrom(padding: EdgeInsets.zero,),
+                      child: Stack(
+                          children: [
+                            Positioned(
+                                top: 0, left: 0, right: 0, bottom: 0,
+                                child: Container(color: Color(0xffc58bff))
+                            ),
+                            Positioned(
+                                top: 6, left: 0, right: 0, bottom: 0,
+                                child: Container(color: Color(0xffB265FF))
+                            ),
+                            Container(
+                              padding: EdgeInsets.fromLTRB(0, 7, 0, 7),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  SizedBox(width: 26, height: 26, child: CustomIcon(icon: 'smile-face', width: 24, height: 22, color: '#ffffff')),
+                                  SizedBox(width: 4),
+                                  Text('칭찬하기', style: TextStyle(color: Colors.white, fontSize: 20),)
+                                ],
+                              ),
+                            )
+                          ]
+                      )
+                  )
+              )
+            ]
+        ),
+      ],
+    );
+  }
+}
+
+
 class VoteItem extends StatelessWidget {
   String name;
   int money;
@@ -421,7 +627,7 @@ class VoteItem extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               SizedBox(width: 26, height: 26, child: Image.asset('assets/battle_page/thumb_up.png'),),
-                              SizedBox(width: 2,),
+                              SizedBox(width: 2),
                               Text('찬성', style: TextStyle(color: Colors.white, fontSize: 20),)
                             ],
                           ),
