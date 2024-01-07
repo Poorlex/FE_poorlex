@@ -151,6 +151,7 @@ class _ChatState extends State<Chat> {
                           align: MainAxisAlignment.end,
                         )
                     ),
+                    SizedBox(height: 10),
                     ChatItem(
                         align: MainAxisAlignment.start,
                         child: ChatBoxItem(
@@ -165,6 +166,7 @@ class _ChatState extends State<Chat> {
                           align: MainAxisAlignment.end,
                         )
                     ),
+                    SizedBox(height: 10),
                     ChatItem(
                         align: MainAxisAlignment.end,
                         child: ChatBoxItem(
@@ -179,13 +181,112 @@ class _ChatState extends State<Chat> {
                           time: DateTime.now().microsecondsSinceEpoch,
                           align: MainAxisAlignment.start,
                         )
+                    ),
+                    SizedBox(height: 10),
+                    ChatItem(
+                        align: MainAxisAlignment.start,
+                        user: UserItem(
+                            image: Image.asset('assets/sample/user.png'),
+                            icon: Image.asset('assets/sample/sample.png'),
+                            name: '김굴비'
+                        ),
+                        child: ChatBoxItem(
+                          padding: EdgeInsets.fromLTRB(0, 30, 0, 30),
+                          child: OpinionItem(
+                              isAgree: true,
+                              comment: Text('약은... 봐드릴게요.......', textAlign: TextAlign.center, style: TextStyle(fontSize: 20))
+                          ),
+                        ),
+                        time: TimeItem(
+                          time: DateTime.now().microsecondsSinceEpoch,
+                          align: MainAxisAlignment.end,
+                        )
                     )
                   ]
                 )
             ),
-          )
+          ),
+          VoteButton(isManager: true)
         ],
       ),
+    );
+  }
+}
+
+class VoteButton extends StatelessWidget {
+  bool isManager;
+  VoteButton({
+    super.key,
+    required this.isManager
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    List<Widget> w = [
+      Expanded(
+        child: TextButton(
+            onPressed: () {}, style: TextButton.styleFrom(padding: EdgeInsets.zero,),
+            child: Stack(
+                children: [
+                  Positioned(
+                      top: 0, left: 0, right: 0, bottom: 0,
+                      child: Container(color: Color(0xffFFE352))
+                  ),
+                  Positioned(
+                      top: 6, left: 0, right: 0, bottom: 0,
+                      child: Container(color: Color(0xffFFD600))
+                  ),
+                  Container(
+                    height: 56,
+                    padding: EdgeInsets.fromLTRB(0, 7, 0, 7),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SizedBox(width: 21, height: 22, child: Image.asset('assets/icons/vote.png')),
+                        SizedBox(width: 8),
+                        Text('투표하기', style: TextStyle(fontSize: 20, color: Colors.black))
+                      ],
+                    ),
+                  )
+                ]
+            )
+        )
+      )
+    ];
+
+    if (isManager) {
+      w.add(TextButton(
+          onPressed: () {}, style: TextButton.styleFrom(padding: EdgeInsets.zero,),
+          child: Stack(
+              children: [
+                Positioned(
+                    top: 0, left: 0, right: 0, bottom: 0,
+                    child: Container(color: Color(0xffd9d9d9))
+                ),
+                Positioned(
+                    top: 6, left: 0, right: 0, bottom: 0,
+                    child: Container(color: Color(0xffCCCCCC))
+                ),
+                Container(
+                  height: 56,
+                  width: 70,
+                  padding: EdgeInsets.fromLTRB(0, 7, 0, 7),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SizedBox(width: 21, height: 22, child: Image.asset('assets/icons/speaker.png')),
+                      SizedBox(height: 2),
+                      Text('공지', style: TextStyle(fontSize: 12, color: Colors.black))
+                    ],
+                  ),
+                )
+              ]
+          )
+      ));
+    }
+
+    return Row(
+      children: w
     );
   }
 }
