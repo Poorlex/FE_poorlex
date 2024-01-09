@@ -24,7 +24,7 @@ class BattleMoney extends GetView {
     TabItem(label: '전체', icon: null, value: 0),
     TabItem(label: '~8만원', icon: Image.asset('assets/my_page/icon_gold.png', width: 18, height: 14), value: 1),
     TabItem(label: '~14만원', icon: Image.asset('assets/my_page/icon_silver.png', width: 18, height: 14), value: 2),
-    // TabItem(label: '~20만원', icon: Image.asset('assets/my_page/icon_cooper.png', width: 18, height: 14), value: 3),
+    TabItem(label: '~20만원', icon: Image.asset('assets/my_page/icon_cooper.png', width: 18, height: 14), value: 3),
   ];
 
   BattleMoney({

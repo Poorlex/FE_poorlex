@@ -89,10 +89,14 @@ class BattleFinished extends GetView {
 
     return Column(
       children: [
-        BattleMoney(
-          moneyIndex: _battle.battleIndex().MoneyIndex,
-        ),
-        FinishedContainer(dummy: dummy)
+        Row(children: [Expanded(child: BattleMoney(moneyIndex: _battle.battleIndex().MoneyIndex))]),
+        SizedBox(height: 8),
+        Expanded(
+          child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [Expanded(child: FinishedContainer(dummy: dummy))]
+          ),
+        )
       ],
     );
   }
