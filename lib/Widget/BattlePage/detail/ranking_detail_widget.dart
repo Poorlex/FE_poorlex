@@ -524,7 +524,49 @@ class GridItemWidget extends StatelessWidget {
     return Container(
       color: Colors.tealAccent,
       child: Center(
-        child: Image.asset('assets/ranking/first_profile_60_60.png'),
+        child: GestureDetector(
+          onTap: () {
+            showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return AlertDialog(
+                  content: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(children: [
+                          IconButton(
+                            icon: Icon(Icons.close, color: Colors.white),
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                          ),
+                          Expanded(
+                              child: Center(
+                                  child: Text('인증내역(1/7)',
+                                      style: TextStyle(color: Colors.white)))),
+                        ]),
+                        Image.asset('assets/ranking/first_profile_60_60.png'),
+                        // todo: 나중에 패딩값을 어떻게 줄 것인지 논의필요해 보임
+                        Padding(
+                            padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
+                            child: Text("최지출",
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 18))),
+                        Padding(
+                            padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
+                            child: Text("약값 지출 ...",
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 18))),
+                      ]),
+                  // contentPadding: EdgeInsets.zero,
+                  backgroundColor: Colors.black,
+                  actions: [],
+                );
+              },
+            );
+          },
+          child: Image.asset('assets/ranking/first_profile_60_60.png'),
+        ),
       ),
     );
   }
