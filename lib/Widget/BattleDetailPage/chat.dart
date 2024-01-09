@@ -4,6 +4,8 @@ import 'package:intl/intl.dart';
 
 import 'package:poorlex/Widget/Common/icon.dart';
 import 'package:poorlex/Widget/Common/bar.dart';
+import 'package:poorlex/Widget/Common/user.dart';
+import 'package:poorlex/Widget/BattleDetailPage/notice.dart';
 
 class Chat extends StatefulWidget {
   const Chat({super.key});
@@ -13,6 +15,7 @@ class Chat extends StatefulWidget {
 }
 
 class _ChatState extends State<Chat> {
+
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width * 0.9;
@@ -25,21 +28,25 @@ class _ChatState extends State<Chat> {
           Row(
             children: [
               Expanded(
-                child: ChatBoxItem(
-                    color: Color(0xff333333),
-                    child: Row(
-                      children: [
-                        SizedBox(
-                            height: 22, width: 22,
-                            child: Image.asset('assets/battle_page/icon_notice.png')
-                        ),
-                        SizedBox(width: 6,),
-                        Text('공지', style: TextStyle(color: Color(0xffFFD600))),
-                        SizedBox(width: 6,),
-                        Text('드디어 시작!!!...', style: TextStyle(color: Colors.white)),
-                      ],
-                    )
-                ),
+                child: TextButton(
+                  onPressed: () => Navigator.push(context, NoticeDetailModal()),
+                  style: TextButton.styleFrom(padding: EdgeInsets.zero),
+                  child: ChatBoxItem(
+                      color: Color(0xff333333),
+                      child: Row(
+                        children: [
+                          SizedBox(
+                              height: 22, width: 22,
+                              child: Image.asset('assets/battle_page/icon_notice.png')
+                          ),
+                          SizedBox(width: 6,),
+                          Text('공지', style: TextStyle(color: Color(0xffFFD600))),
+                          SizedBox(width: 6,),
+                          Text('드디어 시작!!!...', style: TextStyle(color: Colors.white)),
+                        ]
+                      )
+                  )
+                )
               )
             ],
           ),
@@ -331,37 +338,6 @@ class ChatItem extends StatelessWidget {
               )
           )
         ]
-    );
-  }
-}
-
-class UserItem extends StatelessWidget {
-  Image image;
-  Image icon;
-  String name;
-
-  UserItem({
-    super.key,
-    required this.image,
-    required this.icon,
-    required this.name
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Container(
-          width: 40, height: 40, decoration: BoxDecoration(borderRadius: BorderRadius.circular(2), color: Color(0xffe4d4be), ),
-          child: image,
-        ),
-        SizedBox(width: 6,),
-        SizedBox(width: 16, height: 16, child: icon),
-        SizedBox(width: 6,),
-        Text(name, style: TextStyle(color: Colors.white))
-      ],
     );
   }
 }

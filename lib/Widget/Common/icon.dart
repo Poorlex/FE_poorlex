@@ -20,7 +20,19 @@ class CustomIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (icon == 'thumb-up') {
+    if (icon == 'arrow-left') {
+      return SvgPicture.string('''
+        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26" fill="none">
+          <path d="M17 4L8 13L17 22" stroke="${color}" stroke-width="1.5"/>
+        </svg>
+      ''', width: w?.toDouble(), height: h?.toDouble());
+    } else if (icon == 'option') {
+      return SvgPicture.string('''
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M3.5 11H6V13.5H3.5V11ZM10.8 11H13.3V13.5H10.8V11ZM20.6001 11H18.1001V13.5H20.6001V11Z" fill="${color}"/>
+        </svg>
+      ''', width: w?.toDouble(), height: h?.toDouble());
+    } else if (icon == 'thumb-up') {
       return SvgPicture.string(
         '''
         <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -493,6 +505,43 @@ class CustomIcon extends StatelessWidget {
         <rect x="2" y="18" width="1" height="1" transform="rotate(180 2 18)" fill="${color}"/>
       </svg>
        ''', width: w?.toDouble(), height: h?.toDouble());
+    } else if (icon == 'eye') {
+      return SvgPicture.string('''
+        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="8" viewBox="0 0 12 8" fill="none">
+          <rect x="5" width="1" height="1" fill="${color}"/>
+          <rect width="1" height="1" transform="matrix(1 0 0 -1 5 8)" fill="${color}"/>
+          <rect x="7" width="1" height="1" fill="${color}"/>
+          <rect width="1" height="1" transform="matrix(1 0 0 -1 7 8)" fill="${color}"/>
+          <rect x="6" width="1" height="1" fill="${color}"/>
+          <rect width="1" height="1" transform="matrix(1 0 0 -1 6 8)" fill="${color}"/>
+          <rect x="4" width="1" height="1" fill="${color}"/>
+          <rect width="1" height="1" transform="matrix(1 0 0 -1 4 8)" fill="${color}"/>
+          <rect x="3" y="1" width="1" height="1" fill="${color}"/>
+          <rect width="1" height="1" transform="matrix(1 0 0 -1 3 7)" fill="${color}"/>
+          <rect width="1" height="1" transform="matrix(1 0 0 -1 4 4)" fill="${color}"/>
+          <rect width="1" height="1" transform="matrix(1 0 0 -1 5 3)" fill="${color}"/>
+          <rect width="1" height="1" transform="matrix(1 0 0 -1 6 3)" fill="${color}"/>
+          <rect width="1" height="1" transform="matrix(1 0 0 -1 7 4)" fill="${color}"/>
+          <rect width="1" height="1" transform="matrix(1 0 0 -1 6 6)" fill="${color}"/>
+          <rect width="1" height="1" transform="matrix(1 0 0 -1 7 5)" fill="${color}"/>
+          <rect width="1" height="1" transform="matrix(1 0 0 -1 5 6)" fill="${color}"/>
+          <rect width="1" height="1" transform="matrix(1 0 0 -1 4 5)" fill="${color}"/>
+          <rect width="1" height="1" transform="matrix(-1 0 0 1 9 1)" fill="${color}"/>
+          <rect x="9" y="7" width="1" height="1" transform="rotate(180 9 7)" fill="${color}"/>
+          <rect x="2" y="1" width="1" height="1" fill="${color}"/>
+          <rect width="1" height="1" transform="matrix(1 0 0 -1 2 7)" fill="${color}"/>
+          <rect width="1" height="1" transform="matrix(-1 0 0 1 10 1)" fill="${color}"/>
+          <rect x="10" y="7" width="1" height="1" transform="rotate(180 10 7)" fill="${color}"/>
+          <rect x="1" y="2" width="1" height="1" fill="${color}"/>
+          <rect width="1" height="1" transform="matrix(1 0 0 -1 1 6)" fill="${color}"/>
+          <rect width="1" height="1" transform="matrix(-1 0 0 1 11 2)" fill="${color}"/>
+          <rect x="11" y="6" width="1" height="1" transform="rotate(180 11 6)" fill="${color}"/>
+          <rect y="3" width="1" height="1" fill="${color}"/>
+          <rect y="4" width="1" height="1" fill="${color}"/>
+          <rect width="1" height="1" transform="matrix(-1 0 0 1 12 3)" fill="${color}"/>
+          <rect width="1" height="1" transform="matrix(-1 0 0 1 12 4)" fill="${color}"/>
+        </svg>
+      ''', width: w?.toDouble(), height: h?.toDouble());
     }
     return Container();
   }
