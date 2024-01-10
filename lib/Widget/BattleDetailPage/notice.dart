@@ -1,15 +1,165 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:poorlex/Widget/Common/icon.dart';
 import 'package:poorlex/Widget/Common/user.dart';
 
 import 'package:poorlex/Widget/Common/modal.dart';
 
+class NoticeWriteModal extends CustomModal {
+  final ImagePicker picker = ImagePicker();
+  XFile? image;
+
+  NoticeWriteModal({
+    int? id
+  }) {
+    if (id != null) getData(id);
+    else setChild();
+  }
+
+  getData(int id) {
+    Timer(Duration(seconds: 1), () {
+      setChild();
+      changedExternalState();
+    });
+  }
+
+  Future<void> pickImage() async {
+    final List<XFile> images = await picker.pickMultiImage();
+    if (images != null) {
+      setState(() {
+        image = images[0];
+      });
+    }
+  }
+
+  setChild() {
+    child = (BuildContext context) => Container(
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                IconButton(onPressed: () => Navigator.pop(context), icon: CustomIcon(icon: 'arrow-left', color: '#ffffff')),
+                Text('공지 등록', style: TextStyle(color: Colors.white, fontSize: 18)),
+                SizedBox(width: 55)
+              ],
+            ),
+            Expanded(
+              child: SingleChildScrollView(
+                child: Container(
+                  padding: EdgeInsets.fromLTRB(19, 26, 19, 26),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('배틀 멤버에게\n알리고 싶은 내용이 있나요?', style: TextStyle(color: Colors.white, fontSize: 22)),
+                      SizedBox(height: 27),
+                      Text('공지 내용', style: TextStyle(color: Color(0xff808080), fontSize: 14)),
+                      SizedBox(height: 17),
+                      Card(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(2)
+                          ),
+                          color: Color(0xff1A1A1A),
+                          child: Stack(
+                            children: [
+                              Positioned(
+                                  right: 10, bottom: 4,
+                                  child: Text('0/200', style: TextStyle(fontSize: 20.0, color: Color(0xff666666)))
+                              ),
+                              Padding(
+                                padding: EdgeInsets.fromLTRB(14, 10, 14, 30),
+                                child: TextField(
+                                  maxLines: 8, //or null
+                                  decoration: InputDecoration.collapsed(
+                                    hintText: "내용을 입력해주세요",
+                                    hintStyle: TextStyle(fontSize: 20.0, color: Color(0xff666666)),
+                                  ),
+                                ),
+                              )
+                            ],
+                          )
+                      ),
+                      SizedBox(height: 37),
+                      Text('사진 추가', style: TextStyle(color: Color(0xff808080), fontSize: 14)),
+                      SizedBox(height: 17),
+                      ElevatedButton(
+                          onPressed: () => pickImage(),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Color(0xff1A1A1A),
+                            padding: EdgeInsets.zero,
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4))
+                          ),
+                          child: Container(
+                            width: 93, height: 93,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                CustomIcon(icon: 'plus', width: 29, height: 29, color: '#808080')
+                              ],
+                            ),
+                          )
+                      )
+                    ],
+                  ),
+                )
+              )
+            ),
+            TextButton(
+              style: TextButton.styleFrom(
+                padding: EdgeInsets.zero
+              ),
+              onPressed: () {},
+              child: Stack(
+                children: [
+                  Positioned(
+                      top: 0, left: 0, right: 0, bottom: 0,
+                      child: Container(color: Color(0xffFFE352))
+                  ),
+                  Positioned(
+                    top: 6, left: 0, right: 0, bottom: 0,
+                    child: Container(color: Color(0xffFFD600))
+                  ),
+                  Container(
+                    height: 56,
+                    padding: EdgeInsets.fromLTRB(0, 7, 0, 7),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text('공지생성', style: TextStyle(fontSize: 20, color: Colors.black))
+                      ],
+                    ),
+                  )
+                ],
+              )
+            )
+          ],
+        )
+    );
+  }
+}
+
 class NoticeDetailModal extends CustomModal {
   NoticeDetailModal() {
     getData();
   }
+
+  Function onClickOption = (BuildContext context) {
+    Function selectOption = (String mode, int id) {
+      print(mode);
+      print(id);
+    };
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.black,
+      isScrollControlled: true,
+      builder: (BuildContext context) {
+        return OptionButtonModal(selectOption: selectOption);
+      }
+    );
+  };
 
   getData() {
     Timer(Duration(seconds: 1), () {
@@ -21,7 +171,7 @@ class NoticeDetailModal extends CustomModal {
                   children: [
                     IconButton(onPressed: () => Navigator.pop(context), icon: CustomIcon(icon: 'arrow-left', color: '#ffffff')),
                     Text('공지상세', style: TextStyle(color: Colors.white, fontSize: 18)),
-                    IconButton(onPressed: () => Navigator.pop(context), icon: CustomIcon(icon: 'option', color: '#ffffff')),
+                    IconButton(onPressed: () => onClickOption(context), icon: CustomIcon(icon: 'option', color: '#ffffff')),
                   ],
                 ),
                 Expanded(
@@ -146,45 +296,47 @@ class NoticeDetailModal extends CustomModal {
   }
 }
 
+class OptionButtonModal extends StatelessWidget {
+  Function selectOption;
+  OptionButtonModal({
+    super.key,
+    required this.selectOption
+  });
 
-/*
-Container(
-                child: Column(
-                  children: [
-                    Row(
-                      children: [
-                        Text('백버튼', style: TextStyle(color: Colors.white)),
-                        Expanded(
-                            child: Text('공지상세', style: TextStyle(color: Colors.white))
-                        ),
-                        Text('설정', style: TextStyle(color: Colors.white)),
-                      ],
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+        height: 164,
+        child: SafeArea(
+          child: Column(
+            children: [
+              Expanded(
+                  child: TextButton(
+                    onPressed: () => print(1111),
+                    child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text('수정', style: TextStyle(color: Colors.white, fontSize: 18))
+                        ]
                     ),
-                    Expanded(
-                      child: SingleChildScrollView(
-                        child: Column(
-                          children: [
-                            Container(
-                              child: Column(
-                                children: [
-                                  Row(
-                                    children: [
-                                      Text('이미지', style: TextStyle(color: Colors.white)),
-                                      Text('아이콘', style: TextStyle(color: Colors.white)),
-                                      Expanded(
-                                        child: Text('김절약', style: TextStyle(color: Colors.white)),
-                                      )
-                                    ],
-                                  )
-                                ],
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                    )
-                  ],
-                )
-            )
+                  )
+              ),
+              Expanded(
+                  child: TextButton(
+                    onPressed: () => print(1111),
+                    child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text('삭제', style: TextStyle(color: Color(0xFF666666), fontSize: 18))
+                        ]
+                    ),
+                  )
+              ),
+            ],
+          ),
+        )
+    );
+  }
+}
 
- */
+

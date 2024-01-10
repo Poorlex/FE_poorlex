@@ -263,7 +263,8 @@ class VoteButton extends StatelessWidget {
 
     if (isManager) {
       w.add(TextButton(
-          onPressed: () {}, style: TextButton.styleFrom(padding: EdgeInsets.zero,),
+          onPressed: () => Navigator.push(context, NoticeWriteModal()),
+          style: TextButton.styleFrom(padding: EdgeInsets.zero,),
           child: Stack(
               children: [
                 Positioned(

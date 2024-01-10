@@ -32,6 +32,12 @@ class CustomIcon extends StatelessWidget {
           <path fill-rule="evenodd" clip-rule="evenodd" d="M3.5 11H6V13.5H3.5V11ZM10.8 11H13.3V13.5H10.8V11ZM20.6001 11H18.1001V13.5H20.6001V11Z" fill="${color}"/>
         </svg>
       ''', width: w?.toDouble(), height: h?.toDouble());
+    } else if (icon == 'plus') {
+      return SvgPicture.string('''
+        <svg width="30" height="29" viewBox="0 0 30 29" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M16 0H14V13.5H0.5V15.5H14V29H16V15.5H29.5V13.5H16V0Z" fill="${color}"/>
+        </svg>
+      ''');
     } else if (icon == 'thumb-up') {
       return SvgPicture.string(
         '''

@@ -9,7 +9,6 @@ class GoalList extends StatefulWidget {
 }
 
 class _GoalListState extends State<GoalList> {
-
   Function onClickOption = (int id, BuildContext context) {
     Function selectOption = (String mode, int id) {
       print(mode);
