@@ -29,6 +29,7 @@ class NoticeDetailModal extends CustomModal {
                     child: Column(
                       children: [
                         Container(
+                          padding: EdgeInsets.fromLTRB(24, 0, 24, 0),
                           child: Column(
                             children: [
                               UserItem(
@@ -68,6 +69,7 @@ class NoticeDetailModal extends CustomModal {
                           )
                         ),
                         Container(
+                          padding: EdgeInsets.fromLTRB(22, 0, 22, 0),
                           child: Column(
                             children: [
                               Row(
@@ -128,7 +130,7 @@ class NoticeDetailModal extends CustomModal {
                           decoration: InputDecoration(
                             border: OutlineInputBorder(),
                             hintStyle: TextStyle(fontSize: 16.0, color: Color(0xffCCCCCC)),
-                            hintText: 'Enter a search term',
+                            hintText: '댓글을 입력하세요',
                             fillColor: Color(0xff333333)
                           ),
                         ),
