@@ -20,6 +20,10 @@ class _RankingDetailWidget extends State<RankingDetailWidget>
     animationDuration: const Duration(milliseconds: 300),
   );
 
+  List<String> items = List.generate(5, (index) => '아이템 ${index}');
+
+  bool isAuthenticationPressed = true;
+
   @override
   void initState() {
     tabController.addListener(() {
@@ -322,14 +326,248 @@ class _RankingDetailWidget extends State<RankingDetailWidget>
         ),
         // todo: 인증
         Column(children: [
-          Text("200", style: TextStyle(color: Colors.white)),
-          Text("200", style: TextStyle(color: Colors.white))
+          Padding(
+            padding: const EdgeInsets.fromLTRB(0, 13, 0, 11),
+            child: Row(children: [
+              Expanded(
+                // todo: 인증내역이 선택되어 있다면 body 값 변경
+                child: ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        isAuthenticationPressed = true;
+                        items = List.generate(20, (index) => '아이템 ${index}');
+                      });
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.black,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(0),
+                      ),
+                    ),
+                    child: Text("인증내역",
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                            letterSpacing: -0.25,
+                            height: 1.611),
+                        textAlign: TextAlign.center)),
+              ),
+              Expanded(
+                // todo: 인증내역이 선택되어 있다면 body 값 변경
+                child: ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        isAuthenticationPressed = false;
+                        items = List.generate(1, (index) => '아이템 ${index}');
+                      });
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.black,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(0),
+                      ),
+                    ),
+                    child: Text("나의인증",
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                            letterSpacing: -0.25,
+                            height: 1.611),
+                        textAlign: TextAlign.center)),
+              ),
+            ]),
+          ),
+          Visibility(
+            visible: isAuthenticationPressed,
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(24, 16, 23, 16),
+              child: Row(children: [
+                // todo: 선택되면 이미지 바뀔 수 있게 로직 짜주기
+                // todo: global 키를 활용해서 padding 값을 조정하는 로직을 추가해주기
+                //       row.key 설정하고 다른 곳에서 row.key.currentContext?.size?.width 등으로 설정하기
+                Padding(
+                  padding: EdgeInsets.fromLTRB(0, 0, 22, 0),
+                  child: Container(
+                      color: Color(0xff333333),
+                      width: 28,
+                      child: Text("월",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                            letterSpacing: -0.25,
+                            height: 1.611,
+                          ),
+                          textAlign: TextAlign.center)),
+                ),
+                Padding(
+                  padding: EdgeInsets.fromLTRB(0, 0, 22, 0),
+                  child: Container(
+                      color: Color(0xff333333),
+                      width: 28,
+                      child: Text("화",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                            letterSpacing: -0.25,
+                            height: 1.611,
+                          ),
+                          textAlign: TextAlign.center)),
+                ),
+                Padding(
+                  padding: EdgeInsets.fromLTRB(0, 0, 22, 0),
+                  child: Container(
+                      color: Color(0xff333333),
+                      width: 28,
+                      child: Text("수",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                            letterSpacing: -0.25,
+                            height: 1.611,
+                          ),
+                          textAlign: TextAlign.center)),
+                ),
+                Padding(
+                  padding: EdgeInsets.fromLTRB(0, 0, 22, 0),
+                  child: Container(
+                      color: Color(0xff333333),
+                      width: 28,
+                      child: Text("목",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                            letterSpacing: -0.25,
+                            height: 1.611,
+                          ),
+                          textAlign: TextAlign.center)),
+                ),
+                Padding(
+                  padding: EdgeInsets.fromLTRB(0, 0, 22, 0),
+                  child: Container(
+                      color: Color(0xff333333),
+                      width: 28,
+                      child: Text("금",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                            letterSpacing: -0.25,
+                            height: 1.611,
+                            backgroundColor: Color(0xff333333),
+                          ),
+                          textAlign: TextAlign.center)),
+                ),
+                Padding(
+                  padding: EdgeInsets.fromLTRB(0, 0, 22, 0),
+                  child: Container(
+                      color: Color(0xff333333),
+                      width: 28,
+                      child: Text("토",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                            letterSpacing: -0.25,
+                            height: 1.611,
+                            backgroundColor: Color(0xff333333),
+                          ),
+                          textAlign: TextAlign.center)),
+                ),
+                Padding(
+                  padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                  child: Container(
+                      color: Color(0xff333333),
+                      width: 28,
+                      child: Text("일",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                            letterSpacing: -0.25,
+                            height: 1.611,
+                            backgroundColor: Color(0xff333333),
+                          ),
+                          textAlign: TextAlign.center)),
+                ),
+              ]),
+            ),
+          ),
+          Expanded(
+              child: GridView.builder(
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 3,
+              crossAxisSpacing: 26.0,
+              mainAxisSpacing: 20.0,
+            ),
+            padding: const EdgeInsets.fromLTRB(16, 20, 16, 0),
+            shrinkWrap: true,
+            itemCount: items.length,
+            scrollDirection: Axis.vertical,
+            itemBuilder: (BuildContext context, int index) {
+              return GridItemWidget(item: items[index]);
+            },
+          ))
         ]),
         // todo: 채팅
         Container(
           child: Chat()
         ),
       ],
+    );
+  }
+}
+
+class GridItemWidget extends StatelessWidget {
+  final String item;
+
+  GridItemWidget({required this.item});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Colors.tealAccent,
+      child: Center(
+        child: GestureDetector(
+          onTap: () {
+            showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return AlertDialog(
+                  content: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(children: [
+                          IconButton(
+                            icon: Icon(Icons.close, color: Colors.white),
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                          ),
+                          Expanded(
+                              child: Center(
+                                  child: Text('인증내역(1/7)',
+                                      style: TextStyle(color: Colors.white)))),
+                        ]),
+                        Image.asset('assets/ranking/first_profile_60_60.png'),
+                        // todo: 나중에 패딩값을 어떻게 줄 것인지 논의필요해 보임
+                        Padding(
+                            padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
+                            child: Text("최지출",
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 18))),
+                        Padding(
+                            padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
+                            child: Text("약값 지출 ...",
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 18))),
+                      ]),
+                  // contentPadding: EdgeInsets.zero,
+                  backgroundColor: Colors.black,
+                  actions: [],
+                );
+              },
+            );
+          },
+          child: Image.asset('assets/ranking/first_profile_60_60.png'),
+        ),
+      ),
     );
   }
 }
