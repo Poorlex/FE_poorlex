@@ -6,6 +6,7 @@ import 'package:poorlex/Widget/Common/icon.dart';
 import 'package:poorlex/Widget/Common/bar.dart';
 import 'package:poorlex/Widget/Common/user.dart';
 import 'package:poorlex/Widget/BattleDetailPage/notice.dart';
+import 'package:poorlex/Widget/BattleDetailPage/comment.dart';
 
 class Chat extends StatefulWidget {
   const Chat({super.key});
@@ -164,6 +165,7 @@ class _ChatState extends State<Chat> {
                         child: ChatBoxItem(
                             padding: EdgeInsets.fromLTRB(0, 30, 0, 30),
                             child: BuyItem(
+                              id: 1,
                               image: Image.asset('assets/sample/sample.png'),
                               money: 27000,
                             )
@@ -525,11 +527,13 @@ class VoteAllResultItem extends StatelessWidget {
 }
 
 class BuyItem extends StatelessWidget {
+  int id;
   Image image;
   int money;
 
   BuyItem({
     super.key,
+    required this.id,
     required this.image,
     required this.money
   });
@@ -573,7 +577,8 @@ class BuyItem extends StatelessWidget {
             Container(
               width: 240,
               child: TextButton(
-                  onPressed: () {}, style: TextButton.styleFrom(padding: EdgeInsets.zero,),
+                  onPressed: () => Navigator.push(context, CommentModal(id: id, isAgree: false)),
+                  style: TextButton.styleFrom(padding: EdgeInsets.zero,),
                   child: Stack(
                       children: [
                         Positioned(
