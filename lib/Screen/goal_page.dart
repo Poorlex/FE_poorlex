@@ -71,7 +71,18 @@ class _GoalPageState extends State<GoalPage> {
               ]
             ))
           )
-        )
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {},
+          foregroundColor: Color(0xffffffff),
+          backgroundColor: Color(0xff0A0A0A),
+          shape: RoundedRectangleBorder(
+              side: BorderSide(width: 1, color: Color(0xff333333)),
+              borderRadius: BorderRadius.circular(100)
+          ),
+
+          child: const Icon(Icons.add),
+        ),
     );
   }
 }
