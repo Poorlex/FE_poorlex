@@ -7,6 +7,7 @@ import 'package:poorlex/Widget/Common/bar.dart';
 import 'package:poorlex/Widget/Common/user.dart';
 import 'package:poorlex/Widget/BattleDetailPage/notice.dart';
 import 'package:poorlex/Widget/BattleDetailPage/comment.dart';
+import 'package:poorlex/Widget/BattleDetailPage/vote.dart';
 
 class Chat extends StatefulWidget {
   const Chat({super.key});
@@ -234,7 +235,8 @@ class VoteButton extends StatelessWidget {
     List<Widget> w = [
       Expanded(
         child: TextButton(
-            onPressed: () {}, style: TextButton.styleFrom(padding: EdgeInsets.zero,),
+            onPressed: () => Navigator.push(context, VoteModal()),
+            style: TextButton.styleFrom(padding: EdgeInsets.zero,),
             child: Stack(
                 children: [
                   Positioned(

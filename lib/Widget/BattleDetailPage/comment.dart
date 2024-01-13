@@ -23,6 +23,7 @@ class CommentModal extends CustomModal {
                     icon: CustomIcon(
                         icon: 'arrow-left', color: '#ffffff')
                 ),
+                SizedBox(height: 26,),
                 Expanded(
                   child: Container(
                     padding: EdgeInsets.fromLTRB(16, 0, 16, 0),
