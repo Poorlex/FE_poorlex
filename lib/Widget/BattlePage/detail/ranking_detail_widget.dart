@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:poorlex/Widget/BattleDetailPage/chat.dart';
+
 class RankingDetailWidget extends StatefulWidget {
   const RankingDetailWidget({Key? key}) : super(key: key);
 
@@ -505,9 +507,7 @@ class _RankingDetailWidget extends State<RankingDetailWidget>
         ]),
         // todo: 채팅
         Container(
-          height: 50,
-          color: Colors.amber[100],
-          child: const Center(child: Text('Entry T')),
+          child: Chat()
         ),
       ],
     );
