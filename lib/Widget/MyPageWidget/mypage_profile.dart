@@ -16,70 +16,50 @@ class MyPageProfile extends StatelessWidget {
         Center(
           child: Column(
             children: [
-              LevelProfile(level: 5),
-              const SizedBox(
-                height: 18,
-              ),
-              SizedBox(
+              LevelProfile(level: 1),
+              SizedBox(height: 18),
+              Container(
                 width: 300,
-                // height: 80,
-                child: Column(
-                  children: [
-                    GetX<UserController>(
-                      init: UserController(),
-                      builder: (_) => Text(
-                        Get.find<UserController>().userInfo().userName,
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 20,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 14,
-                    ),
-                    const SizedBox(
-                      width: 250,
-                      // 폰트 사이즈 15 일 때 , height 가 29면 픽셀안에 걸려서 39로 수정합니다.
-                      // height: 40,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
+                child:
+                  Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(
-                            '돈을 많이 모아야 \n돈을 많이 쓸 수 있다.',
-                            textAlign: TextAlign.justify,
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 15,
-                            ),
-                          ),
+                          Text('최지출', style: TextStyle(color: Colors.white, fontSize: 20))
                         ],
                       ),
-                    ),
-                  ],
-                ),
+                      SizedBox(height: 10),
+                      Row(
+                        children: [
+                          Text('돈을 많이 모아야 돈을 많이 쓸 수 있다.', textAlign: TextAlign.center, style: TextStyle(color: Color(0xff808080), fontSize: 16),
+                          ),
+                        ],
+                      )
+                    ],
+                  )
               ),
-              const SizedBox(
-                height: 0,
-              ),
+              SizedBox(height: 16),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 5),
-                child: OutlinedButton(
-                  style: OutlinedButton.styleFrom(
-                    side: const BorderSide(width: 1.0, color: Colors.amber),
-                  ),
-                  onPressed: () {},
-                  child: const Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 70,
-                      vertical: 10,
+                child:
+                  OutlinedButton(
+                    style: OutlinedButton.styleFrom(
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4.0)),
+                      side: BorderSide(width: 1.0, color: Colors.amber),
                     ),
-                    child: Text(
-                      '프로필 편집',
-                      style: TextStyle(color: Colors.amber, fontSize: 15),
+                    child: Container(
+                      width: 210, height: 30,
+                      child:
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text('프로필 편집', style: TextStyle(color: Colors.amber, fontSize: 15)),
+                            ],
+                          )
                     ),
-                  ),
-                ),
+                    onPressed: () {},
+                  )
               )
             ],
           ),
