@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:poorlex/Widget/Common/icon.dart';
 import 'package:poorlex/Widget/MainPageWidget/bottom_bar.dart';
 import 'package:poorlex/Widget/MyPageWidget/mypage_level.dart';
 import 'package:poorlex/Widget/MyPageWidget/mypage_myauth.dart';
 import 'package:poorlex/Widget/MyPageWidget/mypage_myfriends.dart';
 import 'package:poorlex/Widget/MyPageWidget/mypage_profile.dart';
 
-import '../Controller/user_controller.dart';
-import '../Widget/MyPageWidget/announcement_list.dart';
+import 'package:poorlex/Controller/user_controller.dart';
+import 'package:poorlex/Widget/MyPageWidget/announcement_list.dart';
 
 class MyPage extends StatefulWidget {
   const MyPage({super.key});
@@ -32,14 +33,15 @@ class _MyPageState extends State<MyPage> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.settings),
               iconSize: 26,
+              icon: CustomIcon(icon: 'setting', width: 26, height: 26, color: '#ffffff'),
+              onPressed: () {},
             ),
             IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.notifications_none_rounded),
               iconSize: 26,
+              icon: CustomIcon(icon: 'ring', width: 26, height: 26, color: '#ffffff'),
+              onPressed: () {},
+              // icon: CustomIcon(icon: 'ring-point', width: 26, height: 26, color: '#ffffff'),
             )
           ],
         ),

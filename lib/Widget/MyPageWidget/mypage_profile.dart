@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../Controller/user_controller.dart';
+import 'package:poorlex/Controller/user_controller.dart';
+import 'package:poorlex/Widget/Common/user.dart';
 
 class MyPageProfile extends StatelessWidget {
   MyPageProfile({super.key});
@@ -15,24 +16,7 @@ class MyPageProfile extends StatelessWidget {
         Center(
           child: Column(
             children: [
-              Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                  boxShadow: [
-                    BoxShadow(
-                      blurRadius: 15,
-                      offset: const Offset(2, 2),
-                      color: Colors.black.withOpacity(0.5),
-                    )
-                  ],
-                ),
-                clipBehavior: Clip.hardEdge,
-                child: SizedBox(
-                  width: 120,
-                  height: 120,
-                  child: Image.asset('assets/my_page/icon_profile.png'),
-                ),
-              ),
+              LevelProfile(level: 5),
               const SizedBox(
                 height: 18,
               ),

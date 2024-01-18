@@ -104,11 +104,8 @@ flutter:
     - assets/battle_page/IMG_PROFILE.png
     - assets/battle_page/ICON_LV2.png
     - assets/icons/
-
-
-
-
-
+    - assets/level/
+    - assets/level/profile/
     - assets/img_main_login.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
