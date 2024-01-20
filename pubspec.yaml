@@ -76,6 +76,8 @@ flutter:
     - assets/main_page/
     - assets/my_page/
     - assets/ranking/
+    - assets/battle_page/
+    - assets/sample/
     - assets/coin.png
     - assets/my_page/icon_cooper.png
     - assets/my_page/icon_friends.png
@@ -103,6 +105,7 @@ flutter:
     - assets/battle_page/ICON_LV2.png
     - assets/goal/
 
+    - assets/icons/
 
 
 

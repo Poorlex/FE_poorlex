@@ -114,7 +114,7 @@ class _BottomBarState extends State<BottomBar> {
                   ]
                 ],
               )),
-          label: '달력',
+          label: '요약',
         ),
         BottomNavigationBarItem(
           icon: Padding(
