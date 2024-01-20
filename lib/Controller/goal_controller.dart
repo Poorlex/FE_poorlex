@@ -10,9 +10,6 @@ class GoalController extends GetxController {
   }
 
   void addBattleMakingIndex() {
-    // goalIndexModel.update((val) {
-    //   val?.goalIndex += 1;
-    // });
     goalIndexModel.value.goalIndex += 1;
   }
 }
