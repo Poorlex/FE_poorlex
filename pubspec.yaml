@@ -103,6 +103,8 @@ flutter:
     - assets/battle_page/IMG_NO_FRIENDS.png
     - assets/battle_page/IMG_PROFILE.png
     - assets/battle_page/ICON_LV2.png
+    - assets/goal/
+
     - assets/icons/
     - assets/level/
     - assets/level/profile/
