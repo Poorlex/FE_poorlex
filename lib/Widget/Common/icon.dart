@@ -26,6 +26,12 @@ class CustomIcon extends StatelessWidget {
           <path d="M17 4L8 13L17 22" stroke="${color}" stroke-width="1.5"/>
         </svg>
       ''', width: w?.toDouble(), height: h?.toDouble());
+    } else if (icon == 'arrow-right') {
+      return SvgPicture.string('''
+        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15" fill="none">
+          <path d="M4.28613 2.14258H6.78613V3.33305H8.03613V4.52353H9.28613V5.71401H10.5361V6.90448H11.7861V8.09496H10.5361V9.28544H9.28613V10.4759H8.03613V11.6664H6.78613V12.8569H4.28613V11.6664H5.53613V10.4759H6.78613V9.28544H8.03613V8.09496H9.28613V6.90448H8.03613V5.71401H6.78613V4.52353H5.53613V3.33305H4.28613V2.14258Z" fill="${color}"/>
+        </svg>
+      ''', width: w?.toDouble(), height: h?.toDouble());
     } else if (icon == 'option') {
       return SvgPicture.string('''
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">

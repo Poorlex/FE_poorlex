@@ -59,7 +59,9 @@ class _MyPageState extends State<MyPage> {
                   children: [
                     MyPageLevel(),
                     MyFriends(),
+                    SizedBox(height: 70),
                     MyPageMyAuth(),
+                    SizedBox(height: 80),
                     AnnounceMent()
                   ],
                 ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:poorlex/Widget/Common/icon.dart';
 
 class AnnounceMent extends StatefulWidget {
   const AnnounceMent({
@@ -22,84 +23,114 @@ class _AnnounceMentState extends State<AnnounceMent> {
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const SizedBox(
-          height: 80,
+        Container(
+          padding: EdgeInsets.fromLTRB(0, 16, 0, 16),
+          child:
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text('공지사항', style: TextStyle(color: Colors.white, fontSize: 18)),
+                TextButton(
+                  style: TextButton.styleFrom(padding: EdgeInsets.zero, minimumSize: Size.zero,),
+                  child: CustomIcon(icon: 'arrow-right', width: 16, height: 16, color: '#ffffff',),
+                  onPressed: () {},
+                )
+              ],
+            ),
         ),
-        for (var box in announcements)
+        Container(
+          padding: EdgeInsets.fromLTRB(0, 16, 0, 16),
+          child:
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(
-                height: 20,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      box[0],
-                      style: const TextStyle(color: Colors.white, fontSize: 18),
-                    ),
-                  ],
-                ),
-              ),
-              IconButton(
+              Text('고객센터', style: TextStyle(color: Colors.white, fontSize: 18)),
+              TextButton(
+                style: TextButton.styleFrom(padding: EdgeInsets.zero, minimumSize: Size.zero,),
+                child: CustomIcon(icon: 'arrow-right', width: 16, height: 16, color: '#ffffff',),
                 onPressed: () {},
-                icon: const Icon(Icons.arrow_forward_ios_rounded,
-                    color: Colors.white),
-                iconSize: 18,
-              ),
+              )
             ],
           ),
-        const SizedBox(
-          height: 10,
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            SizedBox(
-              height: 20,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    appVersion[0],
-                    style: const TextStyle(color: Colors.white, fontSize: 18),
-                  ),
-                ],
-              ),
-            ),
-            Text(
-              appVersion[1],
-              style: const TextStyle(color: Colors.white, fontSize: 18),
-            )
-          ],
+        Container(
+          padding: EdgeInsets.fromLTRB(0, 16, 0, 16),
+          child:
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text('이용약관', style: TextStyle(color: Colors.white, fontSize: 18)),
+              TextButton(
+                style: TextButton.styleFrom(padding: EdgeInsets.zero, minimumSize: Size.zero,),
+                child: CustomIcon(icon: 'arrow-right', width: 16, height: 16, color: '#ffffff',),
+                onPressed: () {},
+              )
+            ],
+          ),
         ),
-        const SizedBox(
-          height: 10,
+        Container(
+          padding: EdgeInsets.fromLTRB(0, 16, 0, 16),
+          child:
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text('개인정보 처리방침', style: TextStyle(color: Colors.white, fontSize: 18)),
+              TextButton(
+                style: TextButton.styleFrom(padding: EdgeInsets.zero, minimumSize: Size.zero,),
+                child: CustomIcon(icon: 'arrow-right', width: 16, height: 16, color: '#ffffff',),
+                onPressed: () {},
+              )
+            ],
+          ),
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            const SizedBox(
-              height: 20,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    '로그 아웃',
-                    style: TextStyle(color: Colors.white24, fontSize: 18),
-                  ),
-                ],
-              ),
-            ),
-            IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.arrow_forward_ios_rounded,
-                  color: Colors.white24),
-              iconSize: 18,
-            ),
-          ],
+        Container(
+          padding: EdgeInsets.fromLTRB(0, 16, 0, 16),
+          child:
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text('앱 버전', style: TextStyle(color: Colors.white, fontSize: 18)),
+              Text('U.0.0.0', style: TextStyle(color: Colors.white, fontSize: 18)),
+            ],
+          ),
+        ),
+        Container(
+          padding: EdgeInsets.fromLTRB(0, 16, 0, 16),
+          child:
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text('로그아웃', style: TextStyle(color: Color(0xff666666), fontSize: 18)),
+              TextButton(
+                style: TextButton.styleFrom(padding: EdgeInsets.zero, minimumSize: Size.zero,),
+                child: CustomIcon(icon: 'arrow-right', width: 16, height: 16, color: '#666666',),
+                onPressed: () {},
+              )
+            ],
+          ),
+        ),
+        Container(
+          padding: EdgeInsets.fromLTRB(0, 16, 0, 16),
+          child:
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text('회원탈퇴', style: TextStyle(color: Color(0xff666666), fontSize: 18)),
+              TextButton(
+                style: TextButton.styleFrom(padding: EdgeInsets.zero, minimumSize: Size.zero,),
+                child: CustomIcon(icon: 'arrow-right', width: 16, height: 16, color: '#666666',),
+                onPressed: () {},
+              )
+            ],
+          ),
         ),
       ],
     );
