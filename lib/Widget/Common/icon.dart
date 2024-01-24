@@ -26,10 +26,16 @@ class CustomIcon extends StatelessWidget {
           <path d="M17 4L8 13L17 22" stroke="${color}" stroke-width="1.5"/>
         </svg>
       ''', width: w?.toDouble(), height: h?.toDouble());
-    } else if (icon == 'arrow-right') {
+    } else if (icon == 'arrow-game-left') {
       return SvgPicture.string('''
-        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15" fill="none">
-          <path d="M4.28613 2.14258H6.78613V3.33305H8.03613V4.52353H9.28613V5.71401H10.5361V6.90448H11.7861V8.09496H10.5361V9.28544H9.28613V10.4759H8.03613V11.6664H6.78613V12.8569H4.28613V11.6664H5.53613V10.4759H6.78613V9.28544H8.03613V8.09496H9.28613V6.90448H8.03613V5.71401H6.78613V4.52353H5.53613V3.33305H4.28613V2.14258Z" fill="${color}"/>
+        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
+          <path d="M8 12H9.5V10.5H11V9H12.5V7.5H14V6H17V7.5H15.5V9H14V10.5H12.5V12H11V13.5H12.5V15H14V16.5H15.5V18H17V19.5H14V18H12.5V16.5H11V15H9.5V13.5H8V12Z" fill="${color}"/>
+        </svg>
+      ''', width: w?.toDouble(), height: h?.toDouble());
+    } else if (icon == 'arrow-game-right') {
+      return SvgPicture.string('''
+        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
+          <path d="M17 12H15.5V10.5H14V9H12.5V7.5H11V6H8V7.5H9.5V9H11V10.5H12.5V12H14V13.5H12.5V15H11V16.5H9.5V18H8V19.5H11V18H12.5V16.5H14V15H15.5V13.5H17V12Z" fill="${color}"/>
         </svg>
       ''', width: w?.toDouble(), height: h?.toDouble());
     } else if (icon == 'option') {

@@ -34,7 +34,7 @@ class _AnnounceMentState extends State<AnnounceMent> {
                 Text('공지사항', style: TextStyle(color: Colors.white, fontSize: 18)),
                 TextButton(
                   style: TextButton.styleFrom(padding: EdgeInsets.zero, minimumSize: Size.zero,),
-                  child: CustomIcon(icon: 'arrow-right', width: 16, height: 16, color: '#ffffff',),
+                  child: CustomIcon(icon: 'arrow-game-right', width: 16, height: 16, color: '#ffffff',),
                   onPressed: () {},
                 )
               ],
@@ -50,7 +50,7 @@ class _AnnounceMentState extends State<AnnounceMent> {
               Text('고객센터', style: TextStyle(color: Colors.white, fontSize: 18)),
               TextButton(
                 style: TextButton.styleFrom(padding: EdgeInsets.zero, minimumSize: Size.zero,),
-                child: CustomIcon(icon: 'arrow-right', width: 16, height: 16, color: '#ffffff',),
+                child: CustomIcon(icon: 'arrow-game-right', width: 16, height: 16, color: '#ffffff',),
                 onPressed: () {},
               )
             ],
@@ -66,7 +66,7 @@ class _AnnounceMentState extends State<AnnounceMent> {
               Text('이용약관', style: TextStyle(color: Colors.white, fontSize: 18)),
               TextButton(
                 style: TextButton.styleFrom(padding: EdgeInsets.zero, minimumSize: Size.zero,),
-                child: CustomIcon(icon: 'arrow-right', width: 16, height: 16, color: '#ffffff',),
+                child: CustomIcon(icon: 'arrow-game-right', width: 16, height: 16, color: '#ffffff',),
                 onPressed: () {},
               )
             ],
@@ -82,7 +82,7 @@ class _AnnounceMentState extends State<AnnounceMent> {
               Text('개인정보 처리방침', style: TextStyle(color: Colors.white, fontSize: 18)),
               TextButton(
                 style: TextButton.styleFrom(padding: EdgeInsets.zero, minimumSize: Size.zero,),
-                child: CustomIcon(icon: 'arrow-right', width: 16, height: 16, color: '#ffffff',),
+                child: CustomIcon(icon: 'arrow-game-right', width: 16, height: 16, color: '#ffffff',),
                 onPressed: () {},
               )
             ],
@@ -110,7 +110,7 @@ class _AnnounceMentState extends State<AnnounceMent> {
               Text('로그아웃', style: TextStyle(color: Color(0xff666666), fontSize: 18)),
               TextButton(
                 style: TextButton.styleFrom(padding: EdgeInsets.zero, minimumSize: Size.zero,),
-                child: CustomIcon(icon: 'arrow-right', width: 16, height: 16, color: '#666666',),
+                child: CustomIcon(icon: 'arrow-game-right', width: 16, height: 16, color: '#666666',),
                 onPressed: () {},
               )
             ],
@@ -126,7 +126,7 @@ class _AnnounceMentState extends State<AnnounceMent> {
               Text('회원탈퇴', style: TextStyle(color: Color(0xff666666), fontSize: 18)),
               TextButton(
                 style: TextButton.styleFrom(padding: EdgeInsets.zero, minimumSize: Size.zero,),
-                child: CustomIcon(icon: 'arrow-right', width: 16, height: 16, color: '#666666',),
+                child: CustomIcon(icon: 'arrow-game-right', width: 16, height: 16, color: '#666666',),
                 onPressed: () {},
               )
             ],

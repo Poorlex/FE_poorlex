@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:poorlex/Widget/Common/icon.dart';
+import 'package:poorlex/Widget/Common/other.dart';
 
 class MyPageMyAuth extends StatefulWidget {
   const MyPageMyAuth({super.key});
@@ -28,7 +29,6 @@ class _MyPageMyAuthState extends State<MyPageMyAuth> {
           ],
         ),
         Row(
-            // direction: Axis.horizontal, spacing: 17,
             children: [
               Expanded(child:
                 BackgroundImageWithBlack(height: 153, child:
@@ -101,7 +101,7 @@ class _MyPageMyAuthState extends State<MyPageMyAuth> {
                 Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                   Text('지출 전체 보기', style: TextStyle(color: Color(0xffFFD600), fontSize: 14)),
                   SizedBox(width: 5),
-                  CustomIcon(icon: 'arrow-right', width: 15, height: 15, color: '#FFD600',)
+                  CustomIcon(icon: 'arrow-game-right', width: 15, height: 15, color: '#FFD600',)
                 ]),
             ),
           onPressed: () {},
@@ -110,44 +110,4 @@ class _MyPageMyAuthState extends State<MyPageMyAuth> {
   }
 }
 
-class BackgroundImageWithBlack extends StatelessWidget {
-  double height;
-  Widget child;
-
-  BackgroundImageWithBlack({
-    super.key,
-    required this.height,
-    required this.child
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Positioned(
-          top: 0, right: 0, left: 0, bottom: 0,
-          child: Container(
-            height: height,
-            decoration: BoxDecoration(
-              image: DecorationImage(image: AssetImage("assets/sample/sample2.png"), fit: BoxFit.cover),
-            ),
-          ),
-        ),
-        Row(
-          children: [
-            Expanded(child:
-              Container(
-                  height: height,
-                  decoration: BoxDecoration(
-                    color: Color(0xff000000).withOpacity(0.6),
-                  ),
-                  child: this.child
-              ),
-            )
-          ],
-        )
-      ],
-    );
-  }
-}
 

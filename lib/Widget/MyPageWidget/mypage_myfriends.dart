@@ -75,7 +75,7 @@ class _MyFriendsState extends State<MyFriends> {
               Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                 Text('친구 전체 보기', style: TextStyle(color: Color(0xffFFD600), fontSize: 14)),
                 SizedBox(width: 5),
-                CustomIcon(icon: 'arrow-right', width: 15, height: 15, color: '#FFD600',)
+                CustomIcon(icon: 'arrow-game-right', width: 15, height: 15, color: '#FFD600',)
               ]),
             ),
             onPressed: () {},
