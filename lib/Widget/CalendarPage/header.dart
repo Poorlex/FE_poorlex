@@ -41,7 +41,7 @@ class _CalenderHeaderState extends State<CalenderHeader> {
                                 icon: Icon(Icons.arrow_back_ios, size: 25, color: Colors.white,),
                                 onPressed: () => _changeMonth('prev')
                             ),
-                            MonthPicker(
+                            Picker(
                                 type: 'MONTH',
                                 current: widget.current,
                                 child: Row(

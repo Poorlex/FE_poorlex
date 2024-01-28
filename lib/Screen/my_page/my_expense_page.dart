@@ -155,7 +155,7 @@ class _MyExpensePageState extends State<MyExpensePage> {
                               icon: CustomIcon(icon: 'arrow-game-left', width: 25, height: 25, color: '#ffffff'),
                               onPressed: () {},
                             ),
-                            MonthPicker(
+                            Picker(
                                 type: 'MONTH',
                                 current: current,
                                 child: Row(

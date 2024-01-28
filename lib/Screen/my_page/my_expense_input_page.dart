@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
 import 'package:poorlex/Widget/Common/icon.dart';
+import 'package:poorlex/Widget/Common/picker.dart';
 
 class MyExpenseInputPage extends StatefulWidget {
   const MyExpenseInputPage({super.key});
@@ -77,10 +78,9 @@ class _MyExpenseInputPageState extends State<MyExpenseInputPage> {
                         SizedBox(width: 30),
                         Text('2023.07.28 (금)', style: TextStyle(color: Colors.white, fontSize: 16)),
                     ]),
-                    IconButton(
-                        iconSize: 16, icon: CustomIcon(icon: 'arrow-circle-down', width: 16, height: 16, color: '#ffd600'),
-                        onPressed: () {}
-                    )
+                    Picker(type: 'DAY', select: () {}, child:
+                      CustomIcon(icon: 'arrow-circle-down', width: 16, height: 16, color: '#ffd600')
+                    ),
                   ])
                 ],
               )

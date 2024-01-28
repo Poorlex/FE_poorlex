@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-class MonthPicker extends StatefulWidget {
+class Picker extends StatefulWidget {
   static final _now = DateTime.now().millisecondsSinceEpoch;
   String type;
   int current;
   Widget child;
   Function select;
 
-  MonthPicker({
+  Picker({
     super.key,
     int? current,
     Widget? child,
@@ -20,10 +20,10 @@ class MonthPicker extends StatefulWidget {
   {}
 
   @override
-  State<MonthPicker> createState() => _MonthPickerState();
+  State<Picker> createState() => _PickerState();
 }
 
-class _MonthPickerState extends State<MonthPicker> {
+class _PickerState extends State<Picker> {
   @override
   Widget build(BuildContext context) {
     return (
@@ -32,11 +32,7 @@ class _MonthPickerState extends State<MonthPicker> {
           onPressed: () {
             showModalBottomSheet<void>(
               context: context,
-              builder: (BuildContext context) {
-                return widget.type == 'MONTH' ?
-                  MonthPickerModal(current: widget.current, select: widget.select) : 
-                  DayPickerModal(current: widget.current, select: widget.select);
-              },
+              builder: (BuildContext context) => PickerModal(type: widget.type, current: widget.current, select: widget.select)
             );
           }
       )
@@ -44,31 +40,37 @@ class _MonthPickerState extends State<MonthPicker> {
   }
 }
 
-class MonthPickerModal extends StatefulWidget {
+class PickerModal extends StatefulWidget {
   int current;
+  String type;
   Function select;
 
-  MonthPickerModal({
+  PickerModal({
     super.key,
     required this.current,
+    required this.type,
     required this.select
   });
 
   @override
-  State<MonthPickerModal> createState() => _MonthPickerModalState();
+  State<PickerModal> createState() => _PickerModalState();
 }
 
-class _MonthPickerModalState extends State<MonthPickerModal> {
+class _PickerModalState extends State<PickerModal> {
   static final _now = DateTime.now().millisecondsSinceEpoch;
   List<int> years;
   List<int> months;
+  List<int> days;
 
-  _MonthPickerModalState():
+  _PickerModalState():
         years = List<int>.generate(20, (index) => index).map((index) {
           int y = int.parse(DateFormat('yyyy').format(DateTime.fromMillisecondsSinceEpoch(_now)));
           return y - index;
         }).toList(),
         months = List<int>.generate(12, (index) => index).map((index) {
+          return index + 1;
+        }).toList(),
+        days = List<int>.generate(31, (index) => index).map((index) {
           return index + 1;
         }).toList()
   {}
@@ -78,8 +80,10 @@ class _MonthPickerModalState extends State<MonthPickerModal> {
     DateTime t;
     if (mode == 'year') {
       t = new DateTime(n, c.month, c.day, c.hour, c.minute, c.second, c.millisecond, c.microsecond);
-    } else {
+    } else if (mode == 'month') {
       t = new DateTime(c.year, n, c.day, c.hour, c.minute, c.second, c.millisecond, c.microsecond);
+    } else {
+      t = new DateTime(c.year, c.month, n, c.hour, c.minute, c.second, c.millisecond, c.microsecond);
     }
     setState(() {
       widget.current = t.millisecondsSinceEpoch;
@@ -88,6 +92,96 @@ class _MonthPickerModalState extends State<MonthPickerModal> {
 
   @override
   Widget build(BuildContext context) {
+    List<Widget> children = [
+      Expanded(
+        flex: 1,
+        child: ListView(
+          scrollDirection: Axis.vertical,
+          children: years.map((year) {
+            bool isSelected = year.toString() == DateFormat('yyyy').format(DateTime.fromMillisecondsSinceEpoch(widget.current));
+            if (isSelected) {
+              return ElevatedButton(
+                style: ElevatedButton.styleFrom(backgroundColor: Colors.black),
+                child: Text(year.toString() + '년',
+                    style: TextStyle(fontSize: 16, color: Colors.white)
+                ),
+                onPressed: () => _select('year', year),
+              );
+            } else {
+              return TextButton(
+                child: Text(year.toString() + '년',
+                    style: TextStyle(fontSize: 16, color: Colors.black)
+                ),
+                onPressed: () => _select('year', year),
+              );
+            }
+          }).toList(),
+        )
+      )
+    ];
+
+    if (widget.type == 'MONTH' || widget.type == 'DAY') {
+      children.add(SizedBox(width: 8));
+      children.add(
+        Expanded(
+            flex: 1,
+            child: ListView(
+              scrollDirection: Axis.vertical,
+              children: months.map((month) {
+                bool isSelected = month.toString() == DateFormat('M').format(DateTime.fromMillisecondsSinceEpoch(widget.current));
+                if (isSelected) {
+                  return ElevatedButton(
+                    style: ElevatedButton.styleFrom(backgroundColor: Colors.black),
+                    child: Text(month.toString() + '월',
+                        style: TextStyle(fontSize: 16, color: Colors.white)
+                    ),
+                    onPressed: () => _select('month', month),
+                  );
+                } else {
+                  return TextButton(
+                    child: Text(month.toString() + '월',
+                        style: TextStyle(fontSize: 16, color: Colors.black)
+                    ),
+                    onPressed: () => _select('month', month),
+                  );
+                }
+              }).toList(),
+            )
+        )
+      );
+    }
+
+    if (widget.type == 'DAY') {
+      children.add(SizedBox(width: 8));
+      children.add(
+          Expanded(
+              flex: 1,
+              child: ListView(
+                scrollDirection: Axis.vertical,
+                children: days.map((day) {
+                  bool isSelected = day.toString() == DateFormat('D').format(DateTime.fromMillisecondsSinceEpoch(widget.current));
+                  if (isSelected) {
+                    return ElevatedButton(
+                      style: ElevatedButton.styleFrom(backgroundColor: Colors.black),
+                      child: Text(day.toString() + '일',
+                          style: TextStyle(fontSize: 16, color: Colors.white)
+                      ),
+                      onPressed: () => _select('day', day),
+                    );
+                  } else {
+                    return TextButton(
+                      child: Text(day.toString() + '일',
+                          style: TextStyle(fontSize: 16, color: Colors.black)
+                      ),
+                      onPressed: () => _select('day', day),
+                    );
+                  }
+                }).toList(),
+              )
+          )
+      );
+    }
+
     return SizedBox(
         height: 300,
         child: (
@@ -95,64 +189,11 @@ class _MonthPickerModalState extends State<MonthPickerModal> {
               color: Colors.white,
               padding: EdgeInsets.fromLTRB(20, 20, 20, 40),
               child: (
-                  // Expanded(child: (
                       Column(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Expanded(child: Row(
-                            children: [
-                              Expanded(
-                                flex: 1,
-                                child: ListView(
-                                  scrollDirection: Axis.vertical,
-                                  children: years.map((year) {
-                                    bool isSelected = year.toString() == DateFormat('yyyy').format(DateTime.fromMillisecondsSinceEpoch(widget.current));
-                                    if (isSelected) {
-                                      return ElevatedButton(
-                                        style: ElevatedButton.styleFrom(backgroundColor: Colors.black),
-                                        child: Text(year.toString() + '년',
-                                            style: TextStyle(fontSize: 16, color: Colors.white)
-                                        ),
-                                        onPressed: () => _select('year', year),
-                                      );
-                                    } else {
-                                      return TextButton(
-                                        child: Text(year.toString() + '년',
-                                            style: TextStyle(fontSize: 16, color: Colors.black)
-                                        ),
-                                        onPressed: () => _select('year', year),
-                                      );
-                                    }
-                                  }).toList(),
-                                ),
-                              ),
-                              SizedBox(width: 8),
-                              Expanded(
-                                  flex: 1,
-                                  child: ListView(
-                                    scrollDirection: Axis.vertical,
-                                    children: months.map((month) {
-                                      bool isSelected = month.toString() == DateFormat('M').format(DateTime.fromMillisecondsSinceEpoch(widget.current));
-                                      if (isSelected) {
-                                        return ElevatedButton(
-                                          style: ElevatedButton.styleFrom(backgroundColor: Colors.black),
-                                          child: Text(month.toString() + '월',
-                                              style: TextStyle(fontSize: 16, color: Colors.white)
-                                          ),
-                                          onPressed: () => _select('month', month),
-                                        );
-                                      } else {
-                                        return TextButton(
-                                          child: Text(month.toString() + '월',
-                                              style: TextStyle(fontSize: 16, color: Colors.black)
-                                          ),
-                                          onPressed: () => _select('month', month),
-                                        );
-                                      }
-                                    }).toList(),
-                                  )
-                              )
-                            ],
+                            children: children
                           )),
                           SizedBox(height: 16),
                           Container(
@@ -169,7 +210,6 @@ class _MonthPickerModalState extends State<MonthPickerModal> {
                           ),
                         ],
                       )
-                  // ))
               ),)
         )
     );
@@ -211,7 +251,12 @@ class _DayPickerModalState extends State<DayPickerModal> {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return SizedBox(height: 300, child:
+      Container(
+        color: Colors.white,
+        padding: EdgeInsets.fromLTRB(20, 20, 20, 40),
+      )
+    );
   }
 }
 
