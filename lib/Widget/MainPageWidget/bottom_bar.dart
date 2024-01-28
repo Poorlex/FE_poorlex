@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:poorlex/Screen/battle_page/battle_page.dart';
 import 'package:poorlex/Screen/goal_page.dart';
 import 'package:poorlex/Screen/main_page.dart';
-import 'package:poorlex/Screen/my_page.dart';
+import 'package:poorlex/Screen/my_page/my_page.dart';
 import 'package:poorlex/Screen/calendar_page.dart';
 
 class BottomBar extends StatefulWidget {

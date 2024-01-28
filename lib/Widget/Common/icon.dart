@@ -20,7 +20,13 @@ class CustomIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (icon == 'arrow-left') {
+    if (icon == 'close') {
+      return SvgPicture.string('''
+        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26" fill="none">
+          <path id="Union" fill-rule="evenodd" clip-rule="evenodd" d="M9.53027 14.5909L17.28 22.3407L18.3407 21.28L10.5909 13.5303L19.0605 5.06066L17.9999 4L9.53027 12.4696L1.06066 4L0 5.06066L8.46961 13.5303L0.719887 21.28L1.78055 22.3407L9.53027 14.5909Z" fill="${color}"/>
+        </svg>
+      ''', width: w?.toDouble(), height: h?.toDouble());
+    } else if (icon == 'arrow-left') {
       return SvgPicture.string('''
         <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26" fill="none">
           <path d="M17 4L8 13L17 22" stroke="${color}" stroke-width="1.5"/>
@@ -36,6 +42,13 @@ class CustomIcon extends StatelessWidget {
       return SvgPicture.string('''
         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
           <path d="M17 12H15.5V10.5H14V9H12.5V7.5H11V6H8V7.5H9.5V9H11V10.5H12.5V12H14V13.5H12.5V15H11V16.5H9.5V18H8V19.5H11V18H12.5V16.5H14V15H15.5V13.5H17V12Z" fill="${color}"/>
+        </svg>
+      ''', width: w?.toDouble(), height: h?.toDouble());
+    } else if (icon == 'arrow-circle-down') {
+      return SvgPicture.string('''
+        <svg xmlns="http://www.w3.org/2000/svg" width="17" height="16" viewBox="0 0 17 16" fill="none">
+          <circle cx="8.89648" cy="8" r="8" fill="${color}"/>
+          <path d="M5.89648 7L8.89648 11L11.8965 7" stroke="#1A1A1A" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="bevel"/>
         </svg>
       ''', width: w?.toDouble(), height: h?.toDouble());
     } else if (icon == 'option') {

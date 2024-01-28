@@ -160,11 +160,11 @@ class OptionButtonModal extends StatelessWidget {
                       children: [
                         Text('삭제', style: TextStyle(color: Color(0xFF666666), fontSize: 18))
                       ]
-                  ),
+                  )
                 )
-            ),
-          ],
-        ),
+            )
+          ]
+        )
       )
     );
   }

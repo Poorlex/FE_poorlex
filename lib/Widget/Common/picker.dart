@@ -3,6 +3,7 @@ import 'package:intl/intl.dart';
 
 class MonthPicker extends StatefulWidget {
   static final _now = DateTime.now().millisecondsSinceEpoch;
+  String type;
   int current;
   Widget child;
   Function select;
@@ -11,6 +12,7 @@ class MonthPicker extends StatefulWidget {
     super.key,
     int? current,
     Widget? child,
+    required this.type,
     required this.select,
   }) :
       current = current ?? _now,
@@ -31,7 +33,9 @@ class _MonthPickerState extends State<MonthPicker> {
             showModalBottomSheet<void>(
               context: context,
               builder: (BuildContext context) {
-                return MonthPickerModal(current: widget.current, select: widget.select);
+                return widget.type == 'MONTH' ?
+                  MonthPickerModal(current: widget.current, select: widget.select) : 
+                  DayPickerModal(current: widget.current, select: widget.select);
               },
             );
           }
@@ -169,6 +173,45 @@ class _MonthPickerModalState extends State<MonthPickerModal> {
               ),)
         )
     );
+  }
+}
+
+class DayPickerModal extends StatefulWidget {
+  int current;
+  Function select;
+
+  DayPickerModal({
+    super.key,
+    required this.current,
+    required this.select
+  });
+
+  @override
+  State<DayPickerModal> createState() => _DayPickerModalState();
+}
+
+class _DayPickerModalState extends State<DayPickerModal> {
+  static final _now = DateTime.now().millisecondsSinceEpoch;
+  List<int> years;
+  List<int> months;
+  List<int> days;
+
+  _DayPickerModalState():
+        years = List<int>.generate(20, (index) => index).map((index) {
+          int y = int.parse(DateFormat('yyyy').format(DateTime.fromMillisecondsSinceEpoch(_now)));
+          return y - index;
+        }).toList(),
+        months = List<int>.generate(12, (index) => index).map((index) {
+          return index + 1;
+        }).toList(),
+        days = List<int>.generate(31, (index) => index).map((index) {
+          return index + 1;
+        }).toList()
+  {}
+
+  @override
+  Widget build(BuildContext context) {
+    return const Placeholder();
   }
 }
 

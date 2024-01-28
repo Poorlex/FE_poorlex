@@ -1,26 +1,92 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
-void main() {
-  runApp(const ExpenditureInputPage());
+import 'package:poorlex/Widget/Common/icon.dart';
+
+class MyExpenseInputPage extends StatefulWidget {
+  const MyExpenseInputPage({super.key});
+
+  @override
+  State<MyExpenseInputPage> createState() => _MyExpenseInputPageState();
 }
 
-class ExpenditureInputPage extends StatelessWidget {
-  const ExpenditureInputPage({super.key});
+class _MyExpenseInputPageState extends State<MyExpenseInputPage> {
+  XFile? _image; // 추가: 이미지 변수
+
+  Future<void> _pickImage() async { // 추가: 이미지 피커 함수
+    final ImagePicker _picker = ImagePicker();
+    XFile? image = await _picker.pickImage(source: ImageSource.gallery);
+
+    if (image != null) {
+      setState(() { // 이미지가 선택되었을 때 상태 업데이트
+        _image = image;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData.dark().copyWith(
-        scaffoldBackgroundColor: Colors.black,
-      ),
-      home: Scaffold(
-        body: ListView(children: [
-          Expanding(),
-        ]),
-      ),
+    return Scaffold(
+        backgroundColor: Colors.black,
+        appBar: AppBar(
+          backgroundColor: Colors.black,
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              IconButton(
+                iconSize: 26,
+                icon: CustomIcon(icon: 'close', width: 26, height: 26, color: '#ffffff'),
+                onPressed: () {},
+              ),
+              Text('지출 입력하기', style: TextStyle(color: Colors.white, fontSize: 18)),
+              SizedBox(width: 26)
+            ],
+          ),
+        ),
+        body: SafeArea(child:
+          SingleChildScrollView(child:
+            Container(padding: EdgeInsets.symmetric(vertical: 16, horizontal: 16), child:
+              Column(
+                children: [
+                  SizedBox(height: 76),
+                  Row(children: [
+                      Container(margin: EdgeInsets.only(left: 2), // 원하는 마진 값으로 조정
+                        child:
+                          Text('오늘은 ', style: TextStyle(color: Color(0xFFFFD600), fontSize: 24),
+                        ),
+                      ),
+                    ],
+                  ),
+                  TextField(
+                    cursorColor: Color(0xffffd600),
+                    style: TextStyle(color: Color(0xffffd600), fontSize: 20),
+                    decoration: InputDecoration(
+                      hintText: '금액 입력',
+                      hintStyle: TextStyle(color: Color(0xff999999)),
+                      iconColor: Color(0xffffd600),
+                      border: UnderlineInputBorder(borderSide: BorderSide(color: Color(0xffffd600), width: 2.0),),
+                      enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: Color(0xffffd600), width: 2.0),),
+                      focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Color(0xffffd600), width: 2.0),),
+                    ),
+                  ),
+                  SizedBox(height: 46),
+                  Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+                    Row(mainAxisAlignment: MainAxisAlignment.start, children: [
+                        Text('지출 일자', style: TextStyle(color: Color(0xffCCCCCC), fontSize: 16)),
+                        SizedBox(width: 30),
+                        Text('2023.07.28 (금)', style: TextStyle(color: Colors.white, fontSize: 16)),
+                    ]),
+                    IconButton(
+                        iconSize: 16, icon: CustomIcon(icon: 'arrow-circle-down', width: 16, height: 16, color: '#ffd600'),
+                        onPressed: () {}
+                    )
+                  ])
+                ],
+              )
+            )
+          ),
+        )
     );
   }
 }

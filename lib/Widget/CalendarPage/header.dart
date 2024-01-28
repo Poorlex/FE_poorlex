@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-import 'package:poorlex/Widget/PickerWidget/month_picker.dart';
+import 'package:poorlex/Widget/Common/picker.dart';
 
 class CalenderHeader extends StatefulWidget {
   final int current;
@@ -42,6 +42,7 @@ class _CalenderHeaderState extends State<CalenderHeader> {
                                 onPressed: () => _changeMonth('prev')
                             ),
                             MonthPicker(
+                                type: 'MONTH',
                                 current: widget.current,
                                 child: Row(
                                   children: [

@@ -5,7 +5,7 @@ import 'package:poorlex/Widget/Common/icon.dart';
 import 'package:poorlex/Widget/Common/other.dart';
 
 import 'package:poorlex/Widget/MainPageWidget/bottom_bar.dart';
-import 'package:poorlex/Widget/PickerWidget/month_picker.dart';
+import 'package:poorlex/Widget/Common/picker.dart';
 
 class MyExpensePage extends StatefulWidget {
   MyExpensePage({
@@ -156,6 +156,7 @@ class _MyExpensePageState extends State<MyExpensePage> {
                               onPressed: () {},
                             ),
                             MonthPicker(
+                                type: 'MONTH',
                                 current: current,
                                 child: Row(
                                   children: [

@@ -3,6 +3,10 @@ import 'package:flutter/services.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
 import 'package:poorlex/Screen/battle_page/detail/ranking/ranking.dart';
+import 'package:poorlex/Screen/my_page/my_page.dart';
+import 'package:poorlex/Screen/my_page/my_expense_page.dart';
+import 'package:poorlex/Screen/my_page/my_expense_detail_page.dart';
+import 'package:poorlex/Screen/my_page/my_expense_input_page.dart';
 import 'Screen/calendar_page.dart';
 import 'Screen/goal_page.dart';
 import 'landingpage.dart';
@@ -37,12 +41,13 @@ class MyApp extends StatelessWidget {
         // home: LandingPage(),
         // home: const MainPage());
         // home: const MyPage());
+        home: MyExpenseInputPage());
         // home: const LoginKakao());
         // home: const LandingPage());
         // home: const AppleLogin());
         // home: BattlePage());
         // home: CaledarPage());
         // home: GoalPage());
-        home: Ranking());
+        // home: Ranking());
   }
 }
