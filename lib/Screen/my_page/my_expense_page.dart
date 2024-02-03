@@ -63,7 +63,7 @@ class _MyExpensePageState extends State<MyExpensePage> {
                                     TextButton(
                                       style: TextButton.styleFrom(padding: EdgeInsets.zero),
                                       child:
-                                        BackgroundImageWithBlack(height: 153, child:
+                                        BackgroundImageWithBlack(image: 'assets/sample/sample2.png', height: 153, child:
                                           Column(
                                             mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.center,
                                             children: [
@@ -81,7 +81,7 @@ class _MyExpensePageState extends State<MyExpensePage> {
                                     TextButton(
                                       style: TextButton.styleFrom(padding: EdgeInsets.zero),
                                       child:
-                                        BackgroundImageWithBlack(height: 153, child:
+                                        BackgroundImageWithBlack(image: 'assets/sample/sample2.png', height: 153, child:
                                           Column(
                                             mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.center,
                                             children: [
@@ -103,7 +103,7 @@ class _MyExpensePageState extends State<MyExpensePage> {
                                   TextButton(
                                     style: TextButton.styleFrom(padding: EdgeInsets.zero),
                                     child:
-                                    BackgroundImageWithBlack(height: 153, child:
+                                    BackgroundImageWithBlack(image: 'assets/sample/sample2.png', height: 153, child:
                                     Column(
                                       mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.center,
                                       children: [
@@ -121,7 +121,7 @@ class _MyExpensePageState extends State<MyExpensePage> {
                                   TextButton(
                                     style: TextButton.styleFrom(padding: EdgeInsets.zero),
                                     child:
-                                    BackgroundImageWithBlack(height: 153, child:
+                                    BackgroundImageWithBlack(image: 'assets/sample/sample2.png', height: 153, child:
                                     Column(
                                       mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.center,
                                       children: [
@@ -191,7 +191,7 @@ class _MyExpensePageState extends State<MyExpensePage> {
                                   TextButton(
                                     style: TextButton.styleFrom(padding: EdgeInsets.zero),
                                     child:
-                                    BackgroundImageWithBlack(height: 153, child:
+                                    BackgroundImageWithBlack(image: 'assets/sample/sample2.png', height: 153, child:
                                     Column(
                                       mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.center,
                                       children: [
@@ -209,7 +209,7 @@ class _MyExpensePageState extends State<MyExpensePage> {
                                   TextButton(
                                     style: TextButton.styleFrom(padding: EdgeInsets.zero),
                                     child:
-                                    BackgroundImageWithBlack(height: 153, child:
+                                    BackgroundImageWithBlack(image: 'assets/sample/sample2.png', height: 153, child:
                                     Column(
                                       mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.center,
                                       children: [
@@ -231,7 +231,7 @@ class _MyExpensePageState extends State<MyExpensePage> {
                                   TextButton(
                                     style: TextButton.styleFrom(padding: EdgeInsets.zero),
                                     child:
-                                    BackgroundImageWithBlack(height: 153, child:
+                                    BackgroundImageWithBlack(image: 'assets/sample/sample2.png', height: 153, child:
                                     Column(
                                       mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.center,
                                       children: [
@@ -249,7 +249,7 @@ class _MyExpensePageState extends State<MyExpensePage> {
                                   TextButton(
                                     style: TextButton.styleFrom(padding: EdgeInsets.zero),
                                     child:
-                                    BackgroundImageWithBlack(height: 153, child:
+                                    BackgroundImageWithBlack(image: 'assets/sample/sample2.png', height: 153, child:
                                     Column(
                                       mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.center,
                                       children: [
@@ -268,7 +268,7 @@ class _MyExpensePageState extends State<MyExpensePage> {
                             Row(
                                 children: [
                                   Expanded(child:
-                                    BackgroundImageWithBlack(height: 153, child:
+                                    BackgroundImageWithBlack(image: 'assets/sample/sample2.png', height: 153, child:
                                       Column(
                                         mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.center,
                                         children: [
@@ -281,7 +281,7 @@ class _MyExpensePageState extends State<MyExpensePage> {
                                   ),
                                   SizedBox(width: 17),
                                   Expanded(child:
-                                    BackgroundImageWithBlack(height: 153, child:
+                                    BackgroundImageWithBlack(image: 'assets/sample/sample2.png', height: 153, child:
                                       Column(
                                         mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.center,
                                         children: [

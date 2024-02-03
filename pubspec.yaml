@@ -71,6 +71,9 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
+    - assets/coin.png
+    - assets/poorlex.png
+    - assets/img_main_login.png
     - assets/app_bar/
     - assets/budget_page/
     - assets/main_page/
@@ -78,37 +81,13 @@ flutter:
     - assets/ranking/
     - assets/battle_page/
     - assets/sample/
-    - assets/coin.png
-    - assets/my_page/icon_cooper.png
-    - assets/my_page/icon_friends.png
-    - assets/my_page/icon_gold.png
-    - assets/my_page/icon_level.png
-    - assets/my_page/icon_silver.png
-    - assets/my_page/icon_profile.png
-    - assets/main_page/empty_battle.png
-    - assets/main_page/icon_home.png
-    - assets/main_page/icon_home_un.png
-    - assets/main_page/icon_battle.png
-    - assets/main_page/icon_battle_un.png
-    - assets/main_page/icon_calendar.png
-    - assets/main_page/icon_calendar_un.png
-    - assets/main_page/icon_my.png
-    - assets/main_page/icon_my_un.png
-    - assets/main_page/icon_goal.png
-    - assets/main_page/icon_goal_un.png
-    - assets/main_page/icon_profile_remove.png
-    - assets/budget_page/icon_cancel.png
-    - assets/budget_page/poorlex.png
-    - assets/battle_page/BattleFinishedImg.png
-    - assets/battle_page/IMG_NO_FRIENDS.png
-    - assets/battle_page/IMG_PROFILE.png
-    - assets/battle_page/ICON_LV2.png
+    - assets/my_page/
+    - assets/budget_page/
     - assets/goal/
 
     - assets/icons/
     - assets/level/
     - assets/level/profile/
-    - assets/img_main_login.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

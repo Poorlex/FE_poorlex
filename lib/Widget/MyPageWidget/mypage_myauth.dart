@@ -31,7 +31,7 @@ class _MyPageMyAuthState extends State<MyPageMyAuth> {
         Row(
             children: [
               Expanded(child:
-                BackgroundImageWithBlack(height: 153, child:
+                BackgroundImageWithBlack(image: 'assets/sample/sample2.png', height: 153, child:
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
@@ -44,7 +44,7 @@ class _MyPageMyAuthState extends State<MyPageMyAuth> {
               ),
               SizedBox(width: 17),
               Expanded(child:
-                BackgroundImageWithBlack(height: 153, child:
+                BackgroundImageWithBlack(image: 'assets/sample/sample2.png', height: 153, child:
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
@@ -62,7 +62,7 @@ class _MyPageMyAuthState extends State<MyPageMyAuth> {
           // direction: Axis.horizontal, spacing: 17,
             children: [
               Expanded(child:
-                BackgroundImageWithBlack(height: 153, child:
+                BackgroundImageWithBlack(image: 'assets/sample/sample2.png', height: 153, child:
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
@@ -75,7 +75,7 @@ class _MyPageMyAuthState extends State<MyPageMyAuth> {
               ),
               SizedBox(width: 17),
               Expanded(child:
-                BackgroundImageWithBlack(height: 153, child:
+                BackgroundImageWithBlack(image: 'assets/sample/sample2.png', height: 153, child:
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.center,
                     children: [

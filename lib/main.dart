@@ -3,6 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
 import 'package:poorlex/Screen/battle_page/detail/ranking/ranking.dart';
+import 'package:poorlex/Screen/main_page.dart';
+import 'package:poorlex/Screen/budget_page.dart';
 import 'package:poorlex/Screen/my_page/my_page.dart';
 import 'package:poorlex/Screen/my_page/my_expense_page.dart';
 import 'package:poorlex/Screen/my_page/my_expense_detail_page.dart';
@@ -39,6 +41,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
         theme: ThemeData(fontFamily: 'NeoDunggeunmoPro-Regular'),
         // home: LandingPage(),
+        // home: BudgetPage());
         // home: const MainPage());
         // home: const MyPage());
         home: MyExpenseInputPage());

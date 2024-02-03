@@ -28,6 +28,7 @@ class _PickerState extends State<Picker> {
   Widget build(BuildContext context) {
     return (
       TextButton(
+          style: TextButton.styleFrom(padding: EdgeInsets.zero, minimumSize: Size.zero),
           child: widget.child,
           onPressed: () {
             showModalBottomSheet<void>(
