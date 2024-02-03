@@ -505,7 +505,6 @@ class _RankingDetailWidget extends State<RankingDetailWidget>
             },
           ))
         ]),
-        // todo: 채팅
         Container(
           child: Chat()
         ),

@@ -74,6 +74,7 @@ flutter:
     - assets/coin.png
     - assets/poorlex.png
     - assets/img_main_login.png
+    - assets/pattern.png
     - assets/app_bar/
     - assets/budget_page/
     - assets/main_page/

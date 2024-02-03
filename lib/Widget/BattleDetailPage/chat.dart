@@ -667,24 +667,31 @@ class VoteItem extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
-              color: Color(0xffFFD600),
               width: 240,
-              padding: EdgeInsets.fromLTRB(0, 15, 0, 15),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text('살까말까?', style: TextStyle(fontSize: 20)),
-                  SizedBox(height: 20),
-                  SizedBox(
-                    width: 100, height: 100,
-                    child: Image.asset('assets/battle_page/vote.png'),
-                  ),
-                  SizedBox(height: 20),
-                  Text(name, style: TextStyle(fontSize: 20)),
-                  SizedBox(height: 10),
-                  Text(money.toString() + '원', style: TextStyle(fontSize: 20)),
-                ]
-              )
+              child: Stack(children: [
+                Positioned.fill(child: Container(color: Color(0xffFFD600))),
+                Positioned.fill(child: Image.asset('assets/pattern.png', repeat: ImageRepeat.repeat)),
+                Container(
+                  width: 240,
+                  padding: EdgeInsets.fromLTRB(0, 15, 0, 15),
+                  child:
+                    Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text('살까말까?', style: TextStyle(fontSize: 20)),
+                          SizedBox(height: 20),
+                          SizedBox(
+                            width: 100, height: 100,
+                            child: Image.asset('assets/battle_page/vote.png'),
+                          ),
+                          SizedBox(height: 20),
+                          Text(name, style: TextStyle(fontSize: 20)),
+                          SizedBox(height: 10),
+                          Text(money.toString() + '원', style: TextStyle(fontSize: 20)),
+                        ]
+                    ),
+                )
+              ])
             )
           ]
         ),
