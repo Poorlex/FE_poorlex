@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+
+import 'package:poorlex/Libs/Theme.dart';
+
 import 'package:poorlex/Widget/Common/icon.dart';
 import 'package:poorlex/Widget/Common/other.dart';
 
@@ -25,7 +28,7 @@ class _MyPageMyAuthState extends State<MyPageMyAuth> {
           children: [
             Text('내 인증', style: TextStyle(color: Colors.white, fontSize: 18)),
             SizedBox(width: 10),
-            Text('${samples.length}', style: TextStyle(color: Color(0xffB265FF), fontSize: 18)),
+            Text('${samples.length}', style: TextStyle(color: CustomColors.purpleLight, fontSize: 18)),
           ],
         ),
         Row(
@@ -35,9 +38,9 @@ class _MyPageMyAuthState extends State<MyPageMyAuth> {
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Text('2023.08.09 (목)', style: TextStyle(color: Color(0xffCCCCCC), fontSize: 13)),
+                      Text('2023.08.09 (목)', style: TextStyle(color: CustomColors.gray50, fontSize: 13)),
                       SizedBox(height: 13),
-                      Text('9.000원', style: TextStyle(color: Colors.white, fontSize: 18)),
+                      Text('9.000원', style: TextStyle(color: CustomColors.white, fontSize: 18)),
                     ],
                   )
                 )
@@ -48,9 +51,9 @@ class _MyPageMyAuthState extends State<MyPageMyAuth> {
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Text('2023.08.09 (목)', style: TextStyle(color: Color(0xffCCCCCC), fontSize: 13)),
+                      Text('2023.08.09 (목)', style: TextStyle(color: CustomColors.gray50, fontSize: 13)),
                       SizedBox(height: 13),
-                      Text('9.000원', style: TextStyle(color: Colors.white, fontSize: 18)),
+                      Text('9.000원', style: TextStyle(color: CustomColors.white, fontSize: 18)),
                     ],
                   )
                 )
@@ -66,9 +69,9 @@ class _MyPageMyAuthState extends State<MyPageMyAuth> {
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Text('2023.08.09 (목)', style: TextStyle(color: Color(0xffCCCCCC), fontSize: 13)),
+                      Text('2023.08.09 (목)', style: TextStyle(color: CustomColors.gray50, fontSize: 13)),
                       SizedBox(height: 13),
-                      Text('9.000원', style: TextStyle(color: Colors.white, fontSize: 18)),
+                      Text('9.000원', style: TextStyle(color: CustomColors.white, fontSize: 18)),
                     ],
                   )
                 )
@@ -79,9 +82,9 @@ class _MyPageMyAuthState extends State<MyPageMyAuth> {
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Text('2023.08.09 (목)', style: TextStyle(color: Color(0xffCCCCCC), fontSize: 13)),
+                      Text('2023.08.09 (목)', style: TextStyle(color: CustomColors.gray50, fontSize: 13)),
                       SizedBox(height: 13),
-                      Text('9.000원', style: TextStyle(color: Colors.white, fontSize: 18)),
+                      Text('9.000원', style: TextStyle(color: CustomColors.white, fontSize: 18)),
                     ],
                   )
                 )
@@ -91,7 +94,7 @@ class _MyPageMyAuthState extends State<MyPageMyAuth> {
         SizedBox(height: 17),
         OutlinedButton(
           style: OutlinedButton.styleFrom(
-            side: BorderSide(width: 1.0, color: Color(0xffFFD600)),
+            side: BorderSide(width: 1.0, color: CustomColors.yellow),
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(2.0)),
           ),
           child:
@@ -99,9 +102,9 @@ class _MyPageMyAuthState extends State<MyPageMyAuth> {
               padding: EdgeInsets.symmetric(vertical: 14),
               child:
                 Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                  Text('지출 전체 보기', style: TextStyle(color: Color(0xffFFD600), fontSize: 14)),
+                  Text('지출 전체 보기', style: TextStyle(color: CustomColors.yellow, fontSize: 14)),
                   SizedBox(width: 5),
-                  CustomIcon(icon: 'arrow-game-right', width: 15, height: 15, color: '#FFD600',)
+                  CustomIcon(icon: 'arrow-game-right', width: 15, height: 15, color: CustomColors.yellowStr)
                 ]),
             ),
           onPressed: () {},

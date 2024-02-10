@@ -1,21 +1,31 @@
 import 'dart:ui';
 
-class CustomColor {
-  /** Primary Color */
-  static final Color yellow = Color(0xFFD600);
+class CustomColors {
+  static final Color yellowLight = Color(0xFFFFE352);
+  static final Color yellow = Color(0xFFFFD600);
 
-  /** Sub Primary Color */
-  static final Color purple1 = Color(0xA030FB);
-  static final Color purple2 = Color(0xB265FF);
+  static final Color purpleLighter = Color(0xFFC58BFF);
+  static final Color purpleLight = Color(0xFFB265FF);
+  static final Color purple = Color(0xFFA030FB);
 
-  /** Gray Scale Color */
-  static final Color white = Color(0xFFFFFF);
-  static final Color gray5 = Color(0xCCCCCC);
-  static final Color gary4 = Color(0x808080);
-  static final Color gray3 = Color(0x666666);
-  static final Color gary2 = Color(0x333333);
-  static final Color gray1 = Color(0x1A1A1A);
-  static final Color black = Color(0x0A0A0A);
+  static final Color white = Color(0xFFFFFFFF);
+  static final Color gray60 = Color(0xFFD9D9D9);
+  static final Color gray50 = Color(0xFFCCCCCC);
+  static final Color gray41 = Color(0xFF999999);
+  static final Color gary40 = Color(0xFF808080);
+  static final Color gray30 = Color(0xFF666666);
+  static final Color gary20 = Color(0xFF333333);
+  static final Color gray10 = Color(0xFF1A1A1A);
+  static final Color black = Color(0xFF0A0A0A);
+
+  static final Color brownLight = Color(0xFFE4D4BE);
+  static final Color brown = Color(0xFFB59767);
+
+  static final String yellowLightStr = '#FFE352';
+  static final String yellowStr = '#FFD600';
+  static final String purpleLightStr = '#B265FF';
+  static final String whiteStr = '#FFFFFF';
+  static final String gary40Str = '#808080';
 }
 
 class CustomText {

@@ -4,6 +4,7 @@ import 'package:get/get_state_manager/get_state_manager.dart';
 
 import 'package:poorlex/Widget/Battle/Making//FindingFriends.dart';
 
+import 'package:poorlex/Libs/Theme.dart';
 import 'package:poorlex/Controller/battle.dart';
 
 class BattleIndexThree extends GetView {
@@ -11,10 +12,6 @@ class BattleIndexThree extends GetView {
 
   @override
   Widget build(BuildContext context) {
-    Color _getItemColor(int item, int selectedIndex) {
-      return item == selectedIndex ? Color(0xffffd600) : Color(0xff999999);
-    }
-
     BattleController con = Get.put(BattleController());
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -22,29 +19,20 @@ class BattleIndexThree extends GetView {
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 18),
           child: Container(
-            width: 300,
-            height: 70,
-            child: Column(
+            width: 300, height: 70, child:
+            Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('친구를 초대하고',
-                    style: TextStyle(
-                      fontSize: 22,
-                      color: Colors.white,
-                    )),
+                Text('친구를 초대하고', style: TextStyle(fontSize: 22, color: CustomColors.white)),
                 SizedBox(height: 10),
-                Text('함께 배틀 해볼까요?',
-                    style: TextStyle(
-                      fontSize: 22,
-                      color: Colors.white,
-                    )),
+                Text('함께 배틀 해볼까요?', style: TextStyle(fontSize: 22, color: CustomColors.white)),
               ],
             ),
           ),
         ),
         Obx(() {
           return Padding(
-            padding: const EdgeInsets.symmetric(vertical: 100),
+            padding: EdgeInsets.symmetric(vertical: 100),
             child: Center(
               child: Column(children: [
                 OutlinedButton(
@@ -60,31 +48,19 @@ class BattleIndexThree extends GetView {
                       );
                     },
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 18, horizontal: 75),
-                      child: Text('네 초대할래요!',
-                          style: TextStyle(
-                              fontSize: 20,
-                              color: con.indexThreeFirstColor.value)),
+                      padding: const EdgeInsets.symmetric(vertical: 18, horizontal: 75),
+                      child: Text('네 초대할래요!', style: TextStyle(fontSize: 20, color: con.indexThreeFirstColor.value)),
                     )),
-                SizedBox(
-                  height: 30,
-                ),
+                SizedBox(height: 30),
                 OutlinedButton(
-                    style: OutlinedButton.styleFrom(
-                      side: BorderSide(color: con.indexThreeSecondColor.value),
-                    ),
+                    style: OutlinedButton.styleFrom(side: BorderSide(color: con.indexThreeSecondColor.value)),
                     onPressed: () {
                       con.changeIndexThreeColor(2);
                       con.changeBattleMakingIndex();
                     },
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 18, horizontal: 46),
-                      child: Text('아니요 초대안할래요!',
-                          style: TextStyle(
-                              fontSize: 20,
-                              color: con.indexThreeSecondColor.value)),
+                      padding: const EdgeInsets.symmetric(vertical: 18, horizontal: 46),
+                      child: Text('아니요 초대안할래요!', style: TextStyle(fontSize: 20, color: con.indexThreeSecondColor.value)),
                     ))
               ]),
             ),

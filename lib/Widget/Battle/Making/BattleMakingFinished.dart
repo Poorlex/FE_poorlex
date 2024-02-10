@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 
+import 'package:poorlex/Libs/Theme.dart';
+
 class BattleMakingFinished extends GetView {
   const BattleMakingFinished({super.key});
 
@@ -9,21 +11,13 @@ class BattleMakingFinished extends GetView {
     return Center(
       child: Column(children: [
         Padding(
-          padding: const EdgeInsets.only(top: 146),
-          child: SizedBox(
-            width: 160,
-            height: 160,
-            child: Image.asset('assets/battle_page/BattleFinishedImg.png'),
+          padding: EdgeInsets.only(top: 146),
+          child: SizedBox(width: 160, height: 160, child:
+            Image.asset('assets/battle_page/BattleFinishedImg.png'),
           ),
         ),
-        SizedBox(
-          height: 30,
-        ),
-        Text('배틀방 완성!',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 22,
-            ))
+        SizedBox(height: 30),
+        Text('배틀방 완성!', style: TextStyle(color: CustomColors.white, fontSize: 22))
       ]),
     );
   }

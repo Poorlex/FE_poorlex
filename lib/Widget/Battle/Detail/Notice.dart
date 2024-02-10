@@ -2,6 +2,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
+import 'package:poorlex/Libs/Theme.dart';
+
 import 'package:poorlex/Widget/Common/Icon.dart';
 import 'package:poorlex/Widget/Common/User.dart';
 import 'package:poorlex/Widget/Common/Modal.dart';
@@ -40,8 +42,8 @@ class NoticeWriteModal extends CustomModal {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                IconButton(onPressed: () => Navigator.pop(context), icon: CustomIcon(icon: 'arrow-left', color: '#ffffff')),
-                Text('공지 등록', style: TextStyle(color: Colors.white, fontSize: 18)),
+                IconButton(onPressed: () => Navigator.pop(context), icon: CustomIcon(icon: 'arrow-left', color: CustomColors.whiteStr)),
+                Text('공지 등록', style: TextStyle(color: CustomColors.white, fontSize: 18)),
                 SizedBox(width: 55)
               ],
             ),
@@ -52,20 +54,20 @@ class NoticeWriteModal extends CustomModal {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('배틀 멤버에게\n알리고 싶은 내용이 있나요?', style: TextStyle(color: Colors.white, fontSize: 22)),
+                      Text('배틀 멤버에게\n알리고 싶은 내용이 있나요?', style: TextStyle(color: CustomColors.white, fontSize: 22)),
                       SizedBox(height: 27),
-                      Text('공지 내용', style: TextStyle(color: Color(0xff808080), fontSize: 14)),
+                      Text('공지 내용', style: TextStyle(color: CustomColors.gary40, fontSize: 14)),
                       SizedBox(height: 17),
                       Card(
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(2)
                           ),
-                          color: Color(0xff1A1A1A),
+                          color: CustomColors.gray10,
                           child: Stack(
                             children: [
                               Positioned(
                                   right: 10, bottom: 4,
-                                  child: Text('0/200', style: TextStyle(fontSize: 20.0, color: Color(0xff666666)))
+                                  child: Text('0/200', style: TextStyle(fontSize: 20.0, color: CustomColors.gray30))
                               ),
                               Padding(
                                 padding: EdgeInsets.fromLTRB(14, 10, 14, 30),
@@ -73,7 +75,7 @@ class NoticeWriteModal extends CustomModal {
                                   maxLines: 8, //or null
                                   decoration: InputDecoration.collapsed(
                                     hintText: "내용을 입력해주세요",
-                                    hintStyle: TextStyle(fontSize: 20.0, color: Color(0xff666666)),
+                                    hintStyle: TextStyle(fontSize: 20.0, color: CustomColors.gray30),
                                   ),
                                 ),
                               )
@@ -81,12 +83,12 @@ class NoticeWriteModal extends CustomModal {
                           )
                       ),
                       SizedBox(height: 37),
-                      Text('사진 추가', style: TextStyle(color: Color(0xff808080), fontSize: 14)),
+                      Text('사진 추가', style: TextStyle(color: CustomColors.gary40, fontSize: 14)),
                       SizedBox(height: 17),
                       ElevatedButton(
                           onPressed: () => pickImage(),
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: Color(0xff1A1A1A),
+                            backgroundColor: CustomColors.gray10,
                             padding: EdgeInsets.zero,
                             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4))
                           ),
@@ -96,7 +98,7 @@ class NoticeWriteModal extends CustomModal {
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                CustomIcon(icon: 'plus', width: 29, height: 29, color: '#808080')
+                                CustomIcon(icon: 'plus', width: 29, height: 29, color: CustomColors.gary40Str)
                               ],
                             ),
                           )
@@ -115,11 +117,11 @@ class NoticeWriteModal extends CustomModal {
                 children: [
                   Positioned(
                       top: 0, left: 0, right: 0, bottom: 0,
-                      child: Container(color: Color(0xffFFE352))
+                      child: Container(color: CustomColors.yellowLight)
                   ),
                   Positioned(
                     top: 6, left: 0, right: 0, bottom: 0,
-                    child: Container(color: Color(0xffFFD600))
+                    child: Container(color: CustomColors.yellow)
                   ),
                   Container(
                     height: 56,
@@ -127,7 +129,7 @@ class NoticeWriteModal extends CustomModal {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text('공지생성', style: TextStyle(fontSize: 20, color: Colors.black))
+                        Text('공지생성', style: TextStyle(fontSize: 20, color: CustomColors.black))
                       ],
                     ),
                   )
@@ -152,7 +154,7 @@ class NoticeDetailModal extends CustomModal {
     };
     showModalBottomSheet(
       context: context,
-      backgroundColor: Colors.black,
+      backgroundColor: CustomColors.black,
       isScrollControlled: true,
       builder: (BuildContext context) {
         return OptionButtonModal(selectOption: selectOption);
@@ -168,9 +170,9 @@ class NoticeDetailModal extends CustomModal {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    IconButton(onPressed: () => Navigator.pop(context), icon: CustomIcon(icon: 'arrow-left', color: '#ffffff')),
-                    Text('공지상세', style: TextStyle(color: Colors.white, fontSize: 18)),
-                    IconButton(onPressed: () => onClickOption(context), icon: CustomIcon(icon: 'option', color: '#ffffff')),
+                    IconButton(onPressed: () => Navigator.pop(context), icon: CustomIcon(icon: 'arrow-left', color: CustomColors.whiteStr)),
+                    Text('공지상세', style: TextStyle(color: CustomColors.white, fontSize: 18)),
+                    IconButton(onPressed: () => onClickOption(context), icon: CustomIcon(icon: 'option', color: CustomColors.whiteStr)),
                   ],
                 ),
                 Expanded(
@@ -188,13 +190,13 @@ class NoticeDetailModal extends CustomModal {
                               ),
                               Row(
                                 children: [
-                                  Text('09월 11일 오후 3:00', style: TextStyle(color: Colors.white)),
+                                  Text('09월 11일 오후 3:00', style: TextStyle(color: CustomColors.white)),
                                   SizedBox(width: 8),
-                                  Text('•', style: TextStyle(color: Colors.white)),
+                                  Text('•', style: TextStyle(color: CustomColors.white)),
                                   SizedBox(width: 8),
-                                  CustomIcon(icon: 'eye', color: '#B265FF', width: 12, height: 8),
+                                  CustomIcon(icon: 'eye', color: CustomColors.purpleLightStr, width: 12, height: 8),
                                   SizedBox(width: 4),
-                                  Text('1명 읽음', style: TextStyle(color: Color(0xffB265FF))),
+                                  Text('1명 읽음', style: TextStyle(color: CustomColors.purpleLight)),
                                 ],
                               )
                             ],
@@ -209,12 +211,12 @@ class NoticeDetailModal extends CustomModal {
                           padding: EdgeInsets.fromLTRB(16, 10, 16, 10),
                           child: Container(
                             padding: EdgeInsets.fromLTRB(6, 6, 6, 6),
-                            color: Color(0xff1A1A1A),
+                            color: CustomColors.gray10,
                             child: Text('''드디어 시작!!!
 <<우리방규칙>>
 ✅ 채팅으로 출석 : 동기부여를 꼬옥 붙잡기위함
 ✅ 피드백 잊지않고 해주기 : 투표나 채팅시 서로 반응 꼭 해줘요..
-                            ''', style: TextStyle(color: Colors.white)),
+                            ''', style: TextStyle(color: CustomColors.white)),
                           )
                         ),
                         Container(
@@ -230,7 +232,7 @@ class NoticeDetailModal extends CustomModal {
                                   ),
                                   SizedBox(width: 6),
                                   Expanded(
-                                    child: Text('화이팅!!', style: TextStyle(color: Colors.white)),
+                                    child: Text('화이팅!!', style: TextStyle(color: CustomColors.white)),
                                   )
                                 ],
                               ),
@@ -244,7 +246,7 @@ class NoticeDetailModal extends CustomModal {
                                   ),
                                   SizedBox(width: 6),
                                   Expanded(
-                                    child: Text('화이팅!!', style: TextStyle(color: Colors.white)),
+                                    child: Text('화이팅!!', style: TextStyle(color: CustomColors.white)),
                                   )
                                 ],
                               ),
@@ -258,7 +260,7 @@ class NoticeDetailModal extends CustomModal {
                                   ),
                                   SizedBox(width: 6),
                                   Expanded(
-                                    child: Text('화이팅!!', style: TextStyle(color: Colors.white)),
+                                    child: Text('화이팅!!', style: TextStyle(color: CustomColors.white)),
                                   )
                                 ],
                               )
@@ -275,12 +277,12 @@ class NoticeDetailModal extends CustomModal {
                     children: [
                       Expanded(
                         child: TextField(
-                          style: TextStyle(fontSize: 16.0, color: Color(0xffCCCCCC)),
+                          style: TextStyle(fontSize: 16.0, color: CustomColors.gray50),
                           decoration: InputDecoration(
                             border: OutlineInputBorder(),
-                            hintStyle: TextStyle(fontSize: 16.0, color: Color(0xffCCCCCC)),
+                            hintStyle: TextStyle(fontSize: 16.0, color: CustomColors.gray50),
                             hintText: '댓글을 입력하세요',
-                            fillColor: Color(0xff333333)
+                            fillColor: CustomColors.gary20
                           ),
                         ),
                       )
@@ -315,7 +317,7 @@ class OptionButtonModal extends StatelessWidget {
                     child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text('수정', style: TextStyle(color: Colors.white, fontSize: 18))
+                          Text('수정', style: TextStyle(color: CustomColors.white, fontSize: 18))
                         ]
                     ),
                   )
@@ -326,7 +328,7 @@ class OptionButtonModal extends StatelessWidget {
                     child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text('삭제', style: TextStyle(color: Color(0xFF666666), fontSize: 18))
+                          Text('삭제', style: TextStyle(color: CustomColors.gray30, fontSize: 18))
                         ]
                     ),
                   )

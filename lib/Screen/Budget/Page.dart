@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'package:poorlex/Libs/Theme.dart';
+
 class BudgetPage extends StatefulWidget {
   const BudgetPage({super.key});
 
@@ -44,9 +46,9 @@ class _BudgetPageState extends State<BudgetPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xff0A0A0A),
+      backgroundColor: CustomColors.black,
       appBar: AppBar(
-        backgroundColor: Color(0xff0A0A0A),
+        backgroundColor: CustomColors.black,
         automaticallyImplyLeading: false,
         title: Stack(
           alignment: Alignment.center,
@@ -82,14 +84,14 @@ class _BudgetPageState extends State<BudgetPage> {
                     Text(
                       "배틀을 시작하기 위해\n일주일 동안 사용할 예산을\n설정해 주세요.",
                       style: TextStyle(
-                          color: Colors.white, fontSize: 22, height: 1.5),
+                          color: CustomColors.white, fontSize: 22, height: 1.5),
                     ),
                     SizedBox(
                       height: 18,
                     ),
                     Text("배틀 기간: $battlePeriod",
                         style:
-                            TextStyle(color: Color(0xff999999), fontSize: 13)),
+                            TextStyle(color: CustomColors.gray41, fontSize: 13)),
                     SizedBox(
                       height: 40,
                     ),
@@ -117,19 +119,19 @@ class _BudgetPageState extends State<BudgetPage> {
                           ],
                           style: TextStyle(
                               color: _isDefaultText
-                                  ? Color(0xffFFD600)
-                                  : Color(0xff666666),
+                                  ? CustomColors.yellow
+                                  : CustomColors.gray30,
                               fontSize: 32),
                           decoration: InputDecoration(
                             focusedBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(color: Colors.yellow),
+                              borderSide: BorderSide(color: CustomColors.yellow),
                             ),
                             enabledBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(color: Colors.yellow),
+                              borderSide: BorderSide(color: CustomColors.yellow),
                             ),
                             hintText: _focusNode.hasFocus ? '' : '금액 입력',
                             hintStyle: TextStyle(
-                                color: Color(0xff666666), fontSize: 32),
+                                color: CustomColors.gray30, fontSize: 32),
                           ),
                         ),
                         if (_focusNode.hasFocus)
@@ -148,13 +150,13 @@ class _BudgetPageState extends State<BudgetPage> {
               height: 50,
               child: OutlinedButton(
                 style: OutlinedButton.styleFrom(
-                    backgroundColor: Color(0xffFFD600)),
+                    backgroundColor: CustomColors.yellow),
                 onPressed: () {
                   Navigator.pop(context, moneyValues);
                 },
                 child: Text(
                   "완료",
-                  style: TextStyle(color: Color(0xff0A0A0A), fontSize: 20),
+                  style: TextStyle(color: CustomColors.black, fontSize: 20),
                 ),
               ),
             )

@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import 'package:poorlex/Libs/Theme.dart';
+import 'package:poorlex/Controller/Goal.dart';
+
 import 'package:poorlex/Widget/Battle/Making/BattleProcess.dart';
 import 'package:poorlex/Widget/Battle/Making/BattleIndexOne.dart';
 import 'package:poorlex/Widget/Battle/Making/BattleIndexThree.dart';
 import 'package:poorlex/Widget/Battle/Making/BattleIndexTwo.dart';
 import 'package:poorlex/Widget/Battle/Making/BattleMakingFinished.dart';
 import 'package:poorlex/Widget/Goal/CreateGoal.dart';
-
-import 'package:poorlex/Controller/Goal.dart';
 
 class CreateGoalPage extends StatefulWidget {
   const CreateGoalPage({super.key});
@@ -36,11 +37,11 @@ class _MyExpandingState extends State<Expanding> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.black,
+        backgroundColor: CustomColors.black,
         title: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('배틀방 만들기', style: TextStyle(color: Colors.white, fontSize: 17))
+            Text('배틀방 만들기', style: TextStyle(color: CustomColors.white, fontSize: 17))
           ],
         ),
       ),
@@ -55,11 +56,10 @@ class _MyExpandingState extends State<Expanding> {
                 con.goalIndexModel.value.goalIndex == 4 ? '시작' : '다음',
                 style: TextStyle(color: Colors.black))),
             style: ButtonStyle(
-              backgroundColor:
-                  MaterialStateProperty.all<Color>(Color(0xffffd600)),
+              backgroundColor: MaterialStateProperty.all(CustomColors.yellow),
             )),
       ),
-      backgroundColor: Colors.black,
+      backgroundColor: CustomColors.black,
       body: Column(
         children: [
           SizedBox(

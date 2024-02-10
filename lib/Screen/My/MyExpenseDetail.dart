@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'package:poorlex/Widget/Common/Icon.dart';
-
 import 'package:poorlex/Widget/Main/BottomBar.dart';
+
+import 'package:poorlex/Libs/Theme.dart';
 
 class MyExpenseDetailPage extends StatefulWidget {
   const MyExpenseDetailPage({super.key});
@@ -18,7 +19,7 @@ class _MyExpenseDetailPageState extends State<MyExpenseDetailPage> {
     };
     showModalBottomSheet(
       context: context,
-      backgroundColor: Colors.black,
+      backgroundColor: CustomColors.black,
       isScrollControlled: true,
       builder: (BuildContext context) {
         return OptionButtonModal(selectOption: selectOption);
@@ -29,31 +30,31 @@ class _MyExpenseDetailPageState extends State<MyExpenseDetailPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: CustomColors.black,
       bottomNavigationBar: BottomBar(
         nowPage: 4,
       ),
       appBar: AppBar(
-        backgroundColor: Colors.black,
+        backgroundColor: CustomColors.black,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             IconButton(
               iconSize: 26, style: IconButton.styleFrom(padding: EdgeInsets.zero, minimumSize: Size.zero),
-              icon: CustomIcon(icon: 'arrow-left', width: 26, height: 26, color: '#ffffff'),
+              icon: CustomIcon(icon: 'arrow-left', width: 26, height: 26, color: CustomColors.whiteStr),
               onPressed: () {},
             ),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text('2023.08.12 (일)', style: TextStyle(color: Color(0xffCCCCCC), fontSize: 13)),
+                Text('2023.08.12 (일)', style: TextStyle(color: CustomColors.gray50, fontSize: 13)),
                 SizedBox(height: 6),
-                Text('24,370원', style: TextStyle(color: Colors.white, fontSize: 18)),
+                Text('24,370원', style: TextStyle(color: CustomColors.white, fontSize: 18)),
               ]
             ),
             IconButton(
               iconSize: 26, style: IconButton.styleFrom(padding: EdgeInsets.zero, minimumSize: Size.zero),
-              icon: CustomIcon(icon: 'option', width: 26, height: 26, color: '#ffffff'),
+              icon: CustomIcon(icon: 'option', width: 26, height: 26, color: CustomColors.whiteStr),
               onPressed: () => onClickOption(context),
             ),
           ],
@@ -72,7 +73,7 @@ class _MyExpenseDetailPageState extends State<MyExpenseDetailPage> {
                       Text('''
 오늘도 고생했다!
 힘들었지만 괜찮아 ㅎㅎ
-                      ''', style: TextStyle(color: Colors.white)),
+                      ''', style: TextStyle(color: CustomColors.white)),
                       SizedBox(height: 24),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -129,7 +130,7 @@ class OptionButtonModal extends StatelessWidget {
                     child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text('수정', style: TextStyle(color: Color(0xffFFD600), fontSize: 18))
+                          Text('수정', style: TextStyle(color: CustomColors.yellow, fontSize: 18))
                         ]
                     ),
                   )
@@ -140,7 +141,7 @@ class OptionButtonModal extends StatelessWidget {
                     child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text('삭제', style: TextStyle(color: Color(0xFF666666), fontSize: 18))
+                          Text('삭제', style: TextStyle(color: CustomColors.gray30, fontSize: 18))
                         ]
                     ),
                   )

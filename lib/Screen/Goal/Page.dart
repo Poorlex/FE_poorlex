@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:poorlex/Libs/Theme.dart';
+
 import 'package:poorlex/Widget/Common/Tab.dart';
 import 'package:poorlex/Screen/Goal/CreateGoal.dart';
 import 'package:poorlex/Widget/Goal/List.dart';
@@ -17,7 +19,7 @@ class _GoalPageState extends State<GoalPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: Colors.black,
+      backgroundColor: CustomColors.black,
       bottomNavigationBar: const BottomBar(
         nowPage: 1,
       ),
@@ -30,20 +32,20 @@ class _GoalPageState extends State<GoalPage> {
                   return Container(
                     padding: EdgeInsets.fromLTRB(16, 20, 0, 16),
                     child:
-                        Text('목표', style: TextStyle(fontSize: 24, color: Colors.white)),
+                        Text('목표', style: TextStyle(fontSize: 24, color: CustomColors.white)),
                   );
                 }, childCount: 1)),
                 SliverAppBar(
                   pinned: true,
-                  backgroundColor: Colors.black,
-                  foregroundColor: Colors.black,
+                  backgroundColor: CustomColors.black,
+                  foregroundColor: CustomColors.black,
                   elevation: 0,
                   titleSpacing: 0,
                   title: Container(
                     decoration: BoxDecoration(
                         border: Border(
                             bottom:
-                                BorderSide(color: Color(0xFF161616), width: 1))),
+                                BorderSide(color: CustomColors.gray10, width: 1))),
                     child: Container(
                       padding: EdgeInsets.fromLTRB(16, 0, 16, 0),
                       child: Row(children: [
@@ -73,10 +75,10 @@ class _GoalPageState extends State<GoalPage> {
           Navigator.push(context,
               MaterialPageRoute(builder: (context) => CreateGoalPage()));
         },
-        foregroundColor: Color(0xffffffff),
-        backgroundColor: Color(0xff0A0A0A),
+        foregroundColor: CustomColors.white,
+        backgroundColor: CustomColors.black,
         shape: RoundedRectangleBorder(
-            side: BorderSide(width: 1, color: Color(0xff333333)),
+            side: BorderSide(width: 1, color: CustomColors.gary20),
             borderRadius: BorderRadius.circular(100)),
         child: const Icon(Icons.add),
       ),

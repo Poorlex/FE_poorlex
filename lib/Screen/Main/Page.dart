@@ -7,6 +7,7 @@ import 'package:poorlex/Widget/Main/CarouselSlider.dart';
 import 'package:poorlex/Widget/Main/MainBottom.dart';
 import 'package:poorlex/Widget/Main/ShowModal.dart';
 
+import 'package:poorlex/Libs/Theme.dart';
 import 'package:poorlex/Controller/Modal.dart';
 
 class MainPage extends StatefulWidget {
@@ -77,7 +78,7 @@ class _MainPageState extends State<MainPage> {
                   children: [
                     Expanded(
                       child: Container(
-                        color: const Color(0xffE4D4BE),
+                        color: CustomColors.brownLight,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
@@ -85,7 +86,7 @@ class _MainPageState extends State<MainPage> {
                                 onPressed: () {
                                   show(context);
                                 },
-                                icon: const Icon(Icons.abc)),
+                                icon: Icon(Icons.abc)),
                           ],
                         ),
                       ),
@@ -96,8 +97,8 @@ class _MainPageState extends State<MainPage> {
               Flexible(
                 flex: 2,
                 child: Container(
-                  color: const Color(0xffB59767),
-                  child: const Center(
+                  color: CustomColors.brown,
+                  child: Center(
                     // child: MainCarousel(),
                     child: MainCarouselSlider(),
                   ),

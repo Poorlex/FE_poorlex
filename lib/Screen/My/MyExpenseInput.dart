@@ -6,6 +6,8 @@ import 'package:poorlex/Widget/Common/Icon.dart';
 import 'package:poorlex/Widget/Common/Picker.dart';
 import 'package:poorlex/Widget/Common/Other.dart';
 
+import 'package:poorlex/Libs/Theme.dart';
+
 class MyExpenseInputPage extends StatefulWidget {
   const MyExpenseInputPage({super.key});
 
@@ -56,10 +58,10 @@ class _MyExpenseInputPageState extends State<MyExpenseInputPage> {
             children: [
               IconButton(
                 iconSize: 26,
-                icon: CustomIcon(icon: 'close', width: 26, height: 26, color: '#ffffff'),
+                icon: CustomIcon(icon: 'close', width: 26, height: 26, color: CustomColors.whiteStr),
                 onPressed: () {},
               ),
-              Text('지출 입력하기', style: TextStyle(color: Colors.white, fontSize: 18)),
+              Text('지출 입력하기', style: TextStyle(color: CustomColors.white, fontSize: 18)),
               SizedBox(width: 26)
             ],
           ),
@@ -75,7 +77,7 @@ class _MyExpenseInputPageState extends State<MyExpenseInputPage> {
                       Row(children: [
                         Container(margin: EdgeInsets.only(left: 2), // 원하는 마진 값으로 조정
                           child:
-                          Text('오늘은 ', style: TextStyle(color: Color(0xFFFFD600), fontSize: 24),
+                          Text('오늘은 ', style: TextStyle(color: CustomColors.yellow, fontSize: 24),
                           ),
                         ),
                       ],
@@ -85,15 +87,15 @@ class _MyExpenseInputPageState extends State<MyExpenseInputPage> {
                             focusNode: _focusNode,
                             keyboardType: TextInputType.number,
                             inputFormatters: <TextInputFormatter>[FilteringTextInputFormatter.digitsOnly],
-                            cursorColor: Color(0xffffd600),
-                            style: TextStyle(color: Color(0xffffd600), fontSize: 20),
+                            cursorColor: CustomColors.yellow,
+                            style: TextStyle(color: CustomColors.yellow, fontSize: 20),
                             decoration: InputDecoration(
                               hintText: '금액 입력',
-                              hintStyle: TextStyle(color: Color(0xff999999)),
-                              iconColor: Color(0xffffd600),
-                              border: UnderlineInputBorder(borderSide: BorderSide(color: Color(0xffffd600), width: 2.0),),
-                              enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: Color(0xffffd600), width: 2.0),),
-                              focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Color(0xffffd600), width: 2.0),),
+                              hintStyle: TextStyle(color: CustomColors.gray41),
+                              iconColor: CustomColors.yellow,
+                              border: UnderlineInputBorder(borderSide: BorderSide(color: CustomColors.yellow, width: 2.0),),
+                              enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: CustomColors.yellow, width: 2.0),),
+                              focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: CustomColors.yellow, width: 2.0),),
                             )
                         ),
                         if (isFocus)
@@ -103,42 +105,42 @@ class _MyExpenseInputPageState extends State<MyExpenseInputPage> {
                       Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
                         Row(mainAxisAlignment: MainAxisAlignment.start, children: [
                           Container(width: 80, child:
-                          Text('지출 일자', style: TextStyle(color: Color(0xffCCCCCC), fontSize: 16)),
+                          Text('지출 일자', style: TextStyle(color: CustomColors.gray50, fontSize: 16)),
                           ),
                           SizedBox(width: 30),
-                          Text('2023.07.28 (금)', style: TextStyle(color: Colors.white, fontSize: 16)),
+                          Text('2023.07.28 (금)', style: TextStyle(color: CustomColors.white, fontSize: 16)),
                         ]),
                         Picker(type: 'DAY', select: () {}, child:
-                        CustomIcon(icon: 'arrow-circle-down', width: 16, height: 16, color: '#ffd600')
+                        CustomIcon(icon: 'arrow-circle-down', width: 16, height: 16, color: CustomColors.yellowStr)
                         ),
                       ]),
                       SizedBox(height: 20),
-                      Container(height: 1, color: Color(0xff0A0A0A)),
+                      Container(height: 1, color: CustomColors.black),
                       SizedBox(height: 20),
                       Row(mainAxisAlignment: MainAxisAlignment.start, children: [
                         Container(width: 80, child:
-                        Text('메모', style: TextStyle(color: Color(0xffCCCCCC), fontSize: 16))
+                        Text('메모', style: TextStyle(color: CustomColors.gray50, fontSize: 16))
                         ),
                         SizedBox(width: 30),
                         Flexible(flex: 1, child:
                         TextField(
-                            style: TextStyle(fontSize: 14, color: Colors.white),
+                            style: TextStyle(fontSize: 14, color: CustomColors.white),
                             decoration: InputDecoration(
                               hintText: '입력하세요',
-                              hintStyle: TextStyle(color: Color(0xff8C8C8C), fontSize: 16),
+                              hintStyle: TextStyle(color: CustomColors.gray41, fontSize: 16),
                               border: InputBorder.none,
                             )
                         )
                         )
                       ]),
                       SizedBox(height: 20),
-                      Container(height: 1, color: Color(0xff0A0A0A)),
+                      Container(height: 1, color: CustomColors.black),
                       SizedBox(height: 20),
                       Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                         Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                          Text('인증 사진', style: TextStyle(color: Color(0xffCCCCCC), fontSize: 16)),
+                          Text('인증 사진', style: TextStyle(color: CustomColors.gray50, fontSize: 16)),
                           IconButton(icon:
-                          CustomIcon(icon: 'arrow-circle-down', width: 16, height: 16, color: '#ffd600'),
+                          CustomIcon(icon: 'arrow-circle-down', width: 16, height: 16, color: CustomColors.yellowStr),
                             style: IconButton.styleFrom(padding: EdgeInsets.zero, minimumSize: Size.zero),
                             onPressed: () {},
                           ),
@@ -159,11 +161,11 @@ class _MyExpenseInputPageState extends State<MyExpenseInputPage> {
             ),
             TextButton(
               style: TextButton.styleFrom(
-                backgroundColor: Color(0xffFFD600),fixedSize: Size.fromHeight(52),
+                backgroundColor: CustomColors.yellow,fixedSize: Size.fromHeight(52),
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.zero),
               ),
               child:
-                Text('완료', style: TextStyle(fontSize: 20, color: Colors.black),),
+                Text('완료', style: TextStyle(fontSize: 20, color: CustomColors.black)),
               onPressed: () {}
             )
           ])

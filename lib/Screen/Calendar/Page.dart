@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:poorlex/Libs/Theme.dart';
 
 import 'package:poorlex/Widget/Main/BottomBar.dart';
 import 'package:poorlex/Widget/Calendar/Header.dart';
@@ -24,7 +25,7 @@ class _CaledarPageState extends State<CaledarPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         resizeToAvoidBottomInset : false,
-        backgroundColor: Colors.black,
+        backgroundColor: CustomColors.black,
         bottomNavigationBar: const BottomBar(
           nowPage: 3,
         ),

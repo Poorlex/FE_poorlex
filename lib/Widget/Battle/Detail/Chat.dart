@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 
+import 'package:poorlex/Libs/Theme.dart';
+
 import 'package:poorlex/Widget/Common/Icon.dart';
 import 'package:poorlex/Widget/Common/Bar.dart';
 import 'package:poorlex/Widget/Common/User.dart';
@@ -35,7 +37,7 @@ class _ChatState extends State<Chat> {
                   onPressed: () => Navigator.push(context, NoticeDetailModal()),
                   style: TextButton.styleFrom(padding: EdgeInsets.zero),
                   child: ChatBoxItem(
-                      color: Color(0xff333333),
+                      color: CustomColors.gary20,
                       child: Row(
                         children: [
                           SizedBox(
@@ -43,7 +45,7 @@ class _ChatState extends State<Chat> {
                               child: Image.asset('assets/battle_page/icon_notice.png')
                           ),
                           SizedBox(width: 6,),
-                          Text('공지', style: TextStyle(color: Color(0xffFFD600))),
+                          Text('공지', style: TextStyle(color: CustomColors.yellow)),
                           SizedBox(width: 6,),
                           Text('드디어 시작!!!...', style: TextStyle(color: Colors.white)),
                         ]
@@ -64,7 +66,7 @@ class _ChatState extends State<Chat> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         ChatBoxItem(
-                          color: Color(0xff999999), padding: EdgeInsets.fromLTRB(17, 1, 17, 1),
+                          color: CustomColors.gray41, padding: EdgeInsets.fromLTRB(17, 1, 17, 1),
                           child: Text('D-7 월', style: TextStyle(color: Colors.white, fontSize: 16)),
                         )
                       ],
@@ -89,8 +91,8 @@ class _ChatState extends State<Chat> {
                     ChatItem(
                       align: MainAxisAlignment.end,
                       child: ChatBoxItem(
-                          color: Color(0xff333333),
-                          child: Text('최지출 님이 입장했습니다.', style: TextStyle(color: Color(0xffcccccc)))
+                          color: CustomColors.gary20,
+                          child: Text('최지출 님이 입장했습니다.', style: TextStyle(color: CustomColors.gray50))
                       ),
                       time: TimeItem(
                         time: DateTime.now().microsecondsSinceEpoch,
@@ -118,7 +120,7 @@ class _ChatState extends State<Chat> {
                     ChatItem(
                         align: MainAxisAlignment.end,
                         child: ChatBoxItem(
-                            color: Color(0xff333333),
+                            color: CustomColors.gary20,
                             padding: EdgeInsets.fromLTRB(0, 30, 0, 30),
                             child: VoteResultItem(name: '버블티', money: 5000, isUp: true)
                         ),
@@ -181,7 +183,7 @@ class _ChatState extends State<Chat> {
                     ChatItem(
                         align: MainAxisAlignment.end,
                         child: ChatBoxItem(
-                          color: Color(0xff333333),
+                          color: CustomColors.gary20,
                           padding: EdgeInsets.fromLTRB(0, 30, 0, 30),
                           child: OpinionItem(
                               isAgree: false,
@@ -242,11 +244,11 @@ class VoteButton extends StatelessWidget {
                 children: [
                   Positioned(
                       top: 0, left: 0, right: 0, bottom: 0,
-                      child: Container(color: Color(0xffFFE352))
+                      child: Container(color: CustomColors.yellowLight)
                   ),
                   Positioned(
                       top: 6, left: 0, right: 0, bottom: 0,
-                      child: Container(color: Color(0xffFFD600))
+                      child: Container(color: CustomColors.yellow)
                   ),
                   Container(
                     height: 56,
@@ -274,11 +276,11 @@ class VoteButton extends StatelessWidget {
               children: [
                 Positioned(
                     top: 0, left: 0, right: 0, bottom: 0,
-                    child: Container(color: Color(0xffd9d9d9))
+                    child: Container(color: CustomColors.gray60)
                 ),
                 Positioned(
                     top: 6, left: 0, right: 0, bottom: 0,
-                    child: Container(color: Color(0xffCCCCCC))
+                    child: Container(color: CustomColors.gray50)
                 ),
                 Container(
                   height: 56,
@@ -376,7 +378,7 @@ class OpinionItem extends StatelessWidget {
                           Expanded(child:
                             Container(
                               padding: EdgeInsets.fromLTRB(0, 15, 0, 40),
-                              color: Color(0xffB265FF),
+                              color: CustomColors.purpleLight,
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
@@ -426,7 +428,7 @@ class VoteResultItem extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
-              color: Color(0xffB265FF), width: 240, padding: EdgeInsets.fromLTRB(0, 15, 0, 15),
+              color: CustomColors.purpleLight, width: 240, padding: EdgeInsets.fromLTRB(0, 15, 0, 15),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
@@ -472,7 +474,7 @@ class VoteAllResultItem extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
-              color: Color(0xff808080), width: 240, padding: EdgeInsets.fromLTRB(0, 15, 0, 15),
+              color: CustomColors.gary40, width: 240, padding: EdgeInsets.fromLTRB(0, 15, 0, 15),
               child: Column(
                 children: [
                   Text('살까말까?', style: TextStyle(fontSize: 20)),
@@ -518,7 +520,7 @@ class VoteAllResultItem extends StatelessWidget {
                   children: [
                     CustomIcon(icon: 'thumb-down', color: '#666666', width: 36, height: 36),
                     SizedBox(width: 20),
-                    Expanded(child: CustomBar(current: 2, total: 5, primary: Color(0xff666666),))
+                    Expanded(child: CustomBar(current: 2, total: 5, primary: CustomColors.gray30))
                   ],
                 ),
               ),
@@ -586,11 +588,11 @@ class BuyItem extends StatelessWidget {
                       children: [
                         Positioned(
                             top: 0, left: 0, right: 0, bottom: 0,
-                            child: Container(color: Color(0xffc58bff))
+                            child: Container(color: CustomColors.purpleLight)
                         ),
                         Positioned(
                             top: 6, left: 0, right: 0, bottom: 0,
-                            child: Container(color: Color(0xffB265FF))
+                            child: Container(color: CustomColors.purpleLight)
                         ),
                         Container(
                           padding: EdgeInsets.fromLTRB(0, 7, 0, 7),
@@ -621,11 +623,11 @@ class BuyItem extends StatelessWidget {
                           children: [
                             Positioned(
                                 top: 0, left: 0, right: 0, bottom: 0,
-                                child: Container(color: Color(0xffc58bff))
+                                child: Container(color: CustomColors.purpleLighter)
                             ),
                             Positioned(
                                 top: 6, left: 0, right: 0, bottom: 0,
-                                child: Container(color: Color(0xffB265FF))
+                                child: Container(color: CustomColors.purpleLight)
                             ),
                             Container(
                               padding: EdgeInsets.fromLTRB(0, 7, 0, 7),
@@ -670,7 +672,7 @@ class VoteItem extends StatelessWidget {
             Container(
               width: 240,
               child: Stack(children: [
-                Positioned.fill(child: Container(color: Color(0xffFFD600))),
+                Positioned.fill(child: Container(color: CustomColors.yellow)),
                 Positioned.fill(child: Image.asset('assets/pattern.png', repeat: ImageRepeat.repeat)),
                 Container(
                   width: 240,
@@ -708,11 +710,11 @@ class VoteItem extends StatelessWidget {
                       children: [
                         Positioned(
                             top: 0, left: 0, right: 0, bottom: 0,
-                            child: Container(color: Color(0xffc58bff))
+                            child: Container(color: CustomColors.purpleLighter)
                         ),
                         Positioned(
                             top: 6, left: 0, right: 0, bottom: 0,
-                            child: Container(color: Color(0xffB265FF))
+                            child: Container(color: CustomColors.purpleLight)
                         ),
                         Container(
                           padding: EdgeInsets.fromLTRB(0, 7, 0, 7),
@@ -743,11 +745,11 @@ class VoteItem extends StatelessWidget {
                       children: [
                         Positioned(
                             top: 0, left: 0, right: 0, bottom: 0,
-                            child: Container(color: Color(0xffc58bff))
+                            child: Container(color: CustomColors.purpleLighter)
                         ),
                         Positioned(
                             top: 6, left: 0, right: 0, bottom: 0,
-                            child: Container(color: Color(0xffB265FF))
+                            child: Container(color: CustomColors.purpleLight)
                         ),
                         Container(
                           padding: EdgeInsets.fromLTRB(0, 7, 0, 7),
@@ -784,7 +786,7 @@ class ChatBoxItem extends StatelessWidget {
     padding,
     required this.child
   }) {
-    this.color = color ?? Color(0xffffffff);
+    this.color = color ?? CustomColors.white;
     this.padding = padding ?? EdgeInsets.fromLTRB(19, 14, 19, 14);
   }
 

@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 
 import 'package:poorlex/Controller/Battle.dart';
 
+import 'package:poorlex/Libs/Theme.dart';
+
 class BattleBudget extends GetView {
   const BattleBudget({super.key});
 
@@ -18,10 +20,10 @@ class BattleBudget extends GetView {
             runSpacing: 2.0,
             children: con.BudgetList.map((item) {
               if (con.selectedBudget == item) {
-                Color itemColor = Color(0xffffd600);
+                Color itemColor = CustomColors.yellow;
                 con.changeBudgetColor(itemColor);
               } else {
-                Color itemColor = Color(0xff999999);
+                Color itemColor = CustomColors.gray41;
                 con.changeBudgetColor(itemColor);
               }
               return Padding(

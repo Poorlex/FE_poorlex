@@ -4,8 +4,9 @@ import 'package:intl/intl.dart';
 import 'package:poorlex/Widget/Common/Icon.dart';
 import 'package:poorlex/Widget/Common/Other.dart';
 import 'package:poorlex/Widget/Common/Picker.dart';
-
 import 'package:poorlex/Widget/Main/BottomBar.dart';
+
+import 'package:poorlex/Libs/Theme.dart';
 
 class MyExpensePage extends StatefulWidget {
   MyExpensePage({
@@ -26,21 +27,21 @@ class _MyExpensePageState extends State<MyExpensePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: CustomColors.black,
       bottomNavigationBar: BottomBar(
         nowPage: 4,
       ),
       appBar: AppBar(
-        backgroundColor: Colors.black,
+        backgroundColor: CustomColors.black,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             IconButton(
                 iconSize: 26, style: IconButton.styleFrom(padding: EdgeInsets.zero, minimumSize: Size.zero),
-                icon: CustomIcon(icon: 'arrow-left', width: 26, height: 26, color: '#ffffff'),
+                icon: CustomIcon(icon: 'arrow-left', width: 26, height: 26, color: CustomColors.whiteStr),
                 onPressed: () {},
             ),
-            Text('내 지출', style: TextStyle(color: Colors.white, fontSize: 18)),
+            Text('내 지출', style: TextStyle(color: CustomColors.white, fontSize: 18)),
             SizedBox(width: 26)
           ],
         ),
@@ -67,9 +68,9 @@ class _MyExpensePageState extends State<MyExpensePage> {
                                           Column(
                                             mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.center,
                                             children: [
-                                              Text('2023.08.09 (목)', style: TextStyle(color: Color(0xffCCCCCC), fontSize: 13)),
+                                              Text('2023.08.09 (목)', style: TextStyle(color: CustomColors.gray50, fontSize: 13)),
                                               SizedBox(height: 13),
-                                              Text('9.000원', style: TextStyle(color: Colors.white, fontSize: 18)),
+                                              Text('9.000원', style: TextStyle(color: CustomColors.white, fontSize: 18)),
                                             ],
                                           )
                                         ),
@@ -85,9 +86,9 @@ class _MyExpensePageState extends State<MyExpensePage> {
                                           Column(
                                             mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.center,
                                             children: [
-                                              Text('2023.08.09 (목)', style: TextStyle(color: Color(0xffCCCCCC), fontSize: 13)),
+                                              Text('2023.08.09 (목)', style: TextStyle(color: CustomColors.gray50, fontSize: 13)),
                                               SizedBox(height: 13),
-                                              Text('9.000원', style: TextStyle(color: Colors.white, fontSize: 18)),
+                                              Text('9.000원', style: TextStyle(color: CustomColors.white, fontSize: 18)),
                                             ],
                                           )
                                         ),
@@ -107,9 +108,9 @@ class _MyExpensePageState extends State<MyExpensePage> {
                                     Column(
                                       mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.center,
                                       children: [
-                                        Text('2023.08.09 (목)', style: TextStyle(color: Color(0xffCCCCCC), fontSize: 13)),
+                                        Text('2023.08.09 (목)', style: TextStyle(color: CustomColors.gray50, fontSize: 13)),
                                         SizedBox(height: 13),
-                                        Text('9.000원', style: TextStyle(color: Colors.white, fontSize: 18)),
+                                        Text('9.000원', style: TextStyle(color: CustomColors.white, fontSize: 18)),
                                       ],
                                     )
                                     ),
@@ -125,9 +126,9 @@ class _MyExpensePageState extends State<MyExpensePage> {
                                     Column(
                                       mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.center,
                                       children: [
-                                        Text('2023.08.09 (목)', style: TextStyle(color: Color(0xffCCCCCC), fontSize: 13)),
+                                        Text('2023.08.09 (목)', style: TextStyle(color: CustomColors.gray50, fontSize: 13)),
                                         SizedBox(height: 13),
-                                        Text('9.000원', style: TextStyle(color: Colors.white, fontSize: 18)),
+                                        Text('9.000원', style: TextStyle(color: CustomColors.white, fontSize: 18)),
                                       ],
                                     )
                                     ),
@@ -143,7 +144,7 @@ class _MyExpensePageState extends State<MyExpensePage> {
               ),
               SliverAppBar(
                   pinned: true,
-                  backgroundColor: Colors.black,
+                  backgroundColor: CustomColors.black,
                   elevation: 0,
                   title: Container(
                       child:
@@ -152,7 +153,7 @@ class _MyExpensePageState extends State<MyExpensePage> {
                           children: [
                             IconButton(
                               iconSize: 26, style: IconButton.styleFrom(padding: EdgeInsets.zero, minimumSize: Size.zero),
-                              icon: CustomIcon(icon: 'arrow-game-left', width: 25, height: 25, color: '#ffffff'),
+                              icon: CustomIcon(icon: 'arrow-game-left', width: 25, height: 25, color: CustomColors.whiteStr),
                               onPressed: () {},
                             ),
                             Picker(
@@ -161,16 +162,16 @@ class _MyExpensePageState extends State<MyExpensePage> {
                                 child: Row(
                                   children: [
                                     Text(DateFormat('yyyy년 MM월').format(DateTime.fromMillisecondsSinceEpoch(current)),
-                                        style: TextStyle(color: Colors.white, fontSize: 20)),
+                                        style: TextStyle(color: CustomColors.white, fontSize: 20)),
                                     SizedBox(width: 8),
-                                    Icon(Icons.arrow_drop_down_sharp, size: 35, color: Colors.white,)
+                                    Icon(Icons.arrow_drop_down_sharp, size: 35, color: CustomColors.white)
                                   ],
                                 ),
                                 select: select
                             ),
                             IconButton(
                               iconSize: 26, style: IconButton.styleFrom(padding: EdgeInsets.zero, minimumSize: Size.zero),
-                              icon: CustomIcon(icon: 'arrow-game-right', width: 25, height: 25, color: '#ffffff'),
+                              icon: CustomIcon(icon: 'arrow-game-right', width: 25, height: 25, color: CustomColors.whiteStr),
                               onPressed: () {},
                             ),
                           ],
@@ -195,9 +196,9 @@ class _MyExpensePageState extends State<MyExpensePage> {
                                     Column(
                                       mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.center,
                                       children: [
-                                        Text('2023.08.09 (목)', style: TextStyle(color: Color(0xffCCCCCC), fontSize: 13)),
+                                        Text('2023.08.09 (목)', style: TextStyle(color: CustomColors.gray50, fontSize: 13)),
                                         SizedBox(height: 13),
-                                        Text('9.000원', style: TextStyle(color: Colors.white, fontSize: 18)),
+                                        Text('9.000원', style: TextStyle(color: CustomColors.white, fontSize: 18)),
                                       ],
                                     )
                                     ),
@@ -213,9 +214,9 @@ class _MyExpensePageState extends State<MyExpensePage> {
                                     Column(
                                       mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.center,
                                       children: [
-                                        Text('2023.08.09 (목)', style: TextStyle(color: Color(0xffCCCCCC), fontSize: 13)),
+                                        Text('2023.08.09 (목)', style: TextStyle(color: CustomColors.gray50, fontSize: 13)),
                                         SizedBox(height: 13),
-                                        Text('9.000원', style: TextStyle(color: Colors.white, fontSize: 18)),
+                                        Text('9.000원', style: TextStyle(color: CustomColors.white, fontSize: 18)),
                                       ],
                                     )
                                     ),
@@ -235,9 +236,9 @@ class _MyExpensePageState extends State<MyExpensePage> {
                                     Column(
                                       mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.center,
                                       children: [
-                                        Text('2023.08.09 (목)', style: TextStyle(color: Color(0xffCCCCCC), fontSize: 13)),
+                                        Text('2023.08.09 (목)', style: TextStyle(color: CustomColors.gray50, fontSize: 13)),
                                         SizedBox(height: 13),
-                                        Text('9.000원', style: TextStyle(color: Colors.white, fontSize: 18)),
+                                        Text('9.000원', style: TextStyle(color: CustomColors.white, fontSize: 18)),
                                       ],
                                     )
                                     ),
@@ -253,9 +254,9 @@ class _MyExpensePageState extends State<MyExpensePage> {
                                     Column(
                                       mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.center,
                                       children: [
-                                        Text('2023.08.09 (목)', style: TextStyle(color: Color(0xffCCCCCC), fontSize: 13)),
+                                        Text('2023.08.09 (목)', style: TextStyle(color: CustomColors.gray50, fontSize: 13)),
                                         SizedBox(height: 13),
-                                        Text('9.000원', style: TextStyle(color: Colors.white, fontSize: 18)),
+                                        Text('9.000원', style: TextStyle(color: CustomColors.white, fontSize: 18)),
                                       ],
                                     )
                                     ),
@@ -272,9 +273,9 @@ class _MyExpensePageState extends State<MyExpensePage> {
                                       Column(
                                         mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.center,
                                         children: [
-                                          Text('2023.08.09 (목)', style: TextStyle(color: Color(0xffCCCCCC), fontSize: 13)),
+                                          Text('2023.08.09 (목)', style: TextStyle(color: CustomColors.gray50, fontSize: 13)),
                                           SizedBox(height: 13),
-                                          Text('9.000원', style: TextStyle(color: Colors.white, fontSize: 18)),
+                                          Text('9.000원', style: TextStyle(color: CustomColors.white, fontSize: 18)),
                                         ],
                                       )
                                     )
@@ -285,9 +286,9 @@ class _MyExpensePageState extends State<MyExpensePage> {
                                       Column(
                                         mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.center,
                                         children: [
-                                          Text('2023.08.09 (목)', style: TextStyle(color: Color(0xffCCCCCC), fontSize: 13)),
+                                          Text('2023.08.09 (목)', style: TextStyle(color: CustomColors.gray50, fontSize: 13)),
                                           SizedBox(height: 13),
-                                          Text('9.000원', style: TextStyle(color: Colors.white, fontSize: 18)),
+                                          Text('9.000원', style: TextStyle(color: CustomColors.white, fontSize: 18)),
                                         ],
                                       )
                                     )

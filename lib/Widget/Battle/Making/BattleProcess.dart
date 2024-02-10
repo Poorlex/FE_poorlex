@@ -24,18 +24,10 @@ class BattleProcess extends GetView {
                   ...[]
                 else if (con.battleMakingIndex().BattleIndex ==
                     colors[index]) ...[
-                  Container(
-                    width: 5,
-                    height: 5,
-                    decoration: BoxDecoration(color: Color(0xffffd600)),
-                  ),
+                  Container(width: 5, height: 5, decoration: BoxDecoration(color: Color(0xffffd600))),
                   SizedBox(width: 10),
                 ] else ...[
-                  Container(
-                    width: 5,
-                    height: 5,
-                    decoration: BoxDecoration(color: Color(0xff333333)),
-                  ),
+                  Container(width: 5, height: 5, decoration: BoxDecoration(color: Color(0xff333333))),
                   SizedBox(width: 10),
                 ],
               ],

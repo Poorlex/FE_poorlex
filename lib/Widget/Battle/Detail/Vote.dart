@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:poorlex/Widget/Common/Icon.dart';
 import 'package:poorlex/Widget/Common/Modal.dart';
 
+import 'package:poorlex/Libs/Theme.dart';
+
 class VoteModal extends CustomModal {
   VoteModal() {
     create();
@@ -15,8 +17,8 @@ class VoteModal extends CustomModal {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              IconButton(onPressed: () => Navigator.pop(context), icon: CustomIcon(icon: 'arrow-left', color: '#ffffff')),
-              Text('공지 등록', style: TextStyle(color: Colors.white, fontSize: 18)),
+              IconButton(onPressed: () => Navigator.pop(context), icon: CustomIcon(icon: 'arrow-left', color: CustomColors.whiteStr)),
+              Text('공지 등록', style: TextStyle(color: CustomColors.white, fontSize: 18)),
               SizedBox(width: 55)
             ],
           ),
@@ -27,38 +29,38 @@ class VoteModal extends CustomModal {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('고민되는 지출\n투표를 해볼까요?', style: TextStyle(color: Colors.white, fontSize: 22)),
+                    Text('고민되는 지출\n투표를 해볼까요?', style: TextStyle(color: CustomColors.white, fontSize: 22)),
                     SizedBox(height: 27),
-                    Text('투표 내용', style: TextStyle(color: Color(0xff808080), fontSize: 14)),
+                    Text('투표 내용', style: TextStyle(color: CustomColors.gary40, fontSize: 14)),
                     SizedBox(height: 17),
                     TextField(
-                      style: TextStyle(fontSize: 22, color: Color(0xffffffff)),
+                      style: TextStyle(fontSize: 22, color: CustomColors.white),
                       decoration: InputDecoration(
                         enabledBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(color: Color(0xffFFD600), width: 2),
+                          borderSide: BorderSide(color: CustomColors.yellow, width: 2),
                         ),
                         focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(color: Color(0xffFFD600), width: 2),
+                          borderSide: BorderSide(color: CustomColors.yellow, width: 2),
                         ),
-                        hintStyle: TextStyle(fontSize: 22, color: Color(0xff666666)),
+                        hintStyle: TextStyle(fontSize: 22, color: CustomColors.gray30),
                         hintText: '투표제목 입력 (최대 12자)',
                       ),
                     ),
                     TextField(
-                      style: TextStyle(fontSize: 22, color: Color(0xffffffff)),
+                      style: TextStyle(fontSize: 22, color: CustomColors.white),
                       decoration: InputDecoration(
                         enabledBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(color: Color(0xffFFD600), width: 2),
+                          borderSide: BorderSide(color: CustomColors.yellow, width: 2),
                         ),
                         focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(color: Color(0xffFFD600), width: 2),
+                          borderSide: BorderSide(color: CustomColors.yellow, width: 2),
                         ),
-                        hintStyle: TextStyle(fontSize: 22, color: Color(0xff666666)),
+                        hintStyle: TextStyle(fontSize: 22, color: CustomColors.gray30),
                         hintText: '금액입력',
                       ),
                     ),
                     SizedBox(height: 27),
-                    Text('투표 시간', style: TextStyle(color: Color(0xff808080), fontSize: 14)),
+                    Text('투표 시간', style: TextStyle(color: CustomColors.gary40, fontSize: 14)),
                     SizedBox(height: 17),
                     SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
@@ -66,45 +68,45 @@ class VoteModal extends CustomModal {
                         children: [
                           OutlinedButton(
                             onPressed: () {},
-                            child: Text('5분', style: TextStyle(color: Color(0xff999999)),),
+                            child: Text('5분', style: TextStyle(color: CustomColors.gray41),),
                             style: OutlinedButton.styleFrom(
-                              side: BorderSide(color: Color(0xff999999), width: 1.0),
+                              side: BorderSide(color: CustomColors.gray41, width: 1.0),
                               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(2.0)),
                             ),
                           ),
                           SizedBox(width: 16,),
                           OutlinedButton(
                             onPressed: () {},
-                            child: Text('10분', style: TextStyle(color: Color(0xff999999)),),
+                            child: Text('10분', style: TextStyle(color: CustomColors.gray41),),
                             style: OutlinedButton.styleFrom(
-                              side: BorderSide(color: Color(0xff999999), width: 1.0),
+                              side: BorderSide(color: CustomColors.gray41, width: 1.0),
                               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(2.0)),
                             ),
                           ),
                           SizedBox(width: 16,),
                           OutlinedButton(
                             onPressed: () {},
-                            child: Text('20분', style: TextStyle(color: Color(0xff999999)),),
+                            child: Text('20분', style: TextStyle(color: CustomColors.gray41),),
                             style: OutlinedButton.styleFrom(
-                              side: BorderSide(color: Color(0xff999999), width: 1.0),
+                              side: BorderSide(color: CustomColors.gray41, width: 1.0),
                               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(2.0)),
                             ),
                           ),
                           SizedBox(width: 16,),
                           OutlinedButton(
                             onPressed: () {},
-                            child: Text('30분', style: TextStyle(color: Color(0xff999999)),),
+                            child: Text('30분', style: TextStyle(color: CustomColors.gray41),),
                             style: OutlinedButton.styleFrom(
-                              side: BorderSide(color: Color(0xff999999), width: 1.0),
+                              side: BorderSide(color: CustomColors.gray41, width: 1.0),
                               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(2.0)),
                             ),
                           ),
                           SizedBox(width: 16,),
                           OutlinedButton(
                             onPressed: () {},
-                            child: Text('1시간', style: TextStyle(color: Color(0xff999999)),),
+                            child: Text('1시간', style: TextStyle(color: CustomColors.gray41),),
                             style: OutlinedButton.styleFrom(
-                              side: BorderSide(color: Color(0xff999999), width: 1.0),
+                              side: BorderSide(color: CustomColors.gray41, width: 1.0),
                               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(2.0)),
                             ),
                           )
@@ -125,11 +127,11 @@ class VoteModal extends CustomModal {
                 children: [
                   Positioned(
                       top: 0, left: 0, right: 0, bottom: 0,
-                      child: Container(color: Color(0xffFFE352))
+                      child: Container(color: CustomColors.yellowLight)
                   ),
                   Positioned(
                       top: 6, left: 0, right: 0, bottom: 0,
-                      child: Container(color: Color(0xffFFD600))
+                      child: Container(color: CustomColors.yellow)
                   ),
                   Container(
                     height: 56,
@@ -137,7 +139,7 @@ class VoteModal extends CustomModal {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text('투표생성', style: TextStyle(fontSize: 20, color: Colors.black))
+                        Text('투표생성', style: TextStyle(fontSize: 20, color: CustomColors.black))
                       ],
                     ),
                   )

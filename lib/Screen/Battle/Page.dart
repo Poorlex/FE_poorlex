@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import 'package:poorlex/Libs/Theme.dart';
+import 'package:poorlex/Controller/Battle.dart';
+
 import 'package:poorlex/Widget/Battle/BattleMaking.dart';
 import 'package:poorlex/Widget/Battle/BattleOption.dart';
 import 'package:poorlex/Widget/Main/BottomBar.dart';
-
-import 'package:poorlex/Controller/Battle.dart';
 
 class BattlePage extends GetView {
   const BattlePage({super.key});
@@ -15,13 +16,13 @@ class BattlePage extends GetView {
     BattleController _battle = Get.put(BattleController());
     return Scaffold(
       bottomNavigationBar: BottomBar(nowPage: 2),
-      backgroundColor: Colors.black,
+      backgroundColor: CustomColors.black,
       appBar: AppBar(
-          backgroundColor: Colors.black,
+          backgroundColor: CustomColors.black,
           title: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('배틀', style: TextStyle(color: Colors.white, fontSize: 26)),
+              Text('배틀', style: TextStyle(color: CustomColors.white, fontSize: 26)),
               Container(
                 child: Row(
                   children: [

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:poorlex/Widget/Common/Icon.dart';
-
 import 'package:poorlex/Widget/Main/BottomBar.dart';
 import 'package:poorlex/Widget/My/Level.dart';
 import 'package:poorlex/Widget/My/MyAuth.dart';
@@ -10,6 +9,7 @@ import 'package:poorlex/Widget/My/MyFriends.dart';
 import 'package:poorlex/Widget/My/Profile.dart';
 import 'package:poorlex/Widget/My/AnnouncementList.dart';
 
+import 'package:poorlex/Libs/Theme.dart';
 import 'package:poorlex/Controller/User.dart';
 
 class MyPage extends StatefulWidget {
@@ -25,25 +25,24 @@ class _MyPageState extends State<MyPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: CustomColors.black,
       bottomNavigationBar: const BottomBar(
         nowPage: 4,
       ),
       appBar: AppBar(
-        backgroundColor: Colors.black,
+        backgroundColor: CustomColors.black,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             IconButton(
               iconSize: 26,
-              icon: CustomIcon(icon: 'setting', width: 26, height: 26, color: '#ffffff'),
+              icon: CustomIcon(icon: 'setting', width: 26, height: 26, color: CustomColors.whiteStr),
               onPressed: () {},
             ),
             IconButton(
               iconSize: 26,
-              icon: CustomIcon(icon: 'ring', width: 26, height: 26, color: '#ffffff'),
+              icon: CustomIcon(icon: 'ring', width: 26, height: 26, color: CustomColors.whiteStr),
               onPressed: () {},
-              // icon: CustomIcon(icon: 'ring-point', width: 26, height: 26, color: '#ffffff'),
             )
           ],
         ),

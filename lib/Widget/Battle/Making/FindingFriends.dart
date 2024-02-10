@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 
+import 'package:poorlex/Libs/Theme.dart';
 import 'package:poorlex/Controller/FindingFriends.dart';
 
 class FindingFriends extends GetView {
@@ -20,127 +21,76 @@ class FindingFriends extends GetView {
     con.updateSelectedItems(dummy);
     con.selectedFriends.value = [];
     return Scaffold(
-        backgroundColor: Colors.black,
-        appBar: AppBar(backgroundColor: Colors.black, title: Text('친구목록')),
+        backgroundColor: CustomColors.black,
+        appBar: AppBar(backgroundColor: CustomColors.black, title: Text('친구목록')),
         bottomNavigationBar: Container(
-          width: double.infinity,
-          height: 52,
-          child: Obx(() => ElevatedButton(
+          width: double.infinity, height: 52, child:
+          Obx(() => ElevatedButton(
+              child: Text(
+                  con.selectedFriends.value.length == 0 ? '확인' : '${con.selectedFriends.value.length} / 10 확인',
+                  style: TextStyle(color: CustomColors.black)),
+              style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(CustomColors.yellow)),
               onPressed: () {
                 con.findingSelectedFrieds(dummy);
                 print(con.selectedFriends.value);
                 Navigator.pop(context);
               },
-              child: Text(
-                  con.selectedFriends.value.length == 0
-                      ? '확인'
-                      : '${con.selectedFriends.value.length} / 10 확인',
-                  style: TextStyle(color: Colors.black)),
-              style: ButtonStyle(
-                backgroundColor:
-                    MaterialStateProperty.all<Color>(Color(0xffffd600)),
-              ))),
+          )),
         ),
         body: Column(
           children: [
             if (dummy.length == 0) ...[
-              SizedBox(
-                height: 196,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SizedBox(
-                    width: 160,
-                    height: 160,
-                    child: Image.asset('assets/battle_page/IMG_NO_FRIENDS.png'),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 30,
-              ),
-              Text('친구목록이 없습니다.',
-                  style: TextStyle(color: Color(0xff808080), fontSize: 22))
+              SizedBox(height: 196),
+              Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                  SizedBox(width: 160, height: 160, child: Image.asset('assets/battle_page/IMG_NO_FRIENDS.png')),
+              ]),
+              SizedBox(height: 30),
+              Text('친구목록이 없습니다.', style: TextStyle(color: CustomColors.gary40, fontSize: 22))
             ] else ...[
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 9, horizontal: 20),
-                child: Row(
-                  children: [
-                    Text('내 거지친구',
-                        style: TextStyle(color: Colors.white, fontSize: 18)),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Text('${dummy.length}',
-                        style:
-                            TextStyle(color: Color(0xffb265ff), fontSize: 18))
+              Padding(padding: EdgeInsets.symmetric(vertical: 9, horizontal: 20), child:
+                Row(children: [
+                    Text('내 거지친구', style: TextStyle(color: CustomColors.white, fontSize: 18)),
+                    SizedBox(width: 10),
+                    Text('${dummy.length}', style: TextStyle(color: CustomColors.purpleLight, fontSize: 18))
                   ],
                 ),
               ),
-              Expanded(
-                child: ListView.builder(
-                  itemCount: dummy.length,
+              Expanded(child:
+                ListView.builder(itemCount: dummy.length,
                   itemBuilder: (context, index) {
                     return ListTile(
-                      leading: SizedBox(
-                        width: 70,
-                        child: Row(
-                          children: [
+                      leading: SizedBox(width: 70, child:
+                        Row(children: [
                             Obx(() => InkWell(
                                   onTap: () => con.toggleSelection(index),
-                                  child: Container(
-                                    width: 24,
-                                    height: 24,
+                                  child: Container(width: 24, height: 24,
                                     decoration: BoxDecoration(
                                       shape: BoxShape.circle,
-                                      border: Border.all(color: Colors.white),
-                                      color: con.selectedItems[index]
-                                          ? Color(0xffffd600) // 선택된 경우 노란색
-                                          : Colors.transparent, // 선택되지 않은 경우 투명
+                                      border: Border.all(color: CustomColors.white),
+                                      color: con.selectedItems[index] ? CustomColors.yellow : Colors.transparent, // 선택되지 않은 경우 투명
                                     ),
-                                    child: con.selectedItems[index]
-                                        ? Icon(
-                                            Icons.check,
-                                            size: 20,
-                                            color: Colors.black,
-                                          )
-                                        : null,
+                                    child: con.selectedItems[index] ? Icon(Icons.check, size: 20, color: CustomColors.black) : null,
                                   ),
-                                )),
+                            )),
                             SizedBox(width: 10), // 체크박스와 이미지 사이의 간격
-                            Transform.translate(
-                              offset: Offset(10, 0),
-                              child: Image.asset(
-                                'assets/battle_page/IMG_PROFILE.png',
-                                width: 33,
-                                height: 40,
-                              ),
+                            Transform.translate(offset: Offset(10, 0), child:
+                              Image.asset('assets/battle_page/IMG_PROFILE.png', width: 33, height: 40),
                             ),
                           ],
                         ),
                       ),
-                      title: Column(
-                        children: [
-                          Row(
-                            children: [
-                              SizedBox(
-                                  width: 16,
-                                  height: 16,
-                                  child: Image.asset(
-                                      'assets/battle_page/ICON_LV2.png')),
-                              SizedBox(
-                                width: 6,
+                      title: Column(children: [
+                          Row(children: [
+                              SizedBox(width: 16, height: 16, child:
+                                Image.asset('assets/battle_page/ICON_LV2.png')
                               ),
-                              Text(dummy[index][0],
-                                  style: TextStyle(color: Colors.white)),
+                              SizedBox(width: 6),
+                              Text(dummy[index][0], style: TextStyle(color: CustomColors.white)),
                             ],
                           ),
                         ],
                       ),
-                      subtitle: Text(dummy[index][1],
-                          style: TextStyle(color: Colors.white60)),
+                      subtitle: Text(dummy[index][1], style: TextStyle(color: CustomColors.white)),
                     );
                   },
                 ),

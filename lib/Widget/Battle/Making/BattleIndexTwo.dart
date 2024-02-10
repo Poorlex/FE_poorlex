@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 
+import 'package:poorlex/Libs/Theme.dart';
 import 'package:poorlex/Controller/Battle.dart';
 
 class BattleIndexTwo extends GetView<BattleController> {
   const BattleIndexTwo({super.key});
 
   Color _getItemColor(int item, int selectedIndex) {
-    return item == selectedIndex ? Color(0xffffd600) : Color(0xff999999);
+    return item == selectedIndex ? CustomColors.yellow : CustomColors.gray41;
   }
 
   Widget _buildWrap(List<int> items, BattleController con, int selectedIndex) {
@@ -56,12 +57,12 @@ class BattleIndexTwo extends GetView<BattleController> {
                 '몇명이 참여하나요?',
                 style: TextStyle(
                   fontSize: 22,
-                  color: Colors.white,
+                  color: CustomColors.white,
                 ),
               ),
               IconButton(
                 iconSize: 12,
-                color: Color(0xff999999),
+                color: CustomColors.gray41,
                 onPressed: () {},
                 icon: Icon(Icons.question_mark_outlined),
               )
@@ -70,7 +71,7 @@ class BattleIndexTwo extends GetView<BattleController> {
         ),
         SizedBox(height: 20),
         Text('1등하면 20점!',
-            style: TextStyle(color: Color(0xff999999), fontSize: 14)),
+            style: TextStyle(color: CustomColors.gray41, fontSize: 14)),
         SizedBox(height: 20),
         Obx(() => SizedBox(
             width: double.infinity,
@@ -78,7 +79,7 @@ class BattleIndexTwo extends GetView<BattleController> {
             child: _buildWrap(controller.oneToFive, controller,
                 controller.selectedIndexTwo.value))),
         Text('1등하면 30점!',
-            style: TextStyle(color: Color(0xff999999), fontSize: 14)),
+            style: TextStyle(color: CustomColors.gray41, fontSize: 14)),
         Obx(() => SizedBox(
             width: double.infinity,
             height: 100,

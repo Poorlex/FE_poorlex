@@ -1,5 +1,6 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
+
+import 'package:poorlex/Libs/Theme.dart';
 
 import 'package:poorlex/Widget/Common/Icon.dart';
 import 'package:poorlex/Widget/Common/Modal.dart';
@@ -20,10 +21,9 @@ class CommentModal extends CustomModal {
             crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 IconButton(onPressed: () => Navigator.pop(context),
-                    icon: CustomIcon(
-                        icon: 'arrow-left', color: '#ffffff')
+                    icon: CustomIcon(icon: 'arrow-left', color: CustomColors.whiteStr)
                 ),
-                SizedBox(height: 26,),
+                SizedBox(height: 26),
                 Expanded(
                   child: Container(
                     padding: EdgeInsets.fromLTRB(16, 0, 16, 0),
@@ -32,18 +32,18 @@ class CommentModal extends CustomModal {
                       children: [
                         Text(
                             isAgree ? '칭찬하기 사유' : '혼내기 사유',
-                            style: TextStyle(fontSize: 14, color: Color(0xff808080))
+                            style: TextStyle(fontSize: 14, color: CustomColors.gary40)
                         ),
                         TextField(
-                          style: TextStyle(fontSize: 22, color: Color(0xffffffff)),
+                          style: TextStyle(fontSize: 22, color: CustomColors.white),
                           decoration: InputDecoration(
                             enabledBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(color: Color(0xffFFD600), width: 2),
+                              borderSide: BorderSide(color: CustomColors.yellow, width: 2),
                             ),
                             focusedBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(color: Color(0xffFFD600), width: 2),
+                              borderSide: BorderSide(color: CustomColors.yellow, width: 2),
                             ),
-                            hintStyle: TextStyle(fontSize: 22, color: Color(0xff666666)),
+                            hintStyle: TextStyle(fontSize: 22, color: CustomColors.gray30),
                             hintText: '코멘트 입력 (30자)',
                           ),
                         ),
@@ -60,11 +60,11 @@ class CommentModal extends CustomModal {
                       children: [
                         Positioned(
                             top: 0, left: 0, right: 0, bottom: 0,
-                            child: Container(color: Color(0xffFFE352))
+                            child: Container(color: CustomColors.yellowLight)
                         ),
                         Positioned(
                             top: 6, left: 0, right: 0, bottom: 0,
-                            child: Container(color: Color(0xffFFD600))
+                            child: Container(color: CustomColors.yellow)
                         ),
                         Container(
                           height: 56,
@@ -72,7 +72,7 @@ class CommentModal extends CustomModal {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text('완료', style: TextStyle(fontSize: 20, color: Colors.black))
+                              Text('완료', style: TextStyle(fontSize: 20, color: CustomColors.black))
                             ],
                           ),
                         )
