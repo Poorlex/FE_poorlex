@@ -44,13 +44,13 @@ class MyApp extends StatelessWidget {
         // home: BudgetPage());
         // home: const MainPage());
         // home: const MyPage());
-        home: MyExpenseInputPage());
+        // home: MyExpenseInputPage());
         // home: const LoginKakao());
         // home: const LandingPage());
         // home: const AppleLogin());
         // home: BattlePage());
         // home: CaledarPage());
         // home: GoalPage());
-        // home: Ranking());
+        home: Ranking());
   }
 }
