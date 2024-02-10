@@ -1,0 +1,113 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import 'package:poorlex/Widget/NavBar.dart';
+import 'package:poorlex/Widget/Main/BottomBar.dart';
+import 'package:poorlex/Widget/Main/CarouselSlider.dart';
+import 'package:poorlex/Widget/Main/MainBottom.dart';
+import 'package:poorlex/Widget/Main/ShowModal.dart';
+
+import 'package:poorlex/Controller/Modal.dart';
+
+class MainPage extends StatefulWidget {
+  const MainPage({
+    super.key,
+  });
+
+  @override
+  State<MainPage> createState() => _MainPageState();
+}
+
+class _MainPageState extends State<MainPage> {
+  final ModalController _modal = Get.put(ModalController());
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (_modal.modalCount().modalCount == 0) {
+        show(context);
+      }
+    });
+  }
+
+  void show(BuildContext context) {
+    showModalBottomSheet(
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      context: context,
+      builder: (context) {
+        return Wrap(children: [
+          Column(
+            children: [
+              Row(
+                children: [
+                  SizedBox(
+                    width: 140,
+                    height: 140,
+                    child:
+                        Image.asset('assets/main_page/icon_profile_remove.png'),
+                  ),
+                ],
+              ),
+              const ShowModal(),
+            ],
+          ),
+        ]);
+      },
+    );
+  }
+
+  int modalValue = 0;
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      theme: ThemeData(fontFamily: 'NeoDunggeunmoPro-Regular'),
+      home: Scaffold(
+        appBar: NavBar(),
+        bottomNavigationBar: const BottomBar(
+          nowPage: 0,
+        ),
+        body: Column(
+          children: [
+            // Transform.translate(offset: Offset(2, 2), child: BudgetTooltip()),
+            if (modalValue == 0) ...[
+              Flexible(
+                flex: 2,
+                child: Column(
+                  children: [
+                    Expanded(
+                      child: Container(
+                        color: const Color(0xffE4D4BE),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            IconButton(
+                                onPressed: () {
+                                  show(context);
+                                },
+                                icon: const Icon(Icons.abc)),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Flexible(
+                flex: 2,
+                child: Container(
+                  color: const Color(0xffB59767),
+                  child: const Center(
+                    // child: MainCarousel(),
+                    child: MainCarouselSlider(),
+                  ),
+                ),
+              ),
+              const MainBottom()
+            ]
+          ],
+        ),
+      ),
+    );
+  }
+}
