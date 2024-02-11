@@ -12,12 +12,14 @@ class BarItem {
   String label;
   String onIcon;
   String offIcon;
+  Widget widget;
 
   BarItem({
     required this.key,
     required this.label,
     required this.onIcon,
-    required this.offIcon
+    required this.offIcon,
+    required this.widget
   });
 }
 
@@ -36,27 +38,28 @@ class BottomBar extends StatefulWidget {
 class _BottomBarState extends State<BottomBar> {
   late int _selectedIndex = widget.nowPage;
   static final barItems = [
-    BarItem(key: 'home', label: '홈', onIcon: 'assets/main_page/icon_home.png', offIcon: 'assets/main_page/icon_home_un.png'),
-    BarItem(key: 'goal', label: '목표', onIcon: 'assets/main_page/icon_goal.png', offIcon: 'assets/main_page/icon_goal_un.png'),
-    BarItem(key: 'battle', label: '배틀', onIcon: 'assets/main_page/icon_battle.png', offIcon: 'assets/main_page/icon_battle_un.png'),
-    BarItem(key: 'my', label: 'my', onIcon: 'assets/main_page/icon_my.png', offIcon: 'assets/main_page/icon_my_un.png'),
+    BarItem(key: 'home', label: '홈', onIcon: 'assets/main_page/icon_home.png', offIcon: 'assets/main_page/icon_home_un.png', widget: MainPage()),
+    BarItem(key: 'goal', label: '목표', onIcon: 'assets/main_page/icon_goal.png', offIcon: 'assets/main_page/icon_goal_un.png', widget: GoalPage()),
+    BarItem(key: 'battle', label: '배틀', onIcon: 'assets/main_page/icon_battle.png', offIcon: 'assets/main_page/icon_battle_un.png', widget: BattlePage()),
+    BarItem(key: 'calendar', label: '요약', onIcon: 'assets/main_page/icon_calendar.png', offIcon: 'assets/main_page/icon_calendar_un.png', widget: CaledarPage()),
+    BarItem(key: 'my', label: 'my', onIcon: 'assets/main_page/icon_my.png', offIcon: 'assets/main_page/icon_my_un.png', widget: MyPage()),
   ];
+
+  Route _createRoute(Widget widget) {
+    return PageRouteBuilder(
+      pageBuilder: (context, animation, secondaryAnimation) => widget,
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+          return child;
+      },
+    );
+  }
 
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
     });
-    Route route = MaterialPageRoute(builder: (context) => _pages[index]);
-    Navigator.pushReplacement(context, route);
+    Navigator.of(context).push(_createRoute(barItems[index].widget));
   }
-
-  static const List<Widget> _pages = <Widget>[
-    MainPage(),
-    GoalPage(),
-    BattlePage(),
-    CaledarPage(),
-    MyPage(),
-  ];
 
   @override
   Widget build(BuildContext context) {

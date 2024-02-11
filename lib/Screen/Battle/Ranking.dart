@@ -13,7 +13,6 @@ class Ranking extends GetView {
   @override
   Widget build(BuildContext context) {
     BattleController _battle = BattleController();
-    print(_battle.battleIndex().PageNumber);
     return Scaffold(
         bottomNavigationBar: BottomBar(nowPage: 2),
         backgroundColor: Colors.black,
