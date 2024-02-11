@@ -22,7 +22,7 @@ class BattlePage extends GetView {
           title: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('배틀', style: CustomTextStyles.Headline(CustomColors.white)),
+              Text('배틀', style: CustomTextStyles.Headline()),
               Container(
                 child: Row(
                   children: [

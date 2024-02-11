@@ -43,7 +43,7 @@ class NoticeWriteModal extends CustomModal {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 IconButton(onPressed: () => Navigator.pop(context), icon: CustomIcon(icon: 'arrow-left', color: CustomColors.whiteStr)),
-                Text('공지 등록', style: CustomTextStyles.Headline(CustomColors.white)),
+                Text('공지 등록', style: CustomTextStyles.Headline()),
                 SizedBox(width: 55)
               ],
             ),
@@ -54,9 +54,9 @@ class NoticeWriteModal extends CustomModal {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('배틀 멤버에게\n알리고 싶은 내용이 있나요?', style: CustomTextStyles.Title2(CustomColors.white)),
+                      Text('배틀 멤버에게\n알리고 싶은 내용이 있나요?', style: CustomTextStyles.Title2()),
                       SizedBox(height: 27),
-                      Text('공지 내용', style: CustomTextStyles.Body3(CustomColors.gray40)),
+                      Text('공지 내용', style: CustomTextStyles.Body3(color: CustomColors.gray40)),
                       SizedBox(height: 17),
                       Card(
                           shape: RoundedRectangleBorder(
@@ -67,7 +67,7 @@ class NoticeWriteModal extends CustomModal {
                             children: [
                               Positioned(
                                   right: 10, bottom: 4,
-                                  child: Text('0/200', style: CustomTextStyles.Title3(CustomColors.gray30))
+                                  child: Text('0/200', style: CustomTextStyles.Title3(color: CustomColors.gray30))
                               ),
                               Padding(
                                 padding: EdgeInsets.fromLTRB(14, 10, 14, 30),
@@ -75,7 +75,7 @@ class NoticeWriteModal extends CustomModal {
                                   maxLines: 8, //or null
                                   decoration: InputDecoration.collapsed(
                                     hintText: "내용을 입력해주세요",
-                                    hintStyle: CustomTextStyles.Title3(CustomColors.gray30)
+                                    hintStyle: CustomTextStyles.Title3(color: CustomColors.gray30)
                                   )
                                 )
                               )
@@ -83,7 +83,7 @@ class NoticeWriteModal extends CustomModal {
                           )
                       ),
                       SizedBox(height: 37),
-                      Text('사진 추가', style: CustomTextStyles.Body3(CustomColors.gray40)),
+                      Text('사진 추가', style: CustomTextStyles.Body3(color: CustomColors.gray40)),
                       SizedBox(height: 17),
                       ElevatedButton(
                           onPressed: () => pickImage(),
@@ -129,7 +129,7 @@ class NoticeWriteModal extends CustomModal {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text('공지생성', style: CustomTextStyles.Title3(CustomColors.black))
+                        Text('공지생성', style: CustomTextStyles.Title3(color: CustomColors.black))
                       ],
                     ),
                   )
@@ -171,7 +171,7 @@ class NoticeDetailModal extends CustomModal {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     IconButton(onPressed: () => Navigator.pop(context), icon: CustomIcon(icon: 'arrow-left', color: CustomColors.whiteStr)),
-                    Text('공지상세', style: CustomTextStyles.Headline(CustomColors.white)),
+                    Text('공지상세', style: CustomTextStyles.Headline()),
                     IconButton(onPressed: () => onClickOption(context), icon: CustomIcon(icon: 'option', color: CustomColors.whiteStr)),
                   ],
                 ),
@@ -190,13 +190,13 @@ class NoticeDetailModal extends CustomModal {
                               ),
                               Row(
                                 children: [
-                                  Text('09월 11일 오후 3:00', style: CustomTextStyles.Body3(CustomColors.white)),
+                                  Text('09월 11일 오후 3:00', style: CustomTextStyles.Body3()),
                                   SizedBox(width: 8),
-                                  Text('•', style: CustomTextStyles.Body3(CustomColors.white)),
+                                  Text('•', style: CustomTextStyles.Body3()),
                                   SizedBox(width: 8),
                                   CustomIcon(icon: 'eye', color: CustomColors.purpleLightStr, width: 12, height: 8),
                                   SizedBox(width: 4),
-                                  Text('1명 읽음', style: CustomTextStyles.Body3(CustomColors.purpleLight)),
+                                  Text('1명 읽음', style: CustomTextStyles.Body3(color: CustomColors.purpleLight)),
                                 ],
                               )
                             ],
@@ -216,7 +216,7 @@ class NoticeDetailModal extends CustomModal {
 <<우리방규칙>>
 ✅ 채팅으로 출석 : 동기부여를 꼬옥 붙잡기위함
 ✅ 피드백 잊지않고 해주기 : 투표나 채팅시 서로 반응 꼭 해줘요..
-                            ''', style: CustomTextStyles.Body3(CustomColors.white)),
+                            ''', style: CustomTextStyles.Body3()),
                           )
                         ),
                         Container(
@@ -232,7 +232,7 @@ class NoticeDetailModal extends CustomModal {
                                   ),
                                   SizedBox(width: 6),
                                   Expanded(
-                                    child: Text('화이팅!!', style: CustomTextStyles.Body3(CustomColors.white)),
+                                    child: Text('화이팅!!', style: CustomTextStyles.Body3()),
                                   )
                                 ],
                               ),
@@ -246,7 +246,7 @@ class NoticeDetailModal extends CustomModal {
                                   ),
                                   SizedBox(width: 6),
                                   Expanded(
-                                    child: Text('화이팅!!', style: CustomTextStyles.Body3(CustomColors.white)),
+                                    child: Text('화이팅!!', style: CustomTextStyles.Body3()),
                                   )
                                 ],
                               ),
@@ -260,7 +260,7 @@ class NoticeDetailModal extends CustomModal {
                                   ),
                                   SizedBox(width: 6),
                                   Expanded(
-                                    child: Text('화이팅!!', style: CustomTextStyles.Body3(CustomColors.white)),
+                                    child: Text('화이팅!!', style: CustomTextStyles.Body3()),
                                   )
                                 ],
                               )
@@ -277,10 +277,10 @@ class NoticeDetailModal extends CustomModal {
                     children: [
                       Expanded(
                         child: TextField(
-                          style: CustomTextStyles.Body2(CustomColors.gray50),
+                          style: CustomTextStyles.Body2(color: CustomColors.gray50),
                           decoration: InputDecoration(
                             border: OutlineInputBorder(),
-                            hintStyle: CustomTextStyles.Body2(CustomColors.gray50),
+                            hintStyle: CustomTextStyles.Body2(color: CustomColors.gray50),
                             hintText: '댓글을 입력하세요',
                             fillColor: CustomColors.gray20
                           ),
@@ -317,7 +317,7 @@ class OptionButtonModal extends StatelessWidget {
                     child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text('수정', style: CustomTextStyles.Headline(CustomColors.white))
+                          Text('수정', style: CustomTextStyles.Headline(color: CustomColors.white))
                         ]
                     ),
                   )
@@ -328,7 +328,7 @@ class OptionButtonModal extends StatelessWidget {
                     child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text('삭제', style: CustomTextStyles.Headline(CustomColors.gray30))
+                          Text('삭제', style: CustomTextStyles.Headline(color: CustomColors.gray30))
                         ]
                     ),
                   )

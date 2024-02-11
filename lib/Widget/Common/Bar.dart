@@ -42,7 +42,7 @@ class CustomBar extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              Text('${current}명', style: TextStyle(color: primary),)
+              Text('${current}명', style: CustomTextStyles.Body3(color: primary!),)
             ],
           )
         ],

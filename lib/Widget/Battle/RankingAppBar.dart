@@ -20,7 +20,7 @@ class _RankingAppBarWidgerState extends State<RankingAppBarWidget> {
     return AppBar(
       backgroundColor: CustomColors.black,
       centerTitle: true,
-      title: Text('참여중', style: CustomTextStyles.Body1(CustomColors.white), textAlign: TextAlign.center),
+      title: Text('참여중', style: CustomTextStyles.Body1(), textAlign: TextAlign.center),
       actions: [
         IconButton(
           onPressed: () {

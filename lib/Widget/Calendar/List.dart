@@ -33,8 +33,8 @@ class _ListState extends State<List> {
           Column(children: [
               Container(padding: EdgeInsets.fromLTRB(16, 14, 16, 16), child:
                 Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, crossAxisAlignment: CrossAxisAlignment.center, children: [
-                  Text('총 지출액', style: TextStyle(color: CustomColors.white, fontSize: 14)),
-                  Text('275,000원', style: TextStyle(color: CustomColors.purpleLight, fontSize: 18)),
+                  Text('총 지출액', style: CustomTextStyles.Body3()),
+                  Text('275,000원', style: CustomTextStyles.Headline(color: CustomColors.purpleLight)),
                 ])
               ),
               Flexible(flex: 1, child:
@@ -72,8 +72,8 @@ class WeekItem extends StatelessWidget {
           Flexible(fit: FlexFit.tight, flex: 1, child:
             Container(child: (
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                Text('1주차', style: TextStyle(color: CustomColors.white, fontSize: 14)),
-                Text('07.03 ~ 07.09', style: TextStyle(color: CustomColors.gray30, fontSize: 14)),
+                Text('1주차', style: CustomTextStyles.Body3()),
+                Text('07.03 ~ 07.09', style: CustomTextStyles.Body3(color: CustomColors.gray30)),
               ])
             ))
           ),
@@ -90,14 +90,14 @@ class WeekItem extends StatelessWidget {
                     </svg>'''
                   ),
                   SizedBox(width: 8,),
-                  Text('70,000원', style: TextStyle(color: CustomColors.white, fontSize: 14),)
+                  Text('70,000원', style: CustomTextStyles.Body3())
                 ]),
-                Text('-2000', style: TextStyle(color: CustomColors.red, fontSize: 14),),
+                Text('-2000', style: CustomTextStyles.Body3(color: CustomColors.red)),
               ])
             )
           ),
           Container(width: 100, alignment: Alignment.topRight, child:
-            Text('-72,000원', style: TextStyle(color: CustomColors.purpleLight, fontSize: 14),),
+            Text('-72,000원', style: CustomTextStyles.Body3(color: CustomColors.purpleLight)),
           )
         ]),
       ),
@@ -143,11 +143,11 @@ class DayItem extends StatelessWidget {
         Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, crossAxisAlignment: CrossAxisAlignment.center, children: [
           Container(width: 64, child:
             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, crossAxisAlignment: CrossAxisAlignment.center, children: [
-              Text('월', style: TextStyle(color: CustomColors.white, fontSize: 15),),
-              Text('07.31', style: TextStyle(color: CustomColors.white, fontSize: 14))
+              Text('월', style: CustomTextStyles.Body3()),
+              Text('07.31', style: CustomTextStyles.Body3())
             ]),
           ),
-          Text('-12,000원', style: TextStyle(color: Colors.white, fontSize: 15),),
+          Text('-12,000원', style: CustomTextStyles.Body3()),
         ]),
       )
     );

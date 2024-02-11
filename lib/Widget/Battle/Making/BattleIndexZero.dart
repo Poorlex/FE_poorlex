@@ -20,13 +20,13 @@ class BattleIndexZero extends GetView {
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 18),
           child: Container(width: 180, height: 80, child:
-            Text('어떤 배틀방을 만들어 볼까요?', style: CustomTextStyles.Title1(CustomColors.white)),
+            Text('어떤 배틀방을 만들어 볼까요?', style: CustomTextStyles.Title1()),
           ),
         ),
         SizedBox(height: 12),
         Row(
           children: [
-            Text('배틀방 난이도', style: CustomTextStyles.Body3(CustomColors.gray40)),
+            Text('배틀방 난이도', style: CustomTextStyles.Body3(color: CustomColors.gray40)),
             Icon(Icons.question_mark_rounded, color: CustomColors.gray40, size: 14)
           ],
         ),
@@ -43,7 +43,7 @@ class BattleIndexZero extends GetView {
                   con.budgetListUpdate();
                 },
                 child: Row(children: [
-                  Text('쉬워요', style: CustomTextStyles.Body3(con.EasyButtonColor.value)),
+                  Text('쉬워요', style: CustomTextStyles.Body3(color: con.EasyButtonColor.value)),
                   Image.asset(width: 23, height: 16, 'assets/my_page/icon_cooper.png'),
                 ]),
               ),
@@ -55,7 +55,7 @@ class BattleIndexZero extends GetView {
                   con.budgetListUpdate();
                 },
                 child: Row(children: [
-                  Text('보통이에요', style: CustomTextStyles.Body3(con.MiddleButtonColor.value)),
+                  Text('보통이에요', style: CustomTextStyles.Body3(color: con.MiddleButtonColor.value)),
                   Image.asset(width: 23, height: 16, 'assets/my_page/icon_silver.png'),
                 ]),
               ),
@@ -67,7 +67,7 @@ class BattleIndexZero extends GetView {
                   con.budgetListUpdate();
                 },
                 child: Row(children: [
-                  Text('어려워요', style: CustomTextStyles.Body3(con.HardButtonColor.value)),
+                  Text('어려워요', style: CustomTextStyles.Body3(color: con.HardButtonColor.value)),
                   Image.asset(width: 23, height: 16, 'assets/my_page/icon_gold.png'),
                 ]),
               )
@@ -77,7 +77,7 @@ class BattleIndexZero extends GetView {
         SizedBox(height: 50),
         Row(
           children: [
-            Text('배틀방 예산', style: CustomTextStyles.Body3(CustomColors.gray40))
+            Text('배틀방 예산', style: CustomTextStyles.Body3(color: CustomColors.gray40))
           ],
         ),
         SizedBox(height: 20),

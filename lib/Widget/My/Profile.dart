@@ -27,13 +27,13 @@ class MyPageProfile extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text('최지출', style: TextStyle(color: CustomColors.white, fontSize: 20))
+                          Text('최지출', style: CustomTextStyles.Title3())
                         ],
                       ),
                       SizedBox(height: 10),
                       Row(
                         children: [
-                          Text('돈을 많이 모아야 돈을 많이 쓸 수 있다.', textAlign: TextAlign.center, style: TextStyle(color: CustomColors.gray40, fontSize: 16),
+                          Text('돈을 많이 모아야 돈을 많이 쓸 수 있다.', textAlign: TextAlign.center, style: CustomTextStyles.Body2(color: CustomColors.gray40),
                           ),
                         ],
                       )
@@ -55,7 +55,7 @@ class MyPageProfile extends StatelessWidget {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text('프로필 편집', style: TextStyle(color: CustomColors.yellow, fontSize: 15)),
+                              Text('프로필 편집', style: CustomTextStyles.Body3(color: CustomColors.yellow)),
                             ],
                           )
                     ),

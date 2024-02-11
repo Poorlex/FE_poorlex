@@ -32,10 +32,10 @@ class CommentModal extends CustomModal {
                       children: [
                         Text(
                             isAgree ? '칭찬하기 사유' : '혼내기 사유',
-                            style: CustomTextStyles.Body3(CustomColors.gray40)
+                            style: CustomTextStyles.Body3(color: CustomColors.gray40)
                         ),
                         TextField(
-                          style: CustomTextStyles.Title2(CustomColors.white),
+                          style: CustomTextStyles.Title2(),
                           decoration: InputDecoration(
                             enabledBorder: UnderlineInputBorder(
                               borderSide: BorderSide(color: CustomColors.yellow, width: 2),
@@ -43,7 +43,7 @@ class CommentModal extends CustomModal {
                             focusedBorder: UnderlineInputBorder(
                               borderSide: BorderSide(color: CustomColors.yellow, width: 2),
                             ),
-                            hintStyle: CustomTextStyles.Title2(CustomColors.gray30),
+                            hintStyle: CustomTextStyles.Title2(color: CustomColors.gray30),
                             hintText: '코멘트 입력 (30자)',
                           ),
                         ),
@@ -68,7 +68,7 @@ class CommentModal extends CustomModal {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text('완료', style: CustomTextStyles.Title3(CustomColors.black))
+                              Text('완료', style: CustomTextStyles.Title3(color: CustomColors.black))
                             ],
                           ),
                         )

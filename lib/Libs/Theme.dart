@@ -41,16 +41,17 @@ class CustomColors {
 }
 
 class CustomTextStyles {
-  static TextStyle LargeTitle(Color color) => TextStyle(fontSize: 32, height: 1.0, letterSpacing: 2.0, color: color);
-  static TextStyle Title1(Color color) => TextStyle(fontSize: 24, height: 1.0, letterSpacing: -0.25, color: color);
-  static TextStyle Title2(Color color) => TextStyle(fontSize: 22, height: 1.0, letterSpacing: -0.25, color: color);
-  static TextStyle Title3(Color color) => TextStyle(fontSize: 20, height: 1.0, letterSpacing: -0.25, color: color);
-  static TextStyle Headline(Color color) => TextStyle(fontSize: 18, height: 1.0, letterSpacing: 0, color: color);
-  static TextStyle Body1(Color color) => TextStyle(fontSize: 17, height: 1.0, letterSpacing: -0.25, color: color);
-  static TextStyle Body2(Color color) => TextStyle(fontSize: 16, height: 1.0, letterSpacing: -0.25, color: color);
-  static TextStyle Body3(Color color) => TextStyle(fontSize: 14, height: 1.0, letterSpacing: -0.25, color: color);
-  static TextStyle Caption1(Color color) => TextStyle(fontSize: 13, height: 1.0, letterSpacing: -0.25, color: color);
-  static TextStyle Caption2(Color color) => TextStyle(fontSize: 12, height: 1.0, letterSpacing: -0.25, color: color);
+  static Color defaultColor = CustomColors.white;
+  static TextStyle LargeTitle({ Color? color }) => TextStyle(fontSize: 32, height: 1.0, letterSpacing: 2.0, color: color ?? defaultColor);
+  static TextStyle Title1({ Color? color }) => TextStyle(fontSize: 24, height: 1.0, letterSpacing: -0.25, color: color ?? defaultColor);
+  static TextStyle Title2({ Color? color }) => TextStyle(fontSize: 22, height: 1.0, letterSpacing: -0.25, color: color ?? defaultColor);
+  static TextStyle Title3({ Color? color }) => TextStyle(fontSize: 20, height: 1.0, letterSpacing: -0.25, color: color ?? defaultColor);
+  static TextStyle Headline({ Color? color }) => TextStyle(fontSize: 18, height: 1.0, letterSpacing: 0, color: color ?? defaultColor);
+  static TextStyle Body1({ Color? color }) => TextStyle(fontSize: 17, height: 1.0, letterSpacing: -0.25, color: color ?? defaultColor);
+  static TextStyle Body2({ Color? color }) => TextStyle(fontSize: 16, height: 1.0, letterSpacing: -0.25, color: color ?? defaultColor);
+  static TextStyle Body3({ Color? color }) => TextStyle(fontSize: 14, height: 1.0, letterSpacing: -0.25, color: color ?? defaultColor);
+  static TextStyle Caption1({ Color? color }) => TextStyle(fontSize: 13, height: 1.0, letterSpacing: -0.25, color: color ?? defaultColor);
+  static TextStyle Caption2({ Color? color }) => TextStyle(fontSize: 12, height: 1.0, letterSpacing: -0.25, color: color ?? defaultColor);
 }
 
 class AppBarDesign {

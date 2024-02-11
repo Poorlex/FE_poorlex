@@ -24,7 +24,7 @@ class UserItem extends StatelessWidget {
         SizedBox(width: 6,),
         SizedBox(width: 16, height: 16, child: icon),
         SizedBox(width: 6,),
-        Text(name, style: TextStyle(color: CustomColors.white))
+        Text(name, style: CustomTextStyles.Body3())
       ]
     );
   }
@@ -45,7 +45,7 @@ class UserItemNameIcon extends StatelessWidget {
     return Row(mainAxisAlignment: MainAxisAlignment.start, crossAxisAlignment: CrossAxisAlignment.center, children: [
       SizedBox(width: 16, height: 16, child: icon),
       SizedBox(width: 6,),
-      Text(name, style: TextStyle(color: CustomColors.purpleLight))
+      Text(name, style: CustomTextStyles.Body3(color: CustomColors.purpleLight))
     ]
     );
   }
@@ -99,7 +99,7 @@ class LevelProfile extends StatelessWidget {
                 Container(width: size.toDouble(), decoration: BoxDecoration(border: Border.all(color: CustomColors.yellowDark, width: 4)), child:
                   Container(padding: EdgeInsets.all(4), color: CustomColors.yellow, child:
                     Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                      Text(levels[level - 1].label, style: TextStyle(fontSize: 11))
+                      Text(levels[level - 1].label, style: CustomTextStyles.Body3(color: CustomColors.black))
                     ]),
                   )),
               )

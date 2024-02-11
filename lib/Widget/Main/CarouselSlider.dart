@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:poorlex/Libs/Theme.dart';
 
 import 'package:poorlex/Widget/Main/BattleBox.dart';
 import 'package:poorlex/Widget/Main/EmptyBattle.dart';
@@ -31,7 +32,7 @@ class _MainCarouselSliderState extends State<MainCarouselSlider> {
     return Column(children: [
       Padding(padding: EdgeInsets.symmetric(vertical: 9, horizontal: 23), child:
         Row(children: [
-          Text('참여 중인 배틀 (${idx + 1}/3)', style: TextStyle(fontSize: 14))
+          Text('참여 중인 배틀 (${idx + 1}/3)', style: CustomTextStyles.Body3(color: CustomColors.black))
         ]),
       ),
       CarouselSlider(

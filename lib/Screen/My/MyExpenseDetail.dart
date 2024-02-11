@@ -45,9 +45,9 @@ class _MyExpenseDetailPageState extends State<MyExpenseDetailPage> {
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text('2023.08.12 (일)', style: CustomTextStyles.Caption1(CustomColors.gray50)),
+                Text('2023.08.12 (일)', style: CustomTextStyles.Caption1(color: CustomColors.gray50)),
                 SizedBox(height: 6),
-                Text('24,370원', style: CustomTextStyles.Headline(CustomColors.white)),
+                Text('24,370원', style: CustomTextStyles.Headline()),
               ]
             ),
             IconButton(
@@ -71,7 +71,7 @@ class _MyExpenseDetailPageState extends State<MyExpenseDetailPage> {
                       Text('''
 오늘도 고생했다!
 힘들었지만 괜찮아 ㅎㅎ
-                      ''', style: CustomTextStyles.Body3(CustomColors.white)
+                      ''', style: CustomTextStyles.Body3()
                       ),
                       SizedBox(height: 24),
                       Row(
@@ -129,7 +129,7 @@ class OptionButtonModal extends StatelessWidget {
                     child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text('수정', style: CustomTextStyles.Headline(CustomColors.yellow))
+                          Text('수정', style: CustomTextStyles.Headline(color: CustomColors.yellow))
                         ]
                     ),
                   )
@@ -140,7 +140,7 @@ class OptionButtonModal extends StatelessWidget {
                     child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text('삭제', style: CustomTextStyles.Headline(CustomColors.gray30))
+                          Text('삭제', style: CustomTextStyles.Headline(color: CustomColors.gray30))
                         ]
                     ),
                   )

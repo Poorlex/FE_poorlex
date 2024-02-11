@@ -26,9 +26,9 @@ class _MyPageMyAuthState extends State<MyPageMyAuth> {
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Text('내 인증', style: TextStyle(color: CustomColors.white, fontSize: 18)),
+            Text('내 인증', style: CustomTextStyles.Headline()),
             SizedBox(width: 10),
-            Text('${samples.length}', style: TextStyle(color: CustomColors.purpleLight, fontSize: 18)),
+            Text('${samples.length}', style: CustomTextStyles.Headline(color: CustomColors.purpleLight)),
           ],
         ),
         Row(
@@ -38,9 +38,9 @@ class _MyPageMyAuthState extends State<MyPageMyAuth> {
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Text('2023.08.09 (목)', style: TextStyle(color: CustomColors.gray50, fontSize: 13)),
+                      Text('2023.08.09 (목)', style: CustomTextStyles.Caption1(color: CustomColors.gray50)),
                       SizedBox(height: 13),
-                      Text('9.000원', style: TextStyle(color: CustomColors.white, fontSize: 18)),
+                      Text('9.000원', style: CustomTextStyles.Headline()),
                     ],
                   )
                 )
@@ -51,9 +51,9 @@ class _MyPageMyAuthState extends State<MyPageMyAuth> {
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Text('2023.08.09 (목)', style: TextStyle(color: CustomColors.gray50, fontSize: 13)),
+                      Text('2023.08.09 (목)', style: CustomTextStyles.Caption1(color: CustomColors.gray50)),
                       SizedBox(height: 13),
-                      Text('9.000원', style: TextStyle(color: CustomColors.white, fontSize: 18)),
+                      Text('9.000원', style: CustomTextStyles.Headline()),
                     ],
                   )
                 )
@@ -69,9 +69,9 @@ class _MyPageMyAuthState extends State<MyPageMyAuth> {
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Text('2023.08.09 (목)', style: TextStyle(color: CustomColors.gray50, fontSize: 13)),
+                      Text('2023.08.09 (목)', style: CustomTextStyles.Caption1(color: CustomColors.gray50)),
                       SizedBox(height: 13),
-                      Text('9.000원', style: TextStyle(color: CustomColors.white, fontSize: 18)),
+                      Text('9.000원', style: CustomTextStyles.Headline()),
                     ],
                   )
                 )
@@ -82,9 +82,9 @@ class _MyPageMyAuthState extends State<MyPageMyAuth> {
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Text('2023.08.09 (목)', style: TextStyle(color: CustomColors.gray50, fontSize: 13)),
+                      Text('2023.08.09 (목)', style: CustomTextStyles.Caption1(color: CustomColors.gray50)),
                       SizedBox(height: 13),
-                      Text('9.000원', style: TextStyle(color: CustomColors.white, fontSize: 18)),
+                      Text('9.000원', style: CustomTextStyles.Headline()),
                     ],
                   )
                 )
@@ -102,7 +102,7 @@ class _MyPageMyAuthState extends State<MyPageMyAuth> {
               padding: EdgeInsets.symmetric(vertical: 14),
               child:
                 Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                  Text('지출 전체 보기', style: TextStyle(color: CustomColors.yellow, fontSize: 14)),
+                  Text('지출 전체 보기', style: CustomTextStyles.Body3(color: CustomColors.yellow)),
                   SizedBox(width: 5),
                   CustomIcon(icon: 'arrow-game-right', width: 15, height: 15, color: CustomColors.yellowStr)
                 ]),

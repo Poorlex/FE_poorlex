@@ -26,7 +26,7 @@ class BattleMaking extends GetView {
         title: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('배틀방 만들기', style: CustomTextStyles.Body1(CustomColors.white))
+            Text('배틀방 만들기', style: CustomTextStyles.Body1())
           ],
         ),
       ),
@@ -34,7 +34,7 @@ class BattleMaking extends GetView {
         width: double.infinity,
         height: 52,
         child: ElevatedButton(
-          child: Obx(() => Text(con.battleMakingIndex().BattleIndex == 4 ? '시작' : '다음', style: CustomTextStyles.Body3(CustomColors.black))),
+          child: Obx(() => Text(con.battleMakingIndex().BattleIndex == 4 ? '시작' : '다음', style: CustomTextStyles.Body3(color: CustomColors.black))),
           style: ButtonStyle(backgroundColor: MaterialStateProperty.all(CustomColors.yellow)),
           onPressed: () {
             con.changeBattleMakingIndex();

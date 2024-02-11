@@ -25,7 +25,7 @@ class EmptyBattle extends StatelessWidget {
                   onPressed: () {},
                 ),
                 OutlinedButton(
-                  child: Text('배틀 방 만들기', style: TextStyle(color: Color.fromARGB(208, 246, 240, 240), fontSize: 18)),
+                  child: Text('배틀 방 만들기', style: CustomTextStyles.Headline(color: CustomColors.gray70)),
                   onPressed: () {},
                 )
               ])

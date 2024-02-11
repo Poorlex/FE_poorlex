@@ -52,7 +52,7 @@ class BattleMoney extends GetView {
                 },
                 child: Row(
                   children: [
-                    Text(item.label, style: CustomTextStyles.Body3(isSelected ? CustomColors.black : CustomColors.white)),
+                    Text(item.label, style: CustomTextStyles.Body3(color: isSelected ? CustomColors.black : CustomColors.white)),
                     item.icon == null ? Container() : item.icon as Image
                   ],
                 ),

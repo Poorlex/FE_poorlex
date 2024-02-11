@@ -16,7 +16,7 @@ class BudgetTooltip extends StatelessWidget {
               Container(width: 214, height: 26, child:
                 Row(mainAxisSize: MainAxisSize.min, mainAxisAlignment: MainAxisAlignment.start, crossAxisAlignment: CrossAxisAlignment.start, children: [
                   Opacity(opacity: 0.90, child:
-                    Text('예산을 설정해야 배틀이 가능해요!', textAlign: TextAlign.center, style: TextStyle(color: CustomColors.white, fontSize: 14, fontFamily: 'NeoDunggeunmo Pro', fontWeight: FontWeight.w400, height: 1.86)),
+                    Text('예산을 설정해야 배틀이 가능해요!', textAlign: TextAlign.center, style: CustomTextStyles.Body3()),
                   ),
                 ]),
               ),

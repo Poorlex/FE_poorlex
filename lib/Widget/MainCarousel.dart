@@ -28,7 +28,7 @@ class _MainCarouselState extends State<MainCarousel> {
   Widget build(BuildContext context) {
     return Padding(padding: EdgeInsets.symmetric(horizontal: 10, vertical: 0), child:
       Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Text('참여 중인 배틀', style: TextStyle(fontSize: 14)),
+        Text('참여 중인 배틀', style: CustomTextStyles.Body3(color: CustomColors.black)),
         Expanded(child:
           ListView.separated(scrollDirection: Axis.horizontal, physics: BouncingScrollPhysics(),
               itemBuilder: (context, idx) {
@@ -49,33 +49,33 @@ class _MainCarouselState extends State<MainCarousel> {
                                   ),
                                   width: 60, height: 70, child:
                                   Column(mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.center, children: [
-                                    Text(samples[idx][0], style: TextStyle(fontSize: 35)),
-                                    Text('만원', style: TextStyle(fontSize: 20))
+                                    Text(samples[idx][0], style: CustomTextStyles.LargeTitle(color: CustomColors.black)),
+                                    Text('만원', style: CustomTextStyles.Title3(color: CustomColors.black))
                                   ]),
                                 )
                               ]),
                               SizedBox(width: 20),
                               Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
                                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                                  Text(samples[idx][1], style: TextStyle(color: CustomColors.white, fontSize: 20)),
+                                  Text(samples[idx][1], style: CustomTextStyles.Title3()),
                                   SizedBox(height: 13),
-                                  Text('존버 금액 : ${samples[idx][2]} 원', style: TextStyle(color: CustomColors.white.withOpacity(0.7), fontSize: 13)),
+                                  Text('존버 금액 : ${samples[idx][2]} 원', style: CustomTextStyles.Caption1(color: CustomColors.white.withOpacity(0.7))),
                                 ]),
                               ]),
                             ]),
                             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
                               Row(children: [
                                 Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                                  Text('${samples[idx][3]}위 / 20명', style: TextStyle(color: CustomColors.white, fontSize: 25)),
+                                  Text('${samples[idx][3]}위 / 20명', style: CustomTextStyles.Title1()),
                                   SizedBox(width: 20),
                                   Icon(Icons.chat_outlined, color: CustomColors.white, size: 18),
-                                  Text(samples[idx][3], style: TextStyle(color: CustomColors.white, fontSize: 18)),
+                                  Text(samples[idx][3], style: CustomTextStyles.Headline()),
                                 ]),
                               ]),
                               Padding(padding: EdgeInsets.symmetric(horizontal: 20),
                                 child: OutlinedButton(
                                   style: OutlinedButton.styleFrom(side: BorderSide(width: 1.0, color: CustomColors.yellow)), child:
-                                  Text('입장', style: TextStyle(color: CustomColors.yellow, fontSize: 20)),
+                                  Text('입장', style: CustomTextStyles.Title3(color: CustomColors.yellow)),
                                   onPressed: () {},
                                 )
                               )

@@ -101,12 +101,12 @@ class _PickerModalState extends State<PickerModal> {
             bool isSelected = year.toString() == DateFormat('yyyy').format(DateTime.fromMillisecondsSinceEpoch(widget.current));
             if (isSelected) {
               return ElevatedButton(style: ElevatedButton.styleFrom(backgroundColor: CustomColors.black), child:
-                Text(year.toString() + '년', style: TextStyle(fontSize: 16, color: CustomColors.white)),
+                Text(year.toString() + '년', style: CustomTextStyles.Body2()),
                 onPressed: () => _select('year', year),
               );
             } else {
               return TextButton(child:
-                Text(year.toString() + '년', style: TextStyle(fontSize: 16, color: CustomColors.black)),
+                Text(year.toString() + '년', style: CustomTextStyles.Body2()),
                 onPressed: () => _select('year', year),
               );
             }
@@ -124,12 +124,12 @@ class _PickerModalState extends State<PickerModal> {
               bool isSelected = month.toString() == DateFormat('M').format(DateTime.fromMillisecondsSinceEpoch(widget.current));
               if (isSelected) {
                 return ElevatedButton(style: ElevatedButton.styleFrom(backgroundColor: CustomColors.black), child:
-                  Text(month.toString() + '월', style: TextStyle(fontSize: 16, color: CustomColors.white)),
+                  Text(month.toString() + '월', style: CustomTextStyles.Body2()),
                   onPressed: () => _select('month', month)
                 );
               } else {
                 return TextButton(child:
-                  Text(month.toString() + '월', style: TextStyle(fontSize: 16, color: CustomColors.black)),
+                  Text(month.toString() + '월', style: CustomTextStyles.Body2(color: CustomColors.black)),
                   onPressed: () => _select('month', month),
                 );
               }
@@ -148,12 +148,12 @@ class _PickerModalState extends State<PickerModal> {
                 bool isSelected = day.toString() == DateFormat('D').format(DateTime.fromMillisecondsSinceEpoch(widget.current));
                 if (isSelected) {
                   return ElevatedButton(style: ElevatedButton.styleFrom(backgroundColor: CustomColors.black), child:
-                    Text(day.toString() + '일', style: TextStyle(fontSize: 16, color: CustomColors.white)),
+                    Text(day.toString() + '일', style: CustomTextStyles.Body2()),
                     onPressed: () => _select('day', day)
                   );
                 } else {
                   return TextButton(child: Text(day.toString() + '일', style:
-                    TextStyle(fontSize: 16, color: CustomColors.black)),
+                    CustomTextStyles.Body2(color: CustomColors.black)),
                     onPressed: () => _select('day', day),
                   );
                 }
@@ -172,7 +172,7 @@ class _PickerModalState extends State<PickerModal> {
               SizedBox(height: 16),
               Container(child: (
                 ElevatedButton(style: ElevatedButton.styleFrom(backgroundColor: CustomColors.yellow, minimumSize: Size.fromHeight(50)), child:
-                  Text('확인', style: TextStyle(color: CustomColors.black, fontSize: 18)),
+                  Text('확인', style: CustomTextStyles.Headline(color: CustomColors.black)),
                   onPressed: () {
                     widget.select(widget.current);
                     Navigator.pop(context);

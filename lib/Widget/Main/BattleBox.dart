@@ -25,12 +25,12 @@ class BattleBox extends StatelessWidget {
                     Column(children: [
                       Padding(padding: EdgeInsets.symmetric(vertical: 20, horizontal: 14), child:
                         Container(
-                          decoration: BoxDecoration(color: Colors.amber, borderRadius: BorderRadius.circular(10), border: Border.all(color: Colors.amber.shade800, width: 2)),
+                          decoration: BoxDecoration(color: CustomColors.yellow, borderRadius: BorderRadius.circular(10), border: Border.all(color: CustomColors.yellow, width: 2)),
                           width: 48, child:
                           Column(mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              Text(sample[0], style: const TextStyle(fontSize: 27)),
-                              Text('만원', style: TextStyle(fontSize: 15))
+                              Text(sample[0], style: CustomTextStyles.LargeTitle(color: CustomColors.black)),
+                              Text('만원', style: CustomTextStyles.Body3(color: CustomColors.black))
                             ]
                           )
                         ),
@@ -38,9 +38,9 @@ class BattleBox extends StatelessWidget {
                     ]),
                     Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
                       Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                        Text(sample[1], style: TextStyle(color: CustomColors.white, fontSize: 18)),
+                        Text(sample[1], style: CustomTextStyles.Headline()),
                         SizedBox(height: 13),
-                        Text('존버 금액 : ${sample[2]} 원', style: TextStyle(color: CustomColors.white.withOpacity(0.7), fontSize: 15)),
+                        Text('존버 금액 : ${sample[2]} 원', style: CustomTextStyles.Body3(color: CustomColors.white.withOpacity(0.7))),
                       ]),
                     ]),
                   ]),
@@ -48,16 +48,16 @@ class BattleBox extends StatelessWidget {
                     Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
                       Row(children: [
                         Row(children: [
-                          Text('${sample[3]}위 / 20명', style: TextStyle(color: CustomColors.white, fontSize: 24)),
+                          Text('${sample[3]}위 / 20명', style: CustomTextStyles.Title1()),
                           SizedBox(width: 28),
                           Icon(Icons.chat_outlined, color: CustomColors.white, size: 16),
                           SizedBox(width: 4),
-                          Text(sample[3], style: TextStyle(color: CustomColors.white, fontSize: 14)),
+                          Text(sample[3], style: CustomTextStyles.Body3()),
                         ]),
                       ]),
                       Padding(padding: EdgeInsets.symmetric(horizontal: 1), child:
                         OutlinedButton(style: OutlinedButton.styleFrom(side: BorderSide(width: 1.0, color: CustomColors.yellow)), child:
-                          Text('입장', style: TextStyle(color: CustomColors.yellow, fontSize: 16)),
+                          Text('입장', style: CustomTextStyles.Body2(color: CustomColors.yellow)),
                           onPressed: () {},
                         )
                       )

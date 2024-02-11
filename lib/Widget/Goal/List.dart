@@ -61,7 +61,7 @@ class GoalListItem extends StatelessWidget {
         children: [
           Container(
             child: Column(mainAxisAlignment: MainAxisAlignment.start, crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Text('에어팟 맥스 사기 🎵 ', style: TextStyle(color: CustomColors.white, fontSize: 14)),
+              Text('에어팟 맥스 사기 🎵 ', style: CustomTextStyles.Body3()),
               SizedBox(height: 14),
               Row(crossAxisAlignment: CrossAxisAlignment.center, mainAxisAlignment: MainAxisAlignment.center, children: [
                 Container(
@@ -69,10 +69,10 @@ class GoalListItem extends StatelessWidget {
                     decoration: BoxDecoration(
                         border: Border.all(color: CustomColors.yellow)
                     ),
-                    child: Text('단기', style: TextStyle(color: CustomColors.yellow, fontSize: 8))
+                    child: Text('단기', style: CustomTextStyles.Caption2(color: CustomColors.yellow))
                 ),
                 SizedBox(width: 10),
-                Text('500,000원', style: TextStyle(color: CustomColors.yellow, fontSize: 20)),
+                Text('500,000원', style: CustomTextStyles.Title3(color: CustomColors.yellow)),
               ]),
               SizedBox(height: 11),
               Row(crossAxisAlignment: CrossAxisAlignment.center, mainAxisAlignment: MainAxisAlignment.center, children: [
@@ -83,9 +83,9 @@ class GoalListItem extends StatelessWidget {
                     </svg>''', width: 14, height: 14,
                 ),
                 SizedBox(width: 6),
-                Text('0개월 남음', style: TextStyle(color: CustomColors.purpleLight, fontSize: 13)),
+                Text('0개월 남음', style: CustomTextStyles.Caption1(color: CustomColors.purpleLight)),
                 SizedBox(width: 17),
-                Text('~ 2023.11.09', style: TextStyle(color: CustomColors.gray41, fontSize: 13)),
+                Text('~ 2023.11.09', style: CustomTextStyles.Caption1(color: CustomColors.gray41)),
               ])
             ])
           ),
@@ -137,7 +137,7 @@ class OptionButtonModal extends StatelessWidget {
                 child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text('수정', style: TextStyle(color: CustomColors.white, fontSize: 18))
+                      Text('수정', style: CustomTextStyles.Headline())
                     ]
                 ),
               )
@@ -148,7 +148,7 @@ class OptionButtonModal extends StatelessWidget {
                   child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text('완료', style: TextStyle(color: CustomColors.green, fontSize: 18))
+                        Text('완료', style: CustomTextStyles.Headline(color: CustomColors.green))
                       ]
                   ),
                 )
@@ -159,7 +159,7 @@ class OptionButtonModal extends StatelessWidget {
                   child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text('삭제', style: TextStyle(color: CustomColors.gray30, fontSize: 18))
+                        Text('삭제', style: CustomTextStyles.Headline(color: CustomColors.gray30))
                       ]
                   )
                 )
