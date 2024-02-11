@@ -65,7 +65,7 @@ class _BudgetPageState extends State<BudgetPage> {
             Center(
               child: Text(
                 "예산 설정하기",
-                style: TextStyle(fontSize: 17),
+                style: CustomTextStyles.Headline(CustomColors.black),
               ),
             ),
           ],
@@ -81,17 +81,9 @@ class _BudgetPageState extends State<BudgetPage> {
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      "배틀을 시작하기 위해\n일주일 동안 사용할 예산을\n설정해 주세요.",
-                      style: TextStyle(
-                          color: CustomColors.white, fontSize: 22, height: 1.5),
-                    ),
-                    SizedBox(
-                      height: 18,
-                    ),
-                    Text("배틀 기간: $battlePeriod",
-                        style:
-                            TextStyle(color: CustomColors.gray41, fontSize: 13)),
+                    Text("배틀을 시작하기 위해\n일주일 동안 사용할 예산을\n설정해 주세요.", style: CustomTextStyles.Title2(CustomColors.white)),
+                    SizedBox(height: 18),
+                    Text("배틀 기간: $battlePeriod", style: CustomTextStyles.Caption1(CustomColors.gray41)),
                     SizedBox(
                       height: 40,
                     ),
@@ -130,8 +122,7 @@ class _BudgetPageState extends State<BudgetPage> {
                               borderSide: BorderSide(color: CustomColors.yellow),
                             ),
                             hintText: _focusNode.hasFocus ? '' : '금액 입력',
-                            hintStyle: TextStyle(
-                                color: CustomColors.gray30, fontSize: 32),
+                            hintStyle: CustomTextStyles.LargeTitle(CustomColors.gray30)
                           ),
                         ),
                         if (_focusNode.hasFocus)
@@ -145,19 +136,13 @@ class _BudgetPageState extends State<BudgetPage> {
                     )
                   ]),
             ),
-            SizedBox(
-              width: double.infinity,
-              height: 50,
-              child: OutlinedButton(
-                style: OutlinedButton.styleFrom(
-                    backgroundColor: CustomColors.yellow),
+            SizedBox(width: double.infinity, height: 50, child:
+              OutlinedButton(
+                style: OutlinedButton.styleFrom(backgroundColor: CustomColors.yellow),
+                child: Text("완료", style: CustomTextStyles.Title3(CustomColors.black)),
                 onPressed: () {
                   Navigator.pop(context, moneyValues);
                 },
-                child: Text(
-                  "완료",
-                  style: TextStyle(color: CustomColors.black, fontSize: 20),
-                ),
               ),
             )
           ],

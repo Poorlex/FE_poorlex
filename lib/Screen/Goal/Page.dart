@@ -30,7 +30,7 @@ class _GoalPageState extends State<GoalPage> {
                   return Container(
                     padding: EdgeInsets.fromLTRB(16, 20, 0, 16),
                     child:
-                        Text('목표', style: TextStyle(fontSize: 24, color: CustomColors.white)),
+                        Text('목표', style: CustomTextStyles.Title1(CustomColors.white)),
                   );
                 }, childCount: 1)),
                 SliverAppBar(

@@ -47,12 +47,12 @@ class _MyPageState extends State<MyPage> {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 2),
+          padding: EdgeInsets.symmetric(horizontal: 15, vertical: 2),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               MyPageProfile(),
-              const Padding(
+              Padding(
                 padding: EdgeInsets.symmetric(horizontal: 10, vertical: 30),
                 child: Column(
                   children: [

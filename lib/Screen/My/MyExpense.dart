@@ -41,7 +41,7 @@ class _MyExpensePageState extends State<MyExpensePage> {
                 icon: CustomIcon(icon: 'arrow-left', width: 26, height: 26, color: CustomColors.whiteStr),
                 onPressed: () {},
             ),
-            Text('내 지출', style: TextStyle(color: CustomColors.white, fontSize: 18)),
+            Text('내 지출', style: CustomTextStyles.Headline(CustomColors.white)),
             SizedBox(width: 26)
           ],
         ),

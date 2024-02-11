@@ -61,7 +61,7 @@ class _MyExpenseInputPageState extends State<MyExpenseInputPage> {
                 icon: CustomIcon(icon: 'close', width: 26, height: 26, color: CustomColors.whiteStr),
                 onPressed: () {},
               ),
-              Text('지출 입력하기', style: TextStyle(color: CustomColors.white, fontSize: 18)),
+              Text('지출 입력하기', style: CustomTextStyles.Headline(CustomColors.white)),
               SizedBox(width: 26)
             ],
           ),
@@ -77,7 +77,7 @@ class _MyExpenseInputPageState extends State<MyExpenseInputPage> {
                       Row(children: [
                         Container(margin: EdgeInsets.only(left: 2), // 원하는 마진 값으로 조정
                           child:
-                          Text('오늘은 ', style: TextStyle(color: CustomColors.yellow, fontSize: 24),
+                          Text('오늘은 ', style: CustomTextStyles.Title1(CustomColors.yellow),
                           ),
                         ),
                       ],
@@ -88,10 +88,10 @@ class _MyExpenseInputPageState extends State<MyExpenseInputPage> {
                             keyboardType: TextInputType.number,
                             inputFormatters: <TextInputFormatter>[FilteringTextInputFormatter.digitsOnly],
                             cursorColor: CustomColors.yellow,
-                            style: TextStyle(color: CustomColors.yellow, fontSize: 20),
+                            style: CustomTextStyles.Title3(CustomColors.yellow),
                             decoration: InputDecoration(
                               hintText: '금액 입력',
-                              hintStyle: TextStyle(color: CustomColors.gray41),
+                              hintStyle: CustomTextStyles.Body3(CustomColors.gray41),
                               iconColor: CustomColors.yellow,
                               border: UnderlineInputBorder(borderSide: BorderSide(color: CustomColors.yellow, width: 2.0),),
                               enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: CustomColors.yellow, width: 2.0),),
@@ -105,10 +105,10 @@ class _MyExpenseInputPageState extends State<MyExpenseInputPage> {
                       Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
                         Row(mainAxisAlignment: MainAxisAlignment.start, children: [
                           Container(width: 80, child:
-                          Text('지출 일자', style: TextStyle(color: CustomColors.gray50, fontSize: 16)),
+                          Text('지출 일자', style: CustomTextStyles.Body2(CustomColors.gray50)),
                           ),
                           SizedBox(width: 30),
-                          Text('2023.07.28 (금)', style: TextStyle(color: CustomColors.white, fontSize: 16)),
+                          Text('2023.07.28 (금)', style: CustomTextStyles.Body2(CustomColors.white)),
                         ]),
                         Picker(type: 'DAY', select: () {}, child:
                         CustomIcon(icon: 'arrow-circle-down', width: 16, height: 16, color: CustomColors.yellowStr)
@@ -119,15 +119,15 @@ class _MyExpenseInputPageState extends State<MyExpenseInputPage> {
                       SizedBox(height: 20),
                       Row(mainAxisAlignment: MainAxisAlignment.start, children: [
                         Container(width: 80, child:
-                        Text('메모', style: TextStyle(color: CustomColors.gray50, fontSize: 16))
+                        Text('메모', style: CustomTextStyles.Body2(CustomColors.gray50))
                         ),
                         SizedBox(width: 30),
                         Flexible(flex: 1, child:
                         TextField(
-                            style: TextStyle(fontSize: 14, color: CustomColors.white),
+                            style: CustomTextStyles.Body3(CustomColors.white),
                             decoration: InputDecoration(
                               hintText: '입력하세요',
-                              hintStyle: TextStyle(color: CustomColors.gray41, fontSize: 16),
+                              hintStyle: CustomTextStyles.Body2(CustomColors.gray41),
                               border: InputBorder.none,
                             )
                         )
@@ -138,7 +138,7 @@ class _MyExpenseInputPageState extends State<MyExpenseInputPage> {
                       SizedBox(height: 20),
                       Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                         Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                          Text('인증 사진', style: TextStyle(color: CustomColors.gray50, fontSize: 16)),
+                          Text('인증 사진', style: CustomTextStyles.Body2(CustomColors.gray50)),
                           IconButton(icon:
                           CustomIcon(icon: 'arrow-circle-down', width: 16, height: 16, color: CustomColors.yellowStr),
                             style: IconButton.styleFrom(padding: EdgeInsets.zero, minimumSize: Size.zero),

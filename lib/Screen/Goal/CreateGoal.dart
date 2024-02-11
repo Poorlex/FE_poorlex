@@ -41,7 +41,7 @@ class _MyExpandingState extends State<Expanding> {
         title: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('배틀방 만들기', style: TextStyle(color: CustomColors.white, fontSize: 17))
+            Text('배틀방 만들기', style: CustomTextStyles.Body1(CustomColors.white))
           ],
         ),
       ),
@@ -54,7 +54,7 @@ class _MyExpandingState extends State<Expanding> {
             },
             child: Obx(() => Text(
                 con.goalIndexModel.value.goalIndex == 4 ? '시작' : '다음',
-                style: TextStyle(color: Colors.black))),
+                style: CustomTextStyles.Body3(Colors.black))),
             style: ButtonStyle(
               backgroundColor: MaterialStateProperty.all(CustomColors.yellow),
             )),

@@ -31,9 +31,7 @@ class _MyExpenseDetailPageState extends State<MyExpenseDetailPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: CustomColors.black,
-      bottomNavigationBar: BottomBar(
-        nowPage: 4,
-      ),
+      bottomNavigationBar: BottomBar(nowPage: 4),
       appBar: AppBar(
         backgroundColor: CustomColors.black,
         title: Row(
@@ -47,9 +45,9 @@ class _MyExpenseDetailPageState extends State<MyExpenseDetailPage> {
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text('2023.08.12 (일)', style: TextStyle(color: CustomColors.gray50, fontSize: 13)),
+                Text('2023.08.12 (일)', style: CustomTextStyles.Caption1(CustomColors.gray50)),
                 SizedBox(height: 6),
-                Text('24,370원', style: TextStyle(color: CustomColors.white, fontSize: 18)),
+                Text('24,370원', style: CustomTextStyles.Headline(CustomColors.white)),
               ]
             ),
             IconButton(
@@ -73,7 +71,8 @@ class _MyExpenseDetailPageState extends State<MyExpenseDetailPage> {
                       Text('''
 오늘도 고생했다!
 힘들었지만 괜찮아 ㅎㅎ
-                      ''', style: TextStyle(color: CustomColors.white)),
+                      ''', style: CustomTextStyles.Body3(CustomColors.white)
+                      ),
                       SizedBox(height: 24),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -130,7 +129,7 @@ class OptionButtonModal extends StatelessWidget {
                     child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text('수정', style: TextStyle(color: CustomColors.yellow, fontSize: 18))
+                          Text('수정', style: CustomTextStyles.Headline(CustomColors.yellow))
                         ]
                     ),
                   )
@@ -141,7 +140,7 @@ class OptionButtonModal extends StatelessWidget {
                     child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text('삭제', style: TextStyle(color: CustomColors.gray30, fontSize: 18))
+                          Text('삭제', style: CustomTextStyles.Headline(CustomColors.gray30))
                         ]
                     ),
                   )
