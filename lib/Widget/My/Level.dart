@@ -12,7 +12,7 @@ class _MyPageLevelState extends State<MyPageLevel> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(color: CustomColors.gray41.withOpacity(90), borderRadius: BorderRadius.circular(10)), child:
+      decoration: BoxDecoration(color: CustomColors.gray41.withOpacity(0.9), borderRadius: BorderRadius.circular(10)), child:
         Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -59,7 +59,7 @@ class _MyPageLevelState extends State<MyPageLevel> {
                   SizedBox(height: 20),
                   Container(
                     decoration: BoxDecoration(
-                      color: CustomColors.gray41.withOpacity(166),
+                      color: CustomColors.gray41.withOpacity(0.9),
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: Padding(
