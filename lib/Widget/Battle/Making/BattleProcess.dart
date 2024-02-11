@@ -4,6 +4,8 @@ import 'package:get/get_state_manager/get_state_manager.dart';
 
 import 'package:poorlex/Controller/Battle.dart';
 
+import 'package:poorlex/Libs/Theme.dart';
+
 class BattleProcess extends GetView {
   const BattleProcess({super.key});
 
@@ -24,10 +26,10 @@ class BattleProcess extends GetView {
                   ...[]
                 else if (con.battleMakingIndex().BattleIndex ==
                     colors[index]) ...[
-                  Container(width: 5, height: 5, decoration: BoxDecoration(color: Color(0xffffd600))),
+                  Container(width: 5, height: 5, decoration: BoxDecoration(color: CustomColors.yellow)),
                   SizedBox(width: 10),
                 ] else ...[
-                  Container(width: 5, height: 5, decoration: BoxDecoration(color: Color(0xff333333))),
+                  Container(width: 5, height: 5, decoration: BoxDecoration(color: CustomColors.gray20)),
                   SizedBox(width: 10),
                 ],
               ],

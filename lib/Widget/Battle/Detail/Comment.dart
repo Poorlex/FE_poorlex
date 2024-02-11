@@ -32,10 +32,10 @@ class CommentModal extends CustomModal {
                       children: [
                         Text(
                             isAgree ? '칭찬하기 사유' : '혼내기 사유',
-                            style: TextStyle(fontSize: 14, color: CustomColors.gray40)
+                            style: CustomTextStyles.Body3(CustomColors.gray40)
                         ),
                         TextField(
-                          style: TextStyle(fontSize: 22, color: CustomColors.white),
+                          style: CustomTextStyles.Title2(CustomColors.white),
                           decoration: InputDecoration(
                             enabledBorder: UnderlineInputBorder(
                               borderSide: BorderSide(color: CustomColors.yellow, width: 2),
@@ -43,7 +43,7 @@ class CommentModal extends CustomModal {
                             focusedBorder: UnderlineInputBorder(
                               borderSide: BorderSide(color: CustomColors.yellow, width: 2),
                             ),
-                            hintStyle: TextStyle(fontSize: 22, color: CustomColors.gray30),
+                            hintStyle: CustomTextStyles.Title2(CustomColors.gray30),
                             hintText: '코멘트 입력 (30자)',
                           ),
                         ),
@@ -51,11 +51,7 @@ class CommentModal extends CustomModal {
                     ),
                   )
                 ),
-                TextButton(
-                    style: TextButton.styleFrom(
-                        padding: EdgeInsets.zero
-                    ),
-                    onPressed: () {},
+                TextButton(style: TextButton.styleFrom(padding: EdgeInsets.zero),
                     child: Stack(
                       children: [
                         Positioned(
@@ -72,12 +68,13 @@ class CommentModal extends CustomModal {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text('완료', style: TextStyle(fontSize: 20, color: CustomColors.black))
+                              Text('완료', style: CustomTextStyles.Title3(CustomColors.black))
                             ],
                           ),
                         )
                       ],
-                    )
+                    ),
+                    onPressed: () {},
                 )
               ]
           )

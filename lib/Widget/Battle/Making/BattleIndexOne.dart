@@ -25,24 +25,24 @@ class BattleIndexOne extends GetView {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('배틀방의', style: TextStyle(fontSize: 22, color: CustomColors.white)),
+              Text('배틀방의', style: CustomTextStyles.Title2(CustomColors.white)),
               SizedBox(height: 10),
-              Text('기본 정보를 정해볼까요?', style: TextStyle(fontSize: 22, color: Colors.white)),
+              Text('기본 정보를 정해볼까요?', style: CustomTextStyles.Title2(Colors.white)),
             ],
           ),
         ),
       ),
       SizedBox(height: 12),
-      Text('배틀방 제목', style: TextStyle(fontSize: 14, color: CustomColors.gray41)),
+      Text('배틀방 제목', style: CustomTextStyles.Body3(CustomColors.gray41)),
       SizedBox(height: 20),
       TextField(
         controller: _titleController,
         cursorColor: CustomColors.yellow,
-        style: TextStyle(color: CustomColors.yellow, fontSize: 20),
+        style: CustomTextStyles.Title3(CustomColors.yellow),
         maxLength: 12,
         decoration: InputDecoration(
           hintText: '방제목 입력 (최대 12자)',
-          hintStyle: TextStyle(color: CustomColors.gray41),
+          hintStyle: CustomTextStyles.Body3(CustomColors.gray41),
           iconColor: CustomColors.yellow,
           border: UnderlineInputBorder(
             borderSide: BorderSide(color: CustomColors.yellow, width: 2.0),
@@ -56,7 +56,7 @@ class BattleIndexOne extends GetView {
         ),
       ),
       SizedBox(height: 20),
-      Text('배틀방 사진', style: TextStyle(fontSize: 14, color: CustomColors.yellow)),
+      Text('배틀방 사진', style: CustomTextStyles.Body3(CustomColors.yellow)),
       SizedBox(height: 20),
       Obx(() {
         if (con.selectedImage.value != null) {
@@ -83,7 +83,7 @@ class BattleIndexOne extends GetView {
         }
       }),
       SizedBox(height: 40),
-      Text('배틀방 소개', style: TextStyle(fontSize: 14, color: CustomColors.gray41)),
+      Text('배틀방 소개', style: CustomTextStyles.Body3(CustomColors.gray41)),
       SizedBox(
         width: double.infinity,
         height: 150,
@@ -91,11 +91,11 @@ class BattleIndexOne extends GetView {
           maxLines: 9,
           controller: _contentController,
           cursorColor: CustomColors.yellow,
-          style: TextStyle(color: CustomColors.yellow, fontSize: 20),
+          style: CustomTextStyles.Title3(CustomColors.yellow),
           maxLength: 200,
           decoration: InputDecoration(
             hintText: '내용을 입력해주세요',
-            hintStyle: TextStyle(color: CustomColors.gray41),
+            hintStyle: CustomTextStyles.Body3(CustomColors.gray41),
             iconColor: CustomColors.yellow,
             counterText: "200",
             border: UnderlineInputBorder(

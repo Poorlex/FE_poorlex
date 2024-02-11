@@ -17,7 +17,7 @@ class BattleMakingFinished extends GetView {
           ),
         ),
         SizedBox(height: 30),
-        Text('배틀방 완성!', style: TextStyle(color: CustomColors.white, fontSize: 22))
+        Text('배틀방 완성!', style: CustomTextStyles.Title2(CustomColors.white))
       ]),
     );
   }

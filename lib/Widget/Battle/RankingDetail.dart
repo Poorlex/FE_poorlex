@@ -75,8 +75,8 @@ class _RankingDetailWidget extends State<RankingDetailWidget>
       controller: tabController,
       labelColor: CustomColors.white,
       labelPadding: EdgeInsets.symmetric(horizontal: 17.5),
-      labelStyle: TextStyle(fontSize: 20, fontFamily: 'NeoDunggeunmoPro-Regular'),
-      unselectedLabelStyle: TextStyle(fontSize: 20, fontFamily: 'NeoDunggeunmoPro-Regular'),
+      labelStyle: CustomTextStyles.Title3(CustomColors.black),
+      unselectedLabelStyle: CustomTextStyles.Title3(CustomColors.black),
       unselectedLabelColor: CustomColors.gray41,
       indicatorSize: TabBarIndicatorSize.label,
       indicatorColor: CustomColors.yellow,
@@ -107,8 +107,8 @@ class _RankingDetailWidget extends State<RankingDetailWidget>
                         width: 36, height: 36, child:
                         Column(mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            Text('7', style: TextStyle(fontSize: 18, color: CustomColors.orangeDark, height: 1.0)),
-                            Text('만원', style: TextStyle(fontSize: 12, color: CustomColors.orangeDark, height: 1.0))
+                            Text('7', style: CustomTextStyles.Headline(CustomColors.orangeDark)),
+                            Text('만원', style: CustomTextStyles.Caption2(CustomColors.orangeDark))
                           ],
                         ),
                       ),
@@ -118,7 +118,7 @@ class _RankingDetailWidget extends State<RankingDetailWidget>
                         Text('빚갚고 돈모으는 절약방', style: TextStyle(fontSize: 18, color: CustomColors.white)),
                         Padding(padding: EdgeInsets.fromLTRB(10, 0, 0, 0), child:
                           Container(color: CustomColors.gray30, width: 34, height: 16, alignment: Alignment.center, child:
-                            Text('D-7', style: TextStyle(fontSize: 14, color: CustomColors.white, height: 1.0))
+                            Text('D-7', style: CustomTextStyles.Body3(CustomColors.white))
                           )
                         )
                       ])
@@ -134,7 +134,7 @@ class _RankingDetailWidget extends State<RankingDetailWidget>
                     Image.asset('assets/ranking/icon_people_20_20.png', width: 20, height: 20),
                   ),
                   Expanded(child:
-                    Text('10/10', style: TextStyle(fontSize: 12, color: CustomColors.white)),
+                    Text('10/10', style: CustomTextStyles.Caption2(CustomColors.white)),
                   ),
                 ])
               ],
@@ -157,10 +157,10 @@ class _RankingDetailWidget extends State<RankingDetailWidget>
                           Image.asset('assets/ranking/icon_lv2_16_16.png', width: 16, height: 16),
                         ),
                         Padding(padding: EdgeInsets.fromLTRB(0, 0, 0, 0), child:
-                          Text('강적금', style: TextStyle(fontSize: 16, color: CustomColors.white)),
+                          Text('강적금', style: CustomTextStyles.Body2(CustomColors.white)),
                         ),
                         Expanded(child:
-                          Text('-1,000', textAlign: TextAlign.right, style: TextStyle(color: CustomColors.purpleLight))
+                          Text('-1,000', textAlign: TextAlign.right, style: CustomTextStyles.Body3(CustomColors.purpleLight))
                         )
                       ])
                   )
@@ -170,7 +170,7 @@ class _RankingDetailWidget extends State<RankingDetailWidget>
               Column(children: [
                   Row(children: [
                     Padding(padding: EdgeInsets.fromLTRB(16, 0, 27, 0), child:
-                      Text('4위', style: TextStyle(fontSize: 16, color: CustomColors.white)),
+                      Text('4위', style: CustomTextStyles.Body2(CustomColors.white)),
                     ),
                     Padding(padding: EdgeInsets.fromLTRB(0, 0, 44, 0), child:
                       Image.asset('assets/ranking/profile_40_40.png', width: 40, height: 40),
@@ -179,10 +179,10 @@ class _RankingDetailWidget extends State<RankingDetailWidget>
                       Image.asset('assets/ranking/icon_lv2_16_16.png', width: 16, height: 16),
                     ),
                     Padding(padding: EdgeInsets.fromLTRB(0, 0, 0, 0), child:
-                      Text('강적금', style: TextStyle(fontSize: 16, color: Colors.white)),
+                      Text('강적금', style: CustomTextStyles.Body2(Colors.white)),
                     ),
                     Expanded(child:
-                      Text('-3,000', textAlign: TextAlign.right, style: TextStyle(color: CustomColors.purpleLight))
+                      Text('-3,000', textAlign: TextAlign.right, style: CustomTextStyles.Body3(CustomColors.purpleLight))
                     ),
                   ]),
                 ],
@@ -192,7 +192,7 @@ class _RankingDetailWidget extends State<RankingDetailWidget>
               Column(children: [
                   Row(children: [
                     Padding(padding: EdgeInsets.fromLTRB(16, 0, 27, 0), child:
-                      Text('5위', style: TextStyle(fontSize: 16, color: CustomColors.white)),
+                      Text('5위', style: CustomTextStyles.Body2(CustomColors.white)),
                     ),
                     Padding(padding: EdgeInsets.fromLTRB(0, 0, 44, 0), child:
                       Image.asset('assets/ranking/profile_40_40.png', width: 40, height: 40),
@@ -201,10 +201,10 @@ class _RankingDetailWidget extends State<RankingDetailWidget>
                       Image.asset('assets/ranking/icon_lv4_16_16.png', width: 16, height: 16),
                     ),
                     Padding(padding: EdgeInsets.fromLTRB(0, 0, 0, 0), child:
-                      Text('강적금', style: TextStyle(fontSize: 16, color: Colors.white)),
+                      Text('강적금', style: CustomTextStyles.Body2(Colors.white)),
                     ),
                     Expanded(child:
-                      Text('-3,200', textAlign: TextAlign.right, style: TextStyle(color: CustomColors.purpleLight))
+                      Text('-3,200', textAlign: TextAlign.right, style: CustomTextStyles.Body3(CustomColors.purpleLight))
                     )
                   ])
                 ]
@@ -217,7 +217,7 @@ class _RankingDetailWidget extends State<RankingDetailWidget>
             Row(children: [
               Expanded(child:
                 ElevatedButton(style: ElevatedButton.styleFrom(backgroundColor: CustomColors.black, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(0))), child:
-                  Text("인증내역", style: TextStyle(color: CustomColors.white, fontSize: 18, letterSpacing: -0.25, height: 1.611), textAlign: TextAlign.center),
+                  Text("인증내역", style: CustomTextStyles.Headline(CustomColors.white), textAlign: TextAlign.center),
                   onPressed: () {
                     setState(() {
                       isAuthenticationPressed = true;
@@ -228,7 +228,7 @@ class _RankingDetailWidget extends State<RankingDetailWidget>
               ),
               Expanded(child:
                 ElevatedButton(style: ElevatedButton.styleFrom(backgroundColor: CustomColors.black, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(0))), child:
-                  Text("나의인증", style: TextStyle(color: CustomColors.white, fontSize: 18, letterSpacing: -0.25, height: 1.611), textAlign: TextAlign.center),
+                  Text("나의인증", style: CustomTextStyles.Headline(CustomColors.white), textAlign: TextAlign.center),
                   onPressed: () {
                       setState(() {
                         isAuthenticationPressed = false;
@@ -244,37 +244,37 @@ class _RankingDetailWidget extends State<RankingDetailWidget>
               Row(children: [
                 Padding(padding: EdgeInsets.fromLTRB(0, 0, 22, 0), child:
                   Container(color: CustomColors.gray20, width: 28, child:
-                    Text("월", style: TextStyle(color: CustomColors.white, fontSize: 18, letterSpacing: -0.25, height: 1.611), textAlign: TextAlign.center)
+                    Text("월", style: CustomTextStyles.Headline(CustomColors.white), textAlign: TextAlign.center)
                   )
                 ),
                 Padding(padding: EdgeInsets.fromLTRB(0, 0, 22, 0), child:
                   Container(color: CustomColors.gray20, width: 28, child:
-                    Text("화", style: TextStyle(color: CustomColors.white, fontSize: 18, letterSpacing: -0.25, height: 1.611), textAlign: TextAlign.center)
+                    Text("화", style: CustomTextStyles.Headline(CustomColors.white), textAlign: TextAlign.center)
                   )
                 ),
                 Padding(padding: EdgeInsets.fromLTRB(0, 0, 22, 0), child:
                   Container(color: CustomColors.gray20, width: 28, child:
-                    Text("수", style: TextStyle(color: CustomColors.white, fontSize: 18, letterSpacing: -0.25, height: 1.611), textAlign: TextAlign.center)
+                    Text("수", style: CustomTextStyles.Headline(CustomColors.white), textAlign: TextAlign.center)
                   ),
                 ),
                 Padding(padding: EdgeInsets.fromLTRB(0, 0, 22, 0), child:
                   Container(color: CustomColors.gray20, width: 28, child:
-                    Text("목", style: TextStyle(color: CustomColors.white, fontSize: 18, letterSpacing: -0.25, height: 1.611), textAlign: TextAlign.center)
+                    Text("목", style: CustomTextStyles.Headline(CustomColors.white), textAlign: TextAlign.center)
                   )
                 ),
                 Padding(padding: EdgeInsets.fromLTRB(0, 0, 22, 0), child:
                   Container(color: CustomColors.gray20, width: 28, child:
-                    Text("금", style: TextStyle(color: CustomColors.white, fontSize: 18, letterSpacing: -0.25, height: 1.611, backgroundColor: CustomColors.gray20), textAlign: TextAlign.center)
+                    Text("금", style: CustomTextStyles.Headline(CustomColors.white), textAlign: TextAlign.center)
                   ),
                 ),
                 Padding(padding: EdgeInsets.fromLTRB(0, 0, 22, 0), child:
                   Container(color: CustomColors.gray20, width: 28, child:
-                    Text("토", style: TextStyle(color: CustomColors.white, fontSize: 18, letterSpacing: -0.25, height: 1.611, backgroundColor: CustomColors.gray20), textAlign: TextAlign.center)
+                    Text("토", style: CustomTextStyles.Headline(CustomColors.white), textAlign: TextAlign.center)
                   )
                 ),
                 Padding(padding: EdgeInsets.fromLTRB(0, 0, 0, 0), child:
                   Container(color: CustomColors.gray20, width: 28, child:
-                    Text("일", style: TextStyle(color: CustomColors.white, fontSize: 18, letterSpacing: -0.25, height: 1.611, backgroundColor: CustomColors.gray20), textAlign: TextAlign.center)
+                    Text("일", style: CustomTextStyles.Headline(CustomColors.white), textAlign: TextAlign.center)
                   )
                 )
               ])
@@ -320,16 +320,16 @@ class GridItemWidget extends StatelessWidget {
                       ),
                       Expanded(child:
                         Center(child:
-                          Text('인증내역(1/7)', style: TextStyle(color: CustomColors.white))
+                          Text('인증내역(1/7)', style: CustomTextStyles.Body3(CustomColors.white))
                         )
                       )
                     ]),
                     Image.asset('assets/ranking/first_profile_60_60.png'),
                     Padding(padding: EdgeInsets.fromLTRB(0, 20, 0, 0), child:
-                      Text("최지출", style: TextStyle(color: CustomColors.white, fontSize: 18))
+                      Text("최지출", style: CustomTextStyles.Headline(CustomColors.white))
                     ),
                     Padding(padding: EdgeInsets.fromLTRB(0, 20, 0, 0), child:
-                      Text("약값 지출 ...", style: TextStyle(color: CustomColors.white, fontSize: 18))
+                      Text("약값 지출 ...", style: CustomTextStyles.Headline(CustomColors.white))
                     ),
                   ]),
                   backgroundColor: CustomColors.black,

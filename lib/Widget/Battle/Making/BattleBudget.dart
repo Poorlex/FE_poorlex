@@ -32,18 +32,13 @@ class BattleBudget extends GetView {
                   width: 62,
                   height: 42,
                   child: OutlinedButton(
-                    style: OutlinedButton.styleFrom(
-                      side: BorderSide(color: con.budgetColor.value),
-                      padding: EdgeInsets.zero,
+                    style: OutlinedButton.styleFrom(side: BorderSide(color: con.budgetColor.value), padding: EdgeInsets.zero,), child:
+                    Center(child:
+                      Text('${item}만원', style: CustomTextStyles.Body3(con.budgetColor.value)),
                     ),
                     onPressed: () {
                       con.budgetUpdate(item);
                     },
-                    child: Center(
-                      child: Text('${item}만원',
-                          style: TextStyle(
-                              fontSize: 14, color: con.budgetColor.value)),
-                    ),
                   ),
                 ),
               );

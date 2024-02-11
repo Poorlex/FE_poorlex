@@ -28,11 +28,11 @@ class FindingContainer extends GetView {
                               children: [
                                 Icon(Icons.people, color: CustomColors.black),
                                 SizedBox(width: 4),
-                                Text('${data[idx][4]}/${data[idx][5]}', style: TextStyle(color: CustomColors.white, fontSize: 12)),
+                                Text('${data[idx][4]}/${data[idx][5]}', style: CustomTextStyles.Caption2(CustomColors.white)),
                                 SizedBox(width: 4),
                                 Container(
                                   decoration: BoxDecoration(borderRadius: BorderRadius.circular(1), color: CustomColors.gray20), padding: EdgeInsets.symmetric(horizontal: 3, vertical: 1),
-                                  child: Text('모집완료', style: TextStyle(fontSize: 11, color: CustomColors.gray40))
+                                  child: Text('모집완료', style: CustomTextStyles.Caption2(CustomColors.gray40))
                                 ),
                               ],
                             ),
@@ -47,11 +47,11 @@ class FindingContainer extends GetView {
                                       Row(
                                         children: [
                                           Image.asset(width: 26, height: 16, 'assets/my_page/${data[idx][0]}.png'),
-                                          Text('${data[idx][1]}만원', style: TextStyle(color: CustomColors.yellow, fontSize: 14)),
+                                          Text('${data[idx][1]}만원', style: CustomTextStyles.Body3(CustomColors.yellow)),
                                           SizedBox(width: 10),
                                           Container(
                                             decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), color: CustomColors.gray30,), padding: EdgeInsets.symmetric(horizontal: 6),
-                                            child: Text('D-7', style: TextStyle(color: CustomColors.white, fontSize: 14)),
+                                            child: Text('D-7', style: CustomTextStyles.Body3(CustomColors.white)),
                                           )
                                         ],
                                       ),
@@ -59,7 +59,7 @@ class FindingContainer extends GetView {
                                       Row(
                                         children: [
                                           Expanded(child:
-                                            Text('${data[idx][2]}', style: TextStyle(color: CustomColors.white, fontSize: 16)),
+                                            Text('${data[idx][2]}', style: CustomTextStyles.Body2(CustomColors.white)),
                                           )
                                         ],
                                       ),
@@ -67,7 +67,7 @@ class FindingContainer extends GetView {
                                       Row(
                                         children: [
                                           Expanded(child:
-                                            Text('${data[idx][7]}', style: TextStyle(color: CustomColors.gray40, fontSize: 13))
+                                            Text('${data[idx][7]}', style: CustomTextStyles.Caption1(CustomColors.gray40))
                                           ),
                                           SizedBox(height: 27)
                                         ],

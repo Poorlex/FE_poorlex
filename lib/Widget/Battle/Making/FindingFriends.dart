@@ -28,7 +28,7 @@ class FindingFriends extends GetView {
           Obx(() => ElevatedButton(
               child: Text(
                   con.selectedFriends.value.length == 0 ? '확인' : '${con.selectedFriends.value.length} / 10 확인',
-                  style: TextStyle(color: CustomColors.black)),
+                  style: CustomTextStyles.Body3(CustomColors.black)),
               style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(CustomColors.yellow)),
               onPressed: () {
                 con.findingSelectedFrieds(dummy);
@@ -45,13 +45,13 @@ class FindingFriends extends GetView {
                   SizedBox(width: 160, height: 160, child: Image.asset('assets/battle_page/IMG_NO_FRIENDS.png')),
               ]),
               SizedBox(height: 30),
-              Text('친구목록이 없습니다.', style: TextStyle(color: CustomColors.gray40, fontSize: 22))
+              Text('친구목록이 없습니다.', style: CustomTextStyles.Title2(CustomColors.gray40))
             ] else ...[
               Padding(padding: EdgeInsets.symmetric(vertical: 9, horizontal: 20), child:
                 Row(children: [
-                    Text('내 거지친구', style: TextStyle(color: CustomColors.white, fontSize: 18)),
+                    Text('내 거지친구', style: CustomTextStyles.Headline(CustomColors.white)),
                     SizedBox(width: 10),
-                    Text('${dummy.length}', style: TextStyle(color: CustomColors.purpleLight, fontSize: 18))
+                    Text('${dummy.length}', style: CustomTextStyles.Headline(CustomColors.purpleLight))
                   ],
                 ),
               ),
@@ -85,12 +85,12 @@ class FindingFriends extends GetView {
                                 Image.asset('assets/battle_page/ICON_LV2.png')
                               ),
                               SizedBox(width: 6),
-                              Text(dummy[index][0], style: TextStyle(color: CustomColors.white)),
+                              Text(dummy[index][0], style: CustomTextStyles.Body3(CustomColors.white)),
                             ],
                           ),
                         ],
                       ),
-                      subtitle: Text(dummy[index][1], style: TextStyle(color: CustomColors.white)),
+                      subtitle: Text(dummy[index][1], style: CustomTextStyles.Body3(CustomColors.white)),
                     );
                   },
                 ),

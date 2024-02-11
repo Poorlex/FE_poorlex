@@ -33,7 +33,7 @@ class BattleIndexTwo extends GetView<BattleController> {
               child: Center(
                 child: Text(
                   '${item}명',
-                  style: TextStyle(fontSize: 14, color: buttonColor),
+                  style: CustomTextStyles.Body3(buttonColor),
                 ),
               ),
             ),
@@ -53,25 +53,17 @@ class BattleIndexTwo extends GetView<BattleController> {
           padding: const EdgeInsets.symmetric(vertical: 10),
           child: Row(
             children: [
-              Text(
-                '몇명이 참여하나요?',
-                style: TextStyle(
-                  fontSize: 22,
-                  color: CustomColors.white,
-                ),
-              ),
+              Text('몇명이 참여하나요?', style: CustomTextStyles.Title2(CustomColors.white)),
               IconButton(
-                iconSize: 12,
-                color: CustomColors.gray41,
+                iconSize: 12, color: CustomColors.gray41, icon:
+                Icon(Icons.question_mark_outlined),
                 onPressed: () {},
-                icon: Icon(Icons.question_mark_outlined),
               )
             ],
           ),
         ),
         SizedBox(height: 20),
-        Text('1등하면 20점!',
-            style: TextStyle(color: CustomColors.gray41, fontSize: 14)),
+        Text('1등하면 20점!', style: CustomTextStyles.Body3(CustomColors.gray41)),
         SizedBox(height: 20),
         Obx(() => SizedBox(
             width: double.infinity,
@@ -79,7 +71,7 @@ class BattleIndexTwo extends GetView<BattleController> {
             child: _buildWrap(controller.oneToFive, controller,
                 controller.selectedIndexTwo.value))),
         Text('1등하면 30점!',
-            style: TextStyle(color: CustomColors.gray41, fontSize: 14)),
+            style: CustomTextStyles.Body3(CustomColors.gray41)),
         Obx(() => SizedBox(
             width: double.infinity,
             height: 100,
