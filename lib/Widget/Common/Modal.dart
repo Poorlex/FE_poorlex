@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:poorlex/Libs/Theme.dart';
+
 class CustomModal extends ModalRoute<void> {
   int duration = 80;
   double opacity = 1;
@@ -22,7 +24,7 @@ class CustomModal extends ModalRoute<void> {
   bool get barrierDismissible => false;
 
   @override
-  Color get barrierColor => Colors.black.withOpacity(this.opacity);
+  Color get barrierColor => CustomColors.black.withOpacity(this.opacity);
 
   @override
   String get barrierLabel => '';

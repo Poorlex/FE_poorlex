@@ -26,8 +26,8 @@ class BattleIndexZero extends GetView {
         SizedBox(height: 12),
         Row(
           children: [
-            Text('배틀방 난이도', style: TextStyle(fontSize: 14, color: CustomColors.gary40)),
-            Icon(Icons.question_mark_rounded, color: CustomColors.gary40, size: 14)
+            Text('배틀방 난이도', style: TextStyle(fontSize: 14, color: CustomColors.gray40)),
+            Icon(Icons.question_mark_rounded, color: CustomColors.gray40, size: 14)
           ],
         ),
         SizedBox(height: 20),
@@ -77,7 +77,7 @@ class BattleIndexZero extends GetView {
         SizedBox(height: 50),
         Row(
           children: [
-            Text('배틀방 예산', style: TextStyle(fontSize: 14, color: CustomColors.gary40))
+            Text('배틀방 예산', style: TextStyle(fontSize: 14, color: CustomColors.gray40))
           ],
         ),
         SizedBox(height: 20),

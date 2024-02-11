@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import 'package:poorlex/Libs/Theme.dart';
+
 class FinishedContainer extends GetView {
   final List<List<String>> dummy;
   const FinishedContainer({super.key, required this.dummy});
@@ -24,12 +26,12 @@ class FinishedContainer extends GetView {
                                 Row(
                                   children: [
                                     Image.asset(width: 26, height: 16, 'assets/my_page/${data[idx][0]}.png'),
-                                    Text('${data[idx][1]}만원', style: TextStyle(color: Color(0xffffd80c), fontSize: 14)),
+                                    Text('${data[idx][1]}만원', style: TextStyle(color: CustomColors.yellow, fontSize: 14)),
                                     SizedBox(width: 10),
                                     Container(
-                                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(1), color: Color(0xff333333)),
+                                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(1), color: CustomColors.gray20),
                                       padding: EdgeInsets.symmetric(horizontal: 6),
-                                      child: Text('${data[idx][7]}', style: TextStyle(color: Color(0xff7e7e7e), fontSize: 12)),
+                                      child: Text('${data[idx][7]}', style: TextStyle(color: CustomColors.gray41, fontSize: 12)),
                                     )
                                   ],
                                 ),
@@ -41,20 +43,20 @@ class FinishedContainer extends GetView {
                                       child: Column(
                                         crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
-                                          Text('${data[idx][2]}', style: TextStyle(color: Colors.white, fontSize: 16)),
+                                          Text('${data[idx][2]}', style: TextStyle(color: CustomColors.white, fontSize: 16)),
                                           SizedBox(height: 9),
-                                          Text('존버 금액 : ${data[idx][3]}', style: TextStyle(color: Color(0xff808080), fontSize: 15)),
+                                          Text('존버 금액 : ${data[idx][3]}', style: TextStyle(color: CustomColors.gray40, fontSize: 15)),
                                           SizedBox(height: 27),
                                           Row(
                                             children: [
-                                              Text('${data[idx][4]}위', style: TextStyle(color: Colors.white, fontSize: 24)),
-                                              Text('/${data[idx][5]}명', style: TextStyle(color: Colors.white, fontSize: 24)),
+                                              Text('${data[idx][4]}위', style: TextStyle(color: CustomColors.white, fontSize: 24)),
+                                              Text('/${data[idx][5]}명', style: TextStyle(color: CustomColors.white, fontSize: 24)),
                                               SizedBox(width: 20),
 
                                               if (data[idx][4] == '1') ...[
                                                 Container(
-                                                  decoration: BoxDecoration(color: Color(0xffffd600)), padding: EdgeInsets.symmetric(horizontal: 6),
-                                                  child: Text('+20', style: TextStyle(color: Colors.black, fontSize: 20)),
+                                                  decoration: BoxDecoration(color: CustomColors.yellow), padding: EdgeInsets.symmetric(horizontal: 6),
+                                                  child: Text('+20', style: TextStyle(color: CustomColors.black, fontSize: 20)),
                                                 )
                                               ]
                                             ],

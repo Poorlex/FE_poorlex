@@ -26,9 +26,7 @@ class _MyPageState extends State<MyPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: CustomColors.black,
-      bottomNavigationBar: const BottomBar(
-        nowPage: 4,
-      ),
+      bottomNavigationBar: BottomBar(nowPage: 4),
       appBar: AppBar(
         backgroundColor: CustomColors.black,
         title: Row(

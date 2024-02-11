@@ -26,9 +26,7 @@ class _CaledarPageState extends State<CaledarPage> {
     return Scaffold(
         resizeToAvoidBottomInset : false,
         backgroundColor: CustomColors.black,
-        bottomNavigationBar: const BottomBar(
-          nowPage: 3,
-        ),
+        bottomNavigationBar: BottomBar(nowPage: 3),
         body: (
             SafeArea(child:
               Container(

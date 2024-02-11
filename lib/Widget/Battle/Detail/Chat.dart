@@ -37,7 +37,7 @@ class _ChatState extends State<Chat> {
                   onPressed: () => Navigator.push(context, NoticeDetailModal()),
                   style: TextButton.styleFrom(padding: EdgeInsets.zero),
                   child: ChatBoxItem(
-                      color: CustomColors.gary20,
+                      color: CustomColors.gray20,
                       child: Row(
                         children: [
                           SizedBox(
@@ -91,7 +91,7 @@ class _ChatState extends State<Chat> {
                     ChatItem(
                       align: MainAxisAlignment.end,
                       child: ChatBoxItem(
-                          color: CustomColors.gary20,
+                          color: CustomColors.gray20,
                           child: Text('최지출 님이 입장했습니다.', style: TextStyle(color: CustomColors.gray50))
                       ),
                       time: TimeItem(
@@ -120,7 +120,7 @@ class _ChatState extends State<Chat> {
                     ChatItem(
                         align: MainAxisAlignment.end,
                         child: ChatBoxItem(
-                            color: CustomColors.gary20,
+                            color: CustomColors.gray20,
                             padding: EdgeInsets.fromLTRB(0, 30, 0, 30),
                             child: VoteResultItem(name: '버블티', money: 5000, isUp: true)
                         ),
@@ -183,7 +183,7 @@ class _ChatState extends State<Chat> {
                     ChatItem(
                         align: MainAxisAlignment.end,
                         child: ChatBoxItem(
-                          color: CustomColors.gary20,
+                          color: CustomColors.gray20,
                           padding: EdgeInsets.fromLTRB(0, 30, 0, 30),
                           child: OpinionItem(
                               isAgree: false,
@@ -474,7 +474,7 @@ class VoteAllResultItem extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
-              color: CustomColors.gary40, width: 240, padding: EdgeInsets.fromLTRB(0, 15, 0, 15),
+              color: CustomColors.gray40, width: 240, padding: EdgeInsets.fromLTRB(0, 15, 0, 15),
               child: Column(
                 children: [
                   Text('살까말까?', style: TextStyle(fontSize: 20)),

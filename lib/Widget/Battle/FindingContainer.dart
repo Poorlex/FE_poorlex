@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import 'package:poorlex/Libs/Theme.dart';
+
 class FindingContainer extends GetView {
   final List<List<String>> dummy;
 
@@ -24,13 +26,13 @@ class FindingContainer extends GetView {
                           children: [
                             Row(
                               children: [
-                                Icon(Icons.people, color: Color.fromARGB(255, 66, 65, 65)),
+                                Icon(Icons.people, color: CustomColors.black),
                                 SizedBox(width: 4),
-                                Text('${data[idx][4]}/${data[idx][5]}', style: TextStyle(color: Colors.white, fontSize: 12)),
+                                Text('${data[idx][4]}/${data[idx][5]}', style: TextStyle(color: CustomColors.white, fontSize: 12)),
                                 SizedBox(width: 4),
                                 Container(
-                                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(1), color: Colors.grey.shade800), padding: EdgeInsets.symmetric(horizontal: 3, vertical: 1),
-                                  child: Text('모집완료', style: TextStyle(fontSize: 11, color: Color(0xff7e7e7e)))
+                                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(1), color: CustomColors.gray20), padding: EdgeInsets.symmetric(horizontal: 3, vertical: 1),
+                                  child: Text('모집완료', style: TextStyle(fontSize: 11, color: CustomColors.gray40))
                                 ),
                               ],
                             ),
@@ -45,27 +47,27 @@ class FindingContainer extends GetView {
                                       Row(
                                         children: [
                                           Image.asset(width: 26, height: 16, 'assets/my_page/${data[idx][0]}.png'),
-                                          Text('${data[idx][1]}만원', style: TextStyle(color: Color(0xffffd80c), fontSize: 14)),
+                                          Text('${data[idx][1]}만원', style: TextStyle(color: CustomColors.yellow, fontSize: 14)),
                                           SizedBox(width: 10),
                                           Container(
-                                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), color: Color(0xff666666),), padding: EdgeInsets.symmetric(horizontal: 6),
-                                            child: Text('D-7', style: TextStyle(color: Colors.white, fontSize: 14)),
+                                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), color: CustomColors.gray30,), padding: EdgeInsets.symmetric(horizontal: 6),
+                                            child: Text('D-7', style: TextStyle(color: CustomColors.white, fontSize: 14)),
                                           )
                                         ],
                                       ),
                                       SizedBox(height: 12),
                                       Row(
                                         children: [
-                                          Expanded(
-                                            child: Text('${data[idx][2]}', style: TextStyle(color: Colors.white, fontSize: 16)),
+                                          Expanded(child:
+                                            Text('${data[idx][2]}', style: TextStyle(color: CustomColors.white, fontSize: 16)),
                                           )
                                         ],
                                       ),
                                       SizedBox(height: 9),
                                       Row(
                                         children: [
-                                          Expanded(
-                                            child: Text('${data[idx][7]}', style: TextStyle(color: Color(0xff808080), fontSize: 13))
+                                          Expanded(child:
+                                            Text('${data[idx][7]}', style: TextStyle(color: CustomColors.gray40, fontSize: 13))
                                           ),
                                           SizedBox(height: 27)
                                         ],

@@ -32,7 +32,7 @@ class CommentModal extends CustomModal {
                       children: [
                         Text(
                             isAgree ? '칭찬하기 사유' : '혼내기 사유',
-                            style: TextStyle(fontSize: 14, color: CustomColors.gary40)
+                            style: TextStyle(fontSize: 14, color: CustomColors.gray40)
                         ),
                         TextField(
                           style: TextStyle(fontSize: 22, color: CustomColors.white),

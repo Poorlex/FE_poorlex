@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:poorlex/Libs/Theme.dart';
 
 class Picker extends StatefulWidget {
   static final _now = DateTime.now().millisecondsSinceEpoch;
@@ -94,25 +95,18 @@ class _PickerModalState extends State<PickerModal> {
   @override
   Widget build(BuildContext context) {
     List<Widget> children = [
-      Expanded(
-        flex: 1,
-        child: ListView(
-          scrollDirection: Axis.vertical,
-          children: years.map((year) {
+      Expanded(flex: 1, child:
+        ListView(scrollDirection: Axis.vertical, children:
+          years.map((year) {
             bool isSelected = year.toString() == DateFormat('yyyy').format(DateTime.fromMillisecondsSinceEpoch(widget.current));
             if (isSelected) {
-              return ElevatedButton(
-                style: ElevatedButton.styleFrom(backgroundColor: Colors.black),
-                child: Text(year.toString() + '년',
-                    style: TextStyle(fontSize: 16, color: Colors.white)
-                ),
+              return ElevatedButton(style: ElevatedButton.styleFrom(backgroundColor: CustomColors.black), child:
+                Text(year.toString() + '년', style: TextStyle(fontSize: 16, color: CustomColors.white)),
                 onPressed: () => _select('year', year),
               );
             } else {
-              return TextButton(
-                child: Text(year.toString() + '년',
-                    style: TextStyle(fontSize: 16, color: Colors.black)
-                ),
+              return TextButton(child:
+                Text(year.toString() + '년', style: TextStyle(fontSize: 16, color: CustomColors.black)),
                 onPressed: () => _select('year', year),
               );
             }
@@ -124,30 +118,23 @@ class _PickerModalState extends State<PickerModal> {
     if (widget.type == 'MONTH' || widget.type == 'DAY') {
       children.add(SizedBox(width: 8));
       children.add(
-        Expanded(
-            flex: 1,
-            child: ListView(
-              scrollDirection: Axis.vertical,
-              children: months.map((month) {
-                bool isSelected = month.toString() == DateFormat('M').format(DateTime.fromMillisecondsSinceEpoch(widget.current));
-                if (isSelected) {
-                  return ElevatedButton(
-                    style: ElevatedButton.styleFrom(backgroundColor: Colors.black),
-                    child: Text(month.toString() + '월',
-                        style: TextStyle(fontSize: 16, color: Colors.white)
-                    ),
-                    onPressed: () => _select('month', month),
-                  );
-                } else {
-                  return TextButton(
-                    child: Text(month.toString() + '월',
-                        style: TextStyle(fontSize: 16, color: Colors.black)
-                    ),
-                    onPressed: () => _select('month', month),
-                  );
-                }
-              }).toList(),
-            )
+        Expanded(flex: 1, child:
+          ListView(scrollDirection: Axis.vertical, children:
+            months.map((month) {
+              bool isSelected = month.toString() == DateFormat('M').format(DateTime.fromMillisecondsSinceEpoch(widget.current));
+              if (isSelected) {
+                return ElevatedButton(style: ElevatedButton.styleFrom(backgroundColor: CustomColors.black), child:
+                  Text(month.toString() + '월', style: TextStyle(fontSize: 16, color: CustomColors.white)),
+                  onPressed: () => _select('month', month)
+                );
+              } else {
+                return TextButton(child:
+                  Text(month.toString() + '월', style: TextStyle(fontSize: 16, color: CustomColors.black)),
+                  onPressed: () => _select('month', month),
+                );
+              }
+            }).toList(),
+          )
         )
       );
     }
@@ -155,65 +142,46 @@ class _PickerModalState extends State<PickerModal> {
     if (widget.type == 'DAY') {
       children.add(SizedBox(width: 8));
       children.add(
-          Expanded(
-              flex: 1,
-              child: ListView(
-                scrollDirection: Axis.vertical,
-                children: days.map((day) {
-                  bool isSelected = day.toString() == DateFormat('D').format(DateTime.fromMillisecondsSinceEpoch(widget.current));
-                  if (isSelected) {
-                    return ElevatedButton(
-                      style: ElevatedButton.styleFrom(backgroundColor: Colors.black),
-                      child: Text(day.toString() + '일',
-                          style: TextStyle(fontSize: 16, color: Colors.white)
-                      ),
-                      onPressed: () => _select('day', day),
-                    );
-                  } else {
-                    return TextButton(
-                      child: Text(day.toString() + '일',
-                          style: TextStyle(fontSize: 16, color: Colors.black)
-                      ),
-                      onPressed: () => _select('day', day),
-                    );
-                  }
-                }).toList(),
-              )
+          Expanded(flex: 1, child:
+            ListView(scrollDirection: Axis.vertical, children:
+              days.map((day) {
+                bool isSelected = day.toString() == DateFormat('D').format(DateTime.fromMillisecondsSinceEpoch(widget.current));
+                if (isSelected) {
+                  return ElevatedButton(style: ElevatedButton.styleFrom(backgroundColor: CustomColors.black), child:
+                    Text(day.toString() + '일', style: TextStyle(fontSize: 16, color: CustomColors.white)),
+                    onPressed: () => _select('day', day)
+                  );
+                } else {
+                  return TextButton(child: Text(day.toString() + '일', style:
+                    TextStyle(fontSize: 16, color: CustomColors.black)),
+                    onPressed: () => _select('day', day),
+                  );
+                }
+              }).toList(),
+            )
           )
       );
     }
 
-    return SizedBox(
-        height: 300,
-        child: (
-            Container(
-              color: Colors.white,
-              padding: EdgeInsets.fromLTRB(20, 20, 20, 40),
-              child: (
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Expanded(child: Row(
-                            children: children
-                          )),
-                          SizedBox(height: 16),
-                          Container(
-                            child: (
-                                ElevatedButton(
-                                    style: ElevatedButton.styleFrom(backgroundColor: Color(0xFFFFD600), minimumSize: Size.fromHeight(50)),
-                                    child: Text('확인', style: TextStyle(color: Colors.black, fontSize: 18),),
-                                    onPressed: () {
-                                      widget.select(widget.current);
-                                      Navigator.pop(context);
-                                    }
-                                )
-                            ),
-                          ),
-                        ],
-                      )
-              ),)
-        )
-    );
+    return SizedBox(height: 300, child: (
+        Container(color: CustomColors.white, padding: EdgeInsets.fromLTRB(20, 20, 20, 40), child: (
+            Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+              Expanded(child:
+                Row(children: children)
+              ),
+              SizedBox(height: 16),
+              Container(child: (
+                ElevatedButton(style: ElevatedButton.styleFrom(backgroundColor: CustomColors.yellow, minimumSize: Size.fromHeight(50)), child:
+                  Text('확인', style: TextStyle(color: CustomColors.black, fontSize: 18)),
+                  onPressed: () {
+                    widget.select(widget.current);
+                    Navigator.pop(context);
+                  }
+                )
+              )),
+            ])
+        ))
+    ));
   }
 }
 
@@ -253,10 +221,7 @@ class _DayPickerModalState extends State<DayPickerModal> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(height: 300, child:
-      Container(
-        color: Colors.white,
-        padding: EdgeInsets.fromLTRB(20, 20, 20, 40),
-      )
+      Container(color: CustomColors.white, padding: EdgeInsets.fromLTRB(20, 20, 20, 40))
     );
   }
 }

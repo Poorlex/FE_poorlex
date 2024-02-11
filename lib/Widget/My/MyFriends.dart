@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:poorlex/Libs/Theme.dart';
 
 import 'package:poorlex/Widget/Common/icon.dart';
 
@@ -45,9 +46,9 @@ class _MyFriendsState extends State<MyFriends> {
       child:
         Column(children: [
           Row(children: [
-              Text('내 거지 친구', style: TextStyle(color: Colors.white, fontSize: 18)),
+              Text('내 거지 친구', style: TextStyle(color: CustomColors.white, fontSize: 18)),
               SizedBox(width: 10),
-              Text('${friendsImages.length}', style: TextStyle(color: Color(0xffB265FF), fontSize: 18))
+              Text('${friendsImages.length}', style: TextStyle(color: CustomColors.purpleLight, fontSize: 18))
           ]),
           SizedBox(height: 20),
           SizedBox(height: 180, child:
@@ -56,8 +57,8 @@ class _MyFriendsState extends State<MyFriends> {
                   return Column(children: [
                     Image.asset(width: 84, height: 74, 'assets/my_page/icon_friends.png'),
                     SizedBox(height: 10),
-                    Text(friendsImages[idx][1], style: TextStyle(color: Colors.white, fontSize: 14)),
-                    Text(friendsImages[idx][3], style: TextStyle(color: Color(0xff808080), fontSize: 14))
+                    Text(friendsImages[idx][1], style: TextStyle(color: CustomColors.white, fontSize: 14)),
+                    Text(friendsImages[idx][3], style: TextStyle(color: CustomColors.gray40, fontSize: 14))
                   ]);
                 },
               separatorBuilder: (context, idx) => SizedBox(width: 15), itemCount: friendsImages.length
@@ -65,7 +66,7 @@ class _MyFriendsState extends State<MyFriends> {
           ),
           OutlinedButton(
             style: OutlinedButton.styleFrom(
-              side: BorderSide(width: 1.0, color: Color(0xffFFD600)),
+              side: BorderSide(width: 1.0, color: CustomColors.yellow),
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(2.0)),
             ),
             child:
@@ -73,9 +74,9 @@ class _MyFriendsState extends State<MyFriends> {
               padding: EdgeInsets.symmetric(vertical: 14),
               child:
               Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                Text('친구 전체 보기', style: TextStyle(color: Color(0xffFFD600), fontSize: 14)),
+                Text('친구 전체 보기', style: TextStyle(color: CustomColors.yellow, fontSize: 14)),
                 SizedBox(width: 5),
-                CustomIcon(icon: 'arrow-game-right', width: 15, height: 15, color: '#FFD600',)
+                CustomIcon(icon: 'arrow-game-right', width: 15, height: 15, color: CustomColors.yellowStr)
               ]),
             ),
             onPressed: () {},

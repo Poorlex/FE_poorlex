@@ -31,7 +31,7 @@ class VoteModal extends CustomModal {
                   children: [
                     Text('고민되는 지출\n투표를 해볼까요?', style: TextStyle(color: CustomColors.white, fontSize: 22)),
                     SizedBox(height: 27),
-                    Text('투표 내용', style: TextStyle(color: CustomColors.gary40, fontSize: 14)),
+                    Text('투표 내용', style: TextStyle(color: CustomColors.gray40, fontSize: 14)),
                     SizedBox(height: 17),
                     TextField(
                       style: TextStyle(fontSize: 22, color: CustomColors.white),
@@ -60,7 +60,7 @@ class VoteModal extends CustomModal {
                       ),
                     ),
                     SizedBox(height: 27),
-                    Text('투표 시간', style: TextStyle(color: CustomColors.gary40, fontSize: 14)),
+                    Text('투표 시간', style: TextStyle(color: CustomColors.gray40, fontSize: 14)),
                     SizedBox(height: 17),
                     SingleChildScrollView(
                       scrollDirection: Axis.horizontal,

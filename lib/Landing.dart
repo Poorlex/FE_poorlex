@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:poorlex/Libs/Theme.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 import 'package:poorlex/Screen/Main/Page.dart';
@@ -53,49 +54,49 @@ class _LandingPageState extends State<LandingPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Image(
+            Image(
               width: 327,
               height: 312,
               image: AssetImage('assets/img_main_login.png'),
             ),
-            const SizedBox(height: 70),
-            const Text(
+            SizedBox(height: 70),
+            Text(
               '풀렉스에서 다른 거지 친구들과 함께',
               style: TextStyle(fontSize: 15),
             ),
-            const Text(
+            Text(
               '재미있게 절약해요',
               style: TextStyle(fontSize: 15),
             ),
-            const SizedBox(
+            SizedBox(
               height: 30,
             ),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xfffde500)),
+                  backgroundColor: CustomColors.yellow),
               onPressed: () async {
                 await KakaoView.kakaoLogin();
                 setState(() {});
-                Get.to(() => const MainPage());
+                Get.to(() => MainPage());
               },
-              child: const Text('카카오로 3초만에 로그인',
-                  style: TextStyle(color: Colors.black)),
+              child: Text('카카오로 3초만에 로그인',
+                  style: TextStyle(color: CustomColors.black)),
             ),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color.fromARGB(255, 82, 10, 225)),
+                  backgroundColor: Color.fromARGB(255, 82, 10, 225)),
               onPressed: () async {
                 signInWithApple();
                 setState(() {});
               },
-              child: const Text('애플 아이디로 로그인',
-                  style: TextStyle(color: Colors.black)),
+              child: Text('애플 아이디로 로그인',
+                  style: TextStyle(color: CustomColors.black)),
             ),
             // GetX(
             //   init: UserController(),
             //   builder: (controller) => Text(
             //       Get.find<UserController>().userInfo().userName,
-            //       style: const TextStyle(color: Colors.white)),
+            //       style: TextStyle(color: Colors.white)),
             // ),
             // Text('${_user.userInfo().userId}')
           ],

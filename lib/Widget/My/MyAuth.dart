@@ -26,7 +26,7 @@ class _MyPageMyAuthState extends State<MyPageMyAuth> {
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Text('내 인증', style: TextStyle(color: Colors.white, fontSize: 18)),
+            Text('내 인증', style: TextStyle(color: CustomColors.white, fontSize: 18)),
             SizedBox(width: 10),
             Text('${samples.length}', style: TextStyle(color: CustomColors.purpleLight, fontSize: 18)),
           ],

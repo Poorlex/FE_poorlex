@@ -10,6 +10,7 @@ import 'package:poorlex/Widget/Battle/Making/BattleIndexOne.dart';
 import 'package:poorlex/Widget/Battle/Making/BattleIndexTwo.dart';
 import 'package:poorlex/Widget/Battle/Making/BattleMakingFinished.dart';
 
+import 'package:poorlex/Libs/Theme.dart';
 import 'package:poorlex/Controller/Battle.dart';
 
 class BattleMaking extends GetView {
@@ -21,11 +22,11 @@ class BattleMaking extends GetView {
     con.battleMakingIndex().BattleIndex = 0;
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.black,
+        backgroundColor: CustomColors.black,
         title: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('배틀방 만들기', style: TextStyle(color: Colors.white, fontSize: 17))
+            Text('배틀방 만들기', style: TextStyle(color: CustomColors.white, fontSize: 17))
           ],
         ),
       ),
@@ -38,13 +39,13 @@ class BattleMaking extends GetView {
             },
             child: Obx(() => Text(
                 con.battleMakingIndex().BattleIndex == 4 ? '시작' : '다음',
-                style: TextStyle(color: Colors.black))),
+                style: TextStyle(color: CustomColors.black))),
             style: ButtonStyle(
               backgroundColor:
-                  MaterialStateProperty.all<Color>(Color(0xffffd600)),
+                  MaterialStateProperty.all(CustomColors.yellow),
             )),
       ),
-      backgroundColor: Colors.black,
+      backgroundColor: CustomColors.black,
       body: Column(
         children: [
           SizedBox(

@@ -28,41 +28,26 @@ class _MainCarouselSliderState extends State<MainCarouselSlider> {
       });
     }
 
-    return Column(
-      children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 9, horizontal: 23),
-          child: Row(
-            children: [
-              Text('참여 중인 배틀 (${idx + 1}/3)',
-                  style: const TextStyle(fontSize: 14))
-            ],
-          ),
-        ),
-        CarouselSlider(
-          options: CarouselOptions(
-              height: MediaQuery.of(context).size.height / 4,
-              scrollDirection: Axis.horizontal,
-              viewportFraction: 1),
-          items: samples.map((sample) {
-            return Builder(
-              builder: (BuildContext context) {
-                changeIndex(samples.indexOf(sample));
-                // print(samples.indexOf(sample));
-                return Column(
-                  children: [
-                    if (sample[0] != '0') ...[
-                      BattleBox(sample: sample)
-                    ] else ...[
-                      const EmptyBattle()
-                    ]
-                  ],
-                );
-              },
-            );
-          }).toList(),
-        ),
-      ],
-    );
+    return Column(children: [
+      Padding(padding: EdgeInsets.symmetric(vertical: 9, horizontal: 23), child:
+        Row(children: [
+          Text('참여 중인 배틀 (${idx + 1}/3)', style: TextStyle(fontSize: 14))
+        ]),
+      ),
+      CarouselSlider(
+        options: CarouselOptions(height: MediaQuery.of(context).size.height / 4, scrollDirection: Axis.horizontal, viewportFraction: 1),
+        items: samples.map((sample) {
+          return Builder(
+            builder: (BuildContext context) {
+              changeIndex(samples.indexOf(sample));
+              return Column(children: [
+                if (sample[0] != '0') ...[BattleBox(sample: sample)]
+                else ...[EmptyBattle()]
+              ]);
+            },
+          );
+        }).toList(),
+      ),
+    ]);
   }
 }

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:poorlex/Widget/Login/Kakao.dart';
 
+import 'package:poorlex/Libs/Theme.dart';
+
+import 'package:poorlex/Widget/Login/Kakao.dart';
 import 'KakaoViewModel.dart';
 
 class LoginKakao extends StatefulWidget {
@@ -15,7 +17,7 @@ class _LoginKakaoState extends State<LoginKakao> {
   Widget build(BuildContext context) {
     final KakaoView = KakaoViewModel(KakaoLogin());
     return Container(
-      decoration: const BoxDecoration(color: Colors.white),
+      decoration: BoxDecoration(color: CustomColors.white),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

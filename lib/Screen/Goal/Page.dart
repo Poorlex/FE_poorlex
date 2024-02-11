@@ -20,9 +20,7 @@ class _GoalPageState extends State<GoalPage> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: CustomColors.black,
-      bottomNavigationBar: const BottomBar(
-        nowPage: 1,
-      ),
+      bottomNavigationBar: BottomBar(nowPage: 1),
       body: Container(
           child: SafeArea(
               child: CustomScrollView(slivers: [
@@ -78,7 +76,7 @@ class _GoalPageState extends State<GoalPage> {
         foregroundColor: CustomColors.white,
         backgroundColor: CustomColors.black,
         shape: RoundedRectangleBorder(
-            side: BorderSide(width: 1, color: CustomColors.gary20),
+            side: BorderSide(width: 1, color: CustomColors.gray20),
             borderRadius: BorderRadius.circular(100)),
         child: const Icon(Icons.add),
       ),

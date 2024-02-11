@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 import 'package:poorlex/Libs/Theme.dart';
 
-class RankingAppBarWidget extends StatefulWidget
-    implements PreferredSizeWidget {
-  RankingAppBarWidget({super.key})
-      : preferredSize = const Size.fromHeight(AppBarDesign.height);
+class RankingAppBarWidget extends StatefulWidget implements PreferredSizeWidget {
+  RankingAppBarWidget({
+    super.key
+  }) : preferredSize = const Size.fromHeight(AppBarDesign.height);
 
   @override
   final Size preferredSize;
@@ -18,11 +18,11 @@ class _RankingAppBarWidgerState extends State<RankingAppBarWidget> {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: Colors.black,
+      backgroundColor: CustomColors.black,
       centerTitle: true,
       title: Text(
         '참여중',
-        style: TextStyle(color: Colors.white, fontSize: 17),
+        style: TextStyle(color: CustomColors.white, fontSize: 17),
         textAlign: TextAlign.center,
       ),
       actions: [
@@ -44,10 +44,10 @@ class _RankingAppBarWidgerState extends State<RankingAppBarWidget> {
                     content: Text('설정페이지 제작 후 연결해주기'),
                     actions: [
                       TextButton(
+                        child: Text('닫기'),
                         onPressed: () {
                           Navigator.pop(ctx);
-                        },
-                        child: Text('닫기'),
+                        }
                       ),
                     ],
                   );

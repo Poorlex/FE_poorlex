@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 
 import 'package:poorlex/Controller/Battle.dart';
 
+import 'package:poorlex/Libs/Theme.dart';
+
 class TabItem {
   String label;
   Image? icon;
@@ -41,7 +43,7 @@ class BattleMoney extends GetView {
               margin: EdgeInsets.fromLTRB(0, 0, 8, 0),
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Color(isSelected ? 0xffffd600 : 0xff000000),
+                  backgroundColor: isSelected ? CustomColors.yellow : CustomColors.black,
                   side: BorderSide(width: 1.0, color: Color(isSelected ? 0xffffd600 : 0xff666666)),
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
                 ),
@@ -50,7 +52,7 @@ class BattleMoney extends GetView {
                 },
                 child: Row(
                   children: [
-                    Text(item.label, style: TextStyle(color: Color(isSelected ? 0xff000000 : 0xffffffff))),
+                    Text(item.label, style: TextStyle(color: isSelected ? CustomColors.black : CustomColors.white)),
                     item.icon == null ? Container() : item.icon as Image
                   ],
                 ),

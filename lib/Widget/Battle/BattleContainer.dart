@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:poorlex/Screen/Battle/Ranking.dart';
 
+import 'package:poorlex/Libs/Theme.dart';
+
 class BattleContainer extends StatefulWidget {
   final List<List<String>> dummy;
 
@@ -39,11 +41,11 @@ class _BattleContainerState extends State<BattleContainer> {
                                 Row(
                                   children: [
                                     Image.asset(width: 26, height: 16, 'assets/my_page/${data[idx][0]}.png'),
-                                    Text('${data[idx][1]}만원', style: TextStyle(color: Color(0xffffd80c), fontSize: 14)),
+                                    Text('${data[idx][1]}만원', style: TextStyle(color: CustomColors.yellow, fontSize: 14)),
                                     SizedBox(width: 10),
                                     Container(
-                                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), color: Color(0xff666666)), padding: EdgeInsets.symmetric(horizontal: 6),
-                                      child: Text('D-7', style: TextStyle(color: Colors.white, fontSize: 14)),
+                                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), color: CustomColors.gray30), padding: EdgeInsets.symmetric(horizontal: 6),
+                                      child: Text('D-7', style: TextStyle(color: CustomColors.white, fontSize: 14)),
                                     )
                                   ],
                                 ),
@@ -58,21 +60,21 @@ class _BattleContainerState extends State<BattleContainer> {
                                           Row(
                                             children: [
                                               Expanded(
-                                                  child: Text('${data[idx][2]}', style: TextStyle(color: Colors.white, fontSize: 16))
+                                                  child: Text('${data[idx][2]}', style: TextStyle(color: CustomColors.white, fontSize: 16))
                                               )
                                             ],
                                           ),
                                           SizedBox(height: 9),
-                                          Text('존버 금액 : ${data[idx][3]}', style: TextStyle(color: Color(0xff808080), fontSize: 15)),
+                                          Text('존버 금액 : ${data[idx][3]}', style: TextStyle(color: CustomColors.gray40, fontSize: 15)),
                                           SizedBox(height: 27),
                                           Row(
                                             children: [
-                                              Text('${data[idx][4]}위', style: TextStyle(color: Color(0xffb265ff), fontSize: 24)),
-                                              Text('/${data[idx][5]}명', style: TextStyle(color: Colors.white, fontSize: 24)),
+                                              Text('${data[idx][4]}위', style: TextStyle(color: CustomColors.purpleLight, fontSize: 24)),
+                                              Text('/${data[idx][5]}명', style: TextStyle(color: CustomColors.white, fontSize: 24)),
                                               SizedBox(width: 20),
-                                              Icon(Icons.chat_bubble_outline, size: 16, color: Colors.white),
+                                              Icon(Icons.chat_bubble_outline, size: 16, color: CustomColors.white),
                                               SizedBox(width: 4),
-                                              Text('13', style: TextStyle(color: Colors.white, fontSize: 16))
+                                              Text('13', style: TextStyle(color: CustomColors.white, fontSize: 16))
                                             ],
                                           )
                                         ],

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:poorlex/Controller/User.dart';
+import 'package:poorlex/Libs/Theme.dart';
 import 'package:poorlex/Widget/Common/user.dart';
 
 class MyPageProfile extends StatelessWidget {
@@ -26,13 +27,13 @@ class MyPageProfile extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text('최지출', style: TextStyle(color: Colors.white, fontSize: 20))
+                          Text('최지출', style: TextStyle(color: CustomColors.white, fontSize: 20))
                         ],
                       ),
                       SizedBox(height: 10),
                       Row(
                         children: [
-                          Text('돈을 많이 모아야 돈을 많이 쓸 수 있다.', textAlign: TextAlign.center, style: TextStyle(color: Color(0xff808080), fontSize: 16),
+                          Text('돈을 많이 모아야 돈을 많이 쓸 수 있다.', textAlign: TextAlign.center, style: TextStyle(color: CustomColors.gray40, fontSize: 16),
                           ),
                         ],
                       )
@@ -46,7 +47,7 @@ class MyPageProfile extends StatelessWidget {
                   OutlinedButton(
                     style: OutlinedButton.styleFrom(
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4.0)),
-                      side: BorderSide(width: 1.0, color: Colors.amber),
+                      side: BorderSide(width: 1.0, color: CustomColors.yellow),
                     ),
                     child: Container(
                       width: 210, height: 30,
@@ -54,7 +55,7 @@ class MyPageProfile extends StatelessWidget {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text('프로필 편집', style: TextStyle(color: Colors.amber, fontSize: 15)),
+                              Text('프로필 편집', style: TextStyle(color: CustomColors.yellow, fontSize: 15)),
                             ],
                           )
                     ),

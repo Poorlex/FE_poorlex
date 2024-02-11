@@ -56,7 +56,7 @@ class NoticeWriteModal extends CustomModal {
                     children: [
                       Text('배틀 멤버에게\n알리고 싶은 내용이 있나요?', style: TextStyle(color: CustomColors.white, fontSize: 22)),
                       SizedBox(height: 27),
-                      Text('공지 내용', style: TextStyle(color: CustomColors.gary40, fontSize: 14)),
+                      Text('공지 내용', style: TextStyle(color: CustomColors.gray40, fontSize: 14)),
                       SizedBox(height: 17),
                       Card(
                           shape: RoundedRectangleBorder(
@@ -83,7 +83,7 @@ class NoticeWriteModal extends CustomModal {
                           )
                       ),
                       SizedBox(height: 37),
-                      Text('사진 추가', style: TextStyle(color: CustomColors.gary40, fontSize: 14)),
+                      Text('사진 추가', style: TextStyle(color: CustomColors.gray40, fontSize: 14)),
                       SizedBox(height: 17),
                       ElevatedButton(
                           onPressed: () => pickImage(),
@@ -98,7 +98,7 @@ class NoticeWriteModal extends CustomModal {
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                CustomIcon(icon: 'plus', width: 29, height: 29, color: CustomColors.gary40Str)
+                                CustomIcon(icon: 'plus', width: 29, height: 29, color: CustomColors.gray40Str)
                               ],
                             ),
                           )
@@ -282,7 +282,7 @@ class NoticeDetailModal extends CustomModal {
                             border: OutlineInputBorder(),
                             hintStyle: TextStyle(fontSize: 16.0, color: CustomColors.gray50),
                             hintText: '댓글을 입력하세요',
-                            fillColor: CustomColors.gary20
+                            fillColor: CustomColors.gray20
                           ),
                         ),
                       )

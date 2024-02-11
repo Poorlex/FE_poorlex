@@ -65,9 +65,7 @@ class _MainPageState extends State<MainPage> {
       theme: ThemeData(fontFamily: 'NeoDunggeunmoPro-Regular'),
       home: Scaffold(
         appBar: NavBar(),
-        bottomNavigationBar: const BottomBar(
-          nowPage: 0,
-        ),
+        bottomNavigationBar: BottomBar(nowPage: 0),
         body: Column(
           children: [
             // Transform.translate(offset: Offset(2, 2), child: BudgetTooltip()),

@@ -45,7 +45,7 @@ class FindingFriends extends GetView {
                   SizedBox(width: 160, height: 160, child: Image.asset('assets/battle_page/IMG_NO_FRIENDS.png')),
               ]),
               SizedBox(height: 30),
-              Text('친구목록이 없습니다.', style: TextStyle(color: CustomColors.gary40, fontSize: 22))
+              Text('친구목록이 없습니다.', style: TextStyle(color: CustomColors.gray40, fontSize: 22))
             ] else ...[
               Padding(padding: EdgeInsets.symmetric(vertical: 9, horizontal: 20), child:
                 Row(children: [

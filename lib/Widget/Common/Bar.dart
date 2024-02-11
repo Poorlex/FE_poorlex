@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:poorlex/Libs/Theme.dart';
+
 class CustomBar extends StatelessWidget {
   int total;
   int current;
@@ -16,8 +18,8 @@ class CustomBar extends StatelessWidget {
     required this.current
   }){
     this.height = height ?? 8;
-    this.background = background ?? Color(0xff808080);
-    this.primary = primary ?? Color(0xffB265FF);
+    this.background = background ?? CustomColors.gray40;
+    this.primary = primary ?? CustomColors.purpleLight;
   }
 
   @override
