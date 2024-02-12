@@ -85,6 +85,7 @@ flutter:
     - assets/my_page/
     - assets/budget_page/
     - assets/goal/
+    - assets/login/
 
     - assets/icons/
     - assets/level/

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:poorlex/Libs/Theme.dart';
+import 'package:poorlex/Widget/Common/Base.dart';
 
 import 'package:poorlex/Widget/Main/BottomBar.dart';
 import 'package:poorlex/Widget/Calendar/Header.dart';
@@ -29,15 +30,15 @@ class _CaledarPageState extends State<CaledarPage> {
         bottomNavigationBar: BottomBar(nowPage: 3),
         body: (
             SafeArea(child:
-              Container(
+              CCon(
                 padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
                 child:
-                  Column(
+                  CCol(
                     children: [
                       CalenderHeader(current: _current, select: select),
                       Flexible(flex: 1, child: List(current: _current,))
                     ],
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    cross: CrossAxisAlignment.start,
                   )
               )
             )

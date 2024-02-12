@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
 
+import 'package:poorlex/Screen/Login/Page.dart';
 import 'Screen/Battle/Ranking.dart';
 
 void main() async {
@@ -25,6 +26,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
         theme: ThemeData(fontFamily: 'NeoDunggeunmoPro-Regular'),
-        home: Ranking());
+        // home: Ranking()
+        home: Login()
+    );
   }
 }

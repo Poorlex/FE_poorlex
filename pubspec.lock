@@ -13,10 +13,10 @@ packages:
     dependency: transitive
     description:
       name: asn1lib
-      sha256: "21afe4333076c02877d14f4a89df111e658a6d466cbfc802eb705eb91bd5adfd"
+      sha256: c9c85fedbe2188b95133cbe960e16f5f448860f7133330e272edbbca5893ddc6
       url: "https://pub.dev"
     source: hosted
-    version: "1.5.0"
+    version: "1.5.2"
   async:
     dependency: transitive
     description:
@@ -220,10 +220,10 @@ packages:
     dependency: transitive
     description:
       name: http
-      sha256: d4872660c46d929f6b8a9ef4e7a7eff7e49bbf0c4ec3f385ee32df5119175139
+      sha256: a2bbf9d017fcced29139daa8ed2bba4ece450ab222871df93ca9eec6f80c34ba
       url: "https://pub.dev"
     source: hosted
-    version: "1.1.2"
+    version: "1.2.0"
   http_parser:
     dependency: transitive
     description:
@@ -428,10 +428,10 @@ packages:
     dependency: transitive
     description:
       name: mime
-      sha256: e4ff8e8564c03f255408decd16e7899da1733852a9110a58fe6d1b817684a63e
+      sha256: "2e123074287cc9fd6c09de8336dae606d1ddb88d9ac47358826db698c176a1f2"
       url: "https://pub.dev"
     source: hosted
-    version: "1.0.4"
+    version: "1.0.5"
   path:
     dependency: transitive
     description:
@@ -500,10 +500,10 @@ packages:
     dependency: transitive
     description:
       name: pointycastle
-      sha256: "7c1e5f0d23c9016c5bbd8b1473d0d3fb3fc851b876046039509e18e0c7485f2c"
+      sha256: "43ac87de6e10afabc85c445745a7b799e04de84cebaa4fd7bf55a5e1e9604d29"
       url: "https://pub.dev"
     source: hosted
-    version: "3.7.3"
+    version: "3.7.4"
   shared_preferences:
     dependency: transitive
     description:
@@ -649,26 +649,26 @@ packages:
     dependency: transitive
     description:
       name: vector_graphics
-      sha256: "18f6690295af52d081f6808f2f7c69f0eed6d7e23a71539d75f4aeb8f0062172"
+      sha256: "4ac59808bbfca6da38c99f415ff2d3a5d7ca0a6b4809c71d9cf30fba5daf9752"
       url: "https://pub.dev"
     source: hosted
-    version: "1.1.9+2"
+    version: "1.1.10+1"
   vector_graphics_codec:
     dependency: transitive
     description:
       name: vector_graphics_codec
-      sha256: "531d20465c10dfac7f5cd90b60bbe4dd9921f1ec4ca54c83ebb176dbacb7bb2d"
+      sha256: f3247e7ab0ec77dc759263e68394990edc608fb2b480b80db8aa86ed09279e33
       url: "https://pub.dev"
     source: hosted
-    version: "1.1.9+2"
+    version: "1.1.10+1"
   vector_graphics_compiler:
     dependency: transitive
     description:
       name: vector_graphics_compiler
-      sha256: "03012b0a33775c5530576b70240308080e1d5050f0faf000118c20e6463bc0ad"
+      sha256: "18489bdd8850de3dd7ca8a34e0c446f719ec63e2bab2e7a8cc66a9028dd76c5a"
       url: "https://pub.dev"
     source: hosted
-    version: "1.1.9+2"
+    version: "1.1.10+1"
   vector_math:
     dependency: transitive
     description:
@@ -689,26 +689,26 @@ packages:
     dependency: transitive
     description:
       name: webview_flutter
-      sha256: "71e1bfaef41016c8d5954291df5e9f8c6172f1f6ff3af01b5656456ddb11f94c"
+      sha256: d81b68e88cc353e546afb93fb38958e3717282c5ac6e5d3be4a4aef9fc3c1413
       url: "https://pub.dev"
     source: hosted
-    version: "4.4.4"
+    version: "4.5.0"
   webview_flutter_android:
     dependency: transitive
     description:
       name: webview_flutter_android
-      sha256: "161af93c2abaf94ef2192bffb53a3658b2d721a3bf99b69aa1e47814ee18cc96"
+      sha256: "3e5f4e9d818086b0d01a66fb1ff9cc72ab0cc58c71980e3d3661c5685ea0efb0"
       url: "https://pub.dev"
     source: hosted
-    version: "3.13.2"
+    version: "3.15.0"
   webview_flutter_platform_interface:
     dependency: transitive
     description:
       name: webview_flutter_platform_interface
-      sha256: "80b40ae4fb959957eef9fa8970b6c9accda9f49fc45c2b75154696a8e8996cfe"
+      sha256: d937581d6e558908d7ae3dc1989c4f87b786891ab47bb9df7de548a151779d8d
       url: "https://pub.dev"
     source: hosted
-    version: "2.9.1"
+    version: "2.10.0"
   webview_flutter_wkwebview:
     dependency: transitive
     description:

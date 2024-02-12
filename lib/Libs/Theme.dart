@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class CustomColors {
+  static final Color kakaoYellow = Color(0xFFFDE500);
   static final Color yellowLight = Color(0xFFFFE352);
   static final Color yellow = Color(0xFFFFD600);
   static final Color yellowDark = Color(0xFFE2BE00);
