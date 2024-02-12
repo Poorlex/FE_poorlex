@@ -26,9 +26,9 @@ class _MyPageMyAuthState extends State<MyPageMyAuth> {
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Text('내 인증', style: CustomTextStyles.Headline()),
+            Text('내 인증', style: CTextStyles.Headline()),
             SizedBox(width: 10),
-            Text('${samples.length}', style: CustomTextStyles.Headline(color: CustomColors.purpleLight)),
+            Text('${samples.length}', style: CTextStyles.Headline(color: CColors.purpleLight)),
           ],
         ),
         Row(
@@ -38,9 +38,9 @@ class _MyPageMyAuthState extends State<MyPageMyAuth> {
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Text('2023.08.09 (목)', style: CustomTextStyles.Caption1(color: CustomColors.gray50)),
+                      Text('2023.08.09 (목)', style: CTextStyles.Caption1(color: CColors.gray50)),
                       SizedBox(height: 13),
-                      Text('9.000원', style: CustomTextStyles.Headline()),
+                      Text('9.000원', style: CTextStyles.Headline()),
                     ],
                   )
                 )
@@ -51,9 +51,9 @@ class _MyPageMyAuthState extends State<MyPageMyAuth> {
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Text('2023.08.09 (목)', style: CustomTextStyles.Caption1(color: CustomColors.gray50)),
+                      Text('2023.08.09 (목)', style: CTextStyles.Caption1(color: CColors.gray50)),
                       SizedBox(height: 13),
-                      Text('9.000원', style: CustomTextStyles.Headline()),
+                      Text('9.000원', style: CTextStyles.Headline()),
                     ],
                   )
                 )
@@ -69,9 +69,9 @@ class _MyPageMyAuthState extends State<MyPageMyAuth> {
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Text('2023.08.09 (목)', style: CustomTextStyles.Caption1(color: CustomColors.gray50)),
+                      Text('2023.08.09 (목)', style: CTextStyles.Caption1(color: CColors.gray50)),
                       SizedBox(height: 13),
-                      Text('9.000원', style: CustomTextStyles.Headline()),
+                      Text('9.000원', style: CTextStyles.Headline()),
                     ],
                   )
                 )
@@ -82,9 +82,9 @@ class _MyPageMyAuthState extends State<MyPageMyAuth> {
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Text('2023.08.09 (목)', style: CustomTextStyles.Caption1(color: CustomColors.gray50)),
+                      Text('2023.08.09 (목)', style: CTextStyles.Caption1(color: CColors.gray50)),
                       SizedBox(height: 13),
-                      Text('9.000원', style: CustomTextStyles.Headline()),
+                      Text('9.000원', style: CTextStyles.Headline()),
                     ],
                   )
                 )
@@ -94,7 +94,7 @@ class _MyPageMyAuthState extends State<MyPageMyAuth> {
         SizedBox(height: 17),
         OutlinedButton(
           style: OutlinedButton.styleFrom(
-            side: BorderSide(width: 1.0, color: CustomColors.yellow),
+            side: BorderSide(width: 1.0, color: CColors.yellow),
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(2.0)),
           ),
           child:
@@ -102,9 +102,9 @@ class _MyPageMyAuthState extends State<MyPageMyAuth> {
               padding: EdgeInsets.symmetric(vertical: 14),
               child:
                 Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                  Text('지출 전체 보기', style: CustomTextStyles.Body3(color: CustomColors.yellow)),
+                  Text('지출 전체 보기', style: CTextStyles.Body3(color: CColors.yellow)),
                   SizedBox(width: 5),
-                  CustomIcon(icon: 'arrow-game-right', width: 15, height: 15, color: CustomColors.yellowStr)
+                  CustomIcon(icon: 'arrow-game-right', width: 15, height: 15, color: CColors.yellowStr)
                 ]),
             ),
           onPressed: () {},

@@ -25,38 +25,38 @@ class BattleIndexOne extends GetView {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('배틀방의', style: CustomTextStyles.Title2()),
+              Text('배틀방의', style: CTextStyles.Title2()),
               SizedBox(height: 10),
-              Text('기본 정보를 정해볼까요?', style: CustomTextStyles.Title2()),
+              Text('기본 정보를 정해볼까요?', style: CTextStyles.Title2()),
             ],
           ),
         ),
       ),
       SizedBox(height: 12),
-      Text('배틀방 제목', style: CustomTextStyles.Body3(color: CustomColors.gray41)),
+      Text('배틀방 제목', style: CTextStyles.Body3(color: CColors.gray41)),
       SizedBox(height: 20),
       TextField(
         controller: _titleController,
-        cursorColor: CustomColors.yellow,
-        style: CustomTextStyles.Title3(color: CustomColors.yellow),
+        cursorColor: CColors.yellow,
+        style: CTextStyles.Title3(color: CColors.yellow),
         maxLength: 12,
         decoration: InputDecoration(
           hintText: '방제목 입력 (최대 12자)',
-          hintStyle: CustomTextStyles.Body3(color: CustomColors.gray41),
-          iconColor: CustomColors.yellow,
+          hintStyle: CTextStyles.Body3(color: CColors.gray41),
+          iconColor: CColors.yellow,
           border: UnderlineInputBorder(
-            borderSide: BorderSide(color: CustomColors.yellow, width: 2.0),
+            borderSide: BorderSide(color: CColors.yellow, width: 2.0),
           ),
           enabledBorder: UnderlineInputBorder(
-            borderSide: BorderSide(color: CustomColors.yellow, width: 2.0),
+            borderSide: BorderSide(color: CColors.yellow, width: 2.0),
           ),
           focusedBorder: UnderlineInputBorder(
-            borderSide: BorderSide(color: CustomColors.yellow, width: 2.0),
+            borderSide: BorderSide(color: CColors.yellow, width: 2.0),
           ),
         ),
       ),
       SizedBox(height: 20),
-      Text('배틀방 사진', style: CustomTextStyles.Body3(color: CustomColors.yellow)),
+      Text('배틀방 사진', style: CTextStyles.Body3(color: CColors.yellow)),
       SizedBox(height: 20),
       Obx(() {
         if (con.selectedImage.value != null) {
@@ -75,37 +75,37 @@ class BattleIndexOne extends GetView {
               height: 93,
               width: 93,
               decoration: BoxDecoration(
-                color: CustomColors.gray10,
+                color: CColors.gray10,
               ),
-              child: Icon(Icons.add, color: CustomColors.gray41),
+              child: Icon(Icons.add, color: CColors.gray41),
             ),
           );
         }
       }),
       SizedBox(height: 40),
-      Text('배틀방 소개', style: CustomTextStyles.Body3(color: CustomColors.gray41)),
+      Text('배틀방 소개', style: CTextStyles.Body3(color: CColors.gray41)),
       SizedBox(
         width: double.infinity,
         height: 150,
         child: TextField(
           maxLines: 9,
           controller: _contentController,
-          cursorColor: CustomColors.yellow,
-          style: CustomTextStyles.Title3(color: CustomColors.yellow),
+          cursorColor: CColors.yellow,
+          style: CTextStyles.Title3(color: CColors.yellow),
           maxLength: 200,
           decoration: InputDecoration(
             hintText: '내용을 입력해주세요',
-            hintStyle: CustomTextStyles.Body3(color: CustomColors.gray41),
-            iconColor: CustomColors.yellow,
+            hintStyle: CTextStyles.Body3(color: CColors.gray41),
+            iconColor: CColors.yellow,
             counterText: "200",
             border: UnderlineInputBorder(
-              borderSide: BorderSide(color: CustomColors.black, width: 2.0),
+              borderSide: BorderSide(color: CColors.black, width: 2.0),
             ),
             enabledBorder: UnderlineInputBorder(
-              borderSide: BorderSide(color: CustomColors.black, width: 2.0),
+              borderSide: BorderSide(color: CColors.black, width: 2.0),
             ),
             focusedBorder: UnderlineInputBorder(
-              borderSide: BorderSide(color: CustomColors.black, width: 2.0),
+              borderSide: BorderSide(color: CColors.black, width: 2.0),
             ),
           ),
         ),

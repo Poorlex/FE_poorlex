@@ -21,15 +21,15 @@ class FindingFriends extends GetView {
     con.updateSelectedItems(dummy);
     con.selectedFriends.value = [];
     return Scaffold(
-        backgroundColor: CustomColors.black,
-        appBar: AppBar(backgroundColor: CustomColors.black, title: Text('친구목록')),
+        backgroundColor: CColors.black,
+        appBar: AppBar(backgroundColor: CColors.black, title: Text('친구목록')),
         bottomNavigationBar: Container(
           width: double.infinity, height: 52, child:
           Obx(() => ElevatedButton(
               child: Text(
                   con.selectedFriends.value.length == 0 ? '확인' : '${con.selectedFriends.value.length} / 10 확인',
-                  style: CustomTextStyles.Body3(color: CustomColors.black)),
-              style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(CustomColors.yellow)),
+                  style: CTextStyles.Body3(color: CColors.black)),
+              style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(CColors.yellow)),
               onPressed: () {
                 con.findingSelectedFrieds(dummy);
                 print(con.selectedFriends.value);
@@ -45,13 +45,13 @@ class FindingFriends extends GetView {
                   SizedBox(width: 160, height: 160, child: Image.asset('assets/battle_page/IMG_NO_FRIENDS.png')),
               ]),
               SizedBox(height: 30),
-              Text('친구목록이 없습니다.', style: CustomTextStyles.Title2(color: CustomColors.gray40))
+              Text('친구목록이 없습니다.', style: CTextStyles.Title2(color: CColors.gray40))
             ] else ...[
               Padding(padding: EdgeInsets.symmetric(vertical: 9, horizontal: 20), child:
                 Row(children: [
-                    Text('내 거지친구', style: CustomTextStyles.Headline()),
+                    Text('내 거지친구', style: CTextStyles.Headline()),
                     SizedBox(width: 10),
-                    Text('${dummy.length}', style: CustomTextStyles.Headline(color: CustomColors.purpleLight))
+                    Text('${dummy.length}', style: CTextStyles.Headline(color: CColors.purpleLight))
                   ],
                 ),
               ),
@@ -66,10 +66,10 @@ class FindingFriends extends GetView {
                                   child: Container(width: 24, height: 24,
                                     decoration: BoxDecoration(
                                       shape: BoxShape.circle,
-                                      border: Border.all(color: CustomColors.white),
-                                      color: con.selectedItems[index] ? CustomColors.yellow : Colors.transparent, // 선택되지 않은 경우 투명
+                                      border: Border.all(color: CColors.white),
+                                      color: con.selectedItems[index] ? CColors.yellow : Colors.transparent, // 선택되지 않은 경우 투명
                                     ),
-                                    child: con.selectedItems[index] ? Icon(Icons.check, size: 20, color: CustomColors.black) : null,
+                                    child: con.selectedItems[index] ? Icon(Icons.check, size: 20, color: CColors.black) : null,
                                   ),
                             )),
                             SizedBox(width: 10), // 체크박스와 이미지 사이의 간격
@@ -85,12 +85,12 @@ class FindingFriends extends GetView {
                                 Image.asset('assets/battle_page/ICON_LV2.png')
                               ),
                               SizedBox(width: 6),
-                              Text(dummy[index][0], style: CustomTextStyles.Body3()),
+                              Text(dummy[index][0], style: CTextStyles.Body3()),
                             ],
                           ),
                         ],
                       ),
-                      subtitle: Text(dummy[index][1], style: CustomTextStyles.Body3()),
+                      subtitle: Text(dummy[index][1], style: CTextStyles.Body3()),
                     );
                   },
                 ),

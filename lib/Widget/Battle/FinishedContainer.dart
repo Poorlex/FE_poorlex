@@ -26,12 +26,12 @@ class FinishedContainer extends GetView {
                                 Row(
                                   children: [
                                     Image.asset(width: 26, height: 16, 'assets/my_page/${data[idx][0]}.png'),
-                                    Text('${data[idx][1]}만원', style: CustomTextStyles.Body3(color: CustomColors.yellow)),
+                                    Text('${data[idx][1]}만원', style: CTextStyles.Body3(color: CColors.yellow)),
                                     SizedBox(width: 10),
                                     Container(
-                                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(1), color: CustomColors.gray20),
+                                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(1), color: CColors.gray20),
                                       padding: EdgeInsets.symmetric(horizontal: 6),
-                                      child: Text('${data[idx][7]}', style: CustomTextStyles.Caption2(color: CustomColors.gray41)),
+                                      child: Text('${data[idx][7]}', style: CTextStyles.Caption2(color: CColors.gray41)),
                                     )
                                   ],
                                 ),
@@ -43,20 +43,20 @@ class FinishedContainer extends GetView {
                                       child: Column(
                                         crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
-                                          Text('${data[idx][2]}', style: CustomTextStyles.Body2()),
+                                          Text('${data[idx][2]}', style: CTextStyles.Body2()),
                                           SizedBox(height: 9),
-                                          Text('존버 금액 : ${data[idx][3]}', style: CustomTextStyles.Body2(color: CustomColors.gray40)),
+                                          Text('존버 금액 : ${data[idx][3]}', style: CTextStyles.Body2(color: CColors.gray40)),
                                           SizedBox(height: 27),
                                           Row(
                                             children: [
-                                              Text('${data[idx][4]}위', style: CustomTextStyles.Title1()),
-                                              Text('/${data[idx][5]}명', style: CustomTextStyles.Title1()),
+                                              Text('${data[idx][4]}위', style: CTextStyles.Title1()),
+                                              Text('/${data[idx][5]}명', style: CTextStyles.Title1()),
                                               SizedBox(width: 20),
 
                                               if (data[idx][4] == '1') ...[
                                                 Container(
-                                                  decoration: BoxDecoration(color: CustomColors.yellow), padding: EdgeInsets.symmetric(horizontal: 6),
-                                                  child: Text('+20', style: CustomTextStyles.Title3(color: CustomColors.black)),
+                                                  decoration: BoxDecoration(color: CColors.yellow), padding: EdgeInsets.symmetric(horizontal: 6),
+                                                  child: Text('+20', style: CTextStyles.Title3(color: CColors.black)),
                                                 )
                                               ]
                                             ],

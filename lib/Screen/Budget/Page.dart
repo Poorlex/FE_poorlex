@@ -46,9 +46,9 @@ class _BudgetPageState extends State<BudgetPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: CustomColors.black,
+      backgroundColor: CColors.black,
       appBar: AppBar(
-        backgroundColor: CustomColors.black,
+        backgroundColor: CColors.black,
         automaticallyImplyLeading: false,
         title: Stack(
           alignment: Alignment.center,
@@ -65,7 +65,7 @@ class _BudgetPageState extends State<BudgetPage> {
             Center(
               child: Text(
                 "예산 설정하기",
-                style: CustomTextStyles.Headline(color: CustomColors.black),
+                style: CTextStyles.Headline(color: CColors.black),
               ),
             ),
           ],
@@ -81,9 +81,9 @@ class _BudgetPageState extends State<BudgetPage> {
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("배틀을 시작하기 위해\n일주일 동안 사용할 예산을\n설정해 주세요.", style: CustomTextStyles.Title2()),
+                    Text("배틀을 시작하기 위해\n일주일 동안 사용할 예산을\n설정해 주세요.", style: CTextStyles.Title2()),
                     SizedBox(height: 18),
-                    Text("배틀 기간: $battlePeriod", style: CustomTextStyles.Caption1(color: CustomColors.gray41)),
+                    Text("배틀 기간: $battlePeriod", style: CTextStyles.Caption1(color: CColors.gray41)),
                     SizedBox(
                       height: 40,
                     ),
@@ -111,18 +111,18 @@ class _BudgetPageState extends State<BudgetPage> {
                           ],
                           style: TextStyle(
                               color: _isDefaultText
-                                  ? CustomColors.yellow
-                                  : CustomColors.gray30,
+                                  ? CColors.yellow
+                                  : CColors.gray30,
                               fontSize: 32),
                           decoration: InputDecoration(
                             focusedBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(color: CustomColors.yellow),
+                              borderSide: BorderSide(color: CColors.yellow),
                             ),
                             enabledBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(color: CustomColors.yellow),
+                              borderSide: BorderSide(color: CColors.yellow),
                             ),
                             hintText: _focusNode.hasFocus ? '' : '금액 입력',
-                            hintStyle: CustomTextStyles.LargeTitle(color: CustomColors.gray30)
+                            hintStyle: CTextStyles.LargeTitle(color: CColors.gray30)
                           ),
                         ),
                         if (_focusNode.hasFocus)
@@ -138,8 +138,8 @@ class _BudgetPageState extends State<BudgetPage> {
             ),
             SizedBox(width: double.infinity, height: 50, child:
               OutlinedButton(
-                style: OutlinedButton.styleFrom(backgroundColor: CustomColors.yellow),
-                child: Text("완료", style: CustomTextStyles.Title3(color: CustomColors.black)),
+                style: OutlinedButton.styleFrom(backgroundColor: CColors.yellow),
+                child: Text("완료", style: CTextStyles.Title3(color: CColors.black)),
                 onPressed: () {
                   Navigator.pop(context, moneyValues);
                 },

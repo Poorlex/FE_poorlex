@@ -26,7 +26,7 @@ class _CaledarPageState extends State<CaledarPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         resizeToAvoidBottomInset : false,
-        backgroundColor: CustomColors.black,
+        backgroundColor: CColors.black,
         bottomNavigationBar: BottomBar(nowPage: 3),
         body: (
             SafeArea(child:

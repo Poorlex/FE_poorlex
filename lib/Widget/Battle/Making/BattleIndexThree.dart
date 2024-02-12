@@ -23,9 +23,9 @@ class BattleIndexThree extends GetView {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('친구를 초대하고', style: CustomTextStyles.Title2()),
+                Text('친구를 초대하고', style: CTextStyles.Title2()),
                 SizedBox(height: 10),
-                Text('함께 배틀 해볼까요?', style: CustomTextStyles.Title2()),
+                Text('함께 배틀 해볼까요?', style: CTextStyles.Title2()),
               ],
             ),
           ),
@@ -49,7 +49,7 @@ class BattleIndexThree extends GetView {
                     },
                     child: Padding(
                       padding: const EdgeInsets.symmetric(vertical: 18, horizontal: 75),
-                      child: Text('네 초대할래요!', style: CustomTextStyles.Title2(color: con.indexThreeFirstColor.value)),
+                      child: Text('네 초대할래요!', style: CTextStyles.Title2(color: con.indexThreeFirstColor.value)),
                     )),
                 SizedBox(height: 30),
                 OutlinedButton(
@@ -60,7 +60,7 @@ class BattleIndexThree extends GetView {
                     },
                     child: Padding(
                       padding: const EdgeInsets.symmetric(vertical: 18, horizontal: 46),
-                      child: Text('아니요 초대안할래요!', style: CustomTextStyles.Title2(color: con.indexThreeSecondColor.value)),
+                      child: Text('아니요 초대안할래요!', style: CTextStyles.Title2(color: con.indexThreeSecondColor.value)),
                     ))
               ]),
             ),

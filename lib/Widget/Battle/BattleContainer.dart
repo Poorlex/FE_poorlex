@@ -40,11 +40,11 @@ class _BattleContainerState extends State<BattleContainer> {
                                 Row(
                                   children: [
                                     Image.asset(width: 26, height: 16, 'assets/my_page/${data[idx][0]}.png'),
-                                    Text('${data[idx][1]}만원', style: CustomTextStyles.Body3(color: CustomColors.yellow)),
+                                    Text('${data[idx][1]}만원', style: CTextStyles.Body3(color: CColors.yellow)),
                                     SizedBox(width: 10),
                                     Container(
-                                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), color: CustomColors.gray30), padding: EdgeInsets.symmetric(horizontal: 6),
-                                      child: Text('D-7', style: CustomTextStyles.Body3()),
+                                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), color: CColors.gray30), padding: EdgeInsets.symmetric(horizontal: 6),
+                                      child: Text('D-7', style: CTextStyles.Body3()),
                                     )
                                   ],
                                 ),
@@ -59,21 +59,21 @@ class _BattleContainerState extends State<BattleContainer> {
                                           Row(
                                             children: [
                                               Expanded(
-                                                  child: Text('${data[idx][2]}', style: CustomTextStyles.Body2())
+                                                  child: Text('${data[idx][2]}', style: CTextStyles.Body2())
                                               )
                                             ],
                                           ),
                                           SizedBox(height: 9),
-                                          Text('존버 금액 : ${data[idx][3]}', style: CustomTextStyles.Body2(color: CustomColors.gray40)),
+                                          Text('존버 금액 : ${data[idx][3]}', style: CTextStyles.Body2(color: CColors.gray40)),
                                           SizedBox(height: 27),
                                           Row(
                                             children: [
-                                              Text('${data[idx][4]}위', style: CustomTextStyles.Title1(color: CustomColors.purpleLight)),
-                                              Text('/${data[idx][5]}명', style: CustomTextStyles.Title1()),
+                                              Text('${data[idx][4]}위', style: CTextStyles.Title1(color: CColors.purpleLight)),
+                                              Text('/${data[idx][5]}명', style: CTextStyles.Title1()),
                                               SizedBox(width: 20),
-                                              Icon(Icons.chat_bubble_outline, size: 16, color: CustomColors.white),
+                                              Icon(Icons.chat_bubble_outline, size: 16, color: CColors.white),
                                               SizedBox(width: 4),
-                                              Text('13', style: CustomTextStyles.Body2(color: CustomColors.white))
+                                              Text('13', style: CTextStyles.Body2(color: CColors.white))
                                             ],
                                           )
                                         ],

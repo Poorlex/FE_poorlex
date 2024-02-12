@@ -73,14 +73,14 @@ class _RankingDetailWidget extends State<RankingDetailWidget>
 
     return TabBar(
       controller: tabController,
-      labelColor: CustomColors.white,
+      labelColor: CColors.white,
       labelPadding: EdgeInsets.symmetric(horizontal: 17.5),
-      labelStyle: CustomTextStyles.Title3(color: CustomColors.black),
-      unselectedLabelStyle: CustomTextStyles.Title3(color: CustomColors.black),
-      unselectedLabelColor: CustomColors.gray41,
+      labelStyle: CTextStyles.Title3(color: CColors.black),
+      unselectedLabelStyle: CTextStyles.Title3(color: CColors.black),
+      unselectedLabelColor: CColors.gray41,
       indicatorSize: TabBarIndicatorSize.label,
-      indicatorColor: CustomColors.yellow,
-      dividerColor: CustomColors.black,
+      indicatorColor: CColors.yellow,
+      dividerColor: CColors.black,
       padding: EdgeInsets.symmetric(horizontal: 0),
       onTap: (index) {},
       tabAlignment: TabAlignment.center,
@@ -103,22 +103,22 @@ class _RankingDetailWidget extends State<RankingDetailWidget>
                 Row(children: [
                     Padding(padding: EdgeInsets.fromLTRB(26, 5, 10, 5), child:
                       Container(
-                        decoration: BoxDecoration(color: CustomColors.yellow, borderRadius: BorderRadius.circular(4), border: Border.all(color: CustomColors.orange, width: 2)),
+                        decoration: BoxDecoration(color: CColors.yellow, borderRadius: BorderRadius.circular(4), border: Border.all(color: CColors.orange, width: 2)),
                         width: 36, height: 36, child:
                         Column(mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            Text('7', style: CustomTextStyles.Headline(color: CustomColors.orangeDark)),
-                            Text('만원', style: CustomTextStyles.Caption2(color: CustomColors.orangeDark))
+                            Text('7', style: CTextStyles.Headline(color: CColors.orangeDark)),
+                            Text('만원', style: CTextStyles.Caption2(color: CColors.orangeDark))
                           ],
                         ),
                       ),
                     ),
                     Expanded(child:
                       Row(children: [
-                        Text('빚갚고 돈모으는 절약방', style: TextStyle(fontSize: 18, color: CustomColors.white)),
+                        Text('빚갚고 돈모으는 절약방', style: TextStyle(fontSize: 18, color: CColors.white)),
                         Padding(padding: EdgeInsets.fromLTRB(10, 0, 0, 0), child:
-                          Container(color: CustomColors.gray30, width: 34, height: 16, alignment: Alignment.center, child:
-                            Text('D-7', style: CustomTextStyles.Body3())
+                          Container(color: CColors.gray30, width: 34, height: 16, alignment: Alignment.center, child:
+                            Text('D-7', style: CTextStyles.Body3())
                           )
                         )
                       ])
@@ -134,7 +134,7 @@ class _RankingDetailWidget extends State<RankingDetailWidget>
                     Image.asset('assets/ranking/icon_people_20_20.png', width: 20, height: 20),
                   ),
                   Expanded(child:
-                    Text('10/10', style: CustomTextStyles.Caption2()),
+                    Text('10/10', style: CTextStyles.Caption2()),
                   ),
                 ])
               ],
@@ -157,10 +157,10 @@ class _RankingDetailWidget extends State<RankingDetailWidget>
                           Image.asset('assets/ranking/icon_lv2_16_16.png', width: 16, height: 16),
                         ),
                         Padding(padding: EdgeInsets.fromLTRB(0, 0, 0, 0), child:
-                          Text('강적금', style: CustomTextStyles.Body2()),
+                          Text('강적금', style: CTextStyles.Body2()),
                         ),
                         Expanded(child:
-                          Text('-1,000', textAlign: TextAlign.right, style: CustomTextStyles.Body3(color: CustomColors.purpleLight))
+                          Text('-1,000', textAlign: TextAlign.right, style: CTextStyles.Body3(color: CColors.purpleLight))
                         )
                       ])
                   )
@@ -170,7 +170,7 @@ class _RankingDetailWidget extends State<RankingDetailWidget>
               Column(children: [
                   Row(children: [
                     Padding(padding: EdgeInsets.fromLTRB(16, 0, 27, 0), child:
-                      Text('4위', style: CustomTextStyles.Body2()),
+                      Text('4위', style: CTextStyles.Body2()),
                     ),
                     Padding(padding: EdgeInsets.fromLTRB(0, 0, 44, 0), child:
                       Image.asset('assets/ranking/profile_40_40.png', width: 40, height: 40),
@@ -179,10 +179,10 @@ class _RankingDetailWidget extends State<RankingDetailWidget>
                       Image.asset('assets/ranking/icon_lv2_16_16.png', width: 16, height: 16),
                     ),
                     Padding(padding: EdgeInsets.fromLTRB(0, 0, 0, 0), child:
-                      Text('강적금', style: CustomTextStyles.Body2()),
+                      Text('강적금', style: CTextStyles.Body2()),
                     ),
                     Expanded(child:
-                      Text('-3,000', textAlign: TextAlign.right, style: CustomTextStyles.Body3(color: CustomColors.purpleLight))
+                      Text('-3,000', textAlign: TextAlign.right, style: CTextStyles.Body3(color: CColors.purpleLight))
                     ),
                   ]),
                 ],
@@ -192,7 +192,7 @@ class _RankingDetailWidget extends State<RankingDetailWidget>
               Column(children: [
                   Row(children: [
                     Padding(padding: EdgeInsets.fromLTRB(16, 0, 27, 0), child:
-                      Text('5위', style: CustomTextStyles.Body2()),
+                      Text('5위', style: CTextStyles.Body2()),
                     ),
                     Padding(padding: EdgeInsets.fromLTRB(0, 0, 44, 0), child:
                       Image.asset('assets/ranking/profile_40_40.png', width: 40, height: 40),
@@ -201,10 +201,10 @@ class _RankingDetailWidget extends State<RankingDetailWidget>
                       Image.asset('assets/ranking/icon_lv4_16_16.png', width: 16, height: 16),
                     ),
                     Padding(padding: EdgeInsets.fromLTRB(0, 0, 0, 0), child:
-                      Text('강적금', style: CustomTextStyles.Body2()),
+                      Text('강적금', style: CTextStyles.Body2()),
                     ),
                     Expanded(child:
-                      Text('-3,200', textAlign: TextAlign.right, style: CustomTextStyles.Body3(color: CustomColors.purpleLight))
+                      Text('-3,200', textAlign: TextAlign.right, style: CTextStyles.Body3(color: CColors.purpleLight))
                     )
                   ])
                 ]
@@ -216,8 +216,8 @@ class _RankingDetailWidget extends State<RankingDetailWidget>
           Padding(padding: EdgeInsets.fromLTRB(0, 13, 0, 11), child:
             Row(children: [
               Expanded(child:
-                ElevatedButton(style: ElevatedButton.styleFrom(backgroundColor: CustomColors.black, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(0))), child:
-                  Text("인증내역", style: CustomTextStyles.Headline(), textAlign: TextAlign.center),
+                ElevatedButton(style: ElevatedButton.styleFrom(backgroundColor: CColors.black, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(0))), child:
+                  Text("인증내역", style: CTextStyles.Headline(), textAlign: TextAlign.center),
                   onPressed: () {
                     setState(() {
                       isAuthenticationPressed = true;
@@ -227,8 +227,8 @@ class _RankingDetailWidget extends State<RankingDetailWidget>
                 )
               ),
               Expanded(child:
-                ElevatedButton(style: ElevatedButton.styleFrom(backgroundColor: CustomColors.black, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(0))), child:
-                  Text("나의인증", style: CustomTextStyles.Headline(), textAlign: TextAlign.center),
+                ElevatedButton(style: ElevatedButton.styleFrom(backgroundColor: CColors.black, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(0))), child:
+                  Text("나의인증", style: CTextStyles.Headline(), textAlign: TextAlign.center),
                   onPressed: () {
                       setState(() {
                         isAuthenticationPressed = false;
@@ -243,38 +243,38 @@ class _RankingDetailWidget extends State<RankingDetailWidget>
             Padding(padding: EdgeInsets.fromLTRB(24, 16, 23, 16), child:
               Row(children: [
                 Padding(padding: EdgeInsets.fromLTRB(0, 0, 22, 0), child:
-                  Container(color: CustomColors.gray20, width: 28, child:
-                    Text("월", style: CustomTextStyles.Headline(), textAlign: TextAlign.center)
+                  Container(color: CColors.gray20, width: 28, child:
+                    Text("월", style: CTextStyles.Headline(), textAlign: TextAlign.center)
                   )
                 ),
                 Padding(padding: EdgeInsets.fromLTRB(0, 0, 22, 0), child:
-                  Container(color: CustomColors.gray20, width: 28, child:
-                    Text("화", style: CustomTextStyles.Headline(), textAlign: TextAlign.center)
+                  Container(color: CColors.gray20, width: 28, child:
+                    Text("화", style: CTextStyles.Headline(), textAlign: TextAlign.center)
                   )
                 ),
                 Padding(padding: EdgeInsets.fromLTRB(0, 0, 22, 0), child:
-                  Container(color: CustomColors.gray20, width: 28, child:
-                    Text("수", style: CustomTextStyles.Headline(), textAlign: TextAlign.center)
+                  Container(color: CColors.gray20, width: 28, child:
+                    Text("수", style: CTextStyles.Headline(), textAlign: TextAlign.center)
                   ),
                 ),
                 Padding(padding: EdgeInsets.fromLTRB(0, 0, 22, 0), child:
-                  Container(color: CustomColors.gray20, width: 28, child:
-                    Text("목", style: CustomTextStyles.Headline(), textAlign: TextAlign.center)
+                  Container(color: CColors.gray20, width: 28, child:
+                    Text("목", style: CTextStyles.Headline(), textAlign: TextAlign.center)
                   )
                 ),
                 Padding(padding: EdgeInsets.fromLTRB(0, 0, 22, 0), child:
-                  Container(color: CustomColors.gray20, width: 28, child:
-                    Text("금", style: CustomTextStyles.Headline(), textAlign: TextAlign.center)
+                  Container(color: CColors.gray20, width: 28, child:
+                    Text("금", style: CTextStyles.Headline(), textAlign: TextAlign.center)
                   ),
                 ),
                 Padding(padding: EdgeInsets.fromLTRB(0, 0, 22, 0), child:
-                  Container(color: CustomColors.gray20, width: 28, child:
-                    Text("토", style: CustomTextStyles.Headline(), textAlign: TextAlign.center)
+                  Container(color: CColors.gray20, width: 28, child:
+                    Text("토", style: CTextStyles.Headline(), textAlign: TextAlign.center)
                   )
                 ),
                 Padding(padding: EdgeInsets.fromLTRB(0, 0, 0, 0), child:
-                  Container(color: CustomColors.gray20, width: 28, child:
-                    Text("일", style: CustomTextStyles.Headline(), textAlign: TextAlign.center)
+                  Container(color: CColors.gray20, width: 28, child:
+                    Text("일", style: CTextStyles.Headline(), textAlign: TextAlign.center)
                   )
                 )
               ])
@@ -313,26 +313,26 @@ class GridItemWidget extends StatelessWidget {
                 return AlertDialog(content:
                   Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                     Row(children: [
-                      IconButton(icon: Icon(Icons.close, color: CustomColors.white),
+                      IconButton(icon: Icon(Icons.close, color: CColors.white),
                         onPressed: () {
                           Navigator.pop(context);
                         },
                       ),
                       Expanded(child:
                         Center(child:
-                          Text('인증내역(1/7)', style: CustomTextStyles.Body3())
+                          Text('인증내역(1/7)', style: CTextStyles.Body3())
                         )
                       )
                     ]),
                     Image.asset('assets/ranking/first_profile_60_60.png'),
                     Padding(padding: EdgeInsets.fromLTRB(0, 20, 0, 0), child:
-                      Text("최지출", style: CustomTextStyles.Headline())
+                      Text("최지출", style: CTextStyles.Headline())
                     ),
                     Padding(padding: EdgeInsets.fromLTRB(0, 20, 0, 0), child:
-                      Text("약값 지출 ...", style: CustomTextStyles.Headline())
+                      Text("약값 지출 ...", style: CTextStyles.Headline())
                     ),
                   ]),
-                  backgroundColor: CustomColors.black,
+                  backgroundColor: CColors.black,
                   actions: [],
                 );
               }

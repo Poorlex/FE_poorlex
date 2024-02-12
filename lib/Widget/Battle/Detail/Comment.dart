@@ -21,7 +21,7 @@ class CommentModal extends CustomModal {
             crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 IconButton(onPressed: () => Navigator.pop(context),
-                    icon: CustomIcon(icon: 'arrow-left', color: CustomColors.whiteStr)
+                    icon: CustomIcon(icon: 'arrow-left', color: CColors.whiteStr)
                 ),
                 SizedBox(height: 26),
                 Expanded(
@@ -32,18 +32,18 @@ class CommentModal extends CustomModal {
                       children: [
                         Text(
                             isAgree ? '칭찬하기 사유' : '혼내기 사유',
-                            style: CustomTextStyles.Body3(color: CustomColors.gray40)
+                            style: CTextStyles.Body3(color: CColors.gray40)
                         ),
                         TextField(
-                          style: CustomTextStyles.Title2(),
+                          style: CTextStyles.Title2(),
                           decoration: InputDecoration(
                             enabledBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(color: CustomColors.yellow, width: 2),
+                              borderSide: BorderSide(color: CColors.yellow, width: 2),
                             ),
                             focusedBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(color: CustomColors.yellow, width: 2),
+                              borderSide: BorderSide(color: CColors.yellow, width: 2),
                             ),
-                            hintStyle: CustomTextStyles.Title2(color: CustomColors.gray30),
+                            hintStyle: CTextStyles.Title2(color: CColors.gray30),
                             hintText: '코멘트 입력 (30자)',
                           ),
                         ),
@@ -56,11 +56,11 @@ class CommentModal extends CustomModal {
                       children: [
                         Positioned(
                             top: 0, left: 0, right: 0, bottom: 0,
-                            child: Container(color: CustomColors.yellowLight)
+                            child: Container(color: CColors.yellowLight)
                         ),
                         Positioned(
                             top: 6, left: 0, right: 0, bottom: 0,
-                            child: Container(color: CustomColors.yellow)
+                            child: Container(color: CColors.yellow)
                         ),
                         Container(
                           height: 56,
@@ -68,7 +68,7 @@ class CommentModal extends CustomModal {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text('완료', style: CustomTextStyles.Title3(color: CustomColors.black))
+                              Text('완료', style: CTextStyles.Title3(color: CColors.black))
                             ],
                           ),
                         )

@@ -43,7 +43,7 @@ class BattleMoney extends GetView {
               margin: EdgeInsets.fromLTRB(0, 0, 8, 0),
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: isSelected ? CustomColors.yellow : CustomColors.black,
+                  backgroundColor: isSelected ? CColors.yellow : CColors.black,
                   side: BorderSide(width: 1.0, color: Color(isSelected ? 0xffffd600 : 0xff666666)),
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
                 ),
@@ -52,7 +52,7 @@ class BattleMoney extends GetView {
                 },
                 child: Row(
                   children: [
-                    Text(item.label, style: CustomTextStyles.Body3(color: isSelected ? CustomColors.black : CustomColors.white)),
+                    Text(item.label, style: CTextStyles.Body3(color: isSelected ? CColors.black : CColors.white)),
                     item.icon == null ? Container() : item.icon as Image
                   ],
                 ),

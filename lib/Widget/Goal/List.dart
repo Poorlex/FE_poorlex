@@ -18,7 +18,7 @@ class _GoalListState extends State<GoalList> {
     };
     showModalBottomSheet(
       context: context,
-      backgroundColor: CustomColors.black,
+      backgroundColor: CColors.black,
       isScrollControlled: true,
       builder: (BuildContext context) {
         return OptionButtonModal(selectOption: selectOption);
@@ -53,7 +53,7 @@ class GoalListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(border: Border(bottom: BorderSide(color: CustomColors.gray10, width: 1))),
+      decoration: BoxDecoration(border: Border(bottom: BorderSide(color: CColors.gray10, width: 1))),
       padding: EdgeInsets.fromLTRB(16, 24, 16, 24),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -61,18 +61,18 @@ class GoalListItem extends StatelessWidget {
         children: [
           Container(
             child: Column(mainAxisAlignment: MainAxisAlignment.start, crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Text('에어팟 맥스 사기 🎵 ', style: CustomTextStyles.Body3()),
+              Text('에어팟 맥스 사기 🎵 ', style: CTextStyles.Body3()),
               SizedBox(height: 14),
               Row(crossAxisAlignment: CrossAxisAlignment.center, mainAxisAlignment: MainAxisAlignment.center, children: [
                 Container(
                     padding: const EdgeInsets.fromLTRB(6, 3, 6, 3),
                     decoration: BoxDecoration(
-                        border: Border.all(color: CustomColors.yellow)
+                        border: Border.all(color: CColors.yellow)
                     ),
-                    child: Text('단기', style: CustomTextStyles.Caption2(color: CustomColors.yellow))
+                    child: Text('단기', style: CTextStyles.Caption2(color: CColors.yellow))
                 ),
                 SizedBox(width: 10),
-                Text('500,000원', style: CustomTextStyles.Title3(color: CustomColors.yellow)),
+                Text('500,000원', style: CTextStyles.Title3(color: CColors.yellow)),
               ]),
               SizedBox(height: 11),
               Row(crossAxisAlignment: CrossAxisAlignment.center, mainAxisAlignment: MainAxisAlignment.center, children: [
@@ -83,9 +83,9 @@ class GoalListItem extends StatelessWidget {
                     </svg>''', width: 14, height: 14,
                 ),
                 SizedBox(width: 6),
-                Text('0개월 남음', style: CustomTextStyles.Caption1(color: CustomColors.purpleLight)),
+                Text('0개월 남음', style: CTextStyles.Caption1(color: CColors.purpleLight)),
                 SizedBox(width: 17),
-                Text('~ 2023.11.09', style: CustomTextStyles.Caption1(color: CustomColors.gray41)),
+                Text('~ 2023.11.09', style: CTextStyles.Caption1(color: CColors.gray41)),
               ])
             ])
           ),
@@ -93,7 +93,7 @@ class GoalListItem extends StatelessWidget {
             style: TextButton.styleFrom(
               minimumSize: Size.zero,
               padding: EdgeInsets.zero,
-              backgroundColor: CustomColors.gray10,
+              backgroundColor: CColors.gray10,
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.zero,)
             ),
             child: Container(
@@ -137,7 +137,7 @@ class OptionButtonModal extends StatelessWidget {
                 child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text('수정', style: CustomTextStyles.Headline())
+                      Text('수정', style: CTextStyles.Headline())
                     ]
                 ),
               )
@@ -148,7 +148,7 @@ class OptionButtonModal extends StatelessWidget {
                   child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text('완료', style: CustomTextStyles.Headline(color: CustomColors.green))
+                        Text('완료', style: CTextStyles.Headline(color: CColors.green))
                       ]
                   ),
                 )
@@ -159,7 +159,7 @@ class OptionButtonModal extends StatelessWidget {
                   child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text('삭제', style: CustomTextStyles.Headline(color: CustomColors.gray30))
+                        Text('삭제', style: CTextStyles.Headline(color: CColors.gray30))
                       ]
                   )
                 )

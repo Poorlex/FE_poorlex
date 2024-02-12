@@ -15,7 +15,7 @@ class CustomIcon extends StatelessWidget {
     width, height,
     required this.icon
   }) {
-    this.color = color ?? CustomColors.blackStr;
+    this.color = color ?? CColors.blackStr;
     this.w = width ?? 25;
     this.h = height ?? 25;
   }
@@ -50,7 +50,7 @@ class CustomIcon extends StatelessWidget {
       return SvgPicture.string('''
         <svg xmlns="http://www.w3.org/2000/svg" width="17" height="16" viewBox="0 0 17 16" fill="none">
           <circle cx="8.89648" cy="8" r="8" fill="${color}"/>
-          <path d="M5.89648 7L8.89648 11L11.8965 7" stroke="${CustomColors.gray10Str}" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="bevel"/>
+          <path d="M5.89648 7L8.89648 11L11.8965 7" stroke="${CColors.gray10Str}" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="bevel"/>
         </svg>
       ''', width: w?.toDouble(), height: h?.toDouble());
     } else if (icon == 'option') {
@@ -81,7 +81,7 @@ class CustomIcon extends StatelessWidget {
       return SvgPicture.string('''
         <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26" fill="none">
           <path fill-rule="evenodd" clip-rule="evenodd" d="M20.167 10.8337V18.9587H5.83366V10.8337C5.83366 6.87562 9.04229 3.66699 13.0003 3.66699C16.9584 3.66699 20.167 6.87562 20.167 10.8337ZM23.8337 20.5837L21.667 20.5837H20.167L15.167 20.5837V24.917H10.8337V20.5837L5.83366 20.5837H4.33366L2.16699 20.5837V18.9587H4.33366V10.8337C4.33366 6.04719 8.21386 2.16699 13.0003 2.16699C17.7868 2.16699 21.667 6.04719 21.667 10.8337V18.9587H23.8337V20.5837Z" fill="${color}"/>
-          <path d="M9.83334 5.41667C9.83334 7.85592 7.85593 9.83333 5.41667 9.83333C2.97741 9.83333 1 7.85592 1 5.41667C1 2.97741 2.97741 1 5.41667 1C7.85593 1 9.83334 2.97741 9.83334 5.41667Z" fill="${CustomColors.redStr}" stroke="black" stroke-width="2"/>
+          <path d="M9.83334 5.41667C9.83334 7.85592 7.85593 9.83333 5.41667 9.83333C2.97741 9.83333 1 7.85592 1 5.41667C1 2.97741 2.97741 1 5.41667 1C7.85593 1 9.83334 2.97741 9.83334 5.41667Z" fill="${CColors.redStr}" stroke="black" stroke-width="2"/>
         </svg>
       ''', width: w?.toDouble(), height: h?.toDouble());
     } else if (icon == 'thumb-up') {

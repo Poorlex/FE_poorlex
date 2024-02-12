@@ -100,13 +100,13 @@ class _PickerModalState extends State<PickerModal> {
           years.map((year) {
             bool isSelected = year.toString() == DateFormat('yyyy').format(DateTime.fromMillisecondsSinceEpoch(widget.current));
             if (isSelected) {
-              return ElevatedButton(style: ElevatedButton.styleFrom(backgroundColor: CustomColors.black), child:
-                Text(year.toString() + '년', style: CustomTextStyles.Body2()),
+              return ElevatedButton(style: ElevatedButton.styleFrom(backgroundColor: CColors.black), child:
+                Text(year.toString() + '년', style: CTextStyles.Body2()),
                 onPressed: () => _select('year', year),
               );
             } else {
               return TextButton(child:
-                Text(year.toString() + '년', style: CustomTextStyles.Body2()),
+                Text(year.toString() + '년', style: CTextStyles.Body2()),
                 onPressed: () => _select('year', year),
               );
             }
@@ -123,13 +123,13 @@ class _PickerModalState extends State<PickerModal> {
             months.map((month) {
               bool isSelected = month.toString() == DateFormat('M').format(DateTime.fromMillisecondsSinceEpoch(widget.current));
               if (isSelected) {
-                return ElevatedButton(style: ElevatedButton.styleFrom(backgroundColor: CustomColors.black), child:
-                  Text(month.toString() + '월', style: CustomTextStyles.Body2()),
+                return ElevatedButton(style: ElevatedButton.styleFrom(backgroundColor: CColors.black), child:
+                  Text(month.toString() + '월', style: CTextStyles.Body2()),
                   onPressed: () => _select('month', month)
                 );
               } else {
                 return TextButton(child:
-                  Text(month.toString() + '월', style: CustomTextStyles.Body2(color: CustomColors.black)),
+                  Text(month.toString() + '월', style: CTextStyles.Body2(color: CColors.black)),
                   onPressed: () => _select('month', month),
                 );
               }
@@ -147,13 +147,13 @@ class _PickerModalState extends State<PickerModal> {
               days.map((day) {
                 bool isSelected = day.toString() == DateFormat('D').format(DateTime.fromMillisecondsSinceEpoch(widget.current));
                 if (isSelected) {
-                  return ElevatedButton(style: ElevatedButton.styleFrom(backgroundColor: CustomColors.black), child:
-                    Text(day.toString() + '일', style: CustomTextStyles.Body2()),
+                  return ElevatedButton(style: ElevatedButton.styleFrom(backgroundColor: CColors.black), child:
+                    Text(day.toString() + '일', style: CTextStyles.Body2()),
                     onPressed: () => _select('day', day)
                   );
                 } else {
                   return TextButton(child: Text(day.toString() + '일', style:
-                    CustomTextStyles.Body2(color: CustomColors.black)),
+                    CTextStyles.Body2(color: CColors.black)),
                     onPressed: () => _select('day', day),
                   );
                 }
@@ -164,15 +164,15 @@ class _PickerModalState extends State<PickerModal> {
     }
 
     return SizedBox(height: 300, child: (
-        Container(color: CustomColors.white, padding: EdgeInsets.fromLTRB(20, 20, 20, 40), child: (
+        Container(color: CColors.white, padding: EdgeInsets.fromLTRB(20, 20, 20, 40), child: (
             Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
               Expanded(child:
                 Row(children: children)
               ),
               SizedBox(height: 16),
               Container(child: (
-                ElevatedButton(style: ElevatedButton.styleFrom(backgroundColor: CustomColors.yellow, minimumSize: Size.fromHeight(50)), child:
-                  Text('확인', style: CustomTextStyles.Headline(color: CustomColors.black)),
+                ElevatedButton(style: ElevatedButton.styleFrom(backgroundColor: CColors.yellow, minimumSize: Size.fromHeight(50)), child:
+                  Text('확인', style: CTextStyles.Headline(color: CColors.black)),
                   onPressed: () {
                     widget.select(widget.current);
                     Navigator.pop(context);
@@ -221,7 +221,7 @@ class _DayPickerModalState extends State<DayPickerModal> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(height: 300, child:
-      Container(color: CustomColors.white, padding: EdgeInsets.fromLTRB(20, 20, 20, 40))
+      Container(color: CColors.white, padding: EdgeInsets.fromLTRB(20, 20, 20, 40))
     );
   }
 }

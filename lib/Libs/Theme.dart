@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class CustomColors {
+class CColors {
   static final Color kakaoYellow = Color(0xFFFDE500);
   static final Color yellowLight = Color(0xFFFFE352);
   static final Color yellow = Color(0xFFFFD600);
@@ -41,8 +41,8 @@ class CustomColors {
   static final String redStr = '#E05D65';
 }
 
-class CustomTextStyles {
-  static Color defaultColor = CustomColors.white;
+class CTextStyles {
+  static Color defaultColor = CColors.white;
   static TextStyle LargeTitle({ Color? color }) => TextStyle(fontSize: 32, height: 1.0, letterSpacing: 2.0, color: color ?? defaultColor);
   static TextStyle Title1({ Color? color }) => TextStyle(fontSize: 24, height: 1.0, letterSpacing: -0.25, color: color ?? defaultColor);
   static TextStyle Title2({ Color? color }) => TextStyle(fontSize: 22, height: 1.0, letterSpacing: -0.25, color: color ?? defaultColor);

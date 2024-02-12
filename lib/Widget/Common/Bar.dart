@@ -18,8 +18,8 @@ class CustomBar extends StatelessWidget {
     required this.current
   }){
     this.height = height ?? 8;
-    this.background = background ?? CustomColors.gray40;
-    this.primary = primary ?? CustomColors.purpleLight;
+    this.background = background ?? CColors.gray40;
+    this.primary = primary ?? CColors.purpleLight;
   }
 
   @override
@@ -42,7 +42,7 @@ class CustomBar extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              Text('${current}명', style: CustomTextStyles.Body3(color: primary!),)
+              Text('${current}명', style: CTextStyles.Body3(color: primary!),)
             ],
           )
         ],

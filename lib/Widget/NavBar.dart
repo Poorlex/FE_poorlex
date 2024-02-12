@@ -21,7 +21,7 @@ class _NavBarState extends State<NavBar> {
   String battleMoney = "POORLEX";
   @override
   Widget build(BuildContext context) {
-    return AppBar(toolbarHeight: 120, backgroundColor: CustomColors.black, title:
+    return AppBar(toolbarHeight: 120, backgroundColor: CColors.black, title:
       Padding(padding: EdgeInsets.symmetric(horizontal: 5, vertical: 1), child:
         Column(children: [
           Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
@@ -29,11 +29,11 @@ class _NavBarState extends State<NavBar> {
               Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
                 Icon(Icons.flag, size: 16),
                 SizedBox(width: 16),
-                Text('70,000원', style: CustomTextStyles.Body2(color: CustomColors.black)),
+                Text('70,000원', style: CTextStyles.Body2(color: CColors.black)),
                 SizedBox(width: 16),
-                Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(6), color: CustomColors.gray41), child:
+                Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(6), color: CColors.gray41), child:
                   Padding(padding: EdgeInsets.symmetric(horizontal: 9, vertical: 1), child:
-                    Text('D-7', style: CustomTextStyles.Body3(color: CustomColors.black)),
+                    Text('D-7', style: CTextStyles.Body3(color: CColors.black)),
                   ),
                 ),
               ]),
@@ -48,9 +48,9 @@ class _NavBarState extends State<NavBar> {
           ]),
           SizedBox(height: 10),
           Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-              Text('LV.4', style: CustomTextStyles.Body2(color: CustomColors.yellow)),
+              Text('LV.4', style: CTextStyles.Body2(color: CColors.yellow)),
                 Text('Progress Bar'),
-                Text('+256 P', style: CustomTextStyles.Body2(color: CustomColors.yellow)),
+                Text('+256 P', style: CTextStyles.Body2(color: CColors.yellow)),
               ],
             ),
           SizedBox(height: 10),
@@ -62,7 +62,7 @@ class _NavBarState extends State<NavBar> {
                   style: ButtonStyle(overlayColor: MaterialStateProperty.resolveWith((states) {
                     return Colors.transparent; // 포커스 색상을 투명하게 설정합니다.
                   })), child:
-                  Text(battleMoney, style: CustomTextStyles.Headline(color: CustomColors.yellow)),
+                  Text(battleMoney, style: CTextStyles.Headline(color: CColors.yellow)),
                   onPressed: () async {
                     final result = await Navigator.push<String>(
                       context,
@@ -76,7 +76,7 @@ class _NavBarState extends State<NavBar> {
                   },
                 )
               ]),
-              Text('-32,000원', style: CustomTextStyles.Body2(color: CustomColors.purpleLight)),
+              Text('-32,000원', style: CTextStyles.Body2(color: CColors.purpleLight)),
           ])
         ])
       )

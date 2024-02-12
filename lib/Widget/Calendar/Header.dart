@@ -30,21 +30,21 @@ class _CalenderHeaderState extends State<CalenderHeader> {
   Widget build(BuildContext context) {
     return Container(padding: EdgeInsets.fromLTRB(16, 0, 16, 0), child: (
         Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Text('요약', style: CustomTextStyles.Title1()),
+          Text('요약', style: CTextStyles.Title1()),
           SizedBox(height: 20),
           Container(child:
             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-              IconButton(icon: Icon(Icons.arrow_back_ios, size: 25, color: CustomColors.white),
+              IconButton(icon: Icon(Icons.arrow_back_ios, size: 25, color: CColors.white),
                   onPressed: () => _changeMonth('prev')
               ),
               Picker(type: 'MONTH', current: widget.current, select: widget.select, child:
                 Row(children: [
-                  Text(DateFormat('yyyy년 MM월').format(DateTime.fromMillisecondsSinceEpoch(widget.current)), style: CustomTextStyles.Title1()),
+                  Text(DateFormat('yyyy년 MM월').format(DateTime.fromMillisecondsSinceEpoch(widget.current)), style: CTextStyles.Title1()),
                   SizedBox(width: 8),
-                  Icon(Icons.arrow_drop_down_sharp, size: 35, color: CustomColors.white)
+                  Icon(Icons.arrow_drop_down_sharp, size: 35, color: CColors.white)
                 ]),
               ),
-              IconButton(icon: Icon(Icons.arrow_forward_ios, size: 25, color: CustomColors.white),
+              IconButton(icon: Icon(Icons.arrow_forward_ios, size: 25, color: CColors.white),
                   onPressed: () => _changeMonth('next')
               )
             ])

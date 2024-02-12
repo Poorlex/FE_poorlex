@@ -70,9 +70,9 @@ class BackgroundImageWithRemove extends StatelessWidget {
                 decoration: BoxDecoration(image: DecorationImage(image: AssetImage(image), fit: BoxFit.cover))
               ),
               Positioned(top: 0, right: 0, child:
-                Container(color: CustomColors.black.withOpacity(0.7), width: 22, height: 22, child:
+                Container(color: CColors.black.withOpacity(0.7), width: 22, height: 22, child:
                     Row(mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.center, children: [
-                       CustomIcon(icon: 'close', width: 9, height: 9, color: CustomColors.whiteStr)
+                       CustomIcon(icon: 'close', width: 9, height: 9, color: CColors.whiteStr)
                     ])
                 )
               )
@@ -97,9 +97,9 @@ class AddImageButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        width: width, height: height, color: CustomColors.gray20,
+        width: width, height: height, color: CColors.gray20,
         child: Row(mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.center, children: [
-          CustomIcon(icon: 'plus', width: 20, height: 20, color: CustomColors.whiteStr)
+          CustomIcon(icon: 'plus', width: 20, height: 20, color: CColors.whiteStr)
         ]),
     );
   }

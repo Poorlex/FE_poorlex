@@ -32,7 +32,7 @@ class _MainCarouselSliderState extends State<MainCarouselSlider> {
     return Column(children: [
       Padding(padding: EdgeInsets.symmetric(vertical: 9, horizontal: 23), child:
         Row(children: [
-          Text('참여 중인 배틀 (${idx + 1}/3)', style: CustomTextStyles.Body3(color: CustomColors.black))
+          Text('참여 중인 배틀 (${idx + 1}/3)', style: CTextStyles.Body3(color: CColors.black))
         ]),
       ),
       CarouselSlider(

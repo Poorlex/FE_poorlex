@@ -58,10 +58,10 @@ class _MyExpenseInputPageState extends State<MyExpenseInputPage> {
             children: [
               IconButton(
                 iconSize: 26,
-                icon: CustomIcon(icon: 'close', width: 26, height: 26, color: CustomColors.whiteStr),
+                icon: CustomIcon(icon: 'close', width: 26, height: 26, color: CColors.whiteStr),
                 onPressed: () {},
               ),
-              Text('지출 입력하기', style: CustomTextStyles.Headline()),
+              Text('지출 입력하기', style: CTextStyles.Headline()),
               SizedBox(width: 26)
             ],
           ),
@@ -77,7 +77,7 @@ class _MyExpenseInputPageState extends State<MyExpenseInputPage> {
                       Row(children: [
                         Container(margin: EdgeInsets.only(left: 2), // 원하는 마진 값으로 조정
                           child:
-                          Text('오늘은 ', style: CustomTextStyles.Title1(color: CustomColors.yellow),
+                          Text('오늘은 ', style: CTextStyles.Title1(color: CColors.yellow),
                           ),
                         ),
                       ],
@@ -87,15 +87,15 @@ class _MyExpenseInputPageState extends State<MyExpenseInputPage> {
                             focusNode: _focusNode,
                             keyboardType: TextInputType.number,
                             inputFormatters: <TextInputFormatter>[FilteringTextInputFormatter.digitsOnly],
-                            cursorColor: CustomColors.yellow,
-                            style: CustomTextStyles.Title3(color: CustomColors.yellow),
+                            cursorColor: CColors.yellow,
+                            style: CTextStyles.Title3(color: CColors.yellow),
                             decoration: InputDecoration(
                               hintText: '금액 입력',
-                              hintStyle: CustomTextStyles.Body3(color: CustomColors.gray41),
-                              iconColor: CustomColors.yellow,
-                              border: UnderlineInputBorder(borderSide: BorderSide(color: CustomColors.yellow, width: 2.0),),
-                              enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: CustomColors.yellow, width: 2.0),),
-                              focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: CustomColors.yellow, width: 2.0),),
+                              hintStyle: CTextStyles.Body3(color: CColors.gray41),
+                              iconColor: CColors.yellow,
+                              border: UnderlineInputBorder(borderSide: BorderSide(color: CColors.yellow, width: 2.0),),
+                              enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: CColors.yellow, width: 2.0),),
+                              focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: CColors.yellow, width: 2.0),),
                             )
                         ),
                         if (isFocus)
@@ -105,42 +105,42 @@ class _MyExpenseInputPageState extends State<MyExpenseInputPage> {
                       Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
                         Row(mainAxisAlignment: MainAxisAlignment.start, children: [
                           Container(width: 80, child:
-                          Text('지출 일자', style: CustomTextStyles.Body2(color: CustomColors.gray50)),
+                          Text('지출 일자', style: CTextStyles.Body2(color: CColors.gray50)),
                           ),
                           SizedBox(width: 30),
-                          Text('2023.07.28 (금)', style: CustomTextStyles.Body2()),
+                          Text('2023.07.28 (금)', style: CTextStyles.Body2()),
                         ]),
                         Picker(type: 'DAY', select: () {}, child:
-                        CustomIcon(icon: 'arrow-circle-down', width: 16, height: 16, color: CustomColors.yellowStr)
+                        CustomIcon(icon: 'arrow-circle-down', width: 16, height: 16, color: CColors.yellowStr)
                         ),
                       ]),
                       SizedBox(height: 20),
-                      Container(height: 1, color: CustomColors.black),
+                      Container(height: 1, color: CColors.black),
                       SizedBox(height: 20),
                       Row(mainAxisAlignment: MainAxisAlignment.start, children: [
                         Container(width: 80, child:
-                        Text('메모', style: CustomTextStyles.Body2(color: CustomColors.gray50))
+                        Text('메모', style: CTextStyles.Body2(color: CColors.gray50))
                         ),
                         SizedBox(width: 30),
                         Flexible(flex: 1, child:
                         TextField(
-                            style: CustomTextStyles.Body3(),
+                            style: CTextStyles.Body3(),
                             decoration: InputDecoration(
                               hintText: '입력하세요',
-                              hintStyle: CustomTextStyles.Body2(color: CustomColors.gray41),
+                              hintStyle: CTextStyles.Body2(color: CColors.gray41),
                               border: InputBorder.none,
                             )
                         )
                         )
                       ]),
                       SizedBox(height: 20),
-                      Container(height: 1, color: CustomColors.black),
+                      Container(height: 1, color: CColors.black),
                       SizedBox(height: 20),
                       Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                         Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                          Text('인증 사진', style: CustomTextStyles.Body2(color: CustomColors.gray50)),
+                          Text('인증 사진', style: CTextStyles.Body2(color: CColors.gray50)),
                           IconButton(icon:
-                          CustomIcon(icon: 'arrow-circle-down', width: 16, height: 16, color: CustomColors.yellowStr),
+                          CustomIcon(icon: 'arrow-circle-down', width: 16, height: 16, color: CColors.yellowStr),
                             style: IconButton.styleFrom(padding: EdgeInsets.zero, minimumSize: Size.zero),
                             onPressed: () {},
                           ),
@@ -161,11 +161,11 @@ class _MyExpenseInputPageState extends State<MyExpenseInputPage> {
             ),
             TextButton(
               style: TextButton.styleFrom(
-                backgroundColor: CustomColors.yellow,fixedSize: Size.fromHeight(52),
+                backgroundColor: CColors.yellow,fixedSize: Size.fromHeight(52),
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.zero),
               ),
               child:
-                Text('완료', style: TextStyle(fontSize: 20, color: CustomColors.black)),
+                Text('완료', style: TextStyle(fontSize: 20, color: CColors.black)),
               onPressed: () {}
             )
           ])

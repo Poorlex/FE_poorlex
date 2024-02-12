@@ -11,7 +11,7 @@ class EmptyBattle extends StatelessWidget {
       child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
         Stack(children: [
           Padding(padding: EdgeInsets.symmetric(vertical: 7, horizontal: 5), child:
-            Container(decoration: BoxDecoration(color: CustomColors.black), width: 335, height: 150, child:
+            Container(decoration: BoxDecoration(color: CColors.black), width: 335, height: 150, child:
               Column(children: [])
             ),
           ),
@@ -25,7 +25,7 @@ class EmptyBattle extends StatelessWidget {
                   onPressed: () {},
                 ),
                 OutlinedButton(
-                  child: Text('배틀 방 만들기', style: CustomTextStyles.Headline(color: CustomColors.gray70)),
+                  child: Text('배틀 방 만들기', style: CTextStyles.Headline(color: CColors.gray70)),
                   onPressed: () {},
                 )
               ])

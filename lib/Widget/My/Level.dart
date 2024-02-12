@@ -12,7 +12,7 @@ class _MyPageLevelState extends State<MyPageLevel> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(color: CustomColors.gray41.withOpacity(0.9), borderRadius: BorderRadius.circular(10)), child:
+      decoration: BoxDecoration(color: CColors.gray41.withOpacity(0.9), borderRadius: BorderRadius.circular(10)), child:
         Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -29,26 +29,26 @@ class _MyPageLevelState extends State<MyPageLevel> {
                         padding: const EdgeInsets.only(right: 20),
                         child: Column(
                           children: [
-                            Text('거지 레벨', style: CustomTextStyles.Body3(color: CustomColors.gray50)),
+                            Text('거지 레벨', style: CTextStyles.Body3(color: CColors.gray50)),
                             SizedBox(height: 6),
                             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
                                 SizedBox(width: 25, height: 25, child: Image.asset('assets/my_page/icon_level.png')),
                                 SizedBox(width: 12),
-                                Text('LV.4', style: CustomTextStyles.Title3()),
+                                Text('LV.4', style: CTextStyles.Title3()),
                             ])
                           ]
                         )
                       ),
-                      Container(height: 68, width: 1, decoration: BoxDecoration(color: CustomColors.gray20)),
+                      Container(height: 68, width: 1, decoration: BoxDecoration(color: CColors.gray20)),
                       Padding(
                         padding: const EdgeInsets.only(left: 20),
                         child: Column(
                           children: [
-                            Text('보유 포인트', style: CustomTextStyles.Body3(color: CustomColors.gray50)),
+                            Text('보유 포인트', style: CTextStyles.Body3(color: CColors.gray50)),
                             SizedBox(height: 6),
                             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
                                 Container(child:
-                                  Text('180 P', style: CustomTextStyles.Headline()),
+                                  Text('180 P', style: CTextStyles.Headline()),
                                 )
                             ])
                           ]
@@ -59,7 +59,7 @@ class _MyPageLevelState extends State<MyPageLevel> {
                   SizedBox(height: 20),
                   Container(
                     decoration: BoxDecoration(
-                      color: CustomColors.gray41.withOpacity(0.9),
+                      color: CColors.gray41.withOpacity(0.9),
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: Padding(
@@ -67,9 +67,9 @@ class _MyPageLevelState extends State<MyPageLevel> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text('+62 P', style: CustomTextStyles.Body3(color: CustomColors.yellow)),
+                          Text('+62 P', style: CTextStyles.Body3(color: CColors.yellow)),
                           SizedBox(width: 10),
-                          Text('더 모으면 레벨 업 !', style: CustomTextStyles.Body3()),
+                          Text('더 모으면 레벨 업 !', style: CTextStyles.Body3()),
                         ]
                       )
                     )
@@ -82,28 +82,28 @@ class _MyPageLevelState extends State<MyPageLevel> {
                         children: [
                           Column(children: [
                               Padding(padding: EdgeInsets.all(10), child:
-                                Text('성공', style: CustomTextStyles.Body3(color: CustomColors.gray50))
+                                Text('성공', style: CTextStyles.Body3(color: CColors.gray50))
                               ),
-                              Text('17', style: CustomTextStyles.Title3()),
+                              Text('17', style: CTextStyles.Title3()),
                           ]),
                           Column(children: [
                             Padding(padding: EdgeInsets.symmetric(), child:
                               Image.asset(width: 60, height: 42, 'assets/my_page/icon_gold.png'),
                             ),
-                            Text('4', style: CustomTextStyles.Title3()),
+                            Text('4', style: CTextStyles.Title3()),
                           ],
                         ),
                         Column(children: [
                             Padding(padding: EdgeInsets.all(0), child:
                               Image.asset(width: 60, height: 42, 'assets/my_page/icon_silver.png'),
                             ),
-                            Text('3', style: CustomTextStyles.Title3()),
+                            Text('3', style: CTextStyles.Title3()),
                         ]),
                         Column(children: [
                             Padding(padding: EdgeInsets.all(0), child:
                               Image.asset(width: 60, height: 42, 'assets/my_page/icon_cooper.png')
                             ),
-                            Text('10', style: CustomTextStyles.Title3()),
+                            Text('10', style: CTextStyles.Title3()),
                         ]),
                       ]
                     )

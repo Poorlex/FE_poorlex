@@ -28,7 +28,7 @@ class _MainCarouselState extends State<MainCarousel> {
   Widget build(BuildContext context) {
     return Padding(padding: EdgeInsets.symmetric(horizontal: 10, vertical: 0), child:
       Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Text('참여 중인 배틀', style: CustomTextStyles.Body3(color: CustomColors.black)),
+        Text('참여 중인 배틀', style: CTextStyles.Body3(color: CColors.black)),
         Expanded(child:
           ListView.separated(scrollDirection: Axis.horizontal, physics: BouncingScrollPhysics(),
               itemBuilder: (context, idx) {
@@ -37,45 +37,45 @@ class _MainCarouselState extends State<MainCarousel> {
                   Row(children: [
                     Column(children: [
                       Container(
-                        decoration: BoxDecoration(color: CustomColors.black, borderRadius: BorderRadius.circular(10)),
+                        decoration: BoxDecoration(color: CColors.black, borderRadius: BorderRadius.circular(10)),
                         width: 350, height: 170, child:
                         Padding(padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20), child:
                           Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
                             Row(mainAxisAlignment: MainAxisAlignment.start, children: [
                               Column(children: [
                                 Container(
-                                  decoration: BoxDecoration(color: CustomColors.yellow, borderRadius: BorderRadius.circular(10),
-                                      border: Border.all(color: CustomColors.orange, width: 2)
+                                  decoration: BoxDecoration(color: CColors.yellow, borderRadius: BorderRadius.circular(10),
+                                      border: Border.all(color: CColors.orange, width: 2)
                                   ),
                                   width: 60, height: 70, child:
                                   Column(mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.center, children: [
-                                    Text(samples[idx][0], style: CustomTextStyles.LargeTitle(color: CustomColors.black)),
-                                    Text('만원', style: CustomTextStyles.Title3(color: CustomColors.black))
+                                    Text(samples[idx][0], style: CTextStyles.LargeTitle(color: CColors.black)),
+                                    Text('만원', style: CTextStyles.Title3(color: CColors.black))
                                   ]),
                                 )
                               ]),
                               SizedBox(width: 20),
                               Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
                                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                                  Text(samples[idx][1], style: CustomTextStyles.Title3()),
+                                  Text(samples[idx][1], style: CTextStyles.Title3()),
                                   SizedBox(height: 13),
-                                  Text('존버 금액 : ${samples[idx][2]} 원', style: CustomTextStyles.Caption1(color: CustomColors.white.withOpacity(0.7))),
+                                  Text('존버 금액 : ${samples[idx][2]} 원', style: CTextStyles.Caption1(color: CColors.white.withOpacity(0.7))),
                                 ]),
                               ]),
                             ]),
                             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
                               Row(children: [
                                 Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                                  Text('${samples[idx][3]}위 / 20명', style: CustomTextStyles.Title1()),
+                                  Text('${samples[idx][3]}위 / 20명', style: CTextStyles.Title1()),
                                   SizedBox(width: 20),
-                                  Icon(Icons.chat_outlined, color: CustomColors.white, size: 18),
-                                  Text(samples[idx][3], style: CustomTextStyles.Headline()),
+                                  Icon(Icons.chat_outlined, color: CColors.white, size: 18),
+                                  Text(samples[idx][3], style: CTextStyles.Headline()),
                                 ]),
                               ]),
                               Padding(padding: EdgeInsets.symmetric(horizontal: 20),
                                 child: OutlinedButton(
-                                  style: OutlinedButton.styleFrom(side: BorderSide(width: 1.0, color: CustomColors.yellow)), child:
-                                  Text('입장', style: CustomTextStyles.Title3(color: CustomColors.yellow)),
+                                  style: OutlinedButton.styleFrom(side: BorderSide(width: 1.0, color: CColors.yellow)), child:
+                                  Text('입장', style: CTextStyles.Title3(color: CColors.yellow)),
                                   onPressed: () {},
                                 )
                               )

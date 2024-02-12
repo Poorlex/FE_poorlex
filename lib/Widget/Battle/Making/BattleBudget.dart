@@ -20,10 +20,10 @@ class BattleBudget extends GetView {
             runSpacing: 2.0,
             children: con.BudgetList.map((item) {
               if (con.selectedBudget == item) {
-                Color itemColor = CustomColors.yellow;
+                Color itemColor = CColors.yellow;
                 con.changeBudgetColor(itemColor);
               } else {
-                Color itemColor = CustomColors.gray41;
+                Color itemColor = CColors.gray41;
                 con.changeBudgetColor(itemColor);
               }
               return Padding(
@@ -34,7 +34,7 @@ class BattleBudget extends GetView {
                   child: OutlinedButton(
                     style: OutlinedButton.styleFrom(side: BorderSide(color: con.budgetColor.value), padding: EdgeInsets.zero,), child:
                     Center(child:
-                      Text('${item}만원', style: CustomTextStyles.Body3(color: con.budgetColor.value)),
+                      Text('${item}만원', style: CTextStyles.Body3(color: con.budgetColor.value)),
                     ),
                     onPressed: () {
                       con.budgetUpdate(item);

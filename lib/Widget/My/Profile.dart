@@ -27,13 +27,13 @@ class MyPageProfile extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text('최지출', style: CustomTextStyles.Title3())
+                          Text('최지출', style: CTextStyles.Title3())
                         ],
                       ),
                       SizedBox(height: 10),
                       Row(
                         children: [
-                          Text('돈을 많이 모아야 돈을 많이 쓸 수 있다.', textAlign: TextAlign.center, style: CustomTextStyles.Body2(color: CustomColors.gray40),
+                          Text('돈을 많이 모아야 돈을 많이 쓸 수 있다.', textAlign: TextAlign.center, style: CTextStyles.Body2(color: CColors.gray40),
                           ),
                         ],
                       )
@@ -47,7 +47,7 @@ class MyPageProfile extends StatelessWidget {
                   OutlinedButton(
                     style: OutlinedButton.styleFrom(
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4.0)),
-                      side: BorderSide(width: 1.0, color: CustomColors.yellow),
+                      side: BorderSide(width: 1.0, color: CColors.yellow),
                     ),
                     child: Container(
                       width: 210, height: 30,
@@ -55,7 +55,7 @@ class MyPageProfile extends StatelessWidget {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text('프로필 편집', style: CustomTextStyles.Body3(color: CustomColors.yellow)),
+                              Text('프로필 편집', style: CTextStyles.Body3(color: CColors.yellow)),
                             ],
                           )
                     ),

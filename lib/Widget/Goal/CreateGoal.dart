@@ -27,7 +27,7 @@ class CreateGoalFirst extends GetView<GoalController> {
           width: 300,
           height: 70,
           child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Text('지금 나에게 가장 필요한\n삶의 가치는 무엇일까요?', style: CustomTextStyles.Title1())
+            Text('지금 나에게 가장 필요한\n삶의 가치는 무엇일까요?', style: CTextStyles.Title1())
           ])
         )
       ),

@@ -33,8 +33,8 @@ class _ListState extends State<List> {
           Column(children: [
               Container(padding: EdgeInsets.fromLTRB(16, 14, 16, 16), child:
                 Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, crossAxisAlignment: CrossAxisAlignment.center, children: [
-                  Text('총 지출액', style: CustomTextStyles.Body3()),
-                  Text('275,000원', style: CustomTextStyles.Headline(color: CustomColors.purpleLight)),
+                  Text('총 지출액', style: CTextStyles.Body3()),
+                  Text('275,000원', style: CTextStyles.Headline(color: CColors.purpleLight)),
                 ])
               ),
               Flexible(flex: 1, child:
@@ -67,13 +67,13 @@ class WeekItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextButton(child:
-      Container(padding: EdgeInsets.fromLTRB(10, 16, 10, 10), color: CustomColors.gray10, child:
+      Container(padding: EdgeInsets.fromLTRB(10, 16, 10, 10), color: CColors.gray10, child:
         Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Flexible(fit: FlexFit.tight, flex: 1, child:
             Container(child: (
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                Text('1주차', style: CustomTextStyles.Body3()),
-                Text('07.03 ~ 07.09', style: CustomTextStyles.Body3(color: CustomColors.gray30)),
+                Text('1주차', style: CTextStyles.Body3()),
+                Text('07.03 ~ 07.09', style: CTextStyles.Body3(color: CColors.gray30)),
               ])
             ))
           ),
@@ -90,14 +90,14 @@ class WeekItem extends StatelessWidget {
                     </svg>'''
                   ),
                   SizedBox(width: 8,),
-                  Text('70,000원', style: CustomTextStyles.Body3())
+                  Text('70,000원', style: CTextStyles.Body3())
                 ]),
-                Text('-2000', style: CustomTextStyles.Body3(color: CustomColors.red)),
+                Text('-2000', style: CTextStyles.Body3(color: CColors.red)),
               ])
             )
           ),
           Container(width: 100, alignment: Alignment.topRight, child:
-            Text('-72,000원', style: CustomTextStyles.Body3(color: CustomColors.purpleLight)),
+            Text('-72,000원', style: CTextStyles.Body3(color: CColors.purpleLight)),
           )
         ]),
       ),
@@ -117,11 +117,11 @@ class DayItems extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(children: [
       DayItem(isOpen: isOpen),
-      Container(color: CustomColors.gray41, child: SizedBox(height: 1)),
+      Container(color: CColors.gray41, child: SizedBox(height: 1)),
       DayItem(isOpen: isOpen),
-      Container(color: CustomColors.gray41, child: SizedBox(height: 1)),
+      Container(color: CColors.gray41, child: SizedBox(height: 1)),
       DayItem(isOpen: isOpen),
-      Container(color: CustomColors.gray41, child: SizedBox(height: 1)),
+      Container(color: CColors.gray41, child: SizedBox(height: 1)),
     ]);
   }
 }
@@ -139,15 +139,15 @@ class DayItem extends StatelessWidget {
       crossFadeState: isOpen ? CrossFadeState.showSecond : CrossFadeState.showFirst,
       duration: Duration(milliseconds: 180),
       firstChild: Container(height: 0,),
-      secondChild: Container(color: CustomColors.black, padding: EdgeInsets.fromLTRB(16, 16, 16, 16), child:
+      secondChild: Container(color: CColors.black, padding: EdgeInsets.fromLTRB(16, 16, 16, 16), child:
         Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, crossAxisAlignment: CrossAxisAlignment.center, children: [
           Container(width: 64, child:
             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, crossAxisAlignment: CrossAxisAlignment.center, children: [
-              Text('월', style: CustomTextStyles.Body3()),
-              Text('07.31', style: CustomTextStyles.Body3())
+              Text('월', style: CTextStyles.Body3()),
+              Text('07.31', style: CTextStyles.Body3())
             ]),
           ),
-          Text('-12,000원', style: CustomTextStyles.Body3()),
+          Text('-12,000원', style: CTextStyles.Body3()),
         ]),
       )
     );

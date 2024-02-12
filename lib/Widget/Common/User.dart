@@ -18,13 +18,13 @@ class UserItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(mainAxisAlignment: MainAxisAlignment.start, crossAxisAlignment: CrossAxisAlignment.center, children: [
-        Container(width: 40, height: 40, decoration: BoxDecoration(borderRadius: BorderRadius.circular(2), color: CustomColors.brownLight), child:
+        Container(width: 40, height: 40, decoration: BoxDecoration(borderRadius: BorderRadius.circular(2), color: CColors.brownLight), child:
           image,
         ),
         SizedBox(width: 6,),
         SizedBox(width: 16, height: 16, child: icon),
         SizedBox(width: 6,),
-        Text(name, style: CustomTextStyles.Body3())
+        Text(name, style: CTextStyles.Body3())
       ]
     );
   }
@@ -45,7 +45,7 @@ class UserItemNameIcon extends StatelessWidget {
     return Row(mainAxisAlignment: MainAxisAlignment.start, crossAxisAlignment: CrossAxisAlignment.center, children: [
       SizedBox(width: 16, height: 16, child: icon),
       SizedBox(width: 6,),
-      Text(name, style: CustomTextStyles.Body3(color: CustomColors.purpleLight))
+      Text(name, style: CTextStyles.Body3(color: CColors.purpleLight))
     ]
     );
   }
@@ -89,17 +89,17 @@ class LevelProfile extends StatelessWidget {
         Stack(
           children: [
             Positioned(top: 4, left: 0, right: 0, bottom: 4, child:
-              Container(color: CustomColors.brownLight)
+              Container(color: CColors.brownLight)
             ),
             Positioned(top: 0, left: 4, right: 4, bottom: 0, child:
-              Container(color: CustomColors.brownLight)
+              Container(color: CColors.brownLight)
             ),
             Positioned(left: -37, top: 8, child:
               Transform.rotate(angle: -45 * math.pi / 180, child:
-                Container(width: size.toDouble(), decoration: BoxDecoration(border: Border.all(color: CustomColors.yellowDark, width: 4)), child:
-                  Container(padding: EdgeInsets.all(4), color: CustomColors.yellow, child:
+                Container(width: size.toDouble(), decoration: BoxDecoration(border: Border.all(color: CColors.yellowDark, width: 4)), child:
+                  Container(padding: EdgeInsets.all(4), color: CColors.yellow, child:
                     Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                      Text(levels[level - 1].label, style: CustomTextStyles.Body3(color: CustomColors.black))
+                      Text(levels[level - 1].label, style: CTextStyles.Body3(color: CColors.black))
                     ]),
                   )),
               )

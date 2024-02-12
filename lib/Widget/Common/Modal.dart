@@ -24,7 +24,7 @@ class CustomModal extends ModalRoute<void> {
   bool get barrierDismissible => false;
 
   @override
-  Color get barrierColor => CustomColors.black.withOpacity(this.opacity);
+  Color get barrierColor => CColors.black.withOpacity(this.opacity);
 
   @override
   String get barrierLabel => '';

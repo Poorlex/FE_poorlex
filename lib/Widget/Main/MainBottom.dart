@@ -12,8 +12,8 @@ class MainBottom extends StatelessWidget {
     return Column(
       children: [
         ElevatedButton(
-          style: ElevatedButton.styleFrom(side: BorderSide(width: 2, color: Color(0xffFFD600)), backgroundColor: CustomColors.yellow, padding: EdgeInsets.symmetric(horizontal: 124, vertical: 15)), child:
-          Text('지출 추가하기', style: CustomTextStyles.Title3(color: CustomColors.black)),
+          style: ElevatedButton.styleFrom(side: BorderSide(width: 2, color: Color(0xffFFD600)), backgroundColor: CColors.yellow, padding: EdgeInsets.symmetric(horizontal: 124, vertical: 15)), child:
+          Text('지출 추가하기', style: CTextStyles.Title3(color: CColors.black)),
           onPressed: () {
             Navigator.push(context, MaterialPageRoute(builder: (context) => MyExpenseInputPage()));
           },

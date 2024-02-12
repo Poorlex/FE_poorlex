@@ -37,11 +37,11 @@ class _MyExpandingState extends State<Expanding> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: CustomColors.black,
+        backgroundColor: CColors.black,
         title: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('배틀방 만들기', style: CustomTextStyles.Body1())
+            Text('배틀방 만들기', style: CTextStyles.Body1())
           ],
         ),
       ),
@@ -54,12 +54,12 @@ class _MyExpandingState extends State<Expanding> {
             },
             child: Obx(() => Text(
                 con.goalIndexModel.value.goalIndex == 4 ? '시작' : '다음',
-                style: CustomTextStyles.Body3(color: CustomColors.black))),
+                style: CTextStyles.Body3(color: CColors.black))),
             style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all(CustomColors.yellow),
+              backgroundColor: MaterialStateProperty.all(CColors.yellow),
             )),
       ),
-      backgroundColor: CustomColors.black,
+      backgroundColor: CColors.black,
       body: Column(
         children: [
           SizedBox(

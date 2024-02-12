@@ -19,7 +19,7 @@ class _GoalPageState extends State<GoalPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: CustomColors.black,
+      backgroundColor: CColors.black,
       bottomNavigationBar: BottomBar(nowPage: 1),
       body: Container(
           child: SafeArea(
@@ -30,20 +30,20 @@ class _GoalPageState extends State<GoalPage> {
                   return Container(
                     padding: EdgeInsets.fromLTRB(16, 20, 0, 16),
                     child:
-                        Text('목표', style: CustomTextStyles.Title1()),
+                        Text('목표', style: CTextStyles.Title1()),
                   );
                 }, childCount: 1)),
                 SliverAppBar(
                   pinned: true,
-                  backgroundColor: CustomColors.black,
-                  foregroundColor: CustomColors.black,
+                  backgroundColor: CColors.black,
+                  foregroundColor: CColors.black,
                   elevation: 0,
                   titleSpacing: 0,
                   title: Container(
                     decoration: BoxDecoration(
                         border: Border(
                             bottom:
-                                BorderSide(color: CustomColors.gray10, width: 1))),
+                                BorderSide(color: CColors.gray10, width: 1))),
                     child: Container(
                       padding: EdgeInsets.fromLTRB(16, 0, 16, 0),
                       child: Row(children: [
@@ -73,10 +73,10 @@ class _GoalPageState extends State<GoalPage> {
           Navigator.push(context,
               MaterialPageRoute(builder: (context) => CreateGoalPage()));
         },
-        foregroundColor: CustomColors.white,
-        backgroundColor: CustomColors.black,
+        foregroundColor: CColors.white,
+        backgroundColor: CColors.black,
         shape: RoundedRectangleBorder(
-            side: BorderSide(width: 1, color: CustomColors.gray20),
+            side: BorderSide(width: 1, color: CColors.gray20),
             borderRadius: BorderRadius.circular(100)),
         child: const Icon(Icons.add),
       ),

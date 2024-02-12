@@ -26,12 +26,12 @@ class _LandingPageState extends State<LandingPage> {
           children: [
             Image(width: 327, height: 312, image: AssetImage('assets/img_main_login.png')),
             SizedBox(height: 70),
-            Text('풀렉스에서 다른 거지 친구들과 함께', style: CustomTextStyles.Body3(color: CustomColors.black)),
-            Text('재미있게 절약해요', style:  CustomTextStyles.Body3(color: CustomColors.black)),
+            Text('풀렉스에서 다른 거지 친구들과 함께', style: CTextStyles.Body3(color: CColors.black)),
+            Text('재미있게 절약해요', style:  CTextStyles.Body3(color: CColors.black)),
             SizedBox(height: 30),
             ElevatedButton(
-              style: ElevatedButton.styleFrom(backgroundColor: CustomColors.yellow),
-              child: Text('카카오로 3초만에 로그인', style: CustomTextStyles.Body3(color: CustomColors.black)),
+              style: ElevatedButton.styleFrom(backgroundColor: CColors.yellow),
+              child: Text('카카오로 3초만에 로그인', style: CTextStyles.Body3(color: CColors.black)),
               onPressed: () async {
                 setState(() {});
                 Get.to(() => MainPage());
@@ -39,7 +39,7 @@ class _LandingPageState extends State<LandingPage> {
             ),
             ElevatedButton(
               style: ElevatedButton.styleFrom(backgroundColor: Color.fromARGB(255, 82, 10, 225)),
-              child: Text('애플 아이디로 로그인', style: CustomTextStyles.Body3(color: CustomColors.black)),
+              child: Text('애플 아이디로 로그인', style: CTextStyles.Body3(color: CColors.black)),
               onPressed: () async {
                 setState(() {});
               },

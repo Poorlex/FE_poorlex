@@ -25,21 +25,21 @@ class _MyPageState extends State<MyPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: CustomColors.black,
+      backgroundColor: CColors.black,
       bottomNavigationBar: BottomBar(nowPage: 4),
       appBar: AppBar(
-        backgroundColor: CustomColors.black,
+        backgroundColor: CColors.black,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             IconButton(
               iconSize: 26,
-              icon: CustomIcon(icon: 'setting', width: 26, height: 26, color: CustomColors.whiteStr),
+              icon: CustomIcon(icon: 'setting', width: 26, height: 26, color: CColors.whiteStr),
               onPressed: () {},
             ),
             IconButton(
               iconSize: 26,
-              icon: CustomIcon(icon: 'ring', width: 26, height: 26, color: CustomColors.whiteStr),
+              icon: CustomIcon(icon: 'ring', width: 26, height: 26, color: CColors.whiteStr),
               onPressed: () {},
             )
           ],

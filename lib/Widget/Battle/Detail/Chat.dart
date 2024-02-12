@@ -37,14 +37,14 @@ class _ChatState extends State<Chat> {
                   onPressed: () => Navigator.push(context, NoticeDetailModal()),
                   style: TextButton.styleFrom(padding: EdgeInsets.zero),
                   child: ChatBoxItem(
-                      color: CustomColors.gray20,
+                      color: CColors.gray20,
                       child: Row(
                         children: [
                           SizedBox(height: 22, width: 22, child: Image.asset('assets/battle_page/icon_notice.png')),
                           SizedBox(width: 6,),
-                          Text('공지', style: CustomTextStyles.Body3(color: CustomColors.yellow)),
+                          Text('공지', style: CTextStyles.Body3(color: CColors.yellow)),
                           SizedBox(width: 6,),
-                          Text('드디어 시작!!!...', style: CustomTextStyles.Body3()),
+                          Text('드디어 시작!!!...', style: CTextStyles.Body3()),
                         ]
                       )
                   )
@@ -63,8 +63,8 @@ class _ChatState extends State<Chat> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         ChatBoxItem(
-                          color: CustomColors.gray41, padding: EdgeInsets.fromLTRB(17, 1, 17, 1),
-                          child: Text('D-7 월', style: CustomTextStyles.Body2()),
+                          color: CColors.gray41, padding: EdgeInsets.fromLTRB(17, 1, 17, 1),
+                          child: Text('D-7 월', style: CTextStyles.Body2()),
                         )
                       ],
                     ),
@@ -77,7 +77,7 @@ class _ChatState extends State<Chat> {
                           name: '김굴비'
                       ),
                       child: ChatBoxItem(
-                        child: Text('김굴비 님이 입장했습니다.', style: CustomTextStyles.Body3(color: CustomColors.black)),
+                        child: Text('김굴비 님이 입장했습니다.', style: CTextStyles.Body3(color: CColors.black)),
                       ),
                       time: TimeItem(
                         time: DateTime.now().microsecondsSinceEpoch,
@@ -88,8 +88,8 @@ class _ChatState extends State<Chat> {
                     ChatItem(
                       align: MainAxisAlignment.end,
                       child: ChatBoxItem(
-                          color: CustomColors.gray20,
-                          child: Text('최지출 님이 입장했습니다.', style: CustomTextStyles.Body3(color: CustomColors.gray50))
+                          color: CColors.gray20,
+                          child: Text('최지출 님이 입장했습니다.', style: CTextStyles.Body3(color: CColors.gray50))
                       ),
                       time: TimeItem(
                         time: DateTime.now().microsecondsSinceEpoch,
@@ -117,7 +117,7 @@ class _ChatState extends State<Chat> {
                     ChatItem(
                         align: MainAxisAlignment.end,
                         child: ChatBoxItem(
-                            color: CustomColors.gray20,
+                            color: CColors.gray20,
                             padding: EdgeInsets.fromLTRB(0, 30, 0, 30),
                             child: VoteResultItem(name: '버블티', money: 5000, isUp: true)
                         ),
@@ -180,11 +180,11 @@ class _ChatState extends State<Chat> {
                     ChatItem(
                         align: MainAxisAlignment.end,
                         child: ChatBoxItem(
-                          color: CustomColors.gray20,
+                          color: CColors.gray20,
                           padding: EdgeInsets.fromLTRB(0, 30, 0, 30),
                           child: OpinionItem(
                               isAgree: false,
-                              comment: Text('아픈건 어쩔수 없지만 기왕이면 소금양치하시죠', textAlign: TextAlign.center, style: CustomTextStyles.Title3())
+                              comment: Text('아픈건 어쩔수 없지만 기왕이면 소금양치하시죠', textAlign: TextAlign.center, style: CTextStyles.Title3())
                           ),
                         ),
                         time: TimeItem(
@@ -204,7 +204,7 @@ class _ChatState extends State<Chat> {
                           padding: EdgeInsets.fromLTRB(0, 30, 0, 30),
                           child: OpinionItem(
                               isAgree: true,
-                              comment: Text('약은... 봐드릴게요.......', textAlign: TextAlign.center, style: CustomTextStyles.Title3(color: CustomColors.black))
+                              comment: Text('약은... 봐드릴게요.......', textAlign: TextAlign.center, style: CTextStyles.Title3(color: CColors.black))
                           ),
                         ),
                         time: TimeItem(
@@ -241,11 +241,11 @@ class VoteButton extends StatelessWidget {
                 children: [
                   Positioned(
                       top: 0, left: 0, right: 0, bottom: 0,
-                      child: Container(color: CustomColors.yellowLight)
+                      child: Container(color: CColors.yellowLight)
                   ),
                   Positioned(
                       top: 6, left: 0, right: 0, bottom: 0,
-                      child: Container(color: CustomColors.yellow)
+                      child: Container(color: CColors.yellow)
                   ),
                   Container(
                     height: 56,
@@ -255,7 +255,7 @@ class VoteButton extends StatelessWidget {
                       children: [
                         SizedBox(width: 21, height: 22, child: Image.asset('assets/icons/vote.png')),
                         SizedBox(width: 8),
-                        Text('투표하기', style: CustomTextStyles.Title3(color: CustomColors.black))
+                        Text('투표하기', style: CTextStyles.Title3(color: CColors.black))
                       ],
                     ),
                   )
@@ -273,11 +273,11 @@ class VoteButton extends StatelessWidget {
               children: [
                 Positioned(
                     top: 0, left: 0, right: 0, bottom: 0,
-                    child: Container(color: CustomColors.gray60)
+                    child: Container(color: CColors.gray60)
                 ),
                 Positioned(
                     top: 6, left: 0, right: 0, bottom: 0,
-                    child: Container(color: CustomColors.gray50)
+                    child: Container(color: CColors.gray50)
                 ),
                 Container(
                   height: 56,
@@ -288,7 +288,7 @@ class VoteButton extends StatelessWidget {
                     children: [
                       SizedBox(width: 21, height: 22, child: Image.asset('assets/icons/speaker.png')),
                       SizedBox(height: 2),
-                      Text('공지', style: CustomTextStyles.Caption2(color: CustomColors.black))
+                      Text('공지', style: CTextStyles.Caption2(color: CColors.black))
                     ],
                   ),
                 )
@@ -375,11 +375,11 @@ class OpinionItem extends StatelessWidget {
                           Expanded(child:
                             Container(
                               padding: EdgeInsets.fromLTRB(0, 15, 0, 40),
-                              color: CustomColors.purpleLight,
+                              color: CColors.purpleLight,
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  Text('혼나야겠어요', style: CustomTextStyles.Title3()),
+                                  Text('혼나야겠어요', style: CTextStyles.Title3()),
                                   SizedBox(height: 25),
                                   SizedBox(
                                     width: 140, height: 140,
@@ -425,19 +425,19 @@ class VoteResultItem extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
-              color: CustomColors.purpleLight, width: 240, padding: EdgeInsets.fromLTRB(0, 15, 0, 15),
+              color: CColors.purpleLight, width: 240, padding: EdgeInsets.fromLTRB(0, 15, 0, 15),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Text('살까말까?', style: CustomTextStyles.Title3(color: CustomColors.black)),
+                  Text('살까말까?', style: CTextStyles.Title3(color: CColors.black)),
                   SizedBox(height: 20),
                   SizedBox(width: 100, height: 100, child:
                     Image.asset(isUp ? 'assets/battle_page/thumb_up_big.png' : 'assets/battle_page/thumb_down_big.png'),
                   ),
                   SizedBox(height: 20),
-                  Text(name, style: CustomTextStyles.Title3(color: CustomColors.black)),
+                  Text(name, style: CTextStyles.Title3(color: CColors.black)),
                   SizedBox(height: 10),
-                  Text(money.toString() + '원', style: CustomTextStyles.Title3(color: CustomColors.black)),
+                  Text(money.toString() + '원', style: CTextStyles.Title3(color: CColors.black)),
                 ],
               ),
             )
@@ -470,18 +470,18 @@ class VoteAllResultItem extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
-              color: CustomColors.gray40, width: 240, padding: EdgeInsets.fromLTRB(0, 15, 0, 15),
+              color: CColors.gray40, width: 240, padding: EdgeInsets.fromLTRB(0, 15, 0, 15),
               child: Column(
                 children: [
-                  Text('살까말까?', style: CustomTextStyles.Title3(color: CustomColors.black)),
+                  Text('살까말까?', style: CTextStyles.Title3(color: CColors.black)),
                   SizedBox(height: 20),
                   SizedBox(width: 100, height: 100, child:
                     Image.asset('assets/battle_page/vote.png'),
                   ),
                   SizedBox(height: 20),
-                  Text(name, style: CustomTextStyles.Title3(color: CustomColors.black)),
+                  Text(name, style: CTextStyles.Title3(color: CColors.black)),
                   SizedBox(height: 10),
-                  Text(money.toString() + '원', style: CustomTextStyles.Title3(color: CustomColors.black)),
+                  Text(money.toString() + '원', style: CTextStyles.Title3(color: CColors.black)),
                 ]
               )
             )
@@ -515,7 +515,7 @@ class VoteAllResultItem extends StatelessWidget {
                   children: [
                     CustomIcon(icon: 'thumb-down', color: '#666666', width: 36, height: 36),
                     SizedBox(width: 20),
-                    Expanded(child: CustomBar(current: 2, total: 5, primary: CustomColors.gray30))
+                    Expanded(child: CustomBar(current: 2, total: 5, primary: CColors.gray30))
                   ],
                 ),
               ),
@@ -559,9 +559,9 @@ class BuyItem extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(money.toString(), style: CustomTextStyles.Title3(color: CustomColors.black)),
+                          Text(money.toString(), style: CTextStyles.Title3(color: CColors.black)),
                           SizedBox(height: 10),
-                          CustomIcon(icon: 'flex', width: 122, height: 30, color: CustomColors.yellowStr)
+                          CustomIcon(icon: 'flex', width: 122, height: 30, color: CColors.yellowStr)
                         ],
                       )
                   )
@@ -583,11 +583,11 @@ class BuyItem extends StatelessWidget {
                       children: [
                         Positioned(
                             top: 0, left: 0, right: 0, bottom: 0,
-                            child: Container(color: CustomColors.purpleLight)
+                            child: Container(color: CColors.purpleLight)
                         ),
                         Positioned(
                             top: 6, left: 0, right: 0, bottom: 0,
-                            child: Container(color: CustomColors.purpleLight)
+                            child: Container(color: CColors.purpleLight)
                         ),
                         Container(
                           padding: EdgeInsets.fromLTRB(0, 7, 0, 7),
@@ -596,7 +596,7 @@ class BuyItem extends StatelessWidget {
                             children: [
                               SizedBox(width: 26, height: 26, child: CustomIcon(icon: 'angry-face', width: 24, height: 22, color: '#ffffff')),
                               SizedBox(width: 4),
-                              Text('혼내기', style: CustomTextStyles.Title3())
+                              Text('혼내기', style: CTextStyles.Title3())
                             ],
                           ),
                         )
@@ -618,20 +618,20 @@ class BuyItem extends StatelessWidget {
                           children: [
                             Positioned(
                                 top: 0, left: 0, right: 0, bottom: 0,
-                                child: Container(color: CustomColors.purpleLighter)
+                                child: Container(color: CColors.purpleLighter)
                             ),
                             Positioned(
                                 top: 6, left: 0, right: 0, bottom: 0,
-                                child: Container(color: CustomColors.purpleLight)
+                                child: Container(color: CColors.purpleLight)
                             ),
                             Container(
                               padding: EdgeInsets.fromLTRB(0, 7, 0, 7),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  SizedBox(width: 26, height: 26, child: CustomIcon(icon: 'smile-face', width: 24, height: 22, color: CustomColors.whiteStr)),
+                                  SizedBox(width: 26, height: 26, child: CustomIcon(icon: 'smile-face', width: 24, height: 22, color: CColors.whiteStr)),
                                   SizedBox(width: 4),
-                                  Text('칭찬하기', style: CustomTextStyles.Title3())
+                                  Text('칭찬하기', style: CTextStyles.Title3())
                                 ],
                               ),
                             )
@@ -667,7 +667,7 @@ class VoteItem extends StatelessWidget {
             Container(
               width: 240,
               child: Stack(children: [
-                Positioned.fill(child: Container(color: CustomColors.yellow)),
+                Positioned.fill(child: Container(color: CColors.yellow)),
                 Positioned.fill(child: Image.asset('assets/pattern.png', repeat: ImageRepeat.repeat)),
                 Container(
                   width: 240,
@@ -676,16 +676,16 @@ class VoteItem extends StatelessWidget {
                     Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Text('살까말까?', style: CustomTextStyles.Title3(color: CustomColors.black)),
+                          Text('살까말까?', style: CTextStyles.Title3(color: CColors.black)),
                           SizedBox(height: 20),
                           SizedBox(
                             width: 100, height: 100,
                             child: Image.asset('assets/battle_page/vote.png'),
                           ),
                           SizedBox(height: 20),
-                          Text(name, style: CustomTextStyles.Title3(color: CustomColors.black)),
+                          Text(name, style: CTextStyles.Title3(color: CColors.black)),
                           SizedBox(height: 10),
-                          Text(money.toString() + '원', style: CustomTextStyles.Title3(color: CustomColors.black)),
+                          Text(money.toString() + '원', style: CTextStyles.Title3(color: CColors.black)),
                         ]
                     ),
                 )
@@ -705,11 +705,11 @@ class VoteItem extends StatelessWidget {
                       children: [
                         Positioned(
                             top: 0, left: 0, right: 0, bottom: 0,
-                            child: Container(color: CustomColors.purpleLighter)
+                            child: Container(color: CColors.purpleLighter)
                         ),
                         Positioned(
                             top: 6, left: 0, right: 0, bottom: 0,
-                            child: Container(color: CustomColors.purpleLight)
+                            child: Container(color: CColors.purpleLight)
                         ),
                         Container(
                           padding: EdgeInsets.fromLTRB(0, 7, 0, 7),
@@ -718,7 +718,7 @@ class VoteItem extends StatelessWidget {
                             children: [
                               SizedBox(width: 26, height: 26, child: Image.asset('assets/battle_page/thumb_up.png')),
                               SizedBox(width: 2),
-                              Text('찬성', style: CustomTextStyles.Title3())
+                              Text('찬성', style: CTextStyles.Title3())
                             ],
                           ),
                         )
@@ -740,11 +740,11 @@ class VoteItem extends StatelessWidget {
                       children: [
                         Positioned(
                             top: 0, left: 0, right: 0, bottom: 0,
-                            child: Container(color: CustomColors.purpleLighter)
+                            child: Container(color: CColors.purpleLighter)
                         ),
                         Positioned(
                             top: 6, left: 0, right: 0, bottom: 0,
-                            child: Container(color: CustomColors.purpleLight)
+                            child: Container(color: CColors.purpleLight)
                         ),
                         Container(
                           padding: EdgeInsets.fromLTRB(0, 7, 0, 7),
@@ -753,7 +753,7 @@ class VoteItem extends StatelessWidget {
                             children: [
                               SizedBox(width: 26, height: 26, child: Image.asset('assets/battle_page/thumb_down.png'),),
                               SizedBox(width: 2,),
-                              Text('반대', style: CustomTextStyles.Title3())
+                              Text('반대', style: CTextStyles.Title3())
                             ],
                           ),
                         )
@@ -781,7 +781,7 @@ class ChatBoxItem extends StatelessWidget {
     padding,
     required this.child
   }) {
-    this.color = color ?? CustomColors.white;
+    this.color = color ?? CColors.white;
     this.padding = padding ?? EdgeInsets.fromLTRB(19, 14, 19, 14);
   }
 
@@ -823,7 +823,7 @@ class TimeItem extends StatelessWidget {
     return Row(
       mainAxisAlignment: align,
       children: [
-        Text(DateFormat('a H:mm').format(DateTime.fromMicrosecondsSinceEpoch(time)), style: CustomTextStyles.Body3())
+        Text(DateFormat('a H:mm').format(DateTime.fromMicrosecondsSinceEpoch(time)), style: CTextStyles.Body3())
       ],
     );
   }

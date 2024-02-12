@@ -16,13 +16,13 @@ class BattlePage extends GetView {
     BattleController _battle = Get.put(BattleController());
     return Scaffold(
       bottomNavigationBar: BottomBar(nowPage: 2),
-      backgroundColor: CustomColors.black,
+      backgroundColor: CColors.black,
       appBar: AppBar(
-          backgroundColor: CustomColors.black,
+          backgroundColor: CColors.black,
           title: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('배틀', style: CustomTextStyles.Headline()),
+              Text('배틀', style: CTextStyles.Headline()),
               Container(
                 child: Row(
                   children: [

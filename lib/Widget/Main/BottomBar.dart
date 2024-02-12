@@ -75,8 +75,8 @@ class _BottomBarState extends State<BottomBar> {
         );
       }).toList(),
       currentIndex: _selectedIndex,
-      selectedItemColor: CustomColors.yellow,
-      unselectedItemColor: CustomColors.gray30,
+      selectedItemColor: CColors.yellow,
+      unselectedItemColor: CColors.gray30,
       onTap: _onItemTapped,
       backgroundColor: Colors.black,
       type: BottomNavigationBarType.fixed,

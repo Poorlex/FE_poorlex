@@ -5,7 +5,7 @@ enum ButtonTypes { elevated, text, outlined }
 
 class Button extends StatelessWidget {
   ButtonTypes type = ButtonTypes.text;
-  Color color = CustomColors.yellow;
+  Color color = CColors.yellow;
   double radius = 0;
   void Function() onPressed = () {};
   Widget child;
@@ -19,7 +19,7 @@ class Button extends StatelessWidget {
     required this.child,
   }){
     this.type = type ?? ButtonTypes.text;
-    this.color = color ?? CustomColors.yellow;
+    this.color = color ?? CColors.yellow;
     this.radius = radius ?? 0;
     this.onPressed = onPressed ?? () {};
   }

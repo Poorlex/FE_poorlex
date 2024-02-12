@@ -18,9 +18,9 @@ class _RankingAppBarWidgerState extends State<RankingAppBarWidget> {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: CustomColors.black,
+      backgroundColor: CColors.black,
       centerTitle: true,
-      title: Text('참여중', style: CustomTextStyles.Body1(), textAlign: TextAlign.center),
+      title: Text('참여중', style: CTextStyles.Body1(), textAlign: TextAlign.center),
       actions: [
         IconButton(
           onPressed: () {

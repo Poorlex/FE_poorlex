@@ -9,7 +9,7 @@ class BattleIndexTwo extends GetView<BattleController> {
   const BattleIndexTwo({super.key});
 
   Color _getItemColor(int item, int selectedIndex) {
-    return item == selectedIndex ? CustomColors.yellow : CustomColors.gray41;
+    return item == selectedIndex ? CColors.yellow : CColors.gray41;
   }
 
   Widget _buildWrap(List<int> items, BattleController con, int selectedIndex) {
@@ -33,7 +33,7 @@ class BattleIndexTwo extends GetView<BattleController> {
               child: Center(
                 child: Text(
                   '${item}명',
-                  style: CustomTextStyles.Body3(color: buttonColor),
+                  style: CTextStyles.Body3(color: buttonColor),
                 ),
               ),
             ),
@@ -53,9 +53,9 @@ class BattleIndexTwo extends GetView<BattleController> {
           padding: const EdgeInsets.symmetric(vertical: 10),
           child: Row(
             children: [
-              Text('몇명이 참여하나요?', style: CustomTextStyles.Title2()),
+              Text('몇명이 참여하나요?', style: CTextStyles.Title2()),
               IconButton(
-                iconSize: 12, color: CustomColors.gray41, icon:
+                iconSize: 12, color: CColors.gray41, icon:
                 Icon(Icons.question_mark_outlined),
                 onPressed: () {},
               )
@@ -63,7 +63,7 @@ class BattleIndexTwo extends GetView<BattleController> {
           ),
         ),
         SizedBox(height: 20),
-        Text('1등하면 20점!', style: CustomTextStyles.Body3(color: CustomColors.gray41)),
+        Text('1등하면 20점!', style: CTextStyles.Body3(color: CColors.gray41)),
         SizedBox(height: 20),
         Obx(() => SizedBox(
             width: double.infinity,
@@ -71,7 +71,7 @@ class BattleIndexTwo extends GetView<BattleController> {
             child: _buildWrap(controller.oneToFive, controller,
                 controller.selectedIndexTwo.value))),
         Text('1등하면 30점!',
-            style: CustomTextStyles.Body3(color: CustomColors.gray41)),
+            style: CTextStyles.Body3(color: CColors.gray41)),
         Obx(() => SizedBox(
             width: double.infinity,
             height: 100,

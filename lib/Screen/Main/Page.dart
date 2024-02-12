@@ -76,7 +76,7 @@ class _MainPageState extends State<MainPage> {
                   children: [
                     Expanded(
                       child: Container(
-                        color: CustomColors.brownLight,
+                        color: CColors.brownLight,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
@@ -95,7 +95,7 @@ class _MainPageState extends State<MainPage> {
               Flexible(
                 flex: 2,
                 child: Container(
-                  color: CustomColors.brown,
+                  color: CColors.brown,
                   child: Center(
                     // child: MainCarousel(),
                     child: MainCarouselSlider(),

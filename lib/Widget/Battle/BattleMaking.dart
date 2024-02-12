@@ -22,11 +22,11 @@ class BattleMaking extends GetView {
     con.battleMakingIndex().BattleIndex = 0;
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: CustomColors.black,
+        backgroundColor: CColors.black,
         title: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('배틀방 만들기', style: CustomTextStyles.Body1())
+            Text('배틀방 만들기', style: CTextStyles.Body1())
           ],
         ),
       ),
@@ -34,14 +34,14 @@ class BattleMaking extends GetView {
         width: double.infinity,
         height: 52,
         child: ElevatedButton(
-          child: Obx(() => Text(con.battleMakingIndex().BattleIndex == 4 ? '시작' : '다음', style: CustomTextStyles.Body3(color: CustomColors.black))),
-          style: ButtonStyle(backgroundColor: MaterialStateProperty.all(CustomColors.yellow)),
+          child: Obx(() => Text(con.battleMakingIndex().BattleIndex == 4 ? '시작' : '다음', style: CTextStyles.Body3(color: CColors.black))),
+          style: ButtonStyle(backgroundColor: MaterialStateProperty.all(CColors.yellow)),
           onPressed: () {
             con.changeBattleMakingIndex();
           },
         ),
       ),
-      backgroundColor: CustomColors.black,
+      backgroundColor: CColors.black,
       body: Column(
         children: [
           SizedBox(
