@@ -1,12 +1,19 @@
 import 'package:get/get.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
 import 'package:poorlex/Models/Login.dart';
+import 'package:poorlex/Widget/Login/LoginModal.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 import 'package:poorlex/Controller/User.dart';
 
 class KakaoLogin {
+  static String key = 'e820bf9c54d06756d8e929f542dbd2e7';
   static bool isLogined = false;
+
+  init() {
+    KakaoSdk.init(nativeAppKey: key);
+  }
 
   Future login() async {
     if (await isKakaoTalkInstalled()) {
@@ -27,6 +34,8 @@ class KakaoLogin {
 
   Future<UserInfo> getUserInfo() async {
     User me = await UserApi.instance.me();
+    print(me.id.toString());
+    print(me.properties?['nickname']);
     return UserInfo(
       userId: me.id.toString(),
       userName: me.properties?['nickname'] ?? '사용자'
@@ -60,9 +69,14 @@ class AppleLogin {
 }
 
 class LoginContoller {
+  late final WebViewController _controller;
   KakaoLogin kakao = KakaoLogin();
   AppleLogin apple = AppleLogin();
   User? user;
+
+  void init () {
+    kakao.init();
+  }
 
   Future<void> kakaoLogin () async {
     try {

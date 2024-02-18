@@ -61,9 +61,7 @@ class _MainPageState extends State<MainPage> {
   int modalValue = 0;
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(fontFamily: 'NeoDunggeunmoPro-Regular'),
-      home: Scaffold(
+    return Scaffold(
         appBar: NavBar(),
         bottomNavigationBar: BottomBar(nowPage: 0),
         body: Column(
@@ -106,7 +104,6 @@ class _MainPageState extends State<MainPage> {
             ]
           ],
         ),
-      ),
-    );
+      );
   }
 }
