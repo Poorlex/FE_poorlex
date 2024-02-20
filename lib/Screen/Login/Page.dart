@@ -4,8 +4,9 @@ import 'package:poorlex/Libs/Theme.dart';
 
 import 'package:poorlex/Widget/Common/Base.dart';
 import 'package:poorlex/Widget/Common/Buttons.dart';
-
 import 'package:poorlex/Widget/Login/LoginModal.dart';
+
+import 'package:poorlex/Models/Login.dart';
 
 class Login extends StatefulWidget {
   Login({
@@ -24,7 +25,9 @@ class _LoginState extends State<Login> {
         body: SafeArea(child:
             CCon(color: CColors.white, padding: EdgeInsets.all(20), child:
               CCol(main: MainAxisAlignment.center, cross: CrossAxisAlignment.center, children: [
-                Image.asset('assets/login/login.png'),
+                Container(width: 300, child:
+                  Image.asset('assets/login/login.png')
+                ),
                 SizedBox(height: 41),
                 Text('풀렉스에서 다른 거지 친구들과 함께\n재미있게 절약해봐요!', style: CTextStyles.Body2(color: CColors.black, fontFamily: 'appleSDGothicNeo'), textAlign: TextAlign.center),
                 SizedBox(height: 41),

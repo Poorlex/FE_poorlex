@@ -1,6 +1,9 @@
-class UserInfo {
-  String userId;
-  String userName;
+enum LoginTypes { kakao, apple }
 
-  UserInfo({this.userId = '', this.userName = ""});
+class LoginTypeObject {
+  late final String label;
+  late final LoginTypes key;
+  late final String url;
+
+  LoginTypeObject({ required this.label, required this.key, required this.url });
 }

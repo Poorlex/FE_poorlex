@@ -1,10 +1,9 @@
 import 'package:get/get.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
-import 'package:poorlex/Models/Login.dart';
-import 'package:poorlex/Widget/Login/LoginModal.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
+import 'package:poorlex/Models/User.dart';
 import 'package:poorlex/Controller/User.dart';
 
 class KakaoLogin {
