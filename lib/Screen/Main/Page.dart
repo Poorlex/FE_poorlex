@@ -10,16 +10,16 @@ import 'package:poorlex/Widget/Main/ShowModal.dart';
 import 'package:poorlex/Libs/Theme.dart';
 import 'package:poorlex/Controller/Modal.dart';
 
-class MainPage extends StatefulWidget {
-  const MainPage({
+class Main extends StatefulWidget {
+  const Main({
     super.key,
   });
 
   @override
-  State<MainPage> createState() => _MainPageState();
+  State<Main> createState() => _MainState();
 }
 
-class _MainPageState extends State<MainPage> {
+class _MainState extends State<Main> {
   final ModalController _modal = Get.put(ModalController());
   @override
   void initState() {

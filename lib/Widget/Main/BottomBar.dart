@@ -38,7 +38,7 @@ class BottomBar extends StatefulWidget {
 class _BottomBarState extends State<BottomBar> {
   late int _selectedIndex = widget.nowPage;
   static final barItems = [
-    BarItem(key: 'home', label: '홈', onIcon: 'assets/main_page/icon_home.png', offIcon: 'assets/main_page/icon_home_un.png', widget: MainPage()),
+    BarItem(key: 'home', label: '홈', onIcon: 'assets/main_page/icon_home.png', offIcon: 'assets/main_page/icon_home_un.png', widget: Main()),
     BarItem(key: 'goal', label: '목표', onIcon: 'assets/main_page/icon_goal.png', offIcon: 'assets/main_page/icon_goal_un.png', widget: GoalPage()),
     BarItem(key: 'battle', label: '배틀', onIcon: 'assets/main_page/icon_battle.png', offIcon: 'assets/main_page/icon_battle_un.png', widget: BattlePage()),
     BarItem(key: 'calendar', label: '요약', onIcon: 'assets/main_page/icon_calendar.png', offIcon: 'assets/main_page/icon_calendar_un.png', widget: CaledarPage()),
