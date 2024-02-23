@@ -38,6 +38,7 @@ class _LoginState extends State<Login> {
                       Text('풀렉스에서 다른 거지 친구들과 함께\n재미있게 절약해봐요!',
                           style: CTextStyles.Body2(
                               color: CColors.black,
+                              height: 1.4,
                               fontFamily: 'appleSDGothicNeo'),
                           textAlign: TextAlign.center),
                       SizedBox(height: 41),
@@ -58,6 +59,7 @@ class _LoginState extends State<Login> {
                                   ),
                                   Text('카카오로 3초만에 로그인',
                                       style: CTextStyles.Body2(
+                                          fontWeight: FontWeight.w600,
                                           color: CColors.black,
                                           fontFamily: 'appleSDGothicNeo')),
                                   SizedBox(width: 24)
@@ -82,6 +84,7 @@ class _LoginState extends State<Login> {
                                   ),
                                   Text('Apple ID로 로그인',
                                       style: CTextStyles.Body2(
+                                          fontWeight: FontWeight.w600,
                                           fontFamily: 'appleSDGothicNeo')),
                                   SizedBox(width: 24)
                                 ]),

@@ -3,18 +3,22 @@ import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
+
+import 'package:poorlex/Controller/Api.dart';
+import 'package:poorlex/Controller/User.dart';
 import 'package:poorlex/Models/Login.dart';
 
 import 'package:poorlex/Screen/Login/Page.dart';
-import 'package:poorlex/Controller/User.dart';
 import 'package:poorlex/Screen/Login/LoginModal.dart';
+import 'package:poorlex/Screen/My/Page.dart';
 
 import 'Screen/Main/Page.dart';
 
 class Bind extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut(() => UserController());
+    Get.put<ApiController>(ApiController(), permanent: true);
+    Get.put<UserController>(UserController(), permanent: true);
   }
 }
 
@@ -30,7 +34,7 @@ void main() async {
     initialRoute: '/login',
     theme: ThemeData(fontFamily: 'NeoDunggeunmoPro-Regular'),
     getPages: [
-      GetPage(name: '/home', page: () => Main(), binding: Bind()),
+      GetPage(name: '/main', page: () => Main(), binding: Bind()),
       GetPage(name: '/login', page: () => Login(), binding: Bind()),
       GetPage(
           name: '/login/apple',
@@ -40,6 +44,7 @@ void main() async {
           name: '/login/kakao',
           page: () => LoginModal(loginType: LoginTypes.kakao),
           binding: Bind()),
-    ],
+      GetPage(name: '/my', page: () => MyPage(), binding: Bind())
+    ]
   ));
 }

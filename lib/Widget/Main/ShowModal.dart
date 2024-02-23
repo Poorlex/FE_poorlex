@@ -45,7 +45,7 @@ class _ShowModalState extends State<ShowModal> {
                       Row(children: [
                         Text('반갑네', style: CTextStyles.Headline()),
                         SizedBox(width: 10),
-                        Text('${_user.userInfo().userName}!', style: CTextStyles.Title3(color: CColors.yellow)),
+                        Text('${_user.userInfo().nickname}!', style: CTextStyles.Title3(color: CColors.yellow)),
                       ]),
                       SizedBox(height: 10),
                       Text('신입 거지로 들어온 것을 환영하네.', style: CTextStyles.Headline()),

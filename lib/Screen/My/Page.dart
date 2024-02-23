@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:poorlex/Controller/Api.dart';
 
 import 'package:poorlex/Widget/Common/Icon.dart';
-import 'package:poorlex/Widget/Main/BottomBar.dart';
+import 'package:poorlex/Widget/Common/BottomBar.dart';
 import 'package:poorlex/Widget/My/Level.dart';
 import 'package:poorlex/Widget/My/MyAuth.dart';
 import 'package:poorlex/Widget/My/MyFriends.dart';
@@ -20,55 +21,72 @@ class MyPage extends StatefulWidget {
 }
 
 class _MyPageState extends State<MyPage> {
-  final UserController _user = Get.put(UserController());
+  final user = Get.find<UserController>();
+  final api = Get.find<ApiController>();
+
+  _MyPageState() {
+    user.getUserInfo();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: CColors.black,
-      bottomNavigationBar: BottomBar(nowPage: 4),
-      appBar: AppBar(
-        backgroundColor: CColors.black,
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            IconButton(
-              iconSize: 26,
-              icon: CustomIcon(icon: 'setting', width: 26, height: 26, color: CColors.whiteStr),
-              onPressed: () {},
-            ),
-            IconButton(
-              iconSize: 26,
-              icon: CustomIcon(icon: 'ring', width: 26, height: 26, color: CColors.whiteStr),
-              onPressed: () {},
-            )
-          ],
-        ),
-      ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 15, vertical: 2),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              MyPageProfile(),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 30),
-                child: Column(
-                  children: [
-                    MyPageLevel(),
-                    MyFriends(),
-                    SizedBox(height: 70),
-                    MyPageMyAuth(),
-                    SizedBox(height: 80),
-                    AnnounceMent()
-                  ],
+    return Obx(() {
+      if (user.userInfo.value?.nickname == null) {
+        return Text("Loading", style: CTextStyles.Body3());
+      } else {
+        return Scaffold(
+          backgroundColor: CColors.black,
+          bottomNavigationBar: BottomBar(nowPage: 4),
+          appBar: AppBar(
+            automaticallyImplyLeading: false,
+            backgroundColor: CColors.black,
+            title: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                IconButton(
+                  iconSize: 26,
+                  icon: CustomIcon(
+                      icon: 'setting',
+                      width: 26,
+                      height: 26,
+                      color: CColors.whiteStr),
+                  onPressed: () {},
                 ),
-              ),
-            ],
+                IconButton(
+                  iconSize: 26,
+                  icon: CustomIcon(
+                      icon: 'ring', width: 26, height: 26, color: CColors.whiteStr),
+                  onPressed: () {},
+                )
+              ],
+            ),
           ),
-        ),
-      ),
-    );
+          body: SingleChildScrollView(
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 15, vertical: 2),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  MyPageProfile(),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 30),
+                    child: Column(
+                      children: [
+                        MyPageLevel(),
+                        MyFriends(),
+                        SizedBox(height: 70),
+                        MyPageMyAuth(),
+                        SizedBox(height: 80),
+                        AnnounceMent()
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        );
+      }
+    });
   }
 }

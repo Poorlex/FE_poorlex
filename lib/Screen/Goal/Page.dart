@@ -5,7 +5,7 @@ import 'package:poorlex/Libs/Theme.dart';
 import 'package:poorlex/Widget/Common/Tab.dart';
 import 'package:poorlex/Screen/Goal/CreateGoal.dart';
 import 'package:poorlex/Widget/Goal/List.dart';
-import 'package:poorlex/Widget/Main/BottomBar.dart';
+import 'package:poorlex/Widget/Common/BottomBar.dart';
 
 class GoalPage extends StatefulWidget {
   const GoalPage({super.key});

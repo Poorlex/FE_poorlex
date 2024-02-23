@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:poorlex/Widget/NavBar.dart';
-import 'package:poorlex/Widget/Main/BottomBar.dart';
+import 'package:poorlex/Widget/Common/BottomBar.dart';
 import 'package:poorlex/Widget/Main/CarouselSlider.dart';
 import 'package:poorlex/Widget/Main/MainBottom.dart';
 import 'package:poorlex/Widget/Main/ShowModal.dart';

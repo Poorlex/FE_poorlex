@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 
 import 'package:poorlex/Widget/Battle/RankingAppBar.dart';
 import 'package:poorlex/Widget/Battle/RankingDetail.dart';
-import 'package:poorlex/Widget/Main/BottomBar.dart';
+import 'package:poorlex/Widget/Common/BottomBar.dart';
 
 import 'package:poorlex/Controller/Battle.dart';
 

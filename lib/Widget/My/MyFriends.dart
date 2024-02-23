@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:poorlex/Libs/Theme.dart';
+import 'package:get/get.dart';
 
 import 'package:poorlex/Widget/Common/icon.dart';
 
+import 'package:poorlex/Libs/Theme.dart';
+import 'package:poorlex/Controller/User.dart';
+
 class MyFriends extends StatefulWidget {
-  const MyFriends({super.key});
+  MyFriends({super.key});
 
   @override
   State<MyFriends> createState() => _MyFriendsState();
 }
 
 class _MyFriendsState extends State<MyFriends> {
+  UserController user = Get.find<UserController>();
   final int number = 5;
 
   final List<List<String>> friendsImages = [
@@ -39,50 +43,63 @@ class _MyFriendsState extends State<MyFriends> {
       '-5,500'
     ],
   ];
+
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 60),
-      child:
-        Column(children: [
+        padding: const EdgeInsets.only(top: 60),
+        child: Column(children: [
           Row(children: [
-              Text('내 거지 친구', style: CTextStyles.Headline()),
-              SizedBox(width: 10),
-              Text('${friendsImages.length}', style: CTextStyles.Headline(color: CColors.purpleLight))
+            Text('내 거지 친구', style: CTextStyles.Headline()),
+            SizedBox(width: 10),
+            // Obx(() => Text(user.userInfo.value.friends?.length.toString() ?? '-', style: CTextStyles.Headline(color: CColors.purpleLight)))
           ]),
           SizedBox(height: 20),
-          SizedBox(height: 180, child:
-            ListView.separated(
-                scrollDirection: Axis.horizontal, itemBuilder: (context, idx) {
+          SizedBox(
+            child: ListView.separated(
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (context, idx) {
                   return Column(children: [
-                    Image.asset(width: 84, height: 74, 'assets/my_page/icon_friends.png'),
+                    Image.asset(
+                        width: 84,
+                        height: 74,
+                        'assets/my_page/icon_friends.png'),
                     SizedBox(height: 10),
                     Text(friendsImages[idx][1], style: CTextStyles.Body3()),
-                    Text(friendsImages[idx][3], style: CTextStyles.Body3(color: CColors.gray40))
+                    SizedBox(height: 5),
+                    Text(friendsImages[idx][3],
+                        style: CTextStyles.Body3(color: CColors.gray40))
                   ]);
                 },
-              separatorBuilder: (context, idx) => SizedBox(width: 15), itemCount: friendsImages.length
-            ),
+                separatorBuilder: (context, idx) => SizedBox(width: 15),
+                itemCount: friendsImages.length),
+          ),
+          Text(
+            "11111",
+            style: TextStyle(color: Colors.white),
           ),
           OutlinedButton(
             style: OutlinedButton.styleFrom(
               side: BorderSide(width: 1.0, color: CColors.yellow),
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(2.0)),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(2.0)),
             ),
-            child:
-            Padding(
+            child: Padding(
               padding: EdgeInsets.symmetric(vertical: 14),
               child:
-              Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                Text('친구 전체 보기', style: CTextStyles.Body3(color: CColors.yellow)),
+                  Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                Text('친구 전체 보기',
+                    style: CTextStyles.Body3(color: CColors.yellow)),
                 SizedBox(width: 5),
-                CustomIcon(icon: 'arrow-game-right', width: 15, height: 15, color: CColors.yellowStr)
+                CustomIcon(
+                    icon: 'arrow-game-right',
+                    width: 15,
+                    height: 15,
+                    color: CColors.yellowStr)
               ]),
             ),
             onPressed: () {},
           )
-        ]
-      )
-    );
+        ]));
   }
 }

@@ -6,7 +6,7 @@ import 'package:poorlex/Controller/Battle.dart';
 
 import 'package:poorlex/Widget/Battle/BattleMaking.dart';
 import 'package:poorlex/Widget/Battle/BattleOption.dart';
-import 'package:poorlex/Widget/Main/BottomBar.dart';
+import 'package:poorlex/Widget/Common/BottomBar.dart';
 
 class BattlePage extends GetView {
   const BattlePage({super.key});

@@ -43,16 +43,16 @@ class CColors {
 
 class CTextStyles {
   static Color defaultColor = CColors.white;
-  static TextStyle LargeTitle({ Color? color, fontFamily, fontWeight }) => TextStyle(fontSize: 32, height: 1.0, letterSpacing: 2.0, color: color ?? defaultColor, fontFamily: fontFamily, fontWeight: fontWeight);
-  static TextStyle Title1({ Color? color, fontFamily, fontWeight }) => TextStyle(fontSize: 24, height: 1.0, letterSpacing: -0.25, color: color ?? defaultColor, fontFamily: fontFamily, fontWeight: fontWeight);
-  static TextStyle Title2({ Color? color, fontFamily, fontWeight }) => TextStyle(fontSize: 22, height: 1.0, letterSpacing: -0.25, color: color ?? defaultColor, fontFamily: fontFamily, fontWeight: fontWeight);
-  static TextStyle Title3({ Color? color, fontFamily, fontWeight }) => TextStyle(fontSize: 20, height: 1.0, letterSpacing: -0.25, color: color ?? defaultColor, fontFamily: fontFamily, fontWeight: fontWeight);
-  static TextStyle Headline({ Color? color, fontFamily, fontWeight }) => TextStyle(fontSize: 18, height: 1.0, letterSpacing: 0, color: color ?? defaultColor, fontFamily: fontFamily, fontWeight: fontWeight);
-  static TextStyle Body1({ Color? color, fontFamily, fontWeight }) => TextStyle(fontSize: 17, height: 1.0, letterSpacing: -0.25, color: color ?? defaultColor, fontFamily: fontFamily, fontWeight: fontWeight);
-  static TextStyle Body2({ Color? color, fontFamily, fontWeight }) => TextStyle(fontSize: 16, height: 1.0, letterSpacing: -0.25, color: color ?? defaultColor, fontFamily: fontFamily, fontWeight: fontWeight);
-  static TextStyle Body3({ Color? color, fontFamily, fontWeight }) => TextStyle(fontSize: 14, height: 1.0, letterSpacing: -0.25, color: color ?? defaultColor, fontFamily: fontFamily, fontWeight: fontWeight);
-  static TextStyle Caption1({ Color? color, fontFamily, fontWeight }) => TextStyle(fontSize: 13, height: 1.0, letterSpacing: -0.25, color: color ?? defaultColor, fontFamily: fontFamily, fontWeight: fontWeight);
-  static TextStyle Caption2({ Color? color, fontFamily, fontWeight }) => TextStyle(fontSize: 12, height: 1.0, letterSpacing: -0.25, color: color ?? defaultColor, fontFamily: fontFamily, fontWeight: fontWeight);
+  static TextStyle LargeTitle({ Color? color, fontFamily, fontWeight, height }) => TextStyle(fontSize: 32, height: height ?? 1.0, letterSpacing: 2.0, color: color ?? defaultColor, fontFamily: fontFamily, fontWeight: fontWeight);
+  static TextStyle Title1({ Color? color, fontFamily, fontWeight, height }) => TextStyle(fontSize: 24, height: height ?? 1.0, letterSpacing: -0.25, color: color ?? defaultColor, fontFamily: fontFamily, fontWeight: fontWeight);
+  static TextStyle Title2({ Color? color, fontFamily, fontWeight, height }) => TextStyle(fontSize: 22, height: height ?? 1.0, letterSpacing: -0.25, color: color ?? defaultColor, fontFamily: fontFamily, fontWeight: fontWeight);
+  static TextStyle Title3({ Color? color, fontFamily, fontWeight, height }) => TextStyle(fontSize: 20, height: height ?? 1.0, letterSpacing: -0.25, color: color ?? defaultColor, fontFamily: fontFamily, fontWeight: fontWeight);
+  static TextStyle Headline({ Color? color, fontFamily, fontWeight, height }) => TextStyle(fontSize: 18, height: height ?? 1.0, letterSpacing: 0, color: color ?? defaultColor, fontFamily: fontFamily, fontWeight: fontWeight);
+  static TextStyle Body1({ Color? color, fontFamily, fontWeight, height }) => TextStyle(fontSize: 17, height: height ?? 1.0, letterSpacing: -0.25, color: color ?? defaultColor, fontFamily: fontFamily, fontWeight: fontWeight);
+  static TextStyle Body2({ Color? color, fontFamily, fontWeight, height }) => TextStyle(fontSize: 16, height: height ?? 1.0, letterSpacing: -0.25, color: color ?? defaultColor, fontFamily: fontFamily, fontWeight: fontWeight);
+  static TextStyle Body3({ Color? color, fontFamily, fontWeight, height }) => TextStyle(fontSize: 14, height: height ?? 1.0, letterSpacing: -0.25, color: color ?? defaultColor, fontFamily: fontFamily, fontWeight: fontWeight);
+  static TextStyle Caption1({ Color? color, fontFamily, fontWeight, height }) => TextStyle(fontSize: 13, height: height ?? 1.0, letterSpacing: -0.25, color: color ?? defaultColor, fontFamily: fontFamily, fontWeight: fontWeight);
+  static TextStyle Caption2({ Color? color, fontFamily, fontWeight, height }) => TextStyle(fontSize: 12, height: height ?? 1.0, letterSpacing: -0.25, color: color ?? defaultColor, fontFamily: fontFamily, fontWeight: fontWeight);
 }
 
 class AppBarDesign {

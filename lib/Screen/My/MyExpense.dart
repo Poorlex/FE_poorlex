@@ -4,7 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:poorlex/Widget/Common/Icon.dart';
 import 'package:poorlex/Widget/Common/Other.dart';
 import 'package:poorlex/Widget/Common/Picker.dart';
-import 'package:poorlex/Widget/Main/BottomBar.dart';
+import 'package:poorlex/Widget/Common/BottomBar.dart';
 
 import 'package:poorlex/Libs/Theme.dart';
 

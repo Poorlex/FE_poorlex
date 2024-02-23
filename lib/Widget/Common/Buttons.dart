@@ -31,6 +31,7 @@ class Button extends StatelessWidget {
         child: child,
         style: ElevatedButton.styleFrom(
           backgroundColor: color,
+          elevation: 0.0,
           side: BorderSide(width: 1.0, color: color),
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(radius)),
         ),

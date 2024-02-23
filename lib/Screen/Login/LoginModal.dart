@@ -26,7 +26,9 @@ class LoginModal extends StatelessWidget {
   late final WebViewController webViewController;
   final user = Get.find<UserController>();
 
-  LoginModal({super.key, required this.loginType});
+  LoginModal({
+    super.key, required this.loginType
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +56,7 @@ class LoginModal extends StatelessWidget {
               if (uri.queryParameters['accessToken'] != null) {
                 user.updateToken(
                     UserToken(token: uri.queryParameters['accessToken']!));
-                Get.offAndToNamed('/home');
+                Get.offAllNamed('/my');
               }
             }
           },

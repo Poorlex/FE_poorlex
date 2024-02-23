@@ -8,7 +8,7 @@ import 'package:poorlex/Widget/Common/user.dart';
 class MyPageProfile extends StatelessWidget {
   MyPageProfile({super.key});
 
-  final UserController _user = Get.put(UserController());
+  UserController user = Get.find<UserController>();
 
   @override
   Widget build(BuildContext context) {
@@ -20,48 +20,51 @@ class MyPageProfile extends StatelessWidget {
               LevelProfile(level: 1),
               SizedBox(height: 18),
               Container(
-                width: 300,
-                child:
-                  Column(
+                  width: 300,
+                  child: Column(
                     children: [
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text('최지출', style: CTextStyles.Title3())
+                          Obx(() => Text(user.userInfo.value.nickname ?? '-',
+                              style: CTextStyles.Title3()))
                         ],
                       ),
                       SizedBox(height: 10),
                       Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text('돈을 많이 모아야 돈을 많이 쓸 수 있다.', textAlign: TextAlign.center, style: CTextStyles.Body2(color: CColors.gray40),
-                          ),
+                          Obx(() => Text(
+                                user.userInfo.value.description ?? '-',
+                                textAlign: TextAlign.center,
+                                style: CTextStyles.Body2(color: CColors.gray40),
+                              ))
                         ],
                       )
                     ],
-                  )
-              ),
+                  )),
               SizedBox(height: 16),
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 5),
-                child:
-                  OutlinedButton(
+                  padding: const EdgeInsets.symmetric(vertical: 5),
+                  child: OutlinedButton(
                     style: OutlinedButton.styleFrom(
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4.0)),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(4.0)),
                       side: BorderSide(width: 1.0, color: CColors.yellow),
                     ),
                     child: Container(
-                      width: 210, height: 30,
-                      child:
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text('프로필 편집', style: CTextStyles.Body3(color: CColors.yellow)),
-                            ],
-                          )
-                    ),
+                        width: 210,
+                        height: 30,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text('프로필 편집',
+                                style:
+                                    CTextStyles.Body3(color: CColors.yellow)),
+                          ],
+                        )),
                     onPressed: () {},
-                  )
-              )
+                  ))
             ],
           ),
         ),

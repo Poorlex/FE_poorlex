@@ -1,25 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:poorlex/Libs/Theme.dart';
+import 'package:get/get.dart';
 
-import 'package:poorlex/Screen/Battle/Page.dart';
-import 'package:poorlex/Screen/Goal/Page.dart';
-import 'package:poorlex/Screen/Main/Page.dart';
-import 'package:poorlex/Screen/My/Page.dart';
-import 'package:poorlex/Screen/Calendar/Page.dart';
+import 'package:poorlex/Libs/Theme.dart';
 
 class BarItem {
   String key;
   String label;
   String onIcon;
   String offIcon;
-  Widget widget;
+  String route;
 
   BarItem({
     required this.key,
     required this.label,
     required this.onIcon,
     required this.offIcon,
-    required this.widget
+    required this.route
   });
 }
 
@@ -38,11 +34,11 @@ class BottomBar extends StatefulWidget {
 class _BottomBarState extends State<BottomBar> {
   late int _selectedIndex = widget.nowPage;
   static final barItems = [
-    BarItem(key: 'home', label: '홈', onIcon: 'assets/main_page/icon_home.png', offIcon: 'assets/main_page/icon_home_un.png', widget: Main()),
-    BarItem(key: 'goal', label: '목표', onIcon: 'assets/main_page/icon_goal.png', offIcon: 'assets/main_page/icon_goal_un.png', widget: GoalPage()),
-    BarItem(key: 'battle', label: '배틀', onIcon: 'assets/main_page/icon_battle.png', offIcon: 'assets/main_page/icon_battle_un.png', widget: BattlePage()),
-    BarItem(key: 'calendar', label: '요약', onIcon: 'assets/main_page/icon_calendar.png', offIcon: 'assets/main_page/icon_calendar_un.png', widget: CaledarPage()),
-    BarItem(key: 'my', label: 'my', onIcon: 'assets/main_page/icon_my.png', offIcon: 'assets/main_page/icon_my_un.png', widget: MyPage()),
+    BarItem(key: 'home', label: '홈', onIcon: 'assets/main_page/icon_home.png', offIcon: 'assets/main_page/icon_home_un.png', route: '/main'),
+    BarItem(key: 'goal', label: '목표', onIcon: 'assets/main_page/icon_goal.png', offIcon: 'assets/main_page/icon_goal_un.png', route: '/goal'),
+    BarItem(key: 'battle', label: '배틀', onIcon: 'assets/main_page/icon_battle.png', offIcon: 'assets/main_page/icon_battle_un.png', route: '/battle'),
+    BarItem(key: 'calendar', label: '요약', onIcon: 'assets/main_page/icon_calendar.png', offIcon: 'assets/main_page/icon_calendar_un.png', route: '/calendar'),
+    BarItem(key: 'my', label: 'my', onIcon: 'assets/main_page/icon_my.png', offIcon: 'assets/main_page/icon_my_un.png', route: '/my'),
   ];
 
   Route _createRoute(Widget widget) {
@@ -58,7 +54,7 @@ class _BottomBarState extends State<BottomBar> {
     setState(() {
       _selectedIndex = index;
     });
-    Navigator.of(context).push(_createRoute(barItems[index].widget));
+    Get.offAllNamed(barItems[index].route);
   }
 
   @override

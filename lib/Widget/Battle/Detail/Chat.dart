@@ -7,6 +7,7 @@ import 'package:poorlex/Libs/Theme.dart';
 import 'package:poorlex/Widget/Common/Icon.dart';
 import 'package:poorlex/Widget/Common/Bar.dart';
 import 'package:poorlex/Widget/Common/User.dart';
+import 'package:poorlex/Widget/Common/Other.dart';
 
 import 'package:poorlex/Widget/Battle/Detail/Notice.dart';
 import 'package:poorlex/Widget/Battle/Detail/Comment.dart';
@@ -36,7 +37,7 @@ class _ChatState extends State<Chat> {
                 child: TextButton(
                   onPressed: () => Navigator.push(context, NoticeDetailModal()),
                   style: TextButton.styleFrom(padding: EdgeInsets.zero),
-                  child: ChatBoxItem(
+                  child: GameBox(
                       color: CColors.gray20,
                       child: Row(
                         children: [
@@ -62,7 +63,7 @@ class _ChatState extends State<Chat> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        ChatBoxItem(
+                        GameBox(
                           color: CColors.gray41, padding: EdgeInsets.fromLTRB(17, 1, 17, 1),
                           child: Text('D-7 월', style: CTextStyles.Body2()),
                         )
@@ -76,7 +77,7 @@ class _ChatState extends State<Chat> {
                           icon: Image.asset('assets/sample/sample.png'),
                           name: '김굴비'
                       ),
-                      child: ChatBoxItem(
+                      child: GameBox(
                         child: Text('김굴비 님이 입장했습니다.', style: CTextStyles.Body3(color: CColors.black)),
                       ),
                       time: TimeItem(
@@ -87,7 +88,7 @@ class _ChatState extends State<Chat> {
                     SizedBox(height: 10),
                     ChatItem(
                       align: MainAxisAlignment.end,
-                      child: ChatBoxItem(
+                      child: GameBox(
                           color: CColors.gray20,
                           child: Text('최지출 님이 입장했습니다.', style: CTextStyles.Body3(color: CColors.gray50))
                       ),
@@ -104,7 +105,7 @@ class _ChatState extends State<Chat> {
                           icon: Image.asset('assets/sample/sample.png'),
                           name: '김굴비'
                       ),
-                      child: ChatBoxItem(
+                      child: GameBox(
                           padding: EdgeInsets.fromLTRB(0, 30, 0, 30),
                           child: VoteItem(name: '버블티', money: 5000,)
                       ),
@@ -116,7 +117,7 @@ class _ChatState extends State<Chat> {
                     SizedBox(height: 10),
                     ChatItem(
                         align: MainAxisAlignment.end,
-                        child: ChatBoxItem(
+                        child: GameBox(
                             color: CColors.gray20,
                             padding: EdgeInsets.fromLTRB(0, 30, 0, 30),
                             child: VoteResultItem(name: '버블티', money: 5000, isUp: true)
@@ -134,7 +135,7 @@ class _ChatState extends State<Chat> {
                           icon: Image.asset('assets/sample/sample.png'),
                           name: '김굴비'
                       ),
-                      child: ChatBoxItem(
+                      child: GameBox(
                           padding: EdgeInsets.fromLTRB(0, 30, 0, 30),
                           child: VoteResultItem(name: '버블티', money: 5000, isUp: false)
                       ),
@@ -151,7 +152,7 @@ class _ChatState extends State<Chat> {
                             icon: Image.asset('assets/sample/sample.png'),
                             name: '김굴비'
                         ),
-                        child: ChatBoxItem(
+                        child: GameBox(
                             padding: EdgeInsets.fromLTRB(0, 30, 0, 30),
                             child: VoteAllResultItem(name: '버블티', money: 5000, upCount: 1, downCount: 2,)
                         ),
@@ -163,7 +164,7 @@ class _ChatState extends State<Chat> {
                     SizedBox(height: 10),
                     ChatItem(
                         align: MainAxisAlignment.start,
-                        child: ChatBoxItem(
+                        child: GameBox(
                             padding: EdgeInsets.fromLTRB(0, 30, 0, 30),
                             child: BuyItem(
                               id: 1,
@@ -179,7 +180,7 @@ class _ChatState extends State<Chat> {
                     SizedBox(height: 10),
                     ChatItem(
                         align: MainAxisAlignment.end,
-                        child: ChatBoxItem(
+                        child: GameBox(
                           color: CColors.gray20,
                           padding: EdgeInsets.fromLTRB(0, 30, 0, 30),
                           child: OpinionItem(
@@ -200,7 +201,7 @@ class _ChatState extends State<Chat> {
                             icon: Image.asset('assets/sample/sample.png'),
                             name: '김굴비'
                         ),
-                        child: ChatBoxItem(
+                        child: GameBox(
                           padding: EdgeInsets.fromLTRB(0, 30, 0, 30),
                           child: OpinionItem(
                               isAgree: true,
@@ -768,43 +769,6 @@ class VoteItem extends StatelessWidget {
   }
 }
 
-
-
-class ChatBoxItem extends StatelessWidget {
-  Color? color;
-  EdgeInsets? padding;
-  Widget child;
-
-  ChatBoxItem({
-    super.key,
-    color,
-    padding,
-    required this.child
-  }) {
-    this.color = color ?? CColors.white;
-    this.padding = padding ?? EdgeInsets.fromLTRB(19, 14, 19, 14);
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Positioned(
-          top: 4, left: 0, right: 0, bottom: 4,
-          child: Container(color: color)
-        ),
-        Positioned(
-            top: 0, left: 4, right: 4, bottom: 0,
-            child: Container(color: color)
-        ),
-        Container(
-          padding: padding,
-          child: child,
-        ),
-      ],
-    );
-  }
-}
 
 class TimeItem extends StatelessWidget {
   int time;

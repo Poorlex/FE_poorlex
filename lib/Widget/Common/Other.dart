@@ -105,3 +105,39 @@ class AddImageButton extends StatelessWidget {
   }
 }
 
+class GameBox extends StatelessWidget {
+  Color? color;
+  EdgeInsets? padding;
+  Widget child;
+
+  GameBox({
+    super.key,
+    color,
+    padding,
+    required this.child
+  }) {
+    this.color = color ?? CColors.white;
+    this.padding = padding ?? EdgeInsets.fromLTRB(19, 14, 19, 14);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        Positioned(
+            top: 4, left: 0, right: 0, bottom: 4,
+            child: Container(color: color)
+        ),
+        Positioned(
+            top: 0, left: 4, right: 4, bottom: 0,
+            child: Container(color: color)
+        ),
+        Container(
+          padding: padding,
+          child: child,
+        ),
+      ],
+    );
+  }
+}
+
