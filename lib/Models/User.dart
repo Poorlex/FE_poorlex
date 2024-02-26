@@ -1,18 +1,3 @@
-import 'package:poorlex/Models/Abstract.dart';
-
-/*
-{
-  "nickname":"ê¹íì¤",
-  "description":null,
-  "levelInfo":{"level":1,"point":0,"pointLeftForLevelUp":70},
-  "battleSuccessInfo":{"totalBattleSuccessCount":0,"hardBattleSuccessCount":0,"normalBattleSuccessCount":0,"easyBattleSuccessCount":0},
-  "friendTotalCount":0,
-  "friends":[],
-  "expenditureTotalCount":0,
-  "expenditures":[]
-}
- */
-
 class LevelInfo {
   int level = 0;
   int point = 0;
@@ -39,15 +24,86 @@ class BattleSuccessInfo {
   });
 }
 
-class UserInfo extends Model {
+class Expenditure {
+  /*
+  {
+    "id": 0,
+    "date": "2024-02-24",
+    "amount": 0,
+    "description": "string",
+    "imageUrls": [
+      "string"
+    ]
+  }
+   */
+  int id;
+  String date;
+  double amount = 0;
+  String? description;
+  List<String>? imageUrls = [];
+
+  Expenditure({
+    required this.id,
+    required this.date,
+    required this.amount,
+    this.description,
+    this.imageUrls
+  });
+  factory Expenditure.fromJson(Map<String, dynamic> j) => Expenditure(
+    id: j['id'],
+    date: j['date'],
+    amount: j['amount'],
+    description: j['description'],
+    imageUrls: j['imageUrls']
+  );
+}
+
+class Friend {
+  /*
+  {
+    "level": 0,
+    "nickname": "string",
+    "weeklyExpenditure": 0
+  }
+  */
+  int? level = 0;
+  String? nickname = null;
+  int? weeklyExpenditure = 0;
+
+  Friend({
+    this.level = 0,
+    this.nickname,
+    this.weeklyExpenditure = 0
+  });
+
+  factory Friend.fromJson(Map<String, dynamic> data) => Friend(
+      level: data['level'],
+      nickname: data['nickname'],
+      weeklyExpenditure: data['weeklyExpenditure']
+  );
+}
+
+class UserInfo {
+  /*
+  {
+    "nickname":"닉네임",
+    "description":null,
+    "levelInfo":{"level":1,"point":0,"pointLeftForLevelUp":70},
+    "battleSuccessInfo":{"totalBattleSuccessCount":0,"hardBattleSuccessCount":0,"normalBattleSuccessCount":0,"easyBattleSuccessCount":0},
+    "friendTotalCount":0,
+    "friends":[],
+    "expenditureTotalCount":0,
+    "expenditures":[]
+  }
+ */
   String? nickname;
   String? description;
   LevelInfo? levelInfo;
   BattleSuccessInfo? battleSuccessInfo;
   int? friendTotalCount = 0;
-  List<dynamic>? friends = [];
+  List<Friend>? friends = [];
   int? expenditureTotalCount = 0;
-  List<dynamic>? expenditures = [];
+  List<Expenditure>? expenditures = [];
 
   UserInfo({
     this.nickname,
@@ -60,7 +116,6 @@ class UserInfo extends Model {
     this.expenditures
   });
 
-  @override
   factory UserInfo.fromJson(Map<String, dynamic> data)  => UserInfo(
         nickname: data['nickname'],
         description: data['description'],
@@ -76,9 +131,9 @@ class UserInfo extends Model {
           easyBattleSuccessCount: data['battleSuccessInfo']['easyBattleSuccessCount'],
         ),
         friendTotalCount: data['friendTotalCount'],
-        friends: data['friends'],
+        friends: (data['friends'] ?? []).map<Friend>((f) => Friend.fromJson(f)).toList(),
         expenditureTotalCount: data['expenditureTotalCount'],
-        expenditures: data['expenditures']
+        expenditures: (data['expenditures'] ?? []).map<Expenditure>((f) => Expenditure.fromJson(f)).toList()
     );
 }
 

@@ -17,7 +17,8 @@ class MyPageProfile extends StatelessWidget {
         Center(
           child: Column(
             children: [
-              LevelProfile(level: 1),
+              Obx(() => LevelProfile(
+                  level: user.userInfo.value.levelInfo?.level ?? 1)),
               SizedBox(height: 18),
               Container(
                   width: 300,

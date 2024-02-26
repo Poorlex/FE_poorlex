@@ -26,14 +26,13 @@ class ApiController extends GetxController {
     update();
   }
 
-  Future<HTTPResult<Map<String, dynamic>>> request ({
+  Future<HTTPResult<dynamic>> request ({
     required Methods method,
     required String url,
     Map<String, String>? headers,
     Map<String, dynamic>? body,
   }) async {
     var b = null;
-    late final r;
     late final rsb;
     late http.Response rs;
 
@@ -76,8 +75,8 @@ class ApiController extends GetxController {
         );
       }
 
-      if (rs.headers['content-type']!.contains('application/json')) rsb = jsonDecode(rs.body);
-      else rsb = rs.body;
+      if (rs.headers['content-type']!.contains('application/json')) rsb = jsonDecode(utf8.decode(rs.bodyBytes));
+      else rsb = utf8.decode(rs.bodyBytes);
 
       print(url);
       print(rs.body);

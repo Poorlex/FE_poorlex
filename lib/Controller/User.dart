@@ -6,6 +6,8 @@ import 'package:poorlex/Models/User.dart';
 class UserController extends GetxController {
   final userInfo = UserInfo().obs;
   final userToken = UserToken().obs;
+  final expenditures = <Expenditure>[].obs;
+
   ApiController api = Get.find<ApiController>();
 
   void getUserInfo() async {
@@ -13,6 +15,22 @@ class UserController extends GetxController {
     if (ui.success) {
       updateUser(UserInfo.fromJson(ui.body!));
     }
+  }
+
+  void getExpenditures() async {
+    var e = await api.request(method: Methods.get, url: '/api/expenditures');
+    if (e.success) {
+      updateExpenditures((e.body ?? []).map<Expenditure>((b) => Expenditure.fromJson(b)).toList());
+    }
+  }
+
+  void updateExpenditures(List<Expenditure> list) {
+    int index = 0;
+    list.forEach((li) {
+      expenditures.value[index] = li;
+      index++;
+    });
+    update();
   }
 
   void updateUser(UserInfo user) {

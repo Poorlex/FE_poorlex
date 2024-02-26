@@ -22,6 +22,7 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: CColors.white,
         resizeToAvoidBottomInset: false,
         body: SafeArea(
             child: CCon(

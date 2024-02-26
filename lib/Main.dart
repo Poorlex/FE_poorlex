@@ -10,7 +10,9 @@ import 'package:poorlex/Models/Login.dart';
 
 import 'package:poorlex/Screen/Login/Page.dart';
 import 'package:poorlex/Screen/Login/LoginModal.dart';
+import 'package:poorlex/Screen/My/MyExpense.dart';
 import 'package:poorlex/Screen/My/Page.dart';
+import 'package:poorlex/Widget/Common/Webview.dart';
 
 import 'Screen/Main/Page.dart';
 
@@ -31,20 +33,45 @@ void main() async {
   ]);
 
   runApp(GetMaterialApp(
-    initialRoute: '/login',
-    theme: ThemeData(fontFamily: 'NeoDunggeunmoPro-Regular'),
-    getPages: [
-      GetPage(name: '/main', page: () => Main(), binding: Bind()),
-      GetPage(name: '/login', page: () => Login(), binding: Bind()),
-      GetPage(
-          name: '/login/apple',
-          page: () => LoginModal(loginType: LoginTypes.apple),
-          binding: Bind()),
-      GetPage(
-          name: '/login/kakao',
-          page: () => LoginModal(loginType: LoginTypes.kakao),
-          binding: Bind()),
-      GetPage(name: '/my', page: () => MyPage(), binding: Bind())
-    ]
-  ));
+      initialRoute: '/login',
+      theme: ThemeData(
+          fontFamily: 'NeoDunggeunmoPro-Regular',
+          splashFactory: NoSplash.splashFactory,
+          splashColor: Colors.transparent,
+          highlightColor: Colors.transparent,
+          hoverColor: Colors.transparent,
+          shadowColor: Colors.transparent,
+      ),
+      getPages: [
+        GetPage(name: '/main', page: () => Main(), binding: Bind()),
+        GetPage(name: '/login', page: () => Login(), binding: Bind()),
+        GetPage(
+            name: '/login/apple',
+            page: () => LoginModal(loginType: LoginTypes.apple),
+            binding: Bind()),
+        GetPage(
+            name: '/login/kakao',
+            page: () => LoginModal(loginType: LoginTypes.kakao),
+            binding: Bind()),
+        GetPage(name: '/my', page: () => MyPage(), binding: Bind()),
+        GetPage(
+            name: '/my/notice',
+            page: () => CustomWebview(
+                title: '공지사항',
+                url:
+                    'https://horse-whitefish-a82.notion.site/cfce62743ec94c7398cf4f06758e373c?pvs=4')),
+        GetPage(
+            name: '/my/privacy',
+            page: () => CustomWebview(
+                title: '개인정보 처리방침',
+                url:
+                    'https://horse-whitefish-a82.notion.site/c24f0bb85c544e259c4caea802a2b93f?pvs=4')),
+        GetPage(
+            name: '/my/terms',
+            page: () => CustomWebview(
+                title: '이용약관',
+                url:
+                    'https://horse-whitefish-a82.notion.site/3623856463694fd2b9f38806b8cf507e?pvs=4')),
+        GetPage(name: '/my/expenditure', page: () => MyExpensePage())
+      ]));
 }

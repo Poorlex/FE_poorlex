@@ -9,14 +9,14 @@ import 'package:poorlex/Models/Login.dart';
 import 'package:poorlex/Models/User.dart';
 import 'package:poorlex/Controller/User.dart';
 
+import 'package:poorlex/Libs/Theme.dart';
+
 final List<LoginTypeObject> loginTypeObject = [
   LoginTypeObject(
       key: LoginTypes.kakao,
-      label: '카카오로 로그인',
       url: '${dotenv.get('SERVER_URL')}/api/oauth2/authorization/kakao'),
   LoginTypeObject(
       key: LoginTypes.apple,
-      label: '애플로 로그인',
       url: '${dotenv.get('SERVER_URL')}/api/oauth2/authorization/apple')
 ];
 
@@ -27,7 +27,8 @@ class LoginModal extends StatelessWidget {
   final user = Get.find<UserController>();
 
   LoginModal({
-    super.key, required this.loginType
+    super.key,
+    required this.loginType
   });
 
   @override
@@ -81,11 +82,8 @@ class LoginModal extends StatelessWidget {
     webViewController = controller;
 
     return Scaffold(
-        appBar: AppBar(
-          title:
-              Text(loginTypeObject.firstWhere((o) => o.key == loginType).label),
-          // title: Obx(() => Text("${user.userInfo.value.userId}")),
-        ),
+        backgroundColor: CColors.white,
+        appBar: AppBar(),
         body: WebViewWidget(controller: webViewController));
   }
 }

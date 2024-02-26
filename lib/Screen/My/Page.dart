@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:poorlex/Controller/Api.dart';
 
 import 'package:poorlex/Widget/Common/Icon.dart';
 import 'package:poorlex/Widget/Common/BottomBar.dart';
 import 'package:poorlex/Widget/My/Level.dart';
 import 'package:poorlex/Widget/My/MyAuth.dart';
-import 'package:poorlex/Widget/My/MyFriends.dart';
+
+// import 'package:poorlex/Widget/My/MyFriends.dart';
 import 'package:poorlex/Widget/My/Profile.dart';
 import 'package:poorlex/Widget/My/AnnouncementList.dart';
 
 import 'package:poorlex/Libs/Theme.dart';
+import 'package:poorlex/Controller/Api.dart';
 import 'package:poorlex/Controller/User.dart';
 
 class MyPage extends StatefulWidget {
@@ -55,7 +56,10 @@ class _MyPageState extends State<MyPage> {
                 IconButton(
                   iconSize: 26,
                   icon: CustomIcon(
-                      icon: 'ring', width: 26, height: 26, color: CColors.whiteStr),
+                      icon: 'ring',
+                      width: 26,
+                      height: 26,
+                      color: CColors.whiteStr),
                   onPressed: () {},
                 )
               ],
@@ -73,7 +77,7 @@ class _MyPageState extends State<MyPage> {
                     child: Column(
                       children: [
                         MyPageLevel(),
-                        MyFriends(),
+                        // MyFriends(),
                         SizedBox(height: 70),
                         MyPageMyAuth(),
                         SizedBox(height: 80),
