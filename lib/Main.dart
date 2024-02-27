@@ -12,9 +12,10 @@ import 'package:poorlex/Screen/Login/Page.dart';
 import 'package:poorlex/Screen/Login/LoginModal.dart';
 import 'package:poorlex/Screen/My/MyExpense.dart';
 import 'package:poorlex/Screen/My/Page.dart';
+import 'package:poorlex/Screen/My/MyProfile.dart';
 import 'package:poorlex/Widget/Common/Webview.dart';
 
-import 'Screen/Main/Page.dart';
+import 'package:poorlex/Screen/Main/Page.dart';
 
 class Bind extends Bindings {
   @override
@@ -72,6 +73,7 @@ void main() async {
                 title: '이용약관',
                 url:
                     'https://horse-whitefish-a82.notion.site/3623856463694fd2b9f38806b8cf507e?pvs=4')),
-        GetPage(name: '/my/expenditure', page: () => MyExpensePage())
+        GetPage(name: '/my/expenditure', page: () => MyExpensePage()),
+        GetPage(name: '/my/profile', page: () => MyProfile())
       ]));
 }

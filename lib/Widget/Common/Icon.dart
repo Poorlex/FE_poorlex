@@ -28,6 +28,20 @@ class CustomIcon extends StatelessWidget {
           <path id="Union" fill-rule="evenodd" clip-rule="evenodd" d="M9.53027 14.5909L17.28 22.3407L18.3407 21.28L10.5909 13.5303L19.0605 5.06066L17.9999 4L9.53027 12.4696L1.06066 4L0 5.06066L8.46961 13.5303L0.719887 21.28L1.78055 22.3407L9.53027 14.5909Z" fill="${color}"/>
         </svg>
       ''', width: w?.toDouble(), height: h?.toDouble());
+    } else if (icon == 'close-circle') {
+      return SvgPicture.string('''
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <g clip-path="url(#clip0_7200_112060)">
+          <circle cx="8" cy="8" r="8" fill="#333333"/>
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M11.5355 5.17176L10.8284 4.46466L8 7.29308L5.17157 4.46466L4.46447 5.17176L7.29289 8.00019L4.46447 10.8286L5.17157 11.5357L8 8.7073L10.8284 11.5357L11.5355 10.8286L8.70711 8.00019L11.5355 5.17176Z" fill="#D9D9D9"/>
+        </g>
+        <defs>
+          <clipPath id="clip0_7200_112060">
+            <rect width="16" height="16" fill="white"/>
+          </clipPath>
+        </defs>
+      </svg>
+      ''', width: w?.toDouble(), height: h?.toDouble());
     } else if (icon == 'arrow-left') {
       return SvgPicture.string('''
         <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26" fill="none">

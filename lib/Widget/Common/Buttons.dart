@@ -3,20 +3,24 @@ import 'package:poorlex/Libs/Theme.dart';
 
 enum ButtonTypes { elevated, text, outlined }
 
-class Button extends StatelessWidget {
+class CButton extends StatelessWidget {
   ButtonTypes type = ButtonTypes.text;
   Color color = CColors.yellow;
   double radius = 0;
   double borderWidth = 1;
   void Function() onPressed = () {};
   Widget child;
+  bool disabled;
+  late final EdgeInsets padding;
 
-  Button({
+  CButton({
     super.key,
     type,
     color,
     radius,
     onPressed,
+    this.padding = EdgeInsets.zero,
+    this.disabled = false,
     required this.child,
   }) {
     this.type = type ?? ButtonTypes.text;
@@ -31,10 +35,11 @@ class Button extends StatelessWidget {
       return ElevatedButton(
         child: child,
         style: ElevatedButton.styleFrom(
-          backgroundColor: color,
+          padding: padding,
+          backgroundColor: disabled ? color.withOpacity(0.5) : color,
           shadowColor: Colors.transparent,
           elevation: 0.0,
-          side: BorderSide(width: 1.0, color: color),
+          // side: BorderSide(width: 1.0, color: disabled ? color.withOpacity(0.5) : color),
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(radius)),
         ),
@@ -45,7 +50,7 @@ class Button extends StatelessWidget {
           child: child,
           style: TextButton.styleFrom(
               elevation: 0.0,
-              padding: EdgeInsets.zero,
+              padding: padding,
               minimumSize: Size.zero
           ),
           onPressed: onPressed);
@@ -53,8 +58,9 @@ class Button extends StatelessWidget {
       return OutlinedButton(
           child: child,
           style: OutlinedButton.styleFrom(
+            padding: padding,
             elevation: 0.0,
-            side: BorderSide(width: 1.0, color: color),
+            side: BorderSide(width: 1.0, color: disabled ? color.withOpacity(5) : color),
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(radius)
             ),

@@ -78,7 +78,7 @@ class _MyPageMyAuthState extends State<MyPageMyAuth> {
                             ])));
               }).toList()))),
       SizedBox(height: 17),
-      Button(
+      CButton(
         type: ButtonTypes.outlined,
         child: Padding(
           padding: EdgeInsets.symmetric(vertical: 14),

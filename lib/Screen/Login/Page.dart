@@ -43,7 +43,8 @@ class _LoginState extends State<Login> {
                               fontFamily: 'appleSDGothicNeo'),
                           textAlign: TextAlign.center),
                       SizedBox(height: 41),
-                      Button(
+                      CButton(
+                          padding: EdgeInsets.symmetric(horizontal: 20),
                           type: ButtonTypes.elevated,
                           color: CColors.kakaoYellow,
                           child: Container(
@@ -68,7 +69,8 @@ class _LoginState extends State<Login> {
                           ),
                           onPressed: () => Get.toNamed('/login/kakao')),
                       SizedBox(height: 20),
-                      Button(
+                      CButton(
+                          padding: EdgeInsets.symmetric(horizontal: 20),
                           type: ButtonTypes.elevated,
                           color: CColors.black,
                           child: Container(

@@ -64,7 +64,7 @@ class MyPageProfile extends StatelessWidget {
                                     CTextStyles.Body3(color: CColors.yellow)),
                           ],
                         )),
-                    onPressed: () {},
+                    onPressed: () => Get.toNamed('/my/profile'),
                   ))
             ],
           ),

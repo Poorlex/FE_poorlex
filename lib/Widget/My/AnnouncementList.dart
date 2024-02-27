@@ -24,7 +24,7 @@ class _AnnounceMentState extends State<AnnounceMent> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Button(
+        CButton(
             child: Container(
                 padding: EdgeInsets.fromLTRB(0, 16, 0, 16),
                 child: Row(
@@ -59,7 +59,7 @@ class _AnnounceMentState extends State<AnnounceMent> {
             ),
             onPressed: () => Get.toNamed('/my/customer')),
          */
-        Button(
+        CButton(
           child: Container(
             padding: EdgeInsets.fromLTRB(0, 16, 0, 16),
             child: Row(
@@ -77,7 +77,7 @@ class _AnnounceMentState extends State<AnnounceMent> {
           ),
           onPressed: () => Get.toNamed('/my/terms'),
         ),
-        Button(
+        CButton(
           child: Container(
             padding: EdgeInsets.fromLTRB(0, 16, 0, 16),
             child: Row(
@@ -106,7 +106,7 @@ class _AnnounceMentState extends State<AnnounceMent> {
             ],
           ),
         ),
-        Button(
+        CButton(
           child: Container(
             padding: EdgeInsets.fromLTRB(0, 16, 0, 16),
             child: Row(
@@ -125,7 +125,7 @@ class _AnnounceMentState extends State<AnnounceMent> {
           ),
           onPressed: () => CustomAlert(body: '로그아웃하시겠습니까').builder(context)
         ),
-        Button(
+        CButton(
           child: Container(
             padding: EdgeInsets.fromLTRB(0, 16, 0, 16),
             child: Row(

@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-enum Methods { get, post, put, delete }
+enum Methods { get, post, put, delete, patch }
 class HTTPResult<T> {
   late bool success;
   late T? body;
@@ -64,10 +64,17 @@ class ApiController extends GetxController {
             body: b
           );
         case Methods.put:
+          print(b);
           rs = await http.put(
             Uri.parse(url.contains('https://') ? url : '${dotenv.get('SERVER_URL')}${url}'),
             headers: h,
             body: b
+          );
+        case Methods.patch:
+          rs = await http.patch(
+              Uri.parse(url.contains('https://') ? url : '${dotenv.get('SERVER_URL')}${url}'),
+              headers: h,
+              body: b
           );
         case Methods.delete: rs = await http.delete(
             Uri.parse(url.contains('https://') ? url : '${dotenv.get('SERVER_URL')}${url}'),
@@ -75,8 +82,10 @@ class ApiController extends GetxController {
         );
       }
 
-      if (rs.headers['content-type']!.contains('application/json')) rsb = jsonDecode(utf8.decode(rs.bodyBytes));
-      else rsb = utf8.decode(rs.bodyBytes);
+      if (rs.headers['content-type'] != null) {
+        if (rs.headers['content-type']!.contains('application/json')) rsb = jsonDecode(utf8.decode(rs.bodyBytes));
+        else rsb = utf8.decode(rs.bodyBytes);
+      } else rsb = utf8.decode(rs.bodyBytes);
 
       print(url);
       print(rs.body);

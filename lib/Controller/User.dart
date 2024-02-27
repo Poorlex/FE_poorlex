@@ -10,18 +10,29 @@ class UserController extends GetxController {
 
   ApiController api = Get.find<ApiController>();
 
-  void getUserInfo() async {
+  Future<bool> getUserInfo() async {
     var ui = await api.request(method: Methods.get, url: '/api/member/my-page');
-    if (ui.success) {
-      updateUser(UserInfo.fromJson(ui.body!));
-    }
+    if (ui.success) updateUser(UserInfo.fromJson(ui.body!));
+    return ui.success;
   }
 
-  void getExpenditures() async {
+  Future<bool> getExpenditures() async {
     var e = await api.request(method: Methods.get, url: '/api/expenditures');
-    if (e.success) {
-      updateExpenditures((e.body ?? []).map<Expenditure>((b) => Expenditure.fromJson(b)).toList());
-    }
+    if (e.success)
+      updateExpenditures((e.body ?? [])
+          .map<Expenditure>((b) => Expenditure.fromJson(b))
+          .toList());
+    return e.success;
+  }
+
+  Future<bool> patchProfile(
+      {required String nicknme, required String description}) async {
+    var r = await api.request(
+        method: Methods.patch,
+        url: '/api/member/profile',
+        body: {'nickname': nicknme, 'description': description});
+    if (r.success) await getUserInfo();
+    return r.success;
   }
 
   void updateExpenditures(List<Expenditure> list) {
@@ -53,6 +64,7 @@ class UserController extends GetxController {
       });
       api.updateToken(token.token!);
       return true;
-    } return false;
+    }
+    return false;
   }
 }
