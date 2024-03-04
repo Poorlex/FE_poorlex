@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:poorlex/Models/User.dart';
 
 import 'package:poorlex/Widget/Common/Buttons.dart';
-import 'package:poorlex/Widget/Common/icon.dart';
+import 'package:poorlex/Widget/Common/Icon.dart';
 import 'package:poorlex/Widget/Common/other.dart';
 
 import 'package:poorlex/Libs/Theme.dart';
@@ -85,7 +85,7 @@ class _MyPageMyAuthState extends State<MyPageMyAuth> {
           child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
             Text('지출 전체 보기', style: CTextStyles.Body3(color: CColors.yellow)),
             SizedBox(width: 5),
-            CustomIcon(
+            CIcon(
                 icon: 'arrow-game-right',
                 width: 15,
                 height: 15,

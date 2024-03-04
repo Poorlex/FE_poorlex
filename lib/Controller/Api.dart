@@ -2,17 +2,16 @@ import 'package:get/get.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:image_picker/image_picker.dart';
 
 enum Methods { get, post, put, delete, patch }
+
 class HTTPResult<T> {
   late bool success;
   late T? body;
   late dynamic error;
 
-  HTTPResult({
-    required this.success,
-    body, error
-  }) {
+  HTTPResult({required this.success, body, error}) {
     this.body = body;
     this.error = error;
   }
@@ -26,11 +25,78 @@ class ApiController extends GetxController {
     update();
   }
 
-  Future<HTTPResult<dynamic>> request ({
+  Future<HTTPResult<dynamic>> requestMultipart({
     required Methods method,
     required String url,
     Map<String, String>? headers,
     Map<String, dynamic>? body,
+    Map<String, List<XFile>>? files,
+  }) async {
+    late final rsb;
+    late http.StreamedResponse rs;
+    List<MultipartFile> fs;
+
+    final Map<String, String> h = headers ?? {};
+    print(token.value);
+    if (token.value != '') {
+      h['Authorization'] = 'Bearer ${token.value}';
+    }
+    try {
+      var request = new http.MultipartRequest(
+          method == Methods.post
+              ? 'POST'
+              : method == Methods.put
+                  ? 'PUT'
+                  : 'PATCH',
+          Uri.parse(url.contains('https://')
+              ? url
+              : '${dotenv.get('SERVER_URL')}${url}'));
+      h.forEach((key, value) {
+        request.headers[key] = value;
+      });
+      body?.forEach((key, value) {
+        request.fields[key] = value;
+      });
+      files?.forEach((key, file) async {
+        file.forEach((f) async {
+          request.files.add(await http.MultipartFile.fromPath(key, f.path));
+        });
+      });
+      rs = await request.send();
+
+      /*
+      if (rs.headers['content-type'] != null) {
+        if (rs.headers['content-type']!.contains('application/json')) {
+          rsb = jsonDecode(String.fromCharCodes(await rs.stream.toBytes()));
+        } else
+          // rsb = utf8.decode(rs.bodyBytes);
+      } else
+        // rsb = utf8.decode(rs.bodyBytes);
+       */
+
+      print(rs.headers);
+      print(rs.headers['content-type']);
+
+      rsb = String.fromCharCodes(await rs.stream.toBytes());
+      print(url);
+      print(rsb.body);
+
+      return HTTPResult(success: true, body: rsb);
+    } catch (error) {
+      // setToast();
+      print('error start');
+      print(error);
+      print('error end');
+      return HTTPResult(success: false, error: error);
+    }
+  }
+
+  Future<HTTPResult<dynamic>> request({
+    required Methods method,
+    required String url,
+    Map<String, String>? headers,
+    Map<String, dynamic>? body,
+    Map<String, http.MultipartFile>? files,
   }) async {
     var b = null;
     late final rsb;
@@ -48,61 +114,66 @@ class ApiController extends GetxController {
 
     try {
       if (body != null) {
-        if (h['Content-Type']!.contains('application/json')) b = jsonEncode(body);
-        else b = body;
+        if (h['Content-Type']!.contains('application/json'))
+          b = jsonEncode(body);
+        else
+          b = body;
       }
-      switch(method){
+      switch (method) {
         case Methods.get:
           rs = await http.get(
-            Uri.parse(url.contains('https://') ? url : '${dotenv.get('SERVER_URL')}${url}'),
+            Uri.parse(url.contains('https://')
+                ? url
+                : '${dotenv.get('SERVER_URL')}${url}'),
             headers: h,
           );
         case Methods.post:
           rs = await http.post(
-            Uri.parse(url.contains('https://') ? url : '${dotenv.get('SERVER_URL')}${url}'),
-            headers: h,
-            body: b
-          );
+              Uri.parse(url.contains('https://')
+                  ? url
+                  : '${dotenv.get('SERVER_URL')}${url}'),
+              headers: h,
+              body: b);
         case Methods.put:
-          print(b);
           rs = await http.put(
-            Uri.parse(url.contains('https://') ? url : '${dotenv.get('SERVER_URL')}${url}'),
-            headers: h,
-            body: b
-          );
+              Uri.parse(url.contains('https://')
+                  ? url
+                  : '${dotenv.get('SERVER_URL')}${url}'),
+              headers: h,
+              body: b);
         case Methods.patch:
           rs = await http.patch(
-              Uri.parse(url.contains('https://') ? url : '${dotenv.get('SERVER_URL')}${url}'),
+              Uri.parse(url.contains('https://')
+                  ? url
+                  : '${dotenv.get('SERVER_URL')}${url}'),
               headers: h,
-              body: b
-          );
-        case Methods.delete: rs = await http.delete(
-            Uri.parse(url.contains('https://') ? url : '${dotenv.get('SERVER_URL')}${url}'),
-            headers: h
-        );
+              body: b);
+        case Methods.delete:
+          rs = await http.delete(
+              Uri.parse(url.contains('https://')
+                  ? url
+                  : '${dotenv.get('SERVER_URL')}${url}'),
+              headers: h);
       }
 
       if (rs.headers['content-type'] != null) {
-        if (rs.headers['content-type']!.contains('application/json')) rsb = jsonDecode(utf8.decode(rs.bodyBytes));
-        else rsb = utf8.decode(rs.bodyBytes);
-      } else rsb = utf8.decode(rs.bodyBytes);
+        if (rs.headers['content-type']!.contains('application/json'))
+          rsb = jsonDecode(utf8.decode(rs.bodyBytes));
+        else
+          rsb = utf8.decode(rs.bodyBytes);
+      } else
+        rsb = utf8.decode(rs.bodyBytes);
 
       print(url);
       print(rs.body);
 
-      return HTTPResult(
-          success: true,
-          body: rsb
-      );
+      return HTTPResult(success: true, body: rsb);
     } catch (error) {
       // setToast();
       print('error start');
       print(error);
       print('error end');
-      return HTTPResult(
-          success: false,
-          error: error
-      );
+      return HTTPResult(success: false, error: error);
     }
   }
 }

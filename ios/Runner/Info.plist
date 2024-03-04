@@ -51,9 +51,9 @@
 	<key>NSAppleMusicUsageDescription</key>
 	<string>Sign In with Apple 사용을 위해 액세스 권한이 필요합니다.</string>
 	<key>NSCameraUsageDescription</key>
-	<string>Need access to camera</string>
+	<string>카메라 사용에 필요합니다.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Need access to photo library</string>
+	<string>사진 라이브러리 사용에 필요합니다.</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>

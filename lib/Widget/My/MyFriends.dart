@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'package:poorlex/Widget/Common/icon.dart';
+import 'package:poorlex/Widget/Common/Icon.dart';
 
 import 'package:poorlex/Libs/Theme.dart';
 import 'package:poorlex/Controller/User.dart';
@@ -91,7 +91,7 @@ class _MyFriendsState extends State<MyFriends> {
                 Text('친구 전체 보기',
                     style: CTextStyles.Body3(color: CColors.yellow)),
                 SizedBox(width: 5),
-                CustomIcon(
+                CIcon(
                     icon: 'arrow-game-right',
                     width: 15,
                     height: 15,

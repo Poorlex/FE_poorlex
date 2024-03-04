@@ -18,8 +18,11 @@ class CTextField extends StatefulWidget {
   late final TextInputType keyType;
   late final int? maxLines;
   late final int? maxLength;
+  late final double underlineWidth;
   late final EdgeInsets? padding;
   late final bool isClose;
+  late final Widget? suffix;
+  late final double suffixHeight;
 
   CTextField(
       {super.key,
@@ -36,7 +39,10 @@ class CTextField extends StatefulWidget {
         this.backgroundColor = Colors.transparent,
         this.keyType = TextInputType.text,
         this.isClose = false,
+        this.underlineWidth = 1.0,
         padding,
+        this.suffix,
+        this.suffixHeight = 20,
         this.controller}) {
     this.textStyle = textStyle ?? CTextStyles.Title3();
     this.hintStyle = hintStyle ?? CTextStyles.Title3(color: CColors.gray40);
@@ -86,21 +92,21 @@ class _CTextFieldState extends State<CTextField> {
             fillColor: widget.backgroundColor,
             filled: true,
             counterText: '',
-            suffixIcon: widget.isClose && size > 0 ? CButton(
+            suffixIcon: widget.suffix != null ? widget.suffix : widget.isClose && size > 0 ? CButton(
               onPressed: widget.controller?.clear,
-              child: CustomIcon(icon: 'close-circle', width: 25, height: 25),
+              child: CIcon(icon: 'close-circle', width: 25, height: 25),
             ) : null,
-            suffixIconConstraints: BoxConstraints(maxHeight: 20),
+            suffixIconConstraints: BoxConstraints(maxHeight: widget.suffixHeight),
             contentPadding: widget.padding,
             border: UnderlineInputBorder(
                 borderSide: BorderSide(
-                    color: widget.isUnderline ? widget.color : Colors.transparent)),
+                    width: widget.underlineWidth, color: widget.isUnderline ? widget.color : Colors.transparent)),
             enabledBorder: UnderlineInputBorder(
                 borderSide: BorderSide(
-                    color: widget.isUnderline ? widget.color : Colors.transparent)),
+                    width: widget.underlineWidth, color: widget.isUnderline ? widget.color : Colors.transparent)),
             focusedBorder: UnderlineInputBorder(
                 borderSide: BorderSide(
-                    color: widget.isUnderline ? widget.primaryColor : Colors.transparent)))));
+                    width: widget.underlineWidth, color: widget.isUnderline ? widget.primaryColor : Colors.transparent)))));
 
     return Stack(children: [
       Column(crossAxisAlignment: CrossAxisAlignment.start, children: children),

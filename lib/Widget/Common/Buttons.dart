@@ -39,6 +39,7 @@ class CButton extends StatelessWidget {
           backgroundColor: disabled ? color.withOpacity(0.5) : color,
           shadowColor: Colors.transparent,
           elevation: 0.0,
+          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
           // side: BorderSide(width: 1.0, color: disabled ? color.withOpacity(0.5) : color),
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(radius)),
@@ -51,7 +52,8 @@ class CButton extends StatelessWidget {
           style: TextButton.styleFrom(
               elevation: 0.0,
               padding: padding,
-              minimumSize: Size.zero
+              minimumSize: Size.zero,
+              tapTargetSize: MaterialTapTargetSize.shrinkWrap
           ),
           onPressed: onPressed);
     } else if (type == ButtonTypes.outlined) {
@@ -60,6 +62,7 @@ class CButton extends StatelessWidget {
           style: OutlinedButton.styleFrom(
             padding: padding,
             elevation: 0.0,
+            tapTargetSize: MaterialTapTargetSize.shrinkWrap,
             side: BorderSide(width: 1.0, color: disabled ? color.withOpacity(5) : color),
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(radius)

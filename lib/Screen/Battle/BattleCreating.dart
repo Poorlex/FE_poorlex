@@ -13,13 +13,14 @@ import 'package:poorlex/Widget/Battle/Making/BattleMakingFinished.dart';
 import 'package:poorlex/Libs/Theme.dart';
 import 'package:poorlex/Controller/Battle.dart';
 
-class BattleMaking extends GetView {
-  const BattleMaking({super.key});
+class BattleCreating extends GetView {
+  BattleCreating({super.key});
 
   @override
   Widget build(BuildContext context) {
-    BattleController con = Get.put(BattleController());
-    con.battleMakingIndex().BattleIndex = 0;
+    BattleController battle = Get.find<BattleController>();
+    battle.battleMakingIndex().BattleIndex = 0;
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: CColors.black,
@@ -34,10 +35,10 @@ class BattleMaking extends GetView {
         width: double.infinity,
         height: 52,
         child: ElevatedButton(
-          child: Obx(() => Text(con.battleMakingIndex().BattleIndex == 4 ? '시작' : '다음', style: CTextStyles.Body3(color: CColors.black))),
+          child: Obx(() => Text(battle.battleMakingIndex().BattleIndex == 4 ? '시작' : '다음', style: CTextStyles.Body3(color: CColors.black))),
           style: ButtonStyle(backgroundColor: MaterialStateProperty.all(CColors.yellow)),
           onPressed: () {
-            con.changeBattleMakingIndex();
+            battle.changeBattleMakingIndex();
           },
         ),
       ),
@@ -49,15 +50,15 @@ class BattleMaking extends GetView {
           ),
           BattleProcess(),
           Obx(() {
-            if (con.battleMakingIndex().BattleIndex == 0) {
+            if (battle.battleMakingIndex().BattleIndex == 0) {
               return BattleIndexZero();
-            } else if (con.battleMakingIndex().BattleIndex == 1) {
+            } else if (battle.battleMakingIndex().BattleIndex == 1) {
               return BattleIndexOne();
-            } else if (con.battleMakingIndex().BattleIndex == 2) {
+            } else if (battle.battleMakingIndex().BattleIndex == 2) {
               return BattleIndexTwo();
-            } else if (con.battleMakingIndex().BattleIndex == 3) {
+            } else if (battle.battleMakingIndex().BattleIndex == 3) {
               return BattleIndexThree();
-            } else if (con.battleMakingIndex().BattleIndex == 4) {
+            } else if (battle.battleMakingIndex().BattleIndex == 4) {
               return BattleMakingFinished();
             } else {
               return BattleMakingFinished();

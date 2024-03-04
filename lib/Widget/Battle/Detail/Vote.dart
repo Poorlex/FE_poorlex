@@ -17,7 +17,7 @@ class VoteModal extends CustomModal {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              IconButton(onPressed: () => Navigator.pop(context), icon: CustomIcon(icon: 'arrow-left', color: CColors.whiteStr)),
+              IconButton(onPressed: () => Navigator.pop(context), icon: CIcon(icon: 'arrow-left', color: CColors.whiteStr)),
               Text('공지 등록', style: CTextStyles.Headline()),
               SizedBox(width: 55)
             ],

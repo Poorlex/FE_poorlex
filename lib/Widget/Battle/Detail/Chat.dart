@@ -497,7 +497,7 @@ class VoteAllResultItem extends StatelessWidget {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  CustomIcon(icon: 'thumb-up', color: '#B265FF', width: 36, height: 36),
+                  CIcon(icon: 'thumb-up', color: '#B265FF', width: 36, height: 36),
                   SizedBox(width: 20),
                   Expanded(child: CustomBar(current: 3, total: 5))
                 ],
@@ -514,7 +514,7 @@ class VoteAllResultItem extends StatelessWidget {
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    CustomIcon(icon: 'thumb-down', color: '#666666', width: 36, height: 36),
+                    CIcon(icon: 'thumb-down', color: '#666666', width: 36, height: 36),
                     SizedBox(width: 20),
                     Expanded(child: CustomBar(current: 2, total: 5, primary: CColors.gray30))
                   ],
@@ -562,7 +562,7 @@ class BuyItem extends StatelessWidget {
                         children: [
                           Text(money.toString(), style: CTextStyles.Title3(color: CColors.black)),
                           SizedBox(height: 10),
-                          CustomIcon(icon: 'flex', width: 122, height: 30, color: CColors.yellowStr)
+                          CIcon(icon: 'flex', width: 122, height: 30, color: CColors.yellowStr)
                         ],
                       )
                   )
@@ -595,7 +595,7 @@ class BuyItem extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              SizedBox(width: 26, height: 26, child: CustomIcon(icon: 'angry-face', width: 24, height: 22, color: '#ffffff')),
+                              SizedBox(width: 26, height: 26, child: CIcon(icon: 'angry-face', width: 24, height: 22, color: '#ffffff')),
                               SizedBox(width: 4),
                               Text('혼내기', style: CTextStyles.Title3())
                             ],
@@ -630,7 +630,7 @@ class BuyItem extends StatelessWidget {
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  SizedBox(width: 26, height: 26, child: CustomIcon(icon: 'smile-face', width: 24, height: 22, color: CColors.whiteStr)),
+                                  SizedBox(width: 26, height: 26, child: CIcon(icon: 'smile-face', width: 24, height: 22, color: CColors.whiteStr)),
                                   SizedBox(width: 4),
                                   Text('칭찬하기', style: CTextStyles.Title3())
                                 ],

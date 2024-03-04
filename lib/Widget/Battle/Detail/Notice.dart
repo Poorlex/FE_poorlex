@@ -42,7 +42,7 @@ class NoticeWriteModal extends CustomModal {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                IconButton(onPressed: () => Navigator.pop(context), icon: CustomIcon(icon: 'arrow-left', color: CColors.whiteStr)),
+                IconButton(onPressed: () => Navigator.pop(context), icon: CIcon(icon: 'arrow-left', color: CColors.whiteStr)),
                 Text('공지 등록', style: CTextStyles.Headline()),
                 SizedBox(width: 55)
               ],
@@ -98,7 +98,7 @@ class NoticeWriteModal extends CustomModal {
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                CustomIcon(icon: 'plus', width: 29, height: 29, color: CColors.gray40Str)
+                                CIcon(icon: 'plus', width: 29, height: 29, color: CColors.gray40Str)
                               ],
                             ),
                           )
@@ -170,9 +170,9 @@ class NoticeDetailModal extends CustomModal {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    IconButton(onPressed: () => Navigator.pop(context), icon: CustomIcon(icon: 'arrow-left', color: CColors.whiteStr)),
+                    IconButton(onPressed: () => Navigator.pop(context), icon: CIcon(icon: 'arrow-left', color: CColors.whiteStr)),
                     Text('공지상세', style: CTextStyles.Headline()),
-                    IconButton(onPressed: () => onClickOption(context), icon: CustomIcon(icon: 'option', color: CColors.whiteStr)),
+                    IconButton(onPressed: () => onClickOption(context), icon: CIcon(icon: 'option', color: CColors.whiteStr)),
                   ],
                 ),
                 Expanded(
@@ -194,7 +194,7 @@ class NoticeDetailModal extends CustomModal {
                                   SizedBox(width: 8),
                                   Text('•', style: CTextStyles.Body3()),
                                   SizedBox(width: 8),
-                                  CustomIcon(icon: 'eye', color: CColors.purpleLightStr, width: 12, height: 8),
+                                  CIcon(icon: 'eye', color: CColors.purpleLightStr, width: 12, height: 8),
                                   SizedBox(width: 4),
                                   Text('1명 읽음', style: CTextStyles.Body3(color: CColors.purpleLight)),
                                 ],

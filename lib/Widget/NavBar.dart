@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:poorlex/Libs/Theme.dart';
 
-import 'package:poorlex/Screen/Budget/Page.dart';
+import 'package:poorlex/Screen/Budget/Main.dart';
 
 // TODO: battleMoney 상태변경을 위해 StatelessWidget 위젯을 StatefulWidget 위젯으로 변경
 class NavBar extends StatefulWidget implements PreferredSizeWidget {

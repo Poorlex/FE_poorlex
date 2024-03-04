@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:poorlex/Widget/Common/Buttons.dart';
 
 import 'package:poorlex/Widget/Common/Icon.dart';
 import 'package:poorlex/Widget/Common/Other.dart';
@@ -53,6 +54,14 @@ class _MyExpensePageState extends State<MyExpensePage> {
         bottomNavigationBar: BottomBar(
           nowPage: 4,
         ),
+        floatingActionButton: CButton(
+            type: ButtonTypes.elevated,
+            color: CColors.yellow,
+            radius: 35.0,
+            padding: EdgeInsets.symmetric(vertical: 17),
+            child: CIcon(icon: 'plus', width: 20, height: 20, color: CColors.blackStr),
+            onPressed: () => Get.toNamed('/my/expense-input'),
+        ),
         appBar: AppBar(
           automaticallyImplyLeading: false,
           backgroundColor: CColors.black,
@@ -63,7 +72,7 @@ class _MyExpensePageState extends State<MyExpensePage> {
                 iconSize: 26,
                 style: IconButton.styleFrom(
                     padding: EdgeInsets.zero, minimumSize: Size.zero),
-                icon: CustomIcon(
+                icon: CIcon(
                     icon: 'arrow-left',
                     width: 26,
                     height: 26,

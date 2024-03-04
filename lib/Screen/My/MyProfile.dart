@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:poorlex/Models/Common.dart';
 import 'package:poorlex/Widget/Common/Form.dart';
 
 import 'package:poorlex/Widget/Common/Icon.dart';
@@ -7,9 +8,11 @@ import 'package:poorlex/Widget/Common/Icon.dart';
 import 'package:poorlex/Libs/Theme.dart';
 import 'package:poorlex/Libs/String.dart';
 import 'package:poorlex/Controller/User.dart';
+import 'package:poorlex/Controller/Layout.dart';
 
 import 'package:poorlex/Widget/Common/Buttons.dart';
-import 'package:poorlex/Widget/Common/Modal.dart';
+
+import 'package:poorlex/Widget/Layout.dart';
 
 class MyProfile extends StatefulWidget {
   const MyProfile({super.key});
@@ -19,6 +22,7 @@ class MyProfile extends StatefulWidget {
 }
 
 class _MyProfileState extends State<MyProfile> {
+  final layout = Get.find<LayoutController>();
   final user = Get.find<UserController>();
   final name = TextEditingController();
   final description = TextEditingController();
@@ -42,20 +46,26 @@ class _MyProfileState extends State<MyProfile> {
   submit(BuildContext context) async {
     if (!isReady) {
       String message = '';
-      if (!isReadyName) message = '이름을 확인해주세요';
-      else message = '소개를 확인해주세요';
-      CustomAlert(body: message).builder(context);
+      if (!isReadyName)
+        message = '이름을 확인해주세요';
+      else
+        message = '소개를 확인해주세요';
+      layout.setAlert(Alert(isOpen: true, body: Text(message, style: CTextStyles.Headline(color: CColors.gray50))));
     } else {
-      if (await user.patchProfile(nicknme: name.text.trim(), description: description.text.trim())) {
+      layout.setIsLoading(true);
+      if (await user.patchProfile(
+          nicknme: name.text.trim(), description: description.text.trim())) {
         Get.close(0);
       }
+      layout.setIsLoading(false);
     }
   }
 
   @override
   void initState() {
     super.initState();
-
+    name.text = user.userInfo.value.nickname ?? '';
+    description.text = user.userInfo.value.description ?? '';
     name.addListener(onChange);
     description.addListener(onChange);
   }
@@ -74,7 +84,7 @@ class _MyProfileState extends State<MyProfile> {
                 iconSize: 26,
                 style: IconButton.styleFrom(
                     padding: EdgeInsets.zero, minimumSize: Size.zero),
-                icon: CustomIcon(
+                icon: CIcon(
                     icon: 'arrow-left',
                     width: 26,
                     height: 26,
@@ -86,7 +96,7 @@ class _MyProfileState extends State<MyProfile> {
             ],
           ),
         ),
-        body: SafeArea(
+        body: Layout(
             child: Column(children: [
           Flexible(
             fit: FlexFit.tight,
@@ -104,7 +114,9 @@ class _MyProfileState extends State<MyProfile> {
                         padding: EdgeInsets.all(0),
                         placeholder: '이름을 입력해주세요',
                         primaryColor: CColors.yellow,
-                        textStyle: CTextStyles.Title3(color: isReadyName ? CColors.white : CColors.gray30),
+                        textStyle: CTextStyles.Title3(
+                            color:
+                                isReadyName ? CColors.white : CColors.gray30),
                         controller: name),
                     (isReadyName
                         ? SizedBox.shrink()

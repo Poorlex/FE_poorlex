@@ -21,7 +21,7 @@ class CommentModal extends CustomModal {
             crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 IconButton(onPressed: () => Navigator.pop(context),
-                    icon: CustomIcon(icon: 'arrow-left', color: CColors.whiteStr)
+                    icon: CIcon(icon: 'arrow-left', color: CColors.whiteStr)
                 ),
                 SizedBox(height: 26),
                 Expanded(

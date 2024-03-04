@@ -1,32 +1,56 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:intl/date_symbol_data_local.dart';
 import 'package:get/get.dart';
-import 'package:get/get_navigation/src/root/get_material_app.dart';
 
 import 'package:poorlex/Controller/Api.dart';
+import 'package:poorlex/Controller/Battle.dart';
+import 'package:poorlex/Controller/Layout.dart';
 import 'package:poorlex/Controller/User.dart';
 import 'package:poorlex/Models/Login.dart';
-
-import 'package:poorlex/Screen/Login/Page.dart';
-import 'package:poorlex/Screen/Login/LoginModal.dart';
-import 'package:poorlex/Screen/My/MyExpense.dart';
-import 'package:poorlex/Screen/My/Page.dart';
-import 'package:poorlex/Screen/My/MyProfile.dart';
 import 'package:poorlex/Widget/Common/Webview.dart';
 
-import 'package:poorlex/Screen/Main/Page.dart';
+import 'package:poorlex/Screen/Init.dart';
+import 'package:poorlex/Screen/Login/Main.dart';
+import 'package:poorlex/Screen/Login/LoginModal.dart';
+
+import 'package:poorlex/Screen/My/MyExpense.dart';
+import 'package:poorlex/Screen/My/MyExpenseInput.dart';
+import 'package:poorlex/Screen/My/MyOption.dart';
+import 'package:poorlex/Screen/My/Main.dart';
+import 'package:poorlex/Screen/My/MyProfile.dart';
+
+import 'package:poorlex/Screen/Battle/Main.dart';
+import 'package:poorlex/Screen/Battle/BattleCreating.dart';
+
+import 'package:poorlex/Screen/Main/Main.dart';
 
 class Bind extends Bindings {
   @override
   void dependencies() {
-    Get.put<ApiController>(ApiController(), permanent: true);
-    Get.put<UserController>(UserController(), permanent: true);
+    Get.put(ApiController(), permanent: true);
+    Get.put(UserController(), permanent: true);
+    Get.put(LayoutController(), permanent: true);
+  }
+}
+
+class BattleBind extends Bindings {
+  @override
+  void dependencies() {
+    Get.put(ApiController(), permanent: true);
+    Get.put(UserController(), permanent: true);
+    Get.put(LayoutController(), permanent: true);
+    Get.put(BattleController(), permanent: true);
   }
 }
 
 void main() async {
+  await Hive.initFlutter();
   WidgetsFlutterBinding.ensureInitialized();
+  initializeDateFormatting('ko');
   await dotenv.load(fileName: ".env");
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
@@ -34,7 +58,7 @@ void main() async {
   ]);
 
   runApp(GetMaterialApp(
-      initialRoute: '/login',
+      initialRoute: '/',
       theme: ThemeData(
           fontFamily: 'NeoDunggeunmoPro-Regular',
           splashFactory: NoSplash.splashFactory,
@@ -44,6 +68,7 @@ void main() async {
           shadowColor: Colors.transparent,
       ),
       getPages: [
+        GetPage(name: '/', page: () => Init(), binding: Bind()),
         GetPage(name: '/main', page: () => Main(), binding: Bind()),
         GetPage(name: '/login', page: () => Login(), binding: Bind()),
         GetPage(
@@ -73,7 +98,11 @@ void main() async {
                 title: '이용약관',
                 url:
                     'https://horse-whitefish-a82.notion.site/3623856463694fd2b9f38806b8cf507e?pvs=4')),
-        GetPage(name: '/my/expenditure', page: () => MyExpensePage()),
-        GetPage(name: '/my/profile', page: () => MyProfile())
+        GetPage(name: '/my/expenditure', page: () => MyExpensePage(), binding: Bind()),
+        GetPage(name: '/my/profile', page: () => MyProfile(), binding: Bind()),
+        GetPage(name: '/my/expense-input', page: () => MyExpenseInputPage(), binding: Bind()),
+        GetPage(name: '/my/option', page: () => MyOption(), binding: Bind()),
+        GetPage(name: '/battle', page: () => Battle(), binding: BattleBind()),
+        GetPage(name: '/battle/create', page: () => BattleCreating(), binding: BattleBind())
       ]));
 }

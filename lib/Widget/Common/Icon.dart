@@ -3,13 +3,13 @@ import 'package:flutter_svg/svg.dart';
 
 import 'package:poorlex/Libs/Theme.dart';
 
-class CustomIcon extends StatelessWidget {
+class CIcon extends StatelessWidget {
   String icon;
   String? color;
   num? w;
   num? h;
 
-  CustomIcon({
+  CIcon({
     super.key,
     color,
     width, height,
@@ -78,7 +78,13 @@ class CustomIcon extends StatelessWidget {
         <svg width="30" height="29" viewBox="0 0 30 29" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path fill-rule="evenodd" clip-rule="evenodd" d="M16 0H14V13.5H0.5V15.5H14V29H16V15.5H29.5V13.5H16V0Z" fill="${color}"/>
         </svg>
-      ''');
+      ''', width: w?.toDouble(), height: h?.toDouble());
+    } else if (icon == 'plus-small') {
+      return SvgPicture.string('''
+        <svg width="26" height="28" viewBox="0 0 26 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M13.8 3.23535H12V12.2354H3V14.0354H12V23.2354H13.8V14.0354H23V12.2354H13.8V3.23535Z" fill="white"/>
+        </svg>
+      ''', width: w?.toDouble(), height: h?.toDouble());
     } else if (icon == 'setting') {
       return SvgPicture.string('''
         <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26" fill="none">
@@ -606,6 +612,12 @@ class CustomIcon extends StatelessWidget {
           <rect y="4" width="1" height="1" fill="${color}"/>
           <rect width="1" height="1" transform="matrix(-1 0 0 1 12 3)" fill="${color}"/>
           <rect width="1" height="1" transform="matrix(-1 0 0 1 12 4)" fill="${color}"/>
+        </svg>
+      ''', width: w?.toDouble(), height: h?.toDouble());
+    } else if (icon == 'question-box') {
+      return SvgPicture.string('''
+        <svg width="26" height="28" viewBox="0 0 26 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M3.5 22.7354V3.73535H22.5V22.7354H3.5ZM2 3.23535C2 2.68307 2.44772 2.23535 3 2.23535H23C23.5523 2.23535 24 2.68307 24 3.23535V23.2354C24 23.7876 23.5523 24.2354 23 24.2354H3C2.44772 24.2354 2 23.7876 2 23.2354V3.23535ZM9.75 8.98535H8.5V11.4854H11V8.98535H14.75V11.4854H13.5V12.7354H12.25V16.4854H14.75V12.7354H16V11.4854H17.25V8.98535H16V7.73535H9.75V8.98535ZM14.75 20.2354V17.7354H12.25V20.2354H14.75Z" fill="${color}"/>
         </svg>
       ''', width: w?.toDouble(), height: h?.toDouble());
     }

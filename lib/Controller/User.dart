@@ -1,7 +1,11 @@
 import 'package:get/get.dart';
+import 'package:hive/hive.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:poorlex/Controller/Api.dart';
 
 import 'package:poorlex/Models/User.dart';
+
+import 'package:poorlex/Libs/Time.dart';
 
 class UserController extends GetxController {
   final userInfo = UserInfo().obs;
@@ -35,6 +39,29 @@ class UserController extends GetxController {
     return r.success;
   }
 
+  Future<bool> uploadExpenditure ({
+    required String price,
+    required String description,
+    required int day,
+    Map<String, List<XFile>>? images,
+  }) async {
+    var r = await api.requestMultipart(
+      method: Methods.post,
+      url: '/api/expenditures',
+      body: {
+        'expenditureCreateRequest[amount]': price,
+        'expenditureCreateRequest[description]': description,
+        'expenditureCreateRequest[datetime]': CTimeFormat(day, 'yyyy-mm-dd 00:00:00'),
+      },
+      files: images
+    );
+    if (r.success) {
+      await getUserInfo();
+      await getExpenditures();
+    }
+    return r.success;
+  }
+
   void updateExpenditures(List<Expenditure> list) {
     int index = 0;
     list.forEach((li) {
@@ -63,6 +90,8 @@ class UserController extends GetxController {
         val?.refreshToken = token.refreshToken;
       });
       api.updateToken(token.token!);
+      var auth = Hive.box('auth');
+      auth.put('token', token.token);
       return true;
     }
     return false;

@@ -7,7 +7,6 @@ import 'package:image_picker/image_picker.dart';
 import 'package:poorlex/Models/Battle.dart';
 
 class BattleController extends GetxController {
-  final battleIndex = BattleModel().obs;
   final battleMakingIndex = BattleMakingModel().obs;
   Rx<Color> EasyButtonColor = Color(0xffffd700).obs;
   Rx<Color> MiddleButtonColor = Color(0xff999999).obs;
@@ -29,16 +28,6 @@ class BattleController extends GetxController {
   Rx<int> selectedIndexThree = 0.obs;
   Rx<Color> indexThreeFirstColor = Color(0xff999999).obs;
   Rx<Color> indexThreeSecondColor = Color(0xff999999).obs;
-
-  void changeBattleIndex(int number) {
-    battleIndex.update(
-      (val) => val?.PageNumber = number,
-    );
-  }
-
-  void changeBattleMoneyIndex(int number) {
-    battleIndex.update((val) => val?.MoneyIndex = number);
-  }
 
   void changeBattleMakingIndex() {
     battleMakingIndex.update((val) {

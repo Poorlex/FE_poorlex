@@ -85,12 +85,9 @@ class BattleFinished extends GetView {
     ];
 
     BattleController _battle = BattleController();
-    print(_battle.battleIndex().MoneyIndex);
 
     return Column(
       children: [
-        Row(children: [Expanded(child: BattleMoney(moneyIndex: _battle.battleIndex().MoneyIndex))]),
-        SizedBox(height: 8),
         Expanded(
           child: Row(
               mainAxisAlignment: MainAxisAlignment.start,

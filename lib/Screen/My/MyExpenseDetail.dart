@@ -39,7 +39,7 @@ class _MyExpenseDetailPageState extends State<MyExpenseDetailPage> {
           children: [
             IconButton(
               iconSize: 26, style: IconButton.styleFrom(padding: EdgeInsets.zero, minimumSize: Size.zero),
-              icon: CustomIcon(icon: 'arrow-left', width: 26, height: 26, color: CColors.whiteStr),
+              icon: CIcon(icon: 'arrow-left', width: 26, height: 26, color: CColors.whiteStr),
               onPressed: () {},
             ),
             Column(
@@ -52,7 +52,7 @@ class _MyExpenseDetailPageState extends State<MyExpenseDetailPage> {
             ),
             IconButton(
               iconSize: 26, style: IconButton.styleFrom(padding: EdgeInsets.zero, minimumSize: Size.zero),
-              icon: CustomIcon(icon: 'option', width: 26, height: 26, color: CColors.whiteStr),
+              icon: CIcon(icon: 'option', width: 26, height: 26, color: CColors.whiteStr),
               onPressed: () => onClickOption(context),
             ),
           ],

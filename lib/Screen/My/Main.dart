@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:poorlex/Controller/Layout.dart';
 
 import 'package:poorlex/Widget/Common/Icon.dart';
 import 'package:poorlex/Widget/Common/BottomBar.dart';
+import 'package:poorlex/Widget/Layout.dart';
 import 'package:poorlex/Widget/My/Level.dart';
 import 'package:poorlex/Widget/My/MyAuth.dart';
 
@@ -24,48 +26,52 @@ class MyPage extends StatefulWidget {
 class _MyPageState extends State<MyPage> {
   final user = Get.find<UserController>();
   final api = Get.find<ApiController>();
+  final layout = Get.find<LayoutController>();
 
-  _MyPageState() {
-    user.getUserInfo();
+  getUserInfo () async {
+    await user.getUserInfo();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getUserInfo();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() {
-      if (user.userInfo.value?.nickname == null) {
-        return Text("Loading", style: CTextStyles.Body3());
-      } else {
-        return Scaffold(
+    return Scaffold(
+        backgroundColor: CColors.black,
+        bottomNavigationBar: BottomBar(nowPage: 4),
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
           backgroundColor: CColors.black,
-          bottomNavigationBar: BottomBar(nowPage: 4),
-          appBar: AppBar(
-            automaticallyImplyLeading: false,
-            backgroundColor: CColors.black,
-            title: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                IconButton(
-                  iconSize: 26,
-                  icon: CustomIcon(
-                      icon: 'setting',
-                      width: 26,
-                      height: 26,
-                      color: CColors.whiteStr),
-                  onPressed: () {},
-                ),
-                IconButton(
-                  iconSize: 26,
-                  icon: CustomIcon(
-                      icon: 'ring',
-                      width: 26,
-                      height: 26,
-                      color: CColors.whiteStr),
-                  onPressed: () {},
-                )
-              ],
-            ),
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              IconButton(
+                iconSize: 26,
+                icon: CIcon(
+                    icon: 'setting',
+                    width: 26,
+                    height: 26,
+                    color: CColors.whiteStr),
+                onPressed: () => Get.toNamed('/my/option'),
+              ),
+              IconButton(
+                iconSize: 26,
+                icon: CIcon(
+                    icon: 'ring',
+                    width: 26,
+                    height: 26,
+                    color: CColors.whiteStr),
+                onPressed: () {},
+              )
+            ],
           ),
-          body: SingleChildScrollView(
+        ),
+        body: Layout(
+          child: SingleChildScrollView(
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 15, vertical: 2),
               child: Column(
@@ -89,8 +95,7 @@ class _MyPageState extends State<MyPage> {
               ),
             ),
           ),
-        );
-      }
-    });
+        )
+    );
   }
 }

@@ -1,12 +1,23 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:poorlex/Models/Common.dart';
 
 import 'package:poorlex/Widget/Common/Icon.dart';
 import 'package:poorlex/Widget/Common/Picker.dart';
 import 'package:poorlex/Widget/Common/Other.dart';
+import 'package:poorlex/Widget/Common/Form.dart';
+import 'package:poorlex/Widget/Common/Buttons.dart';
+import 'package:poorlex/Widget/Layout.dart';
 
 import 'package:poorlex/Libs/Theme.dart';
+import 'package:poorlex/Libs/Time.dart';
+
+import 'package:poorlex/Controller/User.dart';
+import 'package:poorlex/Controller/Layout.dart';
 
 class MyExpenseInputPage extends StatefulWidget {
   const MyExpenseInputPage({super.key});
@@ -16,34 +27,62 @@ class MyExpenseInputPage extends StatefulWidget {
 }
 
 class _MyExpenseInputPageState extends State<MyExpenseInputPage> {
-  XFile? _image;
-  final FocusNode _focusNode = FocusNode();
-  bool isFocus = false;
+  final layout = Get.find<LayoutController>();
+  final user = Get.find<UserController>();
+  final price = TextEditingController();
+  final description = TextEditingController();
+  int day = DateTime.now().millisecondsSinceEpoch;
+  List<XFile> images = [];
+  int size = 0;
 
-  Future<void> _pickImage() async { // 추가: 이미지 피커 함수
-    final ImagePicker _picker = ImagePicker();
-    XFile? image = await _picker.pickImage(source: ImageSource.gallery);
+  void selectDay(int d) {
+    setState(() {
+      day = d;
+    });
+  }
 
-    if (image != null) {
-      setState(() { // 이미지가 선택되었을 때 상태 업데이트
-        _image = image;
-      });
+  Future<void> pickImage() async {
+    final ImagePicker picker = ImagePicker();
+    List<XFile> tmps = await picker.pickMultiImage();
+    setState(() {
+      images = tmps;
+    });
+  }
+
+  void removeImage(XFile selected) {
+    setState(() {
+      images = images.where((image) => image != selected).toList();
+    });
+  }
+
+  void submit() async {
+    Map<String, List<XFile>> imgs = {};
+    if (images.length > 0) {
+      imgs['images'] = images;
     }
+
+    layout.setIsLoading(true);
+    if (await user.uploadExpenditure(
+        price: price.text,
+        description: description.text,
+        day: day, images: imgs)) {
+      Get.close(0);
+    }
+    layout.setIsLoading(false);
   }
 
   @override
   void initState() {
     super.initState();
-    _focusNode.addListener(() {
+    price.addListener(() {
       setState(() {
-        isFocus = _focusNode.hasFocus;
+        size = price.text.length;
       });
     });
   }
 
   @override
   void dispose() {
-    _focusNode.dispose();
     super.dispose();
   }
 
@@ -52,124 +91,179 @@ class _MyExpenseInputPageState extends State<MyExpenseInputPage> {
     return Scaffold(
         backgroundColor: Colors.black,
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           backgroundColor: Colors.black,
           title: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               IconButton(
                 iconSize: 26,
-                icon: CustomIcon(icon: 'close', width: 26, height: 26, color: CColors.whiteStr),
-                onPressed: () {},
+                icon: CIcon(
+                    icon: 'close',
+                    width: 26,
+                    height: 26,
+                    color: CColors.whiteStr),
+                onPressed: () => Get.close(0),
               ),
               Text('지출 입력하기', style: CTextStyles.Headline()),
               SizedBox(width: 26)
             ],
           ),
         ),
-        body: SafeArea(child:
-          Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-            Expanded(child:
-              SingleChildScrollView(child:
-                Container(padding: EdgeInsets.symmetric(vertical: 16, horizontal: 16), child:
-                  Column(
-                    children: [
-                      SizedBox(height: 76),
-                      Row(children: [
-                        Container(margin: EdgeInsets.only(left: 2), // 원하는 마진 값으로 조정
-                          child:
-                          Text('오늘은 ', style: CTextStyles.Title1(color: CColors.yellow),
-                          ),
-                        ),
-                      ],
-                      ),
-                      Stack(children: [
-                        TextField(
-                            focusNode: _focusNode,
-                            keyboardType: TextInputType.number,
-                            inputFormatters: <TextInputFormatter>[FilteringTextInputFormatter.digitsOnly],
-                            cursorColor: CColors.yellow,
-                            style: CTextStyles.Title3(color: CColors.yellow),
-                            decoration: InputDecoration(
-                              hintText: '금액 입력',
-                              hintStyle: CTextStyles.Body3(color: CColors.gray41),
-                              iconColor: CColors.yellow,
-                              border: UnderlineInputBorder(borderSide: BorderSide(color: CColors.yellow, width: 2.0),),
-                              enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: CColors.yellow, width: 2.0),),
-                              focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: CColors.yellow, width: 2.0),),
-                            )
-                        ),
-                        if (isFocus)
-                          Positioned(right: 5, top: 10, child: Image.asset('assets/poorlex.png')),
-                      ]),
-                      SizedBox(height: 64),
-                      Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                        Row(mainAxisAlignment: MainAxisAlignment.start, children: [
-                          Container(width: 80, child:
-                          Text('지출 일자', style: CTextStyles.Body2(color: CColors.gray50)),
-                          ),
-                          SizedBox(width: 30),
-                          Text('2023.07.28 (금)', style: CTextStyles.Body2()),
-                        ]),
-                        Picker(type: 'DAY', select: () {}, child:
-                        CustomIcon(icon: 'arrow-circle-down', width: 16, height: 16, color: CColors.yellowStr)
-                        ),
-                      ]),
-                      SizedBox(height: 20),
-                      Container(height: 1, color: CColors.black),
-                      SizedBox(height: 20),
-                      Row(mainAxisAlignment: MainAxisAlignment.start, children: [
-                        Container(width: 80, child:
-                        Text('메모', style: CTextStyles.Body2(color: CColors.gray50))
-                        ),
-                        SizedBox(width: 30),
-                        Flexible(flex: 1, child:
-                        TextField(
-                            style: CTextStyles.Body3(),
-                            decoration: InputDecoration(
-                              hintText: '입력하세요',
-                              hintStyle: CTextStyles.Body2(color: CColors.gray41),
-                              border: InputBorder.none,
-                            )
-                        )
-                        )
-                      ]),
-                      SizedBox(height: 20),
-                      Container(height: 1, color: CColors.black),
-                      SizedBox(height: 20),
-                      Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                        Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                          Text('인증 사진', style: CTextStyles.Body2(color: CColors.gray50)),
-                          IconButton(icon:
-                          CustomIcon(icon: 'arrow-circle-down', width: 16, height: 16, color: CColors.yellowStr),
-                            style: IconButton.styleFrom(padding: EdgeInsets.zero, minimumSize: Size.zero),
-                            onPressed: () {},
-                          ),
-                        ]),
-                        SizedBox(height: 40),
-                        Wrap(direction: Axis.horizontal, spacing: 14, runSpacing: 14, alignment: WrapAlignment.start, runAlignment: WrapAlignment.start, children: [
-                          BackgroundImageWithRemove(image: 'assets/sample/sample2.png', width: 80, height: 80, onRemove: () {}),
-                          BackgroundImageWithRemove(image: 'assets/sample/sample2.png', width: 80, height: 80, onRemove: () {}),
-                          BackgroundImageWithRemove(image: 'assets/sample/sample2.png', width: 80, height: 80, onRemove: () {}),
-                          BackgroundImageWithRemove(image: 'assets/sample/sample2.png', width: 80, height: 80, onRemove: () {}),
-                          AddImageButton(width: 80, height: 80, onAdd: () {},)
-                        ])
-                      ])
-                    ],
-                  )
-                )
+        body: Layout(
+            child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+              Expanded(
+                child: SingleChildScrollView(
+                    child: Container(
+                        padding:
+                            EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+                        child: Column(
+                          children: [
+                            SizedBox(height: 76),
+                            Row(
+                              children: [
+                                Container(
+                                  margin:
+                                      EdgeInsets.only(left: 2), // 원하는 마진 값으로 조정
+                                  child: Text(
+                                    '오늘은 ',
+                                    style: CTextStyles.Title1(
+                                        color: CColors.yellow),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: 10),
+                            CTextField(
+                              keyType: TextInputType.number,
+                              controller: price,
+                              placeholder: '금액 입력',
+                              hintStyle:
+                                  CTextStyles.LargeTitle(color: CColors.gray40),
+                              textStyle:
+                                  CTextStyles.LargeTitle(color: CColors.yellow),
+                              color: CColors.yellow,
+                              primaryColor: CColors.yellow,
+                              underlineWidth: 2.0,
+                              suffix: size > 0
+                                  ? Image.asset('assets/poorlex.png')
+                                  : null,
+                              suffixHeight: 30,
+                            ),
+                            SizedBox(height: 46),
+                            Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      children: [
+                                        Container(
+                                          width: 80,
+                                          child: Text('지출 일자',
+                                              style: CTextStyles.Body2(
+                                                  color: CColors.gray50)),
+                                        ),
+                                        SizedBox(width: 30),
+                                        Text(CTimeFormat(day, 'yyyy.MM.dd (E)'),
+                                            style: CTextStyles.Body2()),
+                                      ]),
+                                  Picker(
+                                      current: day,
+                                      type: 'DAY',
+                                      select: selectDay,
+                                      child: CIcon(
+                                          icon: 'arrow-circle-down',
+                                          width: 16,
+                                          height: 16,
+                                          color: CColors.yellowStr)),
+                                ]),
+                            SizedBox(height: 10),
+                            Container(height: 1, color: CColors.gray20),
+                            SizedBox(height: 10),
+                            Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Container(
+                                      width: 80,
+                                      child: Text('메모',
+                                          style: CTextStyles.Body2(
+                                              color: CColors.gray50))),
+                                  SizedBox(width: 30),
+                                  Flexible(
+                                      flex: 1,
+                                      child: CTextField(
+                                          controller: description,
+                                          placeholder: '입력하세요',
+                                          isUnderline: false,
+                                          primaryColor: CColors.yellow,
+                                          hintStyle: CTextStyles.Body2(
+                                              color: CColors.gray41)))
+                                ]),
+                            SizedBox(height: 10),
+                            Container(height: 1, color: CColors.gray20),
+                            SizedBox(height: 10),
+                            Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text('인증 사진',
+                                            style: CTextStyles.Body2(
+                                                color: CColors.gray50)),
+                                        IconButton(
+                                          icon: CIcon(
+                                              icon: 'arrow-circle-down',
+                                              width: 16,
+                                              height: 16,
+                                              color: CColors.yellowStr),
+                                          style: IconButton.styleFrom(
+                                              padding: EdgeInsets.zero,
+                                              minimumSize: Size.zero),
+                                          onPressed: () {},
+                                        ),
+                                      ]),
+                                  SizedBox(height: 30),
+                                  Wrap(
+                                      direction: Axis.horizontal,
+                                      spacing: 14,
+                                      runSpacing: 14,
+                                      alignment: WrapAlignment.start,
+                                      runAlignment: WrapAlignment.start,
+                                      children: [
+                                        ...images
+                                            .map<Widget>((image) =>
+                                                BackgroundImageWithRemove(
+                                                    image: FileImage(
+                                                        File(image!.path)),
+                                                    width: 80,
+                                                    height: 80,
+                                                    onRemove: () =>
+                                                        removeImage(image)))
+                                            .toList(),
+                                        AddImageButton(
+                                          width: 80,
+                                          height: 80,
+                                          onAdd: () => pickImage(),
+                                        )
+                                      ])
+                                ])
+                          ],
+                        ))),
               ),
-            ),
-            TextButton(
-              style: TextButton.styleFrom(
-                backgroundColor: CColors.yellow,fixedSize: Size.fromHeight(52),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.zero),
+              CButton(
+                type: ButtonTypes.elevated,
+                color: CColors.yellow,
+                padding: EdgeInsets.symmetric(vertical: 15),
+                child: Text('완료',
+                    style: TextStyle(fontSize: 20, color: CColors.black)),
+                onPressed: () => submit(),
               ),
-              child:
-                Text('완료', style: TextStyle(fontSize: 20, color: CColors.black)),
-              onPressed: () {}
-            )
-          ])
-        )
-    );
+            ])));
   }
 }
