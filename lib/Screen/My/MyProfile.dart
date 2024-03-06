@@ -111,10 +111,11 @@ class _MyProfileState extends State<MyProfile> {
                         maxLines: 1,
                         label: '이름',
                         isClose: true,
+                        underlineWidth: 2,
                         padding: EdgeInsets.all(0),
                         placeholder: '이름을 입력해주세요',
                         primaryColor: CColors.yellow,
-                        textStyle: CTextStyles.Title3(
+                        textStyle: CTextStyles.Title1(
                             color:
                                 isReadyName ? CColors.white : CColors.gray30),
                         controller: name),
@@ -124,17 +125,18 @@ class _MyProfileState extends State<MyProfile> {
                             SizedBox(height: 6),
                             Text('영문자, 숫자와 특수기호(-, _) 포함하여 최소 2자 이상 최대 20자',
                                 style:
-                                    CTextStyles.Caption1(color: CColors.purple))
+                                    CTextStyles.Caption1(color: CColors.purpleLight))
                           ])),
                     SizedBox(height: 30),
                     CTextField(
                         label: '내 소개',
                         maxLines: 8,
                         maxLength: 300,
-                        padding: EdgeInsets.all(10),
+                        padding: EdgeInsets.symmetric(vertical: 12, horizontal: 14),
                         isUnderline: false,
                         keyType: TextInputType.multiline,
                         backgroundColor: CColors.gray10,
+                        textStyle: CTextStyles.Body2(),
                         placeholder: '내용을 입력해주세요',
                         primaryColor: CColors.yellow,
                         controller: description),

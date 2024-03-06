@@ -19,8 +19,9 @@ class BattleIndexThree extends GetView {
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 18),
           child: Container(
-            width: 300, height: 70, child:
-            Column(
+            width: 300,
+            height: 70,
+            child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text('친구를 초대하고', style: CTextStyles.Title2()),
@@ -48,19 +49,27 @@ class BattleIndexThree extends GetView {
                       );
                     },
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 18, horizontal: 75),
-                      child: Text('네 초대할래요!', style: CTextStyles.Title2(color: con.indexThreeFirstColor.value)),
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 18, horizontal: 75),
+                      child: Text('네 초대할래요!',
+                          style: CTextStyles.Title2(
+                              color: con.indexThreeFirstColor.value)),
                     )),
                 SizedBox(height: 30),
                 OutlinedButton(
-                    style: OutlinedButton.styleFrom(side: BorderSide(color: con.indexThreeSecondColor.value)),
+                    style: OutlinedButton.styleFrom(
+                        side:
+                            BorderSide(color: con.indexThreeSecondColor.value)),
                     onPressed: () {
                       con.changeIndexThreeColor(2);
-                      con.changeBattleMakingIndex();
+                      // con.changeBattleMakingIndex();
                     },
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 18, horizontal: 46),
-                      child: Text('아니요 초대안할래요!', style: CTextStyles.Title2(color: con.indexThreeSecondColor.value)),
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 18, horizontal: 46),
+                      child: Text('아니요 초대안할래요!',
+                          style: CTextStyles.Title2(
+                              color: con.indexThreeSecondColor.value)),
                     ))
               ]),
             ),

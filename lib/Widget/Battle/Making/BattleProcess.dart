@@ -7,36 +7,37 @@ import 'package:poorlex/Controller/Battle.dart';
 import 'package:poorlex/Libs/Theme.dart';
 
 class BattleProcess extends GetView {
-  const BattleProcess({super.key});
+  BattleProcess({super.key});
+
+  BattleController battle = Get.find<BattleController>();
 
   @override
   Widget build(BuildContext context) {
     List<int> colors = [0, 1, 2, 3];
-
-    BattleController con = Get.put(BattleController());
-    return Obx(
-      () => Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: List.generate(
-          colors.length,
-          (index) {
-            return Row(
-              children: [
-                if (con.battleMakingIndex().BattleIndex > 3)
-                  ...[]
-                else if (con.battleMakingIndex().BattleIndex ==
-                    colors[index]) ...[
-                  Container(width: 5, height: 5, decoration: BoxDecoration(color: CColors.yellow)),
-                  SizedBox(width: 10),
-                ] else ...[
-                  Container(width: 5, height: 5, decoration: BoxDecoration(color: CColors.gray20)),
-                  SizedBox(width: 10),
-                ],
-              ],
-            );
-          },
-        ),
-      ),
-    );
+    return Obx(() => Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: List.generate(
+              colors.length,
+              (index) => Row(
+                    children: [
+                      if (battle.battleCreate.value.current > 3)
+                        ...[]
+                      else if (battle.battleCreate.value.current ==
+                          colors[index]) ...[
+                        Container(
+                            width: 5,
+                            height: 5,
+                            decoration: BoxDecoration(color: CColors.yellow)),
+                        SizedBox(width: 10),
+                      ] else ...[
+                        Container(
+                            width: 5,
+                            height: 5,
+                            decoration: BoxDecoration(color: CColors.gray20)),
+                        SizedBox(width: 10),
+                      ],
+                    ],
+                  )),
+        ));
   }
 }

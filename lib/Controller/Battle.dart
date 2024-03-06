@@ -7,7 +7,17 @@ import 'package:image_picker/image_picker.dart';
 import 'package:poorlex/Models/Battle.dart';
 
 class BattleController extends GetxController {
-  final battleMakingIndex = BattleMakingModel().obs;
+  final battleCreate = BattleCreateModel().obs;
+
+  void changeCurrent (int c) {
+    battleCreate.update((val) {
+      val?.current = c;
+    });
+  }
+
+
+
+
   Rx<Color> EasyButtonColor = Color(0xffffd700).obs;
   Rx<Color> MiddleButtonColor = Color(0xff999999).obs;
   Rx<Color> HardButtonColor = Color(0xff999999).obs;
@@ -28,44 +38,6 @@ class BattleController extends GetxController {
   Rx<int> selectedIndexThree = 0.obs;
   Rx<Color> indexThreeFirstColor = Color(0xff999999).obs;
   Rx<Color> indexThreeSecondColor = Color(0xff999999).obs;
-
-  void changeBattleMakingIndex() {
-    battleMakingIndex.update((val) {
-      val?.BattleIndex += 1;
-    });
-  }
-
-  void changeBattleDifficulty(String selected) {
-    battleMakingIndex.update((val) {
-      val?.BattleDifficulty = selected;
-    });
-  }
-
-  void changeButtonColor() {
-    if (battleMakingIndex().BattleDifficulty == 'Easy') {
-      EasyButtonColor.value = Color(0xffffd600);
-      MiddleButtonColor.value = Color(0xff999999);
-      HardButtonColor.value = Color(0xff999999);
-    } else if (battleMakingIndex().BattleDifficulty == 'Middle') {
-      EasyButtonColor.value = Color(0xff999999);
-      MiddleButtonColor.value = Color(0xffffd600);
-      HardButtonColor.value = Color(0xff999999);
-    } else if (battleMakingIndex().BattleDifficulty == 'Hard') {
-      EasyButtonColor.value = Color(0xff999999);
-      MiddleButtonColor.value = Color(0xff999999);
-      HardButtonColor.value = Color(0xffffd600);
-    }
-  }
-
-  void budgetListUpdate() {
-    if (battleMakingIndex().BattleDifficulty == 'Easy') {
-      BudgetList.assignAll([15, 16, 17, 18, 19, 20]);
-    } else if (battleMakingIndex().BattleDifficulty == 'Middle') {
-      BudgetList.assignAll([9, 10, 11, 12, 13, 14]);
-    } else if (battleMakingIndex().BattleDifficulty == 'Hard') {
-      BudgetList.assignAll([1, 2, 3, 4, 5, 6, 7, 8]);
-    }
-  }
 
   void budgetUpdate(int selected) {
     selectedBudget.value = selected;

@@ -24,7 +24,7 @@ import 'package:poorlex/Screen/My/Main.dart';
 import 'package:poorlex/Screen/My/MyProfile.dart';
 
 import 'package:poorlex/Screen/Battle/Main.dart';
-import 'package:poorlex/Screen/Battle/BattleCreating.dart';
+import 'package:poorlex/Screen/Battle/BattleCreate.dart';
 
 import 'package:poorlex/Screen/Main/Main.dart';
 
@@ -103,6 +103,6 @@ void main() async {
         GetPage(name: '/my/expense-input', page: () => MyExpenseInputPage(), binding: Bind()),
         GetPage(name: '/my/option', page: () => MyOption(), binding: Bind()),
         GetPage(name: '/battle', page: () => Battle(), binding: BattleBind()),
-        GetPage(name: '/battle/create', page: () => BattleCreating(), binding: BattleBind())
+        GetPage(name: '/battle/create', page: () => BattleCreate(), binding: BattleBind())
       ]));
 }
