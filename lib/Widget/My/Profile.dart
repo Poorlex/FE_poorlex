@@ -35,11 +35,14 @@ class MyPageProfile extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Obx(() => Text(
-                                user.userInfo.value.description ?? '-',
-                                textAlign: TextAlign.center,
-                                style: CTextStyles.Body2(color: CColors.gray40),
-                              ))
+                          Expanded(child:
+                            Obx(() => Text(
+                              user.userInfo.value.description ?? '-',
+                              textAlign: TextAlign.center,
+                              softWrap: true,
+                              style: CTextStyles.Body2(color: CColors.gray40),
+                            ))
+                          )
                         ],
                       )
                     ],
@@ -50,8 +53,8 @@ class MyPageProfile extends StatelessWidget {
                   child: OutlinedButton(
                     style: OutlinedButton.styleFrom(
                       shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(4.0)),
-                      side: BorderSide(width: 1.0, color: CColors.yellow),
+                          borderRadius: BorderRadius.circular(0)),
+                      side: BorderSide(width: 1.0, color: CColors.yellow.withOpacity(0.6)),
                     ),
                     child: Container(
                         width: 210,

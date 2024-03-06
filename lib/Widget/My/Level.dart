@@ -25,7 +25,7 @@ class _MyPageLevelState extends State<MyPageLevel> {
             children: [
               Padding(
                   // padding: const EdgeInsets.all(25),
-                  padding: EdgeInsets.symmetric(horizontal: 16),
+                  padding: EdgeInsets.fromLTRB(16, 14, 16, 28),
                   child: Column(children: [
                     SizedBox(height: 14),
                     Row(
@@ -37,14 +37,14 @@ class _MyPageLevelState extends State<MyPageLevel> {
                                 Text('거지 레벨',
                                     style: CTextStyles.Body3(
                                         color: CColors.gray50)),
-                                SizedBox(height: 6),
+                                SizedBox(height: 12),
                                 Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       SizedBox(
-                                          width: 25,
-                                          height: 25,
+                                          width: 20,
+                                          height: 20,
                                           child: Image.asset(
                                               'assets/my_page/icon_level.png')),
                                       SizedBox(width: 12),
@@ -63,7 +63,7 @@ class _MyPageLevelState extends State<MyPageLevel> {
                                 Text('보유 포인트',
                                     style: CTextStyles.Body3(
                                         color: CColors.gray50)),
-                                SizedBox(height: 6),
+                                SizedBox(height: 12),
                                 Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
@@ -71,7 +71,7 @@ class _MyPageLevelState extends State<MyPageLevel> {
                                       Container(
                                           child: Obx(() => Text(
                                               '${user.userInfo.value.levelInfo?.point ?? '-'} P',
-                                              style: CTextStyles.Headline())))
+                                              style: CTextStyles.Title3())))
                                     ])
                               ]))
                         ]),
@@ -79,7 +79,7 @@ class _MyPageLevelState extends State<MyPageLevel> {
                     Container(
                         decoration: BoxDecoration(
                           color: CColors.gray20,
-                          borderRadius: BorderRadius.circular(10),
+                          borderRadius: BorderRadius.circular(0),
                         ),
                         child: Padding(
                             padding: EdgeInsets.symmetric(
@@ -107,6 +107,7 @@ class _MyPageLevelState extends State<MyPageLevel> {
                                     child: Text('성공',
                                         style: CTextStyles.Body3(
                                             color: CColors.gray50))),
+                                SizedBox(height: 8),
                                 Obx(
                                   () => Text(
                                       user.userInfo.value.battleSuccessInfo
