@@ -74,12 +74,11 @@ class ApiController extends GetxController {
         // rsb = utf8.decode(rs.bodyBytes);
        */
 
-      print(rs.headers);
-      print(rs.headers['content-type']);
-
-      rsb = String.fromCharCodes(await rs.stream.toBytes());
+      // print(rs.headers);
+      // print(rs.headers['content-type']);
+      rsb = json.decode(await rs.stream.bytesToString());
       print(url);
-      print(rsb.body);
+      print(rsb);
 
       return HTTPResult(success: true, body: rsb);
     } catch (error) {

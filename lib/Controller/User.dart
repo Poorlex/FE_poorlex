@@ -51,7 +51,7 @@ class UserController extends GetxController {
       body: {
         'expenditureCreateRequest[amount]': price,
         'expenditureCreateRequest[description]': description,
-        'expenditureCreateRequest[datetime]': CTimeFormat(day, 'yyyy-mm-dd 00:00:00'),
+        'expenditureCreateRequest[datetime]': CTimeFormat(day, 'yyyy-mm-ddT00:00:00.000Z'),
       },
       files: images
     );
