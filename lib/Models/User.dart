@@ -38,7 +38,7 @@ class Expenditure {
    */
   int id;
   String date;
-  double amount = 0;
+  num amount = 0;
   String? description;
   List<String>? imageUrls = [];
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:collection/collection.dart';
 import 'package:poorlex/Models/User.dart';
 
 import 'package:poorlex/Widget/Common/Buttons.dart';
@@ -7,6 +8,7 @@ import 'package:poorlex/Widget/Common/Icon.dart';
 import 'package:poorlex/Widget/Common/other.dart';
 
 import 'package:poorlex/Libs/Theme.dart';
+import 'package:poorlex/Libs/Time.dart';
 import 'package:poorlex/Controller/User.dart';
 
 class MyPageMyAuth extends StatefulWidget {
@@ -55,30 +57,32 @@ class _MyPageMyAuthState extends State<MyPageMyAuth> {
       ),
       SizedBox(height: 20),
       Container(
-          key: containerKey,
           child: Obx(() => Wrap(
               spacing: 18,
               runSpacing: 18,
               children:
-                  (user.userInfo.value.expenditures ?? []).map<Widget>((e) {
-                return Container(
-                    width: ((size?.width ?? 0) - 18) / 2,
-                    child: BackgroundImageWithBlack(
-                        image: 'assets/sample/sample2.png',
-                        height: ((size?.width ?? 0) - 18) / 2,
-                        child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Text('2023.08.09 (목)',
-                                  style: CTextStyles.Caption1(
-                                      color: CColors.gray50)),
-                              SizedBox(height: 13),
-                              Text('9.000원', style: CTextStyles.Headline()),
-                            ])));
+                  (user.userInfo.value.expenditures ?? []).mapIndexed<Widget>((index, e) {
+                return size != null && index < 4
+                    ? Container(
+                        width: ((size?.width ?? 36) - 18) / 2,
+                        child: BackgroundImageWithBlack(
+                            image: 'assets/sample/sample2.png',
+                            height: ((size?.width ?? 36) - 18) / 2,
+                            child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Text('${CTimeFormat(DateTime.parse('${e.date} 00:00:00').microsecondsSinceEpoch, 'yyyy.MM.dd (E)')}',
+                                      style: CTextStyles.Caption1(
+                                          color: CColors.gray50)),
+                                  SizedBox(height: 13),
+                                  Text('${e.amount}원', style: CTextStyles.Headline()),
+                                ])))
+                    : SizedBox.shrink();
               }).toList()))),
       SizedBox(height: 17),
       CButton(
+        key: containerKey,
         type: ButtonTypes.outlined,
         child: Padding(
           padding: EdgeInsets.symmetric(vertical: 14),

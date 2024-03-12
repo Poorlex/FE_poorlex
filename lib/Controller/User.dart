@@ -1,3 +1,5 @@
+import 'dart:convert';
+import 'dart:io';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:image_picker/image_picker.dart';
@@ -49,9 +51,9 @@ class UserController extends GetxController {
       method: Methods.post,
       url: '/api/expenditures',
       body: {
-        'expenditureCreateRequest[amount]': price,
-        'expenditureCreateRequest[description]': description,
-        'expenditureCreateRequest[datetime]': CTimeFormat(day, 'yyyy-mm-ddT00:00:00.000Z'),
+        'amount': price,
+        'description': description,
+        'date': CTimeFormat(day, 'yyyy-MM-dd')
       },
       files: images
     );

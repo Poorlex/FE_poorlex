@@ -34,7 +34,6 @@ class ApiController extends GetxController {
   }) async {
     late final rsb;
     late http.StreamedResponse rs;
-    List<MultipartFile> fs;
 
     final Map<String, String> h = headers ?? {};
     print(token.value);
@@ -57,6 +56,7 @@ class ApiController extends GetxController {
       body?.forEach((key, value) {
         request.fields[key] = value;
       });
+      print(request.fields);
       files?.forEach((key, file) async {
         file.forEach((f) async {
           request.files.add(await http.MultipartFile.fromPath(key, f.path));
@@ -76,7 +76,8 @@ class ApiController extends GetxController {
 
       // print(rs.headers);
       // print(rs.headers['content-type']);
-      rsb = json.decode(await rs.stream.bytesToString());
+      print(rs);
+      rsb = await rs.stream.bytesToString();
       print(url);
       print(rsb);
 
