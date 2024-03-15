@@ -31,30 +31,32 @@ class Expenditure {
     "date": "2024-02-24",
     "amount": 0,
     "description": "string",
-    "imageUrls": [
-      "string"
-    ]
+    "mainImageUrl": "string",
+    "subImageUrl": "string"
   }
    */
-  int id;
-  String date;
-  num amount = 0;
-  String? description;
-  List<String>? imageUrls = [];
+  late int? id;
+  late String? date;
+  late num? amount = 0;
+  late String? description;
+  late String? mainImageUrl;
+  late String? subImageUrl;
 
   Expenditure({
-    required this.id,
-    required this.date,
-    required this.amount,
+    this.id,
+    this.date,
+    this.amount,
     this.description,
-    this.imageUrls
+    this.mainImageUrl,
+    this.subImageUrl
   });
   factory Expenditure.fromJson(Map<String, dynamic> j) => Expenditure(
     id: j['id'],
     date: j['date'],
     amount: j['amount'],
     description: j['description'],
-    imageUrls: j['imageUrls']
+    mainImageUrl: j['mainImageUrl'],
+    subImageUrl: j['subImageUrl'],
   );
 }
 

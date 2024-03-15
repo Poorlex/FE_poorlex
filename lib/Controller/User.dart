@@ -1,5 +1,3 @@
-import 'dart:convert';
-import 'dart:io';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:image_picker/image_picker.dart';
@@ -12,6 +10,7 @@ import 'package:poorlex/Libs/Time.dart';
 class UserController extends GetxController {
   final userInfo = UserInfo().obs;
   final userToken = UserToken().obs;
+  final expenditure = Expenditure().obs;
   final expenditures = <Expenditure>[].obs;
 
   ApiController api = Get.find<ApiController>();
@@ -31,6 +30,15 @@ class UserController extends GetxController {
     return e.success;
   }
 
+  Future<Expenditure> getExpenditure(int id) async {
+    var e = await api.request(method: Methods.get, url: '/api/expenditures/${id}');
+    if (e.success) {
+      expenditure.value = Expenditure.fromJson(e.body);
+      update();
+      return expenditure.value;
+    } else return Expenditure();
+  }
+
   Future<bool> patchProfile(
       {required String nicknme, required String description}) async {
     var r = await api.request(
@@ -41,22 +49,28 @@ class UserController extends GetxController {
     return r.success;
   }
 
-  Future<bool> uploadExpenditure ({
+  Future<bool> uploadExpenditure({
     required String price,
     required String description,
     required int day,
-    Map<String, List<XFile>>? images,
+    int? id,
+    XFile? mainImage,
+    XFile? subImage,
   }) async {
+    Map<String, List<XFile>> files = {};
+    print(mainImage);
+    print(subImage);
+    if (mainImage != null) files['mainImage'] = [mainImage];
+    if (subImage != null) files['subImage'] = [subImage];
     var r = await api.requestMultipart(
-      method: Methods.post,
-      url: '/api/expenditures',
-      body: {
-        'amount': price,
-        'description': description,
-        'date': CTimeFormat(day, 'yyyy-MM-dd')
-      },
-      files: images
-    );
+        method: id == null ? Methods.post : Methods.put,
+        url: id == null ? '/api/expenditures' : '/api/expenditures/${id}',
+        body: {
+          'amount': price,
+          'description': description,
+          'date': CTimeFormat(day, 'yyyy-MM-dd')
+        },
+        files: files);
     if (r.success) {
       await getUserInfo();
       await getExpenditures();
@@ -65,11 +79,7 @@ class UserController extends GetxController {
   }
 
   void updateExpenditures(List<Expenditure> list) {
-    int index = 0;
-    list.forEach((li) {
-      expenditures.value[index] = li;
-      index++;
-    });
+    expenditures.value = list;
     update();
   }
 

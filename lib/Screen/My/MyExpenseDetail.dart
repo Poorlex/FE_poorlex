@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'package:poorlex/Widget/Common/Icon.dart';
 import 'package:poorlex/Widget/Common/BottomBar.dart';
 
+import 'package:poorlex/Libs/Time.dart';
 import 'package:poorlex/Libs/Theme.dart';
+import 'package:poorlex/Libs/String.dart';
+
+import 'package:poorlex/Controller/User.dart';
 
 class MyExpenseDetailPage extends StatefulWidget {
   const MyExpenseDetailPage({super.key});
@@ -13,6 +18,14 @@ class MyExpenseDetailPage extends StatefulWidget {
 }
 
 class _MyExpenseDetailPageState extends State<MyExpenseDetailPage> {
+  final user = Get.find<UserController>();
+
+  void getExpenditure() async {
+    if (Get.arguments?['id'] != null) {
+      await user.getExpenditure(Get.arguments['id']);
+    }
+  }
+
   Function onClickOption = (BuildContext context) {
     Function selectOption = (String mode) {
       print(mode);
@@ -28,93 +41,105 @@ class _MyExpenseDetailPageState extends State<MyExpenseDetailPage> {
   };
 
   @override
+  void initState() {
+    super.initState();
+    getExpenditure();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: CColors.black,
       bottomNavigationBar: BottomBar(nowPage: 4),
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: CColors.black,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             IconButton(
-              iconSize: 26, style: IconButton.styleFrom(padding: EdgeInsets.zero, minimumSize: Size.zero),
-              icon: CIcon(icon: 'arrow-left', width: 26, height: 26, color: CColors.whiteStr),
-              onPressed: () {},
+              iconSize: 26,
+              style: IconButton.styleFrom(
+                  padding: EdgeInsets.zero, minimumSize: Size.zero),
+              icon: CIcon(
+                  icon: 'arrow-left',
+                  width: 26,
+                  height: 26,
+                  color: CColors.whiteStr),
+              onPressed: () => Get.back(),
             ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text('2023.08.12 (일)', style: CTextStyles.Caption1(color: CColors.gray50)),
+            Obx(() {
+              if (user.expenditure.value == null) return SizedBox.shrink();
+              else return Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+                Text(CTimeFormat(DateTime.parse('${user.expenditure.value.date} 00:00:00').millisecondsSinceEpoch, 'yyyy.MM.dd (E)'),
+                    style: CTextStyles.Caption1(color: CColors.gray50)),
                 SizedBox(height: 6),
-                Text('24,370원', style: CTextStyles.Headline()),
-              ]
-            ),
+                Text('${makeComma(user.expenditure.value.amount!)}원', style: CTextStyles.Headline()),
+              ]);
+            }),
             IconButton(
-              iconSize: 26, style: IconButton.styleFrom(padding: EdgeInsets.zero, minimumSize: Size.zero),
-              icon: CIcon(icon: 'option', width: 26, height: 26, color: CColors.whiteStr),
+              iconSize: 26,
+              style: IconButton.styleFrom(
+                  padding: EdgeInsets.zero, minimumSize: Size.zero),
+              icon: CIcon(
+                  icon: 'option',
+                  width: 26,
+                  height: 26,
+                  color: CColors.whiteStr),
               onPressed: () => onClickOption(context),
             ),
           ],
         ),
       ),
       body: SafeArea(
-        child:
-          SingleChildScrollView(
-            child:
-              Container(
-                padding: EdgeInsets.symmetric(vertical: 34, horizontal: 20),
-                child:
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text('''
-오늘도 고생했다!
-힘들었지만 괜찮아 ㅎㅎ
-                      ''', style: CTextStyles.Body3()
-                      ),
-                      SizedBox(height: 24),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Flexible(
-                            flex: 1,
-                            child:
-                              SizedBox(child:
-                                Image.asset('assets/sample/sample2.png'),
-                              ),
-                          )
-                        ]
-                      ),
-                      SizedBox(height: 24),
-                      Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Flexible(
-                              flex: 1,
-                              child:
-                                SizedBox(child:
-                                  Image.asset('assets/sample/sample2.png'),
-                                ),
-                            )
-                          ]
-                      ),
-                      SizedBox(height: 24),
-                    ],
-                  ),
-              ),
+        child: SingleChildScrollView(
+          child: Container(
+            padding: EdgeInsets.symmetric(vertical: 34, horizontal: 20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Obx(() => Text(user.expenditure.value.description!, style: CTextStyles.Body3())),
+                SizedBox(height: 24),
+                Obx(() {
+                  if (user.expenditure.value.mainImageUrl != null) {
+                    return Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                      Flexible(
+                        flex: 1,
+                        child: SizedBox(
+                          child: Image.network(user.expenditure.value.mainImageUrl!)
+                        ),
+                      )
+                    ]);
+                  } else return SizedBox.shrink();
+                }),
+                SizedBox(height: 24),
+                Obx(() {
+                  if (user.expenditure.value.subImageUrl != null) {
+                    return Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                      Flexible(
+                        flex: 1,
+                        child: SizedBox(
+                            child: Image.network(user.expenditure.value.subImageUrl!)
+                        ),
+                      )
+                    ]);
+                  } else return SizedBox.shrink();
+                }),
+                SizedBox(height: 24),
+              ],
+            ),
           ),
+        ),
       ),
     );
   }
 }
 
 class OptionButtonModal extends StatelessWidget {
+  final user = Get.find<UserController>();
   Function selectOption;
-  OptionButtonModal({
-    super.key,
-    required this.selectOption
-  });
+
+  OptionButtonModal({super.key, required this.selectOption});
 
   @override
   Widget build(BuildContext context) {
@@ -125,29 +150,22 @@ class OptionButtonModal extends StatelessWidget {
             children: [
               Expanded(
                   child: TextButton(
-                    onPressed: () => print(1111),
-                    child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text('수정', style: CTextStyles.Headline(color: CColors.yellow))
-                        ]
-                    ),
-                  )
-              ),
+                onPressed: () => Get.toNamed('/my/expense-input', arguments: { 'id': user.expenditure.value.id }),
+                child:
+                    Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                  Text('수정', style: CTextStyles.Headline(color: CColors.yellow))
+                ]),
+              )),
               Expanded(
                   child: TextButton(
-                    onPressed: () => print(1111),
-                    child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text('삭제', style: CTextStyles.Headline(color: CColors.gray30))
-                        ]
-                    ),
-                  )
-              ),
+                onPressed: () => print(1111),
+                child:
+                    Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                  Text('삭제', style: CTextStyles.Headline(color: CColors.gray30))
+                ]),
+              )),
             ],
           ),
-        )
-    );
+        ));
   }
 }

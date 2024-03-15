@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:collection/collection.dart';
-import 'package:poorlex/Models/User.dart';
+import 'package:poorlex/Libs/String.dart';
 
 import 'package:poorlex/Widget/Common/Buttons.dart';
 import 'package:poorlex/Widget/Common/Icon.dart';
@@ -43,7 +43,8 @@ class _MyPageMyAuthState extends State<MyPageMyAuth> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(children: [
+    return Container(
+        child: Column(children: [
       Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
@@ -56,30 +57,39 @@ class _MyPageMyAuthState extends State<MyPageMyAuth> {
         ],
       ),
       SizedBox(height: 20),
-      Container(
-          child: Obx(() => Wrap(
-              spacing: 18,
-              runSpacing: 18,
-              children:
-                  (user.userInfo.value.expenditures ?? []).mapIndexed<Widget>((index, e) {
-                return size != null && index < 4
-                    ? Container(
-                        width: ((size?.width ?? 36) - 18) / 2,
-                        child: BackgroundImageWithBlack(
-                            image: 'assets/sample/sample2.png',
-                            height: ((size?.width ?? 36) - 18) / 2,
-                            child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Text('${CTimeFormat(DateTime.parse('${e.date} 00:00:00').microsecondsSinceEpoch, 'yyyy.MM.dd (E)')}',
-                                      style: CTextStyles.Caption1(
-                                          color: CColors.gray50)),
-                                  SizedBox(height: 13),
-                                  Text('${e.amount}원', style: CTextStyles.Headline()),
-                                ])))
-                    : SizedBox.shrink();
-              }).toList()))),
+      Row(children: [
+        Expanded(
+            child: Obx(() => Wrap(
+                spacing: 18,
+                runSpacing: 18,
+                direction: Axis.horizontal,
+                alignment: WrapAlignment.start,
+                children: (user.userInfo.value.expenditures ?? [])
+                    .mapIndexed<Widget>((index, e) {
+                  return size != null && index < 4
+                      ? CButton(
+                        onPressed: () => Get.toNamed('/my/expense-detail', arguments: { 'id': e.id }),
+                        child: Container(
+                            width: ((size?.width ?? 36) - 18) / 2,
+                            child: BackgroundImageWithBlack(
+                                image: 'assets/sample/sample2.png',
+                                height: ((size?.width ?? 36) - 18) / 2,
+                                child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                          CTimeFormat(DateTime.parse('${e.date} 00:00:00').millisecondsSinceEpoch, 'yyyy.MM.dd (E)'),
+                                          style: CTextStyles.Caption1(
+                                              color: CColors.gray50)),
+                                      SizedBox(height: 13),
+                                      Text('${makeComma(e.amount!)}원',
+                                          style: CTextStyles.Headline()),
+                                    ]))),
+                      )
+                      : SizedBox.shrink();
+                }).toList())))
+      ]),
       SizedBox(height: 17),
       CButton(
         key: containerKey,
@@ -98,6 +108,6 @@ class _MyPageMyAuthState extends State<MyPageMyAuth> {
         ),
         onPressed: () => Get.toNamed('/my/expenditure'),
       )
-    ]);
+    ]));
   }
 }

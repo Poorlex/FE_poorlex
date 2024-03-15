@@ -19,6 +19,7 @@ import 'package:poorlex/Screen/Login/LoginModal.dart';
 
 import 'package:poorlex/Screen/My/MyExpense.dart';
 import 'package:poorlex/Screen/My/MyExpenseInput.dart';
+import 'package:poorlex/Screen/My/MyExpenseDetail.dart';
 import 'package:poorlex/Screen/My/MyOption.dart';
 import 'package:poorlex/Screen/My/Main.dart';
 import 'package:poorlex/Screen/My/MyProfile.dart';
@@ -101,6 +102,7 @@ void main() async {
         GetPage(name: '/my/expenditure', page: () => MyExpensePage(), binding: Bind()),
         GetPage(name: '/my/profile', page: () => MyProfile(), binding: Bind()),
         GetPage(name: '/my/expense-input', page: () => MyExpenseInputPage(), binding: Bind()),
+        GetPage(name: '/my/expense-detail', page: () => MyExpenseDetailPage(), binding: Bind()),
         GetPage(name: '/my/option', page: () => MyOption(), binding: Bind()),
         GetPage(name: '/battle', page: () => Battle(), binding: BattleBind()),
         GetPage(name: '/battle/create', page: () => BattleCreate(), binding: BattleBind())

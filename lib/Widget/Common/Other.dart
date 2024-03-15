@@ -52,7 +52,7 @@ class BackgroundImageWithBlack extends StatelessWidget {
 class BackgroundImageWithRemove extends StatelessWidget {
   double width;
   double height;
-  FileImage image;
+  Image image;
   void Function() onRemove;
 
   BackgroundImageWithRemove(
@@ -73,7 +73,7 @@ class BackgroundImageWithRemove extends StatelessWidget {
               height: height,
               decoration: BoxDecoration(
                   image: DecorationImage(
-                      image: image, fit: BoxFit.cover))),
+                      image: image.image, fit: BoxFit.cover))),
           Positioned(
               top: 0,
               right: 0,

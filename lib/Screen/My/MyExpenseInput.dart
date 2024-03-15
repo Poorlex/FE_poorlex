@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -6,6 +5,8 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:poorlex/Models/Common.dart';
+
+import 'package:poorlex/Models/User.dart';
 
 import 'package:poorlex/Widget/Common/Icon.dart';
 import 'package:poorlex/Widget/Common/Picker.dart';
@@ -33,8 +34,12 @@ class _MyExpenseInputPageState extends State<MyExpenseInputPage> {
   final price = TextEditingController();
   final description = TextEditingController();
   int day = DateTime.now().millisecondsSinceEpoch;
-  List<XFile> images = [];
+  late XFile? mainImage = null;
+  late XFile? subImage = null;
+  late String? originMainImage = null;
+  late String? originSubImage = null;
   int size = 0;
+  int imgMaxCount = 2;
 
   void selectDay(int d) {
     setState(() {
@@ -42,39 +47,98 @@ class _MyExpenseInputPageState extends State<MyExpenseInputPage> {
     });
   }
 
-  Future<void> pickImage() async {
-    final ImagePicker picker = ImagePicker();
-    List<XFile> tmps = await picker.pickMultiImage();
-    setState(() {
-      images = tmps;
-    });
+  void getExpenditure() async {
+    if (Get.arguments?['id'] != null) {
+      var expenditure = await user.getExpenditure(Get.arguments['id']);
+      if (expenditure.id != null) {
+        price.text = expenditure.amount.toString();
+        description.text = expenditure.description.toString();
+        print(expenditure.mainImageUrl);
+        originMainImage = expenditure.mainImageUrl;
+        originSubImage = expenditure.subImageUrl;
+      }
+    }
   }
 
-  void removeImage(XFile selected) {
-    setState(() {
-      images = images.where((image) => image != selected).toList();
-    });
+  List<Widget> createImageWidget () {
+    List<Widget> list = [];
+    if (mainImage != null || originMainImage != null) {
+      list.add(BackgroundImageWithRemove(
+          image: mainImage == null ? Image.network(originMainImage!) : Image.file(File(mainImage!.path)),
+          width: 80,
+          height: 80,
+          onRemove: () => {
+            setState(() {
+              mainImage = null;
+              originMainImage = null;
+            })
+          }));
+    } else {
+      list.add(AddImageButton(
+        width: 80,
+        height: 80,
+        onAdd: () => pickImage('mainImage'),
+      ));
+    }
+    if (subImage != null || originSubImage != null) {
+      list.add(BackgroundImageWithRemove(
+          image: subImage == null ? Image.network(originSubImage!) : Image.file(File(subImage!.path)),
+          width: 80,
+          height: 80,
+          onRemove: () => {
+            setState(() {
+              subImage = null;
+              originSubImage = null;
+            })
+          }));
+    } else {
+      list.add(AddImageButton(
+        width: 80,
+        height: 80,
+        onAdd: () => pickImage('subImage'),
+      ));
+    }
+    return list;
+  }
+
+  Future<void> pickImage(String type) async {
+    final ImagePicker picker = ImagePicker();
+    XFile? image = await picker.pickImage(source: ImageSource.gallery);
+      setState(() {
+        if (type == 'mainImage') mainImage = image;
+        else if (type == 'subImage') subImage = image;
+      });
   }
 
   void submit() async {
-    Map<String, List<XFile>> imgs = {};
-    if (images.length > 0) {
-      imgs['images'] = images;
+    if (price.text == '') {
+      layout.setAlert(Alert(
+          isOpen: true, body: Text('금액을 입력해주세요', style: CTextStyles.Title3())));
+    } else if (description == '') {
+      layout.setAlert(Alert(
+          isOpen: true, body: Text('메모를 입력해주세요', style: CTextStyles.Title3())));
+    } else if (mainImage == null) {
+      layout.setAlert(Alert(
+          isOpen: true, body: Text('대표 사진을 선택해주세요', style: CTextStyles.Title3())));
+    } else {
+      layout.setIsLoading(true);
+      if (await user.uploadExpenditure(
+          id: Get.arguments?['id'],
+          price: price.text,
+          description: description.text,
+          day: day,
+          mainImage: mainImage,
+          subImage: subImage)) {
+        Get.close(0);
+      }
+      layout.setIsLoading(false);
     }
-
-    layout.setIsLoading(true);
-    if (await user.uploadExpenditure(
-        price: price.text,
-        description: description.text,
-        day: day, images: imgs)) {
-      Get.close(0);
-    }
-    layout.setIsLoading(false);
   }
 
   @override
   void initState() {
     super.initState();
+    getExpenditure();
     price.addListener(() {
       setState(() {
         size = price.text.length;
@@ -85,6 +149,7 @@ class _MyExpenseInputPageState extends State<MyExpenseInputPage> {
   @override
   void dispose() {
     super.dispose();
+    user.expenditure.value = Expenditure();
   }
 
   @override
@@ -236,23 +301,7 @@ class _MyExpenseInputPageState extends State<MyExpenseInputPage> {
                                       runSpacing: 14,
                                       alignment: WrapAlignment.start,
                                       runAlignment: WrapAlignment.start,
-                                      children: [
-                                        ...images
-                                            .map<Widget>((image) =>
-                                                BackgroundImageWithRemove(
-                                                    image: FileImage(
-                                                        File(image!.path)),
-                                                    width: 80,
-                                                    height: 80,
-                                                    onRemove: () =>
-                                                        removeImage(image)))
-                                            .toList(),
-                                        AddImageButton(
-                                          width: 80,
-                                          height: 80,
-                                          onAdd: () => pickImage(),
-                                        )
-                                      ])
+                                      children: createImageWidget())
                                 ])
                           ],
                         ))),
