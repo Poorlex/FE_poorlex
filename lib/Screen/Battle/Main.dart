@@ -13,8 +13,7 @@ import 'package:poorlex/Widget/Layout.dart';
 import 'package:poorlex/Widget/Battle/BattleFinding.dart';
 import 'package:poorlex/Widget/Battle/BattleFinished.dart';
 import 'package:poorlex/Widget/Battle/BattleParticipant.dart';
-
-import '../../Widget/Battle/BattleMoney.dart';
+import 'package:poorlex/Widget/Battle/BattleMoney.dart';
 
 class Battle extends StatefulWidget {
   Battle({super.key});

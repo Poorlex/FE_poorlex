@@ -53,8 +53,7 @@ class CButton extends StatelessWidget {
               elevation: 0.0,
               padding: padding,
               minimumSize: Size.zero,
-              tapTargetSize: MaterialTapTargetSize.shrinkWrap
-          ),
+              tapTargetSize: MaterialTapTargetSize.shrinkWrap),
           onPressed: onPressed);
     } else if (type == ButtonTypes.outlined) {
       return OutlinedButton(
@@ -63,14 +62,62 @@ class CButton extends StatelessWidget {
             padding: padding,
             elevation: 0.0,
             tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-            side: BorderSide(width: 1.0, color: disabled ? color.withOpacity(5) : color),
+            side: BorderSide(
+                width: 1.0, color: disabled ? color.withOpacity(5) : color),
             shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(radius)
-            ),
+                borderRadius: BorderRadius.circular(radius)),
           ),
           onPressed: onPressed);
     } else {
       return const Placeholder();
     }
+  }
+}
+
+class CButtonConfirm extends StatelessWidget {
+  Widget? child;
+  bool disabled;
+  void Function() onPressed = () {};
+
+  CButtonConfirm({
+    super.key,
+    this.child,
+    this.disabled = false,
+    onPressed,
+  }) {
+    this.onPressed = onPressed ?? () {};
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return CButton(
+      onPressed: onPressed,
+      child: Stack(
+        children: [
+          Positioned(
+              left: 0,
+              right: 0,
+              bottom: 0,
+              top: 0,
+              child: Container(color: CColors.yellowLight)),
+          Positioned(
+              left: 0,
+              right: 0,
+              bottom: 0,
+              top: 8,
+              child: Container(color: CColors.yellow)),
+          child ?? SizedBox.shrink(),
+          disabled
+              ? (Positioned(
+                  left: 0,
+                  right: 0,
+                  bottom: 0,
+                  top: 0,
+                  child: Container(color: CColors.black.withOpacity(0.3)),
+                ))
+              : SizedBox.shrink()
+        ],
+      ),
+    );
   }
 }

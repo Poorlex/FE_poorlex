@@ -29,7 +29,7 @@ class _MyProfileState extends State<MyProfile> {
   bool isReady = false;
   bool isReadyName = true;
 
-  onChange() {
+  checkIsReady() {
     setState(() {
       bool tmp = true;
       if (checkRegex('nickname', name.text.trim())) {
@@ -50,7 +50,10 @@ class _MyProfileState extends State<MyProfile> {
         message = '이름을 확인해주세요';
       else
         message = '소개를 확인해주세요';
-      layout.setAlert(Alert(isOpen: true, body: Text(message, style: CTextStyles.Headline(color: CColors.gray50))));
+      layout.setAlert(Alert(
+          isOpen: true,
+          body: Text(message,
+              style: CTextStyles.Headline(color: CColors.gray50))));
     } else {
       layout.setIsLoading(true);
       if (await user.patchProfile(
@@ -66,8 +69,9 @@ class _MyProfileState extends State<MyProfile> {
     super.initState();
     name.text = user.userInfo.value.nickname ?? '';
     description.text = user.userInfo.value.description ?? '';
-    name.addListener(onChange);
-    description.addListener(onChange);
+    checkIsReady();
+    name.addListener(checkIsReady);
+    description.addListener(checkIsReady);
   }
 
   @override
@@ -124,15 +128,16 @@ class _MyProfileState extends State<MyProfile> {
                         : Column(children: [
                             SizedBox(height: 6),
                             Text('영문자, 숫자와 특수기호(-, _) 포함하여 최소 2자 이상 최대 20자',
-                                style:
-                                    CTextStyles.Caption1(color: CColors.purpleLight))
+                                style: CTextStyles.Caption1(
+                                    color: CColors.purpleLight))
                           ])),
                     SizedBox(height: 30),
                     CTextField(
                         label: '내 소개',
                         maxLines: 8,
                         maxLength: 300,
-                        padding: EdgeInsets.symmetric(vertical: 12, horizontal: 14),
+                        padding:
+                            EdgeInsets.symmetric(vertical: 12, horizontal: 14),
                         isUnderline: false,
                         keyType: TextInputType.multiline,
                         backgroundColor: CColors.gray10,
@@ -148,14 +153,26 @@ class _MyProfileState extends State<MyProfile> {
           Row(
             children: [
               Expanded(
-                  child: CButton(
+                  child: CButtonConfirm(
                       disabled: !isReady,
-                      padding: EdgeInsets.symmetric(vertical: 16),
-                      type: ButtonTypes.elevated,
-                      color: CColors.yellow,
-                      child: Text(
-                        '완료',
-                        style: CTextStyles.Title3(color: CColors.black),
+                      child: Row(
+                        children: [
+                          Expanded(
+                              child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Container(
+                                padding: EdgeInsets.symmetric(vertical: 18),
+                                child: Text(
+                                  '완료',
+                                  style:
+                                      CTextStyles.Title3(color: CColors.black),
+                                ),
+                              )
+                            ],
+                          ))
+                        ],
                       ),
                       onPressed: () => submit(context)))
             ],
