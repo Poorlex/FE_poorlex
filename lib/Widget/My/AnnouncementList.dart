@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:poorlex/Controller/Layout.dart';
+import 'package:poorlex/Controller/User.dart';
 
 import 'package:poorlex/Libs/Theme.dart';
 import 'package:poorlex/Models/Common.dart';
@@ -22,6 +23,7 @@ class AnnounceMent extends StatefulWidget {
 
 class _AnnounceMentState extends State<AnnounceMent> {
   final layout = Get.find<LayoutController>();
+  final user = Get.find<UserController>();
   String version = '';
 
   getVersion() async {
@@ -29,6 +31,20 @@ class _AnnounceMentState extends State<AnnounceMent> {
     setState(() {
       version = '${packageInfo.version}(${packageInfo.buildNumber})';
     });
+  }
+
+  Future<bool> logout() async {
+    user.updateUser(null);
+    user.updateToken(null);
+    Get.toNamed('/login');
+    return true;
+  }
+
+  Future<bool> signout() async {
+    if (await user.signout()) {
+      this.logout();
+      return true;
+    } else return false;
   }
 
   @override
@@ -144,6 +160,7 @@ class _AnnounceMentState extends State<AnnounceMent> {
                 isOpen: true,
                 type: AlertType.confirm,
                 submitText: '네', cancelText: '아니요',
+                submit: () => logout(),
                 body: Text('로그아웃 하시겠습니까?',
                     style: CTextStyles.Headline(color: CColors.gray50))))),
         CButton(
@@ -166,6 +183,7 @@ class _AnnounceMentState extends State<AnnounceMent> {
             onPressed: () => layout.setAlert(Alert(
                 isOpen: true,
                 type: AlertType.confirm,
+                submit: () => signout(),
                 submitText: '네, 떠날게요', cancelText: '아니요',
                 body: Text('회원 탈퇴 시 등록된 모든 지출내역이 삭제되고, 삭제된 데이터는 복구할 수 없다네.\n\n정말 떠날텐가...?',
                     style: CTextStyles.Headline(color: CColors.gray50), softWrap: true, )))),

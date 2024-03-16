@@ -20,7 +20,7 @@ class Alert {
   late AlertType? type;
   late String? title;
   late Widget? body;
-  late bool Function()? submit;
+  late Future<bool> Function()? submit;
   late bool Function()? cancel;
   late String? submitText;
   late String? cancelText;
