@@ -34,10 +34,6 @@ class _MyExpensePageState extends State<MyExpensePage> {
     }
   }
 
-  void select(int n) {
-    print(n);
-  }
-
   @override
   void initState() {
     super.initState();
@@ -49,7 +45,6 @@ class _MyExpensePageState extends State<MyExpensePage> {
 
   @override
   Widget build(BuildContext context) {
-    print(size);
     return Scaffold(
         backgroundColor: CColors.black,
         bottomNavigationBar: BottomBar(

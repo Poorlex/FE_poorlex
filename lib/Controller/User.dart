@@ -18,6 +18,7 @@ class UserController extends GetxController {
 
   Future<bool> getUserInfo() async {
     var ui = await api.request(method: Methods.get, url: '/api/member/my-page');
+    print(ui.body);
     if (ui.success) updateUser(UserInfo.fromJson(ui.body!));
     return ui.success;
   }
@@ -124,5 +125,11 @@ class UserController extends GetxController {
       api.updateToken('');
       return false;
     }
+  }
+
+  bool getNotification() {
+    // print(this.userInfo.value.);
+    // api.request(method: Methods.get, url: '/api/member/alarms?')
+    return true;
   }
 }

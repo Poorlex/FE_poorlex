@@ -1,6 +1,9 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:poorlex/Controller/Layout.dart';
+import 'package:poorlex/Models/Common.dart';
 
 import 'package:poorlex/Widget/Common/Icon.dart';
 import 'package:poorlex/Widget/Common/BottomBar.dart';
@@ -65,7 +68,7 @@ class _MyPageState extends State<MyPage> {
                     width: 26,
                     height: 26,
                     color: CColors.whiteStr),
-                onPressed: () {},
+                onPressed: () => Get.toNamed('/my/notification'),
               )
             ],
           ),

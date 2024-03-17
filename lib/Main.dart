@@ -11,6 +11,7 @@ import 'package:poorlex/Controller/Battle.dart';
 import 'package:poorlex/Controller/Layout.dart';
 import 'package:poorlex/Controller/User.dart';
 import 'package:poorlex/Models/Login.dart';
+import 'package:poorlex/Screen/My/MyNotification.dart';
 import 'package:poorlex/Widget/Common/Webview.dart';
 
 import 'package:poorlex/Screen/Init.dart';
@@ -23,6 +24,7 @@ import 'package:poorlex/Screen/My/MyExpenseDetail.dart';
 import 'package:poorlex/Screen/My/MyOption.dart';
 import 'package:poorlex/Screen/My/Main.dart';
 import 'package:poorlex/Screen/My/MyProfile.dart';
+import 'package:poorlex/Screen/My/MyNotification.dart';
 
 import 'package:poorlex/Screen/Battle/Main.dart';
 import 'package:poorlex/Screen/Battle/BattleCreate.dart';
@@ -104,6 +106,7 @@ void main() async {
         GetPage(name: '/my/expense-input', page: () => MyExpenseInputPage(), binding: Bind()),
         GetPage(name: '/my/expense-detail', page: () => MyExpenseDetailPage(), binding: Bind()),
         GetPage(name: '/my/option', page: () => MyOption(), binding: Bind()),
+        GetPage(name: '/my/notification', page: () => MyNotification(), binding: Bind()),
         GetPage(name: '/battle', page: () => Battle(), binding: BattleBind()),
         GetPage(name: '/battle/create', page: () => BattleCreate(), binding: BattleBind())
       ]));
