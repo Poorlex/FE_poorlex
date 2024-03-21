@@ -69,7 +69,7 @@ class _MyExpenseDetailPageState extends State<MyExpenseDetailPage> {
               onPressed: () => Get.back(),
             ),
             Obx(() {
-              if (user.expenditure.value == null) return SizedBox.shrink();
+              if (user.expenditure.value == null || user.expenditure.value.id == null) return SizedBox(width: 20);
               else return Column(mainAxisAlignment: MainAxisAlignment.center, children: [
                 Text(CTimeFormat(DateTime.parse('${user.expenditure.value.date} 00:00:00').millisecondsSinceEpoch, 'yyyy.MM.dd (E)'),
                     style: CTextStyles.Caption1(color: CColors.gray50)),
@@ -98,7 +98,10 @@ class _MyExpenseDetailPageState extends State<MyExpenseDetailPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Obx(() => Text(user.expenditure.value.description!, style: CTextStyles.Body3())),
+                Obx(() {
+                  if (user.expenditure.value.description == null) return SizedBox.shrink();
+                  else return Text(user.expenditure.value.description!, style: CTextStyles.Body3());
+                }),
                 SizedBox(height: 24),
                 Obx(() {
                   if (user.expenditure.value.mainImageUrl != null) {
@@ -110,7 +113,7 @@ class _MyExpenseDetailPageState extends State<MyExpenseDetailPage> {
                         ),
                       )
                     ]);
-                  } else return SizedBox.shrink();
+                  } else return SizedBox(height: 20);
                 }),
                 SizedBox(height: 24),
                 Obx(() {
@@ -150,7 +153,10 @@ class OptionButtonModal extends StatelessWidget {
             children: [
               Expanded(
                   child: TextButton(
-                onPressed: () => Get.toNamed('/my/expense-input', arguments: { 'id': user.expenditure.value.id }),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                  Get.toNamed('/my/expense-input', arguments: { 'id': user.expenditure.value.id });
+                },
                 child:
                     Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                   Text('수정', style: CTextStyles.Headline(color: CColors.yellow))
@@ -158,7 +164,10 @@ class OptionButtonModal extends StatelessWidget {
               )),
               Expanded(
                   child: TextButton(
-                onPressed: () => print(1111),
+                onPressed: () async {
+                  await user.removeExpenditure(user.expenditure.value.id!);
+                  Get.offAllNamed('/my');
+                },
                 child:
                     Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                   Text('삭제', style: CTextStyles.Headline(color: CColors.gray30))

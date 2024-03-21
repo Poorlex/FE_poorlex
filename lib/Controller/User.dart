@@ -28,6 +28,11 @@ class UserController extends GetxController {
     return result.success;
   }
 
+  Future<bool> removeExpenditure(int id) async {
+    var e = await api.request(method: Methods.delete, url: '/api/expenditures/${id}');
+    return e.success;
+  }
+
   Future<bool> getExpenditures() async {
     var e = await api.request(method: Methods.get, url: '/api/expenditures');
     if (e.success)
@@ -63,20 +68,25 @@ class UserController extends GetxController {
     int? id,
     XFile? mainImage,
     XFile? subImage,
+    String? originMainImage,
+    String? originSubImage,
   }) async {
     Map<String, List<XFile>> files = {};
-    print(mainImage);
-    print(subImage);
+    Map<String, String> body = {
+      'amount': price,
+      'description': description,
+      'date': CTimeFormat(day, 'yyyy-MM-dd')
+    };
+
     if (mainImage != null) files['mainImage'] = [mainImage];
+    else if (originMainImage != null) body['mainImageUrl'] = originMainImage;
     if (subImage != null) files['subImage'] = [subImage];
+    else if (originSubImage != null) body['subImageUrl'] = originSubImage;
+
     var r = await api.requestMultipart(
         method: id == null ? Methods.post : Methods.put,
         url: id == null ? '/api/expenditures' : '/api/expenditures/${id}',
-        body: {
-          'amount': price,
-          'description': description,
-          'date': CTimeFormat(day, 'yyyy-MM-dd')
-        },
+        body: body,
         files: files);
     if (r.success) {
       await getUserInfo();

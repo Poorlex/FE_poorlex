@@ -117,7 +117,7 @@ class _MyExpenseInputPageState extends State<MyExpenseInputPage> {
     } else if (description == '') {
       layout.setAlert(Alert(
           isOpen: true, body: Text('메모를 입력해주세요', style: CTextStyles.Title3())));
-    } else if (mainImage == null) {
+    } else if (mainImage == null && originMainImage == null) {
       layout.setAlert(Alert(
           isOpen: true, body: Text('대표 사진을 선택해주세요', style: CTextStyles.Title3())));
     } else {
@@ -127,9 +127,11 @@ class _MyExpenseInputPageState extends State<MyExpenseInputPage> {
           price: price.text,
           description: description.text,
           day: day,
+          originMainImage: originMainImage,
+          originSubImage: originSubImage,
           mainImage: mainImage,
           subImage: subImage)) {
-        Get.close(0);
+        Get.close(2);
       }
       layout.setIsLoading(false);
     }
