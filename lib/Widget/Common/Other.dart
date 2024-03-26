@@ -13,7 +13,7 @@ class BackgroundImageWithBlack extends StatelessWidget {
       {super.key,
       required this.height,
       required this.child,
-      required this.image}); 
+      required this.image});
 
   @override
   Widget build(BuildContext context) {
@@ -98,10 +98,12 @@ class BackgroundImageWithRemove extends StatelessWidget {
 class AddImageButton extends StatelessWidget {
   double width;
   double height;
+  String? label;
   void Function() onAdd;
 
   AddImageButton(
       {super.key,
+      this.label,
       required this.width,
       required this.height,
       required this.onAdd});
@@ -110,20 +112,43 @@ class AddImageButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return CButton(
         onPressed: () => onAdd(),
-        child: Container(
-          width: width,
-          height: height,
-          color: CColors.gray20,
-          child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                CIcon(
-                    icon: 'plus',
-                    width: 20,
-                    height: 20,
-                    color: CColors.whiteStr)
-              ]),
+        child: Stack(
+          children: [
+            Container(
+              width: width,
+              height: height,
+              color: CColors.gray20,
+              child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    CIcon(
+                        icon: 'plus',
+                        width: 20,
+                        height: 20,
+                        color: CColors.whiteStr)
+                  ]),
+            ),
+            (label == null
+                ? SizedBox.shrink()
+                : Positioned(
+                    left: 0,
+                    top: 0,
+                    child: Container(
+                      width: 38,
+                      height: 16,
+                      color: CColors.yellow,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            label!,
+                            style: CTextStyles.Caption1(color: CColors.black),
+                          )
+                        ],
+                      ),
+                    ))),
+          ],
         ));
   }
 }

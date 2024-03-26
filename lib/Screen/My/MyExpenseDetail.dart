@@ -100,7 +100,7 @@ class _MyExpenseDetailPageState extends State<MyExpenseDetailPage> {
               children: [
                 Obx(() {
                   if (user.expenditure.value.description == null) return SizedBox.shrink();
-                  else return Text(user.expenditure.value.description!, style: CTextStyles.Body3());
+                  else return Text(user.expenditure.value.description!, style: CTextStyles.Body2());
                 }),
                 SizedBox(height: 24),
                 Obx(() {

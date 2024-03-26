@@ -17,11 +17,17 @@ class UserController extends GetxController {
 
   ApiController api = Get.find<ApiController>();
 
+  Future<bool> getNotification() async {
+    var ui = await api.request(method: Methods.get, url: '/api/member/alarms');
+    if (ui.success) print(ui.body);
+    return ui.success;
+  }
+
   Future<bool> updateUserAlarm(String type, bool isAllow) async {
     var ui = await api.request(method: Methods.patch,
         url: '/api/alarms/allowance',
         body: {'alarmType': type, 'allowed': isAllow});
-    if (ui.success) getUserAlarm();
+    if (ui.success) await getUserAlarm();
     return ui.success;
   }
 
@@ -160,11 +166,5 @@ class UserController extends GetxController {
       api.updateToken('');
       return false;
     }
-  }
-
-  bool getNotification() {
-    // print(this.userInfo.value.);
-    // api.request(method: Methods.get, url: '/api/member/alarms?')
-    return true;
   }
 }

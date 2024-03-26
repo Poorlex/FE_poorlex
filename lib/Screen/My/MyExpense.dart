@@ -56,7 +56,7 @@ class _MyExpensePageState extends State<MyExpensePage> {
           radius: 40.0,
           padding: EdgeInsets.symmetric(vertical: 22),
           child: CIcon(
-              icon: 'plus', width: 20, height: 20, color: CColors.blackStr),
+              icon: 'plus-big', width: 20, height: 20, color: CColors.blackStr),
           onPressed: () => Get.toNamed('/my/expense-input'),
         ),
         appBar: AppBar(
@@ -93,31 +93,76 @@ class _MyExpensePageState extends State<MyExpensePage> {
                     child: Obx(() => Wrap(
                         spacing: 18,
                         runSpacing: 18,
-                        children:
-                            (user.expenditures.value ?? []).map<Widget>((e) {
-                          return CButton(
-                            onPressed: () => Get.toNamed('/my/expense-detail', arguments: { 'id': e.id }),
-                            child: Container(
-                                width: ((size?.width ?? 0) - 50) / 2,
-                                child: e.mainImageUrl != null ? BackgroundImageWithBlack(
-                                    image: NetworkImage(e.mainImageUrl!),
-                                    height: ((size?.width ?? 0) - 50) / 2,
-                                    child: Column(
-                                        mainAxisAlignment:
-                                        MainAxisAlignment.center,
-                                        crossAxisAlignment:
+                        children: (user.expenditures.value ?? []).length == 0
+                            ? [
+                                Container(
+                                  height: 500,
+                                  width: double.infinity,
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
                                         CrossAxisAlignment.center,
-                                        children: [
-                                          Text(
-                                              CTimeFormat(DateTime.parse('${e.date} 00:00:00').millisecondsSinceEpoch, 'yyyy.MM.dd (E)'),
-                                              style: CTextStyles.Caption1(
-                                                  color: CColors.gray50)),
-                                          SizedBox(height: 13),
-                                          Text('${makeComma(e.amount!)}원',
-                                              style: CTextStyles.Headline()),
-                                        ])) : SizedBox.shrink()),
-                          );
-                        }).toList())));
+                                    children: [
+                                      Container(
+                                          width: 250,
+                                          child: Column(
+                                            children: [
+                                              Column(
+                                                children: [
+                                                  Image.asset(
+                                                    'assets/my_page/wallet_smile.png',
+                                                    width: 200,
+                                                    height: 200,
+                                                  ),
+                                                  SizedBox(height: 30),
+                                                  Text('지출 내역이 없습니다.', style: CTextStyles.Title2(color: CColors.gray40),)
+                                                ],
+                                              )
+                                            ],
+                                          )
+                                      )
+                                    ],
+                                  ),
+                                )
+                              ]
+                            : ((user.expenditures.value ?? []).map<Widget>((e) {
+                                return CButton(
+                                  onPressed: () => Get.toNamed(
+                                      '/my/expense-detail',
+                                      arguments: {'id': e.id}),
+                                  child: Container(
+                                      width: ((size?.width ?? 0) - 50) / 2,
+                                      child: e.mainImageUrl != null
+                                          ? BackgroundImageWithBlack(
+                                              image:
+                                                  NetworkImage(e.mainImageUrl!),
+                                              height:
+                                                  ((size?.width ?? 0) - 50) / 2,
+                                              child: Column(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.center,
+                                                  children: [
+                                                    Text(
+                                                        CTimeFormat(
+                                                            DateTime.parse(
+                                                                    '${e.date} 00:00:00')
+                                                                .millisecondsSinceEpoch,
+                                                            'yyyy.MM.dd (E)'),
+                                                        style: CTextStyles
+                                                            .Caption1(
+                                                                color: CColors
+                                                                    .gray50)),
+                                                    SizedBox(height: 13),
+                                                    Text(
+                                                        '${makeComma(e.amount!)}원',
+                                                        style: CTextStyles
+                                                            .Headline()),
+                                                  ]))
+                                          : SizedBox.shrink()),
+                                );
+                              }).toList()))));
               }, childCount: 1)),
             ],
           ),

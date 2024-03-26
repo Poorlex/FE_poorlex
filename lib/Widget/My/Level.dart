@@ -115,7 +115,7 @@ class _MyPageLevelState extends State<MyPageLevel> {
                               Padding(
                                 padding: EdgeInsets.symmetric(),
                                 child: Image.asset(
-                                    width: 60,
+                                    width: 35,
                                     height: 42,
                                     'assets/my_page/icon_gold.png'),
                               ),
@@ -132,7 +132,7 @@ class _MyPageLevelState extends State<MyPageLevel> {
                               Padding(
                                 padding: EdgeInsets.all(0),
                                 child: Image.asset(
-                                    width: 60,
+                                    width: 35,
                                     height: 42,
                                     'assets/my_page/icon_silver.png'),
                               ),
@@ -149,7 +149,7 @@ class _MyPageLevelState extends State<MyPageLevel> {
                               Padding(
                                   padding: EdgeInsets.all(0),
                                   child: Image.asset(
-                                      width: 60,
+                                      width: 35,
                                       height: 42,
                                       'assets/my_page/icon_cooper.png')),
                               Obx(

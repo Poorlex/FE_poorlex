@@ -85,6 +85,13 @@ class CIcon extends StatelessWidget {
           <path fill-rule="evenodd" clip-rule="evenodd" d="M13.8 3.23535H12V12.2354H3V14.0354H12V23.2354H13.8V14.0354H23V12.2354H13.8V3.23535Z" fill="white"/>
         </svg>
       ''', width: w?.toDouble(), height: h?.toDouble());
+    } else if (icon == 'plus-big') {
+      return SvgPicture.string('''
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="0.384766" y="9.03857" width="19.2308" height="2.40385" fill="${color}"/>
+        <rect x="10.9619" y="0.384766" width="19.2308" height="2.40385" transform="rotate(90 10.9619 0.384766)" fill="${color}"/>
+      </svg>
+      ''', width: w?.toDouble(), height: h?.toDouble());
     } else if (icon == 'setting') {
       return SvgPicture.string('''
         <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26" fill="none">

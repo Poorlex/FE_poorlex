@@ -126,6 +126,10 @@ class ApiController extends GetxController {
         else
           b = body;
       }
+
+      print(url);
+      print(b);
+
       switch (method) {
         case Methods.get:
           rs = await http.get(
@@ -171,7 +175,6 @@ class ApiController extends GetxController {
       } else
         rsb = utf8.decode(rs.bodyBytes);
 
-      print(url);
       print(rs.statusCode);
 
       if (rs.statusCode < 300) {

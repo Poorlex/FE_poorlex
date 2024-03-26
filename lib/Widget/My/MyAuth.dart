@@ -94,6 +94,7 @@ class _MyPageMyAuthState extends State<MyPageMyAuth> {
       CButton(
         key: containerKey,
         type: ButtonTypes.outlined,
+        color: CColors.yellow.withOpacity(0.6),
         child: Padding(
           padding: EdgeInsets.symmetric(vertical: 14),
           child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [

@@ -10,12 +10,14 @@ import 'package:poorlex/Models/Common.dart';
 
 class CAlert extends StatelessWidget {
   final layout = Get.find<LayoutController>();
-  CAlert({ super.key });
 
-  Future alertClose (Function? callback) async {
+  CAlert({super.key});
+
+  Future alertClose(Function? callback) async {
     if (callback != null) {
       if (await callback()) layout.setAlert(Alert(isOpen: false));
-    } else layout.setAlert(Alert(isOpen: false));
+    } else
+      layout.setAlert(Alert(isOpen: false));
   }
 
   @override
@@ -30,41 +32,45 @@ class CAlert extends StatelessWidget {
                   fit: StackFit.loose,
                   children: [
                     Positioned(
-                      width: 400,
+                      width: 343,
                       height: 200,
                       child: Container(
                           color: CColors.gray10,
                           child: Column(children: [
                             Expanded(
                                 child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Expanded(
-                                        child: Container(
-                                            padding: EdgeInsets.symmetric(horizontal: 20),
-                                            child: layout.alert.value.body!
-                                        )
-                                    )
-                                  ],
-                                )),
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Container(
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 16),
+                                    child: layout.alert.value.body!)
+                              ],
+                            )),
                             Row(children: [
-                              layout.alert.value.type == AlertType.confirm ? Expanded(
-                                  flex: 1,
-                                  child: CButton(
-                                      onPressed: () => alertClose(layout.alert.value.cancel),
-                                      padding: EdgeInsets.symmetric(vertical: 20),
-                                      type: ButtonTypes.elevated,
-                                      color: CColors.yellow,
-                                      child: Text(
-                                        layout.alert.value.cancelText!,
-                                        style: CTextStyles.Headline(
-                                            color: CColors.black),
-                                      ))) : SizedBox.shrink(),
+                              layout.alert.value.type == AlertType.confirm
+                                  ? Expanded(
+                                      flex: 1,
+                                      child: CButton(
+                                          onPressed: () => alertClose(
+                                              layout.alert.value.cancel),
+                                          padding: EdgeInsets.symmetric(
+                                              vertical: 20),
+                                          type: ButtonTypes.elevated,
+                                          color: CColors.yellow,
+                                          child: Text(
+                                            layout.alert.value.cancelText!,
+                                            style: CTextStyles.Headline(
+                                                color: CColors.black),
+                                          )))
+                                  : SizedBox.shrink(),
                               Expanded(
                                   flex: 1,
                                   child: CButton(
-                                      onPressed: () => alertClose(layout.alert.value.submit),
-                                      padding: EdgeInsets.symmetric(vertical: 20),
+                                      onPressed: () =>
+                                          alertClose(layout.alert.value.submit),
+                                      padding:
+                                          EdgeInsets.symmetric(vertical: 20),
                                       type: ButtonTypes.elevated,
                                       color: CColors.gray20,
                                       child: Text(
@@ -77,7 +83,8 @@ class CAlert extends StatelessWidget {
                     )
                   ],
                 )));
-      } else return SizedBox.shrink();
+      } else
+        return SizedBox.shrink();
     });
   }
 }

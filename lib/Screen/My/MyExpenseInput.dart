@@ -60,21 +60,24 @@ class _MyExpenseInputPageState extends State<MyExpenseInputPage> {
     }
   }
 
-  List<Widget> createImageWidget () {
+  List<Widget> createImageWidget() {
     List<Widget> list = [];
     if (mainImage != null || originMainImage != null) {
       list.add(BackgroundImageWithRemove(
-          image: mainImage == null ? Image.network(originMainImage!) : Image.file(File(mainImage!.path)),
+          image: mainImage == null
+              ? Image.network(originMainImage!)
+              : Image.file(File(mainImage!.path)),
           width: 80,
           height: 80,
           onRemove: () => {
-            setState(() {
-              mainImage = null;
-              originMainImage = null;
-            })
-          }));
+                setState(() {
+                  mainImage = null;
+                  originMainImage = null;
+                })
+              }));
     } else {
       list.add(AddImageButton(
+        label: '대표',
         width: 80,
         height: 80,
         onAdd: () => pickImage('mainImage'),
@@ -82,15 +85,17 @@ class _MyExpenseInputPageState extends State<MyExpenseInputPage> {
     }
     if (subImage != null || originSubImage != null) {
       list.add(BackgroundImageWithRemove(
-          image: subImage == null ? Image.network(originSubImage!) : Image.file(File(subImage!.path)),
+          image: subImage == null
+              ? Image.network(originSubImage!)
+              : Image.file(File(subImage!.path)),
           width: 80,
           height: 80,
           onRemove: () => {
-            setState(() {
-              subImage = null;
-              originSubImage = null;
-            })
-          }));
+                setState(() {
+                  subImage = null;
+                  originSubImage = null;
+                })
+              }));
     } else {
       list.add(AddImageButton(
         width: 80,
@@ -104,10 +109,11 @@ class _MyExpenseInputPageState extends State<MyExpenseInputPage> {
   Future<void> pickImage(String type) async {
     final ImagePicker picker = ImagePicker();
     XFile? image = await picker.pickImage(source: ImageSource.gallery);
-      setState(() {
-        if (type == 'mainImage') mainImage = image;
-        else if (type == 'subImage') subImage = image;
-      });
+    setState(() {
+      if (type == 'mainImage')
+        mainImage = image;
+      else if (type == 'subImage') subImage = image;
+    });
   }
 
   void submit() async {
@@ -119,7 +125,8 @@ class _MyExpenseInputPageState extends State<MyExpenseInputPage> {
           isOpen: true, body: Text('메모를 입력해주세요', style: CTextStyles.Title3())));
     } else if (mainImage == null && originMainImage == null) {
       layout.setAlert(Alert(
-          isOpen: true, body: Text('대표 사진을 선택해주세요', style: CTextStyles.Title3())));
+          isOpen: true,
+          body: Text('대표 사진을 선택해주세요', style: CTextStyles.Title3())));
     } else {
       layout.setIsLoading(true);
       if (await user.uploadExpenditure(
@@ -222,32 +229,36 @@ class _MyExpenseInputPageState extends State<MyExpenseInputPage> {
                             ),
                             SizedBox(height: 46),
                             Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
-                                  Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      children: [
-                                        Container(
-                                          width: 80,
-                                          child: Text('지출 일자',
-                                              style: CTextStyles.Body2(
-                                                  color: CColors.gray50)),
-                                        ),
-                                        SizedBox(width: 30),
-                                        Text(CTimeFormat(day, 'yyyy.MM.dd (E)'),
-                                            style: CTextStyles.Body2()),
-                                      ]),
-                                  Picker(
-                                      current: day,
-                                      type: 'DAY',
-                                      select: selectDay,
-                                      child: CIcon(
-                                          icon: 'arrow-circle-down',
-                                          width: 16,
-                                          height: 16,
-                                          color: CColors.yellowStr)),
+                                  Container(
+                                    width: 80,
+                                    child: Text('지출 일자',
+                                        style: CTextStyles.Body2(
+                                            color: CColors.gray50)),
+                                  ),
+                                  SizedBox(width: 30),
+                                  Expanded(
+                                      child: Picker(
+                                          current: day,
+                                          type: 'DAY',
+                                          select: selectDay,
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            crossAxisAlignment: CrossAxisAlignment.center,
+                                            children: [
+                                              Text(
+                                                  CTimeFormat(
+                                                      day, 'yyyy.MM.dd (E)'),
+                                                  style: CTextStyles.Body2()),
+                                              CIcon(
+                                                  icon: 'arrow-game-right',
+                                                  width: 22,
+                                                  height: 22,
+                                                  color: CColors.gray40Str)
+                                            ],
+                                          )))
                                 ]),
                             SizedBox(height: 10),
                             Container(height: 1, color: CColors.gray20),
@@ -284,17 +295,6 @@ class _MyExpenseInputPageState extends State<MyExpenseInputPage> {
                                         Text('인증 사진',
                                             style: CTextStyles.Body2(
                                                 color: CColors.gray50)),
-                                        IconButton(
-                                          icon: CIcon(
-                                              icon: 'arrow-circle-down',
-                                              width: 16,
-                                              height: 16,
-                                              color: CColors.yellowStr),
-                                          style: IconButton.styleFrom(
-                                              padding: EdgeInsets.zero,
-                                              minimumSize: Size.zero),
-                                          onPressed: () {},
-                                        ),
                                       ]),
                                   SizedBox(height: 30),
                                   Wrap(
