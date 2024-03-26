@@ -13,23 +13,39 @@ class UserController extends GetxController {
   final userToken = UserToken().obs;
   final expenditure = Expenditure().obs;
   final expenditures = <Expenditure>[].obs;
+  final alarmAllows = AlarmAllows().obs;
 
   ApiController api = Get.find<ApiController>();
 
+  Future<bool> updateUserAlarm(String type, bool isAllow) async {
+    var ui = await api.request(method: Methods.patch,
+        url: '/api/alarms/allowance',
+        body: {'alarmType': type, 'allowed': isAllow});
+    if (ui.success) getUserAlarm();
+    return ui.success;
+  }
+
+  Future<bool> getUserAlarm() async {
+    var ui = await api.request(
+        method: Methods.get, url: '/api/alarms/allowance');
+    if (ui.success) updateAlarmAllows(AlarmAllows.fromJson(ui.body!));
+    return ui.success;
+  }
+
   Future<bool> getUserInfo() async {
     var ui = await api.request(method: Methods.get, url: '/api/member/my-page');
-    print(ui.body);
     if (ui.success) updateUser(UserInfo.fromJson(ui.body!));
     return ui.success;
   }
 
   Future<bool> signout() async {
-    var result = await api.request(method: Methods.delete, url: 'api/memeber');
+    var result = await api.request(method: Methods.delete, url: '/api/memeber');
     return result.success;
   }
 
   Future<bool> removeExpenditure(int id) async {
-    var e = await api.request(method: Methods.delete, url: '/api/expenditures/${id}');
+    var e = await api.request(
+        method: Methods.delete, url: '/api/expenditures/${id}');
     return e.success;
   }
 
@@ -43,12 +59,14 @@ class UserController extends GetxController {
   }
 
   Future<Expenditure> getExpenditure(int id) async {
-    var e = await api.request(method: Methods.get, url: '/api/expenditures/${id}');
+    var e = await api.request(
+        method: Methods.get, url: '/api/expenditures/${id}');
     if (e.success) {
       expenditure.value = Expenditure.fromJson(e.body);
       update();
       return expenditure.value;
-    } else return Expenditure();
+    } else
+      return Expenditure();
   }
 
   Future<bool> patchProfile(
@@ -78,9 +96,11 @@ class UserController extends GetxController {
       'date': CTimeFormat(day, 'yyyy-MM-dd')
     };
 
-    if (mainImage != null) files['mainImage'] = [mainImage];
+    if (mainImage != null)
+      files['mainImage'] = [mainImage];
     else if (originMainImage != null) body['mainImageUrl'] = originMainImage;
-    if (subImage != null) files['subImage'] = [subImage];
+    if (subImage != null)
+      files['subImage'] = [subImage];
     else if (originSubImage != null) body['subImageUrl'] = originSubImage;
 
     var r = await api.requestMultipart(
@@ -93,6 +113,11 @@ class UserController extends GetxController {
       await getExpenditures();
     }
     return r.success;
+  }
+
+  void updateAlarmAllows(AlarmAllows allows) {
+    alarmAllows.value = allows;
+    update();
   }
 
   void updateExpenditures(List<Expenditure> list) {

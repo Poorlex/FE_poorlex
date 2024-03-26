@@ -1,8 +1,14 @@
+import 'package:flutter/material.dart';
+
 import 'package:get/get.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:poorlex/Controller/Layout.dart';
+import 'package:poorlex/Models/Common.dart';
+
+import 'package:poorlex/Libs/Theme.dart';
 
 enum Methods { get, post, put, delete, patch }
 
@@ -18,6 +24,7 @@ class HTTPResult<T> {
 }
 
 class ApiController extends GetxController {
+  final layout = Get.find<LayoutController>();
   final token = ''.obs;
 
   void updateToken(String token) {
@@ -165,9 +172,17 @@ class ApiController extends GetxController {
         rsb = utf8.decode(rs.bodyBytes);
 
       print(url);
-      print(rs.body);
+      print(rs.statusCode);
 
-      return HTTPResult(success: true, body: rsb);
+      if (rs.statusCode < 300) {
+        print(rs.body);
+        return HTTPResult(success: true, body: rsb);
+      } else {
+        layout.setAlert(Alert(
+            isOpen: true,
+            body: Text(rsb['message'], style: CTextStyles.Title3())));
+        return HTTPResult(success: false, error: rsb);
+      }
     } catch (error) {
       // setToast();
       print('error start');

@@ -127,7 +127,7 @@ class _MyProfileState extends State<MyProfile> {
                         ? SizedBox.shrink()
                         : Column(children: [
                             SizedBox(height: 6),
-                            Text('영문자, 숫자와 특수기호(-, _) 포함하여 최소 2자 이상 최대 20자',
+                            Text('2 ~ 15자 이내로 입력해주세요',
                                 style: CTextStyles.Caption1(
                                     color: CColors.purpleLight))
                           ])),
@@ -135,7 +135,7 @@ class _MyProfileState extends State<MyProfile> {
                     CTextField(
                         label: '내 소개',
                         maxLines: 8,
-                        maxLength: 300,
+                        maxLength: 45,
                         padding:
                             EdgeInsets.symmetric(vertical: 12, horizontal: 14),
                         isUnderline: false,

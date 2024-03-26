@@ -1,3 +1,5 @@
+enum AlarmTypes { EXPENDITURE_REQUEST, BATTLE_STATUS, BATTLE_CHAT, FRIEND, BATTLE_INVITE }
+
 class LevelInfo {
   int level = 0;
   int point = 0;
@@ -39,6 +41,7 @@ class Expenditure {
   late String? date;
   late num? amount = 0;
   late String? description;
+  late String? imageUrl;
   late String? mainImageUrl;
   late String? subImageUrl;
 
@@ -47,6 +50,7 @@ class Expenditure {
     this.date,
     this.amount,
     this.description,
+    this.imageUrl,
     this.mainImageUrl,
     this.subImageUrl
   });
@@ -55,8 +59,42 @@ class Expenditure {
     date: j['date'],
     amount: j['amount'],
     description: j['description'],
+    imageUrl: j['imageUrl'],
     mainImageUrl: j['mainImageUrl'],
     subImageUrl: j['subImageUrl'],
+  );
+}
+
+class AlarmAllows {
+  /*
+{
+  "allowExpenditureRequestAlarm": true,
+  "allowBattleStatusAlarm": true,
+  "allowBattleChatAlarm": true,
+  "allowFriendAlarm": true,
+  "allowBattleInvitationAlarm": true
+}
+  */
+  bool? allowExpenditureRequestAlarm = false;
+  bool? allowBattleStatusAlarm = false;
+  bool? allowBattleChatAlarm = false;
+  bool? allowFriendAlarm = false;
+  bool? allowBattleInvitationAlarm = false;
+
+  AlarmAllows({
+    this.allowExpenditureRequestAlarm = false,
+    this.allowBattleStatusAlarm = false,
+    this.allowBattleChatAlarm = false,
+    this.allowFriendAlarm = false,
+    this.allowBattleInvitationAlarm = false
+  });
+
+  factory AlarmAllows.fromJson(Map<String, dynamic> data) => AlarmAllows(
+    allowExpenditureRequestAlarm: data['allowExpenditureRequestAlarm'],
+    allowBattleStatusAlarm: data['allowBattleStatusAlarm'],
+    allowBattleChatAlarm: data['allowBattleChatAlarm'],
+    allowFriendAlarm: data['allowFriendAlarm'],
+    allowBattleInvitationAlarm: data['allowBattleInvitationAlarm'],
   );
 }
 
@@ -118,7 +156,7 @@ class UserInfo {
     this.expenditures
   });
 
-  factory UserInfo.fromJson(Map<String, dynamic> data)  => UserInfo(
+  factory UserInfo.fromJson(Map<String, dynamic> data) => UserInfo(
         nickname: data['nickname'],
         description: data['description'],
         levelInfo: LevelInfo(

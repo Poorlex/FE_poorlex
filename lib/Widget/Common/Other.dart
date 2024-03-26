@@ -7,13 +7,13 @@ import 'package:poorlex/Widget/Common/Icon.dart';
 class BackgroundImageWithBlack extends StatelessWidget {
   double height;
   Widget child;
-  String image;
+  NetworkImage image;
 
   BackgroundImageWithBlack(
       {super.key,
       required this.height,
       required this.child,
-      required this.image});
+      required this.image}); 
 
   @override
   Widget build(BuildContext context) {
@@ -27,8 +27,7 @@ class BackgroundImageWithBlack extends StatelessWidget {
           child: Container(
             height: height,
             decoration: BoxDecoration(
-              image:
-                  DecorationImage(image: AssetImage(image), fit: BoxFit.cover),
+              image: DecorationImage(image: image, fit: BoxFit.cover),
             ),
           ),
         ),
@@ -72,8 +71,8 @@ class BackgroundImageWithRemove extends StatelessWidget {
               width: width,
               height: height,
               decoration: BoxDecoration(
-                  image: DecorationImage(
-                      image: image.image, fit: BoxFit.cover))),
+                  image:
+                      DecorationImage(image: image.image, fit: BoxFit.cover))),
           Positioned(
               top: 0,
               right: 0,
@@ -110,19 +109,22 @@ class AddImageButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CButton(
-      onPressed: () => onAdd(),
-      child: Container(
-        width: width,
-        height: height,
-        color: CColors.gray20,
-        child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              CIcon(
-                  icon: 'plus', width: 20, height: 20, color: CColors.whiteStr)
-            ]),
-      ));
+        onPressed: () => onAdd(),
+        child: Container(
+          width: width,
+          height: height,
+          color: CColors.gray20,
+          child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                CIcon(
+                    icon: 'plus',
+                    width: 20,
+                    height: 20,
+                    color: CColors.whiteStr)
+              ]),
+        ));
   }
 }
 

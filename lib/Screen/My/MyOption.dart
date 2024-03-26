@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:poorlex/Models/User.dart';
 import 'package:poorlex/Widget/Layout.dart';
 
 import 'package:poorlex/Libs/Theme.dart';
+import 'package:poorlex/Controller/User.dart';
 
 import 'package:poorlex/Widget/Common/Buttons.dart';
 import 'package:poorlex/Widget/Common/Icon.dart';
@@ -15,7 +17,13 @@ class MyOption extends StatefulWidget {
 }
 
 class _MyOptionState extends State<MyOption> {
-  bool light = true;
+  final user = Get.find<UserController>();
+
+  @override
+  void initState() {
+    super.initState();
+    user.getUserAlarm();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -67,12 +75,8 @@ class _MyOptionState extends State<MyOption> {
                               activeTrackColor: CColors.yellow,
                               inactiveThumbColor: CColors.gray10,
                               inactiveTrackColor: CColors.gray50,
-                              onChanged: (bool value) {
-                                setState(() {
-                                  light = value;
-                                });
-                              },
-                              value: light,
+                              onChanged: (bool value) => user.updateUserAlarm('EXPENDITURE_REQUEST', value),
+                              value: user.alarmAllows.value.allowExpenditureRequestAlarm ?? false,
                             )
                           ])),
                       Container(
@@ -94,12 +98,8 @@ class _MyOptionState extends State<MyOption> {
                               activeTrackColor: CColors.yellow,
                               inactiveThumbColor: CColors.gray10,
                               inactiveTrackColor: CColors.gray50,
-                              onChanged: (bool value) {
-                                setState(() {
-                                  light = value;
-                                });
-                              },
-                              value: light,
+                              onChanged: (bool value) => user.updateUserAlarm('BATTLE_STATUS', value),
+                              value: user.alarmAllows.value.allowBattleStatusAlarm ?? false,
                             )
                           ])),
                       Container(
@@ -121,12 +121,8 @@ class _MyOptionState extends State<MyOption> {
                               activeTrackColor: CColors.yellow,
                               inactiveThumbColor: CColors.gray10,
                               inactiveTrackColor: CColors.gray50,
-                              onChanged: (bool value) {
-                                setState(() {
-                                  light = value;
-                                });
-                              },
-                              value: light,
+                              onChanged: (bool value) => user.updateUserAlarm('BATTLE_CHAT', value),
+                              value: user.alarmAllows.value.allowBattleChatAlarm ?? false,
                             )
                           ])),
                       Container(
@@ -148,12 +144,8 @@ class _MyOptionState extends State<MyOption> {
                               activeTrackColor: CColors.yellow,
                               inactiveThumbColor: CColors.gray10,
                               inactiveTrackColor: CColors.gray50,
-                              onChanged: (bool value) {
-                                setState(() {
-                                  light = value;
-                                });
-                              },
-                              value: light,
+                              onChanged: (bool value) => user.updateUserAlarm('FRIEND', value),
+                              value: user.alarmAllows.value.allowFriendAlarm ?? false,
                             )
                           ])),
                       Container(
@@ -175,12 +167,8 @@ class _MyOptionState extends State<MyOption> {
                               activeTrackColor: CColors.yellow,
                               inactiveThumbColor: CColors.gray10,
                               inactiveTrackColor: CColors.gray50,
-                              onChanged: (bool value) {
-                                setState(() {
-                                  light = value;
-                                });
-                              },
-                              value: light,
+                              onChanged: (bool value) => user.updateUserAlarm('BATTLE_INVITE', value),
+                              value: user.alarmAllows.value.allowBattleInvitationAlarm ?? false,
                             )
                           ]))
                     ])))));

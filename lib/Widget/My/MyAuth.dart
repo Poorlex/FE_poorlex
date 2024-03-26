@@ -71,8 +71,8 @@ class _MyPageMyAuthState extends State<MyPageMyAuth> {
                         onPressed: () => Get.toNamed('/my/expense-detail', arguments: { 'id': e.id }),
                         child: Container(
                             width: ((size?.width ?? 36) - 18) / 2,
-                            child: BackgroundImageWithBlack(
-                                image: 'assets/sample/sample2.png',
+                            child: e.imageUrl != null ? BackgroundImageWithBlack(
+                                image: NetworkImage(e.imageUrl!),
                                 height: ((size?.width ?? 36) - 18) / 2,
                                 child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
@@ -85,7 +85,7 @@ class _MyPageMyAuthState extends State<MyPageMyAuth> {
                                       SizedBox(height: 13),
                                       Text('${makeComma(e.amount!)}원',
                                           style: CTextStyles.Headline()),
-                                    ]))),
+                                    ])) : SizedBox.shrink()),
                       )
                       : SizedBox.shrink();
                 }).toList())))

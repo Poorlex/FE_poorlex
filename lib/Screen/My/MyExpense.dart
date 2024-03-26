@@ -99,8 +99,8 @@ class _MyExpensePageState extends State<MyExpensePage> {
                             onPressed: () => Get.toNamed('/my/expense-detail', arguments: { 'id': e.id }),
                             child: Container(
                                 width: ((size?.width ?? 0) - 50) / 2,
-                                child: BackgroundImageWithBlack(
-                                    image: 'assets/sample/sample2.png',
+                                child: e.mainImageUrl != null ? BackgroundImageWithBlack(
+                                    image: NetworkImage(e.mainImageUrl!),
                                     height: ((size?.width ?? 0) - 50) / 2,
                                     child: Column(
                                         mainAxisAlignment:
@@ -115,7 +115,7 @@ class _MyExpensePageState extends State<MyExpensePage> {
                                           SizedBox(height: 13),
                                           Text('${makeComma(e.amount!)}원',
                                               style: CTextStyles.Headline()),
-                                        ]))),
+                                        ])) : SizedBox.shrink()),
                           );
                         }).toList())));
               }, childCount: 1)),

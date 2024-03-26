@@ -34,18 +34,18 @@ import 'package:poorlex/Screen/Main/Main.dart';
 class Bind extends Bindings {
   @override
   void dependencies() {
+    Get.put(LayoutController(), permanent: true);
     Get.put(ApiController(), permanent: true);
     Get.put(UserController(), permanent: true);
-    Get.put(LayoutController(), permanent: true);
   }
 }
 
 class BattleBind extends Bindings {
   @override
   void dependencies() {
+    Get.put(LayoutController(), permanent: true);
     Get.put(ApiController(), permanent: true);
     Get.put(UserController(), permanent: true);
-    Get.put(LayoutController(), permanent: true);
     Get.put(BattleController(), permanent: true);
   }
 }
