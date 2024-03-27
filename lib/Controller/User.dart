@@ -40,7 +40,9 @@ class UserController extends GetxController {
 
   Future<bool> getUserInfo() async {
     var ui = await api.request(method: Methods.get, url: '/api/member/my-page');
-    if (ui.success) updateUser(UserInfo.fromJson(ui.body!));
+    if (ui.success) {
+      updateUser(UserInfo.fromJson(ui.body!));
+    }
     return ui.success;
   }
 
@@ -141,6 +143,7 @@ class UserController extends GetxController {
         val?.friendTotalCount = user.friendTotalCount;
         val?.friends = user.friends;
         val?.expenditures = user.expenditures;
+        val?.expenditureTotalCount = user.expenditureTotalCount;
       });
     } else {
       userInfo.update((val) {

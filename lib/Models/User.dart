@@ -156,25 +156,30 @@ class UserInfo {
     this.expenditures
   });
 
-  factory UserInfo.fromJson(Map<String, dynamic> data) => UserInfo(
-        nickname: data['nickname'],
-        description: data['description'],
-        levelInfo: LevelInfo(
-          level: data['levelInfo']['level'],
-          point: data['levelInfo']['point'],
-          pointLeftForLevelUp: data['levelInfo']['pointLeftForLevelUp'],
-        ),
-        battleSuccessInfo: BattleSuccessInfo(
-          totalBattleSuccessCount: data['battleSuccessInfo']['totalBattleSuccessCount'],
-          hardBattleSuccessCount: data['battleSuccessInfo']['hardBattleSuccessCount'],
-          normalBattleSuccessCount: data['battleSuccessInfo']['normalBattleSuccessCount'],
-          easyBattleSuccessCount: data['battleSuccessInfo']['easyBattleSuccessCount'],
-        ),
-        friendTotalCount: data['friendTotalCount'],
-        friends: (data['friends'] ?? []).map<Friend>((f) => Friend.fromJson(f)).toList(),
-        expenditureTotalCount: data['expenditureTotalCount'],
-        expenditures: (data['expenditures'] ?? []).map<Expenditure>((f) => Expenditure.fromJson(f)).toList()
-    );
+  factory UserInfo.fromJson(Map<String, dynamic> data) {
+    return UserInfo(
+          nickname: data['nickname'],
+          description: data['description'],
+          levelInfo: LevelInfo(
+            level: data['levelInfo']['level'],
+            point: data['levelInfo']['point'],
+            pointLeftForLevelUp: data['levelInfo']['pointLeftForLevelUp'],
+          ),
+          battleSuccessInfo: BattleSuccessInfo(
+            totalBattleSuccessCount: data['battleSuccessInfo']['totalBattleSuccessCount'],
+            hardBattleSuccessCount: data['battleSuccessInfo']['hardBattleSuccessCount'],
+            normalBattleSuccessCount: data['battleSuccessInfo']['normalBattleSuccessCount'],
+            easyBattleSuccessCount: data['battleSuccessInfo']['easyBattleSuccessCount'],
+          ),
+          friendTotalCount: data['friendTotalCount'],
+          friends: (data['friends'] ?? [])
+              .map<Friend>((f) => Friend.fromJson(f))
+              .toList(),
+          expenditureTotalCount: int.parse(data['expenditureTotalCount'].toString()),
+          expenditures: (data['expenditures'] ?? []).map<Expenditure>((f) =>
+              Expenditure.fromJson(f)).toList()
+      );
+  }
 }
 
 class UserToken {

@@ -51,8 +51,8 @@ class _MyPageMyAuthState extends State<MyPageMyAuth> {
           Text('내 지출', style: CTextStyles.Headline()),
           SizedBox(width: 10),
           Obx(
-            () => Text(user.userInfo.value.friendTotalCount.toString(),
-                style: CTextStyles.Headline(color: CColors.purpleLight)),
+            () =>Text(user.userInfo.value.expenditureTotalCount.toString(),
+                  style: CTextStyles.Headline(color: CColors.purpleLight)),
           )
         ],
       ),

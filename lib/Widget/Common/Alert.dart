@@ -40,11 +40,12 @@ class CAlert extends StatelessWidget {
                             Expanded(
                                 child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Container(
-                                    padding:
-                                        EdgeInsets.symmetric(horizontal: 16),
-                                    child: layout.alert.value.body!)
+                              children: [Expanded(child:
+                              Container(
+                                  padding:
+                                  EdgeInsets.symmetric(horizontal: 16),
+                                  child: layout.alert.value.body!)
+                              )
                               ],
                             )),
                             Row(children: [

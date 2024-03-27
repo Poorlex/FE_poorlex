@@ -70,14 +70,14 @@ class _MyOptionState extends State<MyOption> {
                                         color: CColors.gray41)),
                               ],
                             )),
-                            Switch(
+                            Obx(() => Switch(
                               activeColor: CColors.white,
                               activeTrackColor: CColors.yellow,
                               inactiveThumbColor: CColors.gray10,
                               inactiveTrackColor: CColors.gray50,
                               onChanged: (bool value) => user.updateUserAlarm('EXPENDITURE_REQUEST', value),
                               value: user.alarmAllows.value.allowExpenditureRequestAlarm ?? false,
-                            )
+                            ))
                           ])),
                       Container(
                           padding: EdgeInsets.symmetric(vertical: 16),
@@ -93,14 +93,14 @@ class _MyOptionState extends State<MyOption> {
                                             color: CColors.gray41)),
                                   ],
                                 )),
-                            Switch(
+                            Obx(() => Switch(
                               activeColor: CColors.white,
                               activeTrackColor: CColors.yellow,
                               inactiveThumbColor: CColors.gray10,
                               inactiveTrackColor: CColors.gray50,
                               onChanged: (bool value) => user.updateUserAlarm('BATTLE_STATUS', value),
                               value: user.alarmAllows.value.allowBattleStatusAlarm ?? false,
-                            )
+                            ))
                           ])),
                       Container(
                           padding: EdgeInsets.symmetric(vertical: 16),
@@ -116,14 +116,14 @@ class _MyOptionState extends State<MyOption> {
                                             color: CColors.gray41)),
                                   ],
                                 )),
-                            Switch(
+                            Obx(() => Switch(
                               activeColor: CColors.white,
                               activeTrackColor: CColors.yellow,
                               inactiveThumbColor: CColors.gray10,
                               inactiveTrackColor: CColors.gray50,
                               onChanged: (bool value) => user.updateUserAlarm('BATTLE_CHAT', value),
                               value: user.alarmAllows.value.allowBattleChatAlarm ?? false,
-                            )
+                            ))
                           ])),
                       Container(
                           padding: EdgeInsets.symmetric(vertical: 16),
@@ -139,14 +139,14 @@ class _MyOptionState extends State<MyOption> {
                                             color: CColors.gray41)),
                                   ],
                                 )),
-                            Switch(
+                            Obx(() => Switch(
                               activeColor: CColors.white,
                               activeTrackColor: CColors.yellow,
                               inactiveThumbColor: CColors.gray10,
                               inactiveTrackColor: CColors.gray50,
                               onChanged: (bool value) => user.updateUserAlarm('FRIEND', value),
                               value: user.alarmAllows.value.allowFriendAlarm ?? false,
-                            )
+                            ))
                           ])),
                       Container(
                           padding: EdgeInsets.symmetric(vertical: 16),
@@ -162,14 +162,14 @@ class _MyOptionState extends State<MyOption> {
                                             color: CColors.gray41)),
                                   ],
                                 )),
-                            Switch(
+                            Obx(() => Switch(
                               activeColor: CColors.white,
                               activeTrackColor: CColors.yellow,
                               inactiveThumbColor: CColors.gray10,
                               inactiveTrackColor: CColors.gray50,
                               onChanged: (bool value) => user.updateUserAlarm('BATTLE_INVITE', value),
                               value: user.alarmAllows.value.allowBattleInvitationAlarm ?? false,
-                            )
+                            ))
                           ]))
                     ])))));
   }
