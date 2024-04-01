@@ -260,31 +260,30 @@ class _MyExpenseInputPageState extends State<MyExpenseInputPage> {
                                             ],
                                           )))
                                 ]),
-                            SizedBox(height: 10),
-                            Container(height: 1, color: CColors.gray20),
-                            SizedBox(height: 10),
+                            SizedBox(height: 20),
                             Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Container(
-                                      width: 80,
-                                      child: Text('메모',
-                                          style: CTextStyles.Body2(
-                                              color: CColors.gray50))),
-                                  SizedBox(width: 30),
-                                  Flexible(
-                                      flex: 1,
-                                      child: CTextField(
-                                          controller: description,
-                                          placeholder: '입력하세요',
-                                          isUnderline: false,
-                                          primaryColor: CColors.yellow,
-                                          hintStyle: CTextStyles.Body2(
-                                              color: CColors.gray41)))
-                                ]),
-                            SizedBox(height: 10),
-                            Container(height: 1, color: CColors.gray20),
-                            SizedBox(height: 10),
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Text('메모',
+                                    style: CTextStyles.Body2(
+                                        color: CColors.gray50)),
+                              ],
+                            ),
+                            SizedBox(height: 8),
+                            CTextField(
+                                // label: '내 소개',
+                                maxLines: 8,
+                                maxLength: 300,
+                                padding:
+                                EdgeInsets.symmetric(vertical: 12, horizontal: 14),
+                                isUnderline: false,
+                                keyType: TextInputType.multiline,
+                                backgroundColor: CColors.gray10,
+                                textStyle: CTextStyles.Body2(),
+                                placeholder: '내용을 입력해주세요',
+                                primaryColor: CColors.yellow,
+                                controller: description),
+                            SizedBox(height: 20),
                             Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [

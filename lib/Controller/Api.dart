@@ -175,15 +175,19 @@ class ApiController extends GetxController {
       } else
         rsb = utf8.decode(rs.bodyBytes);
 
-      print(rs.statusCode);
-
       if (rs.statusCode < 300) {
-        print(rs.body);
         return HTTPResult(success: true, body: rsb);
       } else {
-        layout.setAlert(Alert(
-            isOpen: true,
-            body: Text(rsb['message'], style: CTextStyles.Title3())));
+        if (rsb['message'] == null) {
+          layout.setAlert(Alert(
+              isOpen: true,
+              body: Text('서버 에러입니다', style: CTextStyles.Title3())));
+        } else {
+          layout.setAlert(Alert(
+              isOpen: true,
+              body: Text(rsb['message'], style: CTextStyles.Title3())));
+        }
+
         return HTTPResult(success: false, error: rsb);
       }
     } catch (error) {
