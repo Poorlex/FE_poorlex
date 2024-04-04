@@ -6,6 +6,8 @@ import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:poorlex/Libs/Theme.dart';
 import 'package:poorlex/Controller/Battle.dart';
 
+import 'package:poorlex/Widget/Common/Form.dart';
+
 class BattleIndexOne extends GetView {
   const BattleIndexOne({super.key});
 
@@ -42,7 +44,7 @@ class BattleIndexOne extends GetView {
         maxLength: 12,
         decoration: InputDecoration(
           hintText: '방제목 입력 (최대 12자)',
-          hintStyle: CTextStyles.Body3(color: CColors.gray41),
+          hintStyle: CTextStyles.Title3(color: CColors.gray41),
           iconColor: CColors.yellow,
           border: UnderlineInputBorder(
             borderSide: BorderSide(color: CColors.yellow, width: 2.0),
@@ -56,7 +58,7 @@ class BattleIndexOne extends GetView {
         ),
       ),
       SizedBox(height: 20),
-      Text('배틀방 사진', style: CTextStyles.Body3(color: CColors.yellow)),
+      Text('배틀방 사진', style: CTextStyles.Body3(color: CColors.gray41)),
       SizedBox(height: 20),
       Obx(() {
         if (con.selectedImage.value != null) {
@@ -84,31 +86,19 @@ class BattleIndexOne extends GetView {
       }),
       SizedBox(height: 40),
       Text('배틀방 소개', style: CTextStyles.Body3(color: CColors.gray41)),
-      SizedBox(
-        width: double.infinity,
-        height: 150,
-        child: TextField(
+      SizedBox(height: 20),
+      CTextField(
+        // label: '내 소개',
           maxLines: 9,
-          controller: _contentController,
-          cursorColor: CColors.yellow,
-          style: CTextStyles.Title3(color: CColors.yellow),
           maxLength: 200,
-          decoration: InputDecoration(
-            hintText: '내용을 입력해주세요',
-            hintStyle: CTextStyles.Body3(color: CColors.gray41),
-            iconColor: CColors.yellow,
-            counterText: "200",
-            border: UnderlineInputBorder(
-              borderSide: BorderSide(color: CColors.black, width: 2.0),
-            ),
-            enabledBorder: UnderlineInputBorder(
-              borderSide: BorderSide(color: CColors.black, width: 2.0),
-            ),
-            focusedBorder: UnderlineInputBorder(
-              borderSide: BorderSide(color: CColors.black, width: 2.0),
-            ),
-          ),
-        ),
+          padding: EdgeInsets.symmetric(vertical: 12, horizontal: 14),
+          isUnderline: false,
+          keyType: TextInputType.multiline,
+          backgroundColor: CColors.gray10,
+          textStyle: CTextStyles.Body2(),
+          placeholder: '내용을 입력해주세요',
+          primaryColor: CColors.yellow,
+          controller: _contentController
       ),
     ]);
   }

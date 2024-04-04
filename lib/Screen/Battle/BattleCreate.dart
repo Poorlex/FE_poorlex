@@ -49,61 +49,54 @@ class _BattleCreateState extends State<BattleCreate> {
             ],
           ),
         ),
-        /*bottomNavigationBar: Container(
-        width: double.infinity,
-        height: 52,
-        child: ElevatedButton(
-          child: Obx(() => Text(battle.battleMakingIndex().BattleIndex == 4 ? '시작' : '다음', style: CTextStyles.Body3(color: CColors.black))),
-          style: ButtonStyle(backgroundColor: MaterialStateProperty.all(CColors.yellow)),
-          onPressed: () {
-            battle.changeBattleMakingIndex();
-          },
-        ),
-      ),*/
         backgroundColor: CColors.black,
         body: Layout(
             child: Column(
-          children: [
-            Expanded(
-                child: SingleChildScrollView(
-              child: Container(
-                padding: EdgeInsets.fromLTRB(16, 0, 16, 0),
-                child: Column(
-                  children: [
-                    SizedBox(height: 26),
-                    BattleProcess(),
-                    SizedBox(height: 18),
-                    Obx(() => Container(
-                          child: (battle.battleCreate.value.current == 0
-                              ? BattleIndexZero()
-                              : battle.battleCreate.value.current == 1
-                                  ? BattleIndexOne()
-                                  : battle.battleCreate.value.current == 2
-                                      ? BattleIndexTwo()
-                                      : battle.battleCreate.value.current == 3
-                                          ? BattleIndexThree()
-                                          : BattleMakingFinished()),
-                        ))
-                  ],
-                ),
-              ),
-            )),
-            Row(
               children: [
                 Expanded(
-                    child: CButton(
-                        padding: EdgeInsets.symmetric(vertical: 14),
-                        color: CColors.yellow,
-                        type: ButtonTypes.elevated,
-                        child: Text(
-                          '다음',
-                          style: CTextStyles.Title3(color: CColors.black),
+                    child: SingleChildScrollView(
+                      child: Container(
+                        padding: EdgeInsets.fromLTRB(16, 0, 16, 0),
+                        child: Column(
+                          children: [
+                            SizedBox(height: 26),
+                            BattleProcess(),
+                            SizedBox(height: 18),
+                            Obx(() {
+                              return Container(
+                                  child:
+                                  battle.battleCreate.value.current == 0
+                                      ? BattleIndexZero()
+                                      : battle.battleCreate.value.current ==
+                                      1
+                                      ? BattleIndexOne()
+                                      : battle.battleCreate.value.current ==
+                                      2
+                                      ? BattleIndexTwo()
+                                      : BattleMakingFinished()
+                              );
+                            })
+                          ],
                         ),
-                        onPressed: () => battle.changeCurrent(
-                            battle.battleCreate.value.current + 1)))
+                      ),
+                    )),
+                Row(
+                  children: [
+                    Expanded(
+                        child: CButton(
+                            padding: EdgeInsets.symmetric(vertical: 14),
+                            color: CColors.yellow,
+                            type: ButtonTypes.elevated,
+                            child: Text(
+                              '다음',
+                              style: CTextStyles.Title3(color: CColors.black),
+                            ),
+                            onPressed: () =>
+                                battle.changeCurrent(
+                                    battle.battleCreate.value.current + 1)))
+                  ],
+                )
               ],
-            )
-          ],
-        )));
+            )));
   }
 }

@@ -4,6 +4,7 @@ import 'package:get/get_state_manager/get_state_manager.dart';
 
 import 'package:poorlex/Libs/Theme.dart';
 import 'package:poorlex/Controller/Battle.dart';
+import 'package:poorlex/Widget/Common/Buttons.dart';
 
 class BattleIndexTwo extends GetView<BattleController> {
   const BattleIndexTwo({super.key});
@@ -14,31 +15,16 @@ class BattleIndexTwo extends GetView<BattleController> {
 
   Widget _buildWrap(List<int> items, BattleController con, int selectedIndex) {
     return Wrap(
-      spacing: 5.0,
-      runSpacing: 2.0,
+      spacing: 16.0,
       children: items.map((item) {
         Color buttonColor = _getItemColor(item, selectedIndex);
-
-        return Padding(
-          padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
-          child: SizedBox(
-            width: 50,
-            height: 42,
-            child: OutlinedButton(
-              style: OutlinedButton.styleFrom(
-                side: BorderSide(color: buttonColor),
-                padding: EdgeInsets.zero,
-              ),
-              onPressed: () => con.indexTwoUpdate(item),
-              child: Center(
-                child: Text(
-                  '${item}명',
-                  style: CTextStyles.Body3(color: buttonColor),
-                ),
-              ),
-            ),
-          ),
-        );
+        return CButton(
+            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 14),
+            color: CColors.gray41,
+            type: ButtonTypes.outlined,
+            child:
+                Text('${item}명', style: CTextStyles.Body3(color: buttonColor)),
+            onPressed: () => con.indexTwoUpdate(item));
       }).toList(),
     );
   }
@@ -54,29 +40,23 @@ class BattleIndexTwo extends GetView<BattleController> {
           child: Row(
             children: [
               Text('몇명이 참여하나요?', style: CTextStyles.Title2()),
-              IconButton(
-                iconSize: 12, color: CColors.gray41, icon:
-                Icon(Icons.question_mark_outlined),
+              CButton(
+                child: Icon(Icons.question_mark_outlined),
                 onPressed: () {},
-              )
+              ),
             ],
           ),
         ),
         SizedBox(height: 20),
-        Text('1등하면 20점!', style: CTextStyles.Body3(color: CColors.gray41)),
+        Text('1등하면 20점!', style: CTextStyles.Body2(color: CColors.gray41)),
         SizedBox(height: 20),
-        Obx(() => SizedBox(
-            width: double.infinity,
-            height: 100,
-            child: _buildWrap(controller.oneToFive, controller,
-                controller.selectedIndexTwo.value))),
-        Text('1등하면 30점!',
-            style: CTextStyles.Body3(color: CColors.gray41)),
-        Obx(() => SizedBox(
-            width: double.infinity,
-            height: 100,
-            child: _buildWrap(controller.sixToTen, controller,
-                controller.selectedIndexTwo.value))),
+        Obx(() => _buildWrap(controller.oneToFive, controller,
+            controller.selectedIndexTwo.value)),
+        SizedBox(height: 40),
+        Text('1등하면 30점!', style: CTextStyles.Body2(color: CColors.gray41)),
+        SizedBox(height: 20),
+        Obx(() => _buildWrap(controller.sixToTen, controller,
+            controller.selectedIndexTwo.value)),
       ],
     );
   }

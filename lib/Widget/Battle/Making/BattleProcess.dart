@@ -13,7 +13,7 @@ class BattleProcess extends GetView {
 
   @override
   Widget build(BuildContext context) {
-    List<int> colors = [0, 1, 2, 3];
+    List<int> colors = [0, 1, 2];
     return Obx(() => Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: List.generate(

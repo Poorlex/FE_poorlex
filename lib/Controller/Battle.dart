@@ -18,9 +18,6 @@ class BattleController extends GetxController {
 
 
 
-  Rx<Color> EasyButtonColor = Color(0xffffd700).obs;
-  Rx<Color> MiddleButtonColor = Color(0xff999999).obs;
-  Rx<Color> HardButtonColor = Color(0xff999999).obs;
   RxList<int> BudgetList = <int>[15, 16, 17, 18, 19, 20].obs;
   Rx<int> selectedBudget = 0.obs;
   Rx<Color> budgetColor = Color(0xff999999).obs;

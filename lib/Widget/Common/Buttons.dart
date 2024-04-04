@@ -61,6 +61,7 @@ class CButton extends StatelessWidget {
           style: OutlinedButton.styleFrom(
             padding: padding,
             elevation: 0.0,
+            minimumSize: Size.zero,
             tapTargetSize: MaterialTapTargetSize.shrinkWrap,
             side: BorderSide(
                 width: 1.0, color: disabled ? color.withOpacity(5) : color),
