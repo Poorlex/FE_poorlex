@@ -47,7 +47,7 @@ class UserController extends GetxController {
   }
 
   Future<bool> signout() async {
-    var result = await api.request(method: Methods.delete, url: '/api/memeber');
+    var result = await api.request(method: Methods.delete, url: '/api/member');
     return result.success;
   }
 

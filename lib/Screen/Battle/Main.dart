@@ -77,7 +77,8 @@ class _BattleState extends State<Battle> {
             SizedBox(height: 8),
             Row(children: [
               Expanded(
-                  child: BattleMoney(current: moneyCurrent, onChange: changeMoney))
+                  child:
+                      BattleMoney(current: moneyCurrent, onChange: changeMoney))
             ]),
             SizedBox(height: 20),
             (current == 0

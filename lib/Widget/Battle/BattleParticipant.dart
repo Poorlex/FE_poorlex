@@ -80,12 +80,10 @@ class BattleParticipant extends GetView {
 
     return Column(
       children: [
-        SizedBox(height: 8),
         Expanded(
           child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
-              children: [Expanded(child: BattleContainer(dummy: dummy))]
-          ),
+              children: [Expanded(child: BattleContainer(dummy: dummy))]),
         )
       ],
     );

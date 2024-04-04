@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:poorlex/Libs/Theme.dart';
+import 'package:poorlex/Widget/Common/Icon.dart';
+import 'package:poorlex/Widget/Common/Other.dart';
 
 class FindingContainer extends GetView {
   final List<List<String>> dummy;
@@ -26,10 +28,10 @@ class FindingContainer extends GetView {
                           children: [
                             Row(
                               children: [
-                                Icon(Icons.people, color: CColors.black),
-                                SizedBox(width: 4),
+                                CIcon(icon: 'people', width: 14, height: 14),
+                                SizedBox(width: 10),
                                 Text('${data[idx][4]}/${data[idx][5]}', style: CTextStyles.Caption2()),
-                                SizedBox(width: 4),
+                                SizedBox(width: 10),
                                 Container(
                                   decoration: BoxDecoration(borderRadius: BorderRadius.circular(1), color: CColors.gray20), padding: EdgeInsets.symmetric(horizontal: 3, vertical: 1),
                                   child: Text('모집완료', style: CTextStyles.Caption2(color: CColors.gray40))
@@ -45,14 +47,18 @@ class FindingContainer extends GetView {
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       Row(
+                                        crossAxisAlignment: CrossAxisAlignment.center,
                                         children: [
-                                          Image.asset(width: 26, height: 16, 'assets/my_page/${data[idx][0]}.png'),
+                                          Image.asset(width: 30, height: 20, 'assets/my_page/${data[idx][0]}.png'),
+                                          SizedBox(width: 8,),
                                           Text('${data[idx][1]}만원', style: CTextStyles.Body3(color: CColors.yellow)),
+                                          /*
                                           SizedBox(width: 10),
                                           Container(
                                             decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), color: CColors.gray30,), padding: EdgeInsets.symmetric(horizontal: 6),
                                             child: Text('D-7', style: CTextStyles.Body3()),
                                           )
+                                           */
                                         ],
                                       ),
                                       SizedBox(height: 12),
@@ -75,7 +81,13 @@ class FindingContainer extends GetView {
                                     ],
                                   )
                                 ),
-                                Image.network(width: 90, height: 90, '${data[idx][6]}'),
+                                Container(
+                                  width: 90,
+                                  height: 90,
+                                  decoration: BoxDecoration(
+                                    image: DecorationImage(image: NetworkImage('${data[idx][6]}'), fit: BoxFit.cover),
+                                  ),
+                                ),
                               ],
                             )
                           ],

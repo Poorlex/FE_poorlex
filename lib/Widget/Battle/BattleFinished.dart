@@ -91,8 +91,7 @@ class BattleFinished extends GetView {
         Expanded(
           child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
-              children: [Expanded(child: FinishedContainer(dummy: dummy))]
-          ),
+              children: [Expanded(child: FinishedContainer(dummy: dummy))]),
         )
       ],
     );
