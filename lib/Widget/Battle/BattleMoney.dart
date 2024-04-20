@@ -47,7 +47,7 @@ class BattleMoney extends StatelessWidget {
                       padding: EdgeInsets.all(10),
                       backgroundColor: isSelected ? CColors.yellow : CColors.black,
                       side: BorderSide(width: 1.0, color: Color(isSelected ? 0xffffd600 : 0xff666666)),
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(3)),
                     ),
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
