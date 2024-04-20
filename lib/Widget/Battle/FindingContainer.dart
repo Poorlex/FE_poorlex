@@ -33,8 +33,8 @@ class FindingContainer extends GetView {
                                 Text('${data[idx][4]}/${data[idx][5]}', style: CTextStyles.Caption2()),
                                 SizedBox(width: 10),
                                 Container(
-                                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(1), color: CColors.gray20), padding: EdgeInsets.symmetric(horizontal: 3, vertical: 1),
-                                  child: Text('모집완료', style: CTextStyles.Caption2(color: CColors.gray40))
+                                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(1), color: CColors.gray20), padding: EdgeInsets.symmetric(horizontal: 3, vertical: 1),
+                                    child: Text('모집완료', style: CTextStyles.Caption2(color: CColors.gray40))
                                 ),
                               ],
                             ),
@@ -43,49 +43,51 @@ class FindingContainer extends GetView {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Expanded(
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Row(
-                                        crossAxisAlignment: CrossAxisAlignment.center,
-                                        children: [
-                                          Image.asset(width: 30, height: 20, 'assets/my_page/${data[idx][0]}.png'),
-                                          SizedBox(width: 8,),
-                                          Text('${data[idx][1]}만원', style: CTextStyles.Body3(color: CColors.yellow)),
-                                          /*
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Row(
+                                          crossAxisAlignment: CrossAxisAlignment.center,
+                                          children: [
+                                            Image.asset(width: 22, height: 14, 'assets/my_page/${data[idx][0]}.png'),
+                                            SizedBox(width: 8,),
+                                            Text('${data[idx][1]}만원', style: CTextStyles.Body3(color: CColors.yellow)),
+                                            /*
                                           SizedBox(width: 10),
                                           Container(
                                             decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), color: CColors.gray30,), padding: EdgeInsets.symmetric(horizontal: 6),
                                             child: Text('D-7', style: CTextStyles.Body3()),
                                           )
                                            */
-                                        ],
-                                      ),
-                                      SizedBox(height: 12),
-                                      Row(
-                                        children: [
-                                          Expanded(child:
+                                          ],
+                                        ),
+                                        SizedBox(height: 12),
+                                        Row(
+                                          children: [
+                                            Expanded(child:
                                             Text('${data[idx][2]}', style: CTextStyles.Body2()),
-                                          )
-                                        ],
-                                      ),
-                                      SizedBox(height: 9),
-                                      Row(
-                                        children: [
-                                          Expanded(child:
+                                            )
+                                          ],
+                                        ),
+                                        SizedBox(height: 9),
+                                        Row(
+                                          children: [
+                                            Expanded(child:
                                             Text('${data[idx][7]}', style: CTextStyles.Caption1(color: CColors.gray40))
-                                          ),
-                                          SizedBox(height: 27)
-                                        ],
-                                      )
-                                    ],
-                                  )
+                                            ),
+                                            SizedBox(height: 27)
+                                          ],
+                                        )
+                                      ],
+                                    )
                                 ),
                                 Container(
                                   width: 90,
                                   height: 90,
                                   decoration: BoxDecoration(
-                                    image: DecorationImage(image: NetworkImage('${data[idx][6]}'), fit: BoxFit.cover),
+                                    borderRadius: BorderRadius.circular(1),
+                                    image: DecorationImage(image: NetworkImage('${data[idx][6]}'), fit: BoxFit.cover,
+                                    ),
                                   ),
                                 ),
                               ],

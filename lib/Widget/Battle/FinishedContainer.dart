@@ -29,8 +29,8 @@ class FinishedContainer extends GetView {
                             Row(
                               children: [
                                 Image.asset(
-                                    width: 26,
-                                    height: 16,
+                                    width: 22,
+                                    height: 14,
                                     'assets/my_page/${data[idx][0]}.png'),
                                 SizedBox(width: 10),
                                 Text('${data[idx][1]}만원',
@@ -51,49 +51,49 @@ class FinishedContainer extends GetView {
                             SizedBox(height: 12),
                             Row(
                                 mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                MainAxisAlignment.spaceBetween,
                                 children: [
                                   Expanded(
                                       child: Column(
-                                    crossAxisAlignment:
+                                        crossAxisAlignment:
                                         CrossAxisAlignment.start,
-                                    children: [
-                                      Text('${data[idx][2]}',
-                                          style: CTextStyles.Body2()),
-                                      SizedBox(height: 9),
-                                      Text('존버 금액 : ${data[idx][3]}',
-                                          style: CTextStyles.Body2(
-                                              color: CColors.gray40)),
-                                      SizedBox(height: 27),
-                                      Row(
                                         children: [
-                                          Text('${data[idx][4]}위',
-                                              style: CTextStyles.Title1()),
-                                          Text('/${data[idx][5]}명',
-                                              style: CTextStyles.Title1()),
-                                          SizedBox(width: 20),
-                                          if (data[idx][4] == '1') ...[
-                                            Container(
-                                              decoration: BoxDecoration(
-                                                  color: CColors.yellow),
-                                              padding: EdgeInsets.symmetric(
-                                                  horizontal: 6),
-                                              child: Text('+20',
-                                                  style: CTextStyles.Title3(
-                                                      color: CColors.black)),
-                                            )
-                                          ]
+                                          Text('${data[idx][2]}',
+                                              style: CTextStyles.Body2()),
+                                          SizedBox(height: 9),
+                                          Text('존버 금액 : ${data[idx][3]}',
+                                              style: CTextStyles.Body2(
+                                                  color: CColors.gray40)),
+                                          SizedBox(height: 27),
+                                          Row(
+                                            children: [
+                                              Text('${data[idx][4]}위',
+                                                  style: CTextStyles.Title1()),
+                                              Text('/${data[idx][5]}명',
+                                                  style: CTextStyles.Title1()),
+                                              SizedBox(width: 20),
+                                              if (data[idx][4] == '1') ...[
+                                                Container(
+                                                  decoration: BoxDecoration(
+                                                      color: CColors.yellow),
+                                                  padding: EdgeInsets.symmetric(
+                                                      horizontal: 6),
+                                                  child: Text('+20',
+                                                      style: CTextStyles.Title3(
+                                                          color: CColors.black)),
+                                                )
+                                              ]
+                                            ],
+                                          )
                                         ],
-                                      )
-                                    ],
-                                  )),
+                                      )),
                                   Container(
                                     width: 90,
                                     height: 90,
                                     decoration: BoxDecoration(
                                       image: DecorationImage(
                                           image:
-                                              NetworkImage('${data[idx][6]}'),
+                                          NetworkImage('${data[idx][6]}'),
                                           fit: BoxFit.cover),
                                     ),
                                   ),

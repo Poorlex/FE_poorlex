@@ -64,31 +64,31 @@ class _BattleState extends State<Battle> {
             ])),
         body: Layout(
             child: Container(
-          padding: EdgeInsets.fromLTRB(16, 0, 16, 0),
-          child: Column(children: [
-            Row(children: [
-              Expanded(
-                  child: CTab(selected: current, list: [
-                CTabItem(label: '탐색', value: 0, onClick: (v) => tab(v)),
-                CTabItem(label: '참여중', value: 1, onClick: (v) => tab(v)),
-                CTabItem(label: '완료된', value: 2, onClick: (v) => tab(v)),
-              ]))
-            ]),
-            SizedBox(height: 8),
-            Row(children: [
-              Expanded(
-                  child:
-                      BattleMoney(current: moneyCurrent, onChange: changeMoney))
-            ]),
-            SizedBox(height: 20),
-            (current == 0
-                ? Expanded(child: BattleFinding())
-                : current == 1
+              padding: EdgeInsets.fromLTRB(16, 2, 16, 0),
+              child: Column(children: [
+                Row(children: [
+                  Expanded(
+                      child: CTab(selected: current, list: [
+                        CTabItem(label: '탐색', value: 0, onClick: (v) => tab(v)),
+                        CTabItem(label: '참여중', value: 1, onClick: (v) => tab(v)),
+                        CTabItem(label: '완료된', value: 2, onClick: (v) => tab(v)),
+                      ]))
+                ]),
+                SizedBox(height: 10),
+                Row(children: [
+                  (current != 1
+                      ? Expanded(child:BattleMoney(current: moneyCurrent, onChange: changeMoney))
+                      : SizedBox.shrink())
+                ]),
+                SizedBox(height: 20),
+                (current == 0
+                    ? Expanded(child: BattleFinding())
+                    : current == 1
                     ? Expanded(child: BattleParticipant())
                     : current == 2
-                        ? Expanded(child: BattleFinished())
-                        : SizedBox.shrink())
-          ]),
-        )));
+                    ? Expanded(child: BattleFinished())
+                    : SizedBox.shrink())
+              ]),
+            )));
   }
 }
