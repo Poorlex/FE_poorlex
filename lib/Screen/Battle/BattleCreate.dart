@@ -28,6 +28,27 @@ class _BattleCreateState extends State<BattleCreate> {
   BattleController battle = Get.find<BattleController>();
 
   @override
+  void initState() {
+    super.initState();
+    battle.changeCurrent(0);
+  }
+
+  void changePage () async {
+    print(battle.battleCreate.value.current);
+    if (battle.battleCreate.value.current == 2) {
+      print(1111);
+      if (await battle.saveBattle()) {
+        battle.changeCurrent(
+            battle.battleCreate.value.current + 1);
+      }
+    } else {
+      print(2222);
+      battle.changeCurrent(
+          battle.battleCreate.value.current + 1);
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
@@ -91,9 +112,7 @@ class _BattleCreateState extends State<BattleCreate> {
                               '다음',
                               style: CTextStyles.Title3(color: CColors.black),
                             ),
-                            onPressed: () =>
-                                battle.changeCurrent(
-                                    battle.battleCreate.value.current + 1)))
+                            onPressed: () => changePage()))
                   ],
                 )
               ],

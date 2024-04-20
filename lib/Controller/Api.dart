@@ -63,7 +63,7 @@ class ApiController extends GetxController {
       body?.forEach((key, value) {
         request.fields[key] = value;
       });
-      print(request.fields);
+
       files?.forEach((key, file) async {
         file.forEach((f) async {
           request.files.add(await http.MultipartFile.fromPath(key, f.path));
@@ -102,8 +102,7 @@ class ApiController extends GetxController {
     required Methods method,
     required String url,
     Map<String, String>? headers,
-    Map<String, dynamic>? body,
-    Map<String, http.MultipartFile>? files,
+    Map<String, dynamic>? body
   }) async {
     var b = null;
     late final rsb;

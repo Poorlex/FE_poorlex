@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'package:poorlex/Screen/Battle/Ranking.dart';
+import 'package:get/get.dart';
 
 import 'package:poorlex/Libs/Theme.dart';
 import 'package:poorlex/Widget/Common/Icon.dart';
@@ -19,6 +18,7 @@ class _BattleContainerState extends State<BattleContainer> {
 
   @override
   Widget build(BuildContext context) {
+
     return Column(children: [
       Expanded(
         child: ListView.separated(
@@ -27,9 +27,8 @@ class _BattleContainerState extends State<BattleContainer> {
             itemBuilder: (context, idx) {
               return GestureDetector(
                   onTap: () {
-                    print('index: ${idx} 의 상세페이지로 넘어갑니다.');
-                    Navigator.push(
-                        context, MaterialPageRoute(builder: (c) => Ranking()));
+                    print(11111);
+                    Get.toNamed('/battle/ranking');
                   },
                   child: Column(
                     children: [

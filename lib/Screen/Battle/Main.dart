@@ -45,6 +45,7 @@ class _BattleState extends State<Battle> {
         bottomNavigationBar: BottomBar(nowPage: 2),
         backgroundColor: CColors.black,
         appBar: AppBar(
+            automaticallyImplyLeading: false,
             backgroundColor: CColors.black,
             title: Row(children: [
               Expanded(child: Text('배틀', style: CTextStyles.Title1())),

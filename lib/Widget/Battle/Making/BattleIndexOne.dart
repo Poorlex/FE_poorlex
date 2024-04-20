@@ -8,16 +8,20 @@ import 'package:poorlex/Controller/Battle.dart';
 
 import 'package:poorlex/Widget/Common/Form.dart';
 
-class BattleIndexOne extends GetView {
-  const BattleIndexOne({super.key});
+class BattleIndexOne extends StatelessWidget {
+  BattleIndexOne({super.key});
+  BattleController battle = Get.find<BattleController>();
+  final TextEditingController title = TextEditingController();
+  final TextEditingController content = TextEditingController();
+
+  void init () {
+    title.addListener(() => battle.battleCreate.value.title = title.value.text);
+    content.addListener(() => battle.battleCreate.value.content = content.value.text);
+  }
 
   @override
   Widget build(BuildContext context) {
-    final TextEditingController _titleController = TextEditingController();
-    final TextEditingController _contentController = TextEditingController();
-
-    BattleController con = Get.put(BattleController());
-
+    init();
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       Padding(
         padding: const EdgeInsets.symmetric(vertical: 18),
@@ -38,7 +42,7 @@ class BattleIndexOne extends GetView {
       Text('배틀방 제목', style: CTextStyles.Body3(color: CColors.gray41)),
       SizedBox(height: 20),
       TextField(
-        controller: _titleController,
+        controller: title,
         cursorColor: CColors.yellow,
         style: CTextStyles.Title3(color: CColors.yellow),
         maxLength: 12,
@@ -61,17 +65,17 @@ class BattleIndexOne extends GetView {
       Text('배틀방 사진', style: CTextStyles.Body3(color: CColors.gray41)),
       SizedBox(height: 20),
       Obx(() {
-        if (con.selectedImage.value != null) {
+        if (battle.battleCreate.value.image != null) {
           return Container(
               width: 100,
               height: 100,
               child: Image.file(
-                File(con.selectedImage.value!.path),
+                File(battle.battleCreate.value.image!.path),
               ));
         } else {
           return GestureDetector(
             onTap: () {
-              con.getImage();
+              battle.getImage();
             },
             child: Container(
               height: 93,
@@ -98,7 +102,7 @@ class BattleIndexOne extends GetView {
           textStyle: CTextStyles.Body2(),
           placeholder: '내용을 입력해주세요',
           primaryColor: CColors.yellow,
-          controller: _contentController
+          controller: content
       ),
     ]);
   }

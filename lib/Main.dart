@@ -28,6 +28,7 @@ import 'package:poorlex/Screen/My/MyNotification.dart';
 
 import 'package:poorlex/Screen/Battle/Main.dart';
 import 'package:poorlex/Screen/Battle/BattleCreate.dart';
+import 'package:poorlex/Screen/Battle/BattleRanking.dart';
 
 import 'package:poorlex/Screen/Main/Main.dart';
 
@@ -108,6 +109,7 @@ void main() async {
         GetPage(name: '/my/option', page: () => MyOption(), binding: Bind()),
         GetPage(name: '/my/notification', page: () => MyNotification(), binding: Bind()),
         GetPage(name: '/battle', page: () => Battle(), binding: BattleBind()),
-        GetPage(name: '/battle/create', page: () => BattleCreate(), binding: BattleBind())
+        GetPage(name: '/battle/create', page: () => BattleCreate(), binding: BattleBind()),
+        GetPage(name: '/battle/ranking', page: () => BattleRanking(), binding: BattleBind())
       ]));
 }
