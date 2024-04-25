@@ -12,9 +12,6 @@ class BattleController extends GetxController {
   ApiController api = Get.find<ApiController>();
   final battleCreate = BattleCreateModel().obs;
   final ImagePicker _picker = ImagePicker();
-  List<int> BudgetList = [15, 16, 17, 18, 19, 20].obs;
-  List<int> oneToFive = [1, 2, 3, 4, 5].obs;
-  List<int> sixToTen = [6, 7, 8, 9, 10].obs;
 
   void changeCurrent(int c) {
     battleCreate.update((val) {
@@ -58,13 +55,13 @@ class BattleController extends GetxController {
     print({
       'name': battleCreate.value.title,
       'introduction': battleCreate.value.content,
-      'budget': battleCreate.value.budget,
+      'budget': battleCreate.value.budget * 10000,
       'maxParticipantSize': battleCreate.value.count
     });
     var ui = await api.requestMultipart(method: Methods.post, url: '/battles', body: {
       'name': battleCreate.value.title,
       'introduction': battleCreate.value.content,
-      'budget': battleCreate.value.budget,
+      'budget': battleCreate.value.budget * 10000,
       'maxParticipantSize': battleCreate.value.count
     }, files: files);
     layout.setIsLoading(false);

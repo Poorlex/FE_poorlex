@@ -99,7 +99,7 @@ class BattleIndexZero extends StatelessWidget {
         Wrap(
             spacing: 16,
             runSpacing: 12,
-            children: battle.BudgetList.map((item) {
+            children: battle.battleCreate.value.getBudgetList().map((item) {
               return CButton(
                 padding: EdgeInsets.symmetric(horizontal: 12, vertical: 13),
                 type: ButtonTypes.outlined,

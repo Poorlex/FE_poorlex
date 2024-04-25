@@ -49,13 +49,13 @@ class BattleIndexTwo extends StatelessWidget {
         SizedBox(height: 20),
         Text('1등하면 20점!', style: CTextStyles.Body2(color: CColors.gray41)),
         SizedBox(height: 20),
-        Obx(() => _buildWrap(
-            controller.oneToFive, controller.selectedIndexTwo.value)),
+        Obx(() => _buildWrap(controller.battleCreate.value.hard,
+            controller.selectedIndexTwo.value)),
         SizedBox(height: 40),
         Text('1등하면 30점!', style: CTextStyles.Body2(color: CColors.gray41)),
         SizedBox(height: 20),
-        Obx(() =>
-            _buildWrap(controller.sixToTen, controller.selectedIndexTwo.value)),
+        Obx(() => _buildWrap(controller.battleCreate.value.normal,
+            controller.selectedIndexTwo.value)),
       ],
     );
   }

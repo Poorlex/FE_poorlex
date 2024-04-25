@@ -39,7 +39,7 @@ class ApiController extends GetxController {
     Map<String, dynamic>? body,
     Map<String, List<XFile>>? files,
   }) async {
-    late final rsb;
+    late var rsb;
     late http.StreamedResponse rs;
 
     final Map<String, String> h = headers ?? {};
@@ -61,34 +61,40 @@ class ApiController extends GetxController {
         request.headers[key] = value;
       });
       body?.forEach((key, value) {
-        request.fields[key] = value;
+        if (value.runtimeType == int)
+          request.fields[key] = value.toString();
+        else
+          request.fields[key] = value;
       });
-
       files?.forEach((key, file) async {
         file.forEach((f) async {
           request.files.add(await http.MultipartFile.fromPath(key, f.path));
         });
       });
       rs = await request.send();
-
-      /*
-      if (rs.headers['content-type'] != null) {
-        if (rs.headers['content-type']!.contains('application/json')) {
-          rsb = jsonDecode(String.fromCharCodes(await rs.stream.toBytes()));
-        } else
-          // rsb = utf8.decode(rs.bodyBytes);
-      } else
-        // rsb = utf8.decode(rs.bodyBytes);
-       */
-
-      // print(rs.headers);
-      // print(rs.headers['content-type']);
-      print(rs);
       rsb = await rs.stream.bytesToString();
-      print(url);
-      print(rsb);
 
-      return HTTPResult(success: true, body: rsb);
+      if (rs.headers['content-type'] != null) {
+        if (rs.headers['content-type']!.contains('application/json'))
+          rsb = jsonDecode(rsb);
+      }
+
+      if (rs.statusCode < 300) {
+        print(rsb);
+        return HTTPResult(success: true, body: rsb);
+      } else {
+        if (rsb['message'] == null) {
+          layout.setAlert(Alert(
+              isOpen: true,
+              body: Text('서버 에러입니다', style: CTextStyles.Title3())));
+        } else {
+          layout.setAlert(Alert(
+              isOpen: true,
+              body: Text(rsb['message'], style: CTextStyles.Title3())));
+        }
+
+        return HTTPResult(success: false, error: rsb);
+      }
     } catch (error) {
       // setToast();
       print('error start');
@@ -98,12 +104,11 @@ class ApiController extends GetxController {
     }
   }
 
-  Future<HTTPResult<dynamic>> request({
-    required Methods method,
-    required String url,
-    Map<String, String>? headers,
-    Map<String, dynamic>? body
-  }) async {
+  Future<HTTPResult<dynamic>> request(
+      {required Methods method,
+      required String url,
+      Map<String, String>? headers,
+      Map<String, dynamic>? body}) async {
     var b = null;
     late final rsb;
     late http.Response rs;

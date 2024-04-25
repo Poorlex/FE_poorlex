@@ -36,13 +36,11 @@ class _BattleCreateState extends State<BattleCreate> {
   void changePage () async {
     print(battle.battleCreate.value.current);
     if (battle.battleCreate.value.current == 2) {
-      print(1111);
       if (await battle.saveBattle()) {
         battle.changeCurrent(
             battle.battleCreate.value.current + 1);
       }
     } else {
-      print(2222);
       battle.changeCurrent(
           battle.battleCreate.value.current + 1);
     }
@@ -104,16 +102,33 @@ class _BattleCreateState extends State<BattleCreate> {
                 Row(
                   children: [
                     Expanded(
-                        child: CButton(
-                            padding: EdgeInsets.symmetric(vertical: 14),
-                            color: CColors.yellow,
-                            type: ButtonTypes.elevated,
-                            child: Text(
-                              '다음',
-                              style: CTextStyles.Title3(color: CColors.black),
-                            ),
-                            onPressed: () => changePage()))
-                  ],
+                        child: Obx(() {
+                          if (battle.battleCreate.value.current == 3) {
+                            return CButton(
+                                padding: EdgeInsets.symmetric(vertical: 14),
+                                color: CColors.yellow,
+                                type: ButtonTypes.elevated,
+                                onPressed: () => Get.offAndToNamed('/battle'),
+                                child: Text(
+                                  '시작!',
+                                  style: CTextStyles.Title3(color: CColors.black),
+                                )
+                            );
+                          } else {
+                            return CButton(
+                                padding: EdgeInsets.symmetric(vertical: 14),
+                                color: CColors.yellow,
+                                type: ButtonTypes.elevated,
+                                onPressed: () => changePage(),
+                                child: Text(
+                                  '다음',
+                                  style: CTextStyles.Title3(color: CColors.black),
+                                )
+                            );
+                          }
+                        })
+                    )
+                  ]
                 )
               ],
             )));
