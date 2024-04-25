@@ -43,8 +43,8 @@ class _BattleContainerState extends State<BattleContainer> {
                               Row(
                                 children: [
                                   Image.asset(
-                                      width: 26,
-                                      height: 16,
+                                      width: 22,
+                                      height: 14,
                                       'assets/my_page/${data[idx][0]}.png'),
                                   SizedBox(width: 10),
                                   Text('${data[idx][1]}만원',
@@ -53,8 +53,8 @@ class _BattleContainerState extends State<BattleContainer> {
                                   SizedBox(width: 10),
                                   Container(
                                     decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(5),
-                                        color: CColors.gray30),
+                                        borderRadius: BorderRadius.circular(1),
+                                        color: CColors.red),
                                     padding:
                                         EdgeInsets.symmetric(horizontal: 6),
                                     child:
@@ -79,29 +79,12 @@ class _BattleContainerState extends State<BattleContainer> {
                                                   style: CTextStyles.Body2()))
                                         ],
                                       ),
-                                      SizedBox(height: 9),
+                                      SizedBox(height: 12),
                                       Text('존버 금액 : ${data[idx][3]}',
                                           style: CTextStyles.Body2(
                                               color: CColors.gray40)),
                                       SizedBox(height: 27),
-                                      Row(
-                                        children: [
-                                          Text('${data[idx][4]}위',
-                                              style: CTextStyles.Title1(
-                                                  color: CColors.purpleLight)),
-                                          Text('/${data[idx][5]}명',
-                                              style: CTextStyles.Title1()),
-                                          SizedBox(width: 20),
-                                          CIcon(
-                                              icon: 'chat',
-                                              width: 16,
-                                              height: 16),
-                                          SizedBox(width: 4),
-                                          Text('13',
-                                              style: CTextStyles.Body2(
-                                                  color: CColors.white))
-                                        ],
-                                      )
+
                                     ],
                                   )),
                                   Container(

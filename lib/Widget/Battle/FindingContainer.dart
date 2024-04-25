@@ -33,8 +33,8 @@ class FindingContainer extends GetView {
                                 Text('${data[idx][4]}/${data[idx][5]}', style: CTextStyles.Caption2()),
                                 SizedBox(width: 10),
                                 Container(
-                                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(1), color: CColors.gray20), padding: EdgeInsets.symmetric(horizontal: 3, vertical: 1),
-                                  child: Text('모집완료', style: CTextStyles.Caption2(color: CColors.gray40))
+                                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(1), color: CColors.black), padding: EdgeInsets.symmetric(horizontal: 3, vertical: 1),
+                                  child: Text('모집완료', style: CTextStyles.Caption1(color: CColors.yellow))
                                 ),
                               ],
                             ),
@@ -49,7 +49,7 @@ class FindingContainer extends GetView {
                                       Row(
                                         crossAxisAlignment: CrossAxisAlignment.center,
                                         children: [
-                                          Image.asset(width: 30, height: 20, 'assets/my_page/${data[idx][0]}.png'),
+                                          Image.asset(width: 22, height: 14, 'assets/my_page/${data[idx][0]}.png'),
                                           SizedBox(width: 8,),
                                           Text('${data[idx][1]}만원', style: CTextStyles.Body3(color: CColors.yellow)),
                                           /*
@@ -85,7 +85,9 @@ class FindingContainer extends GetView {
                                   width: 90,
                                   height: 90,
                                   decoration: BoxDecoration(
-                                    image: DecorationImage(image: NetworkImage('${data[idx][6]}'), fit: BoxFit.cover),
+                                    borderRadius: BorderRadius.circular(1),
+                                    image: DecorationImage(image: NetworkImage('${data[idx][6]}'), fit: BoxFit.cover,
+                                         ),
                                   ),
                                 ),
                               ],

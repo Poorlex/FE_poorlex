@@ -29,8 +29,8 @@ class FinishedContainer extends GetView {
                             Row(
                               children: [
                                 Image.asset(
-                                    width: 26,
-                                    height: 16,
+                                    width: 22,
+                                    height: 14,
                                     'assets/my_page/${data[idx][0]}.png'),
                                 SizedBox(width: 10),
                                 Text('${data[idx][1]}만원',

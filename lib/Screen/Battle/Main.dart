@@ -64,7 +64,7 @@ class _BattleState extends State<Battle> {
             ])),
         body: Layout(
             child: Container(
-          padding: EdgeInsets.fromLTRB(16, 0, 16, 0),
+          padding: EdgeInsets.fromLTRB(16, 2, 16, 0),
           child: Column(children: [
             Row(children: [
               Expanded(
@@ -74,11 +74,11 @@ class _BattleState extends State<Battle> {
                 CTabItem(label: '완료된', value: 2, onClick: (v) => tab(v)),
               ]))
             ]),
-            SizedBox(height: 8),
+            SizedBox(height: 10),
             Row(children: [
-              Expanded(
-                  child:
-                      BattleMoney(current: moneyCurrent, onChange: changeMoney))
+              (current == 0
+                  ? Expanded(child:BattleMoney(current: moneyCurrent, onChange: changeMoney))
+                  : SizedBox.shrink())
             ]),
             SizedBox(height: 20),
             (current == 0
