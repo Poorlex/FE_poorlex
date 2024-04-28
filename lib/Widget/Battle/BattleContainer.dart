@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'package:poorlex/Screen/Battle/Ranking.dart';
+import 'package:get/get.dart';
 
 import 'package:poorlex/Libs/Theme.dart';
 import 'package:poorlex/Widget/Common/Icon.dart';
@@ -19,6 +18,7 @@ class _BattleContainerState extends State<BattleContainer> {
 
   @override
   Widget build(BuildContext context) {
+
     return Column(children: [
       Expanded(
         child: ListView.separated(
@@ -27,9 +27,8 @@ class _BattleContainerState extends State<BattleContainer> {
             itemBuilder: (context, idx) {
               return GestureDetector(
                   onTap: () {
-                    print('index: ${idx} 의 상세페이지로 넘어갑니다.');
-                    Navigator.push(
-                        context, MaterialPageRoute(builder: (c) => Ranking()));
+                    print(11111);
+                    Get.toNamed('/battle/ranking');
                   },
                   child: Column(
                     children: [
@@ -53,26 +52,24 @@ class _BattleContainerState extends State<BattleContainer> {
                                   SizedBox(width: 10),
                                   Container(
                                     decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(1),
+                                        borderRadius: BorderRadius.circular(1), 
                                         color: CColors.red),
                                     padding:
-                                        EdgeInsets.symmetric(horizontal: 6),
+                                    EdgeInsets.symmetric(horizontal: 6),
                                     child:
-                                        Text('D-7', style: CTextStyles.Body3()),
+                                    Text('D-7', style: CTextStyles.Body3()),
                                   )
                                 ],
                               ),
                               SizedBox(height: 12),
                               Row(
                                 mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                MainAxisAlignment.spaceBetween,
                                 children: [
                                   Expanded(
                                       child: Column(
-                                    crossAxisAlignment:
+                                        crossAxisAlignment:
                                         CrossAxisAlignment.start,
-                                    children: [
-                                      Row(
                                         children: [
                                           Expanded(
                                               child: Text('${data[idx][2]}',
@@ -93,7 +90,7 @@ class _BattleContainerState extends State<BattleContainer> {
                                     decoration: BoxDecoration(
                                       image: DecorationImage(
                                           image:
-                                              NetworkImage('${data[idx][6]}'),
+                                          NetworkImage('${data[idx][6]}'),
                                           fit: BoxFit.cover),
                                     ),
                                   ),

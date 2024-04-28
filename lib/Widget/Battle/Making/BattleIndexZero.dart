@@ -6,6 +6,8 @@ import 'package:poorlex/Widget/Common/Buttons.dart';
 import 'package:poorlex/Libs/Theme.dart';
 import 'package:poorlex/Controller/Battle.dart';
 
+import 'package:poorlex/Models/Battle.dart';
+
 class BattleIndexZero extends StatelessWidget {
   BattleController battle = Get.find<BattleController>();
 
@@ -13,6 +15,8 @@ class BattleIndexZero extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var difficulty = battle.battleCreate.value.difficulty;
+    var budget = battle.battleCreate.value.budget;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -33,38 +37,56 @@ class BattleIndexZero extends StatelessWidget {
         Row(mainAxisAlignment: MainAxisAlignment.start, children: [
           CButton(
             type: ButtonTypes.outlined,
-            color: CColors.yellow,
+            color: EBattleDifficulty.easy == difficulty
+                ? CColors.yellow
+                : CColors.gray41,
             padding: EdgeInsets.symmetric(horizontal: 12, vertical: 13),
             child: Row(children: [
-              Text('쉬워요', style: CTextStyles.Body3(color: CColors.yellow)),
+              Text('쉬워요',
+                  style: CTextStyles.Body3(
+                      color: EBattleDifficulty.easy == difficulty
+                          ? CColors.yellow
+                          : CColors.gray41)),
               Image.asset(
                   width: 30, height: 22, 'assets/my_page/icon_cooper.png'),
             ]),
-            onPressed: () {},
+            onPressed: () => battle.changeDifficulty(EBattleDifficulty.easy),
           ),
           SizedBox(width: 14),
           CButton(
             type: ButtonTypes.outlined,
-            color: CColors.gray41,
+            color: EBattleDifficulty.normal == difficulty
+                ? CColors.yellow
+                : CColors.gray41,
             padding: EdgeInsets.symmetric(horizontal: 12, vertical: 13),
             child: Row(children: [
-              Text('보통이에요', style: CTextStyles.Body3(color: CColors.gray41)),
+              Text('보통이에요',
+                  style: CTextStyles.Body3(
+                      color: EBattleDifficulty.normal == difficulty
+                          ? CColors.yellow
+                          : CColors.gray41)),
               Image.asset(
                   width: 30, height: 22, 'assets/my_page/icon_silver.png'),
             ]),
-            onPressed: () {},
+            onPressed: () => battle.changeDifficulty(EBattleDifficulty.normal),
           ),
           SizedBox(width: 14),
           CButton(
             type: ButtonTypes.outlined,
-            color: CColors.gray41,
+            color: EBattleDifficulty.hard == difficulty
+                ? CColors.yellow
+                : CColors.gray41,
             padding: EdgeInsets.symmetric(horizontal: 12, vertical: 13),
             child: Row(children: [
-              Text('어려워요', style: CTextStyles.Body3(color: CColors.gray41)),
+              Text('어려워요',
+                  style: CTextStyles.Body3(
+                      color: EBattleDifficulty.hard == difficulty
+                          ? CColors.yellow
+                          : CColors.gray41)),
               Image.asset(
                   width: 30, height: 22, 'assets/my_page/icon_gold.png'),
             ]),
-            onPressed: () {},
+            onPressed: () => battle.changeDifficulty(EBattleDifficulty.hard),
           ),
         ]),
         SizedBox(height: 50),
@@ -77,21 +99,18 @@ class BattleIndexZero extends StatelessWidget {
         Wrap(
             spacing: 16,
             runSpacing: 12,
-            children: battle.BudgetList.map((item) {
-          return CButton(
-              padding: EdgeInsets.symmetric(horizontal: 12, vertical: 13),
-              type: ButtonTypes.outlined,
-              child: Text('${item}만원',
-                  style: CTextStyles.Body3(
-                      color: battle.selectedBudget == item
-                          ? CColors.yellow
-                          : CColors.gray40)),
-              color: battle.selectedBudget == item
-                  ? CColors.yellow
-                  : CColors.gray40,
-              onPressed: () {},
-            );
-        }).toList())
+            children: battle.battleCreate.value.getBudgetList().map((item) {
+              return CButton(
+                padding: EdgeInsets.symmetric(horizontal: 12, vertical: 13),
+                type: ButtonTypes.outlined,
+                child: Text('${item}만원',
+                    style: CTextStyles.Body3(
+                        color:
+                            budget == item ? CColors.yellow : CColors.gray40)),
+                color: budget == item ? CColors.yellow : CColors.gray40,
+                onPressed: () => battle.changeBudget(item),
+              );
+            }).toList())
       ],
     );
   }

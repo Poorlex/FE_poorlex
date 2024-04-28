@@ -28,6 +28,25 @@ class _BattleCreateState extends State<BattleCreate> {
   BattleController battle = Get.find<BattleController>();
 
   @override
+  void initState() {
+    super.initState();
+    battle.changeCurrent(0);
+  }
+
+  void changePage () async {
+    print(battle.battleCreate.value.current);
+    if (battle.battleCreate.value.current == 2) {
+      if (await battle.saveBattle()) {
+        battle.changeCurrent(
+            battle.battleCreate.value.current + 1);
+      }
+    } else {
+      battle.changeCurrent(
+          battle.battleCreate.value.current + 1);
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
@@ -83,18 +102,33 @@ class _BattleCreateState extends State<BattleCreate> {
                 Row(
                   children: [
                     Expanded(
-                        child: CButton(
-                            padding: EdgeInsets.symmetric(vertical: 14),
-                            color: CColors.yellow,
-                            type: ButtonTypes.elevated,
-                            child: Text(
-                              '다음',
-                              style: CTextStyles.Title3(color: CColors.black),
-                            ),
-                            onPressed: () =>
-                                battle.changeCurrent(
-                                    battle.battleCreate.value.current + 1)))
-                  ],
+                        child: Obx(() {
+                          if (battle.battleCreate.value.current == 3) {
+                            return CButton(
+                                padding: EdgeInsets.symmetric(vertical: 14),
+                                color: CColors.yellow,
+                                type: ButtonTypes.elevated,
+                                onPressed: () => Get.offAndToNamed('/battle'),
+                                child: Text(
+                                  '시작!',
+                                  style: CTextStyles.Title3(color: CColors.black),
+                                )
+                            );
+                          } else {
+                            return CButton(
+                                padding: EdgeInsets.symmetric(vertical: 14),
+                                color: CColors.yellow,
+                                type: ButtonTypes.elevated,
+                                onPressed: () => changePage(),
+                                child: Text(
+                                  '다음',
+                                  style: CTextStyles.Title3(color: CColors.black),
+                                )
+                            );
+                          }
+                        })
+                    )
+                  ]
                 )
               ],
             )));

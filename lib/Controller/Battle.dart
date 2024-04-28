@@ -1,33 +1,76 @@
-import 'dart:io';
 import 'dart:ui';
 
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:poorlex/Controller/Layout.dart';
+import 'package:poorlex/Controller/Api.dart';
 
 import 'package:poorlex/Models/Battle.dart';
 
 class BattleController extends GetxController {
+  LayoutController layout = Get.find<LayoutController>();
+  ApiController api = Get.find<ApiController>();
   final battleCreate = BattleCreateModel().obs;
+  final ImagePicker _picker = ImagePicker();
 
-  void changeCurrent (int c) {
+  void changeCurrent(int c) {
     battleCreate.update((val) {
       val?.current = c;
     });
   }
 
+  void changeDifficulty(EBattleDifficulty d) {
+    battleCreate.update((val) {
+      val?.difficulty = d;
+    });
+  }
 
+  void changeBudget(int b) {
+    battleCreate.update((val) {
+      val?.budget = b;
+    });
+  }
 
+  void changeCount(int c) {
+    battleCreate.update((val) {
+      val?.count = c;
+    });
+  }
 
-  RxList<int> BudgetList = <int>[15, 16, 17, 18, 19, 20].obs;
-  Rx<int> selectedBudget = 0.obs;
+  Future<void> getImage() async {
+    final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
+    if (image != null) {
+      battleCreate.update((val) {
+        val?.image = image;
+      });
+    }
+  }
+
+  Future<bool> saveBattle() async {
+    Map<String, List<XFile>> files = {};
+    if (battleCreate.value.image != null) {
+      files['image'] = [battleCreate.value.image!];
+    }
+    layout.setIsLoading(true);
+    print({
+      'name': battleCreate.value.title,
+      'introduction': battleCreate.value.content,
+      'budget': battleCreate.value.budget * 10000,
+      'maxParticipantSize': battleCreate.value.count
+    });
+    var ui = await api.requestMultipart(method: Methods.post, url: '/battles', body: {
+      'name': battleCreate.value.title,
+      'introduction': battleCreate.value.content,
+      'budget': battleCreate.value.budget * 10000,
+      'maxParticipantSize': battleCreate.value.count
+    }, files: files);
+    layout.setIsLoading(false);
+    return ui.success;
+  }
+
   Rx<Color> budgetColor = Color(0xff999999).obs;
-  // Image
-  final ImagePicker _picker = ImagePicker();
-  Rx<XFile?> selectedImage = Rx<XFile?>(null);
 
   // IndexTwo
-  RxList<int> oneToFive = <int>[1, 2, 3, 4, 5].obs;
-  RxList<int> sixToTen = <int>[6, 7, 8, 9, 10].obs;
   Rx<int> selectedIndexTwo = 0.obs;
   Rx<Color> indexTwoColor = Color(0xff999999).obs;
 
@@ -36,23 +79,8 @@ class BattleController extends GetxController {
   Rx<Color> indexThreeFirstColor = Color(0xff999999).obs;
   Rx<Color> indexThreeSecondColor = Color(0xff999999).obs;
 
-  void budgetUpdate(int selected) {
-    selectedBudget.value = selected;
-  }
-
   void changeBudgetColor(Color itemColor) {
     budgetColor.value = itemColor;
-  }
-
-  Future<void> getImage() async {
-    final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
-    print(image.runtimeType);
-
-    if (image != null) {
-      selectedImage.value = image;
-    } else {
-      print('No image selected.');
-    }
   }
 
   void indexTwoUpdate(int selected) {

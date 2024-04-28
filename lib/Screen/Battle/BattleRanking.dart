@@ -7,8 +7,8 @@ import 'package:poorlex/Widget/Common/BottomBar.dart';
 
 import 'package:poorlex/Controller/Battle.dart';
 
-class Ranking extends GetView {
-  const Ranking({super.key});
+class BattleRanking extends GetView {
+  const BattleRanking({super.key});
 
   @override
   Widget build(BuildContext context) {
