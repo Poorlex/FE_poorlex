@@ -1,0 +1,81 @@
+name: poorlex
+description: poorlex project
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
+
+version: 0.0.2+91
+
+environment:
+  sdk: ">=3.0.6 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  carousel_slider: ^4.2.1
+  sign_in_with_apple: ^5.0.0
+  kakao_flutter_sdk: ^1.5.0
+  intl: ^0.18.1
+  image_picker: ^1.0.4
+  cupertino_icons: ^1.0.2
+  kakao_flutter_sdk_user: ^1.5.0
+  get: ^4.6.5
+  flutter_svg: ^2.0.9
+  webview_flutter: ^4.5.0
+  flutter_dotenv: ^5.1.0
+  http: ^1.2.0
+  package_info_plus: ^5.0.1
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^2.0.0
+  hive_generator: ^2.0.1
+  build_runner: ^2.4.8
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - .env
+    - assets/coin.png
+    - assets/poorlex.png
+    - assets/img_main_login.png
+    - assets/pattern.png
+    - assets/app_bar/
+    - assets/budget_page/
+    - assets/main_page/
+    - assets/my_page/
+    - assets/ranking/
+    - assets/battle_page/
+    - assets/sample/
+    - assets/my_page/
+    - assets/budget_page/
+    - assets/goal/
+    - assets/login/
+    - assets/icons/
+    - assets/level/
+    - assets/level/profile/
+
+  fonts:
+    - family: NeoDunggeunmoPro-Regular
+      fonts:
+        - asset: assets/font/NeoDunggeunmoPro-Regular.ttf
+
+    - family: appleSDGothicNeo
+      fonts:
+        - asset: assets/font/AppleSDGothicNeoUL.ttf
+          weight: 200
+        - asset: assets/font/AppleSDGothicNeoL.ttf
+          weight: 300
+        - asset: assets/font/AppleSDGothicNeoR.ttf
+          weight: 400
+        - asset: assets/font/AppleSDGothicNeoM.ttf
+          weight: 500
+        - asset: assets/font/AppleSDGothicNeoSB.ttf
+          weight: 600
+        - asset: assets/font/AppleSDGothicNeoB.ttf
+          weight: 700
+        - asset: assets/font/AppleSDGothicNeoEB.ttf
+          weight: 900
