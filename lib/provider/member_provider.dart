@@ -11,6 +11,8 @@ class MemberProvider extends GetConnect {
   void onInit() {
     // prefix "/member" 적용
     httpClient.baseUrl = "${dotenv.get('SERVER_URL')}/member";
+
+    /// [TODO] header에 token 넣어야함.
     httpClient.addRequestModifier<Object?>((request) {
       request.headers['Authorization'] = '12345678';
       return request;
@@ -55,10 +57,7 @@ class MemberProvider extends GetConnect {
         "description": description,
       },
     );
-    if (response.statusCode == 200) {
-      return true;
-    }
-    return false;
+    return response.statusCode == 200;
   }
 
   /// [TEST] x
