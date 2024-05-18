@@ -1,6 +1,5 @@
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get_connect/connect.dart';
-import 'package:poorlex/models/user.dart';
 import 'package:poorlex/schema/member_alarm_reponse/member_alarm_response.dart';
 import 'package:poorlex/schema/my_page_response/my_page_response.dart';
 
@@ -10,7 +9,6 @@ import 'package:poorlex/schema/my_page_response/my_page_response.dart';
 class MemberProvider extends GetConnect {
   @override
   void onInit() {
-    httpClient.defaultDecoder = UserInfo.fromJson as dynamic Function(dynamic);
     // prefix "/member" 적용
     httpClient.baseUrl = "${dotenv.get('SERVER_URL')}/member";
     httpClient.addRequestModifier<Object?>((request) {
@@ -23,7 +21,14 @@ class MemberProvider extends GetConnect {
   ///
   /// 회원 알림 전체 조회
   Future<List<MemberAlarmResponse>?> getAlarms() async {
-    final response = await get<List<MemberAlarmResponse>>('/alarms');
+    final response = await get<List<MemberAlarmResponse>>(
+      '/alarms',
+      decoder: (data) {
+        return (data as List<dynamic>)
+            .map((item) => MemberAlarmResponse.fromJson(item))
+            .toList();
+      },
+    );
     return response.body;
   }
 
@@ -61,7 +66,7 @@ class MemberProvider extends GetConnect {
   ///
   /// 회원 탈퇴
   Future<bool> memberWithdrawal() async {
-    final response = await delete("");
+    final response = await delete<void>("");
     if (response.statusCode == 200) {
       return true;
     }
