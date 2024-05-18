@@ -1,20 +1,23 @@
 import 'dart:io';
 
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:get/get_connect/connect.dart';
+import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:poorlex/controller/user.dart';
 import 'package:poorlex/libs/time.dart';
 import 'package:poorlex/schema/expenditure_response/expenditure_response.dart';
 
 class ExpendituresProvider extends GetConnect {
+  final user = Get.find<UserController>();
   @override
   void onInit() {
     // prefix "/expenditures" 적용
     httpClient.baseUrl = "${dotenv.get('SERVER_URL')}/expenditures";
 
-    /// [TODO] header에 token 넣어야함.
+    /// [TODO] header에 token 잘 들어가는지 확인 필요
     httpClient.addRequestModifier<Object?>((request) {
-      request.headers['Authorization'] = '12345678';
+      final token = user.userToken().token;
+      request.headers['Authorization'] = 'Bearer $token';
       return request;
     });
   }

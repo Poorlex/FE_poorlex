@@ -1,5 +1,6 @@
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:get/get_connect/connect.dart';
+import 'package:get/get.dart';
+import 'package:poorlex/controller/user.dart';
 import 'package:poorlex/schema/member_alarm_reponse/member_alarm_response.dart';
 import 'package:poorlex/schema/my_page_response/my_page_response.dart';
 
@@ -7,14 +8,16 @@ import 'package:poorlex/schema/my_page_response/my_page_response.dart';
 /// - [sample connect](https://gist.github.com/eduardoflorence/b4bca2da5cfb973b9f86ecfa1b9f013a)
 /// - [docs](https://pub.dev/packages/get#getconnect)
 class MemberProvider extends GetConnect {
+  final user = Get.find<UserController>();
   @override
   void onInit() {
     // prefix "/member" 적용
     httpClient.baseUrl = "${dotenv.get('SERVER_URL')}/member";
 
-    /// [TODO] header에 token 넣어야함.
+    /// [TODO] header에 token 잘 들어가는지 확인 필요
     httpClient.addRequestModifier<Object?>((request) {
-      request.headers['Authorization'] = '12345678';
+      final token = user.userToken().token;
+      request.headers['Authorization'] = 'Bearer $token';
       return request;
     });
   }
