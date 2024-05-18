@@ -7,6 +7,22 @@ version: 0.0.2+91
 environment:
   sdk: ">=3.0.6 <4.0.0"
 
+scripts:
+  # freeze 실행
+  freezed: "flutter pub run build_runner watch --delete-conflicting-outputs"
+  # api로 build
+  build:app: flutter build app
+  # 안드로이드 배포시 사용, appbundle build
+  build:appbundle: flutter build appbundle --release
+  # ios 배포시 사용 ipa build
+  build:ipa: flutter build ipa
+  # ios, android 동시 배포시 사용
+  build:prod: "rps flutter build ipa && rps build:appbundle"
+  # 캐시 정리 후 다시 build
+  rebuild: flutter clean && flutter pub cache clean && flutter pub get && flutter build apk && flutter build ios
+  # ios pod 재설치
+  ios:pod:restored: cd ios && rm -rf Podfile.lock && pod install --repo-update && flutter clean && flutter pub get
+
 dependencies:
   flutter:
     sdk: flutter
@@ -25,6 +41,11 @@ dependencies:
   package_info_plus: ^5.0.1
   hive: ^2.2.3
   hive_flutter: ^1.1.0
+
+  # https://pub.dev/packages/freezed/install
+  freezed: ^2.5.2
+  # https://pub.dev/packages/rps
+  rps: ^0.7.0
 
 dev_dependencies:
   flutter_test:
