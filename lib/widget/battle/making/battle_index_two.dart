@@ -29,7 +29,6 @@ class BattleIndexTwo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final BattleController controller = Get.put(BattleController());
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -48,13 +47,11 @@ class BattleIndexTwo extends StatelessWidget {
         SizedBox(height: 20),
         Text('1등하면 20점!', style: CTextStyles.Body2(color: CColors.gray41)),
         SizedBox(height: 20),
-        Obx(() =>
-            _buildWrap([1, 2, 3, 4, 5], controller.selectedIndexTwo.value)),
+        Obx(() => _buildWrap([1, 2, 3, 4, 5], battle.selectedIndexTwo.value)),
         SizedBox(height: 40),
         Text('1등하면 30점!', style: CTextStyles.Body2(color: CColors.gray41)),
         SizedBox(height: 20),
-        Obx(() =>
-            _buildWrap([6, 7, 8, 9, 10], controller.selectedIndexTwo.value)),
+        Obx(() => _buildWrap([6, 7, 8, 9, 10], battle.selectedIndexTwo.value)),
       ],
     );
   }

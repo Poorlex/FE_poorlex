@@ -28,7 +28,6 @@ class BattlesProvider extends GetConnect {
     });
   }
 
-  /// [TEST] x
   /// 모든 배틀 조회 (모집중, 모집완료)
   Future<List<FindingBattleResponse>?> getAll() async {
     final response = await get(
@@ -90,7 +89,7 @@ class BattlesProvider extends GetConnect {
 
   /// [TEST] x
   /// 배틀 생성
-  Future<void> createBattles({
+  Future<bool> createBattles({
     required String name,
     required String introduction,
     required int budget,
@@ -109,8 +108,7 @@ class BattlesProvider extends GetConnect {
       "budget": budget,
       "maxParticipantSize": maxParticipantSize,
     });
-
-    print(" createBattles >> $response");
+    return response.status == 201;
   }
 
   /// [TEST] x

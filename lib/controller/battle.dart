@@ -2,17 +2,25 @@ import 'dart:ui';
 
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:poorlex/controller/image_picker_controller.dart';
 import 'package:poorlex/controller/layout.dart';
-import 'package:poorlex/controller/api.dart';
 
 import 'package:poorlex/models/battle.dart';
+import 'package:poorlex/provider/battiles_provider.dart';
+import 'package:poorlex/schema/finding_battle_response/finding_battle_response.dart';
 
 class BattleController extends GetxController {
-  LayoutController layout = Get.find<LayoutController>();
-  ApiController api = Get.find<ApiController>();
+  final BattlesProvider battlesProvider;
+  final LayoutController layout;
+  final ImagePickerController imagePickerController;
+  BattleController({
+    required this.battlesProvider,
+    required this.layout,
+    required this.imagePickerController,
+  });
   final battleCreate = BattleCreateModel().obs;
-  final ImagePicker _picker = ImagePicker();
-  final battleList = <BattleList>[].obs;
+
+  final battleList = <FindingBattleResponse>[].obs;
 
   void changeCurrent(int c) {
     battleCreate.update((val) {
@@ -39,7 +47,7 @@ class BattleController extends GetxController {
   }
 
   Future<void> getImage() async {
-    final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
+    final XFile? image = await imagePickerController.getImage();
     if (image != null) {
       battleCreate.update((val) {
         val?.image = image;
@@ -48,33 +56,23 @@ class BattleController extends GetxController {
   }
 
   Future<bool> getBattle() async {
-    var ui = await api.request(method: Methods.get, url: '/battles');
-    if (ui.success) {
-      battleList.value =
-          ui.body!.map<BattleList>((b) => BattleList.fromJson(b)).toList();
-      update();
-    }
-    return ui.success;
+    final response = await battlesProvider.getAll();
+    battleList.value = response ?? [];
+    return false;
   }
 
   Future<bool> saveBattle() async {
-    Map<String, List<XFile>> files = {};
-    if (battleCreate.value.image != null) {
-      files['image'] = [battleCreate.value.image!];
-    }
+    if (battleCreate.value.image == null) return false;
     layout.setIsLoading(true);
-    var ui = await api.requestMultipart(
-        method: Methods.post,
-        url: '/battles',
-        body: {
-          'name': battleCreate.value.title,
-          'introduction': battleCreate.value.content,
-          'budget': battleCreate.value.budget * 10000,
-          'maxParticipantSize': battleCreate.value.count
-        },
-        files: files);
+    final response = await battlesProvider.createBattles(
+      name: battleCreate.value.title,
+      introduction: battleCreate.value.content,
+      budget: battleCreate.value.budget * 10000,
+      maxParticipantSize: battleCreate.value.count,
+      image: battleCreate.value.image!,
+    );
     layout.setIsLoading(false);
-    return ui.success;
+    return response;
   }
 
   Rx<Color> budgetColor = Color(0xff999999).obs;

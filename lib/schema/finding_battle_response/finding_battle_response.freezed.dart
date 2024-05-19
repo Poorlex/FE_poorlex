@@ -29,7 +29,6 @@ mixin _$FindingBattleResponse {
   int get budget => throw _privateConstructorUsedError;
   int get currentParticipant => throw _privateConstructorUsedError;
   int get maxParticipantCount => throw _privateConstructorUsedError;
-  ParticipantRankingResponse get rankings => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -51,10 +50,7 @@ abstract class $FindingBattleResponseCopyWith<$Res> {
       String difficulty,
       int budget,
       int currentParticipant,
-      int maxParticipantCount,
-      ParticipantRankingResponse rankings});
-
-  $ParticipantRankingResponseCopyWith<$Res> get rankings;
+      int maxParticipantCount});
 }
 
 /// @nodoc
@@ -79,7 +75,6 @@ class _$FindingBattleResponseCopyWithImpl<$Res,
     Object? budget = null,
     Object? currentParticipant = null,
     Object? maxParticipantCount = null,
-    Object? rankings = null,
   }) {
     return _then(_value.copyWith(
       battleId: null == battleId
@@ -114,19 +109,7 @@ class _$FindingBattleResponseCopyWithImpl<$Res,
           ? _value.maxParticipantCount
           : maxParticipantCount // ignore: cast_nullable_to_non_nullable
               as int,
-      rankings: null == rankings
-          ? _value.rankings
-          : rankings // ignore: cast_nullable_to_non_nullable
-              as ParticipantRankingResponse,
     ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ParticipantRankingResponseCopyWith<$Res> get rankings {
-    return $ParticipantRankingResponseCopyWith<$Res>(_value.rankings, (value) {
-      return _then(_value.copyWith(rankings: value) as $Val);
-    });
   }
 }
 
@@ -147,11 +130,7 @@ abstract class _$$FindingBattleResponseImplCopyWith<$Res>
       String difficulty,
       int budget,
       int currentParticipant,
-      int maxParticipantCount,
-      ParticipantRankingResponse rankings});
-
-  @override
-  $ParticipantRankingResponseCopyWith<$Res> get rankings;
+      int maxParticipantCount});
 }
 
 /// @nodoc
@@ -174,7 +153,6 @@ class __$$FindingBattleResponseImplCopyWithImpl<$Res>
     Object? budget = null,
     Object? currentParticipant = null,
     Object? maxParticipantCount = null,
-    Object? rankings = null,
   }) {
     return _then(_$FindingBattleResponseImpl(
       battleId: null == battleId
@@ -209,10 +187,6 @@ class __$$FindingBattleResponseImplCopyWithImpl<$Res>
           ? _value.maxParticipantCount
           : maxParticipantCount // ignore: cast_nullable_to_non_nullable
               as int,
-      rankings: null == rankings
-          ? _value.rankings
-          : rankings // ignore: cast_nullable_to_non_nullable
-              as ParticipantRankingResponse,
     ));
   }
 }
@@ -228,8 +202,7 @@ class _$FindingBattleResponseImpl implements _FindingBattleResponse {
       required this.difficulty,
       required this.budget,
       required this.currentParticipant,
-      required this.maxParticipantCount,
-      required this.rankings});
+      required this.maxParticipantCount});
 
   factory _$FindingBattleResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$FindingBattleResponseImplFromJson(json);
@@ -250,12 +223,10 @@ class _$FindingBattleResponseImpl implements _FindingBattleResponse {
   final int currentParticipant;
   @override
   final int maxParticipantCount;
-  @override
-  final ParticipantRankingResponse rankings;
 
   @override
   String toString() {
-    return 'FindingBattleResponse(battleId: $battleId, name: $name, introduction: $introduction, imageUrl: $imageUrl, difficulty: $difficulty, budget: $budget, currentParticipant: $currentParticipant, maxParticipantCount: $maxParticipantCount, rankings: $rankings)';
+    return 'FindingBattleResponse(battleId: $battleId, name: $name, introduction: $introduction, imageUrl: $imageUrl, difficulty: $difficulty, budget: $budget, currentParticipant: $currentParticipant, maxParticipantCount: $maxParticipantCount)';
   }
 
   @override
@@ -276,24 +247,13 @@ class _$FindingBattleResponseImpl implements _FindingBattleResponse {
             (identical(other.currentParticipant, currentParticipant) ||
                 other.currentParticipant == currentParticipant) &&
             (identical(other.maxParticipantCount, maxParticipantCount) ||
-                other.maxParticipantCount == maxParticipantCount) &&
-            (identical(other.rankings, rankings) ||
-                other.rankings == rankings));
+                other.maxParticipantCount == maxParticipantCount));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      battleId,
-      name,
-      introduction,
-      imageUrl,
-      difficulty,
-      budget,
-      currentParticipant,
-      maxParticipantCount,
-      rankings);
+  int get hashCode => Object.hash(runtimeType, battleId, name, introduction,
+      imageUrl, difficulty, budget, currentParticipant, maxParticipantCount);
 
   @JsonKey(ignore: true)
   @override
@@ -312,16 +272,14 @@ class _$FindingBattleResponseImpl implements _FindingBattleResponse {
 
 abstract class _FindingBattleResponse implements FindingBattleResponse {
   const factory _FindingBattleResponse(
-          {required final int battleId,
-          required final String name,
-          required final String introduction,
-          required final String imageUrl,
-          required final String difficulty,
-          required final int budget,
-          required final int currentParticipant,
-          required final int maxParticipantCount,
-          required final ParticipantRankingResponse rankings}) =
-      _$FindingBattleResponseImpl;
+      {required final int battleId,
+      required final String name,
+      required final String introduction,
+      required final String imageUrl,
+      required final String difficulty,
+      required final int budget,
+      required final int currentParticipant,
+      required final int maxParticipantCount}) = _$FindingBattleResponseImpl;
 
   factory _FindingBattleResponse.fromJson(Map<String, dynamic> json) =
       _$FindingBattleResponseImpl.fromJson;
@@ -342,8 +300,6 @@ abstract class _FindingBattleResponse implements FindingBattleResponse {
   int get currentParticipant;
   @override
   int get maxParticipantCount;
-  @override
-  ParticipantRankingResponse get rankings;
   @override
   @JsonKey(ignore: true)
   _$$FindingBattleResponseImplCopyWith<_$FindingBattleResponseImpl>

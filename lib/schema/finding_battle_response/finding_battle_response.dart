@@ -1,5 +1,4 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:poorlex/schema/participant_ranking_response/participant_ranking_response.dart';
 
 part 'finding_battle_response.freezed.dart';
 part 'finding_battle_response.g.dart';
@@ -15,7 +14,6 @@ class FindingBattleResponse with _$FindingBattleResponse {
     required int budget,
     required int currentParticipant,
     required int maxParticipantCount,
-    required ParticipantRankingResponse rankings,
   }) = _FindingBattleResponse;
 
   factory FindingBattleResponse.fromJson(Map<String, dynamic> json) =>

@@ -17,8 +17,6 @@ _$FindingBattleResponseImpl _$$FindingBattleResponseImplFromJson(
       budget: (json['budget'] as num).toInt(),
       currentParticipant: (json['currentParticipant'] as num).toInt(),
       maxParticipantCount: (json['maxParticipantCount'] as num).toInt(),
-      rankings: ParticipantRankingResponse.fromJson(
-          json['rankings'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$FindingBattleResponseImplToJson(
@@ -32,5 +30,4 @@ Map<String, dynamic> _$$FindingBattleResponseImplToJson(
       'budget': instance.budget,
       'currentParticipant': instance.currentParticipant,
       'maxParticipantCount': instance.maxParticipantCount,
-      'rankings': instance.rankings,
     };
