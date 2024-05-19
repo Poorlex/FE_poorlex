@@ -13,6 +13,8 @@ import 'package:poorlex/screen/my/my_page.dart';
 import 'package:poorlex/widget/common/bottom_bar.dart';
 
 class GNBLayout extends StatefulWidget {
+  /// [MEMO] 유니크한 key를 설정하고 id는 1입니다.
+  static int globalKey = 1;
   const GNBLayout({Key? key}) : super(key: key);
 
   @override
@@ -31,8 +33,7 @@ class _GNBLayoutState extends State<GNBLayout> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Navigator(
-        /// [MEMO] 유니크한 key를 설정하고 id는 1입니다.
-        key: Get.nestedKey(1),
+        key: Get.nestedKey(GNBLayout.globalKey),
         initialRoute: '/',
         onGenerateRoute: (settings) {
           switch (settings.name) {

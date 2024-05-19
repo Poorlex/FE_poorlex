@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:poorlex/libs/theme.dart';
+import 'package:poorlex/widget/gnb_layout.dart';
 
 class BarItem {
   String key;
@@ -76,8 +77,7 @@ class _BottomBarState extends State<BottomBar> {
     if (widget.nowPage == index) return;
     widget.changePageIndex(index);
 
-    /// [MEMO] 유니크한 layout를 설정하고 id는 1입니다.
-    Get.offAllNamed(barItems[index].route, id: 1);
+    Get.offAllNamed(barItems[index].route, id: GNBLayout.globalKey);
   }
 
   @override
