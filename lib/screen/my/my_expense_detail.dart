@@ -2,12 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:poorlex/widget/common/icon.dart';
-import 'package:poorlex/widget/common/bottom_bar.dart';
-
 import 'package:poorlex/libs/time.dart';
 import 'package:poorlex/libs/theme.dart';
 import 'package:poorlex/libs/string.dart';
-
 import 'package:poorlex/controller/user.dart';
 
 class MyExpenseDetailPage extends StatefulWidget {
@@ -50,7 +47,6 @@ class _MyExpenseDetailPageState extends State<MyExpenseDetailPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: CColors.black,
-      bottomNavigationBar: BottomBar(nowPage: 4),
       appBar: AppBar(
         automaticallyImplyLeading: false,
         backgroundColor: CColors.black,

@@ -8,7 +8,6 @@ import 'package:poorlex/widget/battle/battle_finding.dart';
 import 'package:poorlex/widget/battle/battle_finished.dart';
 import 'package:poorlex/widget/battle/battle_money.dart';
 import 'package:poorlex/widget/battle/battle_participant.dart';
-import 'package:poorlex/widget/common/bottom_bar.dart';
 import 'package:poorlex/widget/common/buttons.dart';
 import 'package:poorlex/widget/common/icon.dart';
 
@@ -45,7 +44,6 @@ class _BattleState extends State<Battle> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        bottomNavigationBar: BottomBar(nowPage: 2),
         backgroundColor: CColors.black,
         appBar: AppBar(
             automaticallyImplyLeading: false,

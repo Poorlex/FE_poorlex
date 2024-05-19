@@ -5,7 +5,6 @@ import 'package:poorlex/libs/theme.dart';
 import 'package:poorlex/widget/common/tab.dart';
 import 'package:poorlex/screen/goal/create_goal.dart';
 import 'package:poorlex/widget/goal/goal_list.dart';
-import 'package:poorlex/widget/common/bottom_bar.dart';
 
 class GoalPage extends StatefulWidget {
   const GoalPage({super.key});
@@ -20,7 +19,6 @@ class _GoalPageState extends State<GoalPage> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: CColors.black,
-      bottomNavigationBar: BottomBar(nowPage: 1),
       body: Container(
           child: SafeArea(
               child: CustomScrollView(slivers: [

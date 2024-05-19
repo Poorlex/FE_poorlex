@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:poorlex/widget/nav_bar.dart';
-import 'package:poorlex/widget/common/bottom_bar.dart';
 import 'package:poorlex/widget/main/carousel_slider.dart';
 import 'package:poorlex/widget/main/main_bottom.dart';
 import 'package:poorlex/widget/main/show_modal.dart';
@@ -35,6 +34,7 @@ class _MainState extends State<Main> {
     showModalBottomSheet(
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
+      useRootNavigator: true,
       context: context,
       builder: (context) {
         return Wrap(children: [
@@ -63,7 +63,6 @@ class _MainState extends State<Main> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: NavBar(),
-      bottomNavigationBar: BottomBar(nowPage: 0),
       body: Column(
         children: [
           // Transform.translate(offset: Offset(2, 2), child: BudgetTooltip()),

@@ -5,7 +5,6 @@ import 'package:poorlex/widget/common/buttons.dart';
 
 import 'package:poorlex/widget/common/icon.dart';
 import 'package:poorlex/widget/common/other.dart';
-import 'package:poorlex/widget/common/bottom_bar.dart';
 
 import 'package:poorlex/libs/theme.dart';
 import 'package:poorlex/libs/time.dart';
@@ -47,9 +46,6 @@ class _MyExpensePageState extends State<MyExpensePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: CColors.black,
-      bottomNavigationBar: BottomBar(
-        nowPage: 4,
-      ),
       floatingActionButton: CButton(
         type: ButtonTypes.elevated,
         color: CColors.yellow,
