@@ -7,9 +7,11 @@ import 'package:get/get.dart';
 
 import 'package:poorlex/controller/api.dart';
 import 'package:poorlex/controller/battle.dart';
+import 'package:poorlex/controller/image_picker_controller.dart';
 import 'package:poorlex/controller/layout.dart';
 import 'package:poorlex/controller/user.dart';
 import 'package:poorlex/models/login.dart';
+import 'package:poorlex/provider/battles_provider.dart';
 import 'package:poorlex/screen/my/my_notification.dart';
 import 'package:poorlex/screen/my/my_page.dart';
 import 'package:poorlex/widget/common/webview.dart';
@@ -35,16 +37,22 @@ class Bind extends Bindings {
     Get.put(LayoutController(), permanent: true);
     Get.put(ApiController(), permanent: true);
     Get.put(UserController(), permanent: true);
+    Get.put(ImagePickerController(), permanent: true);
   }
 }
 
 class BattleBind extends Bindings {
   @override
   void dependencies() {
-    Get.put(LayoutController(), permanent: true);
-    Get.put(ApiController(), permanent: true);
-    Get.put(UserController(), permanent: true);
-    Get.put(BattleController(), permanent: true);
+    Get.lazyPut(() => BattlesProvider());
+    Get.put(
+      BattleController(
+        battlesProvider: Get.find(),
+        layout: Get.find(),
+        imagePickerController: Get.find(),
+      ),
+      permanent: true,
+    );
   }
 }
 
@@ -60,6 +68,7 @@ void main() async {
 
   runApp(
     GetMaterialApp(
+      initialBinding: Bind(),
       initialRoute: '/',
       theme: ThemeData(
         fontFamily: 'NeoDunggeunmoPro-Regular',
@@ -70,20 +79,21 @@ void main() async {
         shadowColor: Colors.transparent,
       ),
       getPages: [
-        GetPage(name: '/', page: () => Init(), binding: Bind()),
-        GetPage(name: '/main', page: () => Main(), binding: Bind()),
-        GetPage(name: '/login', page: () => Login(), binding: Bind()),
+        GetPage(name: '/', page: () => Init()),
+        GetPage(name: '/main', page: () => Main()),
+        GetPage(name: '/login', page: () => Login()),
         GetPage(
           name: '/login/apple',
           page: () => LoginModal(loginType: LoginTypes.apple),
-          binding: Bind(),
         ),
         GetPage(
           name: '/login/kakao',
           page: () => LoginModal(loginType: LoginTypes.kakao),
-          binding: Bind(),
         ),
-        GetPage(name: '/my', page: () => MyPage(), binding: Bind()),
+        GetPage(
+          name: '/my',
+          page: () => MyPage(),
+        ),
         GetPage(
           name: '/my/notice',
           page: () => CustomWebview(
@@ -111,35 +121,29 @@ void main() async {
         GetPage(
           name: '/my/expenditure',
           page: () => MyExpensePage(),
-          binding: Bind(),
         ),
         GetPage(name: '/my/profile', page: () => MyProfile(), binding: Bind()),
         GetPage(
           name: '/my/expense-input',
           page: () => MyExpenseInputPage(),
-          binding: Bind(),
         ),
         GetPage(
           name: '/my/expense-detail',
           page: () => MyExpenseDetailPage(),
-          binding: Bind(),
         ),
-        GetPage(name: '/my/option', page: () => MyOption(), binding: Bind()),
+        GetPage(name: '/my/option', page: () => MyOption()),
         GetPage(
           name: '/my/notification',
           page: () => MyNotification(),
-          binding: Bind(),
         ),
         GetPage(name: '/battle', page: () => Battle(), binding: BattleBind()),
         GetPage(
           name: '/battle/create',
           page: () => BattleCreate(),
-          binding: BattleBind(),
         ),
         GetPage(
           name: '/battle/ranking',
           page: () => BattleRanking(),
-          binding: BattleBind(),
         )
       ],
     ),

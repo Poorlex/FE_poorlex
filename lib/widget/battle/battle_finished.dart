@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'package:poorlex/controller/battle.dart';
-
 import 'package:poorlex/widget/battle/finished_container.dart';
 
 class BattleFinished extends GetView {
@@ -82,8 +80,6 @@ class BattleFinished extends GetView {
         '3주전'
       ],
     ];
-
-    BattleController _battle = BattleController();
 
     return Column(
       children: [

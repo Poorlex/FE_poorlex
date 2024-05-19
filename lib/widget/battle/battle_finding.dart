@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:poorlex/controller/battle.dart';
 
 import 'package:poorlex/libs/theme.dart';
-import 'package:poorlex/models/battle.dart';
+import 'package:poorlex/schema/finding_battle_response/finding_battle_response.dart';
 import 'package:poorlex/widget/battle/battle_money_bar.dart';
 import 'package:poorlex/widget/common/icon.dart';
 
@@ -28,9 +28,8 @@ class _BattleFindingState extends State<BattleFinding> {
   @override
   Widget build(BuildContext context) {
     return Obx(() {
-      List<BattleList> list = battle.battleList
+      List<FindingBattleResponse> list = battle.battleList
           .where((element) => element.budget ~/ 10000 <= widget.smallerThan)
-          .cast<BattleList>()
           .toList();
       return ListView.separated(
           // shrinkWrap: true,
@@ -101,7 +100,7 @@ class _BattleFindingState extends State<BattleFinding> {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(1),
                             image: DecorationImage(
-                              image: NetworkImage(list[index].imageUrl!),
+                              image: NetworkImage(list[index].imageUrl),
                               fit: BoxFit.cover,
                             ),
                           ),

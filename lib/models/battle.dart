@@ -42,35 +42,3 @@ class BattleCreateModel {
     this.image = null,
   });
 }
-
-// {battleId: 3, name: snssjs, imageUrl: https://poorlex-images.s3.ap-northeast-2.amazonaws.com/battles/f793119a-ce64-48ad-8af5-bb8c03ded44f, difficulty: NORMAL, budget: 110000, currentParticipant: 1, maxParticipantCount: 10}
-class BattleList {
-  int battleId;
-  String name;
-  String? imageUrl;
-  String difficulty;
-  int budget;
-  int currentParticipant;
-  int maxParticipantCount;
-
-  BattleList({
-    required this.battleId,
-    required this.name,
-    this.imageUrl,
-    required this.difficulty,
-    this.budget = 0,
-    this.currentParticipant = 0,
-    this.maxParticipantCount = 0,
-  });
-
-  factory BattleList.fromJson(Map<String, dynamic> data) {
-    return BattleList(
-        battleId: data['battleId'],
-        name: data['name'],
-        imageUrl: data['imageUrl'],
-        difficulty: data['difficulty'],
-        budget: data['budget'],
-        currentParticipant: data['currentParticipant'],
-        maxParticipantCount: data['maxParticipantCount']);
-  }
-}

@@ -6,12 +6,11 @@ import 'package:poorlex/widget/battle/making/finding_friends.dart';
 import 'package:poorlex/libs/theme.dart';
 import 'package:poorlex/controller/battle.dart';
 
-class BattleIndexThree extends GetView {
+class BattleIndexThree extends GetView<BattleController> {
   const BattleIndexThree({super.key});
 
   @override
   Widget build(BuildContext context) {
-    BattleController con = Get.put(BattleController());
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -30,17 +29,18 @@ class BattleIndexThree extends GetView {
             ),
           ),
         ),
-        Obx(() {
-          return Padding(
-            padding: EdgeInsets.symmetric(vertical: 100),
-            child: Center(
-              child: Column(children: [
+        Padding(
+          padding: EdgeInsets.symmetric(vertical: 100),
+          child: Center(
+            child: Column(
+              children: [
                 OutlinedButton(
                     style: OutlinedButton.styleFrom(
-                      side: BorderSide(color: con.indexThreeFirstColor.value),
+                      side: BorderSide(
+                          color: controller.indexThreeFirstColor.value),
                     ),
                     onPressed: () {
-                      con.changeIndexThreeColor(1);
+                      controller.changeIndexThreeColor(1);
                       Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -52,28 +52,32 @@ class BattleIndexThree extends GetView {
                           vertical: 18, horizontal: 75),
                       child: Text('네 초대할래요!',
                           style: CTextStyles.Title2(
-                              color: con.indexThreeFirstColor.value)),
+                              color: controller.indexThreeFirstColor.value)),
                     )),
                 SizedBox(height: 30),
                 OutlinedButton(
-                    style: OutlinedButton.styleFrom(
-                        side:
-                            BorderSide(color: con.indexThreeSecondColor.value)),
-                    onPressed: () {
-                      con.changeIndexThreeColor(2);
-                      // con.changeBattleMakingIndex();
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 18, horizontal: 46),
-                      child: Text('아니요 초대안할래요!',
-                          style: CTextStyles.Title2(
-                              color: con.indexThreeSecondColor.value)),
-                    ))
-              ]),
+                  style: OutlinedButton.styleFrom(
+                      side: BorderSide(
+                          color: controller.indexThreeSecondColor.value)),
+                  onPressed: () {
+                    controller.changeIndexThreeColor(2);
+                    // con.changeBattleMakingIndex();
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 18, horizontal: 46),
+                    child: Text(
+                      '아니요 초대안할래요!',
+                      style: CTextStyles.Title2(
+                        color: controller.indexThreeSecondColor.value,
+                      ),
+                    ),
+                  ),
+                )
+              ],
             ),
-          );
-        }),
+          ),
+        ),
       ],
     );
   }

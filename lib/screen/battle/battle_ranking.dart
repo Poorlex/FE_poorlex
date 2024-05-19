@@ -7,12 +7,11 @@ import 'package:poorlex/widget/common/bottom_bar.dart';
 
 import 'package:poorlex/Controller/Battle.dart';
 
-class BattleRanking extends GetView {
+class BattleRanking extends GetView<BattleController> {
   const BattleRanking({super.key});
 
   @override
   Widget build(BuildContext context) {
-    BattleController _battle = BattleController();
     return Scaffold(
       bottomNavigationBar: BottomBar(nowPage: 2),
       backgroundColor: Colors.black,

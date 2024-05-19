@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:poorlex/controller/image_picker_controller.dart';
 import 'package:poorlex/models/common.dart';
 
 import 'package:poorlex/models/user.dart';
@@ -106,8 +107,7 @@ class _MyExpenseInputPageState extends State<MyExpenseInputPage> {
   }
 
   Future<void> pickImage(String type) async {
-    final ImagePicker picker = ImagePicker();
-    XFile? image = await picker.pickImage(source: ImageSource.gallery);
+    XFile? image = await Get.find<ImagePickerController>().getImage();
     setState(() {
       if (type == 'mainImage')
         mainImage = image;
