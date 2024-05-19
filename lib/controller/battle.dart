@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:poorlex/controller/image_picker_controller.dart';
+import 'package:poorlex/controller/image_picker.dart';
 import 'package:poorlex/controller/layout.dart';
 
 import 'package:poorlex/models/battle.dart';

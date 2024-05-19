@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 
 import 'package:poorlex/controller/api.dart';
 import 'package:poorlex/controller/battle.dart';
-import 'package:poorlex/controller/image_picker_controller.dart';
+import 'package:poorlex/controller/image_picker.dart';
 import 'package:poorlex/controller/layout.dart';
 import 'package:poorlex/controller/user.dart';
 import 'package:poorlex/models/login.dart';
