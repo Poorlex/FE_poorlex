@@ -6,7 +6,7 @@ import 'package:poorlex/controller/image_picker_controller.dart';
 import 'package:poorlex/controller/layout.dart';
 
 import 'package:poorlex/models/battle.dart';
-import 'package:poorlex/provider/battiles_provider.dart';
+import 'package:poorlex/provider/battles_provider.dart';
 import 'package:poorlex/schema/finding_battle_response/finding_battle_response.dart';
 
 class BattleController extends GetxController {
