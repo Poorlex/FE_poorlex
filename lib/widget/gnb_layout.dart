@@ -38,7 +38,6 @@ class _GNBLayoutState extends State<GNBLayout> {
         onGenerateRoute: (settings) {
           switch (settings.name) {
             case '/main':
-              _changePageIndex(0);
               return GetPageRoute(
                 page: () => Main(),
               );
@@ -47,7 +46,6 @@ class _GNBLayoutState extends State<GNBLayout> {
                 page: () => GoalPage(),
               );
             case '/battle':
-              _changePageIndex(2);
               return GetPageRoute(
                 page: () => Battle(),
                 binding: BattleBind(),
@@ -66,7 +64,6 @@ class _GNBLayoutState extends State<GNBLayout> {
               return GetPageRoute(
                 page: () => MyExpensePage(),
               );
-
             case '/my/expense-detail':
               return GetPageRoute(
                 page: () => MyExpenseDetailPage(),
