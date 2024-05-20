@@ -33,11 +33,10 @@ dependencies:
   image_picker: ^1.0.4
   cupertino_icons: ^1.0.2
   kakao_flutter_sdk_user: ^1.5.0
-  get: ^4.6.5
+  get: ^4.6.6
   flutter_svg: ^2.0.9
   webview_flutter: ^4.5.0
   flutter_dotenv: ^5.1.0
-  http: ^1.2.0
   package_info_plus: ^5.0.1
   hive: ^2.2.3
   hive_flutter: ^1.1.0
