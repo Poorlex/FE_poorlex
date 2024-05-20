@@ -2,18 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:poorlex/libs/theme.dart';
 import 'package:poorlex/widget/common/base.dart';
 
-import 'package:poorlex/widget/common/bottom_bar.dart';
 import 'package:poorlex/widget/calendar/header.dart';
 import 'package:poorlex/widget/calendar/list.dart';
 
-class CaledarPage extends StatefulWidget {
-  const CaledarPage({super.key});
+class CalendarPage extends StatefulWidget {
+  const CalendarPage({super.key});
 
   @override
-  State<CaledarPage> createState() => _CaledarPageState();
+  State<CalendarPage> createState() => _CalendarPageState();
 }
 
-class _CaledarPageState extends State<CaledarPage> {
+class _CalendarPageState extends State<CalendarPage> {
   int _current = DateTime.now().millisecondsSinceEpoch;
 
   void select(int n) {
@@ -27,7 +26,6 @@ class _CaledarPageState extends State<CaledarPage> {
     return Scaffold(
         resizeToAvoidBottomInset: false,
         backgroundColor: CColors.black,
-        bottomNavigationBar: BottomBar(nowPage: 3),
         body: (SafeArea(
             child: CCon(
                 padding: EdgeInsets.fromLTRB(0, 20, 0, 0),

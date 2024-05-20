@@ -2,7 +2,7 @@ name: poorlex
 description: poorlex project
 publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
-version: 0.0.2+91
+version: 0.0.2+92
 
 environment:
   sdk: ">=3.0.6 <4.0.0"
@@ -17,7 +17,7 @@ scripts:
   # ios 배포시 사용 ipa build
   build:ipa: flutter build ipa
   # ios, android 동시 배포시 사용
-  build:prod: "rps flutter build ipa && rps build:appbundle"
+  build:prod: "rps build:ipa && rps build:appbundle"
   # 캐시 정리 후 다시 build
   rebuild: flutter clean && flutter pub cache clean && flutter pub get && flutter build apk && flutter build ios
   # ios pod 재설치

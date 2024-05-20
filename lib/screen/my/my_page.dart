@@ -3,14 +3,11 @@ import 'package:get/get.dart';
 import 'package:poorlex/controller/layout.dart';
 
 import 'package:poorlex/widget/common/icon.dart';
-import 'package:poorlex/widget/common/bottom_bar.dart';
 import 'package:poorlex/widget/layout.dart';
 import 'package:poorlex/widget/my/level.dart';
 import 'package:poorlex/widget/my/my_auth.dart';
-
 import 'package:poorlex/widget/my/profile.dart';
 import 'package:poorlex/widget/my/announcement_list.dart';
-
 import 'package:poorlex/libs/theme.dart';
 import 'package:poorlex/controller/api.dart';
 import 'package:poorlex/controller/user.dart';
@@ -41,7 +38,6 @@ class _MyPageState extends State<MyPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: CColors.black,
-        bottomNavigationBar: BottomBar(nowPage: 4),
         appBar: AppBar(
           automaticallyImplyLeading: false,
           backgroundColor: CColors.black,

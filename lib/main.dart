@@ -7,29 +7,22 @@ import 'package:get/get.dart';
 
 import 'package:poorlex/controller/api.dart';
 import 'package:poorlex/controller/battle.dart';
-import 'package:poorlex/controller/image_picker_controller.dart';
+import 'package:poorlex/controller/image_picker.dart';
 import 'package:poorlex/controller/layout.dart';
 import 'package:poorlex/controller/user.dart';
 import 'package:poorlex/models/login.dart';
 import 'package:poorlex/provider/battles_provider.dart';
 import 'package:poorlex/screen/my/my_notification.dart';
-import 'package:poorlex/screen/my/my_page.dart';
-import 'package:poorlex/widget/common/webview.dart';
 
-import 'package:poorlex/screen/init.dart';
+import 'package:poorlex/widget/common/webview.dart';
+import 'package:poorlex/widget/gnb_layout.dart';
+
 import 'package:poorlex/screen/login/login.dart';
 import 'package:poorlex/screen/login/login_modal.dart';
-import 'package:poorlex/screen/my/my_expense.dart';
 import 'package:poorlex/screen/my/my_expense_input.dart';
-import 'package:poorlex/screen/my/my_expense_detail.dart';
 import 'package:poorlex/screen/my/my_option.dart';
 import 'package:poorlex/screen/my/my_profile.dart';
-
-import 'package:poorlex/screen/battle/battle.dart';
 import 'package:poorlex/screen/battle/battle_create.dart';
-import 'package:poorlex/screen/battle/battle_ranking.dart';
-
-import 'package:poorlex/screen/main/main.dart';
 
 class Bind extends Bindings {
   @override
@@ -79,8 +72,7 @@ void main() async {
         shadowColor: Colors.transparent,
       ),
       getPages: [
-        GetPage(name: '/', page: () => Init()),
-        GetPage(name: '/main', page: () => Main()),
+        GetPage(name: '/', page: () => GNBLayout()),
         GetPage(name: '/login', page: () => Login()),
         GetPage(
           name: '/login/apple',
@@ -89,10 +81,6 @@ void main() async {
         GetPage(
           name: '/login/kakao',
           page: () => LoginModal(loginType: LoginTypes.kakao),
-        ),
-        GetPage(
-          name: '/my',
-          page: () => MyPage(),
         ),
         GetPage(
           name: '/my/notice',
@@ -118,33 +106,20 @@ void main() async {
                 'https://horse-whitefish-a82.notion.site/3623856463694fd2b9f38806b8cf507e?pvs=4',
           ),
         ),
-        GetPage(
-          name: '/my/expenditure',
-          page: () => MyExpensePage(),
-        ),
         GetPage(name: '/my/profile', page: () => MyProfile(), binding: Bind()),
         GetPage(
           name: '/my/expense-input',
           page: () => MyExpenseInputPage(),
-        ),
-        GetPage(
-          name: '/my/expense-detail',
-          page: () => MyExpenseDetailPage(),
         ),
         GetPage(name: '/my/option', page: () => MyOption()),
         GetPage(
           name: '/my/notification',
           page: () => MyNotification(),
         ),
-        GetPage(name: '/battle', page: () => Battle(), binding: BattleBind()),
         GetPage(
           name: '/battle/create',
           page: () => BattleCreate(),
         ),
-        GetPage(
-          name: '/battle/ranking',
-          page: () => BattleRanking(),
-        )
       ],
     ),
   );

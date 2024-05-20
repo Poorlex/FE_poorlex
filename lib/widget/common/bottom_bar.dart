@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:poorlex/libs/theme.dart';
+import 'package:poorlex/widget/gnb_layout.dart';
 
 class BarItem {
   String key;
@@ -21,15 +22,19 @@ class BarItem {
 
 class BottomBar extends StatefulWidget {
   final int nowPage;
+  final void Function(int) changePageIndex;
 
-  BottomBar({super.key, required this.nowPage});
+  BottomBar({
+    super.key,
+    required this.nowPage,
+    required this.changePageIndex,
+  });
 
   @override
   State<BottomBar> createState() => _BottomBarState();
 }
 
 class _BottomBarState extends State<BottomBar> {
-  late int _selectedIndex = widget.nowPage;
   static final barItems = [
     BarItem(
       key: 'home',
@@ -68,20 +73,11 @@ class _BottomBarState extends State<BottomBar> {
     ),
   ];
 
-  Route _createRoute(Widget widget) {
-    return PageRouteBuilder(
-      pageBuilder: (context, animation, secondaryAnimation) => widget,
-      transitionsBuilder: (context, animation, secondaryAnimation, child) {
-        return child;
-      },
-    );
-  }
-
   void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-    Get.offAllNamed(barItems[index].route);
+    if (widget.nowPage == index) return;
+    widget.changePageIndex(index);
+
+    Get.offAllNamed(barItems[index].route, id: GNBLayout.globalKey);
   }
 
   @override
@@ -93,14 +89,14 @@ class _BottomBarState extends State<BottomBar> {
             icon: Padding(
                 padding: EdgeInsets.all(6),
                 child: Column(children: [
-                  if (_selectedIndex == item.key) ...[
+                  if (widget.nowPage == item.key) ...[
                     Image.asset(width: 22, height: 22, item.value.onIcon)
                   ] else ...[
                     Image.asset(width: 22, height: 22, item.value.offIcon)
                   ]
                 ])));
       }).toList(),
-      currentIndex: _selectedIndex,
+      currentIndex: widget.nowPage,
       selectedItemColor: CColors.yellow,
       unselectedItemColor: CColors.gray30,
       onTap: _onItemTapped,

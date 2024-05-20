@@ -26,7 +26,7 @@ class _InitState extends State<Init> {
       Get.offAndToNamed('/login');
     } else {
       user.updateToken(UserToken(token: auth.get('token')));
-      Get.offAndToNamed('/battle');
+      Get.offAndToNamed('/battle', id: 1);
     }
     layout.setIsLoading(false);
   }
