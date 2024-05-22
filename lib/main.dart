@@ -37,7 +37,11 @@ class Bind extends Bindings {
 class BattleBind extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut(() => BattlesProvider());
+    Get.lazyPut(
+      () => BattlesProvider(
+        user: Get.find(),
+      ),
+    );
     Get.put(
       BattleController(
         battlesProvider: Get.find(),

@@ -26,23 +26,41 @@ class _BattleCreateState extends State<BattleCreate> {
   @override
   void initState() {
     super.initState();
-    battle.changeCurrent(0);
+    battle.initBattleCreate();
   }
 
-  void changePage() async {
-    print(battle.battleCreate.value.current);
-    if (battle.battleCreate.value.current == 2) {
-      if (await battle.saveBattle()) {
-        battle.changeCurrent(battle.battleCreate.value.current + 1);
+  void changePage({required bool isNext}) async {
+    final currentPage = battle.battleCreate.value.current;
+
+    if (isNext) {
+      if (currentPage == 2) {
+        final isSuccess = await battle.saveBattle();
+        if (!isSuccess) {
+          await battle.getBattle();
+          Get.back();
+          return;
+        }
       }
+      battle.changeCurrent(currentPage + 1);
     } else {
-      battle.changeCurrent(battle.battleCreate.value.current + 1);
+      if (currentPage > 0) {
+        battle.changeCurrent(currentPage - 1);
+      }
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    final bottomOffset = MediaQuery.of(context).viewInsets.bottom;
+    return GestureDetector(
+      onTap: () => FocusScope.of(context).unfocus(),
+      onHorizontalDragEnd: (DragEndDetails details) {
+        if (details.velocity.pixelsPerSecond.dx > 0) {
+          changePage(isNext: false);
+        }
+        print(">>>>>> ${details.velocity}");
+      },
+      child: Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
           backgroundColor: CColors.black,
@@ -64,57 +82,85 @@ class _BattleCreateState extends State<BattleCreate> {
         ),
         backgroundColor: CColors.black,
         body: Layout(
-            child: Column(
-          children: [
-            Expanded(
+          child: Column(
+            children: [
+              Expanded(
                 child: SingleChildScrollView(
-              child: Container(
-                padding: EdgeInsets.fromLTRB(16, 0, 16, 0),
-                child: Column(
-                  children: [
-                    SizedBox(height: 26),
-                    BattleProcess(),
-                    SizedBox(height: 18),
-                    Obx(() {
-                      return Container(
-                          child: battle.battleCreate.value.current == 0
-                              ? BattleIndexZero()
-                              : battle.battleCreate.value.current == 1
-                                  ? BattleIndexOne()
-                                  : battle.battleCreate.value.current == 2
-                                      ? BattleIndexTwo()
-                                      : BattleMakingFinished());
-                    })
-                  ],
+                  child: Container(
+                    padding: EdgeInsets.fromLTRB(16, 0, 16, 0),
+                    child: Column(
+                      children: [
+                        SizedBox(height: 26),
+                        BattleProcess(),
+                        SizedBox(height: 18),
+                        Obx(
+                          () {
+                            switch (battle.battleCreate.value.current) {
+                              case 0:
+                                return BattleIndexZero();
+                              case 1:
+                                return BattleIndexOne();
+                              case 2:
+                                return BattleIndexTwo();
+                              default:
+                                return BattleMakingFinished();
+                            }
+                          },
+                        )
+                      ],
+                    ),
+                  ),
                 ),
               ),
-            )),
-            Row(children: [
-              Expanded(child: Obx(() {
-                if (battle.battleCreate.value.current == 3) {
-                  return CButton(
-                      padding: EdgeInsets.symmetric(vertical: 14),
-                      color: CColors.yellow,
-                      type: ButtonTypes.elevated,
-                      onPressed: () => Get.offAndToNamed('/battle'),
-                      child: Text(
-                        '시작!',
-                        style: CTextStyles.Title3(color: CColors.black),
-                      ));
-                } else {
-                  return CButton(
-                      padding: EdgeInsets.symmetric(vertical: 14),
-                      color: CColors.yellow,
-                      type: ButtonTypes.elevated,
-                      onPressed: () => changePage(),
-                      child: Text(
-                        '다음',
-                        style: CTextStyles.Title3(color: CColors.black),
-                      ));
-                }
-              }))
-            ])
-          ],
-        )));
+            ],
+          ),
+        ),
+        bottomNavigationBar: Padding(
+          padding: EdgeInsets.only(
+            bottom: bottomOffset,
+          ),
+          child: Obx(
+            () {
+              if (battle.battleCreate.value.current == 3) {
+                return CButton(
+                  padding: EdgeInsets.symmetric(vertical: 14),
+                  color: CColors.yellow,
+                  type: ButtonTypes.elevated,
+                  onPressed: () => Get.offAndToNamed('/battle'),
+                  child: Text(
+                    '시작!',
+                    style: CTextStyles.Title3(
+                      color: CColors.black,
+                    ),
+                  ),
+                );
+              } else {
+                final battleCreate = battle.battleCreate.value;
+                final disabledCondition = battleCreate.current == 1 &&
+                        (battleCreate.title.isEmpty ||
+                            battleCreate.image == null ||
+                            battleCreate.content.isEmpty) ||
+                    battleCreate.current == 2 && battleCreate.count == 0;
+                return CButton(
+                  padding: EdgeInsets.symmetric(vertical: 14),
+                  disabled: disabledCondition,
+                  color: CColors.yellow,
+                  type: ButtonTypes.elevated,
+                  onPressed: disabledCondition
+                      ? () {}
+                      : () => changePage(isNext: true),
+                  child: Text(
+                    '다음',
+                    style: CTextStyles.Title3(
+                      color: CColors.black,
+                    ),
+                  ),
+                );
+              }
+            },
+          ),
+        ),
+      ),
+    );
   }
 }

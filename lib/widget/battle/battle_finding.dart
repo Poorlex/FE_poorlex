@@ -31,8 +31,8 @@ class _BattleFindingState extends State<BattleFinding> {
       List<FindingBattleResponse> list = battle.battleList
           .where((element) => element.budget ~/ 10000 <= widget.smallerThan)
           .toList();
+
       return ListView.separated(
-          // shrinkWrap: true,
           scrollDirection: Axis.vertical,
           itemBuilder: (context, index) {
             return Container(
@@ -69,31 +69,32 @@ class _BattleFindingState extends State<BattleFinding> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Expanded(
-                            child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            BattleMoneyBar(budget: list[index].budget),
-                            SizedBox(height: 12),
-                            Row(
-                              children: [
-                                Expanded(
-                                  child: Text(list[index].name,
-                                      style: CTextStyles.Body2()),
-                                )
-                              ],
-                            ),
-                            SizedBox(height: 9),
-                            Row(
-                              children: [
-                                Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              BattleMoneyBar(budget: list[index].budget),
+                              SizedBox(height: 12),
+                              Row(
+                                children: [
+                                  Expanded(
                                     child: Text(list[index].name,
-                                        style: CTextStyles.Caption1(
-                                            color: CColors.gray40))),
-                                SizedBox(height: 27)
-                              ],
-                            )
-                          ],
-                        )),
+                                        style: CTextStyles.Body2()),
+                                  )
+                                ],
+                              ),
+                              SizedBox(height: 9),
+                              Row(
+                                children: [
+                                  Expanded(
+                                      child: Text(list[index].name,
+                                          style: CTextStyles.Caption1(
+                                              color: CColors.gray40))),
+                                  SizedBox(height: 27)
+                                ],
+                              )
+                            ],
+                          ),
+                        ),
                         Container(
                           width: 90,
                           height: 90,

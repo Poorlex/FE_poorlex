@@ -14,7 +14,11 @@ import 'package:poorlex/schema/member_progress_battle_response/member_progress_b
 import 'package:poorlex/schema/vote_response/vote_response.dart';
 
 class BattlesProvider extends GetConnect {
-  final user = Get.find<UserController>();
+  final UserController user;
+  BattlesProvider({
+    required this.user,
+  });
+
   @override
   void onInit() {
     // prefix "/battles" 적용
@@ -26,19 +30,30 @@ class BattlesProvider extends GetConnect {
       request.headers['Authorization'] = 'Bearer $token';
       return request;
     });
+
+    httpClient.addResponseModifier((request, response) {
+      print(
+        '### REQUEST [method: ${request.method}]'
+        '\nURL: ${request.url}'
+        '\n${"Header : ${request.headers}"}'
+        '\n ### RESPONSE BODY: ${response.body}',
+      );
+      return response;
+    });
   }
 
   /// 모든 배틀 조회 (모집중, 모집완료)
-  Future<List<FindingBattleResponse>?> getAll() async {
+  Future<List<FindingBattleResponse>> getAll() async {
     final response = await get(
       '',
       decoder: (data) {
-        return (data as List<dynamic>)
-            .map((e) => FindingBattleResponse.fromJson(e))
-            .toList();
+        return (data as List<dynamic>).map((e) {
+          return FindingBattleResponse.fromJson(e);
+        }).toList();
       },
     );
-    return response.body;
+
+    return response.body ?? [];
   }
 
   /// [TEST] x
@@ -87,7 +102,6 @@ class BattlesProvider extends GetConnect {
     return response.body;
   }
 
-  /// [TEST] x
   /// 배틀 생성
   Future<bool> createBattles({
     required String name,
@@ -102,13 +116,22 @@ class BattlesProvider extends GetConnect {
         filename: image.name,
       ),
     });
-    final response = await post("", formData, query: {
-      "name": name,
-      "introduction": introduction,
-      "budget": budget,
-      "maxParticipantSize": maxParticipantSize,
-    });
-    return response.status == 201;
+    try {
+      final response = await post(
+        "",
+        formData,
+        query: {
+          "name": name,
+          "introduction": introduction,
+          "budget": budget.toString(),
+          "maxParticipantSize": maxParticipantSize.toString(),
+        },
+      );
+      print(">>>>>>>>>>>>> $response");
+      return response.status == 201;
+    } catch (e) {
+      return false;
+    }
   }
 
   /// [TEST] x
