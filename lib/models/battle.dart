@@ -3,15 +3,15 @@ import 'package:image_picker/image_picker.dart';
 
 enum EBattleDifficulty { easy, normal, hard }
 
-var hardBudget = [1, 2, 3, 4, 5, 6, 7, 8];
-var normalBudget = [9, 10, 11, 12, 13, 14];
-var easyBudget = [15, 16, 17, 18, 19, 20];
+final hardBudget = [1, 2, 3, 4, 5, 6, 7, 8];
+final normalBudget = [9, 10, 11, 12, 13, 14];
+final easyBudget = [15, 16, 17, 18, 19, 20];
 
-var hardImage =
+final hardImage =
     Image.asset(width: 22, height: 14, 'assets/my_page/icon_gold.png');
-var normalImage =
+final normalImage =
     Image.asset(width: 22, height: 14, 'assets/my_page/icon_silver.png');
-var easyImage =
+final easyImage =
     Image.asset(width: 22, height: 14, 'assets/my_page/icon_cooper.png');
 
 class BattleCreateModel {
