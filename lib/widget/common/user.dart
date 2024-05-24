@@ -7,37 +7,52 @@ class UserItem extends StatelessWidget {
   final Image image;
   final Image icon;
   final String name;
+  final String? description;
 
   UserItem({
     super.key,
     required this.image,
     required this.icon,
     required this.name,
+    this.description,
   });
 
   @override
   Widget build(BuildContext context) {
     return Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Container(
-            width: 40,
-            height: 40,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(2),
-                color: CColors.brownLight),
-            child: image,
-          ),
-          SizedBox(
-            width: 6,
-          ),
-          SizedBox(width: 16, height: 16, child: icon),
-          SizedBox(
-            width: 6,
-          ),
-          Text(name, style: CTextStyles.Body3())
-        ]);
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Container(
+          width: 40,
+          height: 40,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(2),
+              color: CColors.brownLight),
+          child: image,
+        ),
+        SizedBox(width: 6),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                SizedBox(width: 16, height: 16, child: icon),
+                SizedBox(width: 6),
+                Text(name, style: CTextStyles.Body3()),
+              ],
+            ),
+            if (description != null) ...[
+              SizedBox(height: 6),
+              Text(
+                description!,
+                style: CTextStyles.Body3(),
+              )
+            ]
+          ],
+        ),
+      ],
+    );
   }
 }
 
