@@ -49,11 +49,11 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppleMusicUsageDescription</key>
-	<string>Sign In with Apple 사용을 위해 액세스 권한이 필요합니다.</string>
+	<string>애플 계정로그인을 위해서는 사용을 위한 액세스 권한이 필요합니다.</string>
 	<key>NSCameraUsageDescription</key>
-	<string>카메라 사용에 필요합니다.</string>
+	<string>사진을 찍어서 업로드하려면, 카메라 접근 권한이 필요합니다.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>사진 라이브러리 사용에 필요합니다.</string>
+	<string>사진을 업로드하려면, 갤러리 접근 권한이 필요합니다.</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>
