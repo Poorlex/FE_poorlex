@@ -4,19 +4,21 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:get/get.dart';
-
+import 'package:poorlex/bind/friends.dart';
+import 'package:poorlex/bind/modify_battle.dart';
 import 'package:poorlex/controller/api.dart';
 import 'package:poorlex/controller/battle.dart';
 import 'package:poorlex/controller/image_picker.dart';
 import 'package:poorlex/controller/layout.dart';
 import 'package:poorlex/controller/user.dart';
+import 'package:poorlex/libs/theme.dart';
 import 'package:poorlex/models/login.dart';
 import 'package:poorlex/provider/battles_provider.dart';
+import 'package:poorlex/screen/battle/modify_battle_detail.dart';
+import 'package:poorlex/screen/friends/friends.dart';
 import 'package:poorlex/screen/my/my_notification.dart';
-
 import 'package:poorlex/widget/common/webview.dart';
 import 'package:poorlex/widget/gnb_layout.dart';
-
 import 'package:poorlex/screen/login/login.dart';
 import 'package:poorlex/screen/login/login_modal.dart';
 import 'package:poorlex/screen/my/my_expense_input.dart';
@@ -67,6 +69,7 @@ void main() async {
     GetMaterialApp(
       initialBinding: Bind(),
       initialRoute: '/',
+      // defaultTransition: Transition.rightToLeft,
       theme: ThemeData(
         fontFamily: 'NeoDunggeunmoPro-Regular',
         splashFactory: NoSplash.splashFactory,
@@ -74,6 +77,11 @@ void main() async {
         highlightColor: Colors.transparent,
         hoverColor: Colors.transparent,
         shadowColor: Colors.transparent,
+        scaffoldBackgroundColor: CColors.black,
+        appBarTheme: AppBarTheme(
+          backgroundColor: CColors.black,
+          iconTheme: IconThemeData(color: CColors.white),
+        ),
       ),
       getPages: [
         GetPage(name: '/', page: () => GNBLayout()),
@@ -123,6 +131,16 @@ void main() async {
         GetPage(
           name: '/battle/create',
           page: () => BattleCreate(),
+        ),
+        GetPage(
+          name: '/battle/modify/:battleId',
+          page: () => ModifyBattleDetail(),
+          binding: ModifyBattleBinding(),
+        ),
+        GetPage(
+          name: '/friends',
+          page: () => FriendsScreen(),
+          binding: FriendsBinding(),
         ),
       ],
     ),

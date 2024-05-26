@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -51,14 +53,16 @@ class _BattleCreateState extends State<BattleCreate> {
 
   @override
   Widget build(BuildContext context) {
-    final bottomOffset = MediaQuery.of(context).viewInsets.bottom;
+    final bottomPaddingForIos = Platform.isIOS ? 8 : 0;
+    final bottomOffset = MediaQuery.of(context).viewInsets.bottom +
+        MediaQuery.of(context).padding.bottom +
+        bottomPaddingForIos;
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       onHorizontalDragEnd: (DragEndDetails details) {
         if (details.velocity.pixelsPerSecond.dx > 0) {
           changePage(isNext: false);
         }
-        print(">>>>>> ${details.velocity}");
       },
       child: Scaffold(
         appBar: AppBar(
@@ -82,37 +86,31 @@ class _BattleCreateState extends State<BattleCreate> {
         ),
         backgroundColor: CColors.black,
         body: Layout(
-          child: Column(
-            children: [
-              Expanded(
-                child: SingleChildScrollView(
-                  child: Container(
-                    padding: EdgeInsets.fromLTRB(16, 0, 16, 0),
-                    child: Column(
-                      children: [
-                        SizedBox(height: 26),
-                        BattleProcess(),
-                        SizedBox(height: 18),
-                        Obx(
-                          () {
-                            switch (battle.battleCreate.value.current) {
-                              case 0:
-                                return BattleIndexZero();
-                              case 1:
-                                return BattleIndexOne();
-                              case 2:
-                                return BattleIndexTwo();
-                              default:
-                                return BattleMakingFinished();
-                            }
-                          },
-                        )
-                      ],
-                    ),
-                  ),
-                ),
+          child: SingleChildScrollView(
+            child: Container(
+              padding: EdgeInsets.fromLTRB(16, 0, 16, 0),
+              child: Column(
+                children: [
+                  SizedBox(height: 26),
+                  BattleProcess(),
+                  SizedBox(height: 18),
+                  Obx(
+                    () {
+                      switch (battle.battleCreate.value.current) {
+                        case 0:
+                          return BattleIndexZero();
+                        case 1:
+                          return BattleIndexOne();
+                        case 2:
+                          return BattleIndexTwo();
+                        default:
+                          return BattleMakingFinished();
+                      }
+                    },
+                  )
+                ],
               ),
-            ],
+            ),
           ),
         ),
         bottomNavigationBar: Padding(
