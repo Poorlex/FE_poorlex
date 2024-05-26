@@ -2,7 +2,7 @@ name: poorlex
 description: poorlex project
 publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
-version: 0.0.2+92
+version: 0.0.3+01
 
 environment:
   sdk: ">=3.0.6 <4.0.0"
@@ -73,14 +73,17 @@ flutter:
     - assets/my_page/
     - assets/ranking/
     - assets/battle_page/
+    - assets/battle_detail/
+    - assets/friends/
     - assets/sample/
     - assets/my_page/
     - assets/budget_page/
     - assets/goal/
     - assets/login/
     - assets/icons/
-    - assets/level/
+    - assets/level/character/
     - assets/level/profile/
+    - assets/level/medal/
 
   fonts:
     - family: NeoDunggeunmoPro-Regular
