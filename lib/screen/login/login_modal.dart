@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:poorlex/widget/gnb_layout.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:webview_flutter_android/webview_flutter_android.dart';
 import 'package:webview_flutter_wkwebview/webview_flutter_wkwebview.dart';
@@ -20,13 +21,21 @@ final List<LoginTypeObject> loginTypeObject = [
       url: '${dotenv.get('SERVER_URL')}/api/oauth2/authorization/apple')
 ];
 
-class LoginModal extends StatelessWidget {
-  late final token;
-  late final loginType;
-  late final WebViewController webViewController;
+class LoginModal extends StatefulWidget {
+  LoginModal({super.key, required this.loginType});
+
+  final loginType;
+
+  @override
+  State<LoginModal> createState() => _LoginModalState();
+}
+
+class _LoginModalState extends State<LoginModal> {
   final user = Get.find<UserController>();
 
-  LoginModal({super.key, required this.loginType});
+  late final token;
+
+  late final WebViewController webViewController;
 
   @override
   Widget build(BuildContext context) {
@@ -47,16 +56,25 @@ class LoginModal extends StatelessWidget {
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
       ..setNavigationDelegate(
         NavigationDelegate(
-          onUrlChange: (UrlChange change) {
+          onNavigationRequest: (NavigationRequest change) async {
             // https://poorlex.com/login/success?accessToken=eyJhbGciOiJIUzM4NCJ9.eyJpYXQiOjE3MDgzOTQ1MzQsImV4cCI6MTgwODM5NDUzNCwibWVtYmVySWQiOjJ9.-LdfbqM8uvLNND9eKo-fFnzIxrM5El76__e1Dqf5LNokAT5K4xTnYPIK5nU88TAg
-            if (change.url != null && change.url!.contains('/login/success')) {
-              final uri = Uri.parse(change.url!);
+            if (change.url.contains('/login/success')) {
+              print('!!!!');
+              print(change.url);
+              final uri = Uri.parse(change.url);
               if (uri.queryParameters['accessToken'] != null) {
                 user.updateToken(
                     UserToken(token: uri.queryParameters['accessToken']!));
-                Get.offAllNamed('/my');
+
+                await user.getUserInfo();
+                Get.offAllNamed('/main', id: GNBLayout.globalKey);
+
+                // 이동 방지
+                return NavigationDecision.prevent;
               }
             }
+            // 최종 이동
+            return NavigationDecision.navigate;
           },
           onHttpAuthRequest: (HttpAuthRequest request) {},
         ),
@@ -68,8 +86,8 @@ class LoginModal extends StatelessWidget {
         },
       )
       */
-      ..loadRequest(
-          Uri.parse(loginTypeObject.firstWhere((e) => e.key == loginType).url));
+      ..loadRequest(Uri.parse(
+          loginTypeObject.firstWhere((e) => e.key == widget.loginType).url));
 
     if (controller.platform is AndroidWebViewController) {
       AndroidWebViewController.enableDebugging(true);
@@ -79,8 +97,12 @@ class LoginModal extends StatelessWidget {
     webViewController = controller;
 
     return Scaffold(
-        backgroundColor: CColors.white,
-        appBar: AppBar(),
+        // backgroundColor: CColors.white,
+        appBar: AppBar(
+          backgroundColor: CColors.white,
+          // foregroundColor: CColors.black,
+          iconTheme: IconThemeData(color: CColors.black),
+        ),
         body: WebViewWidget(controller: webViewController));
   }
 }
