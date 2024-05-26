@@ -22,6 +22,11 @@ class BattleController extends GetxController {
 
   final battleList = <FindingBattleResponse>[].obs;
 
+  /// battleCreate 초기화
+  void initBattleCreate() {
+    battleCreate(BattleCreateModel());
+  }
+
   void changeCurrent(int c) {
     battleCreate.update((val) {
       val?.current = c;
@@ -57,21 +62,27 @@ class BattleController extends GetxController {
 
   Future<bool> getBattle() async {
     final response = await battlesProvider.getAll();
-    battleList.value = response ?? [];
+    battleList.value = response;
     return false;
   }
 
   Future<bool> saveBattle() async {
     if (battleCreate.value.image == null) return false;
     layout.setIsLoading(true);
-    final response = await battlesProvider.createBattles(
-      name: battleCreate.value.title,
-      introduction: battleCreate.value.content,
-      budget: battleCreate.value.budget * 10000,
-      maxParticipantSize: battleCreate.value.count,
-      image: battleCreate.value.image!,
-    );
+    late bool response;
+    try {
+      response = await battlesProvider.createBattles(
+        name: battleCreate.value.title,
+        introduction: battleCreate.value.content,
+        budget: battleCreate.value.budget * 10000,
+        maxParticipantSize: battleCreate.value.count,
+        image: battleCreate.value.image!,
+      );
+    } catch (e) {
+      response = false;
+    }
     layout.setIsLoading(false);
+    initBattleCreate();
     return response;
   }
 

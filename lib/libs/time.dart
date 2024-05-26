@@ -7,5 +7,5 @@ String cTimeFormat(int t, String format) {
 
 String cFormatDateToString(DateTime date) {
   final String dateFormat = 'yyyy-MM-dd';
-  return cTimeFormat(date.microsecondsSinceEpoch, dateFormat);
+  return DateFormat(dateFormat).format(date);
 }

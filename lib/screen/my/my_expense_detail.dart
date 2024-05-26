@@ -8,7 +8,11 @@ import 'package:poorlex/libs/string.dart';
 import 'package:poorlex/controller/user.dart';
 
 class MyExpenseDetailPage extends StatefulWidget {
-  const MyExpenseDetailPage({super.key});
+  final int? id;
+  const MyExpenseDetailPage({
+    super.key,
+    required this.id,
+  });
 
   @override
   State<MyExpenseDetailPage> createState() => _MyExpenseDetailPageState();
@@ -18,8 +22,8 @@ class _MyExpenseDetailPageState extends State<MyExpenseDetailPage> {
   final user = Get.find<UserController>();
 
   void getExpenditure() async {
-    if (Get.arguments?['id'] != null) {
-      await user.getExpenditure(Get.arguments['id']);
+    if (widget.id != null) {
+      await user.getExpenditure(widget.id!);
     }
   }
 
@@ -62,7 +66,7 @@ class _MyExpenseDetailPageState extends State<MyExpenseDetailPage> {
                   width: 26,
                   height: 26,
                   color: CColors.whiteStr),
-              onPressed: () => Get.back(),
+              onPressed: () => Navigator.of(context).pop(),
             ),
             Obx(() {
               if (user.expenditure.value.id == null)

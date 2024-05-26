@@ -18,6 +18,8 @@ class CColors {
   static final Color gray40 = Color(0xFF808080);
   static final Color gray30 = Color(0xFF666666);
   static final Color gray20 = Color(0xFF333333);
+
+  /// figma greyScale90 > 10으로 쓰고있음 확인필요
   static final Color gray10 = Color(0xFF1A1A1A);
   static final Color black = Color(0xFF0A0A0A);
 
@@ -28,6 +30,7 @@ class CColors {
   static final Color orangeDark = Color(0xFF732900);
   static final Color red = Color(0xFFE05D65);
   static final Color green = Color(0xFF55E460);
+  static final Color gray30Str = Color.fromRGBO(102, 102, 102, 1);
 
   static final String blackStr = '#0A0A0A';
   static final String yellowLightStr = '#FFE352';
@@ -35,7 +38,6 @@ class CColors {
   static final String purpleLightStr = '#B265FF';
   static final String whiteStr = '#FFFFFF';
   static final String gray10Str = '#1A1A1A';
-  static final String gray30Str = '#666666';
   static final String gray40Str = '#808080';
   static final String gray70Str = '#E8E8E8';
   static final String redStr = '#E05D65';

@@ -6,6 +6,7 @@ import 'package:poorlex/libs/theme.dart';
 import 'package:poorlex/schema/finding_battle_response/finding_battle_response.dart';
 import 'package:poorlex/widget/battle/battle_money_bar.dart';
 import 'package:poorlex/widget/common/icon.dart';
+import 'package:poorlex/widget/gnb_layout.dart';
 
 class BattleFinding extends StatefulWidget {
   late final int smallerThan;
@@ -31,11 +32,22 @@ class _BattleFindingState extends State<BattleFinding> {
       List<FindingBattleResponse> list = battle.battleList
           .where((element) => element.budget ~/ 10000 <= widget.smallerThan)
           .toList();
+
       return ListView.separated(
-          // shrinkWrap: true,
-          scrollDirection: Axis.vertical,
-          itemBuilder: (context, index) {
-            return Container(
+        scrollDirection: Axis.vertical,
+        itemBuilder: (context, index) {
+          final findingBattle = list[index];
+          return GestureDetector(
+            onTap: () {
+              Get.toNamed(
+                '/battle/detail',
+                arguments: {
+                  'battleId': findingBattle.battleId,
+                },
+                id: GNBLayout.globalKey,
+              );
+            },
+            child: Container(
                 height: 150,
                 clipBehavior: Clip.hardEdge,
                 decoration:
@@ -47,11 +59,11 @@ class _BattleFindingState extends State<BattleFinding> {
                         CIcon(icon: 'people', width: 14, height: 14),
                         SizedBox(width: 10),
                         Text(
-                            '${list[index].currentParticipant}/${list[index].maxParticipantCount}',
+                            '${findingBattle.currentParticipant}/${findingBattle.maxParticipantCount}',
                             style: CTextStyles.Caption2()),
                         SizedBox(width: 10),
-                        (list[index].currentParticipant) >=
-                                (list[index].maxParticipantCount)
+                        (findingBattle.currentParticipant) >=
+                                (findingBattle.maxParticipantCount)
                             ? (Container(
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(1),
@@ -69,38 +81,39 @@ class _BattleFindingState extends State<BattleFinding> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Expanded(
-                            child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            BattleMoneyBar(budget: list[index].budget),
-                            SizedBox(height: 12),
-                            Row(
-                              children: [
-                                Expanded(
-                                  child: Text(list[index].name,
-                                      style: CTextStyles.Body2()),
-                                )
-                              ],
-                            ),
-                            SizedBox(height: 9),
-                            Row(
-                              children: [
-                                Expanded(
-                                    child: Text(list[index].name,
-                                        style: CTextStyles.Caption1(
-                                            color: CColors.gray40))),
-                                SizedBox(height: 27)
-                              ],
-                            )
-                          ],
-                        )),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              BattleMoneyBar(budget: findingBattle.budget),
+                              SizedBox(height: 12),
+                              Row(
+                                children: [
+                                  Expanded(
+                                    child: Text(findingBattle.name,
+                                        style: CTextStyles.Body2()),
+                                  )
+                                ],
+                              ),
+                              SizedBox(height: 9),
+                              Row(
+                                children: [
+                                  Expanded(
+                                      child: Text(findingBattle.name,
+                                          style: CTextStyles.Caption1(
+                                              color: CColors.gray40))),
+                                  SizedBox(height: 27)
+                                ],
+                              )
+                            ],
+                          ),
+                        ),
                         Container(
                           width: 90,
                           height: 90,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(1),
                             image: DecorationImage(
-                              image: NetworkImage(list[index].imageUrl),
+                              image: NetworkImage(findingBattle.imageUrl),
                               fit: BoxFit.cover,
                             ),
                           ),
@@ -108,10 +121,12 @@ class _BattleFindingState extends State<BattleFinding> {
                       ],
                     )
                   ],
-                ));
-          },
-          separatorBuilder: (context, idx) => const SizedBox(width: 15),
-          itemCount: list.length);
+                )),
+          );
+        },
+        separatorBuilder: (context, idx) => const SizedBox(width: 15),
+        itemCount: list.length,
+      );
     });
   }
 }

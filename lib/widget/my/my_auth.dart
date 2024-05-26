@@ -10,6 +10,7 @@ import 'package:poorlex/widget/common/other.dart';
 import 'package:poorlex/libs/theme.dart';
 import 'package:poorlex/libs/time.dart';
 import 'package:poorlex/controller/user.dart';
+import 'package:poorlex/widget/gnb_layout.dart';
 
 class MyPageMyAuth extends StatefulWidget {
   const MyPageMyAuth({super.key});
@@ -68,8 +69,11 @@ class _MyPageMyAuthState extends State<MyPageMyAuth> {
                     .mapIndexed<Widget>((index, e) {
                   return size != null && index < 4
                       ? CButton(
-                          onPressed: () => Get.toNamed('/my/expense-detail',
-                              arguments: {'id': e.id}),
+                          onPressed: () => Get.toNamed(
+                            '/my/expense-detail',
+                            arguments: {'id': e.id},
+                            id: GNBLayout.globalKey,
+                          ),
                           child: Container(
                               width: ((size?.width ?? 36) - 18) / 2,
                               child: e.imageUrl != null
@@ -116,7 +120,10 @@ class _MyPageMyAuthState extends State<MyPageMyAuth> {
                 color: CColors.yellowStr)
           ]),
         ),
-        onPressed: () => Get.toNamed('/my/expenditure'),
+        onPressed: () => Get.toNamed(
+          '/my/expenditure',
+          id: GNBLayout.globalKey,
+        ),
       )
     ]));
   }
