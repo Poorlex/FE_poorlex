@@ -3,11 +3,20 @@ import 'dart:math' as math;
 
 import 'package:poorlex/libs/theme.dart';
 
+final imageAssetsByLevels = [
+  'assets/level/profile/lv1.png',
+  'assets/level/profile/lv2.png',
+  'assets/level/profile/lv3.png',
+  'assets/level/profile/lv4.png',
+  'assets/level/profile/lv5.png',
+];
+
 class UserItem extends StatelessWidget {
   final Image image;
   final Image icon;
   final String name;
   final String? description;
+  final double? spaceWith;
 
   UserItem({
     super.key,
@@ -15,6 +24,7 @@ class UserItem extends StatelessWidget {
     required this.icon,
     required this.name,
     this.description,
+    this.spaceWith,
   });
 
   @override
@@ -31,7 +41,7 @@ class UserItem extends StatelessWidget {
               color: CColors.brownLight),
           child: image,
         ),
-        SizedBox(width: 6),
+        SizedBox(width: spaceWith ?? 6),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

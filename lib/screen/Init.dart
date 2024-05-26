@@ -5,6 +5,7 @@ import 'package:hive/hive.dart';
 import 'package:poorlex/controller/layout.dart';
 import 'package:poorlex/controller/user.dart';
 import 'package:poorlex/models/user.dart';
+import 'package:poorlex/widget/gnb_layout.dart';
 
 import 'package:poorlex/widget/layout.dart';
 
@@ -26,7 +27,7 @@ class _InitState extends State<Init> {
       Get.offAndToNamed('/login');
     } else {
       user.updateToken(UserToken(token: auth.get('token')));
-      Get.offAndToNamed('/battle', id: 1);
+      Get.offAndToNamed('/main', id: GNBLayout.globalKey);
     }
     layout.setIsLoading(false);
   }

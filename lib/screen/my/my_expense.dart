@@ -70,7 +70,7 @@ class _MyExpensePageState extends State<MyExpensePage> {
                   width: 26,
                   height: 26,
                   color: CColors.whiteStr),
-              onPressed: () => Get.back(),
+              onPressed: () => Navigator.of(context).pop(),
             ),
             Text('내 지출', style: CTextStyles.Headline()),
             SizedBox(width: 26)

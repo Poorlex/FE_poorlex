@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'package:poorlex/Widget/Common/Base.dart';
-import 'package:poorlex/Widget/Common/Buttons.dart';
+import 'package:poorlex/Widget/common/base.dart';
+import 'package:poorlex/Widget/common/buttons.dart';
 
 import 'package:poorlex/libs/theme.dart';
-import 'package:poorlex/Controller/User.dart';
+import 'package:poorlex/controller/user.dart';
 
 class Login extends StatefulWidget {
   Login({
