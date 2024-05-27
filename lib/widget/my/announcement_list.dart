@@ -34,7 +34,7 @@ class _AnnounceMentState extends State<AnnounceMent> {
   Future<bool> logout() async {
     user.updateUser(null);
     user.updateToken(null);
-    Get.toNamed('/login');
+    Get.offAllNamed('/login');
     return true;
   }
 

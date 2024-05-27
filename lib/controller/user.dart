@@ -76,13 +76,13 @@ class UserController extends GetxController {
   }
 
   Future<bool> patchProfile({
-    required String nicknme,
+    required String nickname,
     required String description,
   }) async {
     var r = await api.request(
         method: Methods.patch,
         url: '/api/member/profile',
-        body: {'nickname': nicknme, 'description': description});
+        body: {'nickname': nickname, 'description': description});
     if (r.success) await getUserInfo();
     return r.success;
   }
@@ -134,6 +134,7 @@ class UserController extends GetxController {
   }
 
   void updateUser(UserInfo? user) {
+    print(user);
     if (user != null) {
       userInfo.update((val) {
         val?.nickname = user.nickname;

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'package:poorlex/Widget/common/base.dart';
-import 'package:poorlex/Widget/common/buttons.dart';
+import 'package:poorlex/widget/common/base.dart';
+import 'package:poorlex/widget/common/buttons.dart';
 
 import 'package:poorlex/libs/theme.dart';
 import 'package:poorlex/controller/user.dart';

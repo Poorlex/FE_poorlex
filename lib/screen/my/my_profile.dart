@@ -10,9 +10,8 @@ import 'package:poorlex/libs/string.dart';
 import 'package:poorlex/controller/user.dart';
 import 'package:poorlex/controller/layout.dart';
 
-import 'package:poorlex/Widget/Common/Buttons.dart';
-
-import 'package:poorlex/Widget/Layout.dart';
+import 'package:poorlex/widget/common/buttons.dart';
+import 'package:poorlex/widget/layout.dart';
 
 class MyProfile extends StatefulWidget {
   const MyProfile({super.key});
@@ -57,7 +56,7 @@ class _MyProfileState extends State<MyProfile> {
     } else {
       layout.setIsLoading(true);
       if (await user.patchProfile(
-          nicknme: name.text.trim(), description: description.text.trim())) {
+          nickname: name.text.trim(), description: description.text.trim())) {
         Get.close(0);
       }
       layout.setIsLoading(false);
