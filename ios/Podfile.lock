@@ -2,7 +2,7 @@ PODS:
   - Flutter (1.0.0)
   - image_picker_ios (0.0.1):
     - Flutter
-  - kakao_flutter_sdk_common (1.9.1-2):
+  - kakao_flutter_sdk_common (1.9.2):
     - Flutter
   - package_info_plus (0.4.5):
     - Flutter
@@ -48,7 +48,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
   image_picker_ios: c560581cceedb403a6ff17f2f816d7fea1421fc1
-  kakao_flutter_sdk_common: ac22d95194585407db3fbc5f838d67ced11ea0f0
+  kakao_flutter_sdk_common: 049c9341e325da17ac75751a35646dbbcfa06891
   package_info_plus: 115f4ad11e0698c8c1c5d8a689390df880f47e85
   path_provider_foundation: 2b6b4c569c0fb62ec74538f866245ac84301af46
   shared_preferences_foundation: b4c3b4cddf1c21f02770737f147a3f5da9d39695

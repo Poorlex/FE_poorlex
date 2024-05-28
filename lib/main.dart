@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:get/get.dart';
+import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
 import 'package:poorlex/bind/friends.dart';
 import 'package:poorlex/bind/modify_battle.dart';
 import 'package:poorlex/controller/api.dart';
 import 'package:poorlex/controller/battle.dart';
+import 'package:poorlex/controller/hive_box.dart';
 import 'package:poorlex/controller/image_picker.dart';
 import 'package:poorlex/controller/layout.dart';
 import 'package:poorlex/controller/user.dart';
@@ -56,10 +57,17 @@ class BattleBind extends Bindings {
 }
 
 void main() async {
-  await Hive.initFlutter();
   WidgetsFlutterBinding.ensureInitialized();
+  // runApp() 호출 전 Flutter SDK 초기화
+  await HiveBox.initHive();
   initializeDateFormatting('ko');
   await dotenv.load(fileName: ".env");
+
+  KakaoSdk.init(
+    nativeAppKey: dotenv.get('YOUR_NATIVE_APP_KEY'),
+    javaScriptAppKey: dotenv.get('YOUR_JAVASCRIPT_APP_KEY'),
+  );
+
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
