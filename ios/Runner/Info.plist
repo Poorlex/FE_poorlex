@@ -31,20 +31,24 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>kakaoe820bf9c54d06756d8e929f542dbd2e7</string>
+				<string>kakao0909e07048d37f9e93acf7473a73ec2a</string>
 			</array>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
 	<key>KAKAO_APP_KEY</key>
-	<string>e820bf9c54d06756d8e929f542dbd2e7</string>
+	<string>0909e07048d37f9e93acf7473a73ec2a</string>
 	<key>LSApplicationCategoryType</key>
 	<string></string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
-		<string>kakaokompassauth</string>
-		<string>kakaolink</string>
+		<!-- 카카오톡으로 로그인 -->
+      	<string>kakaokompassauth</string>
+      	<!-- 카카오톡 공유 -->
+      	<string>kakaolink</string>
+      	<!-- 카카오톡 채널 -->
+      	<string>kakaoplus</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
