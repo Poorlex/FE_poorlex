@@ -90,8 +90,10 @@ class _GNBLayoutState extends State<GNBLayout> {
                   ),
                 );
               default:
+
+                /// [MEMO] 초기 라우팅 '/'에 대한 처리를 고민할 필요가있음.
                 return GetPageRoute(
-                  page: () => Init(),
+                  page: () => Main(),
                 );
             }
           },

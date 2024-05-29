@@ -1,9 +1,12 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'package:poorlex/controller/apple_auth.dart';
 import 'package:poorlex/controller/kakao_auth.dart';
+import 'package:poorlex/controller/user.dart';
+import 'package:poorlex/schema/social_login/social_login.dart';
 
 import 'package:poorlex/widget/common/buttons.dart';
 
@@ -21,6 +24,25 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   final _kakaoAuthController = KaKaoAuthController();
   final _appleAuthController = AppleAuthController();
+  final _userController = Get.find<UserController>();
+
+  /// [TODO] 토큰 발급 api 연결 필요 (서버에서 미구현 상태입니다.)
+  Future<void> _tryKaKaoLogin() async {
+    final SocialLoginModel? socialLoginModel =
+        await _kakaoAuthController.kakaoLogin();
+    _userController.getAuthentication(socialLoginModel);
+    print(">>>>>>> $socialLoginModel");
+    Get.offAllNamed('/');
+  }
+
+  /// [TODO] 토큰 발급 api 연결 필요 (서버에서 미구현 상태입니다.)
+  Future<void> _tryAppleLogin() async {
+    final SocialLoginModel? socialLoginModel =
+        await _appleAuthController.appleLogin();
+    _userController.getAuthentication(socialLoginModel);
+    print(">>>>>>>> $socialLoginModel");
+    Get.offAllNamed('/');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -77,12 +99,7 @@ class _LoginState extends State<Login> {
                     ],
                   ),
                 ),
-                onPressed: () async {
-                  // Get.toNamed('/login/kakao');
-                  final socialLoginModel =
-                      await _kakaoAuthController.kakaoLogin();
-                  print(">>>>>>> $socialLoginModel");
-                },
+                onPressed: _tryKaKaoLogin,
               ),
               if (Platform.isIOS) ...[
                 SizedBox(height: 20),
@@ -112,12 +129,7 @@ class _LoginState extends State<Login> {
                       ],
                     ),
                   ),
-                  onPressed: () async {
-                    // Get.toNamed('/login/apple');
-                    final socialLoginModel = await _appleAuthController
-                      ..appleLogin();
-                    print(">>>>>>>> $socialLoginModel");
-                  },
+                  onPressed: _tryAppleLogin,
                 ),
               ]
             ],

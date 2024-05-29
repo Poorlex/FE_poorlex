@@ -13,7 +13,7 @@ import 'package:poorlex/controller/image_picker.dart';
 import 'package:poorlex/controller/layout.dart';
 import 'package:poorlex/controller/user.dart';
 import 'package:poorlex/libs/theme.dart';
-import 'package:poorlex/models/login.dart';
+import 'package:poorlex/middleware/auth_middleware.dart';
 import 'package:poorlex/provider/battles_provider.dart';
 import 'package:poorlex/screen/battle/modify_battle_detail.dart';
 import 'package:poorlex/screen/friends/friends.dart';
@@ -21,7 +21,6 @@ import 'package:poorlex/screen/my/my_notification.dart';
 import 'package:poorlex/widget/common/webview.dart';
 import 'package:poorlex/widget/gnb_layout.dart';
 import 'package:poorlex/screen/login/login.dart';
-import 'package:poorlex/screen/login/login_modal.dart';
 import 'package:poorlex/screen/my/my_expense_input.dart';
 import 'package:poorlex/screen/my/my_option.dart';
 import 'package:poorlex/screen/my/my_profile.dart';
@@ -77,7 +76,6 @@ void main() async {
     GetMaterialApp(
       initialBinding: Bind(),
       initialRoute: '/',
-      // defaultTransition: Transition.rightToLeft,
       theme: ThemeData(
         fontFamily: 'NeoDunggeunmoPro-Regular',
         splashFactory: NoSplash.splashFactory,
@@ -92,16 +90,12 @@ void main() async {
         ),
       ),
       getPages: [
-        GetPage(name: '/', page: () => GNBLayout()),
+        GetPage(
+          name: '/',
+          page: () => GNBLayout(),
+          middlewares: [AuthMiddleware()],
+        ),
         GetPage(name: '/login', page: () => Login()),
-        GetPage(
-          name: '/login/apple',
-          page: () => LoginModal(loginType: LoginTypes.apple),
-        ),
-        GetPage(
-          name: '/login/kakao',
-          page: () => LoginModal(loginType: LoginTypes.kakao),
-        ),
         GetPage(
           name: '/my/notice',
           page: () => CustomWebview(

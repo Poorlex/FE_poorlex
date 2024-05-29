@@ -4,6 +4,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:poorlex/controller/api.dart';
 import 'package:poorlex/models/user.dart';
 import 'package:poorlex/libs/time.dart';
+import 'package:poorlex/schema/social_login/social_login.dart';
 
 class UserController extends GetxController {
   final userInfo = UserInfo().obs;
@@ -14,12 +15,14 @@ class UserController extends GetxController {
 
   ApiController api = Get.find<ApiController>();
 
+  /// [TODO] 제거대상
   Future<bool> getNotification() async {
     var ui = await api.request(method: Methods.get, url: '/api/member/alarms');
     if (ui.success) print(ui.body);
     return ui.success;
   }
 
+  /// [TODO] 제거대상
   Future<bool> updateUserAlarm(String type, bool isAllow) async {
     var ui = await api.request(
         method: Methods.patch,
@@ -29,6 +32,7 @@ class UserController extends GetxController {
     return ui.success;
   }
 
+  /// [TODO] 제거대상
   Future<bool> getUserAlarm() async {
     var ui =
         await api.request(method: Methods.get, url: '/api/alarms/allowance');
@@ -36,6 +40,7 @@ class UserController extends GetxController {
     return ui.success;
   }
 
+  /// [TODO] 제거대상
   Future<bool> getUserInfo() async {
     var ui = await api.request(method: Methods.get, url: '/api/member/my-page');
     if (ui.success) {
@@ -44,17 +49,20 @@ class UserController extends GetxController {
     return ui.success;
   }
 
+  /// [TODO] 제거대상
   Future<bool> signout() async {
     var result = await api.request(method: Methods.delete, url: '/api/member');
     return result.success;
   }
 
+  /// [TODO] 제거대상
   Future<bool> removeExpenditure(int id) async {
     var e = await api.request(
         method: Methods.delete, url: '/api/expenditures/${id}');
     return e.success;
   }
 
+  /// [TODO] 제거대상
   Future<bool> getExpenditures() async {
     var e = await api.request(method: Methods.get, url: '/api/expenditures');
     if (e.success)
@@ -64,6 +72,7 @@ class UserController extends GetxController {
     return e.success;
   }
 
+  /// [TODO] 제거대상
   Future<Expenditure> getExpenditure(int id) async {
     var e =
         await api.request(method: Methods.get, url: '/api/expenditures/${id}');
@@ -75,6 +84,7 @@ class UserController extends GetxController {
       return Expenditure();
   }
 
+  /// [TODO] 제거대상
   Future<bool> patchProfile({
     required String nickname,
     required String description,
@@ -87,6 +97,7 @@ class UserController extends GetxController {
     return r.success;
   }
 
+  /// [TODO] 제거대상
   Future<bool> uploadExpenditure({
     required String price,
     required String description,
@@ -123,16 +134,19 @@ class UserController extends GetxController {
     return r.success;
   }
 
+  /// [TODO] 제거대상
   void updateAlarmAllows(AlarmAllows allows) {
     alarmAllows.value = allows;
     update();
   }
 
+  /// [TODO] 제거대상
   void updateExpenditures(List<Expenditure> list) {
     expenditures.value = list;
     update();
   }
 
+  /// [TODO] 제거대상
   void updateUser(UserInfo? user) {
     print(user);
     if (user != null) {
@@ -153,6 +167,7 @@ class UserController extends GetxController {
     }
   }
 
+  /// [TODO] 제거대상
   bool updateToken(UserToken? token) {
     if (token != null) {
       userToken.update((val) {
@@ -170,5 +185,21 @@ class UserController extends GetxController {
       api.updateToken('');
       return false;
     }
+  }
+
+  /// 초기갑은 null입니다.
+  ///  null을 허용하는 observable
+  final Rxn<SocialLoginModel> _authenticationInfo = Rxn<SocialLoginModel>();
+
+  /// [TODO] kakao 혹은 apple 로그인 이후 서버에서 토큰 발급 받는 로직을 구현해야합니다.
+  Future<void> getAuthentication(SocialLoginModel? socialLoginModel) async {
+    _authenticationInfo(socialLoginModel);
+  }
+
+  /// [TODO]
+  /// 여기에 실제 인증 상태 확인 로직을 구현해야합니다.
+  /// 현재 사용자가 인증된 경우 true, 그렇지 않은 경우 false를 반환
+  bool isAuthenticated() {
+    return _authenticationInfo.value != null;
   }
 }
