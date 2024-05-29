@@ -8,7 +8,13 @@ import 'package:poorlex/schema/social_login/social_login.dart';
 
 class UserController extends GetxController {
   final userInfo = UserInfo().obs;
-  final userToken = UserToken().obs;
+
+  /// [TODO]
+  /// 아래의 토큰은 서버에서 토큰 받아오는 로직이 추가되면 제거해야합니다.
+  final userToken = UserToken(
+          token:
+              'eyJhbGciOiJIUzM4NCJ9.eyJpYXQiOjE3MTY5NTQyMzAsImV4cCI6MTgxNjk1NDIzMCwibWVtYmVySWQiOjI0fQ.nLVpg98TIcjArKxMVIDeXNegLD49OmoSo_wioI_TybTqAWNP6V7-szrOyoUQzp-N')
+      .obs;
   final expenditure = Expenditure().obs;
   final expenditures = <Expenditure>[].obs;
   final alarmAllows = AlarmAllows().obs;

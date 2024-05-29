@@ -29,7 +29,12 @@ class HTTPResult<T> {
 
 class ApiController extends GetxController {
   final layout = Get.find<LayoutController>();
-  final token = ''.obs;
+
+  /// [TODO] api controller는 제거 대상입니다.
+  /// 아래의 토큰은 저희 공용계정토큰입니다.
+  final token =
+      'eyJhbGciOiJIUzM4NCJ9.eyJpYXQiOjE3MTY5NTQyMzAsImV4cCI6MTgxNjk1NDIzMCwibWVtYmVySWQiOjI0fQ.nLVpg98TIcjArKxMVIDeXNegLD49OmoSo_wioI_TybTqAWNP6V7-szrOyoUQzp-N'
+          .obs;
 
   void updateToken(String token) {
     this.token.value = token;
