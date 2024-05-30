@@ -57,40 +57,24 @@ class _AnnounceMentState extends State<AnnounceMent> {
     return Column(
       children: [
         CButton(
-            child: Container(
-                padding: EdgeInsets.fromLTRB(0, 16, 0, 16),
-                child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Text('공지사항', style: CTextStyles.Headline()),
-                      CIcon(
-                        icon: 'arrow-game-right',
-                        width: 16,
-                        height: 16,
-                        color: CColors.whiteStr,
-                      ),
-                    ])),
-            onPressed: () => Get.toNamed('/my/notice')),
-        /*
-        Button(
-            child: Container(
-              padding: EdgeInsets.fromLTRB(0, 16, 0, 16),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text('고객센터', style: CTextStyles.Headline()),
-                  CustomIcon(
-                      icon: 'arrow-game-right',
-                      width: 16,
-                      height: 16,
-                      color: CColors.whiteStr),
-                ],
-              ),
+          child: Container(
+            padding: EdgeInsets.fromLTRB(0, 16, 0, 16),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text('공지사항', style: CTextStyles.Headline()),
+                CIcon(
+                  icon: 'arrow-game-right',
+                  width: 16,
+                  height: 16,
+                  color: CColors.whiteStr,
+                ),
+              ],
             ),
-            onPressed: () => Get.toNamed('/my/customer')),
-         */
+          ),
+          onPressed: () => Get.toNamed('/my/notice'),
+        ),
         CButton(
           child: Container(
             padding: EdgeInsets.fromLTRB(0, 16, 0, 16),
@@ -118,10 +102,11 @@ class _AnnounceMentState extends State<AnnounceMent> {
               children: [
                 Text('개인정보 처리방침', style: CTextStyles.Headline()),
                 CIcon(
-                    icon: 'arrow-game-right',
-                    width: 16,
-                    height: 16,
-                    color: CColors.whiteStr),
+                  icon: 'arrow-game-right',
+                  width: 16,
+                  height: 16,
+                  color: CColors.whiteStr,
+                ),
               ],
             ),
           ),
@@ -139,58 +124,100 @@ class _AnnounceMentState extends State<AnnounceMent> {
           ),
         ),
         CButton(
-            child: Container(
-              padding: EdgeInsets.fromLTRB(0, 16, 0, 16),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text('로그아웃',
-                      style: CTextStyles.Headline(color: CColors.gray30)),
-                  CIcon(
-                      icon: 'arrow-game-right',
-                      width: 16,
-                      height: 16,
-                      color: CColors.whiteStr),
-                ],
+          onPressed: () {
+            Navigator.of(context).push(
+              MaterialPageRoute<void>(
+                builder: (context) => Theme(
+                  data: ThemeData.dark(),
+                  child: LicensePage(applicationVersion: version),
+                ),
               ),
+            );
+          },
+          child: Container(
+            padding: EdgeInsets.fromLTRB(0, 16, 0, 16),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text('라이센스', style: CTextStyles.Headline()),
+                CIcon(
+                  icon: 'arrow-game-right',
+                  width: 16,
+                  height: 16,
+                  color: CColors.whiteStr,
+                ),
+              ],
             ),
-            onPressed: () => layout.setAlert(Alert(
-                isOpen: true,
-                type: AlertType.confirm,
-                submitText: '네',
-                cancelText: '아니요',
-                submit: () => logout(),
-                body: Text('로그아웃 하시겠습니까?',
-                    style: CTextStyles.Headline(color: CColors.gray50))))),
+          ),
+        ),
         CButton(
-            child: Container(
-              padding: EdgeInsets.fromLTRB(0, 16, 0, 16),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text('회원탈퇴',
-                      style: CTextStyles.Headline(color: CColors.gray30)),
-                  CIcon(
-                      icon: 'arrow-game-right',
-                      width: 16,
-                      height: 16,
-                      color: CColors.whiteStr),
-                ],
+          child: Container(
+            padding: EdgeInsets.fromLTRB(0, 16, 0, 16),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(
+                  '로그아웃',
+                  style: CTextStyles.Headline(color: CColors.gray30),
+                ),
+                CIcon(
+                  icon: 'arrow-game-right',
+                  width: 16,
+                  height: 16,
+                  color: CColors.whiteStr,
+                ),
+              ],
+            ),
+          ),
+          onPressed: () => layout.setAlert(
+            Alert(
+              isOpen: true,
+              type: AlertType.confirm,
+              submitText: '네',
+              cancelText: '아니요',
+              submit: () => logout(),
+              body: Text(
+                '로그아웃 하시겠습니까?',
+                style: CTextStyles.Headline(color: CColors.gray50),
               ),
             ),
-            onPressed: () => layout.setAlert(Alert(
-                isOpen: true,
-                type: AlertType.confirm,
-                submit: () => signout(),
-                submitText: '네, 떠날게요',
-                cancelText: '아니요',
-                body: Text(
-                  '회원 탈퇴 시 등록된 모든 지출내역이 삭제되고, 삭제된 데이터는 복구할 수 없다네.\n\n정말 떠날텐가...?',
-                  style: CTextStyles.Headline(color: CColors.gray50),
-                  softWrap: true,
-                )))),
+          ),
+        ),
+        CButton(
+          child: Container(
+            padding: EdgeInsets.fromLTRB(0, 16, 0, 16),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text('회원탈퇴',
+                    style: CTextStyles.Headline(color: CColors.gray30)),
+                CIcon(
+                  icon: 'arrow-game-right',
+                  width: 16,
+                  height: 16,
+                  color: CColors.whiteStr,
+                ),
+              ],
+            ),
+          ),
+          onPressed: () => layout.setAlert(
+            Alert(
+              isOpen: true,
+              type: AlertType.confirm,
+              submit: () => signout(),
+              submitText: '네, 떠날게요',
+              cancelText: '아니요',
+              body: Text(
+                '회원 탈퇴 시 등록된 모든 지출내역이 삭제되고, 삭제된 데이터는 복구할 수 없다네.\n\n정말 떠날텐가...?',
+                style: CTextStyles.Headline(color: CColors.gray50),
+                softWrap: true,
+              ),
+            ),
+          ),
+        ),
       ],
     );
   }
