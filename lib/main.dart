@@ -15,6 +15,8 @@ import 'package:poorlex/controller/user.dart';
 import 'package:poorlex/libs/theme.dart';
 import 'package:poorlex/middleware/auth_middleware.dart';
 import 'package:poorlex/provider/battles_provider.dart';
+import 'package:poorlex/provider/expenditures_povider.dart';
+import 'package:poorlex/provider/member_provider.dart';
 import 'package:poorlex/screen/battle/modify_battle_detail.dart';
 import 'package:poorlex/screen/friends/friends.dart';
 import 'package:poorlex/screen/my/my_notification.dart';
@@ -29,9 +31,18 @@ import 'package:poorlex/screen/battle/battle_create.dart';
 class Bind extends Bindings {
   @override
   void dependencies() {
+    Get.lazyPut(() => MemberProvider());
+    Get.lazyPut(() => ExpendituresProvider());
+
     Get.put(LayoutController(), permanent: true);
     Get.put(ApiController(), permanent: true);
-    Get.put(UserController(), permanent: true);
+    Get.put(
+      UserController(
+        memberProvider: Get.find(),
+        expendituresProvider: Get.find(),
+      ),
+      permanent: true,
+    );
     Get.put(ImagePickerController(), permanent: true);
   }
 }

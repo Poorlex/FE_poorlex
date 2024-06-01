@@ -8,7 +8,7 @@ import 'package:poorlex/schema/my_page_response/my_page_response.dart';
 /// - [sample connect](https://gist.github.com/eduardoflorence/b4bca2da5cfb973b9f86ecfa1b9f013a)
 /// - [docs](https://pub.dev/packages/get#getconnect)
 class MemberProvider extends GetConnect {
-  final user = Get.find<UserController>();
+  MemberProvider();
   @override
   void onInit() {
     // prefix "/member" 적용
@@ -16,6 +16,7 @@ class MemberProvider extends GetConnect {
 
     /// [TODO] header에 token 잘 들어가는지 확인 필요
     httpClient.addRequestModifier<Object?>((request) {
+      final user = Get.find<UserController>();
       final token = user.userToken().token;
       request.headers['Authorization'] = 'Bearer $token';
       return request;
