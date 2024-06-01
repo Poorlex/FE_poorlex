@@ -24,39 +24,49 @@ class _MainCarouselSliderState extends State<MainCarouselSlider> {
 
     void changeIndex(int number) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
-        // Add Your Code here.
         idx = number;
       });
     }
 
-    return Column(children: [
-      Padding(
-        padding: EdgeInsets.symmetric(vertical: 9, horizontal: 23),
-        child: Row(children: [
-          Text('참여 중인 배틀 (${idx + 1}/3)',
-              style: CTextStyles.Body3(color: CColors.black))
-        ]),
-      ),
-      CarouselSlider(
-        options: CarouselOptions(
-            height: MediaQuery.of(context).size.height / 4,
+    return Column(
+      children: [
+        // 참여 중인 배틀 텍스트
+        Container(
+          width: double.infinity,
+          padding: EdgeInsets.symmetric(
+            vertical: 9,
+            horizontal: 23,
+          ),
+          child: Text(
+            '참여 중인 배틀 (${idx + 1}/3)',
+            style: CTextStyles.Body3(color: CColors.black),
+          ),
+        ),
+
+        // 슬라이더
+        CarouselSlider(
+          options: CarouselOptions(
+            viewportFraction: 0.9,
             scrollDirection: Axis.horizontal,
-            viewportFraction: 1),
-        items: samples.map((sample) {
-          return Builder(
-            builder: (BuildContext context) {
-              changeIndex(samples.indexOf(sample));
-              return Column(children: [
-                if (sample[0] != '0') ...[
-                  BattleBox(sample: sample)
-                ] else ...[
-                  EmptyBattle()
-                ]
-              ]);
-            },
-          );
-        }).toList(),
-      ),
-    ]);
+          ),
+          items: samples.map((sample) {
+            return Builder(
+              builder: (BuildContext context) {
+                changeIndex(samples.indexOf(sample));
+                return Column(
+                  children: [
+                    if (sample[0] != '0') ...[
+                      BattleBox(sample: sample)
+                    ] else ...[
+                      EmptyBattle()
+                    ]
+                  ],
+                );
+              },
+            );
+          }).toList(),
+        ),
+      ],
+    );
   }
 }

@@ -9,21 +9,31 @@ class MainBottom extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        ElevatedButton(
-          style: ElevatedButton.styleFrom(
-              side: BorderSide(width: 2, color: Color(0xffFFD600)),
-              backgroundColor: CColors.yellow,
-              padding: EdgeInsets.symmetric(horizontal: 124, vertical: 15)),
-          child:
-              Text('지출 추가하기', style: CTextStyles.Title3(color: CColors.black)),
+    return Container(
+      width: double.infinity,
+      height: 52,
+      child: DecoratedBox(
+        decoration: BoxDecoration(
+          color: CColors.yellow,
+          border: Border(
+            top: BorderSide(color: CColors.yellowLight, width: 4),
+          ),
+        ),
+        child: TextButton(
+          child: Text(
+            '지출 추가하기',
+            style: CTextStyles.Title3(color: CColors.black),
+          ),
           onPressed: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => MyExpenseInputPage()));
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => MyExpenseInputPage(),
+              ),
+            );
           },
         ),
-      ],
+      ),
     );
   }
 }
