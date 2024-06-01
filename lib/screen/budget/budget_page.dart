@@ -65,7 +65,7 @@ class _BudgetPageState extends State<BudgetPage> {
             Center(
               child: Text(
                 "예산 설정하기",
-                style: CTextStyles.Headline(color: CColors.black),
+                style: CTextStyles.Headline(),
               ),
             ),
           ],
@@ -82,7 +82,7 @@ class _BudgetPageState extends State<BudgetPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text("배틀을 시작하기 위해\n일주일 동안 사용할 예산을\n설정해 주세요.",
-                        style: CTextStyles.Title2()),
+                        style: CTextStyles.Title1(height: 1.5)),
                     SizedBox(height: 18),
                     Text("배틀 기간: $battlePeriod",
                         style: CTextStyles.Caption1(color: CColors.gray41)),
@@ -129,6 +129,7 @@ class _BudgetPageState extends State<BudgetPage> {
                         ),
                         if (_focusNode.hasFocus)
                           Positioned(
+                            width: 122,
                             right: 5, // 원하는 위치로 조절
                             top: 15, // 원하는 위치로 조절
                             child: Image.asset('assets/poorlex.png'),
