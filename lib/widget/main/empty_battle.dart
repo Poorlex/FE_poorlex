@@ -7,44 +7,51 @@ class EmptyBattle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 12),
-      child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
-        Stack(children: [
-          Padding(
-            padding: EdgeInsets.symmetric(vertical: 7, horizontal: 5),
-            child: Container(
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        Stack(
+          alignment: Alignment.center,
+          children: [
+            Container(
                 decoration: BoxDecoration(color: CColors.black),
-                width: 335,
-                height: 150,
+                width: 347,
+                height: 144,
                 child: Column(children: [])),
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(vertical: 3, horizontal: 8),
-            child: Container(
-                width: 330,
-                height: 157,
-                decoration: BoxDecoration(color: Color(0xff000000)),
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      OutlinedButton(
-                        child: SizedBox(
-                            width: 34,
-                            height: 34,
-                            child: Image.asset(
-                                'assets/main_page/empty_battle.png')),
-                        onPressed: () {},
-                      ),
-                      OutlinedButton(
-                        child: Text('배틀 방 만들기',
-                            style: CTextStyles.Headline(color: CColors.gray70)),
-                        onPressed: () {},
-                      )
-                    ])),
-          ),
-        ])
-      ]),
+            Container(
+              width: 341,
+              height: 150,
+              decoration: BoxDecoration(color: CColors.black),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  OutlinedButton(
+                    child: SizedBox(
+                      width: 34,
+                      height: 34,
+                      child: Image.asset('assets/main_page/empty_battle.png'),
+                    ),
+                    style: OutlinedButton.styleFrom(
+                      side: BorderSide(width: 0),
+                    ),
+                    onPressed: () {},
+                  ),
+                  OutlinedButton(
+                    child: Text(
+                      '배틀 방 만들기',
+                      style: CTextStyles.Headline(color: CColors.gray70),
+                    ),
+                    style: OutlinedButton.styleFrom(
+                      side: BorderSide(width: 0),
+                    ),
+                    onPressed: () {},
+                  )
+                ],
+              ),
+            ),
+          ],
+        ),
+      ],
     );
   }
 }
