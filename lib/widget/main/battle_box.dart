@@ -11,121 +11,140 @@ class BattleBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-        padding: EdgeInsets.symmetric(horizontal: 12),
-        child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
-          Stack(children: [
-            Padding(
-                padding: EdgeInsets.symmetric(vertical: 7, horizontal: 5),
-                child: Container(
-                    decoration: BoxDecoration(color: CColors.black),
-                    width: 360,
-                    height: 150,
-                    child: Column(children: []))),
-            Padding(
-                padding: EdgeInsets.symmetric(vertical: 3, horizontal: 8),
-                child: Container(
-                    width: 350,
-                    height: 157,
-                    decoration: BoxDecoration(color: CColors.black),
-                    child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        Stack(
+          alignment: Alignment.center,
+          children: [
+            Container(
+              decoration: BoxDecoration(color: CColors.black),
+              width: 347,
+              height: 144,
+            ),
+            Container(
+              width: 341,
+              height: 150,
+              decoration: BoxDecoration(color: CColors.black),
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                  vertical: 14,
+                  horizontal: 20,
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        // 금액 메달
+                        Container(
+                          width: 48,
+                          height: 56,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(4),
+                            border: Border.all(
+                              color: const Color(0xFF8F6E00),
+                              width: 2,
+                            ),
+                          ),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: const Color(0xFFD7C53B),
+                              borderRadius: BorderRadius.circular(2),
+                              border: Border(
+                                top: BorderSide(
+                                  color: const Color(0xFFFEFF73),
+                                  width: 2,
+                                ),
+                              ),
+                            ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      Column(children: [
-                                        Padding(
-                                          padding: EdgeInsets.symmetric(
-                                              vertical: 20, horizontal: 14),
-                                          child: Container(
-                                              decoration: BoxDecoration(
-                                                  color: CColors.yellow,
-                                                  borderRadius:
-                                                      BorderRadius.circular(10),
-                                                  border: Border.all(
-                                                      color: CColors.yellow,
-                                                      width: 2)),
-                                              width: 48,
-                                              child: Column(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.center,
-                                                  children: [
-                                                    Text(sample[0],
-                                                        style: CTextStyles
-                                                            .LargeTitle(
-                                                                color: CColors
-                                                                    .black)),
-                                                    Text('만원',
-                                                        style:
-                                                            CTextStyles.Body3(
-                                                                color: CColors
-                                                                    .black))
-                                                  ])),
-                                        ),
-                                      ]),
-                                      Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Text(sample[1],
-                                                      style: CTextStyles
-                                                          .Headline()),
-                                                  SizedBox(height: 13),
-                                                  Text('존버 금액 : ${sample[2]} 원',
-                                                      style: CTextStyles.Body3(
-                                                          color: CColors.white
-                                                              .withOpacity(
-                                                                  0.7))),
-                                                ]),
-                                          ]),
-                                    ]),
-                                Padding(
-                                    padding:
-                                        EdgeInsets.symmetric(horizontal: 20),
-                                    child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Row(children: [
-                                            Row(children: [
-                                              Text('${sample[3]}위 / 20명',
-                                                  style: CTextStyles.Title1()),
-                                              SizedBox(width: 28),
-                                              Icon(Icons.chat_outlined,
-                                                  color: CColors.white,
-                                                  size: 16),
-                                              SizedBox(width: 4),
-                                              Text(sample[3],
-                                                  style: CTextStyles.Body3()),
-                                            ]),
-                                          ]),
-                                          Padding(
-                                              padding: EdgeInsets.symmetric(
-                                                  horizontal: 1),
-                                              child: OutlinedButton(
-                                                style: OutlinedButton.styleFrom(
-                                                    side: BorderSide(
-                                                        width: 1.0,
-                                                        color: CColors.yellow)),
-                                                child: Text('입장',
-                                                    style: CTextStyles.Body2(
-                                                        color: CColors.yellow)),
-                                                onPressed: () {},
-                                              ))
-                                        ]))
-                              ])
-                        ])))
-          ])
-        ]));
+                                Text(sample[0],
+                                    style: CTextStyles.LargeTitle(
+                                        color: CColors.black)),
+                                Text(
+                                  '만원',
+                                  style: CTextStyles.Body3(
+                                    color: CColors.black,
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+
+                        SizedBox(width: 18),
+
+                        // 배틀 제목, 존버 금액
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(sample[1], style: CTextStyles.Headline()),
+                            SizedBox(height: 10),
+                            Text(
+                              '존버 금액 : ${sample[2]} 원',
+                              style: CTextStyles.Body3(
+                                color: CColors.gray40,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+
+                    // 참여자 수, 댓글 수, 입장 버튼
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            Row(
+                              children: [
+                                Text('${sample[3]}위/20명',
+                                    style: CTextStyles.Title1()),
+                                SizedBox(width: 40),
+                                Icon(Icons.chat_outlined,
+                                    color: CColors.white, size: 16),
+                                SizedBox(width: 1),
+                                Text(sample[3], style: CTextStyles.Body3()),
+                              ],
+                            ),
+                          ],
+                        ),
+                        OutlinedButton(
+                          style: OutlinedButton.styleFrom(
+                            side: BorderSide(
+                              width: 1,
+                              color: CColors.yellow,
+                            ),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(2),
+                              ),
+                            ),
+                          ),
+                          child: Text(
+                            '입장',
+                            style: CTextStyles.Body2(
+                              color: CColors.yellow,
+                            ),
+                          ),
+                          onPressed: () {},
+                        )
+                      ],
+                    )
+                  ],
+                ),
+              ),
+            )
+          ],
+        ),
+      ],
+    );
   }
 }

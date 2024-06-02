@@ -117,8 +117,8 @@ class CTextStyles {
     height,
   }) =>
       TextStyle(
-        fontSize: 17,
-        height: height ?? 1.0,
+        fontSize: 18,
+        height: height ?? 1.6,
         letterSpacing: -0.25,
         color: color ?? defaultColor,
         fontFamily: fontFamily,
