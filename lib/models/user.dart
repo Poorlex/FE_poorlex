@@ -1,3 +1,5 @@
+import 'package:poorlex/schema/expenditure_response/expenditure_response.dart';
+
 enum AlarmTypes {
   EXPENDITURE_REQUEST,
   BATTLE_STATUS,
@@ -30,45 +32,6 @@ class BattleSuccessInfo {
     this.normalBattleSuccessCount = 0,
     this.easyBattleSuccessCount = 0,
   });
-}
-
-class Expenditure {
-  /*
-  {
-    "id": 0,
-    "date": "2024-02-24",
-    "amount": 0,
-    "description": "string",
-    "mainImageUrl": "string",
-    "subImageUrl": "string"
-  }
-   */
-  late int? id;
-  late String? date;
-  late num? amount = 0;
-  late String? description;
-  late String? imageUrl;
-  late String? mainImageUrl;
-  late String? subImageUrl;
-
-  Expenditure({
-    this.id,
-    this.date,
-    this.amount,
-    this.description,
-    this.imageUrl,
-    this.mainImageUrl,
-    this.subImageUrl,
-  });
-  factory Expenditure.fromJson(Map<String, dynamic> j) => Expenditure(
-        id: j['id'],
-        date: j['date'],
-        amount: j['amount'],
-        description: j['description'],
-        imageUrl: j['imageUrl'],
-        mainImageUrl: j['mainImageUrl'],
-        subImageUrl: j['subImageUrl'],
-      );
 }
 
 class AlarmAllows {
@@ -148,7 +111,7 @@ class UserInfo {
   int? friendTotalCount = 0;
   List<Friend>? friends = [];
   int? expenditureTotalCount = 0;
-  List<Expenditure>? expenditures = [];
+  List<ExpenditureResponse>? expenditures = [];
 
   UserInfo({
     this.nickname,
@@ -187,7 +150,7 @@ class UserInfo {
         expenditureTotalCount:
             int.parse(data['expenditureTotalCount'].toString()),
         expenditures: (data['expenditures'] ?? [])
-            .map<Expenditure>((f) => Expenditure.fromJson(f))
+            .map<ExpenditureResponse>((f) => ExpenditureResponse.fromJson(f))
             .toList());
   }
 }

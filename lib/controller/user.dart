@@ -4,103 +4,62 @@ import 'package:image_picker/image_picker.dart';
 import 'package:poorlex/controller/api.dart';
 import 'package:poorlex/models/user.dart';
 import 'package:poorlex/libs/time.dart';
+import 'package:poorlex/provider/expenditures_povider.dart';
+import 'package:poorlex/provider/member_provider.dart';
+import 'package:poorlex/schema/expenditure_response/expenditure_response.dart';
 import 'package:poorlex/schema/social_login/social_login.dart';
 
 class UserController extends GetxController {
+  final MemberProvider memberProvider;
+  final ExpendituresProvider expendituresProvider;
+  UserController({
+    required this.memberProvider,
+    required this.expendituresProvider,
+  });
   final userInfo = UserInfo().obs;
 
   /// [TODO]
   /// 아래의 토큰은 서버에서 토큰 받아오는 로직이 추가되면 제거해야합니다.
   final userToken = UserToken(
           token:
-              'eyJhbGciOiJIUzM4NCJ9.eyJpYXQiOjE3MTY5NTQyMzAsImV4cCI6MTgxNjk1NDIzMCwibWVtYmVySWQiOjI0fQ.nLVpg98TIcjArKxMVIDeXNegLD49OmoSo_wioI_TybTqAWNP6V7-szrOyoUQzp-N')
+              'eyJhbGciOiJIUzM4NCJ9.eyJpYXQiOjE3MTcyNDI3MjIsImV4cCI6MTgxNzI0MjcyMiwibWVtYmVySWQiOjI0fQ.MuCOqvidSEgPJ6nMSXeRi4Kko3CdogHOkzYqoTewYzZGc0RphkTrd3hcM8HxclOd')
       .obs;
-  final expenditure = Expenditure().obs;
-  final expenditures = <Expenditure>[].obs;
+  final expenditure = Rxn<ExpenditureResponse>();
+  final expenditures = <ExpenditureResponse>[].obs;
   final alarmAllows = AlarmAllows().obs;
 
   ApiController api = Get.find<ApiController>();
 
-  /// [TODO] 제거대상
-  Future<bool> getNotification() async {
-    var ui = await api.request(method: Methods.get, url: '/api/member/alarms');
-    if (ui.success) print(ui.body);
-    return ui.success;
-  }
-
-  /// [TODO] 제거대상
-  Future<bool> updateUserAlarm(String type, bool isAllow) async {
-    var ui = await api.request(
-        method: Methods.patch,
-        url: '/api/alarms/allowance',
-        body: {'alarmType': type, 'allowed': isAllow});
-    if (ui.success) await getUserAlarm();
-    return ui.success;
-  }
-
-  /// [TODO] 제거대상
-  Future<bool> getUserAlarm() async {
-    var ui =
-        await api.request(method: Methods.get, url: '/api/alarms/allowance');
-    if (ui.success) updateAlarmAllows(AlarmAllows.fromJson(ui.body!));
-    return ui.success;
-  }
-
-  /// [TODO] 제거대상
-  Future<bool> getUserInfo() async {
-    var ui = await api.request(method: Methods.get, url: '/api/member/my-page');
-    if (ui.success) {
-      updateUser(UserInfo.fromJson(ui.body!));
-    }
-    return ui.success;
-  }
-
-  /// [TODO] 제거대상
-  Future<bool> signout() async {
-    var result = await api.request(method: Methods.delete, url: '/api/member');
-    return result.success;
-  }
-
-  /// [TODO] 제거대상
+  /// [TODO] API 테스트 필요
   Future<bool> removeExpenditure(int id) async {
-    var e = await api.request(
-        method: Methods.delete, url: '/api/expenditures/${id}');
-    return e.success;
+    final response =
+        await expendituresProvider.deleteExpenditures(expenditureId: id);
+    return response;
+  }
+
+  /// [TODO] API 테스트 필요
+  Future<void> getExpenditures() async {
+    final response = await expendituresProvider.getList();
+    expenditures.value = response ?? [];
+  }
+
+  /// [TODO] API 테스트 필요
+  Future<ExpenditureResponse?> getExpenditure(int id) async {
+    final response =
+        await expendituresProvider.getDetailById(expenditureId: id);
+    expenditure.value = response;
+    return response;
   }
 
   /// [TODO] 제거대상
-  Future<bool> getExpenditures() async {
-    var e = await api.request(method: Methods.get, url: '/api/expenditures');
-    if (e.success)
-      updateExpenditures((e.body ?? [])
-          .map<Expenditure>((b) => Expenditure.fromJson(b))
-          .toList());
-    return e.success;
-  }
-
-  /// [TODO] 제거대상
-  Future<Expenditure> getExpenditure(int id) async {
-    var e =
-        await api.request(method: Methods.get, url: '/api/expenditures/${id}');
-    if (e.success) {
-      expenditure.value = Expenditure.fromJson(e.body);
-      update();
-      return expenditure.value;
-    } else
-      return Expenditure();
-  }
-
-  /// [TODO] 제거대상
-  Future<bool> patchProfile({
+  Future<void> patchProfile({
     required String nickname,
     required String description,
   }) async {
-    var r = await api.request(
-        method: Methods.patch,
-        url: '/api/member/profile',
-        body: {'nickname': nickname, 'description': description});
-    if (r.success) await getUserInfo();
-    return r.success;
+    await memberProvider.patchProfile(
+      nickname: nickname,
+      description: description,
+    );
   }
 
   /// [TODO] 제거대상
@@ -134,7 +93,6 @@ class UserController extends GetxController {
         body: body,
         files: files);
     if (r.success) {
-      await getUserInfo();
       await getExpenditures();
     }
     return r.success;
@@ -143,12 +101,6 @@ class UserController extends GetxController {
   /// [TODO] 제거대상
   void updateAlarmAllows(AlarmAllows allows) {
     alarmAllows.value = allows;
-    update();
-  }
-
-  /// [TODO] 제거대상
-  void updateExpenditures(List<Expenditure> list) {
-    expenditures.value = list;
     update();
   }
 

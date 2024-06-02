@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:poorlex/controller/apple_auth.dart';
 import 'package:poorlex/controller/kakao_auth.dart';
 import 'package:poorlex/controller/user.dart';
+import 'package:poorlex/enums/social_type.dart';
 import 'package:poorlex/schema/social_login/social_login.dart';
 
 import 'package:poorlex/widget/common/buttons.dart';
@@ -42,6 +43,30 @@ class _LoginState extends State<Login> {
     _userController.getAuthentication(socialLoginModel);
     print(">>>>>>>> $socialLoginModel");
     Get.offAllNamed('/');
+  }
+
+  @override
+  void initState() {
+    _autoLogin();
+    super.initState();
+  }
+
+  /// [MEMO] autoLogin 구현 해야함
+  /// 1. kakao user를 가져올 수 있다면 O
+  ///
+  Future<void> _autoLogin() async {
+    try {
+      /// 1.kakao login이 되어있을 경우 '/'로 이동합니다.
+      /// 로그인 되어 있지 않으면 catch구간으로 넘어갑니다.
+      final user = await _kakaoAuthController.user;
+      _userController.getAuthentication(
+        SocialLoginModel(
+          socialType: SocialType.kakao,
+          providerId: "${user.id}",
+        ),
+      );
+      Get.offAllNamed('/');
+    } catch (e) {}
   }
 
   @override

@@ -46,9 +46,13 @@ class _GoalPageState extends State<GoalPage> {
                     Expanded(
                         child: CTab(selected: 1234, list: [
                       CTabItem(
-                          label: '진행중', value: 1234, onClick: () => print(123)),
+                          label: '진행중',
+                          value: 1234,
+                          onClick: (int value) => print(123)),
                       CTabItem(
-                          label: '완료된', value: 5678, onClick: () => print(123)),
+                          label: '완료된',
+                          value: 5678,
+                          onClick: (int value) => print(123)),
                     ]))
                   ]),
                 ))),

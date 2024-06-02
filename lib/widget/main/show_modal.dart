@@ -15,8 +15,9 @@ class ShowModal extends StatefulWidget {
 }
 
 class _ShowModalState extends State<ShowModal> {
+  // [MEMO] 잘못된 가져오기 방식 동작확인 필요
   final ModalController _modal = Get.put(ModalController());
-  final UserController _user = Get.put(UserController());
+  final UserController _user = Get.find<UserController>();
 
   late int stageLevel = 0;
 

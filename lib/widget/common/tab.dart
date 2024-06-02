@@ -4,7 +4,7 @@ import 'package:poorlex/libs/theme.dart';
 class CTabItem {
   String label;
   dynamic value;
-  Function onClick;
+  void Function(int) onClick;
 
   CTabItem({
     required this.label,

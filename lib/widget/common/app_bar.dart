@@ -12,8 +12,6 @@ class CAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      automaticallyImplyLeading: false,
-      backgroundColor: CColors.black,
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

@@ -38,12 +38,8 @@ class _AnnounceMentState extends State<AnnounceMent> {
     return true;
   }
 
-  Future<bool> signout() async {
-    if (await user.signout()) {
-      this.logout();
-      return true;
-    } else
-      return false;
+  Future<bool> signOut() async {
+    return true;
   }
 
   @override
@@ -207,7 +203,7 @@ class _AnnounceMentState extends State<AnnounceMent> {
             Alert(
               isOpen: true,
               type: AlertType.confirm,
-              submit: () => signout(),
+              submit: () => signOut(),
               submitText: '네, 떠날게요',
               cancelText: '아니요',
               body: Text(

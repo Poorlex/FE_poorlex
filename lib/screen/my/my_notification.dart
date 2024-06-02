@@ -19,7 +19,7 @@ class _MyNotificationState extends State<MyNotification> {
   @override
   void initState() {
     super.initState();
-    user.getNotification();
+    // user.getNotification();
   }
 
   @override
