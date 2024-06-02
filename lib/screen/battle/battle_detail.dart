@@ -148,12 +148,14 @@ class _BattleDetailState extends State<BattleDetail> {
                         GestureDetector(
                           onTap: () async {
                             Navigator.of(context).pop();
-                            await confirmDialog(
-                                context: context,
-                                cancelText: '아니오',
-                                confirmText: "네",
-                                confirmFn: () {},
-                                bodyText: "삭제를 진행하시겠습니끼?");
+
+                            /// [MEMO] result 결과에 따른 다음 동작 구현 필요
+                            final result = await confirmDialog(
+                              context: context,
+                              cancelText: '아니오',
+                              confirmText: "네",
+                              bodyText: "삭제를 진행하시겠습니끼?",
+                            );
                           },
                           child: Container(
                             alignment: Alignment.center,
