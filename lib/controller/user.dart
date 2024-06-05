@@ -102,14 +102,12 @@ class UserController extends GetxController {
     return r.success;
   }
 
-  void updateUser(MyPageResponse? user) {
-    _userInfo(user);
-  }
-
   /// [MEMO] token으로 유저 정보 가져오기 (내부에서만 사용됩니다.)
   Future<void> _getUserInfo() async {
-    final userInfo = await memberProvider.getMyPage();
-    _userInfo(userInfo);
+    try {
+      final userInfo = await memberProvider.getMyPage();
+      _userInfo(userInfo);
+    } catch (e) {}
   }
 
   /// token 가져오면서 user정보도 가져옵니다.

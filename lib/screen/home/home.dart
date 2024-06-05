@@ -17,17 +17,18 @@ class Main extends StatefulWidget {
 
 class _MainState extends State<Main> {
   final ModalController _modal = Get.put(ModalController());
-  // 모달 페이지 변수
-  int modalValue = 0;
 
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (_modal.modalCount().modalCount == 0) {
-        show(context);
-      }
-    });
+
+    /// [MEMO] 1차 배포에 포함안하기 때문에 주석처리
+    /// 해당 부분 modal 새로 구현해야합니다.
+    // WidgetsBinding.instance.addPostFrameCallback((_) {
+    //   if (_modal.modalCount().modalCount == 0) {
+    //     show(context);
+    //   }
+    // });
   }
 
   void show(BuildContext context) {

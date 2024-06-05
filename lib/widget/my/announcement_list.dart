@@ -8,7 +8,6 @@ import 'package:poorlex/controller/user.dart';
 import 'package:poorlex/libs/theme.dart';
 import 'package:poorlex/widget/common/dialog/confirm_dialog.dart';
 import 'package:poorlex/widget/my/withdrawal_bottom_sheet_with_beggar.dart';
-
 import 'package:poorlex/widget/common/icon.dart';
 import 'package:poorlex/widget/common/buttons.dart';
 
@@ -33,7 +32,6 @@ class _AnnounceMentState extends State<AnnounceMent> {
     });
   }
 
-  /// [MEMO] 로그아웃도 다시 구현해야함.
   Future<void> _logout() async {
     final result = await confirmDialog(
       context: context,
@@ -42,11 +40,9 @@ class _AnnounceMentState extends State<AnnounceMent> {
       confirmText: "네",
     );
     if (result == true) {
-      user.updateUser(null);
-      user.updateToken(null);
-
+      await user.updateToken(null);
       await KaKaoAuthController().logOut();
-      Get.offAllNamed('login');
+      Get.offAllNamed('/login');
     }
   }
 

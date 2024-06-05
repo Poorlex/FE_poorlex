@@ -25,8 +25,6 @@ class AppleAuthController {
       /// iphone 외에 로그인 제공할때 사용
       webAuthenticationOptions: null,
     );
-
-    if (credential.userIdentifier == null) return null;
     return SocialLoginModel(
       code: credential.authorizationCode,
       socialType: SocialType.apple,
