@@ -51,15 +51,18 @@ class _GNBLayoutState extends State<GNBLayout> {
               case '/main':
                 return GetPageRoute(
                   page: () => Main(),
+                  transition: Transition.noTransition,
                 );
               case '/goal':
                 return GetPageRoute(
                   page: () => GoalPage(),
+                  transition: Transition.noTransition,
                 );
               case '/battle':
                 return GetPageRoute(
                   page: () => Battle(),
                   binding: BattleBind(),
+                  transition: Transition.noTransition,
                 );
               case '/battle/detail':
                 return GetPageRoute(
@@ -73,10 +76,12 @@ class _GNBLayoutState extends State<GNBLayout> {
               case '/calendar':
                 return GetPageRoute(
                   page: () => CalendarPage(),
+                  transition: Transition.noTransition,
                 );
               case '/my':
                 return GetPageRoute(
                   page: () => MyPage(),
+                  transition: Transition.noTransition,
                 );
               case '/my/expenditure':
                 return GetPageRoute(
