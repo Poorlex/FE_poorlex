@@ -18,6 +18,9 @@ class KaKaoAuthController {
   /// - {error: misconfigured, error_description: invalid android_key_hash or ios_bundle_id or web_site_url}
   ///     - [컴퓨터 키 해시 등록해야합니다.](https://developers.kakao.com/docs/latest/ko/android/getting-started#before-you-begin-add-key-hash-using-keytool)
   Future<SocialLoginModel?> kakaoLogin() async {
+    /// [error: misconfigured 해결] kakao key hash 확인
+    // print("key hash");
+    // print(await KakaoSdk.origin);
     if (await isKakaoTalkInstalled()) {
       try {
         final OAuthToken oauthToken = await _kakaoAuth.loginWithKakaoTalk();
