@@ -7,19 +7,20 @@ class EmptyBattle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: [
-        Stack(
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final double secondContainerWidth = constraints.maxWidth - 6;
+
+        return Stack(
           alignment: Alignment.center,
           children: [
             Container(
-                decoration: BoxDecoration(color: CColors.black),
-                width: 347,
-                height: 144,
-                child: Column(children: [])),
+              decoration: BoxDecoration(color: CColors.black),
+              width: secondContainerWidth + 6,
+              height: 144,
+            ),
             Container(
-              width: 341,
+              width: secondContainerWidth,
               height: 150,
               decoration: BoxDecoration(color: CColors.black),
               child: Column(
@@ -50,8 +51,8 @@ class EmptyBattle extends StatelessWidget {
               ),
             ),
           ],
-        ),
-      ],
+        );
+      },
     );
   }
 }
