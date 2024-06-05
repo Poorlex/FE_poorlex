@@ -5,7 +5,7 @@ import 'package:poorlex/controller/hive_box.dart';
 import 'package:poorlex/enums/social_type.dart';
 import 'package:poorlex/models/user.dart';
 import 'package:poorlex/libs/time.dart';
-import 'package:poorlex/provider/expenditures_povider.dart';
+import 'package:poorlex/provider/expenditures_provider.dart';
 import 'package:poorlex/provider/login_provider.dart';
 import 'package:poorlex/provider/member_provider.dart';
 import 'package:poorlex/schema/expenditure_response/expenditure_response.dart';

@@ -14,10 +14,7 @@ import 'package:poorlex/schema/member_progress_battle_response/member_progress_b
 import 'package:poorlex/schema/vote_response/vote_response.dart';
 
 class BattlesProvider extends GetConnect {
-  final UserController user;
-  BattlesProvider({
-    required this.user,
-  });
+  BattlesProvider();
 
   @override
   void onInit() {
@@ -26,6 +23,7 @@ class BattlesProvider extends GetConnect {
 
     /// [TODO] header에 token 잘 들어가는지 확인 필요
     httpClient.addRequestModifier<Object?>((request) {
+      final user = Get.find<UserController>();
       final token = user.userToken;
       request.headers['Authorization'] = 'Bearer $token';
       return request;

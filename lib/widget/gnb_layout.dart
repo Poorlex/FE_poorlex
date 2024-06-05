@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:poorlex/bind/battle_detail.dart';
-import 'package:poorlex/main.dart';
+import 'package:poorlex/bind/battle/battle.dart';
+import 'package:poorlex/bind/battle/battle_detail.dart';
 import 'package:poorlex/screen/battle/battle.dart';
 import 'package:poorlex/screen/battle/battle_detail.dart';
 import 'package:poorlex/screen/battle/battle_ranking.dart';
@@ -52,6 +52,9 @@ class _GNBLayoutState extends State<GNBLayout> {
                 return GetPageRoute(
                   page: () => Main(),
                   transition: Transition.noTransition,
+                  bindings: [
+                    BattleBind(),
+                  ],
                 );
               case '/goal':
                 return GetPageRoute(
