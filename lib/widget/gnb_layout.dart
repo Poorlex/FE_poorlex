@@ -7,7 +7,7 @@ import 'package:poorlex/screen/battle/battle_detail.dart';
 import 'package:poorlex/screen/battle/battle_ranking.dart';
 import 'package:poorlex/screen/calendar/calendar_page.dart';
 import 'package:poorlex/screen/goal/goal_page.dart';
-import 'package:poorlex/screen/main/main.dart';
+import 'package:poorlex/screen/home/home.dart';
 import 'package:poorlex/screen/my/my_expense.dart';
 import 'package:poorlex/screen/my/my_expense_detail.dart';
 import 'package:poorlex/screen/my/my_page.dart';
