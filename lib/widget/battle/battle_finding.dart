@@ -34,6 +34,7 @@ class _BattleFindingState extends State<BattleFinding> {
           .toList();
 
       return ListView.separated(
+        padding: EdgeInsets.symmetric(horizontal: 16),
         scrollDirection: Axis.vertical,
         itemBuilder: (context, index) {
           final findingBattle = list[index];

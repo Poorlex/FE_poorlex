@@ -1,65 +1,38 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:get/get.dart';
+import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
 import 'package:poorlex/bind/friends.dart';
-import 'package:poorlex/bind/modify_battle.dart';
-import 'package:poorlex/controller/api.dart';
-import 'package:poorlex/controller/battle.dart';
-import 'package:poorlex/controller/image_picker.dart';
-import 'package:poorlex/controller/layout.dart';
-import 'package:poorlex/controller/user.dart';
+import 'package:poorlex/bind/battle/modify_battle.dart';
+import 'package:poorlex/bind/root_bind.dart';
+import 'package:poorlex/controller/hive_box.dart';
 import 'package:poorlex/libs/theme.dart';
-import 'package:poorlex/models/login.dart';
-import 'package:poorlex/provider/battles_provider.dart';
+import 'package:poorlex/middleware/auth_middleware.dart';
 import 'package:poorlex/screen/battle/modify_battle_detail.dart';
 import 'package:poorlex/screen/friends/friends.dart';
 import 'package:poorlex/screen/my/my_notification.dart';
 import 'package:poorlex/widget/common/webview.dart';
 import 'package:poorlex/widget/gnb_layout.dart';
 import 'package:poorlex/screen/login/login.dart';
-import 'package:poorlex/screen/login/login_modal.dart';
 import 'package:poorlex/screen/my/my_expense_input.dart';
 import 'package:poorlex/screen/my/my_option.dart';
 import 'package:poorlex/screen/my/my_profile.dart';
 import 'package:poorlex/screen/battle/battle_create.dart';
 
-class Bind extends Bindings {
-  @override
-  void dependencies() {
-    Get.put(LayoutController(), permanent: true);
-    Get.put(ApiController(), permanent: true);
-    Get.put(UserController(), permanent: true);
-    Get.put(ImagePickerController(), permanent: true);
-  }
-}
-
-class BattleBind extends Bindings {
-  @override
-  void dependencies() {
-    Get.lazyPut(
-      () => BattlesProvider(
-        user: Get.find(),
-      ),
-    );
-    Get.put(
-      BattleController(
-        battlesProvider: Get.find(),
-        layout: Get.find(),
-        imagePickerController: Get.find(),
-      ),
-      permanent: true,
-    );
-  }
-}
-
 void main() async {
-  await Hive.initFlutter();
   WidgetsFlutterBinding.ensureInitialized();
+  // runApp() 호출 전 Flutter SDK 초기화
+  await HiveBox.initHive();
   initializeDateFormatting('ko');
   await dotenv.load(fileName: ".env");
+
+  KakaoSdk.init(
+    nativeAppKey: dotenv.get('YOUR_NATIVE_APP_KEY'),
+    javaScriptAppKey: dotenv.get('YOUR_JAVASCRIPT_APP_KEY'),
+  );
+
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
@@ -67,9 +40,8 @@ void main() async {
 
   runApp(
     GetMaterialApp(
-      initialBinding: Bind(),
+      initialBinding: RootBind(),
       initialRoute: '/',
-      // defaultTransition: Transition.rightToLeft,
       theme: ThemeData(
         fontFamily: 'NeoDunggeunmoPro-Regular',
         splashFactory: NoSplash.splashFactory,
@@ -84,16 +56,12 @@ void main() async {
         ),
       ),
       getPages: [
-        GetPage(name: '/', page: () => GNBLayout()),
+        GetPage(
+          name: '/',
+          page: () => GNBLayout(),
+          middlewares: [AuthMiddleware()],
+        ),
         GetPage(name: '/login', page: () => Login()),
-        GetPage(
-          name: '/login/apple',
-          page: () => LoginModal(loginType: LoginTypes.apple),
-        ),
-        GetPage(
-          name: '/login/kakao',
-          page: () => LoginModal(loginType: LoginTypes.kakao),
-        ),
         GetPage(
           name: '/my/notice',
           page: () => CustomWebview(
@@ -118,7 +86,7 @@ void main() async {
                 'https://horse-whitefish-a82.notion.site/3623856463694fd2b9f38806b8cf507e?pvs=4',
           ),
         ),
-        GetPage(name: '/my/profile', page: () => MyProfile(), binding: Bind()),
+        GetPage(name: '/my/profile', page: () => MyProfile()),
         GetPage(
           name: '/my/expense-input',
           page: () => MyExpenseInputPage(),

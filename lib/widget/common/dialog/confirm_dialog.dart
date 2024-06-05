@@ -2,14 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:poorlex/libs/theme.dart';
 import 'package:poorlex/widget/common/buttons.dart';
 
-/// 페이지 pop 동작은 내부에 포함되어있습니다.
 Future<bool?> confirmDialog({
   required BuildContext context,
   required String bodyText,
   required String cancelText,
   required String confirmText,
-  void Function()? cancelFn,
-  required void Function() confirmFn,
 }) async {
   return await showDialog<bool>(
     context: context,
@@ -25,11 +22,11 @@ Future<bool?> confirmDialog({
                 constraints: BoxConstraints(
                   minHeight: 182,
                 ),
-                color: CColors.black,
+                color: CColors.gray20,
                 padding: EdgeInsets.symmetric(horizontal: 16),
                 child: Text(
                   bodyText,
-                  style: CTextStyles.Headline(),
+                  style: CTextStyles.Headline(color: CColors.gray60),
                 ),
               ),
               Row(
@@ -38,10 +35,7 @@ Future<bool?> confirmDialog({
                     flex: 1,
                     child: CButton(
                       onPressed: () {
-                        Navigator.of(context).pop();
-                        if (cancelFn != null) {
-                          cancelFn();
-                        }
+                        Navigator.of(context).pop(false);
                       },
                       padding: EdgeInsets.symmetric(vertical: 20),
                       type: ButtonTypes.elevated,
@@ -56,15 +50,14 @@ Future<bool?> confirmDialog({
                     flex: 1,
                     child: CButton(
                       onPressed: () {
-                        Navigator.of(context).pop();
-                        confirmFn();
+                        Navigator.of(context).pop(true);
                       },
                       padding: EdgeInsets.symmetric(vertical: 20),
                       type: ButtonTypes.elevated,
-                      color: CColors.gray20,
+                      color: CColors.gray40,
                       child: Text(
                         confirmText,
-                        style: CTextStyles.Headline(color: CColors.gray50),
+                        style: CTextStyles.Headline(color: CColors.gray60),
                       ),
                     ),
                   ),

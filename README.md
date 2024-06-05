@@ -1,16 +1,16 @@
 # poorlex
 
-A new Flutter project.
+### Project 세팅 방법
 
-## Getting Started
+1.Project 세팅에 필요한 파일 요청
 
-This project is a starting point for a Flutter application.
+- upload-keystore.jks
+- env
+- android/key.properties
 
-A few resources to get you started if this is your first Flutter project:
+2. 아래의 명령어로 build 되는지 확인
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+```javascript
+    rps build:ipa  //xcode있어야 빌드 가능
+    rps build:appbundle
+```

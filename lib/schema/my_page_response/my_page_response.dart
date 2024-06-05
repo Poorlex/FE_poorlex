@@ -11,7 +11,7 @@ part 'my_page_response.g.dart';
 class MyPageResponse with _$MyPageResponse {
   const factory MyPageResponse({
     required String nickname,
-    required String description,
+    String? description,
     required MyPageLevelInfoResponse levelInfo,
     required BattleSuccessCountResponse battleSuccessInfo,
     required int friendTotalCount,

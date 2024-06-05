@@ -8,6 +8,8 @@ import 'package:poorlex/controller/layout.dart';
 import 'package:poorlex/models/battle.dart';
 import 'package:poorlex/provider/battles_provider.dart';
 import 'package:poorlex/schema/finding_battle_response/finding_battle_response.dart';
+import 'package:poorlex/schema/member_complete_battle_response/member_complete_battle_response.dart';
+import 'package:poorlex/schema/member_progress_battle_response/member_progress_battle_response.dart';
 
 class BattleController extends GetxController {
   final BattlesProvider battlesProvider;
@@ -20,7 +22,18 @@ class BattleController extends GetxController {
   });
   final battleCreate = BattleCreateModel().obs;
 
+  /// 탐색 배틀 리스트
   final battleList = <FindingBattleResponse>[].obs;
+
+  /// 참여중 배틀 리스트
+  final _battleListInProgress = <MemberProgressBattleResponse>[].obs;
+  List<MemberProgressBattleResponse> get battleListInProgress =>
+      _battleListInProgress;
+
+  /// 완료된 배틀 리스트
+  final _battleListInComplete = <MemberCompleteBattleResponse>[].obs;
+  List<MemberCompleteBattleResponse> get battleListInComplete =>
+      _battleListInComplete;
 
   /// battleCreate 초기화
   void initBattleCreate() {
@@ -60,10 +73,19 @@ class BattleController extends GetxController {
     }
   }
 
-  Future<bool> getBattle() async {
+  Future<void> getBattle() async {
     final response = await battlesProvider.getAll();
     battleList.value = response;
-    return false;
+  }
+
+  Future<void> getBattleInProgress() async {
+    final response = await battlesProvider.getProgress();
+    _battleListInProgress(response);
+  }
+
+  Future<void> getBattleInComplete() async {
+    final response = await battlesProvider.getComplete();
+    _battleListInComplete(response);
   }
 
   Future<bool> saveBattle() async {
