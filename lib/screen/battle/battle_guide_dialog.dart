@@ -75,22 +75,47 @@ class BattleGuideDialog extends StatelessWidget {
             ),
           ),
           SizedBox(height: 12),
-          Row(
-            children: [
-              SizedBox(width: 46),
-              SizedBox(
-                width: 249,
-                child: Text(
-                  """• 원하는 예산의 방을 탐색하여 배틀에 참여할 수 있습니다. 
-• 원하는 예산의 방이 없다면 방만들기를 통해 직접 만들 수 있습니다. 
-• 배틀은 최대 3개까지 참여 가능합니다. """,
-                  style: CTextStyles.Body3(height: 20 / 14),
-                ),
-              )
-            ],
-          )
+          _bulletPointText(text: "원하는 예산의 방을 탐색하여 배틀에 참여할 수 있습니다."),
+          _bulletPointText(text: "원하는 예산의 방이 없다면 방만들기를 통해 직접 만들 수 있습니다. "),
+          _bulletPointText(text: "배틀은 최대 3개까지 참여 가능합니다. "),
+          SizedBox(height: 20),
+          Text(
+            "3. 배틀 규칙",
+            style: CTextStyles.Title3(
+              color: CColors.yellow,
+            ),
+          ),
+          SizedBox(height: 12),
+          _bulletPointText(text: "인증 사진은 각 배틀 방의 방장이 체크합니다. "),
+          _bulletPointText(text: "배틀 완료 직전, 하루라도 누락된 지출이 있을 경우 중도 탈락하게 됩니다."),
+          _bulletPointText(text: "중도 탈락하게 되면 포인트를 얻지 못합니다."),
         ],
       ),
     );
   }
+
+  Widget _bulletPointText({required String text}) {
+    return Row(
+      children: [
+        SizedBox(width: 46),
+        Row(
+          children: [
+            Text(
+              "• ",
+              style: CTextStyles.Body3(height: 20 / 14),
+            ),
+            SizedBox(
+              width: 260,
+              child: Text(
+                text,
+                style: CTextStyles.Body3(height: 20 / 14),
+              ),
+            ),
+          ],
+        )
+      ],
+    );
+  }
 }
+
+// • 배틀은 최대 3개까지 참여 가능합니다. 

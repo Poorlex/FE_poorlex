@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:poorlex/screen/battle/battle_guide_dialog.dart';
 import 'package:poorlex/widget/common/tab.dart';
 import 'package:poorlex/controller/battle.dart';
 import 'package:poorlex/libs/theme.dart';
@@ -98,7 +99,7 @@ class _BattleState extends State<Battle> {
             children: [
               CButton(
                 child: CIcon(icon: 'question-box', color: CColors.whiteStr),
-                onPressed: () {},
+                onPressed: () => BattleGuideDialog.show(context: context),
               ),
               SizedBox(width: 20),
               CButton(
