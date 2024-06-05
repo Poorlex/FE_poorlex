@@ -38,7 +38,6 @@ class _LoginState extends State<Login> {
     final SocialLoginModel? socialLoginModel =
         await _appleAuthController.appleLogin();
     await _userController.getAuthentication(socialLoginModel);
-    print(">>>>>>>> $socialLoginModel");
     Get.offAllNamed('/');
   }
 
