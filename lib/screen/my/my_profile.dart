@@ -55,10 +55,10 @@ class _MyProfileState extends State<MyProfile> {
               style: CTextStyles.Headline(color: CColors.gray50))));
     } else {
       layout.setIsLoading(true);
-      if (await user.patchProfile(
-          nickname: name.text.trim(), description: description.text.trim())) {
-        Get.close(0);
-      }
+      // if (await user.patchProfile(
+      //     nickname: name.text.trim(), description: description.text.trim())) {
+      //   Get.close(0);
+      // }
       layout.setIsLoading(false);
     }
   }
@@ -66,8 +66,8 @@ class _MyProfileState extends State<MyProfile> {
   @override
   void initState() {
     super.initState();
-    name.text = user.userInfo.value.nickname ?? '';
-    description.text = user.userInfo.value.description ?? '';
+    name.text = user.userInfo?.nickname ?? '';
+    description.text = user.userInfo?.description ?? '';
     checkIsReady();
     name.addListener(checkIsReady);
     description.addListener(checkIsReady);

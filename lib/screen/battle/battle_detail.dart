@@ -7,7 +7,7 @@ import 'package:poorlex/schema/participant_ranking_response/participant_ranking_
 import 'package:poorlex/widget/common/Icon.dart';
 import 'package:poorlex/widget/common/app_bar.dart';
 import 'package:poorlex/widget/common/buttons.dart';
-import 'package:poorlex/widget/common/dialog/confirm_diolog.dart';
+import 'package:poorlex/widget/common/dialog/confirm_dialog.dart';
 import 'package:poorlex/widget/common/image/image_asset.dart';
 import 'package:poorlex/widget/common/image/image_network.dart';
 import 'package:poorlex/widget/common/user.dart';
@@ -148,12 +148,14 @@ class _BattleDetailState extends State<BattleDetail> {
                         GestureDetector(
                           onTap: () async {
                             Navigator.of(context).pop();
-                            await confirmDialog(
-                                context: context,
-                                cancelText: '아니오',
-                                confirmText: "네",
-                                confirmFn: () {},
-                                bodyText: "삭제를 진행하시겠습니끼?");
+
+                            /// [MEMO] result 결과에 따른 다음 동작 구현 필요
+                            final result = await confirmDialog(
+                              context: context,
+                              cancelText: '아니오',
+                              confirmText: "네",
+                              bodyText: "삭제를 진행하시겠습니끼?",
+                            );
                           },
                           child: Container(
                             alignment: Alignment.center,

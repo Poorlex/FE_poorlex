@@ -6,6 +6,7 @@ import 'package:poorlex/widget/common/icon.dart';
 import 'package:poorlex/libs/theme.dart';
 import 'package:poorlex/controller/user.dart';
 
+/// [MEMO] 동작 안하는 코드
 class MyFriends extends StatefulWidget {
   MyFriends({super.key});
 

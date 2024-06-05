@@ -40,13 +40,14 @@ class BattleMoney extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        child: Row(
-            children: list.map((item) {
-          bool isSelected = item.value == current;
-          return Container(
-            margin: EdgeInsets.fromLTRB(0, 0, 8, 0),
-            child: ElevatedButton(
+      scrollDirection: Axis.horizontal,
+      child: Row(
+        children: list.map(
+          (item) {
+            bool isSelected = item.value == current;
+            return Container(
+              margin: EdgeInsets.only(left: 8),
+              child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   minimumSize: Size.zero,
                   padding: EdgeInsets.all(10),
@@ -69,8 +70,12 @@ class BattleMoney extends StatelessWidget {
                 ),
                 onPressed: () {
                   onChange(item.value);
-                }),
-          );
-        }).toList()));
+                },
+              ),
+            );
+          },
+        ).toList(),
+      ),
+    );
   }
 }

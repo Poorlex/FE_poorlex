@@ -121,7 +121,7 @@ class CTextStyles {
         height: height ?? 1.6,
         letterSpacing: -0.25,
         color: color ?? defaultColor,
-        fontFamily: fontFamily,
+        fontFamily: fontFamily ?? 'NeoDunggeunmoPro-Regular',
         fontWeight: fontWeight,
       );
   static TextStyle Body2({

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:poorlex/bind/battle_detail.dart';
-import 'package:poorlex/main.dart';
-import 'package:poorlex/screen/Init.dart';
+import 'package:poorlex/bind/battle/battle.dart';
+import 'package:poorlex/bind/battle/battle_detail.dart';
 import 'package:poorlex/screen/battle/battle.dart';
 import 'package:poorlex/screen/battle/battle_detail.dart';
 import 'package:poorlex/screen/battle/battle_ranking.dart';
@@ -52,15 +51,21 @@ class _GNBLayoutState extends State<GNBLayout> {
               case '/main':
                 return GetPageRoute(
                   page: () => Main(),
+                  transition: Transition.noTransition,
+                  bindings: [
+                    BattleBind(),
+                  ],
                 );
               case '/goal':
                 return GetPageRoute(
                   page: () => GoalPage(),
+                  transition: Transition.noTransition,
                 );
               case '/battle':
                 return GetPageRoute(
                   page: () => Battle(),
                   binding: BattleBind(),
+                  transition: Transition.noTransition,
                 );
               case '/battle/detail':
                 return GetPageRoute(
@@ -74,10 +79,12 @@ class _GNBLayoutState extends State<GNBLayout> {
               case '/calendar':
                 return GetPageRoute(
                   page: () => CalendarPage(),
+                  transition: Transition.noTransition,
                 );
               case '/my':
                 return GetPageRoute(
                   page: () => MyPage(),
+                  transition: Transition.noTransition,
                 );
               case '/my/expenditure':
                 return GetPageRoute(
@@ -90,8 +97,10 @@ class _GNBLayoutState extends State<GNBLayout> {
                   ),
                 );
               default:
+
+                /// [MEMO] 초기 라우팅 '/'에 대한 처리를 고민할 필요가있음.
                 return GetPageRoute(
-                  page: () => Init(),
+                  page: () => Main(),
                 );
             }
           },
