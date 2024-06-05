@@ -57,9 +57,7 @@ class BattleDetailController extends GetxController {
     try {
       final response = await battlesProvider.getDetailById(
           battleId: battleId, date: DateTime.now());
-      if (response != null) {
-        battleInfo(response);
-      }
+      battleInfo(response);
     } catch (e) {
       print(e);
     }

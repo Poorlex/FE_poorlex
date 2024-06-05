@@ -133,38 +133,31 @@ class _MyExpensePageState extends State<MyExpensePage> {
                                         arguments: {'id': e.id}),
                                     child: Container(
                                       width: ((size?.width ?? 0) - 50) / 2,
-                                      child: e.mainImageUrl != null
-                                          ? BackgroundImageWithBlack(
-                                              image:
-                                                  NetworkImage(e.mainImageUrl!),
-                                              height:
-                                                  ((size?.width ?? 0) - 50) / 2,
-                                              child: Column(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.center,
-                                                children: [
-                                                  Text(
-                                                      cTimeFormat(
-                                                          DateTime.parse(
-                                                                  '${e.date} 00:00:00')
-                                                              .millisecondsSinceEpoch,
-                                                          'yyyy.MM.dd (E)'),
-                                                      style:
-                                                          CTextStyles.Caption1(
-                                                              color: CColors
-                                                                  .gray50)),
-                                                  SizedBox(height: 13),
-                                                  Text(
-                                                    '${makeComma(e.amount!)}원',
-                                                    style:
-                                                        CTextStyles.Headline(),
-                                                  ),
-                                                ],
-                                              ),
-                                            )
-                                          : SizedBox.shrink(),
+                                      child: BackgroundImageWithBlack(
+                                        image: NetworkImage(e.mainImageUrl),
+                                        height: ((size?.width ?? 0) - 50) / 2,
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            Text(
+                                                cTimeFormat(
+                                                    DateTime.parse(
+                                                            '${e.date} 00:00:00')
+                                                        .millisecondsSinceEpoch,
+                                                    'yyyy.MM.dd (E)'),
+                                                style: CTextStyles.Caption1(
+                                                    color: CColors.gray50)),
+                                            SizedBox(height: 13),
+                                            Text(
+                                              '${makeComma(e.amount)}원',
+                                              style: CTextStyles.Headline(),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
                                     ),
                                   );
                                 },

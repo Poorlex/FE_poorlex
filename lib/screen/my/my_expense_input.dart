@@ -6,8 +6,6 @@ import 'package:image_picker/image_picker.dart';
 import 'package:poorlex/controller/image_picker.dart';
 import 'package:poorlex/models/common.dart';
 
-import 'package:poorlex/models/user.dart';
-
 import 'package:poorlex/widget/common/icon.dart';
 import 'package:poorlex/widget/common/picker.dart';
 import 'package:poorlex/widget/common/other.dart';
@@ -49,9 +47,9 @@ class _MyExpenseInputPageState extends State<MyExpenseInputPage> {
 
   void getExpenditure() async {
     if (Get.arguments?['id'] != null) {
-      var expenditure = await user.getExpenditure(Get.arguments['id']);
-      if (expenditure.id != null) {
-        price.text = expenditure.amount.toString();
+      final expenditure = await user.getExpenditure(Get.arguments['id']);
+      if (expenditure?.id != null) {
+        price.text = expenditure!.amount.toString();
         description.text = expenditure.description.toString();
         print(expenditure.mainImageUrl);
         originMainImage = expenditure.mainImageUrl;
@@ -157,7 +155,7 @@ class _MyExpenseInputPageState extends State<MyExpenseInputPage> {
   @override
   void dispose() {
     super.dispose();
-    user.expenditure.value = Expenditure();
+    user.expenditure.value = null;
   }
 
   @override

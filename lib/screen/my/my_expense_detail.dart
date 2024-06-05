@@ -69,7 +69,7 @@ class _MyExpenseDetailPageState extends State<MyExpenseDetailPage> {
               onPressed: () => Navigator.of(context).pop(),
             ),
             Obx(() {
-              if (user.expenditure.value.id == null)
+              if (user.expenditure.value?.id == null)
                 return SizedBox(width: 20);
               else
                 return Column(
@@ -78,12 +78,12 @@ class _MyExpenseDetailPageState extends State<MyExpenseDetailPage> {
                       Text(
                           cTimeFormat(
                               DateTime.parse(
-                                      '${user.expenditure.value.date} 00:00:00')
+                                      '${user.expenditure.value!.date} 00:00:00')
                                   .millisecondsSinceEpoch,
                               'yyyy.MM.dd (E)'),
                           style: CTextStyles.Caption1(color: CColors.gray50)),
                       SizedBox(height: 6),
-                      Text('${makeComma(user.expenditure.value.amount!)}원',
+                      Text('${makeComma(user.expenditure.value!.amount)}원',
                           style: CTextStyles.Headline()),
                     ]);
             }),
@@ -109,15 +109,15 @@ class _MyExpenseDetailPageState extends State<MyExpenseDetailPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Obx(() {
-                  if (user.expenditure.value.description == null)
+                  if (user.expenditure.value?.description == null)
                     return SizedBox.shrink();
                   else
-                    return Text(user.expenditure.value.description!,
+                    return Text(user.expenditure.value!.description,
                         style: CTextStyles.Body2());
                 }),
                 SizedBox(height: 24),
                 Obx(() {
-                  if (user.expenditure.value.mainImageUrl != null) {
+                  if (user.expenditure.value?.mainImageUrl != null) {
                     return Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -125,7 +125,7 @@ class _MyExpenseDetailPageState extends State<MyExpenseDetailPage> {
                             flex: 1,
                             child: SizedBox(
                                 child: Image.network(
-                                    user.expenditure.value.mainImageUrl!)),
+                                    user.expenditure.value!.mainImageUrl)),
                           )
                         ]);
                   } else
@@ -133,7 +133,7 @@ class _MyExpenseDetailPageState extends State<MyExpenseDetailPage> {
                 }),
                 SizedBox(height: 24),
                 Obx(() {
-                  if (user.expenditure.value.subImageUrl != null) {
+                  if (user.expenditure.value?.subImageUrl != null) {
                     return Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -141,7 +141,7 @@ class _MyExpenseDetailPageState extends State<MyExpenseDetailPage> {
                             flex: 1,
                             child: SizedBox(
                                 child: Image.network(
-                                    user.expenditure.value.subImageUrl!)),
+                                    user.expenditure.value!.subImageUrl)),
                           )
                         ]);
                   } else
@@ -179,7 +179,7 @@ class OptionButtonModal extends StatelessWidget {
               onPressed: () {
                 Navigator.of(context).pop();
                 Get.toNamed('/my/expense-input',
-                    arguments: {'id': user.expenditure.value.id});
+                    arguments: {'id': user.expenditure.value?.id});
               },
               child:
                   Row(mainAxisAlignment: MainAxisAlignment.center, children: [
@@ -189,7 +189,7 @@ class OptionButtonModal extends StatelessWidget {
             Expanded(
                 child: TextButton(
               onPressed: () async {
-                await user.removeExpenditure(user.expenditure.value.id!);
+                await user.removeExpenditure(user.expenditure.value!.id);
                 Get.offAllNamed('/my');
               },
               child:

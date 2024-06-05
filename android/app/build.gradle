@@ -55,6 +55,10 @@ android {
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
+
+        // += 로 해야 전에 변수 삭제 안됨.
+        // key.properties 파일에서 KAKAO_NATIVE_APP_KEY 값을 읽어와서 manifestPlaceholders로 설정합니다.
+        manifestPlaceholders +=  [KAKAO_NATIVE_APP_KEY: keystoreProperties['KAKAO_NATIVE_APP_KEY']]
     }
 
     signingConfigs {

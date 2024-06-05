@@ -8,7 +8,6 @@ import 'package:poorlex/libs/time.dart';
 import 'package:poorlex/schema/expenditure_response/expenditure_response.dart';
 
 class ExpendituresProvider extends GetConnect {
-  final user = Get.find<UserController>();
   @override
   void onInit() {
     // prefix "/expenditures" 적용
@@ -16,7 +15,8 @@ class ExpendituresProvider extends GetConnect {
 
     /// [TODO] header에 token 잘 들어가는지 확인 필요
     httpClient.addRequestModifier<Object?>((request) {
-      final token = user.userToken().token;
+      final user = Get.find<UserController>();
+      final token = user.userToken;
       request.headers['Authorization'] = 'Bearer $token';
       return request;
     });

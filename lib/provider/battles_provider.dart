@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:poorlex/controller/user.dart';
 import 'package:poorlex/enums/day_of_week.dart';
-import 'package:poorlex/libs/time.dart';
 import 'package:poorlex/schema/battle_expenditure_response/battle_expenditure_response.dart';
 import 'package:poorlex/schema/battle_notification_response/battle_notification_response.dart';
 import 'package:poorlex/schema/battle_response/battle_response.dart';
@@ -15,10 +14,7 @@ import 'package:poorlex/schema/member_progress_battle_response/member_progress_b
 import 'package:poorlex/schema/vote_response/vote_response.dart';
 
 class BattlesProvider extends GetConnect {
-  final UserController user;
-  BattlesProvider({
-    required this.user,
-  });
+  BattlesProvider();
 
   @override
   void onInit() {
@@ -27,7 +23,8 @@ class BattlesProvider extends GetConnect {
 
     /// [TODO] header에 token 잘 들어가는지 확인 필요
     httpClient.addRequestModifier<Object?>((request) {
-      final token = user.userToken().token;
+      final user = Get.find<UserController>();
+      final token = user.userToken;
       request.headers['Authorization'] = 'Bearer $token';
       return request;
     });
@@ -57,20 +54,14 @@ class BattlesProvider extends GetConnect {
     return response.body ?? [];
   }
 
-  /// [TEST] x
-  /// 모든 배틀 조회 (모집중, 모집완료)
   Future<BattleResponse?> getDetailById({
     required int battleId,
     required DateTime date,
   }) async {
-    print(cFormatDateToString(date));
     final response = await get(
       '/$battleId',
       decoder: (data) {
         return BattleResponse.fromJson(data);
-      },
-      query: {
-        "date": cFormatDateToString(date),
       },
     );
     return response.body;
@@ -258,18 +249,13 @@ class BattlesProvider extends GetConnect {
     }
   }
 
+  /// 배틀 참가
   Future<bool> addParticipants({
     required int battleId,
-    required int memberId,
   }) async {
     try {
-      final response = await post(
-        "/$battleId/participants",
-        {
-          "memberId": memberId,
-        },
-      );
-      return response.statusCode == 200;
+      final response = await post("/$battleId/participants", null);
+      return response.statusCode == 201;
     } catch (e) {
       return false;
     }
@@ -278,16 +264,12 @@ class BattlesProvider extends GetConnect {
   /// [REFACTOR] api 수정 필요
   Future<bool> deleteParticipants({
     required int battleId,
-    required int memberId,
   }) async {
     try {
       final response = await delete(
         "/$battleId/participants",
-        // {
-        //   "memberId": memberId,
-        // },
       );
-      return response.statusCode == 200;
+      return response.statusCode == 200 || response.statusCode == 204;
     } catch (e) {
       return false;
     }

@@ -43,13 +43,13 @@ class _BottomBarState extends State<BottomBar> {
       offIcon: 'assets/main_page/icon_home_un.png',
       route: '/main',
     ),
-    BarItem(
-      key: 'goal',
-      label: '목표',
-      onIcon: 'assets/main_page/icon_goal.png',
-      offIcon: 'assets/main_page/icon_goal_un.png',
-      route: '/goal',
-    ),
+    // BarItem(
+    //   key: 'goal',
+    //   label: '목표',
+    //   onIcon: 'assets/main_page/icon_goal.png',
+    //   offIcon: 'assets/main_page/icon_goal_un.png',
+    //   route: '/goal',
+    // ),
     BarItem(
       key: 'battle',
       label: '배틀',
@@ -57,13 +57,13 @@ class _BottomBarState extends State<BottomBar> {
       offIcon: 'assets/main_page/icon_battle_un.png',
       route: '/battle',
     ),
-    BarItem(
-      key: 'calendar',
-      label: '요약',
-      onIcon: 'assets/main_page/icon_calendar.png',
-      offIcon: 'assets/main_page/icon_calendar_un.png',
-      route: '/calendar',
-    ),
+    // BarItem(
+    //   key: 'calendar',
+    //   label: '요약',
+    //   onIcon: 'assets/main_page/icon_calendar.png',
+    //   offIcon: 'assets/main_page/icon_calendar_un.png',
+    //   route: '/calendar',
+    // ),
     BarItem(
       key: 'my',
       label: 'my',

@@ -1,92 +1,72 @@
 import 'package:get/get.dart';
-import 'package:hive/hive.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:poorlex/controller/api.dart';
+import 'package:poorlex/controller/hive_box.dart';
+import 'package:poorlex/enums/social_type.dart';
 import 'package:poorlex/models/user.dart';
 import 'package:poorlex/libs/time.dart';
+import 'package:poorlex/provider/expenditures_provider.dart';
+import 'package:poorlex/provider/login_provider.dart';
+import 'package:poorlex/provider/member_provider.dart';
+import 'package:poorlex/schema/expenditure_response/expenditure_response.dart';
+import 'package:poorlex/schema/my_page_response/my_page_response.dart';
+import 'package:poorlex/schema/social_login/social_login.dart';
 
 class UserController extends GetxController {
-  final userInfo = UserInfo().obs;
-  final userToken = UserToken().obs;
-  final expenditure = Expenditure().obs;
-  final expenditures = <Expenditure>[].obs;
+  final MemberProvider memberProvider;
+  final ExpendituresProvider expendituresProvider;
+  final LoginProvider loginProvider;
+  UserController({
+    required this.memberProvider,
+    required this.expendituresProvider,
+    required this.loginProvider,
+  });
+
+  final Rxn<MyPageResponse> _userInfo = Rxn<MyPageResponse>();
+  MyPageResponse? get userInfo => _userInfo.value;
+
+  final Rxn<String> _userToken = Rxn<String>();
+  String? get userToken => _userToken.value;
+
+  final Rxn<ExpenditureResponse> expenditure = Rxn<ExpenditureResponse>();
+  final expenditures = <ExpenditureResponse>[].obs;
   final alarmAllows = AlarmAllows().obs;
 
   ApiController api = Get.find<ApiController>();
 
-  Future<bool> getNotification() async {
-    var ui = await api.request(method: Methods.get, url: '/api/member/alarms');
-    if (ui.success) print(ui.body);
-    return ui.success;
-  }
-
-  Future<bool> updateUserAlarm(String type, bool isAllow) async {
-    var ui = await api.request(
-        method: Methods.patch,
-        url: '/api/alarms/allowance',
-        body: {'alarmType': type, 'allowed': isAllow});
-    if (ui.success) await getUserAlarm();
-    return ui.success;
-  }
-
-  Future<bool> getUserAlarm() async {
-    var ui =
-        await api.request(method: Methods.get, url: '/api/alarms/allowance');
-    if (ui.success) updateAlarmAllows(AlarmAllows.fromJson(ui.body!));
-    return ui.success;
-  }
-
-  Future<bool> getUserInfo() async {
-    var ui = await api.request(method: Methods.get, url: '/api/member/my-page');
-    if (ui.success) {
-      updateUser(UserInfo.fromJson(ui.body!));
-    }
-    return ui.success;
-  }
-
-  Future<bool> signout() async {
-    var result = await api.request(method: Methods.delete, url: '/api/member');
-    return result.success;
-  }
-
+  /// [TODO] API 테스트 필요
   Future<bool> removeExpenditure(int id) async {
-    var e = await api.request(
-        method: Methods.delete, url: '/api/expenditures/${id}');
-    return e.success;
+    final response =
+        await expendituresProvider.deleteExpenditures(expenditureId: id);
+    return response;
   }
 
-  Future<bool> getExpenditures() async {
-    var e = await api.request(method: Methods.get, url: '/api/expenditures');
-    if (e.success)
-      updateExpenditures((e.body ?? [])
-          .map<Expenditure>((b) => Expenditure.fromJson(b))
-          .toList());
-    return e.success;
+  /// [TODO] API 테스트 필요
+  Future<void> getExpenditures() async {
+    final response = await expendituresProvider.getList();
+    expenditures.value = response ?? [];
   }
 
-  Future<Expenditure> getExpenditure(int id) async {
-    var e =
-        await api.request(method: Methods.get, url: '/api/expenditures/${id}');
-    if (e.success) {
-      expenditure.value = Expenditure.fromJson(e.body);
-      update();
-      return expenditure.value;
-    } else
-      return Expenditure();
+  /// [TODO] API 테스트 필요
+  Future<ExpenditureResponse?> getExpenditure(int id) async {
+    final response =
+        await expendituresProvider.getDetailById(expenditureId: id);
+    expenditure.value = response;
+    return response;
   }
 
-  Future<bool> patchProfile({
+  /// [TODO] 제거대상
+  Future<void> patchProfile({
     required String nickname,
     required String description,
   }) async {
-    var r = await api.request(
-        method: Methods.patch,
-        url: '/api/member/profile',
-        body: {'nickname': nickname, 'description': description});
-    if (r.success) await getUserInfo();
-    return r.success;
+    await memberProvider.patchProfile(
+      nickname: nickname,
+      description: description,
+    );
   }
 
+  /// [TODO] 제거대상
   Future<bool> uploadExpenditure({
     required String price,
     required String description,
@@ -117,58 +97,42 @@ class UserController extends GetxController {
         body: body,
         files: files);
     if (r.success) {
-      await getUserInfo();
       await getExpenditures();
     }
     return r.success;
   }
 
-  void updateAlarmAllows(AlarmAllows allows) {
-    alarmAllows.value = allows;
-    update();
+  void updateUser(MyPageResponse? user) {
+    _userInfo(user);
   }
 
-  void updateExpenditures(List<Expenditure> list) {
-    expenditures.value = list;
-    update();
+  /// [MEMO] token으로 유저 정보 가져오기 (내부에서만 사용됩니다.)
+  Future<void> _getUserInfo() async {
+    final userInfo = await memberProvider.getMyPage();
+    _userInfo(userInfo);
   }
 
-  void updateUser(UserInfo? user) {
-    print(user);
-    if (user != null) {
-      userInfo.update((val) {
-        val?.nickname = user.nickname;
-        val?.description = user.description;
-        val?.levelInfo = user.levelInfo;
-        val?.battleSuccessInfo = user.battleSuccessInfo;
-        val?.friendTotalCount = user.friendTotalCount;
-        val?.friends = user.friends;
-        val?.expenditures = user.expenditures;
-        val?.expenditureTotalCount = user.expenditureTotalCount;
-      });
-    } else {
-      userInfo.update((val) {
-        val = UserInfo();
-      });
+  /// token 가져오면서 user정보도 가져옵니다.
+  Future<void> updateToken(String? token) async {
+    _userToken(token);
+    await _getUserInfo();
+    await HiveBox().putToken(token);
+  }
+
+  Future<void> getAuthentication(SocialLoginModel? socialLoginModel) async {
+    if (socialLoginModel == null) return;
+    if (socialLoginModel.socialType == SocialType.kakao) {
+      final token = await loginProvider.kakao(code: socialLoginModel.code);
+      await updateToken(token);
+    } else if (socialLoginModel.socialType == SocialType.apple) {
+      final token = await loginProvider.apple(code: socialLoginModel.code);
+      await updateToken(token);
     }
   }
 
-  bool updateToken(UserToken? token) {
-    if (token != null) {
-      userToken.update((val) {
-        val?.token = token.token;
-        val?.refreshToken = token.refreshToken;
-      });
-      api.updateToken(token.token!);
-      var auth = Hive.box('auth');
-      auth.put('token', token.token);
-      return true;
-    } else {
-      userToken.update((val) {
-        val = UserToken();
-      });
-      api.updateToken('');
-      return false;
-    }
+  /// [MEMO]
+  /// 현재 사용자가 인증된 경우 (token 있을 경우) true, 그렇지 않은 경우 false를 반환
+  bool isAuthenticated() {
+    return _userToken.value != null;
   }
 }
