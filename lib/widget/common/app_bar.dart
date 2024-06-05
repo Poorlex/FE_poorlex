@@ -4,14 +4,17 @@ import 'package:poorlex/widget/common/Icon.dart';
 
 class CAppBar extends StatelessWidget implements PreferredSizeWidget {
   final List<Widget> children;
+  final bool automaticallyImplyLeading;
   const CAppBar({
     super.key,
     required this.children,
+    this.automaticallyImplyLeading = false,
   });
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      automaticallyImplyLeading: automaticallyImplyLeading,
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
