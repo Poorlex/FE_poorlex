@@ -23,10 +23,21 @@ class _BattleState extends State<Battle> {
   int moneyCurrent = 1000000000000000;
   BattleController battle = Get.find<BattleController>();
 
-  void tab(c) {
+  void tab(int c) {
     setState(() {
       current = c;
     });
+    switch (c) {
+      case 0:
+        battle.getBattle();
+        break;
+      case 1:
+        battle.getBattleInProgress();
+        break;
+      case 2:
+        battle.getBattleInComplete();
+        break;
+    }
   }
 
   void changeMoney(int m) {
@@ -45,11 +56,15 @@ class _BattleState extends State<Battle> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: _appBar(),
-      body: Padding(
-        padding: EdgeInsets.fromLTRB(16, 2, 16, 0),
-        child: Column(
-          children: [
-            Row(
+      body: Column(
+        children: [
+          Padding(
+            padding: EdgeInsets.only(
+              left: 16,
+              right: 16,
+              top: 20,
+            ),
+            child: Row(
               children: [
                 CTab(
                   selected: current,
@@ -61,30 +76,22 @@ class _BattleState extends State<Battle> {
                 )
               ],
             ),
-            SizedBox(height: 10),
-            if (current == 0)
-              Row(
-                children: [
-                  Expanded(
-                    child: BattleMoney(
-                      current: moneyCurrent,
-                      onChange: changeMoney,
-                    ),
-                  )
-                ],
-              ),
-            SizedBox(height: 20),
-            Expanded(
-              child: (current == 0
-                  ? BattleFinding(smallerThan: moneyCurrent)
-                  : current == 1
-                      ? BattleParticipant()
-                      : current == 2
-                          ? BattleFinished()
-                          : SizedBox.shrink()),
-            )
-          ],
-        ),
+          ),
+          if (current == 0)
+            BattleMoney(
+              current: moneyCurrent,
+              onChange: changeMoney,
+            ),
+          Expanded(
+            child: (current == 0
+                ? BattleFinding(smallerThan: moneyCurrent)
+                : current == 1
+                    ? BattleParticipant()
+                    : current == 2
+                        ? BattleFinished()
+                        : SizedBox.shrink()),
+          )
+        ],
       ),
     );
   }
