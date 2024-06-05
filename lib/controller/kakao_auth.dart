@@ -20,20 +20,20 @@ class KaKaoAuthController {
   Future<SocialLoginModel?> kakaoLogin() async {
     if (await isKakaoTalkInstalled()) {
       try {
-        await _kakaoAuth.loginWithKakaoTalk();
-        final user = await _kakaoAuth.me();
+        final OAuthToken oauthToken = await _kakaoAuth.loginWithKakaoTalk();
         return SocialLoginModel(
-            socialType: SocialType.kakao, providerId: "${user.id}");
+          socialType: SocialType.kakao,
+          code: oauthToken.accessToken,
+        );
       } catch (err) {
         print("loginWithKakaoTalk Error: $err");
       }
     } else {
       try {
-        await _kakaoAuth.loginWithKakaoAccount();
-        final user = await _kakaoAuth.me();
+        final OAuthToken oauthToken = await _kakaoAuth.loginWithKakaoAccount();
         return SocialLoginModel(
           socialType: SocialType.kakao,
-          providerId: "${user.id}",
+          code: oauthToken.accessToken,
         );
       } catch (err) {
         print('loginWithKakaoAccount Error: $err');

@@ -9,14 +9,14 @@ part of 'social_login.dart';
 _$SocialLoginModelImpl _$$SocialLoginModelImplFromJson(
         Map<String, dynamic> json) =>
     _$SocialLoginModelImpl(
-      providerId: json['providerId'] as String,
+      code: json['code'] as String,
       socialType: $enumDecode(_$SocialTypeEnumMap, json['socialType']),
     );
 
 Map<String, dynamic> _$$SocialLoginModelImplToJson(
         _$SocialLoginModelImpl instance) =>
     <String, dynamic>{
-      'providerId': instance.providerId,
+      'code': instance.code,
       'socialType': _$SocialTypeEnumMap[instance.socialType]!,
     };
 

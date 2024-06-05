@@ -26,13 +26,9 @@ class AppleAuthController {
       webAuthenticationOptions: null,
     );
 
-    // 유저가 있는지 없는지 확인하다.
-    // credential.userIdentifier로 고유한 유저 식별
-    print("credential.userIdentifier ${credential.userIdentifier}\n");
-    print("credential.givenName ${credential.givenName}\n");
     if (credential.userIdentifier == null) return null;
     return SocialLoginModel(
-      providerId: credential.userIdentifier!,
+      code: credential.authorizationCode,
       socialType: SocialType.apple,
     );
   }

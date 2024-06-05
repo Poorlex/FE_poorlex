@@ -4,13 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:poorlex/controller/apple_auth.dart';
+import 'package:poorlex/controller/hive_box.dart';
 import 'package:poorlex/controller/kakao_auth.dart';
 import 'package:poorlex/controller/user.dart';
-import 'package:poorlex/enums/social_type.dart';
 import 'package:poorlex/schema/social_login/social_login.dart';
-
 import 'package:poorlex/widget/common/buttons.dart';
-
 import 'package:poorlex/libs/theme.dart';
 
 class Login extends StatefulWidget {
@@ -27,20 +25,19 @@ class _LoginState extends State<Login> {
   final _appleAuthController = AppleAuthController();
   final _userController = Get.find<UserController>();
 
-  /// [TODO] 토큰 발급 api 연결 필요 (서버에서 미구현 상태입니다.)
   Future<void> _tryKaKaoLogin() async {
     final SocialLoginModel? socialLoginModel =
         await _kakaoAuthController.kakaoLogin();
-    _userController.getAuthentication(socialLoginModel);
-    print(">>>>>>> $socialLoginModel");
+    await _userController.getAuthentication(socialLoginModel);
     Get.offAllNamed('/');
   }
 
-  /// [TODO] 토큰 발급 api 연결 필요 (서버에서 미구현 상태입니다.)
+  /// [ERROR]
+  /// {tag: null, message: 400 Bad Request: "{"error":"invalid_grant","error_description":"client_id mismatch. The code was not issued to Poorlex.app."}"}
   Future<void> _tryAppleLogin() async {
     final SocialLoginModel? socialLoginModel =
         await _appleAuthController.appleLogin();
-    _userController.getAuthentication(socialLoginModel);
+    await _userController.getAuthentication(socialLoginModel);
     print(">>>>>>>> $socialLoginModel");
     Get.offAllNamed('/');
   }
@@ -51,20 +48,14 @@ class _LoginState extends State<Login> {
     super.initState();
   }
 
-  /// [MEMO] autoLogin 구현 해야함
-  /// 1. kakao user를 가져올 수 있다면 O
-  ///
+  /// [MEMO] local에 token이 있을 경우 메인으로 이동
   Future<void> _autoLogin() async {
     try {
-      /// 1.kakao login이 되어있을 경우 '/'로 이동합니다.
-      /// 로그인 되어 있지 않으면 catch구간으로 넘어갑니다.
-      final user = await _kakaoAuthController.user;
-      _userController.getAuthentication(
-        SocialLoginModel(
-          socialType: SocialType.kakao,
-          providerId: "${user.id}",
-        ),
-      );
+      final token = await HiveBox().getToken();
+      if (token == null) {
+        return;
+      }
+      await _userController.updateToken(token);
       Get.offAllNamed('/');
     } catch (e) {}
   }

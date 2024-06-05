@@ -20,7 +20,7 @@ SocialLoginModel _$SocialLoginModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$SocialLoginModel {
-  String get providerId => throw _privateConstructorUsedError;
+  String get code => throw _privateConstructorUsedError;
   SocialType get socialType => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -35,7 +35,7 @@ abstract class $SocialLoginModelCopyWith<$Res> {
           SocialLoginModel value, $Res Function(SocialLoginModel) then) =
       _$SocialLoginModelCopyWithImpl<$Res, SocialLoginModel>;
   @useResult
-  $Res call({String providerId, SocialType socialType});
+  $Res call({String code, SocialType socialType});
 }
 
 /// @nodoc
@@ -51,13 +51,13 @@ class _$SocialLoginModelCopyWithImpl<$Res, $Val extends SocialLoginModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? providerId = null,
+    Object? code = null,
     Object? socialType = null,
   }) {
     return _then(_value.copyWith(
-      providerId: null == providerId
-          ? _value.providerId
-          : providerId // ignore: cast_nullable_to_non_nullable
+      code: null == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
               as String,
       socialType: null == socialType
           ? _value.socialType
@@ -75,7 +75,7 @@ abstract class _$$SocialLoginModelImplCopyWith<$Res>
       __$$SocialLoginModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String providerId, SocialType socialType});
+  $Res call({String code, SocialType socialType});
 }
 
 /// @nodoc
@@ -89,13 +89,13 @@ class __$$SocialLoginModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? providerId = null,
+    Object? code = null,
     Object? socialType = null,
   }) {
     return _then(_$SocialLoginModelImpl(
-      providerId: null == providerId
-          ? _value.providerId
-          : providerId // ignore: cast_nullable_to_non_nullable
+      code: null == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
               as String,
       socialType: null == socialType
           ? _value.socialType
@@ -108,19 +108,19 @@ class __$$SocialLoginModelImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$SocialLoginModelImpl implements _SocialLoginModel {
-  _$SocialLoginModelImpl({required this.providerId, required this.socialType});
+  _$SocialLoginModelImpl({required this.code, required this.socialType});
 
   factory _$SocialLoginModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$SocialLoginModelImplFromJson(json);
 
   @override
-  final String providerId;
+  final String code;
   @override
   final SocialType socialType;
 
   @override
   String toString() {
-    return 'SocialLoginModel(providerId: $providerId, socialType: $socialType)';
+    return 'SocialLoginModel(code: $code, socialType: $socialType)';
   }
 
   @override
@@ -128,15 +128,14 @@ class _$SocialLoginModelImpl implements _SocialLoginModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SocialLoginModelImpl &&
-            (identical(other.providerId, providerId) ||
-                other.providerId == providerId) &&
+            (identical(other.code, code) || other.code == code) &&
             (identical(other.socialType, socialType) ||
                 other.socialType == socialType));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, providerId, socialType);
+  int get hashCode => Object.hash(runtimeType, code, socialType);
 
   @JsonKey(ignore: true)
   @override
@@ -155,14 +154,14 @@ class _$SocialLoginModelImpl implements _SocialLoginModel {
 
 abstract class _SocialLoginModel implements SocialLoginModel {
   factory _SocialLoginModel(
-      {required final String providerId,
+      {required final String code,
       required final SocialType socialType}) = _$SocialLoginModelImpl;
 
   factory _SocialLoginModel.fromJson(Map<String, dynamic> json) =
       _$SocialLoginModelImpl.fromJson;
 
   @override
-  String get providerId;
+  String get code;
   @override
   SocialType get socialType;
   @override

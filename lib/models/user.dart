@@ -1,5 +1,3 @@
-import 'package:poorlex/schema/expenditure_response/expenditure_response.dart';
-
 enum AlarmTypes {
   EXPENDITURE_REQUEST,
   BATTLE_STATUS,
@@ -89,78 +87,4 @@ class Friend {
       level: data['level'],
       nickname: data['nickname'],
       weeklyExpenditure: data['weeklyExpenditure']);
-}
-
-class UserInfo {
-  /*
-  {
-    "nickname":"닉네임",
-    "description":null,
-    "levelInfo":{"level":1,"point":0,"pointLeftForLevelUp":70},
-    "battleSuccessInfo":{"totalBattleSuccessCount":0,"hardBattleSuccessCount":0,"normalBattleSuccessCount":0,"easyBattleSuccessCount":0},
-    "friendTotalCount":0,
-    "friends":[],
-    "expenditureTotalCount":0,
-    "expenditures":[]
-  }
- */
-  String? nickname;
-  String? description;
-  LevelInfo? levelInfo;
-  BattleSuccessInfo? battleSuccessInfo;
-  int? friendTotalCount = 0;
-  List<Friend>? friends = [];
-  int? expenditureTotalCount = 0;
-  List<ExpenditureResponse>? expenditures = [];
-
-  UserInfo({
-    this.nickname,
-    this.description,
-    this.levelInfo,
-    this.battleSuccessInfo,
-    this.friendTotalCount = 0,
-    this.friends,
-    this.expenditureTotalCount = 0,
-    this.expenditures,
-  });
-
-  factory UserInfo.fromJson(Map<String, dynamic> data) {
-    return UserInfo(
-        nickname: data['nickname'],
-        description: data['description'],
-        levelInfo: LevelInfo(
-          level: data['levelInfo']['level'],
-          point: data['levelInfo']['point'],
-          pointLeftForLevelUp: data['levelInfo']['pointLeftForLevelUp'],
-        ),
-        battleSuccessInfo: BattleSuccessInfo(
-          totalBattleSuccessCount: data['battleSuccessInfo']
-              ['totalBattleSuccessCount'],
-          hardBattleSuccessCount: data['battleSuccessInfo']
-              ['hardBattleSuccessCount'],
-          normalBattleSuccessCount: data['battleSuccessInfo']
-              ['normalBattleSuccessCount'],
-          easyBattleSuccessCount: data['battleSuccessInfo']
-              ['easyBattleSuccessCount'],
-        ),
-        friendTotalCount: data['friendTotalCount'],
-        friends: (data['friends'] ?? [])
-            .map<Friend>((f) => Friend.fromJson(f))
-            .toList(),
-        expenditureTotalCount:
-            int.parse(data['expenditureTotalCount'].toString()),
-        expenditures: (data['expenditures'] ?? [])
-            .map<ExpenditureResponse>((f) => ExpenditureResponse.fromJson(f))
-            .toList());
-  }
-}
-
-class UserToken {
-  String? token;
-  String? refreshToken;
-
-  UserToken({
-    this.token = null,
-    this.refreshToken = null,
-  });
 }

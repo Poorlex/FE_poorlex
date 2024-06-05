@@ -9,7 +9,7 @@ part of 'my_page_response.dart';
 _$MyPageResponseImpl _$$MyPageResponseImplFromJson(Map<String, dynamic> json) =>
     _$MyPageResponseImpl(
       nickname: json['nickname'] as String,
-      description: json['description'] as String,
+      description: json['description'] as String?,
       levelInfo: MyPageLevelInfoResponse.fromJson(
           json['levelInfo'] as Map<String, dynamic>),
       battleSuccessInfo: BattleSuccessCountResponse.fromJson(

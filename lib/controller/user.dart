@@ -1,30 +1,34 @@
 import 'package:get/get.dart';
-import 'package:hive/hive.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:poorlex/controller/api.dart';
+import 'package:poorlex/controller/hive_box.dart';
+import 'package:poorlex/enums/social_type.dart';
 import 'package:poorlex/models/user.dart';
 import 'package:poorlex/libs/time.dart';
 import 'package:poorlex/provider/expenditures_povider.dart';
+import 'package:poorlex/provider/login_provider.dart';
 import 'package:poorlex/provider/member_provider.dart';
 import 'package:poorlex/schema/expenditure_response/expenditure_response.dart';
+import 'package:poorlex/schema/my_page_response/my_page_response.dart';
 import 'package:poorlex/schema/social_login/social_login.dart';
 
 class UserController extends GetxController {
   final MemberProvider memberProvider;
   final ExpendituresProvider expendituresProvider;
+  final LoginProvider loginProvider;
   UserController({
     required this.memberProvider,
     required this.expendituresProvider,
+    required this.loginProvider,
   });
-  final userInfo = UserInfo().obs;
 
-  /// [TODO]
-  /// 아래의 토큰은 서버에서 토큰 받아오는 로직이 추가되면 제거해야합니다.
-  final userToken = UserToken(
-          token:
-              'eyJhbGciOiJIUzM4NCJ9.eyJpYXQiOjE3MTcyNDI3MjIsImV4cCI6MTgxNzI0MjcyMiwibWVtYmVySWQiOjI0fQ.MuCOqvidSEgPJ6nMSXeRi4Kko3CdogHOkzYqoTewYzZGc0RphkTrd3hcM8HxclOd')
-      .obs;
-  final expenditure = Rxn<ExpenditureResponse>();
+  final Rxn<MyPageResponse> _userInfo = Rxn<MyPageResponse>();
+  MyPageResponse? get userInfo => _userInfo.value;
+
+  final Rxn<String> _userToken = Rxn<String>();
+  String? get userToken => _userToken.value;
+
+  final Rxn<ExpenditureResponse> expenditure = Rxn<ExpenditureResponse>();
   final expenditures = <ExpenditureResponse>[].obs;
   final alarmAllows = AlarmAllows().obs;
 
@@ -98,66 +102,37 @@ class UserController extends GetxController {
     return r.success;
   }
 
-  /// [TODO] 제거대상
-  void updateAlarmAllows(AlarmAllows allows) {
-    alarmAllows.value = allows;
-    update();
+  void updateUser(MyPageResponse? user) {
+    _userInfo(user);
   }
 
-  /// [TODO] 제거대상
-  void updateUser(UserInfo? user) {
-    print(user);
-    if (user != null) {
-      userInfo.update((val) {
-        val?.nickname = user.nickname;
-        val?.description = user.description;
-        val?.levelInfo = user.levelInfo;
-        val?.battleSuccessInfo = user.battleSuccessInfo;
-        val?.friendTotalCount = user.friendTotalCount;
-        val?.friends = user.friends;
-        val?.expenditures = user.expenditures;
-        val?.expenditureTotalCount = user.expenditureTotalCount;
-      });
-    } else {
-      userInfo.update((val) {
-        val = UserInfo();
-      });
-    }
+  /// [MEMO] token으로 유저 정보 가져오기 (내부에서만 사용됩니다.)
+  Future<void> _getUserInfo() async {
+    final userInfo = await memberProvider.getMyPage();
+    _userInfo(userInfo);
   }
 
-  /// [TODO] 제거대상
-  bool updateToken(UserToken? token) {
-    if (token != null) {
-      userToken.update((val) {
-        val?.token = token.token;
-        val?.refreshToken = token.refreshToken;
-      });
-      api.updateToken(token.token!);
-      var auth = Hive.box('auth');
-      auth.put('token', token.token);
-      return true;
-    } else {
-      userToken.update((val) {
-        val = UserToken();
-      });
-      api.updateToken('');
-      return false;
-    }
+  /// token 가져오면서 user정보도 가져옵니다.
+  Future<void> updateToken(String? token) async {
+    _userToken(token);
+    await _getUserInfo();
+    await HiveBox().putToken(token);
   }
 
-  /// 초기갑은 null입니다.
-  ///  null을 허용하는 observable
-  final Rxn<SocialLoginModel> _authenticationInfo = Rxn<SocialLoginModel>();
-
-  /// [TODO] kakao 혹은 apple 로그인 이후 서버에서 토큰 발급 받는 로직을 구현해야합니다.
   Future<void> getAuthentication(SocialLoginModel? socialLoginModel) async {
-    _authenticationInfo(socialLoginModel);
+    if (socialLoginModel == null) return;
+    if (socialLoginModel.socialType == SocialType.kakao) {
+      final token = await loginProvider.kakao(code: socialLoginModel.code);
+      await updateToken(token);
+    } else if (socialLoginModel.socialType == SocialType.apple) {
+      final token = await loginProvider.apple(code: socialLoginModel.code);
+      await updateToken(token);
+    }
   }
 
-  /// [TODO]
-  /// 여기에 실제 인증 상태 확인 로직을 구현해야합니다.
-  /// 현재 사용자가 인증된 경우 true, 그렇지 않은 경우 false를 반환
+  /// [MEMO]
+  /// 현재 사용자가 인증된 경우 (token 있을 경우) true, 그렇지 않은 경우 false를 반환
   bool isAuthenticated() {
-    return _authenticationInfo.value != null;
+    return _userToken.value != null;
   }
 }

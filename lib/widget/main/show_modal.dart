@@ -89,7 +89,7 @@ class _ShowModalState extends State<ShowModal> {
                                     style: CTextStyles.Body1(),
                                   ),
                                   Text(
-                                    '${_user.userInfo().nickname}!',
+                                    '${_user.userInfo?.nickname}!',
                                     style: CTextStyles.Title3(
                                       color: CColors.yellow,
                                     ),

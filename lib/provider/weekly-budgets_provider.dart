@@ -13,7 +13,7 @@ class WeeklyBudgetsProvider extends GetConnect {
 
     /// [TODO] header에 token 잘 들어가는지 확인 필요
     httpClient.addRequestModifier<Object?>((request) {
-      final token = user.userToken().token;
+      final token = user.userToken;
       request.headers['Authorization'] = 'Bearer $token';
       return request;
     });

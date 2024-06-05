@@ -66,8 +66,8 @@ class _MyProfileState extends State<MyProfile> {
   @override
   void initState() {
     super.initState();
-    name.text = user.userInfo.value.nickname ?? '';
-    description.text = user.userInfo.value.description ?? '';
+    name.text = user.userInfo?.nickname ?? '';
+    description.text = user.userInfo?.description ?? '';
     checkIsReady();
     name.addListener(checkIsReady);
     description.addListener(checkIsReady);

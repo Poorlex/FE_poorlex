@@ -6,7 +6,7 @@ import 'package:poorlex/controller/layout.dart';
 import 'package:poorlex/controller/user.dart';
 
 import 'package:poorlex/libs/theme.dart';
-import 'package:poorlex/widget/common/dialog/confirm_diolog.dart';
+import 'package:poorlex/widget/common/dialog/confirm_dialog.dart';
 import 'package:poorlex/widget/my/withdrawal_bottom_sheet_with_beggar.dart';
 
 import 'package:poorlex/widget/common/icon.dart';

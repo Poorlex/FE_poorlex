@@ -50,7 +50,7 @@ class _MyPageLevelState extends State<MyPageLevel> {
                             SizedBox(width: 12),
                             Obx(
                               () => Text(
-                                'LV.${user.userInfo.value.levelInfo?.level ?? '-'}',
+                                'LV.${user.userInfo?.levelInfo.level ?? '-'}',
                                 style: CTextStyles.Title3(),
                               ),
                             )
@@ -73,7 +73,7 @@ class _MyPageLevelState extends State<MyPageLevel> {
                         Container(
                           child: Obx(
                             () => Text(
-                              '${user.userInfo.value.levelInfo?.point ?? '-'} P',
+                              '${user.userInfo?.levelInfo.point ?? '-'} P',
                               style: CTextStyles.Title3(),
                             ),
                           ),
@@ -95,7 +95,7 @@ class _MyPageLevelState extends State<MyPageLevel> {
                       children: [
                         Obx(
                           () => Text(
-                            '+${user.userInfo.value.levelInfo?.pointLeftForLevelUp ?? '-'} P',
+                            '+${user.userInfo?.levelInfo.pointLeftForLevelUp ?? '-'} P',
                             style: CTextStyles.Body3(
                               color: CColors.yellow,
                             ),
@@ -129,8 +129,8 @@ class _MyPageLevelState extends State<MyPageLevel> {
                           SizedBox(height: 8),
                           Obx(
                             () => Text(
-                              user.userInfo.value.battleSuccessInfo
-                                      ?.totalBattleSuccessCount
+                              user.userInfo?.battleSuccessInfo
+                                      .totalBattleSuccessCount
                                       .toString() ??
                                   '-',
                               style: CTextStyles.Title3(),
@@ -149,8 +149,8 @@ class _MyPageLevelState extends State<MyPageLevel> {
                           ),
                           Obx(
                             () => Text(
-                              user.userInfo.value.battleSuccessInfo
-                                      ?.hardBattleSuccessCount
+                              user.userInfo?.battleSuccessInfo
+                                      .hardBattleSuccessCount
                                       .toString() ??
                                   '-',
                               style: CTextStyles.Title3(),
@@ -169,8 +169,8 @@ class _MyPageLevelState extends State<MyPageLevel> {
                           ),
                           Obx(
                             () => Text(
-                              user.userInfo.value.battleSuccessInfo
-                                      ?.normalBattleSuccessCount
+                              user.userInfo?.battleSuccessInfo
+                                      .normalBattleSuccessCount
                                       .toString() ??
                                   '-',
                               style: CTextStyles.Title3(),
@@ -190,8 +190,8 @@ class _MyPageLevelState extends State<MyPageLevel> {
                           ),
                           Obx(
                             () => Text(
-                              user.userInfo.value.battleSuccessInfo
-                                      ?.easyBattleSuccessCount
+                              user.userInfo?.battleSuccessInfo
+                                      .easyBattleSuccessCount
                                       .toString() ??
                                   '-',
                               style: CTextStyles.Title3(),

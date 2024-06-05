@@ -17,8 +17,7 @@ class MyPageProfile extends StatelessWidget {
           child: Column(
             children: [
               Obx(
-                () => LevelProfile(
-                    level: user.userInfo.value.levelInfo?.level ?? 1),
+                () => LevelProfile(level: user.userInfo?.levelInfo.level ?? 1),
               ),
               SizedBox(height: 18),
               Container(
@@ -27,14 +26,14 @@ class MyPageProfile extends StatelessWidget {
                   children: [
                     Obx(
                       () => Text(
-                        user.userInfo.value.nickname ?? '-',
+                        user.userInfo?.nickname ?? '-',
                         style: CTextStyles.Title3(),
                       ),
                     ),
                     SizedBox(height: 10),
                     Obx(
                       () => Text(
-                        user.userInfo.value.description ?? '-',
+                        user.userInfo?.description ?? '-',
                         textAlign: TextAlign.center,
                         softWrap: true,
                         style: CTextStyles.Body2(color: CColors.gray40),

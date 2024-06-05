@@ -7,7 +7,7 @@ part 'social_login.g.dart';
 @freezed
 class SocialLoginModel with _$SocialLoginModel {
   factory SocialLoginModel({
-    required String providerId,
+    required String code,
     required SocialType socialType,
   }) = _SocialLoginModel;
 

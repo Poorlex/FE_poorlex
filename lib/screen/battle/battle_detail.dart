@@ -7,7 +7,7 @@ import 'package:poorlex/schema/participant_ranking_response/participant_ranking_
 import 'package:poorlex/widget/common/Icon.dart';
 import 'package:poorlex/widget/common/app_bar.dart';
 import 'package:poorlex/widget/common/buttons.dart';
-import 'package:poorlex/widget/common/dialog/confirm_diolog.dart';
+import 'package:poorlex/widget/common/dialog/confirm_dialog.dart';
 import 'package:poorlex/widget/common/image/image_asset.dart';
 import 'package:poorlex/widget/common/image/image_network.dart';
 import 'package:poorlex/widget/common/user.dart';

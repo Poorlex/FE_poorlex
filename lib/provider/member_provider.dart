@@ -14,13 +14,23 @@ class MemberProvider extends GetConnect {
     // prefix "/member" 적용
     httpClient.baseUrl = "${dotenv.get('SERVER_URL')}/member";
 
-    /// [TODO] header에 token 잘 들어가는지 확인 필요
     httpClient.addRequestModifier<Object?>((request) {
       final user = Get.find<UserController>();
-      final token = user.userToken().token;
+      final token = user.userToken;
       request.headers['Authorization'] = 'Bearer $token';
       return request;
     });
+  }
+
+  /// 회원 마이페이지 정보 조회
+  Future<MyPageResponse?> getMyPage() async {
+    final response = await get<MyPageResponse>(
+      '/my-page',
+      decoder: (data) {
+        return MyPageResponse.fromJson(data);
+      },
+    );
+    return response.body;
   }
 
   /// [TEST] x
@@ -35,14 +45,6 @@ class MemberProvider extends GetConnect {
             .toList();
       },
     );
-    return response.body;
-  }
-
-  /// [TEST] x
-  ///
-  /// 회원 마이페이지 정보 조회
-  Future<MyPageResponse?> getMyPage() async {
-    final response = await get<MyPageResponse>('/my-page');
     return response.body;
   }
 

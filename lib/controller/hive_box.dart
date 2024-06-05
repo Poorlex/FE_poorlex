@@ -25,6 +25,10 @@ class HiveBox {
     await _mainBox.put(_tokenKey, value);
   }
 
+  Future<String?> getToken() async {
+    return await _mainBox.get(_tokenKey);
+  }
+
   /// token 삭제
   Future<void> deleteToken() async {
     await _mainBox.delete(_tokenKey);

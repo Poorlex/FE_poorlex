@@ -21,7 +21,7 @@ MyPageResponse _$MyPageResponseFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$MyPageResponse {
   String get nickname => throw _privateConstructorUsedError;
-  String get description => throw _privateConstructorUsedError;
+  String? get description => throw _privateConstructorUsedError;
   MyPageLevelInfoResponse get levelInfo => throw _privateConstructorUsedError;
   BattleSuccessCountResponse get battleSuccessInfo =>
       throw _privateConstructorUsedError;
@@ -45,7 +45,7 @@ abstract class $MyPageResponseCopyWith<$Res> {
   @useResult
   $Res call(
       {String nickname,
-      String description,
+      String? description,
       MyPageLevelInfoResponse levelInfo,
       BattleSuccessCountResponse battleSuccessInfo,
       int friendTotalCount,
@@ -71,7 +71,7 @@ class _$MyPageResponseCopyWithImpl<$Res, $Val extends MyPageResponse>
   @override
   $Res call({
     Object? nickname = null,
-    Object? description = null,
+    Object? description = freezed,
     Object? levelInfo = null,
     Object? battleSuccessInfo = null,
     Object? friendTotalCount = null,
@@ -84,10 +84,10 @@ class _$MyPageResponseCopyWithImpl<$Res, $Val extends MyPageResponse>
           ? _value.nickname
           : nickname // ignore: cast_nullable_to_non_nullable
               as String,
-      description: null == description
+      description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       levelInfo: null == levelInfo
           ? _value.levelInfo
           : levelInfo // ignore: cast_nullable_to_non_nullable
@@ -143,7 +143,7 @@ abstract class _$$MyPageResponseImplCopyWith<$Res>
   @useResult
   $Res call(
       {String nickname,
-      String description,
+      String? description,
       MyPageLevelInfoResponse levelInfo,
       BattleSuccessCountResponse battleSuccessInfo,
       int friendTotalCount,
@@ -169,7 +169,7 @@ class __$$MyPageResponseImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? nickname = null,
-    Object? description = null,
+    Object? description = freezed,
     Object? levelInfo = null,
     Object? battleSuccessInfo = null,
     Object? friendTotalCount = null,
@@ -182,10 +182,10 @@ class __$$MyPageResponseImplCopyWithImpl<$Res>
           ? _value.nickname
           : nickname // ignore: cast_nullable_to_non_nullable
               as String,
-      description: null == description
+      description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       levelInfo: null == levelInfo
           ? _value.levelInfo
           : levelInfo // ignore: cast_nullable_to_non_nullable
@@ -219,7 +219,7 @@ class __$$MyPageResponseImplCopyWithImpl<$Res>
 class _$MyPageResponseImpl implements _MyPageResponse {
   const _$MyPageResponseImpl(
       {required this.nickname,
-      required this.description,
+      this.description,
       required this.levelInfo,
       required this.battleSuccessInfo,
       required this.friendTotalCount,
@@ -235,7 +235,7 @@ class _$MyPageResponseImpl implements _MyPageResponse {
   @override
   final String nickname;
   @override
-  final String description;
+  final String? description;
   @override
   final MyPageLevelInfoResponse levelInfo;
   @override
@@ -318,7 +318,7 @@ class _$MyPageResponseImpl implements _MyPageResponse {
 abstract class _MyPageResponse implements MyPageResponse {
   const factory _MyPageResponse(
           {required final String nickname,
-          required final String description,
+          final String? description,
           required final MyPageLevelInfoResponse levelInfo,
           required final BattleSuccessCountResponse battleSuccessInfo,
           required final int friendTotalCount,
@@ -333,7 +333,7 @@ abstract class _MyPageResponse implements MyPageResponse {
   @override
   String get nickname;
   @override
-  String get description;
+  String? get description;
   @override
   MyPageLevelInfoResponse get levelInfo;
   @override

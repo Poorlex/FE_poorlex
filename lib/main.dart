@@ -16,6 +16,7 @@ import 'package:poorlex/libs/theme.dart';
 import 'package:poorlex/middleware/auth_middleware.dart';
 import 'package:poorlex/provider/battles_provider.dart';
 import 'package:poorlex/provider/expenditures_povider.dart';
+import 'package:poorlex/provider/login_provider.dart';
 import 'package:poorlex/provider/member_provider.dart';
 import 'package:poorlex/screen/battle/modify_battle_detail.dart';
 import 'package:poorlex/screen/friends/friends.dart';
@@ -31,6 +32,7 @@ import 'package:poorlex/screen/battle/battle_create.dart';
 class Bind extends Bindings {
   @override
   void dependencies() {
+    Get.lazyPut(() => LoginProvider());
     Get.lazyPut(() => MemberProvider());
     Get.lazyPut(() => ExpendituresProvider());
 
@@ -40,6 +42,7 @@ class Bind extends Bindings {
       UserController(
         memberProvider: Get.find(),
         expendituresProvider: Get.find(),
+        loginProvider: Get.find(),
       ),
       permanent: true,
     );

@@ -54,7 +54,7 @@ class _MyPageMyAuthState extends State<MyPageMyAuth> {
               SizedBox(width: 10),
               Obx(
                 () => Text(
-                  user.userInfo.value.expenditureTotalCount.toString(),
+                  user.userInfo?.expenditureTotalCount.toString() ?? '',
                   style: CTextStyles.Headline(color: CColors.purpleLight),
                 ),
               )
@@ -70,8 +70,8 @@ class _MyPageMyAuthState extends State<MyPageMyAuth> {
                     runSpacing: 18,
                     direction: Axis.horizontal,
                     alignment: WrapAlignment.start,
-                    children: (user.userInfo.value.expenditures ?? [])
-                        .mapIndexed<Widget>(
+                    children:
+                        (user.userInfo?.expenditures ?? []).mapIndexed<Widget>(
                       (index, e) {
                         return size != null && index < 4
                             ? CButton(
@@ -83,7 +83,7 @@ class _MyPageMyAuthState extends State<MyPageMyAuth> {
                                 child: Container(
                                   width: ((size?.width ?? 36) - 18) / 2,
                                   child: BackgroundImageWithBlack(
-                                    image: NetworkImage(e.mainImageUrl),
+                                    image: NetworkImage(e.imageUrl),
                                     height: ((size?.width ?? 36) - 18) / 2,
                                     child: Column(
                                       mainAxisAlignment:
