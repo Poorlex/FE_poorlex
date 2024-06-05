@@ -59,8 +59,8 @@ dev_dependencies:
   json_serializable: ^6.8.0
 
   # pubspec.lock 의존성을 고정하기위해 추가하였습니다.
-  leak_tracker: 10.0.0
-  leak_tracker_flutter_testing: 2.0.1
+  # leak_tracker: 10.0.0
+  # leak_tracker_flutter_testing: 2.0.1
 
 flutter:
   uses-material-design: true
