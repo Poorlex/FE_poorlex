@@ -45,7 +45,12 @@ class CColors {
 
 class CTextStyles {
   static Color defaultColor = CColors.white;
-  static TextStyle LargeTitle({Color? color, fontFamily, fontWeight, height}) =>
+  static TextStyle LargeTitle({
+    Color? color,
+    String? fontFamily,
+    FontWeight? fontWeight,
+    double? height,
+  }) =>
       TextStyle(
         fontSize: 32,
         height: height ?? 1.0,
@@ -56,9 +61,9 @@ class CTextStyles {
       );
   static TextStyle Title1({
     Color? color,
-    fontFamily,
-    fontWeight,
-    height,
+    String? fontFamily,
+    FontWeight? fontWeight,
+    double? height,
   }) =>
       TextStyle(
         fontSize: 24,
@@ -70,9 +75,9 @@ class CTextStyles {
       );
   static TextStyle Title2({
     Color? color,
-    fontFamily,
-    fontWeight,
-    height,
+    String? fontFamily,
+    FontWeight? fontWeight,
+    double? height,
   }) =>
       TextStyle(
         fontSize: 22,
@@ -84,9 +89,9 @@ class CTextStyles {
       );
   static TextStyle Title3({
     Color? color,
-    fontFamily,
-    fontWeight,
-    height,
+    String? fontFamily,
+    FontWeight? fontWeight,
+    double? height,
   }) =>
       TextStyle(
         fontSize: 20,
@@ -98,23 +103,23 @@ class CTextStyles {
       );
   static TextStyle Headline({
     Color? color,
-    fontFamily,
-    fontWeight,
-    height,
+    String? fontFamily,
+    FontWeight? fontWeight,
+    double? height,
   }) =>
       TextStyle(
         fontSize: 18,
         height: height ?? 1.0,
         letterSpacing: 0,
         color: color ?? defaultColor,
-        fontFamily: fontFamily,
+        fontFamily: fontFamily ?? 'NeoDunggeunmoPro-Regular',
         fontWeight: fontWeight,
       );
   static TextStyle Body1({
     Color? color,
-    fontFamily,
-    fontWeight,
-    height,
+    String? fontFamily,
+    FontWeight? fontWeight,
+    double? height,
   }) =>
       TextStyle(
         fontSize: 18,
@@ -126,9 +131,9 @@ class CTextStyles {
       );
   static TextStyle Body2({
     Color? color,
-    fontFamily,
-    fontWeight,
-    height,
+    String? fontFamily,
+    FontWeight? fontWeight,
+    double? height,
   }) =>
       TextStyle(
         fontSize: 16,
@@ -140,9 +145,9 @@ class CTextStyles {
       );
   static TextStyle Body3({
     Color? color,
-    fontFamily,
-    fontWeight,
-    height,
+    String? fontFamily,
+    FontWeight? fontWeight,
+    double? height,
   }) =>
       TextStyle(
         fontSize: 14,
@@ -154,9 +159,9 @@ class CTextStyles {
       );
   static TextStyle Caption1({
     Color? color,
-    fontFamily,
-    fontWeight,
-    height,
+    String? fontFamily,
+    FontWeight? fontWeight,
+    double? height,
   }) =>
       TextStyle(
         fontSize: 13,
@@ -168,9 +173,9 @@ class CTextStyles {
       );
   static TextStyle Caption2({
     Color? color,
-    fontFamily,
-    fontWeight,
-    height,
+    String? fontFamily,
+    FontWeight? fontWeight,
+    double? height,
   }) =>
       TextStyle(
         fontSize: 12,
