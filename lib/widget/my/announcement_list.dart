@@ -6,6 +6,7 @@ import 'package:poorlex/controller/layout.dart';
 import 'package:poorlex/controller/user.dart';
 
 import 'package:poorlex/libs/theme.dart';
+import 'package:poorlex/provider/member_provider.dart';
 import 'package:poorlex/widget/common/dialog/confirm_dialog.dart';
 import 'package:poorlex/widget/my/withdrawal_bottom_sheet_with_beggar.dart';
 import 'package:poorlex/widget/common/icon.dart';
@@ -46,12 +47,16 @@ class _AnnounceMentState extends State<AnnounceMent> {
     }
   }
 
-  /// [MEMO] 회원탈퇴 모달 디자인 따로 있음 확인필요
   Future<void> _withdrawal() async {
     final result = await withdrawalBottomSheetWithBeggar(
       context: context,
     );
-    if (result == true) {}
+    if (result == true) {
+      await Get.find<MemberProvider>().memberWithdrawal();
+      await user.updateToken(null);
+      await KaKaoAuthController().logOut();
+      Get.offAllNamed('/login');
+    }
   }
 
   @override
