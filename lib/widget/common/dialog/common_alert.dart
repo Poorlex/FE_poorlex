@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:poorlex/libs/theme.dart';
 import 'package:poorlex/widget/common/buttons.dart';
 
-Future<bool?> commonAlert({
+Future<void> commonAlert({
   required BuildContext context,
   required String message,
 }) async {
-  return await showDialog<bool>(
+  return await showDialog<void>(
     context: context,
     builder: (context) {
       return Center(
@@ -33,9 +33,7 @@ Future<bool?> commonAlert({
                     Expanded(
                       flex: 1,
                       child: CButton(
-                        onPressed: () {
-                          Navigator.of(context).pop(false);
-                        },
+                        onPressed: () => Navigator.of(context).pop(),
                         padding: EdgeInsets.symmetric(vertical: 20),
                         type: ButtonTypes.elevated,
                         color: CColors.yellow,
