@@ -55,7 +55,6 @@ class UserController extends GetxController {
     return response;
   }
 
-  /// [TODO] 제거대상
   Future<void> patchProfile({
     required String nickname,
     required String description,
@@ -64,6 +63,7 @@ class UserController extends GetxController {
       nickname: nickname,
       description: description,
     );
+    await _getUserInfo();
   }
 
   /// [TODO] 제거대상

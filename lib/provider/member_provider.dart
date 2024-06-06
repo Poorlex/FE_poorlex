@@ -20,6 +20,16 @@ class MemberProvider extends GetConnect {
       request.headers['Authorization'] = 'Bearer $token';
       return request;
     });
+
+    httpClient.addResponseModifier((request, response) {
+      print(
+        '### REQUEST [method: ${request.method}]'
+        '\nURL: ${request.url}'
+        '\n${"Header : ${request.headers}"}'
+        '\n ### RESPONSE BODY: ${response.body}',
+      );
+      return response;
+    });
   }
 
   /// 회원 마이페이지 정보 조회
