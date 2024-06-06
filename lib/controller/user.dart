@@ -4,7 +4,6 @@ import 'package:poorlex/controller/api.dart';
 import 'package:poorlex/controller/hive_box.dart';
 import 'package:poorlex/enums/social_type.dart';
 import 'package:poorlex/models/user.dart';
-import 'package:poorlex/libs/time.dart';
 import 'package:poorlex/provider/expenditures_provider.dart';
 import 'package:poorlex/provider/login_provider.dart';
 import 'package:poorlex/provider/member_provider.dart';
@@ -66,40 +65,22 @@ class UserController extends GetxController {
     await _getUserInfo();
   }
 
-  /// [TODO] 제거대상
-  Future<bool> uploadExpenditure({
-    required String price,
+  /// 지출 생성
+  Future<void> uploadExpenditure({
+    required int price,
     required String description,
-    required int day,
-    int? id,
-    XFile? mainImage,
+    required DateTime date,
+    required XFile mainImage,
     XFile? subImage,
-    String? originMainImage,
-    String? originSubImage,
   }) async {
-    Map<String, List<XFile>> files = {};
-    Map<String, String> body = {
-      'amount': price,
-      'description': description,
-      'date': cTimeFormat(day, 'yyyy-MM-dd')
-    };
-
-    if (mainImage != null)
-      files['mainImage'] = [mainImage];
-    else if (originMainImage != null) body['mainImageUrl'] = originMainImage;
-    if (subImage != null)
-      files['subImage'] = [subImage];
-    else if (originSubImage != null) body['subImageUrl'] = originSubImage;
-
-    var r = await api.requestMultipart(
-        method: id == null ? Methods.post : Methods.put,
-        url: id == null ? '/api/expenditures' : '/api/expenditures/${id}',
-        body: body,
-        files: files);
-    if (r.success) {
-      await getExpenditures();
-    }
-    return r.success;
+    await expendituresProvider.postCreateExpenditures(
+      amount: price,
+      description: description,
+      date: date,
+      mainImage: mainImage,
+      subImage: subImage,
+    );
+    await getExpenditures();
   }
 
   /// [MEMO] token으로 유저 정보 가져오기 (내부에서만 사용됩니다.)

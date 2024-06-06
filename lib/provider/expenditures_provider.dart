@@ -20,6 +20,16 @@ class ExpendituresProvider extends GetConnect {
       request.headers['Authorization'] = 'Bearer $token';
       return request;
     });
+
+    httpClient.addResponseModifier((request, response) {
+      print(
+        '### REQUEST [method: ${request.method}]'
+        '\nURL: ${request.url}'
+        '\n${"Header : ${request.headers}"}'
+        '\n ### RESPONSE BODY: ${response.body}',
+      );
+      return response;
+    });
   }
 
   /// [TEST] x
@@ -42,6 +52,7 @@ class ExpendituresProvider extends GetConnect {
     final response = await get<List<ExpenditureResponse>>(
       "",
       decoder: (data) {
+        print("data $data");
         return (data as List<dynamic>)
             .map((e) => ExpenditureResponse.fromJson(e))
             .toList();
@@ -111,7 +122,7 @@ class ExpendituresProvider extends GetConnect {
   }
 
   /// [TEST] x
-  /// 지출 삭제
+  /// 지출 등록
   Future<bool> postCreateExpenditures({
     required int amount,
     required String description,
@@ -130,15 +141,20 @@ class ExpendituresProvider extends GetConnect {
           filename: subImage.name,
         ),
     });
+    print({
+      "amount": amount.toString(),
+      "description": description,
+      "date": cFormatDateToString(date),
+    });
     final response = await post(
       "",
       formData,
       query: {
-        "amount": amount,
+        "amount": amount.toString(),
         "description": description,
         "date": cFormatDateToString(date),
       },
     );
-    return response.statusCode == 200;
+    return response.statusCode == 201;
   }
 }

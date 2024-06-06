@@ -12,7 +12,7 @@ class ExpenditureResponse with _$ExpenditureResponse {
     required int amount,
     required String description,
     required String mainImageUrl,
-    required String subImageUrl,
+    String? subImageUrl,
   }) = _ExpenditureResponse;
 
   factory ExpenditureResponse.fromJson(Map<String, dynamic> json) =>

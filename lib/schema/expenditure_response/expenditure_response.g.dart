@@ -14,7 +14,7 @@ _$ExpenditureResponseImpl _$$ExpenditureResponseImplFromJson(
       amount: (json['amount'] as num).toInt(),
       description: json['description'] as String,
       mainImageUrl: json['mainImageUrl'] as String,
-      subImageUrl: json['subImageUrl'] as String,
+      subImageUrl: json['subImageUrl'] as String?,
     );
 
 Map<String, dynamic> _$$ExpenditureResponseImplToJson(

@@ -25,7 +25,7 @@ mixin _$ExpenditureResponse {
   int get amount => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   String get mainImageUrl => throw _privateConstructorUsedError;
-  String get subImageUrl => throw _privateConstructorUsedError;
+  String? get subImageUrl => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -45,7 +45,7 @@ abstract class $ExpenditureResponseCopyWith<$Res> {
       int amount,
       String description,
       String mainImageUrl,
-      String subImageUrl});
+      String? subImageUrl});
 }
 
 /// @nodoc
@@ -66,7 +66,7 @@ class _$ExpenditureResponseCopyWithImpl<$Res, $Val extends ExpenditureResponse>
     Object? amount = null,
     Object? description = null,
     Object? mainImageUrl = null,
-    Object? subImageUrl = null,
+    Object? subImageUrl = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -89,10 +89,10 @@ class _$ExpenditureResponseCopyWithImpl<$Res, $Val extends ExpenditureResponse>
           ? _value.mainImageUrl
           : mainImageUrl // ignore: cast_nullable_to_non_nullable
               as String,
-      subImageUrl: null == subImageUrl
+      subImageUrl: freezed == subImageUrl
           ? _value.subImageUrl
           : subImageUrl // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ) as $Val);
   }
 }
@@ -111,7 +111,7 @@ abstract class _$$ExpenditureResponseImplCopyWith<$Res>
       int amount,
       String description,
       String mainImageUrl,
-      String subImageUrl});
+      String? subImageUrl});
 }
 
 /// @nodoc
@@ -130,7 +130,7 @@ class __$$ExpenditureResponseImplCopyWithImpl<$Res>
     Object? amount = null,
     Object? description = null,
     Object? mainImageUrl = null,
-    Object? subImageUrl = null,
+    Object? subImageUrl = freezed,
   }) {
     return _then(_$ExpenditureResponseImpl(
       id: null == id
@@ -153,10 +153,10 @@ class __$$ExpenditureResponseImplCopyWithImpl<$Res>
           ? _value.mainImageUrl
           : mainImageUrl // ignore: cast_nullable_to_non_nullable
               as String,
-      subImageUrl: null == subImageUrl
+      subImageUrl: freezed == subImageUrl
           ? _value.subImageUrl
           : subImageUrl // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -170,7 +170,7 @@ class _$ExpenditureResponseImpl implements _ExpenditureResponse {
       required this.amount,
       required this.description,
       required this.mainImageUrl,
-      required this.subImageUrl});
+      this.subImageUrl});
 
   factory _$ExpenditureResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$ExpenditureResponseImplFromJson(json);
@@ -186,7 +186,7 @@ class _$ExpenditureResponseImpl implements _ExpenditureResponse {
   @override
   final String mainImageUrl;
   @override
-  final String subImageUrl;
+  final String? subImageUrl;
 
   @override
   String toString() {
@@ -236,7 +236,7 @@ abstract class _ExpenditureResponse implements ExpenditureResponse {
       required final int amount,
       required final String description,
       required final String mainImageUrl,
-      required final String subImageUrl}) = _$ExpenditureResponseImpl;
+      final String? subImageUrl}) = _$ExpenditureResponseImpl;
 
   factory _ExpenditureResponse.fromJson(Map<String, dynamic> json) =
       _$ExpenditureResponseImpl.fromJson;
@@ -252,7 +252,7 @@ abstract class _ExpenditureResponse implements ExpenditureResponse {
   @override
   String get mainImageUrl;
   @override
-  String get subImageUrl;
+  String? get subImageUrl;
   @override
   @JsonKey(ignore: true)
   _$$ExpenditureResponseImplCopyWith<_$ExpenditureResponseImpl> get copyWith =>
