@@ -49,6 +49,7 @@ class _BattleFindingState extends State<BattleFinding> {
               );
             },
             child: Container(
+                padding: EdgeInsets.symmetric(vertical: 10),
                 height: 150,
                 clipBehavior: Clip.hardEdge,
                 decoration:
