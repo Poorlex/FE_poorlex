@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:poorlex/widget/common/dialog/common_alert.dart';
@@ -76,8 +78,10 @@ class _MyProfileState extends State<MyProfile> {
 
   @override
   Widget build(BuildContext context) {
-    final bottomOffset = MediaQuery.of(context).viewInsets.bottom +
-        MediaQuery.of(context).padding.bottom;
+    final bottomPaddingForIos = Platform.isIOS ? 8 : 0;
+    final bottomOffset =
+        MediaQuery.of(context).padding.bottom + bottomPaddingForIos;
+
     return Scaffold(
       backgroundColor: CColors.black,
       appBar: AppBar(

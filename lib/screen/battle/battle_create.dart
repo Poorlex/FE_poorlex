@@ -54,9 +54,8 @@ class _BattleCreateState extends State<BattleCreate> {
   @override
   Widget build(BuildContext context) {
     final bottomPaddingForIos = Platform.isIOS ? 8 : 0;
-    final bottomOffset = MediaQuery.of(context).viewInsets.bottom +
-        MediaQuery.of(context).padding.bottom +
-        bottomPaddingForIos;
+    final bottomOffset =
+        MediaQuery.of(context).padding.bottom + bottomPaddingForIos;
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       onHorizontalDragEnd: (DragEndDetails details) {
