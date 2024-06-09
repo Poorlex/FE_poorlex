@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:get/get_navigation/get_navigation.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:get/get.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
@@ -12,11 +13,14 @@ import 'package:poorlex/libs/theme.dart';
 import 'package:poorlex/middleware/auth_middleware.dart';
 import 'package:poorlex/screen/battle/modify_battle_detail.dart';
 import 'package:poorlex/screen/friends/friends.dart';
+import 'package:poorlex/screen/my/edit_my_expense.dart';
+import 'package:poorlex/screen/my/my_expense.dart';
+import 'package:poorlex/screen/my/my_expense_detail.dart';
 import 'package:poorlex/screen/my/my_notification.dart';
 import 'package:poorlex/widget/common/webview.dart';
 import 'package:poorlex/widget/gnb_layout.dart';
 import 'package:poorlex/screen/login/login.dart';
-import 'package:poorlex/screen/my/my_expense_input.dart';
+import 'package:poorlex/screen/my/create_my_expense.dart';
 import 'package:poorlex/screen/my/my_option.dart';
 import 'package:poorlex/screen/my/my_profile.dart';
 import 'package:poorlex/screen/battle/battle_create.dart';
@@ -88,8 +92,20 @@ void main() async {
         ),
         GetPage(name: '/my/profile', page: () => MyProfile()),
         GetPage(
-          name: '/my/expense-input',
-          page: () => MyExpenseInputPage(),
+          name: '/my/expenditure',
+          page: () => MyExpensePage(),
+        ),
+        GetPage(
+          name: '/my/expense-detail/:expenseId',
+          page: () => MyExpenseDetailPage(),
+        ),
+        GetPage(
+          name: '/my/expense/create',
+          page: () => CreateMyExpensePage(),
+        ),
+        GetPage(
+          name: '/my/expense/edit/:expenseId',
+          page: () => EditMyExpensePage(),
         ),
         GetPage(name: '/my/option', page: () => MyOption()),
         GetPage(

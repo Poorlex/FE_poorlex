@@ -8,8 +8,6 @@ import 'package:poorlex/screen/battle/battle_ranking.dart';
 import 'package:poorlex/screen/calendar/calendar_page.dart';
 import 'package:poorlex/screen/goal/goal_page.dart';
 import 'package:poorlex/screen/home/home.dart';
-import 'package:poorlex/screen/my/my_expense.dart';
-import 'package:poorlex/screen/my/my_expense_detail.dart';
 import 'package:poorlex/screen/my/my_page.dart';
 import 'package:poorlex/widget/common/bottom_bar.dart';
 
@@ -85,16 +83,6 @@ class _GNBLayoutState extends State<GNBLayout> {
                 return GetPageRoute(
                   page: () => MyPage(),
                   transition: Transition.noTransition,
-                );
-              case '/my/expenditure':
-                return GetPageRoute(
-                  page: () => MyExpensePage(),
-                );
-              case '/my/expense-detail':
-                return GetPageRoute(
-                  page: () => MyExpenseDetailPage(
-                    id: arguments?['id'],
-                  ),
                 );
               default:
 
