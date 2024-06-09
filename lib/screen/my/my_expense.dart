@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:poorlex/libs/string.dart';
 import 'package:poorlex/widget/common/buttons.dart';
-
 import 'package:poorlex/widget/common/icon.dart';
 import 'package:poorlex/widget/common/other.dart';
-
 import 'package:poorlex/libs/theme.dart';
 import 'package:poorlex/libs/time.dart';
 import 'package:poorlex/controller/user.dart';
@@ -18,34 +16,16 @@ class MyExpensePage extends StatefulWidget {
 }
 
 class _MyExpensePageState extends State<MyExpensePage> {
-  final user = Get.find<UserController>();
-  final GlobalKey containerKey = GlobalKey();
-  Size? size;
-  final int current = DateTime.now().millisecondsSinceEpoch;
-
-  void setContainerSize() {
-    if (containerKey.currentContext != null) {
-      final RenderBox renderBox =
-          containerKey.currentContext!.findRenderObject() as RenderBox;
-      setState(() {
-        size = renderBox.size;
-      });
-    }
-  }
+  final _userController = Get.find<UserController>();
 
   @override
   void initState() {
     super.initState();
-    user.getExpenditures();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      setContainerSize();
-    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: CColors.black,
       floatingActionButton: CButton(
         type: ButtonTypes.elevated,
         color: CColors.yellow,
@@ -53,7 +33,7 @@ class _MyExpensePageState extends State<MyExpensePage> {
         padding: EdgeInsets.symmetric(vertical: 22),
         child: CIcon(
             icon: 'plus-big', width: 20, height: 20, color: CColors.blackStr),
-        onPressed: () => Get.toNamed('/my/expense-input'),
+        onPressed: () => Get.toNamed('/my/expense/create'),
       ),
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -77,100 +57,86 @@ class _MyExpensePageState extends State<MyExpensePage> {
           ],
         ),
       ),
-      body: SafeArea(
-        child: CustomScrollView(
-          slivers: [
-            SliverList(
-              delegate: SliverChildBuilderDelegate(
-                (BuildContext context, int index) {
-                  return Container(
-                    key: containerKey,
-                    padding: EdgeInsets.fromLTRB(16, 0, 16, 20),
-                    child: Obx(
-                      () => Wrap(
-                        spacing: 18,
-                        runSpacing: 18,
-                        children: user.expenditures.length == 0
-                            ? [
-                                Container(
-                                  height: 500,
-                                  width: double.infinity,
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      Container(
-                                          width: 250,
-                                          child: Column(
-                                            children: [
-                                              Column(
-                                                children: [
-                                                  Image.asset(
-                                                    'assets/my_page/wallet_smile.png',
-                                                    width: 200,
-                                                    height: 200,
-                                                  ),
-                                                  SizedBox(height: 30),
-                                                  Text(
-                                                    '지출 내역이 없습니다.',
-                                                    style: CTextStyles.Title2(
-                                                        color: CColors.gray40),
-                                                  )
-                                                ],
-                                              )
-                                            ],
-                                          ))
-                                    ],
-                                  ),
-                                )
-                              ]
-                            : user.expenditures.map<Widget>(
-                                (e) {
-                                  return CButton(
-                                    onPressed: () => Get.toNamed(
-                                        '/my/expense-detail',
-                                        arguments: {'id': e.id}),
-                                    child: Container(
-                                      width: ((size?.width ?? 0) - 50) / 2,
-                                      child: BackgroundImageWithBlack(
-                                        image: NetworkImage(e.mainImageUrl),
-                                        height: ((size?.width ?? 0) - 50) / 2,
-                                        child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.center,
-                                          children: [
-                                            Text(
-                                                cTimeFormat(
-                                                    DateTime.parse(
-                                                            '${e.date} 00:00:00')
-                                                        .millisecondsSinceEpoch,
-                                                    'yyyy.MM.dd (E)'),
-                                                style: CTextStyles.Caption1(
-                                                    color: CColors.gray50)),
-                                            SizedBox(height: 13),
-                                            Text(
-                                              '${makeComma(e.amount)}원',
-                                              style: CTextStyles.Headline(),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  );
-                                },
-                              ).toList(),
+      body: Obx(() {
+        if (_userController.userInfo == null ||
+            _userController.userInfo!.expenditures.isEmpty) {
+          return _emptyWidget();
+        }
+        return GridView.builder(
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            childAspectRatio: 163 / 153,
+            mainAxisSpacing: 17,
+            crossAxisSpacing: 17,
+          ),
+          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+          itemCount: _userController.userInfo?.expenditures.length,
+          itemBuilder: (context, index) {
+            final item = _userController.userInfo!.expenditures[index];
+            return GestureDetector(
+              onTap: () {
+                Get.toNamed('/my/expense-detail/${item.id}');
+              },
+              child: Container(
+                child: BackgroundImageWithBlack(
+                  image: NetworkImage(item.imageUrl),
+                  height: double.maxFinite,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text(
+                          cTimeFormat(
+                              DateTime.parse('${item.date} 00:00:00')
+                                  .millisecondsSinceEpoch,
+                              'yyyy.MM.dd (E)'),
+                          style: CTextStyles.Caption1(color: CColors.gray50)),
+                      SizedBox(height: 13),
+                      Text(
+                        '${makeComma(item.amount)}원',
+                        style: CTextStyles.Headline(),
                       ),
-                    ),
-                  );
-                },
-                childCount: 1,
+                    ],
+                  ),
+                ),
               ),
+            );
+          },
+        );
+      }),
+    );
+  }
+
+  Widget _emptyWidget() {
+    return Container(
+      height: 500,
+      width: double.infinity,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Container(
+            width: 250,
+            child: Column(
+              children: [
+                Column(
+                  children: [
+                    Image.asset(
+                      'assets/my_page/wallet_smile.png',
+                      width: 200,
+                      height: 200,
+                    ),
+                    SizedBox(height: 30),
+                    Text(
+                      '지출 내역이 없습니다.',
+                      style: CTextStyles.Title2(color: CColors.gray40),
+                    )
+                  ],
+                )
+              ],
             ),
-          ],
-        ),
+          )
+        ],
       ),
     );
   }
