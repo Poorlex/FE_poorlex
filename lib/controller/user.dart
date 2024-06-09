@@ -11,6 +11,7 @@ import 'package:poorlex/schema/expenditure_response/expenditure_response.dart';
 import 'package:poorlex/schema/my_page_response/my_page_response.dart';
 import 'package:poorlex/schema/social_login/social_login.dart';
 
+/// [TODO] 지출 상세, 지출 수정, 지출 삭제를 분리해서 Controller 생성 필요
 class UserController extends GetxController {
   final MemberProvider memberProvider;
   final ExpendituresProvider expendituresProvider;
@@ -27,30 +28,26 @@ class UserController extends GetxController {
   final Rxn<String> _userToken = Rxn<String>();
   String? get userToken => _userToken.value;
 
-  final Rxn<ExpenditureResponse> expenditure = Rxn<ExpenditureResponse>();
-  final expenditures = <ExpenditureResponse>[].obs;
+  final Rxn<ExpenditureResponse> _expenditure = Rxn<ExpenditureResponse>();
+  ExpenditureResponse? get expenditure => _expenditure.value;
+
+  void expenditureClear() {
+    _expenditure(null);
+  }
+
   final alarmAllows = AlarmAllows().obs;
 
   ApiController api = Get.find<ApiController>();
 
-  /// [TODO] API 테스트 필요
-  Future<bool> removeExpenditure(int id) async {
-    final response =
-        await expendituresProvider.deleteExpenditures(expenditureId: id);
-    return response;
+  Future<void> removeExpenditure(int id) async {
+    await expendituresProvider.deleteExpenditures(expenditureId: id);
+    await _getUserInfo();
   }
 
-  /// [TODO] API 테스트 필요
-  Future<void> getExpenditures() async {
-    final response = await expendituresProvider.getList();
-    expenditures.value = response ?? [];
-  }
-
-  /// [TODO] API 테스트 필요
   Future<ExpenditureResponse?> getExpenditure(int id) async {
     final response =
         await expendituresProvider.getDetailById(expenditureId: id);
-    expenditure.value = response;
+    _expenditure(response);
     return response;
   }
 
@@ -80,7 +77,27 @@ class UserController extends GetxController {
       mainImage: mainImage,
       subImage: subImage,
     );
-    await getExpenditures();
+    await _getUserInfo();
+  }
+
+  Future<void> putModifyExpenditures({
+    required int expenditureId,
+    required int amount,
+    required String description,
+    XFile? mainImage,
+    XFile? subImage,
+    String? mainImageUrl,
+    String? subImageUrl,
+  }) async {
+    await expendituresProvider.putModifyExpenditures(
+      expenditureId: expenditureId,
+      amount: amount,
+      description: description,
+      mainImage: mainImage,
+      subImage: subImage,
+      mainImageUrl: mainImageUrl,
+      subImageUrl: subImageUrl,
+    );
   }
 
   /// [MEMO] token으로 유저 정보 가져오기 (내부에서만 사용됩니다.)
