@@ -6,12 +6,11 @@ import 'package:poorlex/libs/time.dart';
 import 'package:poorlex/libs/theme.dart';
 import 'package:poorlex/libs/string.dart';
 import 'package:poorlex/controller/user.dart';
+import 'package:poorlex/widget/common/image/image_network.dart';
 
 class MyExpenseDetailPage extends StatefulWidget {
-  final int? id;
   const MyExpenseDetailPage({
     super.key,
-    required this.id,
   });
 
   @override
@@ -19,32 +18,30 @@ class MyExpenseDetailPage extends StatefulWidget {
 }
 
 class _MyExpenseDetailPageState extends State<MyExpenseDetailPage> {
-  final user = Get.find<UserController>();
+  late final String? _expenseId = Get.parameters["expenseId"];
+  final _userController = Get.find<UserController>();
 
-  void getExpenditure() async {
-    if (widget.id != null) {
-      await user.getExpenditure(widget.id!);
+  void _getExpenditure() async {
+    if (_expenseId != null) {
+      await _userController.getExpenditure(int.parse(_expenseId!));
     }
   }
 
-  Function onClickOption = (BuildContext context) {
-    Function selectOption = (String mode) {
-      print(mode);
-    };
-    showModalBottomSheet(
+  Future<void> _onClickOption(BuildContext context) async {
+    await showModalBottomSheet(
       context: context,
       backgroundColor: CColors.black,
       isScrollControlled: true,
       builder: (BuildContext context) {
-        return OptionButtonModal(selectOption: selectOption);
+        return OptionButtonModal();
       },
     );
-  };
+  }
 
   @override
   void initState() {
     super.initState();
-    getExpenditure();
+    _getExpenditure();
   }
 
   @override
@@ -69,7 +66,7 @@ class _MyExpenseDetailPageState extends State<MyExpenseDetailPage> {
               onPressed: () => Navigator.of(context).pop(),
             ),
             Obx(() {
-              if (user.expenditure.value?.id == null)
+              if (_userController.expenditure?.id == null)
                 return SizedBox(width: 20);
               else
                 return Column(
@@ -78,12 +75,12 @@ class _MyExpenseDetailPageState extends State<MyExpenseDetailPage> {
                       Text(
                           cTimeFormat(
                               DateTime.parse(
-                                      '${user.expenditure.value!.date} 00:00:00')
+                                      '${_userController.expenditure!.date} 00:00:00')
                                   .millisecondsSinceEpoch,
                               'yyyy.MM.dd (E)'),
                           style: CTextStyles.Caption1(color: CColors.gray50)),
                       SizedBox(height: 6),
-                      Text('${makeComma(user.expenditure.value!.amount)}원',
+                      Text('${makeComma(_userController.expenditure!.amount)}원',
                           style: CTextStyles.Headline()),
                     ]);
             }),
@@ -96,7 +93,7 @@ class _MyExpenseDetailPageState extends State<MyExpenseDetailPage> {
                   width: 26,
                   height: 26,
                   color: CColors.whiteStr),
-              onPressed: () => onClickOption(context),
+              onPressed: () => _onClickOption(context),
             ),
           ],
         ),
@@ -109,15 +106,15 @@ class _MyExpenseDetailPageState extends State<MyExpenseDetailPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Obx(() {
-                  if (user.expenditure.value?.description == null)
+                  if (_userController.expenditure?.description == null)
                     return SizedBox.shrink();
                   else
-                    return Text(user.expenditure.value!.description,
+                    return Text(_userController.expenditure!.description,
                         style: CTextStyles.Body2());
                 }),
                 SizedBox(height: 24),
                 Obx(() {
-                  if (user.expenditure.value?.mainImageUrl != null) {
+                  if (_userController.expenditure?.mainImageUrl != null) {
                     return Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -125,7 +122,7 @@ class _MyExpenseDetailPageState extends State<MyExpenseDetailPage> {
                             flex: 1,
                             child: SizedBox(
                                 child: Image.network(
-                                    user.expenditure.value!.mainImageUrl)),
+                                    _userController.expenditure!.mainImageUrl)),
                           )
                         ]);
                   } else
@@ -133,15 +130,15 @@ class _MyExpenseDetailPageState extends State<MyExpenseDetailPage> {
                 }),
                 SizedBox(height: 24),
                 Obx(() {
-                  if (user.expenditure.value?.subImageUrl != null) {
+                  if (_userController.expenditure?.subImageUrl != null) {
                     return Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Flexible(
                             flex: 1,
-                            child: SizedBox(
-                                child: Image.network(
-                                    user.expenditure.value!.subImageUrl)),
+                            child: CImageNetwork(
+                              src: _userController.expenditure?.subImageUrl,
+                            ),
                           )
                         ]);
                   } else
@@ -157,14 +154,11 @@ class _MyExpenseDetailPageState extends State<MyExpenseDetailPage> {
   }
 }
 
-/// [TODO] Rogan: selectOption 동작안하는 것 같음. 확인 필요
 class OptionButtonModal extends StatelessWidget {
-  final user = Get.find<UserController>();
-  final Function selectOption;
+  final _userController = Get.find<UserController>();
 
   OptionButtonModal({
     super.key,
-    required this.selectOption,
   });
 
   @override
@@ -176,10 +170,11 @@ class OptionButtonModal extends StatelessWidget {
           children: [
             Expanded(
                 child: TextButton(
-              onPressed: () {
+              onPressed: () async {
                 Navigator.of(context).pop();
-                Get.toNamed('/my/expense-input',
-                    arguments: {'id': user.expenditure.value?.id});
+                await Get.toNamed(
+                    '/my/expense/edit/${_userController.expenditure?.id}');
+                _userController.getExpenditure(_userController.expenditure!.id);
               },
               child:
                   Row(mainAxisAlignment: MainAxisAlignment.center, children: [
@@ -189,8 +184,10 @@ class OptionButtonModal extends StatelessWidget {
             Expanded(
                 child: TextButton(
               onPressed: () async {
-                await user.removeExpenditure(user.expenditure.value!.id);
-                Get.offAllNamed('/my');
+                Get.back();
+                await _userController
+                    .removeExpenditure(_userController.expenditure!.id);
+                Get.back();
               },
               child:
                   Row(mainAxisAlignment: MainAxisAlignment.center, children: [
