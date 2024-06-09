@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-
+import 'package:get/get.dart';
 import 'package:poorlex/libs/theme.dart';
-
-import 'package:poorlex/screen/my/my_expense_input.dart';
 
 class MainBottom extends StatelessWidget {
   const MainBottom({super.key});
@@ -25,12 +23,7 @@ class MainBottom extends StatelessWidget {
             style: CTextStyles.Title3(color: CColors.black),
           ),
           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => MyExpenseInputPage(),
-              ),
-            );
+            Get.toNamed('/my/expense/create');
           },
         ),
       ),
