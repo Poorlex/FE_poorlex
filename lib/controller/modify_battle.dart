@@ -65,10 +65,7 @@ class ModifyBattleController extends GetxController {
   }) async {
     layout.setIsLoading(true);
     try {
-      final response = await battlesProvider.getDetailById(
-        battleId: battleId,
-        date: DateTime.now(),
-      );
+      final response = await battlesProvider.getDetailById(battleId: battleId);
       if (response != null) {
         print(response);
         battleInfo(response);

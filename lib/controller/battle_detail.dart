@@ -55,8 +55,7 @@ class BattleDetailController extends GetxController {
   Future<void> getDetailById({required int battleId}) async {
     layout.setIsLoading(true);
     try {
-      final response = await battlesProvider.getDetailById(
-          battleId: battleId, date: DateTime.now());
+      final response = await battlesProvider.getDetailById(battleId: battleId);
       battleInfo(response);
     } catch (e) {
       print(e);
