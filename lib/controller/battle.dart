@@ -81,6 +81,30 @@ class BattleController extends GetxController {
   Future<void> getBattleInProgress() async {
     final response = await battlesProvider.getProgress();
     _battleListInProgress(response);
+    _battleListInProgress([
+      MemberProgressBattleResponse(
+        battleId: 0,
+        name: '배틀0번',
+        imageUrl: "ㅁㄴㅇ",
+        difficulty: 'difficulty',
+        budgetLeft: 10000,
+        currentParticipantRank: 2,
+        battleParticipantCount: 4,
+        uncheckedAlarmCount: 100,
+        dday: 3,
+      ),
+      MemberProgressBattleResponse(
+        battleId: 1,
+        name: '배틀2번',
+        imageUrl: "ㅁㄴㅇ",
+        difficulty: 'difficulty',
+        budgetLeft: 10000,
+        currentParticipantRank: 2,
+        battleParticipantCount: 4,
+        uncheckedAlarmCount: 100,
+        dday: 3,
+      )
+    ]);
   }
 
   Future<void> getBattleInComplete() async {

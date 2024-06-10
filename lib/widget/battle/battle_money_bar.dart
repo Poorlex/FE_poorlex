@@ -23,8 +23,13 @@ class BattleMoneyBar extends StatelessWidget {
       children: [
         image,
         SizedBox(width: 8),
-        Text('${budget ~/ 10000}만원',
-            style: CTextStyles.Body3(color: CColors.yellow)),
+        Text(
+          '${budget ~/ 10000}만원',
+          style: CTextStyles.Body3(
+            color: CColors.yellow,
+            height: 22 / 14,
+          ),
+        ),
       ],
     );
   }

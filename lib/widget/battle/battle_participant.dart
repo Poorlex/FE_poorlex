@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:poorlex/controller/battle.dart';
 import 'package:poorlex/libs/number_format.dart';
@@ -18,6 +19,7 @@ class BattleParticipant extends GetView<BattleController> {
         padding: EdgeInsets.symmetric(horizontal: 16),
         shrinkWrap: true,
         itemBuilder: (context, idx) {
+          final progressBattle = battleListInProgress[idx];
           return GestureDetector(
               onTap: () {
                 Get.toNamed('/battle/ranking');
@@ -25,58 +27,79 @@ class BattleParticipant extends GetView<BattleController> {
               child: Container(
                   padding: EdgeInsets.only(
                     top: 11,
-                    bottom: 14,
-                    left: 16,
-                    right: 16,
+                    bottom: 9,
                   ),
                   child: Column(
                     children: [
                       Row(
                         children: [
                           BattleMoneyBar(
-                            budget: battleListInProgress[idx].budgetLeft,
+                            budget: progressBattle.budgetLeft,
                           ),
                           SizedBox(width: 10),
                           Container(
                             decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(1),
-                                color: CColors.gray40),
+                              borderRadius: BorderRadius.circular(1),
+                              color: CColors.gray40,
+                            ),
                             padding: EdgeInsets.symmetric(horizontal: 6),
 
                             /// [TODO] dday정보 필요
-                            child: Text('D-7', style: CTextStyles.Body3()),
+                            child: Text(
+                              'D-${progressBattle.dday}',
+                              style: CTextStyles.Body3(height: 16 / 14),
+                            ),
                           )
                         ],
                       ),
                       SizedBox(height: 6),
                       Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                '${battleListInProgress[idx].name}',
+                                '${progressBattle.name}',
                                 style: CTextStyles.Body2(),
                               ),
                               SizedBox(height: 6),
                               Row(
                                 children: [
                                   Text(
-                                    "존버 금액:${formatCurrencyWithWon(battleListInProgress[idx].budgetLeft)}",
+                                    "존버 금액:${formatCurrencyWithWon(progressBattle.budgetLeft)}",
                                     style: CTextStyles.Body2(
                                       color: CColors.gray50,
                                     ),
                                   ),
                                 ],
+                              ),
+                              SizedBox(height: 19),
+                              RichText(
+                                text: TextSpan(
+                                  style: CTextStyles.Title2(
+                                    color: CColors.purpleLight,
+                                    height: 34 / 22,
+                                    fontFamily: 'NeoDunggeunmoPro-Regular',
+                                  ),
+                                  text:
+                                      "${progressBattle.currentParticipantRank}위",
+                                  children: [
+                                    TextSpan(
+                                      style:
+                                          CTextStyles.Title2(height: 34 / 22),
+                                      text:
+                                          "/${progressBattle.battleParticipantCount}명",
+                                    )
+                                  ],
+                                ),
                               )
                             ],
                           ),
                           CImageNetwork(
                             width: 90,
                             height: 90,
-                            src: battleListInProgress[idx].imageUrl,
+                            src: progressBattle.imageUrl,
                           ),
                         ],
                       )
