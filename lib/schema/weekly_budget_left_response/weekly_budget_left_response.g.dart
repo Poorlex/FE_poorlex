@@ -11,7 +11,6 @@ _$WeeklyBudgetLeftResponseImpl _$$WeeklyBudgetLeftResponseImplFromJson(
     _$WeeklyBudgetLeftResponseImpl(
       exist: json['exist'] as bool,
       amount: (json['amount'] as num).toInt(),
-      daysBeforeEnd: (json['daysBeforeEnd'] as num).toInt(),
     );
 
 Map<String, dynamic> _$$WeeklyBudgetLeftResponseImplToJson(
@@ -19,5 +18,4 @@ Map<String, dynamic> _$$WeeklyBudgetLeftResponseImplToJson(
     <String, dynamic>{
       'exist': instance.exist,
       'amount': instance.amount,
-      'daysBeforeEnd': instance.daysBeforeEnd,
     };
