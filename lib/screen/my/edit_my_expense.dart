@@ -87,20 +87,42 @@ class _EditMyExpensePageState extends State<EditMyExpensePage> {
     List<Widget> list = [];
     if (_mainImage != null || _originMainImage != null) {
       list.add(
-        BackgroundImageWithRemove(
-          image: _mainImage == null
-              ? Image.network(_originMainImage!)
-              : Image.file(File(_mainImage!.path)),
-          width: 80,
-          height: 80,
-          onRemove: () => {
-            setState(
-              () {
-                _mainImage = null;
-                _originMainImage = null;
+        Stack(
+          children: [
+            BackgroundImageWithRemove(
+              image: _mainImage == null
+                  ? Image.network(_originMainImage!)
+                  : Image.file(File(_mainImage!.path)),
+              width: 80,
+              height: 80,
+              onRemove: () => {
+                setState(
+                  () {
+                    _mainImage = null;
+                    _originMainImage = null;
+                  },
+                )
               },
-            )
-          },
+            ),
+            Positioned(
+              left: 0,
+              top: 0,
+              child: Container(
+                width: 38,
+                height: 16,
+                color: CColors.yellow,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "대표",
+                      style: CTextStyles.Caption1(color: CColors.black),
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ],
         ),
       );
     } else {
@@ -148,7 +170,8 @@ class _EditMyExpensePageState extends State<EditMyExpensePage> {
 
     await _userController.putModifyExpenditures(
       expenditureId: int.parse(_expenseId!),
-      amount: int.parse(_priceController.text),
+      amount:
+          int.parse(_priceController.text.replaceAll(RegExp(r'[^0-9]'), '')),
       description: _descriptionController.text,
       mainImage: _mainImage,
       mainImageUrl: _originMainImage,

@@ -71,14 +71,36 @@ class _CreateMyExpensePageState extends State<CreateMyExpensePage> {
     List<Widget> list = [];
     if (_mainImage != null) {
       list.add(
-        BackgroundImageWithRemove(
-          image: Image.file(File(_mainImage!.path)),
-          width: 80,
-          height: 80,
-          onRemove: () {
-            _mainImage = null;
-            setState(() {});
-          },
+        Stack(
+          children: [
+            BackgroundImageWithRemove(
+              image: Image.file(File(_mainImage!.path)),
+              width: 80,
+              height: 80,
+              onRemove: () {
+                _mainImage = null;
+                setState(() {});
+              },
+            ),
+            Positioned(
+              left: 0,
+              top: 0,
+              child: Container(
+                width: 38,
+                height: 16,
+                color: CColors.yellow,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "대표",
+                      style: CTextStyles.Caption1(color: CColors.black),
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ],
         ),
       );
     } else {
@@ -129,7 +151,8 @@ class _CreateMyExpensePageState extends State<CreateMyExpensePage> {
       await commonAlert(context: context, message: '대표 사진을 선택해주세요');
     } else {
       await _userController.uploadExpenditure(
-        price: int.parse(_priceController.text),
+        price:
+            int.parse(_priceController.text.replaceAll(RegExp(r'[^0-9]'), '')),
         description: _descriptionController.text,
         date: DateTime.fromMillisecondsSinceEpoch(_day),
         mainImage: _mainImage!,
