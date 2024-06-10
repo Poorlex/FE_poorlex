@@ -1,12 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:get/get_connect/http/src/utils/utils.dart';
+import 'package:intl/intl.dart';
+import 'package:poorlex/libs/number_format.dart';
 import 'package:poorlex/libs/theme.dart';
+import 'package:poorlex/schema/weekly_budget_response/weekly_budget_response.dart';
 
 import 'package:poorlex/screen/budget/budget_page.dart';
 
 // TODO: budgetMoney 상태변경을 위해 StatelessWidget 위젯을 StatefulWidget 위젯으로 변경
 class NavBar extends StatefulWidget implements PreferredSizeWidget {
-  const NavBar({super.key});
+  final WeeklyBudgetResponse budget;
+
+  const NavBar({
+    super.key,
+    required this.budget,
+  });
 
   @override
   State<NavBar> createState() => _NavBarState();
@@ -18,8 +25,22 @@ class NavBar extends StatefulWidget implements PreferredSizeWidget {
 class _NavBarState extends State<NavBar> {
   // 천 단위마다 콤마 표기
   // intl 패키지 사용
-  String budgetMoney = '75000';
+  late String budgetWithWon;
+  late String budgetMoney;
+
   String level = '4';
+
+  @override
+  void initState() {
+    super.initState();
+    // 천 단위마다 콤마 표기
+    final formatter = NumberFormat('#,###');
+    budgetMoney = formatter.format(widget.budget.amount);
+    budgetWithWon = formatCurrencyWithWon(widget.budget.amount);
+
+    print("###@ $budgetMoney");
+    print("###@ $budgetWithWon");
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -148,18 +169,13 @@ class _NavBarState extends State<NavBar> {
 
                     // 예산 설정 금액
                     GestureDetector(
-                      onTap: () async {
-                        final result = await Navigator.push<String>(
+                      onTap: () {
+                        Navigator.push(
                           context,
                           MaterialPageRoute(
                             builder: (context) => BudgetPage(),
                           ),
                         );
-                        if (result != null) {
-                          setState(() {
-                            budgetMoney = result;
-                          });
-                        }
                       },
                       child: Text(
                         budgetMoney,
