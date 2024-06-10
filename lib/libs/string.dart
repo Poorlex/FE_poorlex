@@ -6,5 +6,5 @@ bool checkRegex(String n, String v) {
 }
 
 String makeComma(num number) {
-  return NumberFormat('###,###,###,000').format(number);
+  return NumberFormat('###,###,###,###').format(number);
 }

@@ -21,7 +21,6 @@ class BattlesProvider extends GetConnect {
     // prefix "/battles" 적용
     httpClient.baseUrl = "${dotenv.get('SERVER_URL')}/battles";
 
-    /// [TODO] header에 token 잘 들어가는지 확인 필요
     httpClient.addRequestModifier<Object?>((request) {
       final user = Get.find<UserController>();
       final token = user.userToken;
@@ -56,7 +55,6 @@ class BattlesProvider extends GetConnect {
 
   Future<BattleResponse?> getDetailById({
     required int battleId,
-    required DateTime date,
   }) async {
     final response = await get(
       '/$battleId',

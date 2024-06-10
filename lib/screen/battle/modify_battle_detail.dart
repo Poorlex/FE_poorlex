@@ -230,9 +230,8 @@ class _ModifyBattleDetailState extends State<ModifyBattleDetail> {
     required BuildContext context,
   }) {
     final bottomPaddingForIos = Platform.isIOS ? 8 : 0;
-    final bottomOffset = MediaQuery.of(context).viewInsets.bottom +
-        MediaQuery.of(context).padding.bottom +
-        bottomPaddingForIos;
+    final bottomOffset =
+        MediaQuery.of(context).padding.bottom + bottomPaddingForIos;
     return Padding(
       padding: EdgeInsets.only(bottom: bottomOffset),
       child: CButton(

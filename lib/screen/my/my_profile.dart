@@ -1,6 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:poorlex/models/common.dart';
+import 'package:poorlex/widget/common/dialog/common_alert.dart';
 import 'package:poorlex/widget/common/form.dart';
 
 import 'package:poorlex/widget/common/icon.dart';
@@ -8,10 +10,7 @@ import 'package:poorlex/widget/common/icon.dart';
 import 'package:poorlex/libs/theme.dart';
 import 'package:poorlex/libs/string.dart';
 import 'package:poorlex/controller/user.dart';
-import 'package:poorlex/controller/layout.dart';
-
 import 'package:poorlex/widget/common/buttons.dart';
-import 'package:poorlex/widget/layout.dart';
 
 class MyProfile extends StatefulWidget {
   const MyProfile({super.key});
@@ -21,86 +20,94 @@ class MyProfile extends StatefulWidget {
 }
 
 class _MyProfileState extends State<MyProfile> {
-  final layout = Get.find<LayoutController>();
-  final user = Get.find<UserController>();
-  final name = TextEditingController();
-  final description = TextEditingController();
-  bool isReady = false;
-  bool isReadyName = true;
+  final _userController = Get.find<UserController>();
 
-  checkIsReady() {
-    setState(() {
-      bool tmp = true;
-      if (checkRegex('nickname', name.text.trim())) {
-        isReadyName = true;
-      } else {
-        tmp = false;
-        isReadyName = false;
-      }
-      if (description.text.trim().length == 0) tmp = false;
-      isReady = tmp;
+  late final _nameController = TextEditingController(
+    text: _userController.userInfo?.nickname ?? '',
+  )..addListener(() {
+      checkIsReady();
     });
+  late final _description = TextEditingController(
+    text: _userController.userInfo?.description ?? '',
+  )..addListener(() {
+      checkIsReady();
+    });
+  bool _isReady = false;
+  bool _isReadyName = true;
+
+  void checkIsReady() {
+    bool tmp = true;
+    if (checkRegex('nickname', _nameController.text.trim())) {
+      _isReadyName = true;
+    } else {
+      tmp = false;
+      _isReadyName = false;
+    }
+
+    if (_description.text.trim().length == 0) {
+      tmp = false;
+    }
+    _isReady = tmp;
+    setState(() {});
   }
 
-  submit(BuildContext context) async {
-    if (!isReady) {
+  Future<void> submit(BuildContext context) async {
+    if (!_isReady) {
       String message = '';
-      if (!isReadyName)
+      if (!_isReadyName)
         message = '이름을 확인해주세요';
       else
         message = '소개를 확인해주세요';
-      layout.setAlert(Alert(
-          isOpen: true,
-          body: Text(message,
-              style: CTextStyles.Headline(color: CColors.gray50))));
+
+      await commonAlert(context: context, message: message);
     } else {
-      layout.setIsLoading(true);
-      // if (await user.patchProfile(
-      //     nickname: name.text.trim(), description: description.text.trim())) {
-      //   Get.close(0);
-      // }
-      layout.setIsLoading(false);
+      await _userController.patchProfile(
+        nickname: _nameController.text.trim(),
+        description: _description.text.trim(),
+      );
+
+      Get.back();
     }
   }
 
   @override
-  void initState() {
-    super.initState();
-    name.text = user.userInfo?.nickname ?? '';
-    description.text = user.userInfo?.description ?? '';
-    checkIsReady();
-    name.addListener(checkIsReady);
-    description.addListener(checkIsReady);
+  void dispose() {
+    _nameController.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    final bottomPaddingForIos = Platform.isIOS ? 8 : 0;
+    final bottomOffset =
+        MediaQuery.of(context).padding.bottom + bottomPaddingForIos;
+
     return Scaffold(
+      backgroundColor: CColors.black,
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: CColors.black,
-        appBar: AppBar(
-          automaticallyImplyLeading: false,
-          backgroundColor: CColors.black,
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              IconButton(
-                iconSize: 26,
-                style: IconButton.styleFrom(
-                    padding: EdgeInsets.zero, minimumSize: Size.zero),
-                icon: CIcon(
-                    icon: 'arrow-left',
-                    width: 26,
-                    height: 26,
-                    color: CColors.whiteStr),
-                onPressed: () => Get.back(),
-              ),
-              Text('프로필 편집', style: CTextStyles.Headline()),
-              SizedBox(width: 26)
-            ],
-          ),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            IconButton(
+              iconSize: 26,
+              style: IconButton.styleFrom(
+                  padding: EdgeInsets.zero, minimumSize: Size.zero),
+              icon: CIcon(
+                  icon: 'arrow-left',
+                  width: 26,
+                  height: 26,
+                  color: CColors.whiteStr),
+              onPressed: () => Get.back(),
+            ),
+            Text('프로필 편집', style: CTextStyles.Headline()),
+            SizedBox(width: 26)
+          ],
         ),
-        body: Layout(
-            child: Column(children: [
+      ),
+      body: Column(
+        children: [
           Flexible(
             fit: FlexFit.tight,
             flex: 1,
@@ -111,18 +118,18 @@ class _MyProfileState extends State<MyProfile> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     CTextField(
-                        maxLines: 1,
-                        label: '이름',
-                        isClose: true,
-                        underlineWidth: 2,
-                        padding: EdgeInsets.all(0),
-                        placeholder: '이름을 입력해주세요',
-                        primaryColor: CColors.yellow,
-                        textStyle: CTextStyles.Title1(
-                            color:
-                                isReadyName ? CColors.white : CColors.gray30),
-                        controller: name),
-                    (isReadyName
+                      maxLines: 1,
+                      label: '이름',
+                      isClose: true,
+                      underlineWidth: 2,
+                      padding: EdgeInsets.all(0),
+                      placeholder: '이름을 입력해주세요',
+                      primaryColor: CColors.yellow,
+                      textStyle: CTextStyles.Title1(
+                          color: _isReadyName ? CColors.white : CColors.gray30),
+                      controller: _nameController,
+                    ),
+                    (_isReadyName
                         ? SizedBox.shrink()
                         : Column(children: [
                             SizedBox(height: 6),
@@ -132,50 +139,58 @@ class _MyProfileState extends State<MyProfile> {
                           ])),
                     SizedBox(height: 30),
                     CTextField(
-                        label: '내 소개',
-                        maxLines: 8,
-                        maxLength: 45,
-                        padding:
-                            EdgeInsets.symmetric(vertical: 12, horizontal: 14),
-                        isUnderline: false,
-                        keyType: TextInputType.multiline,
-                        backgroundColor: CColors.gray10,
-                        textStyle: CTextStyles.Body2(),
-                        placeholder: '내용을 입력해주세요',
-                        primaryColor: CColors.yellow,
-                        controller: description),
+                      label: '내 소개',
+                      maxLines: 8,
+                      maxLength: 45,
+                      padding:
+                          EdgeInsets.symmetric(vertical: 12, horizontal: 14),
+                      isUnderline: false,
+                      keyType: TextInputType.multiline,
+                      backgroundColor: CColors.gray10,
+                      textStyle: CTextStyles.Body2(),
+                      placeholder: '내용을 입력해주세요',
+                      primaryColor: CColors.yellow,
+                      controller: _description,
+                    ),
                   ],
                 ),
               ),
             ),
           ),
-          Row(
-            children: [
-              Expanded(
-                  child: CButtonConfirm(
-                      disabled: !isReady,
+        ],
+      ),
+      bottomNavigationBar: Padding(
+        padding: EdgeInsets.only(bottom: bottomOffset),
+        child: Row(
+          children: [
+            Expanded(
+              child: CButtonConfirm(
+                disabled: !_isReady,
+                child: Row(
+                  children: [
+                    Expanded(
                       child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Expanded(
-                              child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Container(
-                                padding: EdgeInsets.symmetric(vertical: 18),
-                                child: Text(
-                                  '완료',
-                                  style:
-                                      CTextStyles.Title3(color: CColors.black),
-                                ),
-                              )
-                            ],
-                          ))
+                          Container(
+                            padding: EdgeInsets.symmetric(vertical: 18),
+                            child: Text(
+                              '완료',
+                              style: CTextStyles.Title3(color: CColors.black),
+                            ),
+                          )
                         ],
                       ),
-                      onPressed: () => submit(context)))
-            ],
-          )
-        ])));
+                    )
+                  ],
+                ),
+                onPressed: () => submit(context),
+              ),
+            )
+          ],
+        ),
+      ),
+    );
   }
 }
