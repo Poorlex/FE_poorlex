@@ -253,13 +253,16 @@ class _EditMyExpensePageState extends State<EditMyExpensePage> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            Text(cTimeFormat(_day, 'yyyy.MM.dd (E)'),
-                                style: CTextStyles.Body2()),
+                            Text(
+                              cTimeFormat(_day, 'yyyy.MM.dd (E)'),
+                              style: CTextStyles.Body2(),
+                            ),
                             CIcon(
-                                icon: 'arrow-game-right',
-                                width: 22,
-                                height: 22,
-                                color: CColors.gray40Str)
+                              icon: 'arrow-game-right',
+                              width: 22,
+                              height: 22,
+                              color: CColors.gray40Str,
+                            )
                           ],
                         ),
                       ),
