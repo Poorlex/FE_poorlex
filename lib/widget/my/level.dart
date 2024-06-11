@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:poorlex/libs/theme.dart';
+import 'package:poorlex/widget/common/medal.dart';
 
 import 'package:poorlex/widget/common/other.dart';
-
 import 'package:poorlex/controller/user.dart';
 
 class MyPageLevel extends StatefulWidget {
@@ -41,11 +41,9 @@ class _MyPageLevelState extends State<MyPageLevel> {
                         SizedBox(height: 12),
                         Row(
                           children: [
-                            SizedBox(
-                              width: 20,
-                              height: 20,
-                              child:
-                                  Image.asset('assets/my_page/icon_level.png'),
+                            LevelMedal(
+                              level: user.userInfo?.levelInfo.level ?? 0,
+                              size: 20,
                             ),
                             SizedBox(width: 12),
                             Obx(

@@ -7,12 +7,12 @@ import 'package:poorlex/libs/theme.dart';
 
 class CalenderHeader extends StatefulWidget {
   final int current;
-  final Function select;
+  final void Function(int d) select;
 
   CalenderHeader({
     super.key,
-    required int this.current,
-    required Function this.select,
+    required this.current,
+    required this.select,
   });
 
   @override
