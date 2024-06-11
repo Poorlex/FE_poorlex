@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:poorlex/controller/battle.dart';
 import 'package:poorlex/libs/theme.dart';
+import 'package:poorlex/widget/battle/battle_empty.dart';
 import 'package:poorlex/widget/battle/battle_money_bar.dart';
 import 'package:poorlex/widget/common/image/image_network.dart';
 
@@ -84,7 +85,14 @@ class BattleFinished extends GetView<BattleController> {
   Widget build(BuildContext context) {
     return Obx(() {
       final battleListInComplete = controller.battleListInComplete;
-
+      if (battleListInComplete.isEmpty) {
+        return Column(
+          children: [
+            SizedBox(height: 144),
+            BattleEmpty(text: "완료된 배틀이 없습니다."),
+          ],
+        );
+      }
       return ListView.builder(
         shrinkWrap: true,
         scrollDirection: Axis.vertical,

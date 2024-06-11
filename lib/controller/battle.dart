@@ -99,7 +99,7 @@ class BattleController extends GetxController {
         imageUrl: "ㅁㄴㅇ",
         difficulty: 'difficulty',
         budgetLeft: 10000,
-        currentParticipantRank: 2,
+        currentParticipantRank: 4,
         battleParticipantCount: 4,
         uncheckedAlarmCount: 100,
         dday: 3,

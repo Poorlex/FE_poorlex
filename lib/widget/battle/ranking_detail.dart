@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:poorlex/libs/theme.dart';
-
-import 'package:poorlex/widget/battle/detail/chat.dart';
+import 'package:poorlex/screen/battle/expense_certification.dart';
 
 class RankingDetailWidget extends StatefulWidget {
   const RankingDetailWidget({Key? key}) : super(key: key);
@@ -13,7 +12,7 @@ class RankingDetailWidget extends StatefulWidget {
 class _RankingDetailWidget extends State<RankingDetailWidget>
     with SingleTickerProviderStateMixin {
   late TabController tabController = TabController(
-    length: 3,
+    length: 2,
     vsync: this,
     initialIndex: 0,
 
@@ -50,6 +49,16 @@ class _RankingDetailWidget extends State<RankingDetailWidget>
     super.dispose();
   }
 
+  final _days = [
+    '월',
+    '화',
+    '수',
+    '목',
+    '금',
+    '토',
+    '일',
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -74,8 +83,10 @@ class _RankingDetailWidget extends State<RankingDetailWidget>
       controller: tabController,
       labelColor: CColors.white,
       labelPadding: EdgeInsets.symmetric(horizontal: 17.5),
-      labelStyle: CTextStyles.Title3(color: CColors.black),
-      unselectedLabelStyle: CTextStyles.Title3(color: CColors.black),
+      labelStyle: CTextStyles.Title3(
+        color: CColors.black,
+        fontFamily: 'NeoDunggeunmoPro-Regular',
+      ),
       unselectedLabelColor: CColors.gray41,
       indicatorSize: TabBarIndicatorSize.label,
       indicatorColor: CColors.yellow,
@@ -86,7 +97,7 @@ class _RankingDetailWidget extends State<RankingDetailWidget>
       tabs: [
         Tab(text: "랭킹"),
         Tab(text: "인증"),
-        Tab(text: "채팅"),
+        // Tab(text: "채팅"),
       ],
     );
   }
@@ -105,7 +116,7 @@ class _RankingDetailWidget extends State<RankingDetailWidget>
                         color: CColors.yellow,
                         borderRadius: BorderRadius.circular(4),
                         border: Border.all(color: CColors.orange, width: 2)),
-                    width: 36,
+                    width: 31,
                     height: 36,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -284,69 +295,32 @@ class _RankingDetailWidget extends State<RankingDetailWidget>
                       }))
             ])),
         Visibility(
-            visible: isAuthenticationPressed,
-            child: Padding(
-                padding: EdgeInsets.fromLTRB(24, 16, 23, 16),
-                child: Row(children: [
-                  Padding(
-                      padding: EdgeInsets.fromLTRB(0, 0, 22, 0),
-                      child: Container(
-                          color: CColors.gray20,
-                          width: 28,
-                          child: Text("월",
-                              style: CTextStyles.Headline(),
-                              textAlign: TextAlign.center))),
-                  Padding(
-                      padding: EdgeInsets.fromLTRB(0, 0, 22, 0),
-                      child: Container(
-                          color: CColors.gray20,
-                          width: 28,
-                          child: Text("화",
-                              style: CTextStyles.Headline(),
-                              textAlign: TextAlign.center))),
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(0, 0, 22, 0),
-                    child: Container(
-                        color: CColors.gray20,
-                        width: 28,
-                        child: Text("수",
-                            style: CTextStyles.Headline(),
-                            textAlign: TextAlign.center)),
-                  ),
-                  Padding(
-                      padding: EdgeInsets.fromLTRB(0, 0, 22, 0),
-                      child: Container(
-                          color: CColors.gray20,
-                          width: 28,
-                          child: Text("목",
-                              style: CTextStyles.Headline(),
-                              textAlign: TextAlign.center))),
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(0, 0, 22, 0),
-                    child: Container(
-                        color: CColors.gray20,
-                        width: 28,
-                        child: Text("금",
-                            style: CTextStyles.Headline(),
-                            textAlign: TextAlign.center)),
-                  ),
-                  Padding(
-                      padding: EdgeInsets.fromLTRB(0, 0, 22, 0),
-                      child: Container(
-                          color: CColors.gray20,
-                          width: 28,
-                          child: Text("토",
-                              style: CTextStyles.Headline(),
-                              textAlign: TextAlign.center))),
-                  Padding(
-                      padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                      child: Container(
-                          color: CColors.gray20,
-                          width: 28,
-                          child: Text("일",
-                              style: CTextStyles.Headline(),
-                              textAlign: TextAlign.center)))
-                ]))),
+          visible: isAuthenticationPressed,
+          child: Padding(
+            padding: EdgeInsets.symmetric(vertical: 16, horizontal: 24),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: List.generate(
+                _days.length,
+                (index) {
+                  return Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(1),
+                      color: CColors.gray20,
+                    ),
+                    alignment: Alignment.center,
+                    width: 28,
+                    height: 28,
+                    child: Text(
+                      "${_days[index]}",
+                      style: CTextStyles.Headline(),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ),
+        ),
         Expanded(
             child: GridView.builder(
           padding: EdgeInsets.fromLTRB(16, 20, 16, 0),
@@ -360,7 +334,7 @@ class _RankingDetailWidget extends State<RankingDetailWidget>
           },
         ))
       ]),
-      Container(child: Chat())
+      // Container(child: Chat())
     ]);
   }
 }
@@ -378,6 +352,11 @@ class GridItemWidget extends StatelessWidget {
             child: GestureDetector(
                 child: Image.asset('assets/ranking/first_profile_60_60.png'),
                 onTap: () {
+                  Navigator.push(context, MaterialPageRoute(
+                    builder: (context) {
+                      return ExpenseCertificationScreen();
+                    },
+                  ));
                   showDialog(
                       context: context,
                       builder: (BuildContext context) {

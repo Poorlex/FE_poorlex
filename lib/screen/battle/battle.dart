@@ -57,6 +57,7 @@ class _BattleState extends State<Battle> {
     return Scaffold(
       appBar: _appBar(),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
             padding: EdgeInsets.only(
@@ -78,9 +79,12 @@ class _BattleState extends State<Battle> {
             ),
           ),
           if (current == 0)
-            BattleMoney(
-              current: moneyCurrent,
-              onChange: changeMoney,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: BattleMoney(
+                current: moneyCurrent,
+                onChange: changeMoney,
+              ),
             ),
           Expanded(
             child: (current == 0

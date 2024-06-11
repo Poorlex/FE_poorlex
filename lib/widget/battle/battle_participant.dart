@@ -5,8 +5,10 @@ import 'package:poorlex/controller/battle.dart';
 import 'package:poorlex/libs/number_format.dart';
 
 import 'package:poorlex/libs/theme.dart';
+import 'package:poorlex/widget/battle/battle_empty.dart';
 import 'package:poorlex/widget/battle/battle_money_bar.dart';
 import 'package:poorlex/widget/common/image/image_network.dart';
+import 'package:poorlex/widget/gnb_layout.dart';
 
 class BattleParticipant extends GetView<BattleController> {
   BattleParticipant({super.key});
@@ -15,6 +17,16 @@ class BattleParticipant extends GetView<BattleController> {
   Widget build(BuildContext context) {
     return Obx(() {
       final battleListInProgress = controller.battleListInProgress;
+      if (battleListInProgress.isEmpty) {
+        return Column(
+          children: [
+            SizedBox(height: 144),
+            BattleEmpty(
+              text: "참여중인 배틀이 없습니다.",
+            ),
+          ],
+        );
+      }
       return ListView.builder(
         padding: EdgeInsets.symmetric(horizontal: 16),
         shrinkWrap: true,
@@ -22,7 +34,7 @@ class BattleParticipant extends GetView<BattleController> {
           final progressBattle = battleListInProgress[idx];
           return GestureDetector(
               onTap: () {
-                Get.toNamed('/battle/ranking');
+                Get.toNamed('/battle/ranking', id: GNBLayout.globalKey);
               },
               child: Container(
                   padding: EdgeInsets.only(
@@ -43,10 +55,8 @@ class BattleParticipant extends GetView<BattleController> {
                               color: CColors.gray40,
                             ),
                             padding: EdgeInsets.symmetric(horizontal: 6),
-
-                            /// [TODO] dday정보 필요
                             child: Text(
-                              'D-${progressBattle.dday}',
+                              '예정',
                               style: CTextStyles.Body3(height: 16 / 14),
                             ),
                           )
@@ -78,7 +88,11 @@ class BattleParticipant extends GetView<BattleController> {
                               RichText(
                                 text: TextSpan(
                                   style: CTextStyles.Title2(
-                                    color: CColors.purpleLight,
+                                    color:
+                                        progressBattle.currentParticipantRank <=
+                                                3
+                                            ? CColors.purpleLight
+                                            : null,
                                     height: 34 / 22,
                                     fontFamily: 'NeoDunggeunmoPro-Regular',
                                   ),

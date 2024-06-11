@@ -44,9 +44,10 @@ class BattleMoney extends StatelessWidget {
       child: Row(
         children: list.map(
           (item) {
+            final findIndex = list.indexOf(item);
             bool isSelected = item.value == current;
             return Container(
-              margin: EdgeInsets.only(left: 8),
+              margin: findIndex == 0 ? null : EdgeInsets.only(left: 8),
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   minimumSize: Size.zero,
