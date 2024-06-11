@@ -6,7 +6,6 @@ import 'package:poorlex/schema/weekly_budget_response/weekly_budget_response.dar
 
 import 'package:poorlex/screen/budget/budget_page.dart';
 
-// TODO: budgetMoney 상태변경을 위해 StatelessWidget 위젯을 StatefulWidget 위젯으로 변경
 class NavBar extends StatefulWidget implements PreferredSizeWidget {
   final WeeklyBudgetResponse budget;
 
