@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
 import 'package:poorlex/libs/theme.dart';
 import 'package:poorlex/controller/battle.dart';
 import 'package:poorlex/widget/common/buttons.dart';
+import 'package:poorlex/widget/common/image/image_asset.dart';
 
 class BattleIndexTwo extends StatelessWidget {
   BattleIndexTwo({super.key});
@@ -37,10 +39,13 @@ class BattleIndexTwo extends StatelessWidget {
           child: Row(
             children: [
               Text('몇명이 참여하나요?', style: CTextStyles.Title2()),
-              CButton(
-                child: Icon(Icons.question_mark_outlined),
-                onPressed: () {},
-              ),
+              SizedBox(width: 4),
+              GestureDetector(
+                onTap: () =>
+                    _EarnedPointsByPersonnelGuide.show(context: context),
+                child:
+                    Icon(Icons.help_outline, color: CColors.gray40, size: 14),
+              )
             ],
           ),
         ),
@@ -53,6 +58,49 @@ class BattleIndexTwo extends StatelessWidget {
         SizedBox(height: 20),
         Obx(() => _buildWrap([6, 7, 8, 9, 10], battle.selectedIndexTwo.value)),
       ],
+    );
+  }
+}
+
+class _EarnedPointsByPersonnelGuide extends StatelessWidget {
+  const _EarnedPointsByPersonnelGuide();
+
+  static Future<void> show({
+    required BuildContext context,
+  }) async {
+    return await showDialog<void>(
+      context: context,
+      builder: (context) => _EarnedPointsByPersonnelGuide(),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Container(
+        width: 343,
+        height: 318,
+        decoration: BoxDecoration(color: CColors.gray10),
+        child: Stack(
+          children: [
+            CImageAsset(
+              name: "assets/battle_page/earned_points.png",
+            ),
+            Positioned(
+              top: 6,
+              right: 6,
+              child: IconButton(
+                onPressed: () => Navigator.of(context).pop(),
+                icon: Icon(
+                  Icons.close,
+                  color: CColors.white,
+                  size: 32,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

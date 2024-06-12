@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:poorlex/widget/common/buttons.dart';
 
 import 'package:poorlex/libs/theme.dart';
 import 'package:poorlex/controller/battle.dart';
-
 import 'package:poorlex/models/battle.dart';
+import 'package:poorlex/widget/common/image/image_asset.dart';
 
 class BattleIndexZero extends StatelessWidget {
   final BattleController battle = Get.find<BattleController>();
@@ -30,7 +29,11 @@ class BattleIndexZero extends StatelessWidget {
         Row(
           children: [
             Text('배틀방 난이도', style: CTextStyles.Body3(color: CColors.gray40)),
-            Icon(Icons.question_mark_rounded, color: CColors.gray40, size: 14)
+            SizedBox(width: 4),
+            GestureDetector(
+              onTap: () => _BattleMoneyGuide.show(context: context),
+              child: Icon(Icons.help_outline, color: CColors.gray40, size: 14),
+            )
           ],
         ),
         SizedBox(height: 20),
@@ -127,6 +130,47 @@ class BattleIndexZero extends StatelessWidget {
           ).toList(),
         )
       ],
+    );
+  }
+}
+
+class _BattleMoneyGuide extends StatelessWidget {
+  const _BattleMoneyGuide();
+
+  static Future<void> show({required BuildContext context}) async {
+    return await showDialog<void>(
+      context: context,
+      builder: (context) => _BattleMoneyGuide(),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Container(
+        width: 343,
+        height: 254,
+        decoration: BoxDecoration(color: CColors.gray10),
+        child: Stack(
+          children: [
+            CImageAsset(
+              name: "assets/battle_page/battle_difficulty.png",
+            ),
+            Positioned(
+              top: 6,
+              right: 6,
+              child: IconButton(
+                onPressed: () => Navigator.of(context).pop(),
+                icon: Icon(
+                  Icons.close,
+                  color: CColors.white,
+                  size: 32,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
