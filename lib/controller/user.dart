@@ -63,14 +63,14 @@ class UserController extends GetxController {
   }
 
   /// 지출 생성
-  Future<void> uploadExpenditure({
+  Future<bool> uploadExpenditure({
     required int price,
     required String description,
     required DateTime date,
     required XFile mainImage,
     XFile? subImage,
   }) async {
-    await expendituresProvider.postCreateExpenditures(
+    final result = await expendituresProvider.postCreateExpenditures(
       amount: price,
       description: description,
       date: date,
@@ -78,6 +78,7 @@ class UserController extends GetxController {
       subImage: subImage,
     );
     await _getUserInfo();
+    return result;
   }
 
   Future<void> putModifyExpenditures({
