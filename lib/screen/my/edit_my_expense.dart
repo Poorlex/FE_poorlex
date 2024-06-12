@@ -9,10 +9,10 @@ import 'package:poorlex/controller/user.dart';
 import 'package:poorlex/libs/theme.dart';
 import 'package:poorlex/libs/time.dart';
 import 'package:poorlex/widget/common/buttons.dart';
+import 'package:poorlex/widget/common/date_picker/common_date_picker.dart';
 import 'package:poorlex/widget/common/form.dart';
 import 'package:poorlex/widget/common/icon.dart';
 import 'package:poorlex/widget/common/other.dart';
-import 'package:poorlex/widget/common/picker.dart';
 
 class EditMyExpensePage extends StatefulWidget {
   const EditMyExpensePage({super.key});
@@ -79,6 +79,7 @@ class _EditMyExpensePageState extends State<EditMyExpensePage> {
         print(expenditure.mainImageUrl);
         _originMainImage = expenditure.mainImageUrl;
         _originSubImage = expenditure.subImageUrl;
+        _day = DateTime.parse(expenditure.date).millisecondsSinceEpoch;
       }
     }
   }
@@ -245,10 +246,13 @@ class _EditMyExpensePageState extends State<EditMyExpensePage> {
                     ),
                     SizedBox(width: 30),
                     Expanded(
-                      child: Picker(
-                        current: _day,
-                        type: 'DAY',
-                        select: selectDay,
+                      child: GestureDetector(
+                        onTap: () => CommonDatePicker.show(
+                          context: context,
+                          onChangeDate: selectDay,
+                          initDateTime:
+                              DateTime.fromMillisecondsSinceEpoch(_day),
+                        ),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           crossAxisAlignment: CrossAxisAlignment.center,
@@ -266,7 +270,7 @@ class _EditMyExpensePageState extends State<EditMyExpensePage> {
                           ],
                         ),
                       ),
-                    )
+                    ),
                   ],
                 ),
                 SizedBox(height: 20),

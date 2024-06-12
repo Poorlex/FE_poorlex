@@ -5,9 +5,9 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:poorlex/controller/image_picker.dart';
+import 'package:poorlex/widget/common/date_picker/common_date_picker.dart';
 import 'package:poorlex/widget/common/dialog/common_alert.dart';
 import 'package:poorlex/widget/common/icon.dart';
-import 'package:poorlex/widget/common/picker.dart';
 import 'package:poorlex/widget/common/other.dart';
 import 'package:poorlex/widget/common/form.dart';
 import 'package:poorlex/widget/common/buttons.dart';
@@ -150,7 +150,7 @@ class _CreateMyExpensePageState extends State<CreateMyExpensePage> {
     } else if (_mainImage == null) {
       await commonAlert(context: context, message: '대표 사진을 선택해주세요');
     } else {
-      await _userController.uploadExpenditure(
+      final result = await _userController.uploadExpenditure(
         price:
             int.parse(_priceController.text.replaceAll(RegExp(r'[^0-9]'), '')),
         description: _descriptionController.text,
@@ -158,6 +158,10 @@ class _CreateMyExpensePageState extends State<CreateMyExpensePage> {
         mainImage: _mainImage!,
         subImage: _subImage,
       );
+      if (result == false) {
+        /// [REFACTOR] 생성 실패에 대한 알럿을 사용자한테 보여줘야 합니다.
+        return await commonAlert(context: context, message: "지출 추가 실패");
+      }
       Get.back();
     }
   }
@@ -221,25 +225,29 @@ class _CreateMyExpensePageState extends State<CreateMyExpensePage> {
                     ),
                     SizedBox(width: 30),
                     Expanded(
-                      child: Picker(
-                        current: _day,
-                        type: 'DAY',
-                        select: selectDay,
+                      child: GestureDetector(
+                        onTap: () => CommonDatePicker.show(
+                          context: context,
+                          onChangeDate: selectDay,
+                        ),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            Text(cTimeFormat(_day, 'yyyy.MM.dd (E)'),
-                                style: CTextStyles.Body2()),
+                            Text(
+                              cTimeFormat(_day, 'yyyy.MM.dd (E)'),
+                              style: CTextStyles.Body2(),
+                            ),
                             CIcon(
-                                icon: 'arrow-game-right',
-                                width: 22,
-                                height: 22,
-                                color: CColors.gray40Str)
+                              icon: 'arrow-game-right',
+                              width: 22,
+                              height: 22,
+                              color: CColors.gray40Str,
+                            )
                           ],
                         ),
                       ),
-                    )
+                    ),
                   ],
                 ),
                 SizedBox(height: 20),
