@@ -160,7 +160,11 @@ class _CreateMyExpensePageState extends State<CreateMyExpensePage> {
       );
       if (result == false) {
         /// [REFACTOR] 생성 실패에 대한 알럿을 사용자한테 보여줘야 합니다.
-        return await commonAlert(context: context, message: "지출 추가 실패");
+        return await commonAlert(
+          context: context,
+          message: "지출 추가 실패",
+          buttonText: "확인",
+        );
       }
       Get.back();
     }

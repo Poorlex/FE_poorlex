@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:poorlex/libs/theme.dart';
 import 'package:poorlex/widget/common/buttons.dart';
 
+/// buttonText 기본값은 "입력하기" 입니다.
 Future<void> commonAlert({
   required BuildContext context,
   required String message,
+  String? buttonText,
 }) async {
   return await showDialog<void>(
     context: context,
@@ -38,8 +40,8 @@ Future<void> commonAlert({
                         type: ButtonTypes.elevated,
                         color: CColors.yellow,
                         child: Text(
-                          "확인",
-                          style: CTextStyles.Headline(color: CColors.black),
+                          "입력하기",
+                          style: CTextStyles.Headline(color: CColors.gray10),
                         ),
                       ),
                     ),
