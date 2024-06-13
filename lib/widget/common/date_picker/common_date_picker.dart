@@ -23,6 +23,7 @@ class CommonDatePicker extends StatefulWidget {
     DateTime? initDateTime,
   }) async {
     return await showModalBottomSheet(
+      barrierColor: CColors.gray10.withOpacity(0.6),
       context: context,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.zero),
       builder: (context) {
@@ -125,7 +126,7 @@ class _CommonDatePickerState extends State<CommonDatePicker> {
     return Container(
       height: 398,
       width: MediaQuery.of(context).size.width,
-      decoration: BoxDecoration(color: CColors.black.withOpacity(0.9)),
+      decoration: BoxDecoration(color: CColors.black),
       child: Column(
         children: [
           Padding(
