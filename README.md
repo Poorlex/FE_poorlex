@@ -14,3 +14,9 @@
     rps build:ipa  //xcode있어야 빌드 가능
     rps build:appbundle
 ```
+
+3. firebase 추가
+
+- firebase console에 초대 요청 후,
+  아래 링크를 통해 1단계, 2단계 까지만 진행합니다.
+  https://firebase.google.com/docs/flutter/setup?hl=ko&authuser=0&platform=ios
