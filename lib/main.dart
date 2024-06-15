@@ -1,3 +1,5 @@
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -9,7 +11,9 @@ import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
 import 'package:poorlex/bind/friends.dart';
 import 'package:poorlex/bind/battle/modify_battle.dart';
 import 'package:poorlex/bind/root_bind.dart';
+import 'package:poorlex/controller/firbase_controller.dart';
 import 'package:poorlex/controller/hive_box.dart';
+import 'package:poorlex/firebase_options.dart';
 import 'package:poorlex/libs/theme.dart';
 import 'package:poorlex/middleware/auth_middleware.dart';
 import 'package:poorlex/screen/battle/modify_battle_detail.dart';
@@ -26,6 +30,16 @@ import 'package:poorlex/screen/my/my_option.dart';
 import 'package:poorlex/screen/my/my_profile.dart';
 import 'package:poorlex/screen/battle/battle_create.dart';
 
+/// https://firebase.google.com/docs/cloud-messaging/flutter/receive?hl=ko&authuser=1#apple_platforms_and_android
+@pragma('vm:entry-point')
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  // If you're going to use other Firebase services in the background, such as Firestore,
+  // make sure you call `initializeApp` before using other Firebase services.
+  await Firebase.initializeApp();
+
+  print("Handling a background message: ${message.messageId}");
+}
+
 GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -33,6 +47,12 @@ void main() async {
   await HiveBox.initHive();
   initializeDateFormatting('ko');
   await dotenv.load(fileName: ".env");
+
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
+  await FirebaseController().init(_firebaseMessagingBackgroundHandler);
 
   KakaoSdk.init(
     nativeAppKey: dotenv.get('YOUR_NATIVE_APP_KEY'),
