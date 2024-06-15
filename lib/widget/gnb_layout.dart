@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:poorlex/bind/battle/battle.dart';
 import 'package:poorlex/bind/battle/battle_detail.dart';
-import 'package:poorlex/functions/toast_controller.dart';
+import 'package:poorlex/controller/%08toast_controller.dart';
 import 'package:poorlex/screen/battle/battle.dart';
 import 'package:poorlex/screen/battle/battle_detail.dart';
 import 'package:poorlex/screen/battle/battle_ranking.dart';
@@ -44,10 +44,16 @@ class _GNBLayoutState extends State<GNBLayout> {
       SystemNavigator.pop();
     } else {
       _lastBackPressed = Timer(Duration(seconds: 1), () {});
-      showToast(
+      ToastController.showToast(
         msg: "한번 더 누를시 앱이 종료됩니다.",
       );
     }
+  }
+
+  @override
+  void initState() {
+    ToastController.init();
+    super.initState();
   }
 
   @override
