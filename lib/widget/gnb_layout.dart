@@ -1,7 +1,11 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:poorlex/bind/battle/battle.dart';
 import 'package:poorlex/bind/battle/battle_detail.dart';
+import 'package:poorlex/functions/toast_controller.dart';
 import 'package:poorlex/screen/battle/battle.dart';
 import 'package:poorlex/screen/battle/battle_detail.dart';
 import 'package:poorlex/screen/battle/battle_ranking.dart';
@@ -21,6 +25,7 @@ class GNBLayout extends StatefulWidget {
 }
 
 class _GNBLayoutState extends State<GNBLayout> {
+  Timer? _lastBackPressed;
   int _pageIndex = 0;
 
   void _changePageIndex(int index) {
@@ -28,17 +33,29 @@ class _GNBLayoutState extends State<GNBLayout> {
     setState(() {});
   }
 
+  void _onPopInvoked(bool disPop) {
+    final navigatorState = Get.nestedKey(GNBLayout.globalKey)?.currentState;
+    if (navigatorState != null && navigatorState.canPop()) {
+      navigatorState.pop();
+      return;
+    }
+    if (_lastBackPressed != null && _lastBackPressed!.isActive) {
+      _lastBackPressed!.cancel();
+      SystemNavigator.pop();
+    } else {
+      _lastBackPressed = Timer(Duration(seconds: 1), () {});
+      showToast(
+        msg: "한번 더 누를시 앱이 종료됩니다.",
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     /// [MEMO] nested bottom navigation bar에서 android 뒤로가기는 아래처럼 제어합니다.
     return PopScope(
       canPop: false,
-      onPopInvoked: (didPop) {
-        final navigatorState = Get.nestedKey(GNBLayout.globalKey)?.currentState;
-        if (navigatorState != null && navigatorState.canPop()) {
-          navigatorState.pop();
-        }
-      },
+      onPopInvoked: _onPopInvoked,
       child: Scaffold(
         body: Navigator(
           key: Get.nestedKey(GNBLayout.globalKey),
