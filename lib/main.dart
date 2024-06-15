@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:get/get.dart';
@@ -25,6 +26,7 @@ import 'package:poorlex/screen/my/my_option.dart';
 import 'package:poorlex/screen/my/my_profile.dart';
 import 'package:poorlex/screen/battle/battle_create.dart';
 
+GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // runApp() 호출 전 Flutter SDK 초기화
@@ -44,6 +46,8 @@ void main() async {
 
   runApp(
     GetMaterialApp(
+      navigatorKey: navigatorKey,
+      builder: FToastBuilder(),
       initialBinding: RootBind(),
       initialRoute: '/',
       theme: ThemeData(
