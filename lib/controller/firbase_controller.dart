@@ -1,4 +1,6 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/material.dart';
+import 'package:poorlex/widget/common/dialog/common_alert.dart';
 
 class FirebaseController {
   FirebaseController._internal();
@@ -22,6 +24,12 @@ class FirebaseController {
 
     final fcmToken = await _firebaseMessaging.getToken();
     print(">>>>> fcmToken $fcmToken");
+  }
+
+  Future<void> showFcmToken({required BuildContext context}) async {
+    final fcmToken = await _firebaseMessaging.getToken();
+    print(">>>>> fcmToken $fcmToken");
+    commonAlert(context: context, message: fcmToken ?? '');
   }
 
   /// 토큰이 재생성되었을때,
