@@ -1,4 +1,4 @@
-package com.example.poorlex
+package com.poorlex.poorlex
 
 import io.flutter.embedding.android.FlutterActivity
 
