@@ -13,6 +13,13 @@ import 'package:poorlex/schema/member_complete_battle_response/member_complete_b
 import 'package:poorlex/schema/member_progress_battle_response/member_progress_battle_response.dart';
 import 'package:poorlex/schema/vote_response/vote_response.dart';
 
+enum BattleStatus {
+  RECRUITING,
+  RECRUITING_FINISHED,
+  PROGRESS,
+  COMPLETE,
+}
+
 class BattlesProvider extends GetConnect {
   BattlesProvider();
 
@@ -40,9 +47,13 @@ class BattlesProvider extends GetConnect {
   }
 
   /// 모든 배틀 조회 (모집중, 모집완료)
-  Future<List<FindingBattleResponse>> getAll() async {
+  Future<List<FindingBattleResponse>> getAll(
+      {required List<BattleStatus> status}) async {
     final response = await get(
       '',
+      query: {
+        "status": status.map((e) => e.name),
+      },
       decoder: (data) {
         return (data as List<dynamic>).map((e) {
           return FindingBattleResponse.fromJson(e);
@@ -65,19 +76,20 @@ class BattlesProvider extends GetConnect {
     return response.body;
   }
 
-  /// [TEST] x
-  /// 회원 배틀 조회 (진행중)
-  Future<List<MemberProgressBattleResponse>?> getProgress() async {
-    final response = await get(
-      '/progress',
-      decoder: (data) {
-        return (data as List<dynamic>)
-            .map((e) => MemberProgressBattleResponse.fromJson(e))
-            .toList();
-      },
-    );
-    return response.body;
-  }
+  // /// [TEST] x
+  // /// 회원 배틀 조회 (진행중)
+  // Future<List<MemberProgressBattleResponse>?> getProgress() async {
+  //   final response = await get(
+  //     '/',
+  //     query: {"status": "PROGRESS"},
+  //     decoder: (data) {
+  //       return (data as List<dynamic>)
+  //           .map((e) => MemberProgressBattleResponse.fromJson(e))
+  //           .toList();
+  //     },
+  //   );
+  //   return response.body;
+  // }
 
   /// [TEST] x
   /// 회원 배틀 조회 (완료)

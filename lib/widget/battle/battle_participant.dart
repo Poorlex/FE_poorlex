@@ -33,92 +33,90 @@ class BattleParticipant extends GetView<BattleController> {
         itemBuilder: (context, idx) {
           final progressBattle = battleListInProgress[idx];
           return GestureDetector(
-              onTap: () {
-                Get.toNamed('/battle/ranking', id: GNBLayout.globalKey);
-              },
-              child: Container(
-                  padding: EdgeInsets.only(
-                    top: 11,
-                    bottom: 9,
-                  ),
-                  child: Column(
+            onTap: () {
+              Get.toNamed('/battle/ranking', id: GNBLayout.globalKey);
+            },
+            child: Container(
+              padding: EdgeInsets.only(
+                top: 11,
+                bottom: 9,
+              ),
+              child: Column(
+                children: [
+                  Row(
                     children: [
-                      Row(
+                      BattleMoneyBar(
+                        budget: progressBattle.budget,
+                      ),
+                      SizedBox(width: 10),
+                      Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(1),
+                          color: CColors.gray40,
+                        ),
+                        padding: EdgeInsets.symmetric(horizontal: 6),
+                        child: Text(
+                          '예정',
+                          style: CTextStyles.Body3(height: 16 / 14),
+                        ),
+                      )
+                    ],
+                  ),
+                  SizedBox(height: 6),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          BattleMoneyBar(
-                            budget: progressBattle.budgetLeft,
+                          Text(
+                            '${progressBattle.name}',
+                            style: CTextStyles.Body2(),
                           ),
-                          SizedBox(width: 10),
-                          Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(1),
-                              color: CColors.gray40,
-                            ),
-                            padding: EdgeInsets.symmetric(horizontal: 6),
-                            child: Text(
-                              '예정',
-                              style: CTextStyles.Body3(height: 16 / 14),
+                          SizedBox(height: 6),
+                          Row(
+                            children: [
+                              Text(
+                                "존버 금액:${formatCurrencyWithWon(progressBattle.budget)}",
+                                style: CTextStyles.Body2(
+                                  color: CColors.gray50,
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: 19),
+                          RichText(
+                            text: TextSpan(
+                              style: CTextStyles.Title2(
+                                color: progressBattle.currentParticipant <= 3
+                                    ? CColors.purpleLight
+                                    : null,
+                                height: 34 / 22,
+                                fontFamily: 'NeoDunggeunmoPro-Regular',
+                              ),
+                              text: "${progressBattle.currentParticipant}위",
+                              children: [
+                                TextSpan(
+                                  style: CTextStyles.Title2(height: 34 / 22),
+                                  text:
+                                      "/${progressBattle.maxParticipantCount}명",
+                                )
+                              ],
                             ),
                           )
                         ],
                       ),
-                      SizedBox(height: 6),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                '${progressBattle.name}',
-                                style: CTextStyles.Body2(),
-                              ),
-                              SizedBox(height: 6),
-                              Row(
-                                children: [
-                                  Text(
-                                    "존버 금액:${formatCurrencyWithWon(progressBattle.budgetLeft)}",
-                                    style: CTextStyles.Body2(
-                                      color: CColors.gray50,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(height: 19),
-                              RichText(
-                                text: TextSpan(
-                                  style: CTextStyles.Title2(
-                                    color:
-                                        progressBattle.currentParticipantRank <=
-                                                3
-                                            ? CColors.purpleLight
-                                            : null,
-                                    height: 34 / 22,
-                                    fontFamily: 'NeoDunggeunmoPro-Regular',
-                                  ),
-                                  text:
-                                      "${progressBattle.currentParticipantRank}위",
-                                  children: [
-                                    TextSpan(
-                                      style:
-                                          CTextStyles.Title2(height: 34 / 22),
-                                      text:
-                                          "/${progressBattle.battleParticipantCount}명",
-                                    )
-                                  ],
-                                ),
-                              )
-                            ],
-                          ),
-                          CImageNetwork(
-                            width: 90,
-                            height: 90,
-                            src: progressBattle.imageUrl,
-                          ),
-                        ],
-                      )
+                      CImageNetwork(
+                        width: 90,
+                        height: 90,
+                        src: progressBattle.imageUrl,
+                      ),
                     ],
-                  )));
+                  )
+                ],
+              ),
+            ),
+          );
         },
         itemCount: battleListInProgress.length,
       );
