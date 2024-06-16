@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
+import 'package:poorlex/controller/audio_controller.dart';
 import 'package:poorlex/controller/image_picker.dart';
 import 'package:poorlex/controller/user.dart';
 import 'package:poorlex/libs/theme.dart';
@@ -179,6 +180,7 @@ class _EditMyExpensePageState extends State<EditMyExpensePage> {
       subImage: _subImage,
       subImageUrl: _originSubImage,
     );
+    await AudioController().play(audioType: AudioType.complete);
     Get.back();
   }
 
