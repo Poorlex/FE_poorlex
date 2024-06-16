@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:dartz/dartz.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
@@ -8,9 +9,9 @@ import 'package:poorlex/enums/day_of_week.dart';
 import 'package:poorlex/schema/battle_expenditure_response/battle_expenditure_response.dart';
 import 'package:poorlex/schema/battle_notification_response/battle_notification_response.dart';
 import 'package:poorlex/schema/battle_response/battle_response.dart';
+import 'package:poorlex/schema/error_response/error_response.dart';
 import 'package:poorlex/schema/finding_battle_response/finding_battle_response.dart';
 import 'package:poorlex/schema/member_complete_battle_response/member_complete_battle_response.dart';
-import 'package:poorlex/schema/member_progress_battle_response/member_progress_battle_response.dart';
 import 'package:poorlex/schema/vote_response/vote_response.dart';
 
 enum BattleStatus {
@@ -260,14 +261,20 @@ class BattlesProvider extends GetConnect {
   }
 
   /// 배틀 참가
-  Future<bool> addParticipants({
+  Future<Either<ErrorResponse, bool>> addParticipants({
     required int battleId,
   }) async {
     try {
       final response = await post("/$battleId/participants", null);
-      return response.statusCode == 201;
+      if (response.statusCode == 201) {
+        return Right(true);
+      } else if (response.statusCode == 400) {
+        return Left(ErrorResponse(message: "이미 참여한 배틀입니다.", tag: "배틀 참가 에러"));
+      }
+
+      throw response;
     } catch (e) {
-      return false;
+      return Left(ErrorResponse(message: "알 수 없는 에러", tag: "배틀 참가 에러"));
     }
   }
 

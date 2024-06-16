@@ -1,7 +1,8 @@
 import 'package:get/get.dart';
+import 'package:poorlex/main.dart';
 import 'package:poorlex/provider/battles_provider.dart';
-import 'package:poorlex/schema/battle_notification_response/battle_notification_response.dart';
 import 'package:poorlex/schema/battle_response/battle_response.dart';
+import 'package:poorlex/widget/common/dialog/common_alert.dart';
 
 class BattleDetailController extends GetxController {
   final BattlesProvider battlesProvider;
@@ -36,18 +37,22 @@ class BattleDetailController extends GetxController {
     }
   }
 
+  /// [참고] 에러 알럿 띄우기 참고
   Future<void> addParticipants({
     required int battleId,
   }) async {
-    try {
-      final response =
-          await battlesProvider.addParticipants(battleId: battleId);
-      if (response) {
+    final response = await battlesProvider.addParticipants(battleId: battleId);
+    response.fold(
+      (l) {
+        commonAlert(
+          context: navigatorKey.currentContext!,
+          message: l.message,
+        );
+      },
+      (r) {
         getDetailById(battleId: battleId);
-      }
-    } catch (e) {
-      print(e);
-    }
+      },
+    );
   }
 
   // Future<void> getBattleNotiById({
