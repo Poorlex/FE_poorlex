@@ -7,7 +7,6 @@ class BattleDetailBinding extends Bindings {
     Get.put(
       BattleDetailController(
         battlesProvider: Get.find(),
-        layout: Get.find(),
       ),
     );
   }

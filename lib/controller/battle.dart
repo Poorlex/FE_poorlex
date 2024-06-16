@@ -8,8 +8,6 @@ import 'package:poorlex/controller/layout.dart';
 import 'package:poorlex/models/battle.dart';
 import 'package:poorlex/provider/battles_provider.dart';
 import 'package:poorlex/schema/finding_battle_response/finding_battle_response.dart';
-import 'package:poorlex/schema/member_complete_battle_response/member_complete_battle_response.dart';
-import 'package:poorlex/schema/member_progress_battle_response/member_progress_battle_response.dart';
 
 class BattleController extends GetxController {
   final BattlesProvider battlesProvider;
@@ -26,14 +24,12 @@ class BattleController extends GetxController {
   final battleList = <FindingBattleResponse>[].obs;
 
   /// 참여중 배틀 리스트
-  final _battleListInProgress = <MemberProgressBattleResponse>[].obs;
-  List<MemberProgressBattleResponse> get battleListInProgress =>
-      _battleListInProgress;
+  final _battleListInProgress = <FindingBattleResponse>[].obs;
+  List<FindingBattleResponse> get battleListInProgress => _battleListInProgress;
 
   /// 완료된 배틀 리스트
-  final _battleListInComplete = <MemberCompleteBattleResponse>[].obs;
-  List<MemberCompleteBattleResponse> get battleListInComplete =>
-      _battleListInComplete;
+  final _battleListInComplete = <FindingBattleResponse>[].obs;
+  List<FindingBattleResponse> get battleListInComplete => _battleListInComplete;
 
   /// battleCreate 초기화
   void initBattleCreate() {
@@ -74,41 +70,21 @@ class BattleController extends GetxController {
   }
 
   Future<void> getBattle() async {
-    final response = await battlesProvider.getAll();
+    final response = await battlesProvider.getAll(
+      status: [BattleStatus.RECRUITING, BattleStatus.RECRUITING_FINISHED],
+    );
     battleList.value = response;
   }
 
   Future<void> getBattleInProgress() async {
-    final response = await battlesProvider.getProgress();
+    final response =
+        await battlesProvider.getAll(status: [BattleStatus.PROGRESS]);
     _battleListInProgress(response);
-    _battleListInProgress([
-      MemberProgressBattleResponse(
-        battleId: 0,
-        name: '배틀0번',
-        imageUrl: "ㅁㄴㅇ",
-        difficulty: 'difficulty',
-        budgetLeft: 10000,
-        currentParticipantRank: 2,
-        battleParticipantCount: 4,
-        uncheckedAlarmCount: 100,
-        dday: 3,
-      ),
-      MemberProgressBattleResponse(
-        battleId: 1,
-        name: '배틀2번',
-        imageUrl: "ㅁㄴㅇ",
-        difficulty: 'difficulty',
-        budgetLeft: 10000,
-        currentParticipantRank: 4,
-        battleParticipantCount: 4,
-        uncheckedAlarmCount: 100,
-        dday: 3,
-      )
-    ]);
   }
 
   Future<void> getBattleInComplete() async {
-    final response = await battlesProvider.getComplete();
+    final response =
+        await battlesProvider.getAll(status: [BattleStatus.COMPLETE]);
     _battleListInComplete(response);
   }
 

@@ -10,14 +10,14 @@ _$BattleResponseImpl _$$BattleResponseImplFromJson(Map<String, dynamic> json) =>
     _$BattleResponseImpl(
       battleName: json['battleName'] as String,
       battleImageUrl: json['battleImageUrl'] as String,
+      battleIntroduction: json['battleIntroduction'] as String,
+      battleManager: BattleManageResponse.fromJson(
+          json['battleManager'] as Map<String, dynamic>),
       maxParticipantSize: (json['maxParticipantSize'] as num).toInt(),
       currentParticipantSize: (json['currentParticipantSize'] as num).toInt(),
       battleBudget: (json['battleBudget'] as num).toInt(),
       battleDDay: (json['battleDDay'] as num).toInt(),
-      rankings: (json['rankings'] as List<dynamic>)
-          .map((e) =>
-              ParticipantRankingResponse.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      isParticipating: json['isParticipating'] as bool,
     );
 
 Map<String, dynamic> _$$BattleResponseImplToJson(
@@ -25,9 +25,11 @@ Map<String, dynamic> _$$BattleResponseImplToJson(
     <String, dynamic>{
       'battleName': instance.battleName,
       'battleImageUrl': instance.battleImageUrl,
+      'battleIntroduction': instance.battleIntroduction,
+      'battleManager': instance.battleManager,
       'maxParticipantSize': instance.maxParticipantSize,
       'currentParticipantSize': instance.currentParticipantSize,
       'battleBudget': instance.battleBudget,
       'battleDDay': instance.battleDDay,
-      'rankings': instance.rankings,
+      'isParticipating': instance.isParticipating,
     };

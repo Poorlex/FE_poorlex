@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:poorlex/controller/battle_detail.dart';
+import 'package:poorlex/controller/user.dart';
 import 'package:poorlex/libs/theme.dart';
-import 'package:poorlex/schema/battle_notification_response/battle_notification_response.dart';
-import 'package:poorlex/schema/participant_ranking_response/participant_ranking_response.dart';
+import 'package:poorlex/schema/battle_manage_response/battle_manage_response.dart';
+import 'package:poorlex/schema/battle_response/battle_response.dart';
 import 'package:poorlex/widget/common/Icon.dart';
 import 'package:poorlex/widget/common/app_bar.dart';
 import 'package:poorlex/widget/common/buttons.dart';
@@ -12,6 +13,9 @@ import 'package:poorlex/widget/common/image/image_asset.dart';
 import 'package:poorlex/widget/common/image/image_network.dart';
 import 'package:poorlex/widget/common/user.dart';
 import 'package:poorlex/widget/layout.dart';
+import 'package:poorlex/widget/level/medal.dart';
+import 'package:poorlex/widget/level/profile.dart';
+import 'package:poorlex/widget/loading_screen.dart';
 
 class BattleDetail extends StatefulWidget {
   final int battleId;
@@ -27,15 +31,12 @@ class BattleDetail extends StatefulWidget {
 class _BattleDetailState extends State<BattleDetail> {
   late final _battleDetail = Get.find<BattleDetailController>();
 
-  /// [TODO] mock data
-  bool _isJoined = false;
-
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       _battleDetail.getDetailById(battleId: widget.battleId);
-      _battleDetail.getBattleNotiById(battleId: widget.battleId);
+      // _battleDetail.getBattleNotiById(battleId: widget.battleId);
     });
   }
 
@@ -49,21 +50,20 @@ class _BattleDetailState extends State<BattleDetail> {
     return Obx(
       () {
         final battleInfo = _battleDetail.battleInfo.value;
+        if (battleInfo == null) {
+          return LoadingScreen();
+        }
 
         /// [MEMO] manager가 true이면 방장
-        final manager =
-            battleInfo.rankings.firstWhere((element) => element.manager);
-        final battleNotiInfo = _battleDetail.battleNotiInfo.value;
+        final manager = battleInfo.battleManager;
 
         return Scaffold(
-          appBar: _appBar(),
+          appBar: _appBar(manager: manager),
           body: Layout(
             child: SingleChildScrollView(
               child: Column(
                 children: [
                   _titleArea(battleBudget: battleInfo.battleBudget),
-
-                  /// [TODO] battleInfo에 메인이미지 없는지 확인
                   CImageNetwork(
                     errorAssetName: "assets/battle_detail/battle_image.png",
                     src: battleInfo.battleImageUrl,
@@ -72,8 +72,9 @@ class _BattleDetailState extends State<BattleDetail> {
                     fit: BoxFit.cover,
                   ),
                   _manager(manager: manager),
-                  if (battleNotiInfo.content != null)
-                    _notiArea(battleNotiInfo: battleNotiInfo),
+                  _introduction(
+                    battleIntroduction: battleInfo.battleIntroduction,
+                  ),
                   _participantCount(
                     currentParticipantSize: battleInfo.currentParticipantSize,
                     maxParticipantSize: battleInfo.maxParticipantSize,
@@ -82,34 +83,36 @@ class _BattleDetailState extends State<BattleDetail> {
               ),
             ),
           ),
-          bottomNavigationBar: _bottomNavigationBar(),
+          bottomNavigationBar: _bottomNavigationBar(battleInfo: battleInfo),
         );
       },
     );
   }
 
-  CAppBar _appBar() {
+  CAppBar _appBar({required BattleManageResponse manager}) {
+    final user = Get.find<UserController>();
+    final isManager = user.userInfo?.nickname == manager.nickname;
     return CAppBar(
       children: [
         Expanded(child: SizedBox(width: 1)),
-        GestureDetector(
-          onTap: () {
-            Get.toNamed(
-              '/friends',
-              arguments: {
-                'battleId': "${widget.battleId}",
-              },
-            );
-          },
-          child: CIcon(
-            icon: 'add_friend',
-            width: 26,
-            height: 26,
-          ),
-        ),
+        // GestureDetector(
+        //   onTap: () {
+        //     Get.toNamed(
+        //       '/friends',
+        //       arguments: {
+        //         'battleId': "${widget.battleId}",
+        //       },
+        //     );
+        //   },
+        //   child: CIcon(
+        //     icon: 'add_friend',
+        //     width: 26,
+        //     height: 26,
+        //   ),
+        // ),
 
         /// [TODO] 방 개설자 조건 넣기
-        if (true) ...[
+        if (isManager) ...[
           SizedBox(width: 10),
           GestureDetector(
             onTap: () async {
@@ -126,12 +129,7 @@ class _BattleDetailState extends State<BattleDetail> {
                         GestureDetector(
                           onTap: () async {
                             Navigator.of(context).pop();
-                            Get.toNamed(
-                              '/battle/modify/${widget.battleId}',
-                              // parameters: {
-                              //   'battleId:': "${widget.battleId}",
-                              // },
-                            );
+                            Get.toNamed('/battle/modify/${widget.battleId}');
                           },
                           child: Container(
                             alignment: Alignment.center,
@@ -215,7 +213,7 @@ class _BattleDetailState extends State<BattleDetail> {
   }
 
   Widget _manager({
-    required ParticipantRankingResponse manager,
+    required BattleManageResponse manager,
   }) {
     return Container(
       padding: EdgeInsets.symmetric(
@@ -235,8 +233,8 @@ class _BattleDetailState extends State<BattleDetail> {
     );
   }
 
-  Widget _notiArea({
-    required BattleNotificationResponse battleNotiInfo,
+  Widget _introduction({
+    required String battleIntroduction,
   }) {
     return Container(
       width: double.maxFinite,
@@ -248,7 +246,7 @@ class _BattleDetailState extends State<BattleDetail> {
         padding: EdgeInsets.all(6),
         color: CColors.gray10,
         child: Text(
-          battleNotiInfo.content ?? '',
+          battleIntroduction,
           style: CTextStyles.Body3(),
         ),
       ),
@@ -278,7 +276,11 @@ class _BattleDetailState extends State<BattleDetail> {
     );
   }
 
-  Widget _bottomNavigationBar() {
+  Widget _bottomNavigationBar({
+    required BattleResponse battleInfo,
+  }) {
+    final user = Get.find<UserController>().userInfo;
+    final myLevel = user?.levelInfo.level ?? 0;
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -291,12 +293,19 @@ class _BattleDetailState extends State<BattleDetail> {
           color: CColors.gray20,
           child: Row(
             children: [
-              UserItem(
-                image: Image.asset('assets/sample/user.png'),
-                icon: Image.asset('assets/sample/sample.png'),
-                spaceWith: 30,
-                name: '김굴비',
+              CProfile(
+                level: myLevel,
+                width: 40,
+                height: 40,
               ),
+              SizedBox(width: 30),
+              CLevelMedal(
+                level: myLevel,
+                width: 16,
+                height: 16,
+              ),
+              SizedBox(width: 6),
+              Text("${user?.nickname}", style: CTextStyles.Body3()),
             ],
           ),
         ),
@@ -304,16 +313,14 @@ class _BattleDetailState extends State<BattleDetail> {
           color: CColors.yellow,
           padding: EdgeInsets.symmetric(vertical: 13.5),
           type: ButtonTypes.elevated,
-          onPressed: () {
-            setState(() {
-              _isJoined = !_isJoined;
-            });
+          onPressed: () async {
+            await _battleDetail.addParticipants(battleId: widget.battleId);
           },
           child: SizedBox(
             height: 25,
             width: double.maxFinite,
             child: Text(
-              _isJoined ? "참여취소" : "참여하기",
+              battleInfo.isParticipating ? "참여취소" : "참여하기",
               style: CTextStyles.Title3(
                 color: CColors.black,
               ),
