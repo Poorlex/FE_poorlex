@@ -11,6 +11,7 @@ final imageAssetsByLevels = [
   'assets/level/profile/lv5.png',
 ];
 
+/// [DELETE] 제거 대상
 class UserItem extends StatelessWidget {
   final Image image;
   final Image icon;
