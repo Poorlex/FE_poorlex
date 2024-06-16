@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:poorlex/libs/theme.dart';
+import 'package:poorlex/widget/battle/linkify_text.dart';
 import 'package:poorlex/widget/common/buttons.dart';
 
 /// buttonText 기본값은 "입력하기" 입니다.
@@ -23,10 +24,12 @@ Future<void> commonAlert({
                   constraints: BoxConstraints(
                     minHeight: 182,
                   ),
-                  color: CColors.gray20,
+                  decoration: BoxDecoration(
+                    color: CColors.gray20,
+                  ),
                   padding: EdgeInsets.symmetric(horizontal: 16),
-                  child: Text(
-                    message,
+                  child: LinkifyText(
+                    text: message,
                     style: CTextStyles.Headline(color: CColors.gray60),
                   ),
                 ),

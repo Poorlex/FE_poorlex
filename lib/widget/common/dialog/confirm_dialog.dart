@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:poorlex/libs/theme.dart';
+import 'package:poorlex/widget/battle/linkify_text.dart';
 import 'package:poorlex/widget/common/buttons.dart';
 
 Future<bool?> confirmDialog({
@@ -22,10 +23,12 @@ Future<bool?> confirmDialog({
                 constraints: BoxConstraints(
                   minHeight: 182,
                 ),
-                color: CColors.gray20,
+                decoration: BoxDecoration(
+                  color: CColors.gray20,
+                ),
                 padding: EdgeInsets.symmetric(horizontal: 16),
-                child: Text(
-                  bodyText,
+                child: LinkifyText(
+                  text: bodyText,
                   style: CTextStyles.Headline(color: CColors.gray60),
                 ),
               ),
