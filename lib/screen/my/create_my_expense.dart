@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
+import 'package:poorlex/controller/audio_controller.dart';
 import 'package:poorlex/controller/image_picker.dart';
 import 'package:poorlex/widget/common/date_picker/common_date_picker.dart';
 import 'package:poorlex/widget/common/dialog/common_alert.dart';
@@ -166,6 +167,7 @@ class _CreateMyExpensePageState extends State<CreateMyExpensePage> {
           buttonText: "확인",
         );
       }
+      await AudioController().play(audioType: AudioType.complete);
       Get.back();
     }
   }

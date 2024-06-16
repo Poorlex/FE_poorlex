@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:poorlex/controller/audio_controller.dart';
 import 'package:poorlex/widget/common/dialog/common_alert.dart';
 import 'package:poorlex/widget/common/form.dart';
 
@@ -65,7 +66,7 @@ class _MyProfileState extends State<MyProfile> {
         nickname: _nameController.text.trim(),
         description: _description.text.trim(),
       );
-
+      await AudioController().play(audioType: AudioType.complete);
       Get.back();
     }
   }
