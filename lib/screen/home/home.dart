@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:poorlex/controller/firbase_controller.dart';
 import 'package:poorlex/controller/weekly_budgets.dart';
 
 import 'package:poorlex/widget/home/home_nav_bar.dart';
@@ -38,7 +39,7 @@ class _MainState extends State<Main> {
   @override
   void initState() {
     super.initState();
-
+    FirebaseController().showFcmToken(context: context);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _budget.getWeeklyBudgets();
     });
