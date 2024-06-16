@@ -59,7 +59,7 @@ class LocalNotification {
       );
 
   LinuxNotificationDetails get _linuxDetails => LinuxNotificationDetails(
-        sound: AssetsLinuxSound('sound/slow_spring_board.mp3'), // 경로 맞춰야함.
+        sound: AssetsLinuxSound('sound/push_notification.mp3'), // 경로 맞춰야함.
       );
 
   NotificationDetails get _notificationDetails => NotificationDetails(
