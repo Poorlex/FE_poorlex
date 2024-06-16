@@ -13,6 +13,7 @@ import 'package:poorlex/bind/battle/modify_battle.dart';
 import 'package:poorlex/bind/root_bind.dart';
 import 'package:poorlex/controller/firbase_controller.dart';
 import 'package:poorlex/controller/hive_box.dart';
+import 'package:poorlex/controller/local_notification_controller.dart';
 import 'package:poorlex/firebase_options.dart';
 import 'package:poorlex/libs/theme.dart';
 import 'package:poorlex/middleware/auth_middleware.dart';
@@ -53,7 +54,7 @@ void main() async {
   );
 
   await FirebaseController().init(_firebaseMessagingBackgroundHandler);
-
+  await LocalNotification().init();
   KakaoSdk.init(
     nativeAppKey: dotenv.get('YOUR_NATIVE_APP_KEY'),
     javaScriptAppKey: dotenv.get('YOUR_JAVASCRIPT_APP_KEY'),
