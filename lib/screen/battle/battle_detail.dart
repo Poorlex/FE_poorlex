@@ -49,7 +49,7 @@ class _BattleDetailState extends State<BattleDetail> {
   Widget build(BuildContext context) {
     return Obx(
       () {
-        final battleInfo = _battleDetail.battleInfo.value;
+        final battleInfo = _battleDetail.battleInfo;
         if (battleInfo == null) {
           return LoadingScreen();
         }
@@ -313,9 +313,17 @@ class _BattleDetailState extends State<BattleDetail> {
           color: CColors.yellow,
           padding: EdgeInsets.symmetric(vertical: 13.5),
           type: ButtonTypes.elevated,
-          onPressed: () async {
-            await _battleDetail.addParticipants(battleId: widget.battleId);
-          },
+          onPressed: battleInfo.isParticipating
+              ? () async {
+                  await _battleDetail.deleteParticipants(
+                    battleId: widget.battleId,
+                  );
+                }
+              : () async {
+                  await _battleDetail.addParticipants(
+                    battleId: widget.battleId,
+                  );
+                },
           child: SizedBox(
             height: 25,
             width: double.maxFinite,

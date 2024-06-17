@@ -1,9 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:poorlex/controller/battle_detail.dart';
+import 'package:poorlex/enums/day_of_week.dart';
 import 'package:poorlex/libs/theme.dart';
+import 'package:poorlex/schema/battle_expenditure_response/battle_expenditure_response.dart';
+import 'package:poorlex/schema/battle_response/battle_response.dart';
 import 'package:poorlex/screen/battle/expense_certification.dart';
+import 'package:poorlex/widget/common/money_bar/money_bar.dart';
+import 'package:poorlex/widget/loading_screen.dart';
 
 class RankingDetailWidget extends StatefulWidget {
-  const RankingDetailWidget({Key? key}) : super(key: key);
+  final int battleId;
+  const RankingDetailWidget({
+    required this.battleId,
+  });
 
   @override
   State<RankingDetailWidget> createState() => _RankingDetailWidget();
@@ -11,35 +21,18 @@ class RankingDetailWidget extends StatefulWidget {
 
 class _RankingDetailWidget extends State<RankingDetailWidget>
     with SingleTickerProviderStateMixin {
+  late final _battleDetail = Get.find<BattleDetailController>();
   late TabController tabController = TabController(
     length: 2,
     vsync: this,
     initialIndex: 0,
-
-    /// 탭 변경 애니메이션 시간
     animationDuration: const Duration(milliseconds: 300),
   );
-
-  List<String> items = List.generate(5, (index) => '아이템 ${index}');
 
   bool isAuthenticationPressed = true;
 
   @override
   void initState() {
-    tabController.addListener(() {
-      /// 프레임당 콜백
-    });
-
-    /// 탭바의 index가 변경되고 있는지 체크
-    /// true or false
-    tabController.indexIsChanging;
-
-    /// 탭바의 개수
-    tabController.length;
-
-    /// 변경 전의 index
-    tabController.previousIndex;
-
     super.initState();
   }
 
@@ -49,36 +42,59 @@ class _RankingDetailWidget extends State<RankingDetailWidget>
     super.dispose();
   }
 
-  final _days = [
-    '월',
-    '화',
-    '수',
-    '목',
-    '금',
-    '토',
-    '일',
-  ];
+  final _days = DayOfWeek.values;
 
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Row(children: [
-          Container(
-            height: 50,
-            child: _tabBar(context),
-          ),
-        ]),
-        Expanded(
-          child: _tabBarView(),
-        ),
-      ],
+  DayOfWeek _selectedDay = getTodayDayOfWeek();
+
+  Future<void> _onTapAuthentication() async {
+    await _battleDetail.getExpenditures(
+      battleId: widget.battleId,
+      dayOfWeek: getTodayDayOfWeek(),
+    );
+    isAuthenticationPressed = true;
+    setState(
+      () {},
     );
   }
 
-  Widget _tabBar(BuildContext context) {
-    final screen_width = MediaQuery.of(context).size.width;
+  Future<void> _onTapMyAuthentication() async {
+    await _battleDetail.getMemberExpenditures(battleId: widget.battleId);
+    isAuthenticationPressed = false;
+    setState(
+      () {},
+    );
+  }
 
+  @override
+  Widget build(BuildContext context) {
+    return Obx(() {
+      final battleInfo = _battleDetail.battleInfo;
+      final battleExpenditures = _battleDetail.battleExpenditures;
+      if (battleInfo == null) {
+        return LoadingScreen();
+      }
+      return Column(
+        children: [
+          Row(
+            children: [
+              Container(
+                height: 50,
+                child: _tabBar(context),
+              ),
+            ],
+          ),
+          Expanded(
+            child: _tabBarView(
+              battleInfo: battleInfo,
+              battleExpenditures: battleExpenditures,
+            ),
+          ),
+        ],
+      );
+    });
+  }
+
+  Widget _tabBar(BuildContext context) {
     return TabBar(
       controller: tabController,
       labelColor: CColors.white,
@@ -102,247 +118,280 @@ class _RankingDetailWidget extends State<RankingDetailWidget>
     );
   }
 
-  Widget _tabBarView() {
-    return TabBarView(controller: tabController, children: [
-      ListView(padding: EdgeInsets.all(8), children: <Widget>[
-        Column(
+  Widget _tabBarView({
+    required BattleResponse battleInfo,
+    required List<BattleExpenditureResponse> battleExpenditures,
+  }) {
+    return TabBarView(
+      controller: tabController,
+      children: [
+        ListView(
           children: [
+            Column(
+              children: [
+                Row(
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(left: 24, top: 12, bottom: 12),
+                      child: MoneyBar(
+                        money: battleInfo.battleBudget,
+                        width: 31,
+                        height: 36,
+                      ),
+                    ),
+                    SizedBox(width: 13),
+                    Text(
+                      '빚갚고 돈모으는 절약방',
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: CColors.white,
+                      ),
+                    ),
+                    SizedBox(width: 10),
+                    Container(
+                      color: CColors.gray30,
+                      width: 34,
+                      height: 16,
+                      alignment: Alignment.center,
+                      child: Text(
+                        'D-${battleInfo.battleDDay}',
+                        style: CTextStyles.Body3(),
+                      ),
+                    ),
+                  ],
+                )
+              ],
+            ),
             Row(
               children: [
                 Padding(
-                  padding: EdgeInsets.fromLTRB(26, 5, 10, 5),
-                  child: Container(
-                    decoration: BoxDecoration(
-                        color: CColors.yellow,
-                        borderRadius: BorderRadius.circular(4),
-                        border: Border.all(color: CColors.orange, width: 2)),
-                    width: 31,
-                    height: 36,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Text('7',
-                            style: CTextStyles.Headline(
-                                color: CColors.orangeDark)),
-                        Text('만원',
-                            style:
-                                CTextStyles.Caption2(color: CColors.orangeDark))
-                      ],
-                    ),
+                  padding: EdgeInsets.only(left: 24, top: 9, bottom: 9),
+                  child: Image.asset(
+                    'assets/ranking/icon_people_20_20.png',
+                    width: 20,
+                    height: 20,
                   ),
                 ),
-                Expanded(
-                    child: Row(children: [
-                  Text('빚갚고 돈모으는 절약방',
-                      style: TextStyle(fontSize: 18, color: CColors.white)),
-                  Padding(
-                      padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
-                      child: Container(
-                          color: CColors.gray30,
-                          width: 34,
-                          height: 16,
-                          alignment: Alignment.center,
-                          child: Text('D-7', style: CTextStyles.Body3())))
-                ]))
+                Text(
+                  '${battleInfo.currentParticipantSize}/${battleInfo.maxParticipantSize}',
+                  style: CTextStyles.Caption2(),
+                ),
               ],
-            )
+            ),
+            _topRanker(),
+            _normalRanker(),
+            _normalRanker(),
           ],
         ),
         Column(
           children: [
-            Row(children: [
-              Padding(
-                padding: EdgeInsets.fromLTRB(26, 5, 5, 5),
-                child: Image.asset('assets/ranking/icon_people_20_20.png',
-                    width: 20, height: 20),
-              ),
-              Expanded(
-                child: Text('10/10', style: CTextStyles.Caption2()),
-              ),
-            ])
-          ],
-        ),
-        SizedBox(
-          height: 80,
-          child: Column(children: [
-            Container(
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage('assets/ranking/cong_bg_375_80.png'),
-                      fit: BoxFit.fill),
-                ),
-                child: Row(children: [
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(16, 0, 20, 0),
-                    child: Image.asset('assets/ranking/icon_first_24_24.png',
-                        width: 24, height: 24),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(0, 0, 30, 0),
-                    child: Image.asset('assets/ranking/first_profile_60_60.png',
-                        width: 60, height: 60),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(0, 0, 6, 0),
-                    child: Image.asset('assets/ranking/icon_lv2_16_16.png',
-                        width: 16, height: 16),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                    child: Text('강적금', style: CTextStyles.Body2()),
+            Padding(
+              padding: EdgeInsets.only(top: 13, bottom: 11),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: CColors.black,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(0),
+                        ),
+                      ),
+                      child: Text(
+                        "인증내역",
+                        style: CTextStyles.Headline(),
+                        textAlign: TextAlign.center,
+                      ),
+                      onPressed: _onTapAuthentication,
+                    ),
                   ),
                   Expanded(
-                      child: Text('-1,000',
-                          textAlign: TextAlign.right,
-                          style: CTextStyles.Body3(color: CColors.purpleLight)))
-                ]))
-          ]),
-        ),
-        SizedBox(
-          height: 64,
-          child: Column(
-            children: [
-              Row(children: [
-                Padding(
-                  padding: EdgeInsets.fromLTRB(16, 0, 27, 0),
-                  child: Text('4위', style: CTextStyles.Body2()),
-                ),
-                Padding(
-                  padding: EdgeInsets.fromLTRB(0, 0, 44, 0),
-                  child: Image.asset('assets/ranking/profile_40_40.png',
-                      width: 40, height: 40),
-                ),
-                Padding(
-                  padding: EdgeInsets.fromLTRB(0, 0, 6, 0),
-                  child: Image.asset('assets/ranking/icon_lv2_16_16.png',
-                      width: 16, height: 16),
-                ),
-                Padding(
-                  padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                  child: Text('강적금', style: CTextStyles.Body2()),
-                ),
-                Expanded(
-                    child: Text('-3,000',
-                        textAlign: TextAlign.right,
-                        style: CTextStyles.Body3(color: CColors.purpleLight))),
-              ]),
-            ],
-          ),
-        ),
-        SizedBox(
-            height: 64,
-            child: Column(children: [
-              Row(children: [
-                Padding(
-                  padding: EdgeInsets.fromLTRB(16, 0, 27, 0),
-                  child: Text('5위', style: CTextStyles.Body2()),
-                ),
-                Padding(
-                  padding: EdgeInsets.fromLTRB(0, 0, 44, 0),
-                  child: Image.asset('assets/ranking/profile_40_40.png',
-                      width: 40, height: 40),
-                ),
-                Padding(
-                  padding: EdgeInsets.fromLTRB(0, 0, 6, 0),
-                  child: Image.asset('assets/ranking/icon_lv4_16_16.png',
-                      width: 16, height: 16),
-                ),
-                Padding(
-                  padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                  child: Text('강적금', style: CTextStyles.Body2()),
-                ),
-                Expanded(
-                    child: Text('-3,200',
-                        textAlign: TextAlign.right,
-                        style: CTextStyles.Body3(color: CColors.purpleLight)))
-              ])
-            ]))
-      ]),
-      Column(children: [
-        Padding(
-            padding: EdgeInsets.fromLTRB(0, 13, 0, 11),
-            child: Row(children: [
-              Expanded(
-                  child: ElevatedButton(
+                    child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                          backgroundColor: CColors.black,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(0))),
-                      child: Text("인증내역",
-                          style: CTextStyles.Headline(),
-                          textAlign: TextAlign.center),
-                      onPressed: () {
-                        setState(() {
-                          isAuthenticationPressed = true;
-                          items = List.generate(20, (index) => '아이템 ${index}');
-                        });
-                      })),
-              Expanded(
-                  child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor: CColors.black,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(0))),
-                      child: Text("나의인증",
-                          style: CTextStyles.Headline(),
-                          textAlign: TextAlign.center),
-                      onPressed: () {
-                        setState(() {
-                          isAuthenticationPressed = false;
-                          items = List.generate(1, (index) => '아이템 ${index}');
-                        });
-                      }))
-            ])),
-        Visibility(
-          visible: isAuthenticationPressed,
-          child: Padding(
-            padding: EdgeInsets.symmetric(vertical: 16, horizontal: 24),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: List.generate(
-                _days.length,
-                (index) {
-                  return Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(1),
-                      color: CColors.gray20,
+                        backgroundColor: CColors.black,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(0),
+                        ),
+                      ),
+                      child: Text(
+                        "나의인증",
+                        style: CTextStyles.Headline(),
+                        textAlign: TextAlign.center,
+                      ),
+                      onPressed: _onTapMyAuthentication,
                     ),
-                    alignment: Alignment.center,
-                    width: 28,
-                    height: 28,
-                    child: Text(
-                      "${_days[index]}",
-                      style: CTextStyles.Headline(),
-                    ),
-                  );
-                },
+                  )
+                ],
               ),
             ),
-          ),
+            Visibility(
+              visible: isAuthenticationPressed,
+              child: Padding(
+                padding: EdgeInsets.symmetric(vertical: 16, horizontal: 24),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: List.generate(
+                    _days.length,
+                    (index) {
+                      final isSelected = _selectedDay == _days[index];
+                      return GestureDetector(
+                        onTap: () async {
+                          _selectedDay = _days[index];
+                          await _battleDetail.getExpenditures(
+                            battleId: widget.battleId,
+                            dayOfWeek: _selectedDay,
+                          );
+                          setState(() {});
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(1),
+                            color: isSelected ? CColors.yellow : CColors.gray20,
+                          ),
+                          alignment: Alignment.center,
+                          width: 28,
+                          height: 28,
+                          child: Text(
+                            "${getKoreanDayOfWeek(_days[index])}",
+                            style: CTextStyles.Headline(
+                              color:
+                                  isSelected ? CColors.black : CColors.gray60,
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ),
+            ),
+            Expanded(
+              child: GridView.builder(
+                padding: EdgeInsets.fromLTRB(16, 20, 16, 0),
+                shrinkWrap: true,
+                itemCount: battleExpenditures.length,
+                scrollDirection: Axis.vertical,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 3,
+                  crossAxisSpacing: 26.0,
+                  mainAxisSpacing: 20.0,
+                ),
+                itemBuilder: (BuildContext context, int index) {
+                  return _GridItemWidget(item: battleExpenditures[index]);
+                },
+              ),
+            )
+          ],
         ),
-        Expanded(
-            child: GridView.builder(
-          padding: EdgeInsets.fromLTRB(16, 20, 16, 0),
-          shrinkWrap: true,
-          itemCount: items.length,
-          scrollDirection: Axis.vertical,
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 3, crossAxisSpacing: 26.0, mainAxisSpacing: 20.0),
-          itemBuilder: (BuildContext context, int index) {
-            return GridItemWidget(item: items[index]);
-          },
-        ))
-      ]),
-      // Container(child: Chat())
-    ]);
+        // Container(child: Chat())
+      ],
+    );
+  }
+
+  Widget _topRanker() {
+    return SizedBox(
+      height: 80,
+      child: Column(
+        children: [
+          Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('assets/ranking/cong_bg_375_80.png'),
+                fit: BoxFit.fill,
+              ),
+            ),
+            child: Row(
+              children: [
+                Padding(
+                  padding: EdgeInsets.fromLTRB(16, 0, 20, 0),
+                  child: Image.asset('assets/ranking/icon_first_24_24.png',
+                      width: 24, height: 24),
+                ),
+                Padding(
+                  padding: EdgeInsets.fromLTRB(0, 0, 30, 0),
+                  child: Image.asset(
+                    'assets/ranking/first_profile_60_60.png',
+                    width: 60,
+                    height: 60,
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.fromLTRB(0, 0, 6, 0),
+                  child: Image.asset(
+                    'assets/ranking/icon_lv2_16_16.png',
+                    width: 16,
+                    height: 16,
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                  child: Text('강적금', style: CTextStyles.Body2()),
+                ),
+                Expanded(
+                  child: Text(
+                    '-1,000',
+                    textAlign: TextAlign.right,
+                    style: CTextStyles.Body3(
+                      color: CColors.purpleLight,
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _normalRanker() {
+    return SizedBox(
+      height: 64,
+      child: Column(
+        children: [
+          Row(
+            children: [
+              Padding(
+                padding: EdgeInsets.fromLTRB(16, 0, 27, 0),
+                child: Text('4위', style: CTextStyles.Body2()),
+              ),
+              Padding(
+                padding: EdgeInsets.fromLTRB(0, 0, 44, 0),
+                child: Image.asset('assets/ranking/profile_40_40.png',
+                    width: 40, height: 40),
+              ),
+              Padding(
+                padding: EdgeInsets.fromLTRB(0, 0, 6, 0),
+                child: Image.asset('assets/ranking/icon_lv2_16_16.png',
+                    width: 16, height: 16),
+              ),
+              Padding(
+                padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                child: Text('강적금', style: CTextStyles.Body2()),
+              ),
+              Expanded(
+                child: Text(
+                  '-3,000',
+                  textAlign: TextAlign.right,
+                  style: CTextStyles.Body3(
+                    color: CColors.purpleLight,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
   }
 }
 
-class GridItemWidget extends StatelessWidget {
-  final String item;
+class _GridItemWidget extends StatelessWidget {
+  final BattleExpenditureResponse item;
 
-  GridItemWidget({required this.item});
+  _GridItemWidget({
+    required this.item,
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -1,6 +1,8 @@
 import 'package:get/get.dart';
+import 'package:poorlex/enums/day_of_week.dart';
 import 'package:poorlex/main.dart';
 import 'package:poorlex/provider/battles_provider.dart';
+import 'package:poorlex/schema/battle_expenditure_response/battle_expenditure_response.dart';
 import 'package:poorlex/schema/battle_response/battle_response.dart';
 import 'package:poorlex/widget/common/dialog/common_alert.dart';
 
@@ -11,9 +13,13 @@ class BattleDetailController extends GetxController {
     required this.battlesProvider,
   });
 
-  final Rxn<BattleResponse> battleInfo = Rxn<BattleResponse>();
+  final Rxn<BattleResponse> _battleInfo = Rxn<BattleResponse>();
+  BattleResponse? get battleInfo => _battleInfo.value;
 
-  /// [MEMO] 1차 배포에서는 사용하지 않음.
+  final RxList<BattleExpenditureResponse> _battleExpenditures =
+      <BattleExpenditureResponse>[].obs;
+  List<BattleExpenditureResponse> get battleExpenditures => _battleExpenditures;
+
 //   final Rx<BattleNotificationResponse> battleNotiInfo =
 //       BattleNotificationResponse(
 //     content: '''안녕하세요!!
@@ -31,7 +37,7 @@ class BattleDetailController extends GetxController {
   Future<void> getDetailById({required int battleId}) async {
     try {
       final response = await battlesProvider.getDetailById(battleId: battleId);
-      battleInfo(response);
+      _battleInfo(response);
     } catch (e) {
       print(e);
     }
@@ -55,6 +61,13 @@ class BattleDetailController extends GetxController {
     );
   }
 
+  Future<void> deleteParticipants({
+    required int battleId,
+  }) async {
+    await battlesProvider.deleteParticipants(battleId: battleId);
+    getDetailById(battleId: battleId);
+  }
+
   // Future<void> getBattleNotiById({
   //   required int battleId,
   // }) async {
@@ -69,4 +82,23 @@ class BattleDetailController extends GetxController {
   //     print(e);
   //   }
   // }
+
+  Future<void> getExpenditures({
+    required int battleId,
+    required DayOfWeek dayOfWeek,
+  }) async {
+    final response = await battlesProvider.getExpenditures(
+      battleId: battleId,
+      dayOfWeek: dayOfWeek,
+    );
+    _battleExpenditures(response);
+  }
+
+  Future<void> getMemberExpenditures({
+    required int battleId,
+  }) async {
+    final response =
+        await battlesProvider.getMemberExpenditures(battleId: battleId);
+    _battleExpenditures(response);
+  }
 }

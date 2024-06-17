@@ -109,7 +109,7 @@ class BattleFinished extends GetView<BattleController> {
                 Row(
                   children: [
                     BattleMoneyBar(
-                      budget: battleListInComplete[idx].budget,
+                      budget: battleListInComplete[idx].budgetLeft,
                     ),
                     SizedBox(width: 10),
                     Container(
@@ -119,7 +119,7 @@ class BattleFinished extends GetView<BattleController> {
                       padding: EdgeInsets.symmetric(horizontal: 6),
 
                       /// [TODO] 몇일전인지 데이터 넣기
-                      child: Text('${"7일전"}',
+                      child: Text('${-1 * battleListInComplete[idx].pastDay}일전',
                           style: CTextStyles.Caption2(color: CColors.gray41)),
                     )
                   ],
@@ -135,21 +135,22 @@ class BattleFinished extends GetView<BattleController> {
                           Text('${battleListInComplete[idx].name}',
                               style: CTextStyles.Body2()),
                           SizedBox(height: 9),
-                          Text('존버 금액 : ${battleListInComplete[idx].budget}',
+                          Text(
+                              '존버 금액 : ${battleListInComplete[idx].budgetLeft}',
                               style: CTextStyles.Body2(color: CColors.gray40)),
                           SizedBox(height: 27),
                           Row(
                             children: [
                               Text(
-
-                                  /// [TODO] 본인이 몇위인지 넣기
-                                  '${"2위"}위',
+                                  '${battleListInComplete[idx].currentParticipantRank}위',
                                   style: CTextStyles.Title1()),
                               Text(
-                                  '/${battleListInComplete[idx].maxParticipantCount}명',
+                                  '/${battleListInComplete[idx].battleParticipantCount}명',
                                   style: CTextStyles.Title1()),
                               SizedBox(width: 20),
-                              if (dummy[idx][4] == '1') ...[
+                              if (battleListInComplete[idx]
+                                      .currentParticipantRank ==
+                                  1) ...[
                                 Container(
                                   decoration:
                                       BoxDecoration(color: CColors.yellow),

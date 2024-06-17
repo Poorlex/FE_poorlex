@@ -96,7 +96,12 @@ class _GNBLayoutState extends State<GNBLayout> {
                   binding: BattleDetailBinding(),
                 );
               case '/battle/ranking':
-                return GetPageRoute(page: () => BattleRanking());
+                return GetPageRoute(
+                  page: () => BattleRanking(
+                    battleId: arguments?['battleId'] ?? 0,
+                  ),
+                  binding: BattleDetailBinding(),
+                );
               case '/calendar':
                 return GetPageRoute(
                   page: () => CalendarPage(),
