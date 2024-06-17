@@ -34,7 +34,13 @@ class BattleParticipant extends GetView<BattleController> {
           final progressBattle = battleListInProgress[idx];
           return GestureDetector(
             onTap: () {
-              Get.toNamed('/battle/ranking', id: GNBLayout.globalKey);
+              Get.toNamed(
+                '/battle/ranking',
+                arguments: {
+                  'battleId': progressBattle.battleId,
+                },
+                id: GNBLayout.globalKey,
+              );
             },
             child: Container(
               padding: EdgeInsets.only(
@@ -46,7 +52,7 @@ class BattleParticipant extends GetView<BattleController> {
                   Row(
                     children: [
                       BattleMoneyBar(
-                        budget: progressBattle.budget,
+                        budget: progressBattle.budgetLeft,
                       ),
                       SizedBox(width: 10),
                       Container(
@@ -77,7 +83,7 @@ class BattleParticipant extends GetView<BattleController> {
                           Row(
                             children: [
                               Text(
-                                "존버 금액:${formatCurrencyWithWon(progressBattle.budget)}",
+                                "존버 금액:${formatCurrencyWithWon(progressBattle.budgetLeft)}",
                                 style: CTextStyles.Body2(
                                   color: CColors.gray50,
                                 ),
@@ -88,18 +94,19 @@ class BattleParticipant extends GetView<BattleController> {
                           RichText(
                             text: TextSpan(
                               style: CTextStyles.Title2(
-                                color: progressBattle.currentParticipant <= 3
-                                    ? CColors.purpleLight
-                                    : null,
+                                color:
+                                    progressBattle.currentParticipantRank <= 3
+                                        ? CColors.purpleLight
+                                        : null,
                                 height: 34 / 22,
                                 fontFamily: 'NeoDunggeunmoPro-Regular',
                               ),
-                              text: "${progressBattle.currentParticipant}위",
+                              text: "${progressBattle.currentParticipantRank}위",
                               children: [
                                 TextSpan(
                                   style: CTextStyles.Title2(height: 34 / 22),
                                   text:
-                                      "/${progressBattle.maxParticipantCount}명",
+                                      "/${progressBattle.battleParticipantCount}명",
                                 )
                               ],
                             ),
