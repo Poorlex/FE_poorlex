@@ -12,6 +12,7 @@ import 'package:poorlex/schema/battle_response/battle_response.dart';
 import 'package:poorlex/schema/error_response/error_response.dart';
 import 'package:poorlex/schema/finding_battle_response/finding_battle_response.dart';
 import 'package:poorlex/schema/member_complete_battle_response/member_complete_battle_response.dart';
+import 'package:poorlex/schema/member_progress_battle_response/member_progress_battle_response.dart';
 import 'package:poorlex/schema/vote_response/vote_response.dart';
 
 enum BattleStatus {
@@ -77,20 +78,19 @@ class BattlesProvider extends GetConnect {
     return response.body;
   }
 
-  // /// [TEST] x
-  // /// 회원 배틀 조회 (진행중)
-  // Future<List<MemberProgressBattleResponse>?> getProgress() async {
-  //   final response = await get(
-  //     '/',
-  //     query: {"status": "PROGRESS"},
-  //     decoder: (data) {
-  //       return (data as List<dynamic>)
-  //           .map((e) => MemberProgressBattleResponse.fromJson(e))
-  //           .toList();
-  //     },
-  //   );
-  //   return response.body;
-  // }
+  /// 회원 배틀 조회 (진행중)
+  Future<List<MemberProgressBattleResponse>?> getProgress() async {
+    final response = await get(
+      '/progress',
+      decoder: (data) {
+        print(data);
+        return (data as List<dynamic>)
+            .map((e) => MemberProgressBattleResponse.fromJson(e))
+            .toList();
+      },
+    );
+    return response.body;
+  }
 
   /// [TEST] x
   /// 회원 배틀 조회 (완료)
@@ -137,7 +137,6 @@ class BattlesProvider extends GetConnect {
     }
   }
 
-  /// [TEST] x
   /// 배틀 요일별 참가자 지출 목록 조회
   Future<List<BattleExpenditureResponse>?> getExpenditures({
     required int battleId,
@@ -157,7 +156,6 @@ class BattlesProvider extends GetConnect {
     return response.body;
   }
 
-  /// [TEST] x
   /// 회원 배틀 기간 지출 목록 조회
   Future<List<BattleExpenditureResponse>?> getMemberExpenditures({
     required int battleId,
@@ -278,7 +276,7 @@ class BattlesProvider extends GetConnect {
     }
   }
 
-  /// [REFACTOR] api 수정 필요
+  /// 배틀 탈퇴
   Future<bool> deleteParticipants({
     required int battleId,
   }) async {
