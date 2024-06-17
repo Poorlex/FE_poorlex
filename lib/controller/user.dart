@@ -3,6 +3,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:poorlex/controller/api.dart';
 import 'package:poorlex/controller/hive_box.dart';
 import 'package:poorlex/enums/social_type.dart';
+import 'package:poorlex/main.dart';
 import 'package:poorlex/models/user.dart';
 import 'package:poorlex/provider/expenditures_provider.dart';
 import 'package:poorlex/provider/login_provider.dart';
@@ -10,6 +11,7 @@ import 'package:poorlex/provider/member_provider.dart';
 import 'package:poorlex/schema/expenditure_response/expenditure_response.dart';
 import 'package:poorlex/schema/my_page_response/my_page_response.dart';
 import 'package:poorlex/schema/social_login/social_login.dart';
+import 'package:poorlex/widget/common/dialog/common_alert.dart';
 
 /// [TODO] 지출 상세, 지출 수정, 지출 삭제를 분리해서 Controller 생성 필요
 class UserController extends GetxController {
@@ -51,15 +53,28 @@ class UserController extends GetxController {
     return response;
   }
 
-  Future<void> patchProfile({
+  Future<bool> patchProfile({
     required String nickname,
     required String description,
   }) async {
-    await memberProvider.patchProfile(
+    final response = await memberProvider.patchProfile(
       nickname: nickname,
       description: description,
     );
-    await _getUserInfo();
+
+    return await response.fold(
+      (l) async {
+        await commonAlert(
+          context: navigatorKey.currentContext!,
+          message: l.message,
+        );
+        return false;
+      },
+      (r) async {
+        await _getUserInfo();
+        return true;
+      },
+    );
   }
 
   /// 지출 생성
@@ -116,8 +131,7 @@ class UserController extends GetxController {
     await HiveBox().putToken(token);
   }
 
-  Future<void> getAuthentication(SocialLoginModel? socialLoginModel) async {
-    if (socialLoginModel == null) return;
+  Future<void> getAuthentication(SocialLoginModel socialLoginModel) async {
     if (socialLoginModel.socialType == SocialType.kakao) {
       final token = await loginProvider.kakao(code: socialLoginModel.code);
       await updateToken(token);
