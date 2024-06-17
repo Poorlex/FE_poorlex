@@ -28,6 +28,7 @@ class _LoginState extends State<Login> {
   Future<void> _tryKaKaoLogin() async {
     final SocialLoginModel? socialLoginModel =
         await _kakaoAuthController.kakaoLogin();
+    if (socialLoginModel == null) return;
     await _userController.getAuthentication(socialLoginModel);
     Get.offAllNamed('/');
   }
@@ -37,6 +38,7 @@ class _LoginState extends State<Login> {
   Future<void> _tryAppleLogin() async {
     final SocialLoginModel? socialLoginModel =
         await _appleAuthController.appleLogin();
+    if (socialLoginModel == null) return;
     await _userController.getAuthentication(socialLoginModel);
     Get.offAllNamed('/');
   }
