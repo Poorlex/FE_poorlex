@@ -1,6 +1,8 @@
+import 'package:dartz/dartz.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 import 'package:poorlex/controller/user.dart';
+import 'package:poorlex/schema/error_response/error_response.dart';
 import 'package:poorlex/schema/member_alarm_reponse/member_alarm_response.dart';
 import 'package:poorlex/schema/my_page_response/my_page_response.dart';
 
@@ -62,18 +64,22 @@ class MemberProvider extends GetConnect {
   /// - status code가 200일 경우 성공, 해당 부분 api 테스트가 필요합니다.
   ///
   /// 회원 프로필 변경
-  Future<bool> patchProfile({
+  Future<Either<ErrorResponse, bool>> patchProfile({
     required String nickname,
     required String description,
   }) async {
-    final response = await patch<void>(
+    final response = await patch(
       "/profile",
       {
         "nickname": nickname,
         "description": description,
       },
     );
-    return response.statusCode == 200;
+    if (response.statusCode == 200) {
+      return Right(true);
+    } else {
+      return Left(ErrorResponse(tag: "프로필 변경 에러", message: "프로필 변경에 실패하였습니다."));
+    }
   }
 
   /// [TEST] x
