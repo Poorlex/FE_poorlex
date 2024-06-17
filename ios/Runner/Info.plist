@@ -47,8 +47,10 @@
 	<string></string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
+	    <string>https</string>
 		<string>sms</string>
   		<string>tel</string>
+		<string>mailto</string>
 		<string>kakaokompassauth</string>
 		<string>kakaolink</string>
 		<string>kakaoplus</string>
