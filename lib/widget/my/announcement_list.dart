@@ -11,6 +11,7 @@ import 'package:poorlex/widget/common/dialog/confirm_dialog.dart';
 import 'package:poorlex/widget/my/withdrawal_bottom_sheet_with_beggar.dart';
 import 'package:poorlex/widget/common/icon.dart';
 import 'package:poorlex/widget/common/buttons.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class AnnounceMent extends StatefulWidget {
   const AnnounceMent({
@@ -59,6 +60,22 @@ class _AnnounceMentState extends State<AnnounceMent> {
     }
   }
 
+  Future<void> _sendEmail() async {
+    final Uri emailUri = Uri(
+      scheme: 'mailto',
+      path: "poorlex.official@gmail.com",
+      queryParameters: {
+        "subject": "문의하기",
+      },
+    );
+
+    if (await canLaunchUrl(emailUri)) {
+      await launchUrl(emailUri);
+    } else {
+      throw 'Could not launch $emailUri';
+    }
+  }
+
   @override
   void initState() {
     super.initState();
@@ -87,6 +104,25 @@ class _AnnounceMentState extends State<AnnounceMent> {
             ),
           ),
           onPressed: () => Get.toNamed('/my/notice'),
+        ),
+        CButton(
+          child: Container(
+            padding: EdgeInsets.fromLTRB(0, 16, 0, 16),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text('고객센터', style: CTextStyles.Headline()),
+                CIcon(
+                  icon: 'arrow-game-right',
+                  width: 16,
+                  height: 16,
+                  color: CColors.whiteStr,
+                ),
+              ],
+            ),
+          ),
+          onPressed: _sendEmail,
         ),
         CButton(
           child: Container(
