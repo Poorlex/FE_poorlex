@@ -20,6 +20,7 @@ class _MainCarouselSliderState extends State<MainCarouselSlider> {
   final List<List<String>> samples = [
     ['7', '빚갚고 돈모으는 절약방', '21000', '13'],
     ['4', '월급때까지 돈 모으는 방', '35000', '7'],
+    ['0']
   ];
 
   int _currentIndex = 0;
