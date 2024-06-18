@@ -20,6 +20,7 @@ BattleResponse _$BattleResponseFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$BattleResponse {
+  int get id => throw _privateConstructorUsedError;
   String get battleName => throw _privateConstructorUsedError;
   String get battleImageUrl => throw _privateConstructorUsedError;
   String get battleIntroduction => throw _privateConstructorUsedError;
@@ -43,7 +44,8 @@ abstract class $BattleResponseCopyWith<$Res> {
       _$BattleResponseCopyWithImpl<$Res, BattleResponse>;
   @useResult
   $Res call(
-      {String battleName,
+      {int id,
+      String battleName,
       String battleImageUrl,
       String battleIntroduction,
       BattleManageResponse battleManager,
@@ -69,6 +71,7 @@ class _$BattleResponseCopyWithImpl<$Res, $Val extends BattleResponse>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? battleName = null,
     Object? battleImageUrl = null,
     Object? battleIntroduction = null,
@@ -80,6 +83,10 @@ class _$BattleResponseCopyWithImpl<$Res, $Val extends BattleResponse>
     Object? isParticipating = null,
   }) {
     return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
       battleName: null == battleName
           ? _value.battleName
           : battleName // ignore: cast_nullable_to_non_nullable
@@ -137,7 +144,8 @@ abstract class _$$BattleResponseImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String battleName,
+      {int id,
+      String battleName,
       String battleImageUrl,
       String battleIntroduction,
       BattleManageResponse battleManager,
@@ -162,6 +170,7 @@ class __$$BattleResponseImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? battleName = null,
     Object? battleImageUrl = null,
     Object? battleIntroduction = null,
@@ -173,6 +182,10 @@ class __$$BattleResponseImplCopyWithImpl<$Res>
     Object? isParticipating = null,
   }) {
     return _then(_$BattleResponseImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
       battleName: null == battleName
           ? _value.battleName
           : battleName // ignore: cast_nullable_to_non_nullable
@@ -217,7 +230,8 @@ class __$$BattleResponseImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$BattleResponseImpl implements _BattleResponse {
   const _$BattleResponseImpl(
-      {required this.battleName,
+      {required this.id,
+      required this.battleName,
       required this.battleImageUrl,
       required this.battleIntroduction,
       required this.battleManager,
@@ -230,6 +244,8 @@ class _$BattleResponseImpl implements _BattleResponse {
   factory _$BattleResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$BattleResponseImplFromJson(json);
 
+  @override
+  final int id;
   @override
   final String battleName;
   @override
@@ -251,7 +267,7 @@ class _$BattleResponseImpl implements _BattleResponse {
 
   @override
   String toString() {
-    return 'BattleResponse(battleName: $battleName, battleImageUrl: $battleImageUrl, battleIntroduction: $battleIntroduction, battleManager: $battleManager, maxParticipantSize: $maxParticipantSize, currentParticipantSize: $currentParticipantSize, battleBudget: $battleBudget, battleDDay: $battleDDay, isParticipating: $isParticipating)';
+    return 'BattleResponse(id: $id, battleName: $battleName, battleImageUrl: $battleImageUrl, battleIntroduction: $battleIntroduction, battleManager: $battleManager, maxParticipantSize: $maxParticipantSize, currentParticipantSize: $currentParticipantSize, battleBudget: $battleBudget, battleDDay: $battleDDay, isParticipating: $isParticipating)';
   }
 
   @override
@@ -259,6 +275,7 @@ class _$BattleResponseImpl implements _BattleResponse {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$BattleResponseImpl &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.battleName, battleName) ||
                 other.battleName == battleName) &&
             (identical(other.battleImageUrl, battleImageUrl) ||
@@ -283,6 +300,7 @@ class _$BattleResponseImpl implements _BattleResponse {
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      id,
       battleName,
       battleImageUrl,
       battleIntroduction,
@@ -310,7 +328,8 @@ class _$BattleResponseImpl implements _BattleResponse {
 
 abstract class _BattleResponse implements BattleResponse {
   const factory _BattleResponse(
-      {required final String battleName,
+      {required final int id,
+      required final String battleName,
       required final String battleImageUrl,
       required final String battleIntroduction,
       required final BattleManageResponse battleManager,
@@ -323,6 +342,8 @@ abstract class _BattleResponse implements BattleResponse {
   factory _BattleResponse.fromJson(Map<String, dynamic> json) =
       _$BattleResponseImpl.fromJson;
 
+  @override
+  int get id;
   @override
   String get battleName;
   @override

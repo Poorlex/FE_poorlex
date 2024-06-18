@@ -10,7 +10,7 @@ class ParticipantRankingResponse with _$ParticipantRankingResponse {
     required int level,
     required String nickname,
     required int expenditure,
-    required bool manager,
+    required String role,
   }) = _ParticipantRankingResponse;
 
   factory ParticipantRankingResponse.fromJson(Map<String, dynamic> json) =>

@@ -25,7 +25,7 @@ mixin _$ParticipantRankingResponse {
   int get level => throw _privateConstructorUsedError;
   String get nickname => throw _privateConstructorUsedError;
   int get expenditure => throw _privateConstructorUsedError;
-  bool get manager => throw _privateConstructorUsedError;
+  String get role => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -41,7 +41,7 @@ abstract class $ParticipantRankingResponseCopyWith<$Res> {
           ParticipantRankingResponse>;
   @useResult
   $Res call(
-      {int rank, int level, String nickname, int expenditure, bool manager});
+      {int rank, int level, String nickname, int expenditure, String role});
 }
 
 /// @nodoc
@@ -62,7 +62,7 @@ class _$ParticipantRankingResponseCopyWithImpl<$Res,
     Object? level = null,
     Object? nickname = null,
     Object? expenditure = null,
-    Object? manager = null,
+    Object? role = null,
   }) {
     return _then(_value.copyWith(
       rank: null == rank
@@ -81,10 +81,10 @@ class _$ParticipantRankingResponseCopyWithImpl<$Res,
           ? _value.expenditure
           : expenditure // ignore: cast_nullable_to_non_nullable
               as int,
-      manager: null == manager
-          ? _value.manager
-          : manager // ignore: cast_nullable_to_non_nullable
-              as bool,
+      role: null == role
+          ? _value.role
+          : role // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -99,7 +99,7 @@ abstract class _$$ParticipantRankingResponseImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int rank, int level, String nickname, int expenditure, bool manager});
+      {int rank, int level, String nickname, int expenditure, String role});
 }
 
 /// @nodoc
@@ -119,7 +119,7 @@ class __$$ParticipantRankingResponseImplCopyWithImpl<$Res>
     Object? level = null,
     Object? nickname = null,
     Object? expenditure = null,
-    Object? manager = null,
+    Object? role = null,
   }) {
     return _then(_$ParticipantRankingResponseImpl(
       rank: null == rank
@@ -138,10 +138,10 @@ class __$$ParticipantRankingResponseImplCopyWithImpl<$Res>
           ? _value.expenditure
           : expenditure // ignore: cast_nullable_to_non_nullable
               as int,
-      manager: null == manager
-          ? _value.manager
-          : manager // ignore: cast_nullable_to_non_nullable
-              as bool,
+      role: null == role
+          ? _value.role
+          : role // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -154,7 +154,7 @@ class _$ParticipantRankingResponseImpl implements _ParticipantRankingResponse {
       required this.level,
       required this.nickname,
       required this.expenditure,
-      required this.manager});
+      required this.role});
 
   factory _$ParticipantRankingResponseImpl.fromJson(
           Map<String, dynamic> json) =>
@@ -169,11 +169,11 @@ class _$ParticipantRankingResponseImpl implements _ParticipantRankingResponse {
   @override
   final int expenditure;
   @override
-  final bool manager;
+  final String role;
 
   @override
   String toString() {
-    return 'ParticipantRankingResponse(rank: $rank, level: $level, nickname: $nickname, expenditure: $expenditure, manager: $manager)';
+    return 'ParticipantRankingResponse(rank: $rank, level: $level, nickname: $nickname, expenditure: $expenditure, role: $role)';
   }
 
   @override
@@ -187,13 +187,13 @@ class _$ParticipantRankingResponseImpl implements _ParticipantRankingResponse {
                 other.nickname == nickname) &&
             (identical(other.expenditure, expenditure) ||
                 other.expenditure == expenditure) &&
-            (identical(other.manager, manager) || other.manager == manager));
+            (identical(other.role, role) || other.role == role));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, rank, level, nickname, expenditure, manager);
+      Object.hash(runtimeType, rank, level, nickname, expenditure, role);
 
   @JsonKey(ignore: true)
   @override
@@ -217,7 +217,7 @@ abstract class _ParticipantRankingResponse
       required final int level,
       required final String nickname,
       required final int expenditure,
-      required final bool manager}) = _$ParticipantRankingResponseImpl;
+      required final String role}) = _$ParticipantRankingResponseImpl;
 
   factory _ParticipantRankingResponse.fromJson(Map<String, dynamic> json) =
       _$ParticipantRankingResponseImpl.fromJson;
@@ -231,7 +231,7 @@ abstract class _ParticipantRankingResponse
   @override
   int get expenditure;
   @override
-  bool get manager;
+  String get role;
   @override
   @JsonKey(ignore: true)
   _$$ParticipantRankingResponseImplCopyWith<_$ParticipantRankingResponseImpl>

@@ -48,8 +48,7 @@ class ModifyBattleController extends GetxController {
     }
   }
 
-  /// [MEMO] api 없음.
-  /// 배틀방 설정 바꾸는 api존재하지않음.
+  /// [MEMO] 검토 필요한 API
   Future<void> modifyBattle({
     required int battleId,
     required String content,
@@ -59,5 +58,19 @@ class ModifyBattleController extends GetxController {
       content: content,
       imageUrl: _battleInfo.value!.battleImageUrl,
     );
+  }
+
+  Future<void> patchBattle({
+    String? name,
+    String? introduction,
+  }) async {
+    if (_battleInfo.value != null) {
+      await battlesProvider.patchBattle(
+        battleId: _battleInfo.value!.id,
+        name: name,
+        introduction: introduction,
+        image: modifyImage.value,
+      );
+    }
   }
 }

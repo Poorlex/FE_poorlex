@@ -8,6 +8,7 @@ part of 'battle_response.dart';
 
 _$BattleResponseImpl _$$BattleResponseImplFromJson(Map<String, dynamic> json) =>
     _$BattleResponseImpl(
+      id: (json['id'] as num).toInt(),
       battleName: json['battleName'] as String,
       battleImageUrl: json['battleImageUrl'] as String,
       battleIntroduction: json['battleIntroduction'] as String,
@@ -23,6 +24,7 @@ _$BattleResponseImpl _$$BattleResponseImplFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$BattleResponseImplToJson(
         _$BattleResponseImpl instance) =>
     <String, dynamic>{
+      'id': instance.id,
       'battleName': instance.battleName,
       'battleImageUrl': instance.battleImageUrl,
       'battleIntroduction': instance.battleIntroduction,
