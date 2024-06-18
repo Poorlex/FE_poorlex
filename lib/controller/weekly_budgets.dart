@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:poorlex/provider/weekly_budgets_provider.dart';
+import 'package:poorlex/schema/weekly_budget_left_response/weekly_budget_left_response.dart';
 import 'package:poorlex/schema/weekly_budget_response/weekly_budget_response.dart';
 
 class WeeklyBudgetsController extends GetxController {
@@ -13,6 +14,12 @@ class WeeklyBudgetsController extends GetxController {
     exist: false,
     amount: 0,
     daysBeforeEnd: 0,
+  ).obs;
+
+  final Rx<WeeklyBudgetLeftResponse> weeklyBudgetLeft =
+      WeeklyBudgetLeftResponse(
+    exist: false,
+    amount: 0,
   ).obs;
 
   /// 요청 날짜 포함 주간 예산 조회
@@ -29,7 +36,7 @@ class WeeklyBudgetsController extends GetxController {
   Future<void> getLeftWeeklyBudgets() async {
     try {
       final response = await weeklyBudgetsProvider.getLeftWeeklyBudgets();
-      print(response);
+      weeklyBudgetLeft(response);
     } catch (e) {
       print(e);
     }
