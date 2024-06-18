@@ -12,6 +12,7 @@ import 'package:poorlex/controller/hive_box.dart';
 import 'package:poorlex/libs/theme.dart';
 import 'package:poorlex/middleware/auth_middleware.dart';
 import 'package:poorlex/screen/battle/modify_battle_detail.dart';
+import 'package:poorlex/screen/budget/budget_page.dart';
 import 'package:poorlex/screen/friends/friends.dart';
 import 'package:poorlex/screen/my/edit_my_expense.dart';
 import 'package:poorlex/screen/my/my_expense.dart';
@@ -126,6 +127,10 @@ void main() async {
           page: () => FriendsScreen(),
           binding: FriendsBinding(),
         ),
+        GetPage(
+          name: '/budget',
+          page: () => BudgetPage(),
+        )
       ],
     ),
   );
