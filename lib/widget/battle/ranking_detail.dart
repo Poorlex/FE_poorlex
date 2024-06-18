@@ -5,8 +5,11 @@ import 'package:poorlex/enums/day_of_week.dart';
 import 'package:poorlex/libs/theme.dart';
 import 'package:poorlex/schema/battle_expenditure_response/battle_expenditure_response.dart';
 import 'package:poorlex/schema/battle_response/battle_response.dart';
+import 'package:poorlex/schema/participant_ranking_response/participant_ranking_response.dart';
 import 'package:poorlex/screen/battle/expense_certification.dart';
 import 'package:poorlex/widget/common/money_bar/money_bar.dart';
+import 'package:poorlex/widget/level/medal.dart';
+import 'package:poorlex/widget/level/profile.dart';
 import 'package:poorlex/widget/loading_screen.dart';
 
 class RankingDetailWidget extends StatefulWidget {
@@ -70,6 +73,7 @@ class _RankingDetailWidget extends State<RankingDetailWidget>
     return Obx(() {
       final battleInfo = _battleDetail.battleInfo;
       final battleExpenditures = _battleDetail.battleExpenditures;
+      final battleRankings = _battleDetail.battleRankings;
       if (battleInfo == null) {
         return LoadingScreen();
       }
@@ -87,6 +91,7 @@ class _RankingDetailWidget extends State<RankingDetailWidget>
             child: _tabBarView(
               battleInfo: battleInfo,
               battleExpenditures: battleExpenditures,
+              battleRankings: battleRankings,
             ),
           ),
         ],
@@ -121,45 +126,42 @@ class _RankingDetailWidget extends State<RankingDetailWidget>
   Widget _tabBarView({
     required BattleResponse battleInfo,
     required List<BattleExpenditureResponse> battleExpenditures,
+    required List<ParticipantRankingResponse> battleRankings,
   }) {
     return TabBarView(
       controller: tabController,
       children: [
-        ListView(
+        Column(
           children: [
-            Column(
+            Row(
               children: [
-                Row(
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.only(left: 24, top: 12, bottom: 12),
-                      child: MoneyBar(
-                        money: battleInfo.battleBudget,
-                        width: 31,
-                        height: 36,
-                      ),
-                    ),
-                    SizedBox(width: 13),
-                    Text(
-                      '빚갚고 돈모으는 절약방',
-                      style: TextStyle(
-                        fontSize: 18,
-                        color: CColors.white,
-                      ),
-                    ),
-                    SizedBox(width: 10),
-                    Container(
-                      color: CColors.gray30,
-                      width: 34,
-                      height: 16,
-                      alignment: Alignment.center,
-                      child: Text(
-                        'D-${battleInfo.battleDDay}',
-                        style: CTextStyles.Body3(),
-                      ),
-                    ),
-                  ],
-                )
+                Padding(
+                  padding: EdgeInsets.only(left: 24, top: 12, bottom: 12),
+                  child: MoneyBar(
+                    money: battleInfo.battleBudget,
+                    width: 31,
+                    height: 36,
+                  ),
+                ),
+                SizedBox(width: 13),
+                Text(
+                  '빚갚고 돈모으는 절약방',
+                  style: TextStyle(
+                    fontSize: 18,
+                    color: CColors.white,
+                  ),
+                ),
+                SizedBox(width: 10),
+                Container(
+                  color: CColors.gray30,
+                  width: 34,
+                  height: 16,
+                  alignment: Alignment.center,
+                  child: Text(
+                    'D-${battleInfo.battleDDay}',
+                    style: CTextStyles.Body3(),
+                  ),
+                ),
               ],
             ),
             Row(
@@ -178,9 +180,20 @@ class _RankingDetailWidget extends State<RankingDetailWidget>
                 ),
               ],
             ),
-            _topRanker(),
-            _normalRanker(),
-            _normalRanker(),
+            Expanded(
+              child: ListView.builder(
+                shrinkWrap: true,
+                itemCount: battleRankings.length,
+                itemBuilder: (context, index) {
+                  final battleRank = battleRankings[index];
+                  if (battleRank.rank <= 3) {
+                    return _topRanker(battleRank);
+                  } else {
+                    return _normalRanker(battleRank);
+                  }
+                },
+              ),
+            ),
           ],
         ),
         Column(
@@ -288,7 +301,12 @@ class _RankingDetailWidget extends State<RankingDetailWidget>
     );
   }
 
-  Widget _topRanker() {
+  Widget _topRanker(ParticipantRankingResponse battleRank) {
+    final rankAsset = battleRank.rank == 1
+        ? "first"
+        : battleRank.rank == 2
+            ? "second"
+            : "third";
     return SizedBox(
       height: 80,
       child: Column(
@@ -304,38 +322,62 @@ class _RankingDetailWidget extends State<RankingDetailWidget>
               children: [
                 Padding(
                   padding: EdgeInsets.fromLTRB(16, 0, 20, 0),
-                  child: Image.asset('assets/ranking/icon_first_24_24.png',
-                      width: 24, height: 24),
+                  child: Image.asset(
+                    'assets/ranking/icon_${rankAsset}_24_24.png',
+                    width: 24,
+                    height: 24,
+                  ),
                 ),
                 Padding(
                   padding: EdgeInsets.fromLTRB(0, 0, 30, 0),
-                  child: Image.asset(
-                    'assets/ranking/first_profile_60_60.png',
+                  child: CProfile(
+                    level: battleRank.level,
                     width: 60,
                     height: 60,
                   ),
                 ),
                 Padding(
                   padding: EdgeInsets.fromLTRB(0, 0, 6, 0),
-                  child: Image.asset(
-                    'assets/ranking/icon_lv2_16_16.png',
-                    width: 16,
+                  child: CLevelMedal(
                     height: 16,
+                    width: 16,
+                    level: battleRank.level,
                   ),
                 ),
                 Padding(
                   padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                  child: Text('강적금', style: CTextStyles.Body2()),
+                  child: Text('${battleRank.nickname}',
+                      style: CTextStyles.Body2()),
                 ),
+                if (battleRank.role == "MANAGER") ...[
+                  SizedBox(width: 10),
+                  Container(
+                    width: 30,
+                    height: 16,
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                        color: CColors.gray20,
+                        borderRadius: BorderRadius.circular(2)),
+                    child: Text(
+                      "방장",
+                      style: TextStyle(
+                        height: 1,
+                        fontSize: 12,
+                        color: CColors.gray60,
+                      ),
+                    ),
+                  )
+                ],
                 Expanded(
                   child: Text(
-                    '-1,000',
+                    '-${battleRank.expenditure}',
                     textAlign: TextAlign.right,
                     style: CTextStyles.Body3(
                       color: CColors.purpleLight,
                     ),
                   ),
-                )
+                ),
+                SizedBox(width: 16),
               ],
             ),
           ),
@@ -344,7 +386,7 @@ class _RankingDetailWidget extends State<RankingDetailWidget>
     );
   }
 
-  Widget _normalRanker() {
+  Widget _normalRanker(ParticipantRankingResponse battleRank) {
     return SizedBox(
       height: 64,
       child: Column(
@@ -353,22 +395,48 @@ class _RankingDetailWidget extends State<RankingDetailWidget>
             children: [
               Padding(
                 padding: EdgeInsets.fromLTRB(16, 0, 27, 0),
-                child: Text('4위', style: CTextStyles.Body2()),
+                child: Text('${battleRank.rank}위', style: CTextStyles.Body2()),
               ),
               Padding(
                 padding: EdgeInsets.fromLTRB(0, 0, 44, 0),
-                child: Image.asset('assets/ranking/profile_40_40.png',
-                    width: 40, height: 40),
+                child: CProfile(
+                  level: battleRank.level,
+                  width: 40,
+                  height: 40,
+                ),
               ),
               Padding(
                 padding: EdgeInsets.fromLTRB(0, 0, 6, 0),
-                child: Image.asset('assets/ranking/icon_lv2_16_16.png',
-                    width: 16, height: 16),
+                child: CLevelMedal(
+                  height: 16,
+                  width: 16,
+                  level: battleRank.level,
+                ),
               ),
               Padding(
                 padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                child: Text('강적금', style: CTextStyles.Body2()),
+                child:
+                    Text('${battleRank.nickname}', style: CTextStyles.Body2()),
               ),
+              if (battleRank.role == "MANAGER") ...[
+                SizedBox(width: 10),
+                Container(
+                  width: 30,
+                  height: 16,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                      color: CColors.gray20,
+                      borderRadius: BorderRadius.circular(2)),
+                  child: Text(
+                    "방장",
+                    style: TextStyle(
+                      height: 1,
+                      fontSize: 12,
+                      color: CColors.gray60,
+                    ),
+                  ),
+                )
+              ],
               Expanded(
                 child: Text(
                   '-3,000',
@@ -378,6 +446,7 @@ class _RankingDetailWidget extends State<RankingDetailWidget>
                   ),
                 ),
               ),
+              SizedBox(width: 16),
             ],
           ),
         ],

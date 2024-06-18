@@ -7,6 +7,7 @@ part 'battle_response.g.dart';
 @freezed
 class BattleResponse with _$BattleResponse {
   const factory BattleResponse({
+    required int id,
     required String battleName,
     required String battleImageUrl,
     required String battleIntroduction,

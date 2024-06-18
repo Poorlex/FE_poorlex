@@ -13,6 +13,7 @@ import 'package:poorlex/schema/error_response/error_response.dart';
 import 'package:poorlex/schema/finding_battle_response/finding_battle_response.dart';
 import 'package:poorlex/schema/member_complete_battle_response/member_complete_battle_response.dart';
 import 'package:poorlex/schema/member_progress_battle_response/member_progress_battle_response.dart';
+import 'package:poorlex/schema/participant_ranking_response/participant_ranking_response.dart';
 import 'package:poorlex/schema/vote_response/vote_response.dart';
 
 enum BattleStatus {
@@ -288,5 +289,53 @@ class BattlesProvider extends GetConnect {
     } catch (e) {
       return false;
     }
+  }
+
+  /// 배틀 삭제
+  Future<void> deleteBattle({
+    required int battleId,
+  }) async {
+    await delete("/$battleId");
+  }
+
+  /// 배틀 수정
+  Future<void> patchBattle({
+    required int battleId,
+    String? name,
+    String? introduction,
+    XFile? image,
+  }) async {
+    final formData = FormData(
+      {
+        if (image != null)
+          "image": MultipartFile(
+            File(image.path),
+            filename: image.name,
+          ),
+      },
+    );
+
+    await patch(
+      "/$battleId",
+      formData,
+      query: {
+        if (name != null) "name": name,
+        if (introduction != null) "introduction": introduction,
+      },
+    );
+  }
+
+  Future<List<ParticipantRankingResponse>> getBattleRankings({
+    required int battleId,
+  }) async {
+    final response = await get<List<ParticipantRankingResponse>>(
+      "/$battleId/rankings",
+      decoder: (data) {
+        return (data as List<dynamic>)
+            .map((e) => ParticipantRankingResponse.fromJson(e))
+            .toList();
+      },
+    );
+    return response.body ?? [];
   }
 }

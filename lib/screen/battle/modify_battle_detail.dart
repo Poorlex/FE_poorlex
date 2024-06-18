@@ -57,11 +57,11 @@ class _ModifyBattleDetailState extends State<ModifyBattleDetail> {
   }
 
   Future<void> _modifyDetail() async {
-    final battleId = int.parse(_battleId!);
-    _modifyBattle.modifyBattle(
-      battleId: battleId,
-      content: _introductionController.text,
+    await _modifyBattle.patchBattle(
+      introduction: _introductionController.text,
+      name: _introductionController.text,
     );
+    Get.back();
   }
 
   @override

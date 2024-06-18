@@ -4,6 +4,7 @@ import 'package:poorlex/main.dart';
 import 'package:poorlex/provider/battles_provider.dart';
 import 'package:poorlex/schema/battle_expenditure_response/battle_expenditure_response.dart';
 import 'package:poorlex/schema/battle_response/battle_response.dart';
+import 'package:poorlex/schema/participant_ranking_response/participant_ranking_response.dart';
 import 'package:poorlex/widget/common/dialog/common_alert.dart';
 
 class BattleDetailController extends GetxController {
@@ -19,6 +20,10 @@ class BattleDetailController extends GetxController {
   final RxList<BattleExpenditureResponse> _battleExpenditures =
       <BattleExpenditureResponse>[].obs;
   List<BattleExpenditureResponse> get battleExpenditures => _battleExpenditures;
+
+  final RxList<ParticipantRankingResponse> _battleRankings =
+      <ParticipantRankingResponse>[].obs;
+  List<ParticipantRankingResponse> get battleRankings => _battleRankings;
 
 //   final Rx<BattleNotificationResponse> battleNotiInfo =
 //       BattleNotificationResponse(
@@ -100,5 +105,19 @@ class BattleDetailController extends GetxController {
     final response =
         await battlesProvider.getMemberExpenditures(battleId: battleId);
     _battleExpenditures(response);
+  }
+
+  Future<void> deleteBattle() async {
+    if (_battleInfo.value != null) {
+      await battlesProvider.deleteBattle(battleId: _battleInfo.value!.id);
+    }
+  }
+
+  Future<void> getBattleRankings({
+    required int battleId,
+  }) async {
+    final response =
+        await battlesProvider.getBattleRankings(battleId: battleId);
+    _battleRankings(response);
   }
 }

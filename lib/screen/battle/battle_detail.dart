@@ -63,7 +63,10 @@ class _BattleDetailState extends State<BattleDetail> {
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  _titleArea(battleBudget: battleInfo.battleBudget),
+                  _titleArea(
+                    battleBudget: battleInfo.battleBudget,
+                    battleName: battleInfo.battleName,
+                  ),
                   CImageNetwork(
                     errorAssetName: "assets/battle_detail/battle_image.png",
                     src: battleInfo.battleImageUrl,
@@ -129,7 +132,12 @@ class _BattleDetailState extends State<BattleDetail> {
                         GestureDetector(
                           onTap: () async {
                             Navigator.of(context).pop();
-                            Get.toNamed('/battle/modify/${widget.battleId}');
+                            await Get.toNamed(
+                              '/battle/modify/${widget.battleId}',
+                            );
+                            _battleDetail.getDetailById(
+                              battleId: widget.battleId,
+                            );
                           },
                           child: Container(
                             alignment: Alignment.center,
@@ -154,6 +162,11 @@ class _BattleDetailState extends State<BattleDetail> {
                               confirmText: "네",
                               bodyText: "삭제를 진행하시겠습니끼?",
                             );
+
+                            if (result == true && mounted) {
+                              await _battleDetail.deleteBattle();
+                              Get.offAndToNamed("/battle");
+                            }
                           },
                           child: Container(
                             alignment: Alignment.center,
@@ -186,6 +199,7 @@ class _BattleDetailState extends State<BattleDetail> {
 
   Widget _titleArea({
     required int battleBudget,
+    required String battleName,
   }) {
     return Container(
       padding: EdgeInsets.symmetric(
@@ -201,7 +215,7 @@ class _BattleDetailState extends State<BattleDetail> {
           ),
           SizedBox(width: 10),
           Text(
-            "빚갚고 돈모으고 절약방",
+            "$battleName",
             style: TextStyle(
               color: CColors.white,
               fontSize: 18,
@@ -226,7 +240,7 @@ class _BattleDetailState extends State<BattleDetail> {
             image: Image.asset(imageAssetsByLevels[manager.level - 1]),
             icon: Image.asset('assets/sample/sample.png'),
             name: manager.nickname,
-            description: "어디보세요 굴비보세요",
+            description: manager.description,
           ),
         ],
       ),

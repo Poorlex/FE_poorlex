@@ -24,6 +24,7 @@ class _BattleRankingState extends State<BattleRanking> {
   void initState() {
     super.initState();
     _battleDetail.getDetailById(battleId: widget.battleId);
+    _battleDetail.getBattleRankings(battleId: widget.battleId);
     _battleDetail.getExpenditures(
       battleId: widget.battleId,
       dayOfWeek: getTodayDayOfWeek(),
