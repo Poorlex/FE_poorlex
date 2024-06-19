@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:poorlex/controller/audio_controller.dart';
 
 import 'package:poorlex/controller/user.dart';
 import 'package:poorlex/libs/theme.dart';
@@ -62,7 +63,10 @@ class MyPageProfile extends StatelessWidget {
                     style: CTextStyles.Body3(color: CColors.yellow),
                   ),
                 ),
-                onPressed: () => Get.toNamed('/my/profile'),
+                onPressed: () {
+                  AudioController().play(audioType: AudioType.complete);
+                  Get.toNamed('/my/profile');
+                },
               )
             ],
           ),

@@ -57,7 +57,9 @@ class _MyProfileState extends State<MyProfile> {
       if (response) {
         await AudioController().play(audioType: AudioType.complete);
         Get.back();
-      } else {}
+      } else {
+        await AudioController().play(audioType: AudioType.fail);
+      }
     }
   }
 
