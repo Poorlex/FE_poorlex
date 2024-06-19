@@ -42,7 +42,9 @@ class _MainState extends State<Main> {
   @override
   void initState() {
     super.initState();
-    FirebaseController().showFcmToken(context: context);
+
+    /// 추후에 푸시알림 테스트 할때 사용
+    // FirebaseController().showFcmToken(context: context);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _budget.getWeeklyBudgets();
     });
