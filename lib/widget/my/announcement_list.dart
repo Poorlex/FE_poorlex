@@ -7,8 +7,8 @@ import 'package:poorlex/controller/user.dart';
 
 import 'package:poorlex/libs/theme.dart';
 import 'package:poorlex/provider/member_provider.dart';
+import 'package:poorlex/widget/bottom_sheet/bottom_sheet_with_beggar.dart';
 import 'package:poorlex/widget/common/dialog/confirm_dialog.dart';
-import 'package:poorlex/widget/my/withdrawal_bottom_sheet_with_beggar.dart';
 import 'package:poorlex/widget/common/icon.dart';
 import 'package:poorlex/widget/common/buttons.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -49,8 +49,9 @@ class _AnnounceMentState extends State<AnnounceMent> {
   }
 
   Future<void> _withdrawal() async {
-    final result = await withdrawalBottomSheetWithBeggar(
+    final result = await BottomSheetWithBeggar.show(
       context: context,
+      beggarAction: BeggarAction.withdrawal,
     );
     if (result == true) {
       await Get.find<MemberProvider>().memberWithdrawal();
