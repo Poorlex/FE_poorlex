@@ -48,7 +48,5 @@ String getKoreanDayOfWeek(DayOfWeek day) {
       return '토';
     case DayOfWeek.SUNDAY:
       return '일';
-    default:
-      throw Exception("Invalid day of week");
   }
 }
