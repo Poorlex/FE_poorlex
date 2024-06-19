@@ -7,6 +7,7 @@ import 'package:poorlex/schema/battle_expenditure_response/battle_expenditure_re
 import 'package:poorlex/schema/battle_response/battle_response.dart';
 import 'package:poorlex/schema/participant_ranking_response/participant_ranking_response.dart';
 import 'package:poorlex/screen/battle/expense_certification.dart';
+import 'package:poorlex/widget/common/image/image_network.dart';
 import 'package:poorlex/widget/common/money_bar/money_bar.dart';
 import 'package:poorlex/widget/level/medal.dart';
 import 'package:poorlex/widget/level/profile.dart';
@@ -465,51 +466,74 @@ class _GridItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        color: Colors.tealAccent,
-        child: Center(
-            child: GestureDetector(
-                child: Image.asset('assets/ranking/first_profile_60_60.png'),
-                onTap: () {
-                  Navigator.push(context, MaterialPageRoute(
-                    builder: (context) {
-                      return ExpenseCertificationScreen();
-                    },
-                  ));
-                  showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return AlertDialog(
-                          content: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Row(children: [
-                                  IconButton(
-                                    icon:
-                                        Icon(Icons.close, color: CColors.white),
-                                    onPressed: () {
-                                      Navigator.pop(context);
-                                    },
-                                  ),
-                                  Expanded(
-                                      child: Center(
-                                          child: Text('인증내역(1/7)',
-                                              style: CTextStyles.Body3())))
-                                ]),
-                                Image.asset(
-                                    'assets/ranking/first_profile_60_60.png'),
-                                Padding(
-                                    padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
-                                    child: Text("최지출",
-                                        style: CTextStyles.Headline())),
-                                Padding(
-                                    padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
-                                    child: Text("약값 지출 ...",
-                                        style: CTextStyles.Headline())),
-                              ]),
-                          backgroundColor: CColors.black,
-                          actions: [],
-                        );
-                      });
-                })));
+      alignment: Alignment.center,
+      decoration: BoxDecoration(
+        border: Border.all(
+          width: 2,
+          color: item.own ? CColors.purpleLight : Colors.transparent,
+        ),
+      ),
+      child: Stack(
+        clipBehavior: Clip.none,
+        children: [
+          GestureDetector(
+            child: CImageNetwork(
+              width: double.maxFinite,
+              height: double.maxFinite,
+              src: item.imageUrl,
+              fit: BoxFit.cover,
+            ),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return ExpenseCertificationScreen(
+                      expenditureId: item.id,
+                    );
+                  },
+                ),
+              );
+            },
+          ),
+          if (item.imageCount != 1)
+            Positioned(
+              top: -2,
+              right: -2,
+              child: Container(
+                alignment: Alignment.center,
+                width: 24,
+                height: 14,
+                decoration: BoxDecoration(
+                  color: CColors.black.withOpacity(0.8),
+                ),
+                child: Text(
+                  "+${item.imageCount}",
+                  style: CTextStyles.Body3(
+                    color: CColors.white.withOpacity(0.5),
+                  ),
+                ),
+              ),
+            ),
+          if (item.own)
+            Positioned(
+              bottom: 0,
+              right: 0,
+              child: Container(
+                alignment: Alignment.center,
+                width: 24,
+                height: 14,
+                decoration: BoxDecoration(
+                  color: CColors.purpleLight,
+                ),
+                child: Text(
+                  "my",
+                  style: CTextStyles.Body3(),
+                ),
+              ),
+            )
+        ],
+      ),
+    );
   }
 }
