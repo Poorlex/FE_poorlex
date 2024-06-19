@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:poorlex/libs/number_format.dart';
 import 'package:poorlex/libs/theme.dart';
 import 'package:poorlex/schema/weekly_budget_response/weekly_budget_response.dart';
 
 import 'package:poorlex/screen/budget/budget_page.dart';
+import 'package:poorlex/widget/common/buttons.dart';
 
 class NavBar extends StatefulWidget implements PreferredSizeWidget {
   final WeeklyBudgetResponse budget;
@@ -37,8 +39,8 @@ class _NavBarState extends State<NavBar> {
     budgetMoney = formatter.format(widget.budget.amount);
     budgetWithWon = formatCurrencyWithWon(widget.budget.amount);
 
-    print("###@ $budgetMoney");
-    print("###@ $budgetWithWon");
+    print("### budgetMoney: $budgetMoney");
+    print("### budgetWithWon: $budgetWithWon");
   }
 
   @override
@@ -85,7 +87,6 @@ class _NavBarState extends State<NavBar> {
                       // 남은 날짜
                       Container(
                         alignment: Alignment.center,
-                        width: 34,
                         height: 16,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(1),
@@ -118,7 +119,6 @@ class _NavBarState extends State<NavBar> {
                 'LV.$level',
                 style: CTextStyles.Body2(color: CColors.yellow),
               ),
-              // Text('Progress Bar'),
               Container(
                 width: 240,
                 height: 8,
@@ -154,43 +154,55 @@ class _NavBarState extends State<NavBar> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Wrap(
-                  spacing: 12,
-                  alignment: WrapAlignment.center,
-                  crossAxisAlignment: WrapCrossAlignment.center,
-                  children: [
-                    // 코인 이미지
-                    SizedBox(
-                      height: 24,
-                      width: 24,
-                      child: Image.asset('assets/coin.png'),
-                    ),
-
-                    // 예산 설정 금액
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => BudgetPage(),
-                          ),
-                        );
-                      },
-                      child: Text(
-                        budgetMoney,
-                        style: CTextStyles.Title3(),
+                if (budgetMoney != '0') ...[
+                  Wrap(
+                    spacing: 12,
+                    alignment: WrapAlignment.center,
+                    crossAxisAlignment: WrapCrossAlignment.center,
+                    children: [
+                      // 코인 이미지
+                      SizedBox(
+                        height: 24,
+                        width: 24,
+                        child: Image.asset('assets/coin.png'),
                       ),
-                    )
-                  ],
-                ),
 
-                // 지출 금액
-                Text(
-                  '-32,000원',
-                  style: CTextStyles.Body2(
-                    color: CColors.purpleLight,
+                      // 예산 설정 금액
+                      CButton(
+                        onPressed: () => Get.toNamed('/budget'),
+                        child: Text(
+                          budgetMoney,
+                          style: CTextStyles.Title3(),
+                        ),
+                      )
+                    ],
                   ),
-                ),
+
+                  // 지출 금액
+                  Text(
+                    '-32,000원',
+                    style: CTextStyles.Body2(
+                      color: CColors.purpleLight,
+                    ),
+                  ),
+                ] else ...[
+                  CButton(
+                    onPressed: () => Get.toNamed('/budget'),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text(
+                          '예산 설정하기',
+                          style: CTextStyles.Body2(color: CColors.white),
+                        ),
+                        Icon(
+                          Icons.keyboard_arrow_right,
+                          color: CColors.gray41,
+                        ),
+                      ],
+                    ),
+                  ),
+                ]
               ],
             ),
           ),
