@@ -1,7 +1,6 @@
 import 'dart:ui';
 
 import 'package:get/get.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:poorlex/controller/image_picker.dart';
 import 'package:poorlex/controller/layout.dart';
 
@@ -65,7 +64,7 @@ class BattleController extends GetxController {
   }
 
   Future<void> getImage() async {
-    final XFile? image = await imagePickerController.getImage();
+    final FileWithName? image = await imagePickerController.getImage();
     if (image != null) {
       battleCreate.update((val) {
         val?.image = image;

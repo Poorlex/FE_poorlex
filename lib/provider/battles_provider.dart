@@ -1,9 +1,7 @@
-import 'dart:io';
-
 import 'package:dartz/dartz.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
-import 'package:image_picker/image_picker.dart';
+import 'package:poorlex/controller/image_picker.dart';
 import 'package:poorlex/controller/user.dart';
 import 'package:poorlex/enums/day_of_week.dart';
 import 'package:poorlex/schema/battle_expenditure_response/battle_expenditure_response.dart';
@@ -113,11 +111,11 @@ class BattlesProvider extends GetConnect {
     required String introduction,
     required int budget,
     required int maxParticipantSize,
-    required XFile image,
+    required FileWithName image,
   }) async {
     final formData = FormData({
       "image": MultipartFile(
-        File(image.path),
+        image.file,
         filename: image.name,
       ),
     });
@@ -303,13 +301,13 @@ class BattlesProvider extends GetConnect {
     required int battleId,
     String? name,
     String? introduction,
-    XFile? image,
+    FileWithName? image,
   }) async {
     final formData = FormData(
       {
         if (image != null)
           "image": MultipartFile(
-            File(image.path),
+            image.file,
             filename: image.name,
           ),
       },

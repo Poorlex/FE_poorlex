@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -95,11 +94,12 @@ class _BattleIndexOneState extends State<BattleIndexOne> {
         Obx(() {
           if (_battle.battleCreate.value.image != null) {
             return Container(
-                width: 100,
-                height: 100,
-                child: Image.file(
-                  File(_battle.battleCreate.value.image!.path),
-                ));
+              width: 100,
+              height: 100,
+              child: Image.file(
+                _battle.battleCreate.value.image!.file,
+              ),
+            );
           } else {
             return GestureDetector(
               onTap: () {

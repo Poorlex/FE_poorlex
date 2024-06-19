@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:poorlex/controller/audio_controller.dart';
 import 'package:poorlex/controller/image_picker.dart';
@@ -59,8 +58,8 @@ class _CreateMyExpensePageState extends State<CreateMyExpensePage> {
     });
 
   int _day = DateTime.now().millisecondsSinceEpoch;
-  late XFile? _mainImage = null;
-  late XFile? _subImage = null;
+  late FileWithName? _mainImage = null;
+  late FileWithName? _subImage = null;
 
   void selectDay(int d) {
     setState(() {
@@ -75,7 +74,7 @@ class _CreateMyExpensePageState extends State<CreateMyExpensePage> {
         Stack(
           children: [
             BackgroundImageWithRemove(
-              image: Image.file(File(_mainImage!.path)),
+              image: Image.file(_mainImage!.file),
               width: 80,
               height: 80,
               onRemove: () {
@@ -115,7 +114,7 @@ class _CreateMyExpensePageState extends State<CreateMyExpensePage> {
     if (_subImage != null) {
       list.add(
         BackgroundImageWithRemove(
-          image: Image.file(File(_subImage!.path)),
+          image: Image.file(_subImage!.file),
           width: 80,
           height: 80,
           onRemove: () {
@@ -135,7 +134,7 @@ class _CreateMyExpensePageState extends State<CreateMyExpensePage> {
   }
 
   Future<void> pickImage(String type) async {
-    XFile? image = await Get.find<ImagePickerController>().getImage();
+    FileWithName? image = await Get.find<ImagePickerController>().getImage();
     setState(() {
       if (type == 'mainImage')
         _mainImage = image;

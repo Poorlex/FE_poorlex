@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:poorlex/controller/image_picker.dart';
 
 import 'package:poorlex/libs/theme.dart';
@@ -12,7 +11,7 @@ import 'package:poorlex/widget/common/modal.dart';
 
 class NoticeWriteModal extends CustomModal {
   final ImagePickerController _picker = Get.find<ImagePickerController>();
-  XFile? image;
+  FileWithName? image;
 
   NoticeWriteModal({int? id}) {
     if (id != null)
@@ -28,14 +27,11 @@ class NoticeWriteModal extends CustomModal {
     });
   }
 
-  /// [TODO] Rogan: 왜 0번인덱스만 가져오는지 확인 필요
   Future<void> pickImage() async {
-    final List<XFile> images = await _picker.getMultiImage();
-    if (images.isNotEmpty) {
-      setState(() {
-        image = images[0];
-      });
-    }
+    final file = await _picker.getImage();
+    setState(() {
+      image = file;
+    });
   }
 
   setChild() {

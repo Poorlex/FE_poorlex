@@ -1,5 +1,4 @@
 import 'package:get/get.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:poorlex/controller/image_picker.dart';
 import 'package:poorlex/controller/layout.dart';
 import 'package:poorlex/provider/battles_provider.dart';
@@ -19,7 +18,7 @@ class ModifyBattleController extends GetxController {
   BattleResponse? get battleInfo => _battleInfo.value;
 
   /// 수정할 배틀 이미지 사진
-  final Rxn<XFile> modifyImage = Rxn<XFile>();
+  final Rxn<FileWithName> modifyImage = Rxn<FileWithName>();
 
   Future<void> getDetailById({
     required int battleId,
@@ -42,7 +41,7 @@ class ModifyBattleController extends GetxController {
   }
 
   Future<void> getImage() async {
-    final XFile? image = await imagePickerController.getImage();
+    final FileWithName? image = await imagePickerController.getImage();
     if (image != null) {
       modifyImage(image);
     }

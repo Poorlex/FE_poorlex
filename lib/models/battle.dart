@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
+import 'package:poorlex/controller/image_picker.dart';
 
 enum EBattleDifficulty { easy, normal, hard }
 
@@ -21,7 +21,7 @@ class BattleCreateModel {
   late String title;
   late String content;
   late int count;
-  late XFile? image;
+  late FileWithName? image;
 
   List<int> getBudgetList() {
     if (difficulty == EBattleDifficulty.easy)
