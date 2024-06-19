@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+import 'package:poorlex/controller/audio_controller.dart';
 import 'package:poorlex/controller/kakao_auth.dart';
 import 'package:poorlex/controller/layout.dart';
 import 'package:poorlex/controller/user.dart';
@@ -35,6 +36,7 @@ class _AnnounceMentState extends State<AnnounceMent> {
   }
 
   Future<void> _logout() async {
+    AudioController().play(audioType: AudioType.complete);
     final result = await confirmDialog(
       context: context,
       bodyText: "로그아웃 하시겠습니까?",
@@ -42,6 +44,7 @@ class _AnnounceMentState extends State<AnnounceMent> {
       confirmText: "네",
     );
     if (result == true) {
+      AudioController().play(audioType: AudioType.fail);
       await user.updateToken(null);
       await KaKaoAuthController().logOut();
       Get.offAllNamed('/login');
@@ -202,26 +205,27 @@ class _AnnounceMentState extends State<AnnounceMent> {
           ),
         ),
         CButton(
-            child: Container(
-              padding: EdgeInsets.fromLTRB(0, 16, 0, 16),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(
-                    '로그아웃',
-                    style: CTextStyles.Headline(color: CColors.gray30),
-                  ),
-                  CIcon(
-                    icon: 'arrow-game-right',
-                    width: 16,
-                    height: 16,
-                    color: CColors.whiteStr,
-                  ),
-                ],
-              ),
+          child: Container(
+            padding: EdgeInsets.fromLTRB(0, 16, 0, 16),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(
+                  '로그아웃',
+                  style: CTextStyles.Headline(color: CColors.gray30),
+                ),
+                CIcon(
+                  icon: 'arrow-game-right',
+                  width: 16,
+                  height: 16,
+                  color: CColors.whiteStr,
+                ),
+              ],
             ),
-            onPressed: _logout),
+          ),
+          onPressed: _logout,
+        ),
         CButton(
           child: Container(
             padding: EdgeInsets.fromLTRB(0, 16, 0, 16),

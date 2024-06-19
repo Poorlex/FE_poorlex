@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:poorlex/bind/battle/battle.dart';
 import 'package:poorlex/bind/battle/battle_detail.dart';
 import 'package:poorlex/controller/%08toast_controller.dart';
+import 'package:poorlex/controller/audio_controller.dart';
 import 'package:poorlex/screen/battle/battle.dart';
 import 'package:poorlex/screen/battle/battle_detail.dart';
 import 'package:poorlex/screen/battle/battle_ranking.dart';
@@ -29,6 +30,7 @@ class _GNBLayoutState extends State<GNBLayout> {
   int _pageIndex = 0;
 
   void _changePageIndex(int index) {
+    AudioController().play(audioType: AudioType.complete);
     _pageIndex = index;
     setState(() {});
   }

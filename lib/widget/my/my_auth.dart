@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:collection/collection.dart';
+import 'package:poorlex/controller/audio_controller.dart';
 import 'package:poorlex/libs/string.dart';
 import 'package:poorlex/widget/common/buttons.dart';
 import 'package:poorlex/widget/common/icon.dart';
@@ -138,7 +139,10 @@ class _MyPageMyAuthState extends State<MyPageMyAuth> {
                     ],
                   ),
                 ),
-                onPressed: () => Get.toNamed('/my/expenditure'),
+                onPressed: () {
+                  AudioController().play(audioType: AudioType.complete);
+                  Get.toNamed('/my/expenditure');
+                },
               )
             ],
           ),
