@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:poorlex/controller/%08toast_controller.dart';
+import 'package:poorlex/controller/toast_controller.dart';
 
 class LoadingScreen extends StatefulWidget {
   /// 페치지 로딩 대기시간
