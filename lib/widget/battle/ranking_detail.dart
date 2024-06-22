@@ -33,7 +33,8 @@ class _RankingDetailWidget extends State<RankingDetailWidget>
     animationDuration: const Duration(milliseconds: 300),
   );
 
-  bool isAuthenticationPressed = true;
+  /// 해당 변수가 false이면 나의인증 상태입니다.
+  bool _isAuthenticationPressed = true;
 
   @override
   void initState() {
@@ -55,7 +56,7 @@ class _RankingDetailWidget extends State<RankingDetailWidget>
       battleId: widget.battleId,
       dayOfWeek: getTodayDayOfWeek(),
     );
-    isAuthenticationPressed = true;
+    _isAuthenticationPressed = true;
     setState(
       () {},
     );
@@ -63,7 +64,7 @@ class _RankingDetailWidget extends State<RankingDetailWidget>
 
   Future<void> _onTapMyAuthentication() async {
     await _battleDetail.getMemberExpenditures(battleId: widget.battleId);
-    isAuthenticationPressed = false;
+    _isAuthenticationPressed = false;
     setState(
       () {},
     );
@@ -239,7 +240,7 @@ class _RankingDetailWidget extends State<RankingDetailWidget>
               ),
             ),
             Visibility(
-              visible: isAuthenticationPressed,
+              visible: _isAuthenticationPressed,
               child: Padding(
                 padding: EdgeInsets.symmetric(vertical: 16, horizontal: 24),
                 child: Row(
@@ -291,7 +292,10 @@ class _RankingDetailWidget extends State<RankingDetailWidget>
                   mainAxisSpacing: 20.0,
                 ),
                 itemBuilder: (BuildContext context, int index) {
-                  return _GridItemWidget(item: battleExpenditures[index]);
+                  return _GridItemWidget(
+                    item: battleExpenditures[index],
+                    allMine: !_isAuthenticationPressed,
+                  );
                 },
               ),
             )
@@ -458,19 +462,22 @@ class _RankingDetailWidget extends State<RankingDetailWidget>
 
 class _GridItemWidget extends StatelessWidget {
   final BattleExpenditureResponse item;
+  final bool allMine;
 
   _GridItemWidget({
     required this.item,
+    required this.allMine,
   });
 
   @override
   Widget build(BuildContext context) {
+    final highlight = item.own && !allMine;
     return Container(
       alignment: Alignment.center,
       decoration: BoxDecoration(
         border: Border.all(
           width: 2,
-          color: item.own ? CColors.purpleLight : Colors.transparent,
+          color: highlight ? CColors.purpleLight : Colors.transparent,
         ),
       ),
       child: Stack(
@@ -515,7 +522,7 @@ class _GridItemWidget extends StatelessWidget {
                 ),
               ),
             ),
-          if (item.own)
+          if (highlight)
             Positioned(
               bottom: 0,
               right: 0,

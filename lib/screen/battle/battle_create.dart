@@ -32,7 +32,7 @@ class _BattleCreateState extends State<BattleCreate> {
   }
 
   void changePage({required bool isNext}) async {
-    final currentPage = battle.battleCreate.value.current;
+    final currentPage = battle.battleCreate.current;
 
     if (isNext) {
       if (currentPage == 2) {
@@ -95,7 +95,7 @@ class _BattleCreateState extends State<BattleCreate> {
                   SizedBox(height: 18),
                   Obx(
                     () {
-                      switch (battle.battleCreate.value.current) {
+                      switch (battle.battleCreate.current) {
                         case 0:
                           return BattleIndexZero();
                         case 1:
@@ -118,7 +118,7 @@ class _BattleCreateState extends State<BattleCreate> {
           ),
           child: Obx(
             () {
-              if (battle.battleCreate.value.current == 3) {
+              if (battle.battleCreate.current == 3) {
                 return CButton(
                   padding: EdgeInsets.symmetric(vertical: 14),
                   color: CColors.yellow,
@@ -132,7 +132,7 @@ class _BattleCreateState extends State<BattleCreate> {
                   ),
                 );
               } else {
-                final battleCreate = battle.battleCreate.value;
+                final battleCreate = battle.battleCreate;
                 final disabledCondition = battleCreate.current == 1 &&
                         (battleCreate.title.isEmpty ||
                             battleCreate.image == null ||
