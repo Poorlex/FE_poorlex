@@ -88,7 +88,7 @@ class _BottomBarState extends State<BottomBar> {
           return BottomNavigationBarItem(
             label: item.value.label,
             icon: Padding(
-              padding: EdgeInsets.all(6),
+              padding: EdgeInsets.only(bottom: 6),
               child: Column(
                 children: [
                   if (widget.nowPage == item.key) ...[
