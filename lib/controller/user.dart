@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:poorlex/controller/api.dart';
 import 'package:poorlex/controller/hive_box.dart';
+import 'package:poorlex/controller/image_picker.dart';
 import 'package:poorlex/enums/social_type.dart';
 import 'package:poorlex/main.dart';
 import 'package:poorlex/models/user.dart';
@@ -82,8 +82,8 @@ class UserController extends GetxController {
     required int price,
     required String description,
     required DateTime date,
-    required XFile mainImage,
-    XFile? subImage,
+    required FileWithName mainImage,
+    FileWithName? subImage,
   }) async {
     final result = await expendituresProvider.postCreateExpenditures(
       amount: price,
@@ -100,8 +100,8 @@ class UserController extends GetxController {
     required int expenditureId,
     required int amount,
     required String description,
-    XFile? mainImage,
-    XFile? subImage,
+    FileWithName? mainImage,
+    FileWithName? subImage,
     String? mainImageUrl,
     String? subImageUrl,
   }) async {

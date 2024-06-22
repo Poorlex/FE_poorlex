@@ -14,8 +14,8 @@ class BattleIndexZero extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final difficulty = battle.battleCreate.value.difficulty;
-    final budget = battle.battleCreate.value.budget;
+    final difficulty = battle.battleCreate.difficulty;
+    final budget = battle.battleCreate.budget;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -114,7 +114,7 @@ class BattleIndexZero extends StatelessWidget {
         Wrap(
           spacing: 16,
           runSpacing: 12,
-          children: battle.battleCreate.value.getBudgetList().map(
+          children: battle.battleCreate.getBudgetList().map(
             (item) {
               return CButton(
                 padding: EdgeInsets.symmetric(horizontal: 12, vertical: 13),

@@ -1,13 +1,21 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:poorlex/libs/theme.dart';
+import 'package:poorlex/provider/expenditures_provider.dart';
+import 'package:poorlex/schema/expenditure_response/expenditure_response.dart';
 import 'package:poorlex/widget/common/image/image_network.dart';
 import 'package:poorlex/widget/common/medal.dart';
+import 'package:poorlex/widget/loading_screen.dart';
 
 /// [MEMO] router에 등록되지 않는 페이지입니다.
 class ExpenseCertificationScreen extends StatefulWidget {
-  const ExpenseCertificationScreen({super.key});
+  final int expenditureId;
+  const ExpenseCertificationScreen({
+    super.key,
+    required this.expenditureId,
+  });
 
   @override
   State<ExpenseCertificationScreen> createState() =>
@@ -16,10 +24,59 @@ class ExpenseCertificationScreen extends StatefulWidget {
 
 class _ExpenseCertificationScreenState
     extends State<ExpenseCertificationScreen> {
+  final ExpendituresProvider _expendituresProvider =
+      Get.find<ExpendituresProvider>();
+
   final CarouselController _carouselController = CarouselController();
+  int _currentIndex = 0;
+  void _onChevron(bool isNext) {
+    if (isNext) {
+      _carouselController.nextPage();
+    } else {
+      _carouselController.previousPage();
+      setState(() {});
+    }
+  }
+
+  ExpenditureResponse? _expenditureResponse;
+  int _totalImageCount = 1;
+  Future<void> _getDetailById() async {
+    /// [MOCK DATA]
+    _expenditureResponse = ExpenditureResponse(
+      id: 1,
+      amount: 10000,
+      date: "2024-06-21",
+      description: "약값 지출,,",
+      mainImageUrl: "https://i.ibb.co/ygj74TT/1.jpg",
+      subImageUrl: "https://i.ibb.co/j8YDxmz/2.jpg",
+    );
+
+    // final response = await _expendituresProvider.getDetailById(
+    //   expenditureId: widget.expenditureId,
+    // );
+    // _expenditureResponse = response;
+    if (_expenditureResponse?.subImageUrl != null) {
+      _totalImageCount = 2;
+    }
+    setState(() {});
+  }
+
+  @override
+  void initState() {
+    _getDetailById();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
+    if (_expenditureResponse == null) {
+      return LoadingScreen();
+    }
     return Scaffold(
       appBar: AppBar(
         titleSpacing: 0,
@@ -34,8 +91,13 @@ class _ExpenseCertificationScreenState
               },
             ),
             Expanded(
-                child: Center(
-                    child: Text('인증내역(1/7)', style: CTextStyles.Body1())))
+              child: Center(
+                child: Text(
+                  '인증내역(${_currentIndex + 1}/$_totalImageCount)',
+                  style: CTextStyles.Body1(),
+                ),
+              ),
+            )
           ],
         ),
       ),
@@ -47,49 +109,61 @@ class _ExpenseCertificationScreenState
               children: [
                 CarouselSlider.builder(
                   carouselController: _carouselController,
-                  itemCount: 2,
+                  itemCount: _totalImageCount,
                   itemBuilder: (context, index, realIndex) {
+                    final imageSrc = index == 0
+                        ? _expenditureResponse?.mainImageUrl
+                        : _expenditureResponse?.subImageUrl;
                     return CImageNetwork(
                       fit: BoxFit.cover,
-                      src:
-                          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5x1eP5JS50H8Ylg6bTZ7i7WtHZoHYxKLjifjcvfLx7dLKr4lGaA7Fov7yH-39tmf7mg8&usqp=CAU',
+                      src: imageSrc,
+                      width: double.maxFinite,
                     );
                   },
                   options: CarouselOptions(
-                    // height: 375,
                     viewportFraction: 1,
+                    onPageChanged: (index, reason) {
+                      _currentIndex = index;
+                      setState(() {});
+                    },
                   ),
                 ),
                 Positioned(
                   left: 0,
-                  child: Container(
-                    alignment: Alignment.center,
-                    padding: EdgeInsets.only(
-                      left: 21,
-                      right: 20,
-                      top: 16,
-                      bottom: 16,
+                  child: GestureDetector(
+                    onTap: () => _onChevron(false),
+                    child: Container(
+                      alignment: Alignment.center,
+                      padding: EdgeInsets.only(
+                        left: 21,
+                        right: 20,
+                        top: 16,
+                        bottom: 16,
+                      ),
+                      decoration: BoxDecoration(
+                        color: CColors.black.withOpacity(0.5),
+                      ),
+                      child: _CarouselLeftBtn(),
                     ),
-                    decoration: BoxDecoration(
-                      color: CColors.black.withOpacity(0.5),
-                    ),
-                    child: _CarouselLeftBtn(),
                   ),
                 ),
                 Positioned(
                   right: 0,
-                  child: Container(
-                    alignment: Alignment.center,
-                    padding: EdgeInsets.only(
-                      left: 20,
-                      right: 21,
-                      top: 16,
-                      bottom: 16,
+                  child: GestureDetector(
+                    onTap: () => _onChevron(true),
+                    child: Container(
+                      alignment: Alignment.center,
+                      padding: EdgeInsets.only(
+                        left: 20,
+                        right: 21,
+                        top: 16,
+                        bottom: 16,
+                      ),
+                      decoration: BoxDecoration(
+                        color: CColors.black.withOpacity(0.5),
+                      ),
+                      child: _CarouselRightBtn(),
                     ),
-                    decoration: BoxDecoration(
-                      color: CColors.black.withOpacity(0.5),
-                    ),
-                    child: _CarouselRightBtn(),
                   ),
                 )
               ],
@@ -114,7 +188,10 @@ class _ExpenseCertificationScreenState
                     ],
                   ),
                   SizedBox(height: 17),
-                  Text("약값 지출 ...", style: CTextStyles.Headline()),
+                  Text(
+                    "${_expenditureResponse?.description}",
+                    style: CTextStyles.Headline(),
+                  ),
                 ],
               ),
             ),

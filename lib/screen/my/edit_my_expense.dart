@@ -59,8 +59,8 @@ class _EditMyExpensePageState extends State<EditMyExpensePage> {
     });
 
   int _day = DateTime.now().millisecondsSinceEpoch;
-  late XFile? _mainImage = null;
-  late XFile? _subImage = null;
+  late FileWithName? _mainImage = null;
+  late FileWithName? _subImage = null;
   late String? _originMainImage = null;
   late String? _originSubImage = null;
 
@@ -94,7 +94,7 @@ class _EditMyExpensePageState extends State<EditMyExpensePage> {
             BackgroundImageWithRemove(
               image: _mainImage == null
                   ? Image.network(_originMainImage!)
-                  : Image.file(File(_mainImage!.path)),
+                  : Image.file(_mainImage!.file),
               width: 80,
               height: 80,
               onRemove: () => {
@@ -139,7 +139,7 @@ class _EditMyExpensePageState extends State<EditMyExpensePage> {
       list.add(BackgroundImageWithRemove(
           image: _subImage == null
               ? Image.network(_originSubImage!)
-              : Image.file(File(_subImage!.path)),
+              : Image.file(_subImage!.file),
           width: 80,
           height: 80,
           onRemove: () => {
@@ -159,7 +159,7 @@ class _EditMyExpensePageState extends State<EditMyExpensePage> {
   }
 
   Future<void> _pickImage(String type) async {
-    XFile? image = await Get.find<ImagePickerController>().getImage();
+    FileWithName? image = await Get.find<ImagePickerController>().getImage();
     setState(() {
       if (type == 'mainImage')
         _mainImage = image;

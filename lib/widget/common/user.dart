@@ -159,9 +159,12 @@ class LevelProfile extends StatelessWidget {
           Container(
               child:
                   Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-            Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [Image.asset(levels[level - 1].image, height: 95)])
+            Column(mainAxisAlignment: MainAxisAlignment.end, children: [
+              Image.asset(
+                levels[level - 1].image,
+                height: 110,
+              )
+            ])
           ]))
         ]));
   }

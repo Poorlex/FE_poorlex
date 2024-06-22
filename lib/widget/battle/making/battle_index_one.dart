@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -18,19 +17,15 @@ class _BattleIndexOneState extends State<BattleIndexOne> {
   final BattleController _battle = Get.find<BattleController>();
 
   late final TextEditingController _title = TextEditingController(
-    text: _battle.battleCreate.value.title,
+    text: _battle.battleCreate.title,
   )..addListener(() {
-      _battle.battleCreate.update((val) {
-        val?.title = _title.value.text;
-      });
+      _battle.battleCreateChangeTitle(_title.text);
     });
 
   late final TextEditingController _content = TextEditingController(
-    text: _battle.battleCreate.value.content,
+    text: _battle.battleCreate.content,
   )..addListener(() {
-      _battle.battleCreate.update((val) {
-        val?.content = _content.value.text;
-      });
+      _battle.battleCreateChangeContent(_content.value.text);
     });
 
   @override
@@ -93,13 +88,14 @@ class _BattleIndexOneState extends State<BattleIndexOne> {
         Text('배틀방 사진', style: CTextStyles.Body3(color: CColors.gray41)),
         SizedBox(height: 20),
         Obx(() {
-          if (_battle.battleCreate.value.image != null) {
+          if (_battle.battleCreate.image != null) {
             return Container(
-                width: 100,
-                height: 100,
-                child: Image.file(
-                  File(_battle.battleCreate.value.image!.path),
-                ));
+              width: 100,
+              height: 100,
+              child: Image.file(
+                _battle.battleCreate.image!.file,
+              ),
+            );
           } else {
             return GestureDetector(
               onTap: () {

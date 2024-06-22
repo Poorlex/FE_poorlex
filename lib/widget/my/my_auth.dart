@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:collection/collection.dart';
+import 'package:poorlex/controller/audio_controller.dart';
 import 'package:poorlex/libs/string.dart';
 import 'package:poorlex/widget/common/buttons.dart';
 import 'package:poorlex/widget/common/icon.dart';
@@ -113,12 +115,20 @@ class _MyPageMyAuthState extends State<MyPageMyAuth> {
                 ],
               ),
               SizedBox(height: 17),
-              CButton(
-                key: containerKey,
-                type: ButtonTypes.outlined,
-                color: CColors.yellow.withOpacity(0.6),
-                child: Padding(
-                  padding: EdgeInsets.symmetric(vertical: 14),
+              GestureDetector(
+                onTap: () {
+                  AudioController().play(audioType: AudioType.complete);
+                  Get.toNamed('/my/expenditure');
+                },
+                child: Container(
+                  alignment: Alignment.center,
+                  height: 40,
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: CColors.yellow,
+                    ),
+                    borderRadius: BorderRadius.circular(2),
+                  ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -126,9 +136,10 @@ class _MyPageMyAuthState extends State<MyPageMyAuth> {
                         '지출 전체 보기',
                         style: CTextStyles.Body3(
                           color: CColors.yellow,
+                          height: 20 / 14,
                         ),
                       ),
-                      SizedBox(width: 5),
+                      SizedBox(width: 6),
                       CIcon(
                         icon: 'arrow-game-right',
                         width: 15,
@@ -138,7 +149,6 @@ class _MyPageMyAuthState extends State<MyPageMyAuth> {
                     ],
                   ),
                 ),
-                onPressed: () => Get.toNamed('/my/expenditure'),
               )
             ],
           ),

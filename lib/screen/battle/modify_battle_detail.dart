@@ -156,8 +156,7 @@ class _ModifyBattleDetailState extends State<ModifyBattleDetail> {
                             children: [
                               _modifyBattle.modifyImage.value != null
                                   ? Image.file(
-                                      File(_modifyBattle
-                                          .modifyImage.value!.path),
+                                      _modifyBattle.modifyImage.value!.file,
                                     )
                                   : CImageNetwork(
                                       src: battleInfo.battleImageUrl,

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:poorlex/controller/audio_controller.dart';
 
 import 'package:poorlex/controller/user.dart';
 import 'package:poorlex/libs/theme.dart';
@@ -43,18 +45,17 @@ class MyPageProfile extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 16),
-              OutlinedButton(
-                style: OutlinedButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(0),
-                  ),
-                  side: BorderSide(
-                    width: 1.0,
-                    color: CColors.yellow.withOpacity(0.6),
-                  ),
-                ),
+              GestureDetector(
+                onTap: () {
+                  AudioController().play(audioType: AudioType.complete);
+                  Get.toNamed('/my/profile');
+                },
                 child: Container(
                   alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    border: Border.all(color: CColors.yellow),
+                    borderRadius: BorderRadius.circular(2),
+                  ),
                   width: 211,
                   height: 30,
                   child: Text(
@@ -62,7 +63,6 @@ class MyPageProfile extends StatelessWidget {
                     style: CTextStyles.Body3(color: CColors.yellow),
                   ),
                 ),
-                onPressed: () => Get.toNamed('/my/profile'),
               )
             ],
           ),

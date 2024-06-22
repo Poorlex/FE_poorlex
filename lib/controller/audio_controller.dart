@@ -42,6 +42,11 @@ class AudioController {
   Future<void> play({
     required AudioType audioType,
   }) async {
+    PlayerState state = _audioPlayer.state;
+    if (state == PlayerState.playing) {
+      // 현재 오디오가 재생 중이면 정지합니다.
+      await _audioPlayer.stop();
+    }
     await _audioPlayer.setSource(
       AssetSource(
         _selectAudioAsset(audioType: audioType),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:poorlex/screen/battle/battle_guide_dialog.dart';
+import 'package:poorlex/widget/bottom_sheet/bottom_sheet_with_beggar.dart';
 import 'package:poorlex/widget/common/tab.dart';
 import 'package:poorlex/controller/battle.dart';
 import 'package:poorlex/libs/theme.dart';
@@ -49,6 +50,17 @@ class _BattleState extends State<Battle> {
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      final result = await BottomSheetWithBeggar.show(
+        context: context,
+        beggarAction: BeggarAction.suggestionBudget,
+      );
+
+      if (result == true) {
+        /// [TODO] 예산 설정하러 가기 라우팅
+      }
+    });
+
     battle.getBattle();
   }
 
@@ -102,6 +114,7 @@ class _BattleState extends State<Battle> {
 
   AppBar _appBar() {
     return AppBar(
+      toolbarHeight: 34,
       title: Row(
         children: [
           Expanded(child: Text('배틀', style: CTextStyles.Title1())),

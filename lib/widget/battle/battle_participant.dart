@@ -42,86 +42,92 @@ class BattleParticipant extends GetView<BattleController> {
                 id: GNBLayout.globalKey,
               );
             },
-            child: Container(
-              padding: EdgeInsets.only(
-                top: 11,
-                bottom: 9,
-              ),
-              child: Column(
-                children: [
-                  Row(
-                    children: [
-                      BattleMoneyBar(
-                        budget: progressBattle.budgetLeft,
-                      ),
-                      SizedBox(width: 10),
-                      Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(1),
-                          color: CColors.gray40,
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(height: 10),
+                    Row(
+                      children: [
+                        BattleMoneyBar(
+                          budget: progressBattle.budgetLeft,
                         ),
-                        padding: EdgeInsets.symmetric(horizontal: 6),
-                        child: Text(
-                          '예정',
-                          style: CTextStyles.Body3(height: 16 / 14),
-                        ),
-                      )
-                    ],
-                  ),
-                  SizedBox(height: 6),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            '${progressBattle.name}',
-                            style: CTextStyles.Body2(),
+                        SizedBox(width: 10, height: 22),
+                        Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(1),
+                            color: CColors.gray30,
                           ),
-                          SizedBox(height: 6),
-                          Row(
-                            children: [
-                              Text(
-                                "존버 금액:${formatCurrencyWithWon(progressBattle.budgetLeft)}",
-                                style: CTextStyles.Body2(
-                                  color: CColors.gray50,
-                                ),
+                          padding: EdgeInsets.symmetric(horizontal: 6),
+                          child: Text(
+                            '예정',
+                            style: CTextStyles.Body3(height: 16 / 14),
+                          ),
+                        )
+                      ],
+                    ),
+                    SizedBox(height: 6),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          '${progressBattle.name}',
+                          style: CTextStyles.Body2(
+                            height: 22 / 16,
+                          ),
+                        ),
+                        SizedBox(height: 6),
+                        Row(
+                          children: [
+                            Text(
+                              "존버 금액:${formatCurrencyWithWon(progressBattle.budgetLeft)}",
+                              style: CTextStyles.Body2(
+                                color: CColors.gray40,
+                                height: 22 / 16,
                               ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(height: 19),
+                        RichText(
+                          text: TextSpan(
+                            style: CTextStyles.Title2(
+                              color: progressBattle.currentParticipantRank <= 3
+                                  ? CColors.purpleLight
+                                  : null,
+                              height: 34 / 22,
+                              fontFamily: 'NeoDunggeunmoPro-Regular',
+                            ),
+                            text: "${progressBattle.currentParticipantRank}위",
+                            children: [
+                              TextSpan(
+                                style: CTextStyles.Title2(height: 34 / 22),
+                                text:
+                                    "/${progressBattle.battleParticipantCount}명",
+                              )
                             ],
                           ),
-                          SizedBox(height: 19),
-                          RichText(
-                            text: TextSpan(
-                              style: CTextStyles.Title2(
-                                color:
-                                    progressBattle.currentParticipantRank <= 3
-                                        ? CColors.purpleLight
-                                        : null,
-                                height: 34 / 22,
-                                fontFamily: 'NeoDunggeunmoPro-Regular',
-                              ),
-                              text: "${progressBattle.currentParticipantRank}위",
-                              children: [
-                                TextSpan(
-                                  style: CTextStyles.Title2(height: 34 / 22),
-                                  text:
-                                      "/${progressBattle.battleParticipantCount}명",
-                                )
-                              ],
-                            ),
-                          )
-                        ],
-                      ),
-                      CImageNetwork(
-                        width: 90,
-                        height: 90,
-                        src: progressBattle.imageUrl,
-                      ),
-                    ],
-                  )
-                ],
-              ),
+                        )
+                      ],
+                    )
+                  ],
+                ),
+                Container(
+                  margin: EdgeInsets.only(top: 46, bottom: 14),
+                  clipBehavior: Clip.hardEdge,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(1),
+                  ),
+                  child: CImageNetwork(
+                    width: 90,
+                    height: 90,
+                    src: progressBattle.imageUrl,
+                  ),
+                ),
+              ],
             ),
           );
         },

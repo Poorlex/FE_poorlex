@@ -16,7 +16,7 @@ class BattleIndexTwo extends StatelessWidget {
     return Wrap(
       spacing: 16.0,
       children: items.map((item) {
-        var count = battle.battleCreate.value.count;
+        var count = battle.battleCreate.count;
         return CButton(
             padding: EdgeInsets.symmetric(horizontal: 10, vertical: 14),
             color: count == item ? CColors.yellow : CColors.gray41,

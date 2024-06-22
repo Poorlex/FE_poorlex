@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:poorlex/controller/apple_auth.dart';
+import 'package:poorlex/controller/audio_controller.dart';
 import 'package:poorlex/controller/hive_box.dart';
 import 'package:poorlex/controller/kakao_auth.dart';
 import 'package:poorlex/controller/user.dart';
@@ -26,21 +27,37 @@ class _LoginState extends State<Login> {
   final _userController = Get.find<UserController>();
 
   Future<void> _tryKaKaoLogin() async {
-    final SocialLoginModel? socialLoginModel =
-        await _kakaoAuthController.kakaoLogin();
-    if (socialLoginModel == null) return;
-    await _userController.getAuthentication(socialLoginModel);
-    Get.offAllNamed('/');
+    try {
+      final SocialLoginModel? socialLoginModel =
+          await _kakaoAuthController.kakaoLogin();
+      if (socialLoginModel == null) {
+        return;
+      }
+      ;
+      await _userController.getAuthentication(socialLoginModel);
+      Get.offAllNamed('/');
+      AudioController().play(audioType: AudioType.congratulation);
+    } catch (e) {
+      AudioController().play(audioType: AudioType.fail);
+    }
   }
 
   /// [ERROR]
   /// {tag: null, message: 400 Bad Request: "{"error":"invalid_grant","error_description":"client_id mismatch. The code was not issued to Poorlex.app."}"}
   Future<void> _tryAppleLogin() async {
-    final SocialLoginModel? socialLoginModel =
-        await _appleAuthController.appleLogin();
-    if (socialLoginModel == null) return;
-    await _userController.getAuthentication(socialLoginModel);
-    Get.offAllNamed('/');
+    try {
+      final SocialLoginModel? socialLoginModel =
+          await _appleAuthController.appleLogin();
+      if (socialLoginModel == null) {
+        return;
+      }
+      ;
+      await _userController.getAuthentication(socialLoginModel);
+      Get.offAllNamed('/');
+      AudioController().play(audioType: AudioType.congratulation);
+    } catch (e) {
+      AudioController().play(audioType: AudioType.fail);
+    }
   }
 
   @override

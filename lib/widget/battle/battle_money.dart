@@ -52,10 +52,13 @@ class BattleMoney extends StatelessWidget {
                 style: ElevatedButton.styleFrom(
                   minimumSize: Size.zero,
                   padding: EdgeInsets.all(10),
-                  backgroundColor: isSelected ? CColors.yellow : CColors.black,
+                  backgroundColor: isSelected ? CColors.yellow : CColors.gray10,
                   side: BorderSide(
-                      width: 1.0,
-                      color: Color(isSelected ? 0xffffd600 : 0xff666666)),
+                    width: 1.0,
+                    color: isSelected
+                        ? Color(0xffffd600)
+                        : Color(0xff666666).withOpacity(0.6),
+                  ),
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(3)),
                 ),

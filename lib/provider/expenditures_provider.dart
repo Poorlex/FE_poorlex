@@ -1,8 +1,6 @@
-import 'dart:io';
-
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
-import 'package:image_picker/image_picker.dart';
+import 'package:poorlex/controller/image_picker.dart';
 import 'package:poorlex/controller/user.dart';
 import 'package:poorlex/libs/time.dart';
 import 'package:poorlex/schema/expenditure_response/expenditure_response.dart';
@@ -88,8 +86,8 @@ class ExpendituresProvider extends GetConnect {
     required int expenditureId,
     required int amount,
     required String description,
-    XFile? mainImage,
-    XFile? subImage,
+    FileWithName? mainImage,
+    FileWithName? subImage,
     String? mainImageUrl,
     String? subImageUrl,
   }) async {
@@ -97,12 +95,12 @@ class ExpendituresProvider extends GetConnect {
     final formData = FormData({
       if (mainImage != null)
         "mainImage": MultipartFile(
-          File(mainImage.path),
+          mainImage.file,
           filename: mainImage.name,
         ),
       if (subImage != null)
         "subImage": MultipartFile(
-          File(subImage.path),
+          subImage.file,
           filename: subImage.name,
         ),
       if (mainImageUrl != null && mainImage == null)
@@ -134,17 +132,17 @@ class ExpendituresProvider extends GetConnect {
     required int amount,
     required String description,
     required DateTime date,
-    required XFile mainImage,
-    XFile? subImage,
+    required FileWithName mainImage,
+    FileWithName? subImage,
   }) async {
     final formData = FormData({
       "mainImage": MultipartFile(
-        File(mainImage.path),
+        mainImage.file,
         filename: mainImage.name,
       ),
       if (subImage != null)
         "subImage": MultipartFile(
-          File(subImage.path),
+          subImage.file,
           filename: subImage.name,
         ),
     });
