@@ -1,34 +1,29 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:poorlex/Libs/Theme.dart';
-import 'package:poorlex/controller/battle.dart';
+import 'package:poorlex/schema/member_progress_battle_response/member_progress_battle_response.dart';
 
 import 'package:poorlex/widget/home/battle_box.dart';
 import 'package:poorlex/widget/home/empty_battle.dart';
 
 class MainCarouselSlider extends StatefulWidget {
-  const MainCarouselSlider({super.key});
+  final List<MemberProgressBattleResponse> battleListInProgress;
+
+  const MainCarouselSlider({
+    super.key,
+    required this.battleListInProgress,
+  });
 
   @override
   State<MainCarouselSlider> createState() => _MainCarouselSliderState();
 }
 
 class _MainCarouselSliderState extends State<MainCarouselSlider> {
-  BattleController battle = Get.find<BattleController>();
-
-  final List<List<String>> samples = [
-    ['7', '빚갚고 돈모으는 절약방', '21000', '13'],
-    ['4', '월급때까지 돈 모으는 방', '35000', '7'],
-    ['0']
-  ];
-
   int _currentIndex = 0;
 
   @override
   void initState() {
     super.initState();
-    battle.getBattle();
   }
 
   @override
@@ -48,7 +43,9 @@ class _MainCarouselSliderState extends State<MainCarouselSlider> {
             horizontal: 23,
           ),
           child: Text(
-            '참여 중인 배틀 (${_currentIndex + 1}/${samples.length})',
+            _currentIndex == widget.battleListInProgress.length
+                ? '배틀 방 만들기'
+                : '참여 중인 배틀 (${_currentIndex + 1}/${widget.battleListInProgress.length})',
             style: CTextStyles.Body3(color: CColors.black),
           ),
         ),
@@ -67,21 +64,24 @@ class _MainCarouselSliderState extends State<MainCarouselSlider> {
                 });
               },
             ),
-            itemCount: samples.length,
+            itemCount: widget.battleListInProgress.length + 1,
             itemBuilder: (BuildContext context, int index, int realIndex) {
-              final sample = samples[index];
-              return Container(
-                width: itemWidth,
-                child: Wrap(
-                  children: [
-                    if (sample[0] != '0') ...[
-                      BattleBox(sample: sample)
-                    ] else ...[
-                      EmptyBattle()
-                    ]
-                  ],
-                ),
-              );
+              if (index == widget.battleListInProgress.length) {
+                // 마지막 인덱스인 경우
+                return Container(
+                  width: itemWidth,
+                  child: EmptyBattle(),
+                );
+              } else {
+                // 일반 샘플 인덱스인 경우
+                final battle = widget.battleListInProgress[index];
+                return Container(
+                  width: itemWidth,
+                  child: Wrap(
+                    children: [BattleBox(battle: battle)],
+                  ),
+                );
+              }
             },
           ),
         ),
