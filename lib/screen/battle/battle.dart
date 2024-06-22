@@ -114,6 +114,7 @@ class _BattleState extends State<Battle> {
 
   AppBar _appBar() {
     return AppBar(
+      toolbarHeight: 34,
       title: Row(
         children: [
           Expanded(child: Text('배틀', style: CTextStyles.Title1())),

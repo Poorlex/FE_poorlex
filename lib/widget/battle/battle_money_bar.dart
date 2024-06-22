@@ -27,7 +27,7 @@ class BattleMoneyBar extends StatelessWidget {
           '${budget ~/ 10000}만원',
           style: CTextStyles.Body3(
             color: CColors.yellow,
-            height: 22 / 14,
+            height: 20 / 14,
           ),
         ),
       ],

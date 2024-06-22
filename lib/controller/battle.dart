@@ -32,9 +32,9 @@ class BattleController extends GetxController {
       _battleListInProgress;
 
   /// 완료된 배틀 리스트
-  final _battleListInComplete = <MemberCompleteBattleResponse>[].obs;
-  List<MemberCompleteBattleResponse> get battleListInComplete =>
-      _battleListInComplete;
+  final _battleListInCompleted = <MemberCompleteBattleResponse>[].obs;
+  List<MemberCompleteBattleResponse> get battleListInCompleted =>
+      _battleListInCompleted;
 
   /// battleCreate 초기화
   void initBattleCreate() {
@@ -174,7 +174,7 @@ class BattleController extends GetxController {
 
   Future<void> getBattleInComplete() async {
     /// [MOCK DATA]
-    _battleListInComplete(
+    _battleListInCompleted(
       [
         MemberCompleteBattleResponse(
           battleId: 1,
