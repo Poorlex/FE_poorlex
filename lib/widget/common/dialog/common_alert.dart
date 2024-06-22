@@ -43,7 +43,7 @@ Future<void> commonAlert({
                         type: ButtonTypes.elevated,
                         color: CColors.yellow,
                         child: Text(
-                          "입력하기",
+                          buttonText != null ? buttonText : "입력하기",
                           style: CTextStyles.Headline(color: CColors.gray10),
                         ),
                       ),
