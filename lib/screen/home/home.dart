@@ -1,10 +1,10 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:poorlex/controller/firbase_controller.dart';
+import 'package:poorlex/controller/battle.dart';
+// import 'package:poorlex/controller/firbase_controller.dart';
 import 'package:poorlex/controller/weekly_budgets.dart';
 import 'package:poorlex/libs/theme.dart';
+import 'package:poorlex/schema/member_progress_battle_response/member_progress_battle_response.dart';
 
 import 'package:poorlex/widget/home/home_nav_bar.dart';
 import 'package:poorlex/widget/home/carousel_slider.dart';
@@ -38,6 +38,7 @@ class _MainState extends State<Main> {
   // }
 
   late final _budget = Get.find<WeeklyBudgetsController>();
+  BattleController battle = Get.find<BattleController>();
 
   @override
   void initState() {
@@ -48,6 +49,8 @@ class _MainState extends State<Main> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _budget.getWeeklyBudgets();
     });
+
+    battle.getBattleInProgress();
 
     /// [MEMO] 1차 배포에 포함안하기 때문에 주석처리
     /// 해당 부분 modal 새로 구현해야합니다.
@@ -62,10 +65,14 @@ class _MainState extends State<Main> {
   Widget build(BuildContext context) {
     final double deviceWidth = MediaQuery.of(context).size.width;
     final double deviceHeight = MediaQuery.of(context).size.height;
+    final List<MemberProgressBattleResponse> battleListInProgress =
+        battle.battleListInProgress;
 
     return Obx(
       () {
         final budget = _budget.weeklyBudget.value;
+
+        print('#Home# budget: ${budget}');
 
         return Scaffold(
           // 네비게이션 바
@@ -91,7 +98,8 @@ class _MainState extends State<Main> {
                     decoration: BoxDecoration(
                       image: DecorationImage(
                         image: AssetImage('assets/main_page/background_1.png'),
-                        fit: BoxFit.cover,
+                        fit: BoxFit.contain,
+                        repeat: ImageRepeat.repeatX,
                         alignment: Alignment.bottomCenter,
                       ),
                     ),
@@ -125,7 +133,8 @@ class _MainState extends State<Main> {
                     decoration: BoxDecoration(
                       image: DecorationImage(
                         image: AssetImage('assets/main_page/background_2.png'),
-                        fit: BoxFit.cover,
+                        fit: BoxFit.contain,
+                        repeat: ImageRepeat.repeatX,
                         alignment: Alignment.bottomCenter,
                       ),
                     ),
@@ -133,7 +142,7 @@ class _MainState extends State<Main> {
                 ),
 
                 // 예산 설정 안내 문구
-                if (budget.amount == 0)
+                if (budget.exist == false)
                   Positioned(
                     top: 4,
                     left: 15,
@@ -192,14 +201,17 @@ class _MainState extends State<Main> {
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   children: [
-                                    MainCarouselSlider(),
+                                    MainCarouselSlider(
+                                        battleListInProgress:
+                                            battleListInProgress),
                                   ],
                                 ),
                               )
                             : Column(
-                                mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
-                                  MainCarouselSlider(),
+                                  MainCarouselSlider(
+                                      battleListInProgress:
+                                          battleListInProgress),
                                 ],
                               ),
                       );
@@ -218,6 +230,7 @@ class _MainState extends State<Main> {
   }
 }
 
+// 예산 설정 안내 문구 말풍선 삼각형
 class TriangleClipper extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
