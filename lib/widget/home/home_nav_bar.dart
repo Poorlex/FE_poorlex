@@ -5,9 +5,10 @@ import 'package:poorlex/libs/number_format.dart';
 import 'package:poorlex/libs/theme.dart';
 import 'package:poorlex/schema/weekly_budget_response/weekly_budget_response.dart';
 
-import 'package:poorlex/screen/budget/budget_page.dart';
 import 'package:poorlex/widget/common/buttons.dart';
 
+/// [TODO] 레벨, 프로그레스바, 포인트, 지출, 남은 날짜
+/// 유저 정보 반영하기
 class NavBar extends StatefulWidget implements PreferredSizeWidget {
   final WeeklyBudgetResponse budget;
 
@@ -70,7 +71,9 @@ class _NavBarState extends State<NavBar> {
                             children: [
                               // 예산 금액
                               Text(
-                                '$budgetMoney',
+                                widget.budget.exist == true
+                                    ? '$budgetMoney'
+                                    : '?',
                                 style: CTextStyles.Body2(),
                               ),
 
@@ -154,7 +157,7 @@ class _NavBarState extends State<NavBar> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                if (budgetMoney != '0') ...[
+                if (widget.budget.exist == true) ...[
                   Wrap(
                     spacing: 12,
                     alignment: WrapAlignment.center,
