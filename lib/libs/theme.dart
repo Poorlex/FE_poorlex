@@ -22,6 +22,7 @@ class CColors {
   /// figma greyScale90 > 10으로 쓰고있음 확인필요
   static final Color gray10 = Color(0xFF1A1A1A);
   static final Color black = Color(0xFF0A0A0A);
+  static final Color blackOpa80 = Color(0xFF1E1E1E);
 
   static final Color brownLight = Color(0xFFE4D4BE);
   static final Color brown = Color(0xFFB59767);
