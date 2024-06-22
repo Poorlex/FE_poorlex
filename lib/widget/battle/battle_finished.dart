@@ -100,6 +100,7 @@ class BattleFinished extends GetView<BattleController> {
         scrollDirection: Axis.vertical,
         itemBuilder: (context, idx) {
           final battleInCompleted = battleListInCompleted[idx];
+          final isFailure = battleInCompleted.budgetLeft < 0;
           return Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -151,41 +152,47 @@ class BattleFinished extends GetView<BattleController> {
                     ),
                   ),
                   SizedBox(height: 20),
-                  Row(
-                    children: [
-                      Text(
-                        '${battleInCompleted.currentParticipantRank}위',
-                        style: CTextStyles.Title1(
-                          height: 32 / 22,
-                        ),
-                      ),
-                      Text(
-                        '/${battleInCompleted.battleParticipantCount}명',
-                        style: CTextStyles.Title1(
-                          height: 32 / 22,
-                        ),
-                      ),
-                      if (battleInCompleted.currentParticipantRank == 1) ...[
-                        SizedBox(width: 20),
-                        Container(
-                          height: 24,
-                          decoration: BoxDecoration(
-                            color: CColors.yellow,
-                            borderRadius: BorderRadius.circular(2),
+                  if (!isFailure)
+                    Row(
+                      children: [
+                        Text(
+                          '${battleInCompleted.currentParticipantRank}위',
+                          style: CTextStyles.Title1(
+                            height: 32 / 22,
                           ),
-                          padding: EdgeInsets.symmetric(
-                            horizontal: 6,
+                        ),
+                        Text(
+                          '/${battleInCompleted.battleParticipantCount}명',
+                          style: CTextStyles.Title1(
+                            height: 32 / 22,
                           ),
-                          child: Text(
-                            '+${battleInCompleted.earnedPoint}',
-                            style: CTextStyles.Title1(
-                              color: CColors.black,
+                        ),
+                        if (battleInCompleted.currentParticipantRank == 1) ...[
+                          SizedBox(width: 20),
+                          Container(
+                            height: 24,
+                            decoration: BoxDecoration(
+                              color: CColors.yellow,
+                              borderRadius: BorderRadius.circular(2),
                             ),
-                          ),
-                        )
-                      ]
-                    ],
-                  )
+                            padding: EdgeInsets.symmetric(
+                              horizontal: 6,
+                            ),
+                            child: Text(
+                              '+${battleInCompleted.earnedPoint}',
+                              style: CTextStyles.Title1(
+                                color: CColors.black,
+                              ),
+                            ),
+                          )
+                        ]
+                      ],
+                    )
+                  else
+                    Text(
+                      "실패",
+                      style: CTextStyles.Title1(),
+                    )
                 ],
               ),
               Container(
@@ -196,6 +203,7 @@ class BattleFinished extends GetView<BattleController> {
                 ),
                 child: BattleCompletedImage(
                   rank: battleInCompleted.currentParticipantRank,
+                  isFailure: isFailure,
                 ),
               ),
             ],

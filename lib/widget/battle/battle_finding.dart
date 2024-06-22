@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:poorlex/controller/battle.dart';
 
 import 'package:poorlex/libs/theme.dart';
-import 'package:poorlex/models/battle.dart';
 import 'package:poorlex/schema/finding_battle_response/finding_battle_response.dart';
 import 'package:poorlex/widget/battle/battle_money_bar.dart';
 import 'package:poorlex/widget/common/icon.dart';
