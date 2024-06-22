@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:poorlex/models/weeklyBudget.dart';
 import 'package:poorlex/provider/weekly_budgets_provider.dart';
 import 'package:poorlex/schema/weekly_budget_left_response/weekly_budget_left_response.dart';
 import 'package:poorlex/schema/weekly_budget_response/weekly_budget_response.dart';
@@ -9,6 +10,9 @@ class WeeklyBudgetsController extends GetxController {
   WeeklyBudgetsController({
     required this.weeklyBudgetsProvider,
   });
+
+  final _createWeeklyBudgets = WeeklyBudgetCreateModel().obs;
+  WeeklyBudgetCreateModel get createWeeklyBudget => _createWeeklyBudgets.value;
 
   final Rx<WeeklyBudgetResponse> weeklyBudget = WeeklyBudgetResponse(
     exist: false,
@@ -21,6 +25,16 @@ class WeeklyBudgetsController extends GetxController {
     exist: false,
     amount: 0,
   ).obs;
+
+  void initCreateWeeklyBudget() {
+    _createWeeklyBudgets(WeeklyBudgetCreateModel());
+  }
+
+  void changeBudget(int budget) {
+    _createWeeklyBudgets.update((val) {
+      val?.budget = budget;
+    });
+  }
 
   /// 요청 날짜 포함 주간 예산 조회
   Future<void> getWeeklyBudgets() async {
@@ -43,15 +57,17 @@ class WeeklyBudgetsController extends GetxController {
   }
 
   /// 주간 예산 생성
-  Future<void> postCreateWeeklyBudgets({
+  Future<bool> postCreateWeeklyBudgets({
     required int budget,
   }) async {
     try {
-      await weeklyBudgetsProvider.postCreateWeeklyBudgets(
+      final result = await weeklyBudgetsProvider.postCreateWeeklyBudgets(
         budget: budget,
       );
+      return result;
     } catch (e) {
       print(e);
+      return false;
     }
   }
 }

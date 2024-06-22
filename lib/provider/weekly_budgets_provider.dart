@@ -37,10 +37,16 @@ class WeeklyBudgetsProvider extends GetConnect {
   }
 
   /// 주간 예산 생성
-  Future<void> postCreateWeeklyBudgets({
+  Future<bool> postCreateWeeklyBudgets({
     required int budget,
   }) async {
-    final response = await post("", {'budget': budget});
-    print("주간 예산 생성 > $response");
+    try {
+      final response = await post("", {'budget': budget});
+      print("주간 예산 생성 > $response");
+      return response.status == 201;
+    } catch (e) {
+      print(e);
+      return false;
+    }
   }
 }
