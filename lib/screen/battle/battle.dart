@@ -56,8 +56,10 @@ class _BattleState extends State<Battle> {
         beggarAction: BeggarAction.suggestionBudget,
       );
 
-      if (result == true) {
+      if (result == false) {
         /// [TODO] 예산 설정하러 가기 라우팅
+        print('예산 설정하러 가기');
+        Get.toNamed('/budget');
       }
     });
 
