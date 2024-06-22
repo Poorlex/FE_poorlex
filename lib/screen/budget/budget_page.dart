@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:get/get.dart';
+import 'package:intl/intl.dart';
+import 'package:poorlex/controller/audio_controller.dart';
+import 'package:poorlex/controller/weekly_budgets.dart';
 
 import 'package:poorlex/libs/theme.dart';
+import 'package:poorlex/widget/common/dialog/common_alert.dart';
+import 'package:poorlex/widget/common/form.dart';
 
 class BudgetPage extends StatefulWidget {
   const BudgetPage({super.key});
@@ -11,36 +16,63 @@ class BudgetPage extends StatefulWidget {
 }
 
 class _BudgetPageState extends State<BudgetPage> {
-  bool _isDefaultText = false;
-  // var battlePeriod = "2023.07.24 - 2023.07.31";
+  final _weeklyBudgetsController = Get.find<WeeklyBudgetsController>();
 
-  final TextEditingController _controller = TextEditingController();
-  final FocusNode _focusNode = FocusNode();
+  late final _priceController = TextEditingController()
+    ..addListener(() {
+      _priceControllerListener();
+    });
 
-  late var moneyValues;
+  void _priceControllerListener() {
+    String currentText = _priceController.text;
+    String newText = _formatNumber(currentText);
+    if (currentText != newText) {
+      _priceController.value = TextEditingValue(
+        text: newText,
+        selection: TextSelection.collapsed(offset: newText.length - 1),
+      );
+    }
+    setState(() {});
+  }
+
+  /// 숫자 외의 모든 문자를 제거하고 포맷팅
+  String _formatNumber(String value) {
+    String onlyNumbers = value.replaceAll(RegExp(r'[^0-9]'), '');
+    if (onlyNumbers.isEmpty) {
+      return '';
+    }
+    final formatter = NumberFormat('#,###');
+    String formatted = formatter.format(int.parse(onlyNumbers));
+    return '$formatted원';
+  }
+
+  Future<void> _submit() async {
+    if (_priceController.text.isEmpty) {
+      await commonAlert(context: context, message: '금액을 입력해주세요');
+    } else {
+      final result = await _weeklyBudgetsController.postCreateWeeklyBudgets(
+        budget: int.parse(
+            _priceController.text.replaceAll('원', '').replaceAll(',', '')),
+      );
+
+      if (result == false) {
+        return await commonAlert(
+          context: context,
+          message: "예산 설정 실패",
+          buttonText: "확인",
+        );
+      }
+
+      await AudioController().play(audioType: AudioType.complete);
+      Get.back();
+    }
+  }
 
   @override
-  void initState() {
-    super.initState();
-    _controller.text = "금액 입력";
-
-    _focusNode.addListener(() {
-      if (_focusNode.hasFocus) {
-        if (_controller.text == "금액 입력") {
-          setState(() {
-            _controller.text = "원";
-            _isDefaultText = true;
-          });
-        }
-      } else {
-        if (_controller.text == "원" || _controller.text.isEmpty) {
-          setState(() {
-            _controller.text = "금액 입력";
-            _isDefaultText = false;
-          });
-        }
-      }
-    });
+  void dispose() {
+    _priceController.dispose();
+    _weeklyBudgetsController.dispose();
+    super.dispose();
   }
 
   @override
@@ -89,63 +121,23 @@ class _BudgetPageState extends State<BudgetPage> {
                     "배틀을 시작하기 위해\n일주일 동안 사용할 예산을\n설정해 주세요.",
                     style: CTextStyles.Title1(height: 1.5),
                   ),
-                  // SizedBox(height: 18),
-                  // Text(
-                  //   "배틀 기간: $battlePeriod",
-                  //   style: CTextStyles.Caption1(color: CColors.gray41),
-                  // ),
                   SizedBox(
-                    height: 40,
+                    height: 52,
                   ),
-                  Stack(
-                    children: <Widget>[
-                      // TODO: 현재 텍스트 입력으로 구현. 유진님의 커스텀 키패드 전달받으면 적용예정!
-                      TextField(
-                        focusNode: _focusNode,
-                        controller: _controller,
-                        onChanged: (value) {
-                          moneyValues = value.replaceAll("원", "");
-
-                          // 값을 "원" 앞에 추가
-                          setState(() {
-                            _controller.text = "$moneyValues원";
-                            _controller.selection = TextSelection.fromPosition(
-                              TextPosition(offset: _controller.text.length - 1),
-                            ); // 커서를 "원" 앞에 위치시킴
-                          });
-                        },
-                        keyboardType: TextInputType.number,
-                        inputFormatters: [
-                          FilteringTextInputFormatter.digitsOnly,
-                        ],
-                        style: TextStyle(
-                            color: _isDefaultText
-                                ? CColors.yellow
-                                : CColors.gray30,
-                            fontSize: 32),
-                        decoration: InputDecoration(
-                          focusedBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: CColors.yellow),
-                          ),
-                          enabledBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: CColors.yellow),
-                          ),
-                          hintText: _focusNode.hasFocus ? '' : '금액 입력',
-                          hintStyle:
-                              CTextStyles.LargeTitle(color: CColors.gray30),
-                        ),
-                      ),
-
-                      // 포커스 되었을 때만 이미지 표시
-                      if (_focusNode.hasFocus)
-                        Positioned(
-                          width: 122,
-                          right: 5, // 원하는 위치로 조절
-                          top: 15, // 원하는 위치로 조절
-                          child: Image.asset('assets/poorlex.png'),
-                        ),
-                    ],
-                  )
+                  CTextField(
+                    keyType: TextInputType.number,
+                    controller: _priceController,
+                    placeholder: '금액 입력',
+                    hintStyle: CTextStyles.LargeTitle(color: CColors.gray40),
+                    textStyle: CTextStyles.LargeTitle(color: CColors.yellow),
+                    color: CColors.yellow,
+                    primaryColor: CColors.yellow,
+                    underlineWidth: 2.0,
+                    suffix: _priceController.text.isNotEmpty
+                        ? Image.asset('assets/poorlex.png')
+                        : null,
+                    suffixHeight: 30,
+                  ),
                 ],
               ),
             ),
@@ -168,7 +160,7 @@ class _BudgetPageState extends State<BudgetPage> {
                     style: CTextStyles.Title3(color: CColors.black),
                   ),
                   onPressed: () {
-                    Navigator.pop(context, moneyValues);
+                    _submit();
                   },
                 ),
               ),
