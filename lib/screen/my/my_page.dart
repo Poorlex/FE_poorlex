@@ -38,26 +38,26 @@ class _MyPageState extends State<MyPage> {
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            // IconButton(
-            //   iconSize: 26,
-            //   icon: CIcon(
-            //     icon: 'setting',
-            //     width: 26,
-            //     height: 26,
-            //     color: CColors.whiteStr,
-            //   ),
-            //   onPressed: () => Get.toNamed('/my/option'),
-            // ),
-            // IconButton(
-            //   iconSize: 26,
-            //   icon: CIcon(
-            //     icon: 'ring',
-            //     width: 26,
-            //     height: 26,
-            //     color: CColors.whiteStr,
-            //   ),
-            //   onPressed: () => Get.toNamed('/my/notification'),
-            // )
+            IconButton(
+              iconSize: 26,
+              icon: CIcon(
+                icon: 'setting',
+                width: 26,
+                height: 26,
+                color: CColors.whiteStr,
+              ),
+              onPressed: () => Get.toNamed('/my/option'),
+            ),
+            IconButton(
+              iconSize: 26,
+              icon: CIcon(
+                icon: 'ring',
+                width: 26,
+                height: 26,
+                color: CColors.whiteStr,
+              ),
+              onPressed: () => Get.toNamed('/my/notification'),
+            )
           ],
         ),
       ),
