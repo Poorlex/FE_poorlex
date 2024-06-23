@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
 
-import 'package:poorlex/widget/common/picker.dart';
-
 import 'package:poorlex/libs/theme.dart';
+import 'package:poorlex/widget/common/date_picker/common_date_picker.dart';
 
 class CalenderHeader extends StatefulWidget {
   final int current;
-  final Function select;
+  final void Function(int d) select;
 
   CalenderHeader({
     super.key,
-    required int this.current,
-    required Function this.select,
+    required this.current,
+    required this.select,
   });
 
   @override
@@ -49,10 +49,11 @@ class _CalenderHeaderState extends State<CalenderHeader> {
                     icon: Icon(Icons.arrow_back_ios,
                         size: 25, color: CColors.white),
                     onPressed: () => _changeMonth('prev')),
-                Picker(
-                  type: 'MONTH',
-                  current: widget.current,
-                  select: widget.select,
+                GestureDetector(
+                  onTap: () => CommonDatePicker.show(
+                    context: context,
+                    onChangeDate: widget.select,
+                  ),
                   child: Row(children: [
                     Text(
                         DateFormat('yyyy년 MM월').format(

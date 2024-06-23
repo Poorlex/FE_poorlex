@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:poorlex/controller/battle.dart';
+import 'package:poorlex/libs/number_format.dart';
 import 'package:poorlex/libs/theme.dart';
+import 'package:poorlex/widget/battle/battle_completed_image.dart';
+import 'package:poorlex/widget/battle/battle_empty.dart';
 import 'package:poorlex/widget/battle/battle_money_bar.dart';
-import 'package:poorlex/widget/common/image/image_network.dart';
 
 class BattleFinished extends GetView<BattleController> {
   const BattleFinished({super.key});
@@ -83,88 +85,131 @@ class BattleFinished extends GetView<BattleController> {
   @override
   Widget build(BuildContext context) {
     return Obx(() {
-      final battleListInComplete = controller.battleListInComplete;
-
+      final battleListInCompleted = controller.battleListInCompleted;
+      if (battleListInCompleted.isEmpty) {
+        return Column(
+          children: [
+            SizedBox(height: 144),
+            BattleEmpty(text: "완료된 배틀이 없습니다."),
+          ],
+        );
+      }
       return ListView.builder(
+        padding: EdgeInsets.symmetric(horizontal: 16),
         shrinkWrap: true,
         scrollDirection: Axis.vertical,
         itemBuilder: (context, idx) {
-          return Container(
-            padding: EdgeInsets.only(
-              top: 10,
-              bottom: 14,
-              left: 16,
-              right: 16,
-            ),
-            child: Column(
-              children: [
-                Row(
-                  children: [
-                    BattleMoneyBar(
-                      budget: battleListInComplete[idx].budgetLeft,
+          final battleInCompleted = battleListInCompleted[idx];
+          final isFailure = battleInCompleted.budgetLeft < 0;
+          return Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(height: 10),
+                  SizedBox(
+                    height: 20,
+                    child: Row(
+                      children: [
+                        BattleMoneyBar(
+                          budget: battleInCompleted.budgetLeft,
+                        ),
+                        SizedBox(width: 10),
+                        Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(1),
+                            color: CColors.gray20,
+                          ),
+                          padding: EdgeInsets.symmetric(horizontal: 6),
+
+                          /// [TODO] 몇일전인지 데이터 넣기
+                          child: Text(
+                            '${-1 * battleInCompleted.pastDay}일전',
+                            style: CTextStyles.Caption2(
+                              color: Color.fromRGBO(126, 126, 126, 1),
+                              height: 16 / 12,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
-                    SizedBox(width: 10),
-                    Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(1),
-                          color: CColors.gray20),
-                      padding: EdgeInsets.symmetric(horizontal: 6),
-                      child: Text('${battleListInComplete[idx].pastDay}',
-                          style: CTextStyles.Caption2(color: CColors.gray41)),
-                    )
-                  ],
-                ),
-                SizedBox(height: 12),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text('${battleListInComplete[idx].name}',
-                              style: CTextStyles.Body2()),
-                          SizedBox(height: 9),
-                          Text(
-                              '존버 금액 : ${battleListInComplete[idx].budgetLeft}',
-                              style: CTextStyles.Body2(color: CColors.gray40)),
-                          SizedBox(height: 27),
-                          Row(
-                            children: [
-                              Text(
-                                  '${battleListInComplete[idx].currentParticipantRank}위',
-                                  style: CTextStyles.Title1()),
-                              Text(
-                                  '/${battleListInComplete[idx].battleParticipantCount}명',
-                                  style: CTextStyles.Title1()),
-                              SizedBox(width: 20),
-                              if (dummy[idx][4] == '1') ...[
-                                Container(
-                                  decoration:
-                                      BoxDecoration(color: CColors.yellow),
-                                  padding: EdgeInsets.symmetric(horizontal: 6),
-                                  child: Text('+20',
-                                      style: CTextStyles.Title3(
-                                          color: CColors.black)),
-                                )
-                              ]
-                            ],
+                  ),
+                  SizedBox(height: 7),
+                  Text(
+                    '${battleInCompleted.name}',
+                    style: CTextStyles.Body2(
+                      height: 22 / 16,
+                    ),
+                  ),
+                  SizedBox(height: 4),
+                  Text(
+                    '존버 금액 : ${formatCurrencyWithWon(battleInCompleted.budgetLeft)}',
+                    style: CTextStyles.Body2(
+                      color: CColors.gray50,
+                      height: 22 / 16,
+                    ),
+                  ),
+                  SizedBox(height: 20),
+                  if (!isFailure)
+                    Row(
+                      children: [
+                        Text(
+                          '${battleInCompleted.currentParticipantRank}위',
+                          style: CTextStyles.Title1(
+                            height: 32 / 22,
+                          ),
+                        ),
+                        Text(
+                          '/${battleInCompleted.battleParticipantCount}명',
+                          style: CTextStyles.Title1(
+                            height: 32 / 22,
+                          ),
+                        ),
+                        if (battleInCompleted.currentParticipantRank == 1) ...[
+                          SizedBox(width: 20),
+                          Container(
+                            height: 24,
+                            decoration: BoxDecoration(
+                              color: CColors.yellow,
+                              borderRadius: BorderRadius.circular(2),
+                            ),
+                            padding: EdgeInsets.symmetric(
+                              horizontal: 6,
+                            ),
+                            child: Text(
+                              '+${battleInCompleted.earnedPoint}',
+                              style: CTextStyles.Title1(
+                                color: CColors.black,
+                              ),
+                            ),
                           )
-                        ],
-                      ),
-                    ),
-                    CImageNetwork(
-                      src: battleListInComplete[idx].imageUrl,
-                      width: 90,
-                      height: 90,
-                    ),
-                  ],
-                )
-              ],
-            ),
+                        ]
+                      ],
+                    )
+                  else
+                    Text(
+                      "실패",
+                      style: CTextStyles.Title1(),
+                    )
+                ],
+              ),
+              Container(
+                margin: EdgeInsets.only(top: 46, bottom: 14),
+                clipBehavior: Clip.hardEdge,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(1),
+                ),
+                child: BattleCompletedImage(
+                  rank: battleInCompleted.currentParticipantRank,
+                  isFailure: isFailure,
+                ),
+              ),
+            ],
           );
         },
-        itemCount: battleListInComplete.length,
+        itemCount: battleListInCompleted.length,
       );
     });
   }

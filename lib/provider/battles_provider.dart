@@ -1,17 +1,25 @@
-import 'dart:io';
-
+import 'package:dartz/dartz.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
-import 'package:image_picker/image_picker.dart';
+import 'package:poorlex/controller/image_picker.dart';
 import 'package:poorlex/controller/user.dart';
 import 'package:poorlex/enums/day_of_week.dart';
 import 'package:poorlex/schema/battle_expenditure_response/battle_expenditure_response.dart';
 import 'package:poorlex/schema/battle_notification_response/battle_notification_response.dart';
 import 'package:poorlex/schema/battle_response/battle_response.dart';
+import 'package:poorlex/schema/error_response/error_response.dart';
 import 'package:poorlex/schema/finding_battle_response/finding_battle_response.dart';
 import 'package:poorlex/schema/member_complete_battle_response/member_complete_battle_response.dart';
 import 'package:poorlex/schema/member_progress_battle_response/member_progress_battle_response.dart';
+import 'package:poorlex/schema/participant_ranking_response/participant_ranking_response.dart';
 import 'package:poorlex/schema/vote_response/vote_response.dart';
+
+enum BattleStatus {
+  RECRUITING,
+  RECRUITING_FINISHED,
+  PROGRESS,
+  COMPLETE,
+}
 
 class BattlesProvider extends GetConnect {
   BattlesProvider();
@@ -21,7 +29,6 @@ class BattlesProvider extends GetConnect {
     // prefix "/battles" 적용
     httpClient.baseUrl = "${dotenv.get('SERVER_URL')}/battles";
 
-    /// [TODO] header에 token 잘 들어가는지 확인 필요
     httpClient.addRequestModifier<Object?>((request) {
       final user = Get.find<UserController>();
       final token = user.userToken;
@@ -41,9 +48,13 @@ class BattlesProvider extends GetConnect {
   }
 
   /// 모든 배틀 조회 (모집중, 모집완료)
-  Future<List<FindingBattleResponse>> getAll() async {
+  Future<List<FindingBattleResponse>> getAll(
+      {required List<BattleStatus> status}) async {
     final response = await get(
       '',
+      query: {
+        "status": status.map((e) => e.name),
+      },
       decoder: (data) {
         return (data as List<dynamic>).map((e) {
           return FindingBattleResponse.fromJson(e);
@@ -56,7 +67,6 @@ class BattlesProvider extends GetConnect {
 
   Future<BattleResponse?> getDetailById({
     required int battleId,
-    required DateTime date,
   }) async {
     final response = await get(
       '/$battleId',
@@ -67,12 +77,12 @@ class BattlesProvider extends GetConnect {
     return response.body;
   }
 
-  /// [TEST] x
   /// 회원 배틀 조회 (진행중)
   Future<List<MemberProgressBattleResponse>?> getProgress() async {
     final response = await get(
       '/progress',
       decoder: (data) {
+        print(data);
         return (data as List<dynamic>)
             .map((e) => MemberProgressBattleResponse.fromJson(e))
             .toList();
@@ -101,11 +111,11 @@ class BattlesProvider extends GetConnect {
     required String introduction,
     required int budget,
     required int maxParticipantSize,
-    required XFile image,
+    required FileWithName image,
   }) async {
     final formData = FormData({
       "image": MultipartFile(
-        File(image.path),
+        image.file,
         filename: image.name,
       ),
     });
@@ -126,7 +136,6 @@ class BattlesProvider extends GetConnect {
     }
   }
 
-  /// [TEST] x
   /// 배틀 요일별 참가자 지출 목록 조회
   Future<List<BattleExpenditureResponse>?> getExpenditures({
     required int battleId,
@@ -146,7 +155,6 @@ class BattlesProvider extends GetConnect {
     return response.body;
   }
 
-  /// [TEST] x
   /// 회원 배틀 기간 지출 목록 조회
   Future<List<BattleExpenditureResponse>?> getMemberExpenditures({
     required int battleId,
@@ -250,28 +258,88 @@ class BattlesProvider extends GetConnect {
   }
 
   /// 배틀 참가
-  Future<bool> addParticipants({
+  Future<Either<ErrorResponse, bool>> addParticipants({
     required int battleId,
   }) async {
     try {
       final response = await post("/$battleId/participants", null);
-      return response.statusCode == 201;
+      if (response.statusCode == 201) {
+        return Right(true);
+      } else if (response.statusCode == 400) {
+        return Left(ErrorResponse(message: "이미 참여한 배틀입니다.", tag: "배틀 참가 에러"));
+      }
+
+      throw response;
     } catch (e) {
-      return false;
+      return Left(ErrorResponse(message: "알 수 없는 에러", tag: "배틀 참가 에러"));
     }
   }
 
-  /// [REFACTOR] api 수정 필요
-  Future<bool> deleteParticipants({
+  /// 배틀 탈퇴
+  Future<Either<ErrorResponse, bool>> deleteParticipants({
     required int battleId,
   }) async {
     try {
       final response = await delete(
         "/$battleId/participants",
       );
-      return response.statusCode == 200 || response.statusCode == 204;
+
+      if (response.statusCode == 400) {
+        return Left(
+          ErrorResponse(tag: "배틀 탈퇴 에러", message: "방장은 배틀을 나갈 수 없습니다."),
+        );
+      }
+      return Right(response.statusCode == 200 || response.statusCode == 204);
     } catch (e) {
-      return false;
+      return Left(ErrorResponse(tag: "배틀 탈퇴 에러", message: "알 수 없는 에러"));
     }
+  }
+
+  /// 배틀 삭제
+  Future<void> deleteBattle({
+    required int battleId,
+  }) async {
+    await delete("/$battleId");
+  }
+
+  /// 배틀 수정
+  Future<void> patchBattle({
+    required int battleId,
+    String? name,
+    String? introduction,
+    FileWithName? image,
+  }) async {
+    final formData = FormData(
+      {
+        if (image != null)
+          "image": MultipartFile(
+            image.file,
+            filename: image.name,
+          ),
+      },
+    );
+
+    await patch(
+      "/$battleId",
+      formData,
+      query: {
+        if (name != null) "name": name,
+        if (introduction != null) "introduction": introduction,
+      },
+    );
+  }
+
+  Future<List<ParticipantRankingResponse>> getBattleRankings({
+    required int battleId,
+  }) async {
+    final response = await get<List<ParticipantRankingResponse>>(
+      "/$battleId/rankings",
+      decoder: (data) {
+        return (data as List<dynamic>)
+            .map((e) => ParticipantRankingResponse.fromJson(e))
+            .toList();
+      },
+    );
+    return response.body ?? [];
   }
 }

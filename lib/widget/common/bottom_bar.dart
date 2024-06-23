@@ -83,19 +83,25 @@ class _BottomBarState extends State<BottomBar> {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
-      items: barItems.asMap().entries.map((item) {
-        return BottomNavigationBarItem(
+      items: barItems.asMap().entries.map(
+        (item) {
+          return BottomNavigationBarItem(
             label: item.value.label,
             icon: Padding(
-                padding: EdgeInsets.all(6),
-                child: Column(children: [
+              padding: EdgeInsets.only(bottom: 6),
+              child: Column(
+                children: [
                   if (widget.nowPage == item.key) ...[
                     Image.asset(width: 22, height: 22, item.value.onIcon)
                   ] else ...[
                     Image.asset(width: 22, height: 22, item.value.offIcon)
                   ]
-                ])));
-      }).toList(),
+                ],
+              ),
+            ),
+          );
+        },
+      ).toList(),
       currentIndex: widget.nowPage,
       selectedItemColor: CColors.yellow,
       unselectedItemColor: CColors.gray30,

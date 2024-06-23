@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
 
 import 'package:poorlex/libs/theme.dart';
+import 'package:poorlex/schema/member_progress_battle_response/member_progress_battle_response.dart';
+import 'package:poorlex/widget/common/money_bar/money_bar.dart';
 
 class BattleBox extends StatelessWidget {
-  final List<String> sample;
+  final MemberProgressBattleResponse battle;
   const BattleBox({
     super.key,
-    required this.sample,
+    required this.battle,
   });
 
   @override
   Widget build(BuildContext context) {
+    // print('battle: $battle');
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
@@ -42,56 +45,26 @@ class BattleBox extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             // 금액 메달
-                            Container(
+                            MoneyBar(
+                              money: battle.budgetLeft,
                               width: 48,
                               height: 56,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(4),
-                                border: Border.all(
-                                  color: const Color(0xFF8F6E00),
-                                  width: 2,
-                                ),
-                              ),
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: const Color(0xFFD7C53B),
-                                  borderRadius: BorderRadius.circular(2),
-                                  border: Border(
-                                    top: BorderSide(
-                                      color: const Color(0xFFFEFF73),
-                                      width: 2,
-                                    ),
-                                  ),
-                                ),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Text(sample[0],
-                                        style: CTextStyles.LargeTitle(
-                                            color: CColors.black)),
-                                    Text(
-                                      '만원',
-                                      style: CTextStyles.Body3(
-                                        color: CColors.black,
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
                             ),
 
                             SizedBox(width: 18),
 
-                            // 배틀 제목, 존버 금액
+                            // 배틀 제목, 남은 예산
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(sample[1], style: CTextStyles.Headline()),
+                                Text(
+                                  battle.name,
+                                  style: CTextStyles.Headline(),
+                                ),
                                 SizedBox(height: 10),
                                 Text(
-                                  '존버 금액 : ${sample[2]} 원',
+                                  '남은 예산 : ${battle.budgetLeft} 원',
                                   style: CTextStyles.Body3(
                                     color: CColors.gray40,
                                   ),
@@ -101,24 +74,13 @@ class BattleBox extends StatelessWidget {
                           ],
                         ),
 
-                        // 참여자 수, 댓글 수, 입장 버튼
+                        // 참여자 수, 입장 버튼
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Row(
-                              children: [
-                                Row(
-                                  children: [
-                                    Text('${sample[3]}위/20명',
-                                        style: CTextStyles.Title1()),
-                                    SizedBox(width: 40),
-                                    Icon(Icons.chat_outlined,
-                                        color: CColors.white, size: 16),
-                                    SizedBox(width: 1),
-                                    Text(sample[3], style: CTextStyles.Body3()),
-                                  ],
-                                ),
-                              ],
+                            Text(
+                              '${battle.currentParticipantRank}위/${battle.battleParticipantCount}명',
+                              style: CTextStyles.Title1(),
                             ),
                             OutlinedButton(
                               style: OutlinedButton.styleFrom(

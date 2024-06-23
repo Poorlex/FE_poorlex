@@ -19,9 +19,9 @@ class BattleProcess extends GetView {
               colors.length,
               (index) => Row(
                     children: [
-                      if (battle.battleCreate.value.current > 3)
+                      if (battle.battleCreate.current > 3)
                         ...[]
-                      else if (battle.battleCreate.value.current ==
+                      else if (battle.battleCreate.current ==
                           colors[index]) ...[
                         Container(
                             width: 5,

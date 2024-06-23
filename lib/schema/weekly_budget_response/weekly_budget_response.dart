@@ -8,6 +8,7 @@ class WeeklyBudgetResponse with _$WeeklyBudgetResponse {
   const factory WeeklyBudgetResponse({
     required bool exist,
     required int amount,
+    required int daysBeforeEnd,
   }) = _WeeklyBudgetResponse;
 
   factory WeeklyBudgetResponse.fromJson(Map<String, dynamic> json) =>

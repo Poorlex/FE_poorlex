@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+import 'package:poorlex/controller/audio_controller.dart';
 import 'package:poorlex/controller/kakao_auth.dart';
 import 'package:poorlex/controller/layout.dart';
 import 'package:poorlex/controller/user.dart';
 
 import 'package:poorlex/libs/theme.dart';
+import 'package:poorlex/provider/member_provider.dart';
+import 'package:poorlex/widget/bottom_sheet/bottom_sheet_with_beggar.dart';
 import 'package:poorlex/widget/common/dialog/confirm_dialog.dart';
-import 'package:poorlex/widget/my/withdrawal_bottom_sheet_with_beggar.dart';
 import 'package:poorlex/widget/common/icon.dart';
 import 'package:poorlex/widget/common/buttons.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class AnnounceMent extends StatefulWidget {
   const AnnounceMent({
@@ -33,6 +36,7 @@ class _AnnounceMentState extends State<AnnounceMent> {
   }
 
   Future<void> _logout() async {
+    AudioController().play(audioType: AudioType.complete);
     final result = await confirmDialog(
       context: context,
       bodyText: "로그아웃 하시겠습니까?",
@@ -40,18 +44,40 @@ class _AnnounceMentState extends State<AnnounceMent> {
       confirmText: "네",
     );
     if (result == true) {
+      AudioController().play(audioType: AudioType.fail);
       await user.updateToken(null);
       await KaKaoAuthController().logOut();
       Get.offAllNamed('/login');
     }
   }
 
-  /// [MEMO] 회원탈퇴 모달 디자인 따로 있음 확인필요
   Future<void> _withdrawal() async {
-    final result = await withdrawalBottomSheetWithBeggar(
+    final result = await BottomSheetWithBeggar.show(
       context: context,
+      beggarAction: BeggarAction.withdrawal,
     );
-    if (result == true) {}
+    if (result == true) {
+      await Get.find<MemberProvider>().memberWithdrawal();
+      await user.updateToken(null);
+      await KaKaoAuthController().logOut();
+      Get.offAllNamed('/login');
+    }
+  }
+
+  Future<void> _sendEmail() async {
+    final Uri emailUri = Uri(
+      scheme: 'mailto',
+      path: "poorlex.official@gmail.com",
+      queryParameters: {
+        "subject": "문의하기",
+      },
+    );
+
+    if (await canLaunchUrl(emailUri)) {
+      await launchUrl(emailUri);
+    } else {
+      throw 'Could not launch $emailUri';
+    }
   }
 
   @override
@@ -82,6 +108,25 @@ class _AnnounceMentState extends State<AnnounceMent> {
             ),
           ),
           onPressed: () => Get.toNamed('/my/notice'),
+        ),
+        CButton(
+          child: Container(
+            padding: EdgeInsets.fromLTRB(0, 16, 0, 16),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text('고객센터', style: CTextStyles.Headline()),
+                CIcon(
+                  icon: 'arrow-game-right',
+                  width: 16,
+                  height: 16,
+                  color: CColors.whiteStr,
+                ),
+              ],
+            ),
+          ),
+          onPressed: _sendEmail,
         ),
         CButton(
           child: Container(
@@ -160,26 +205,27 @@ class _AnnounceMentState extends State<AnnounceMent> {
           ),
         ),
         CButton(
-            child: Container(
-              padding: EdgeInsets.fromLTRB(0, 16, 0, 16),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(
-                    '로그아웃',
-                    style: CTextStyles.Headline(color: CColors.gray30),
-                  ),
-                  CIcon(
-                    icon: 'arrow-game-right',
-                    width: 16,
-                    height: 16,
-                    color: CColors.whiteStr,
-                  ),
-                ],
-              ),
+          child: Container(
+            padding: EdgeInsets.fromLTRB(0, 16, 0, 16),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(
+                  '로그아웃',
+                  style: CTextStyles.Headline(color: CColors.gray30),
+                ),
+                CIcon(
+                  icon: 'arrow-game-right',
+                  width: 16,
+                  height: 16,
+                  color: CColors.whiteStr,
+                ),
+              ],
             ),
-            onPressed: _logout),
+          ),
+          onPressed: _logout,
+        ),
         CButton(
           child: Container(
             padding: EdgeInsets.fromLTRB(0, 16, 0, 16),

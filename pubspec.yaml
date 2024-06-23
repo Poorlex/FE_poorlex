@@ -2,7 +2,7 @@ name: poorlex
 description: poorlex project
 publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
-version: 0.0.4+00
+version: 1.0.1+13
 
 environment:
   sdk: ">=3.0.6 <4.0.0"
@@ -48,6 +48,15 @@ dependencies:
 
   # https://pub.dev/packages/rps
   rps: ^0.7.0
+  fluttertoast: ^8.2.5
+  firebase_core: ^2.27.0
+  firebase_messaging: ^14.7.19
+  flutter_local_notifications: ^17.1.2
+  flutter_linkify: ^6.0.0
+  url_launcher: ^6.3.0
+  audioplayers: ^5.2.1
+  dartz: ^0.10.1
+  image_cropper: ^5.0.1
 
 dev_dependencies:
   flutter_test:
@@ -85,9 +94,14 @@ flutter:
     - assets/goal/
     - assets/login/
     - assets/icons/
+    - assets/toast/
     - assets/level/character/
     - assets/level/profile/
     - assets/level/medal/
+    - assets/audio/
+    - assets/money_bar/
+    - assets/battle_page/completed/
+    - assets/
 
   fonts:
     - family: NeoDunggeunmoPro-Regular

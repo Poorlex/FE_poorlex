@@ -10,6 +10,7 @@ import 'package:poorlex/widget/common/buttons.dart';
 import 'package:poorlex/widget/common/icon.dart';
 import 'package:poorlex/widget/common/image/image_network.dart';
 import 'package:poorlex/widget/layout.dart';
+import 'package:poorlex/widget/loading_screen.dart';
 
 class ModifyBattleDetail extends StatefulWidget {
   const ModifyBattleDetail({
@@ -27,10 +28,11 @@ class _ModifyBattleDetailState extends State<ModifyBattleDetail> {
       setState(() {});
     });
 
-  late final TextEditingController _notiController = TextEditingController()
-    ..addListener(() {
-      setState(() {});
-    });
+  late final TextEditingController _introductionController =
+      TextEditingController()
+        ..addListener(() {
+          setState(() {});
+        });
 
   final FocusNode _notiFocusNode = FocusNode();
 
@@ -55,11 +57,11 @@ class _ModifyBattleDetailState extends State<ModifyBattleDetail> {
   }
 
   Future<void> _modifyDetail() async {
-    final battleId = int.parse(_battleId!);
-    _modifyBattle.modifyBattle(
-      battleId: battleId,
-      content: _notiController.text,
+    await _modifyBattle.patchBattle(
+      introduction: _introductionController.text,
+      name: _titleController.text,
     );
+    Get.back();
   }
 
   @override
@@ -71,13 +73,9 @@ class _ModifyBattleDetailState extends State<ModifyBattleDetail> {
           battleId: battleId,
           updateTitle: (title) {
             _titleController.text = title;
-            setState(() {});
           },
-        );
-        _modifyBattle.getBattleNotiById(
-          battleId: battleId,
-          updateNoti: (noti) {
-            _notiController.text = noti;
+          updateIntroduction: (introduction) {
+            _introductionController.text = introduction;
             setState(() {});
           },
         );
@@ -89,7 +87,7 @@ class _ModifyBattleDetailState extends State<ModifyBattleDetail> {
   @override
   void dispose() {
     _titleController.dispose();
-    _notiController.dispose();
+    _introductionController.dispose();
     _notiFocusNode.dispose();
     super.dispose();
   }
@@ -98,6 +96,10 @@ class _ModifyBattleDetailState extends State<ModifyBattleDetail> {
   Widget build(BuildContext context) {
     return Obx(
       () {
+        final battleInfo = _modifyBattle.battleInfo;
+        if (battleInfo == null) {
+          return LoadingScreen();
+        }
         return GestureDetector(
           onTap: FocusScope.of(context).unfocus,
           child: Scaffold(
@@ -154,12 +156,10 @@ class _ModifyBattleDetailState extends State<ModifyBattleDetail> {
                             children: [
                               _modifyBattle.modifyImage.value != null
                                   ? Image.file(
-                                      File(_modifyBattle
-                                          .modifyImage.value!.path),
+                                      _modifyBattle.modifyImage.value!.file,
                                     )
                                   : CImageNetwork(
-                                      src: _modifyBattle
-                                          .battleInfo.value.battleImageUrl,
+                                      src: battleInfo.battleImageUrl,
                                     ),
                               Positioned(
                                 top: 0,
@@ -181,7 +181,7 @@ class _ModifyBattleDetailState extends State<ModifyBattleDetail> {
                         onTapField: _scrollToContainer,
                         key: _notiKey,
                         focusNode: _notiFocusNode,
-                        textController: _notiController,
+                        textController: _introductionController,
                         maxLength: 200,
                       ),
                       SizedBox(height: 20),
@@ -230,9 +230,8 @@ class _ModifyBattleDetailState extends State<ModifyBattleDetail> {
     required BuildContext context,
   }) {
     final bottomPaddingForIos = Platform.isIOS ? 8 : 0;
-    final bottomOffset = MediaQuery.of(context).viewInsets.bottom +
-        MediaQuery.of(context).padding.bottom +
-        bottomPaddingForIos;
+    final bottomOffset =
+        MediaQuery.of(context).padding.bottom + bottomPaddingForIos;
     return Padding(
       padding: EdgeInsets.only(bottom: bottomOffset),
       child: CButton(

@@ -13,7 +13,7 @@ _$ParticipantRankingResponseImpl _$$ParticipantRankingResponseImplFromJson(
       level: (json['level'] as num).toInt(),
       nickname: json['nickname'] as String,
       expenditure: (json['expenditure'] as num).toInt(),
-      manager: json['manager'] as bool,
+      role: json['role'] as String,
     );
 
 Map<String, dynamic> _$$ParticipantRankingResponseImplToJson(
@@ -23,5 +23,5 @@ Map<String, dynamic> _$$ParticipantRankingResponseImplToJson(
       'level': instance.level,
       'nickname': instance.nickname,
       'expenditure': instance.expenditure,
-      'manager': instance.manager,
+      'role': instance.role,
     };

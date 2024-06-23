@@ -172,9 +172,8 @@ class _FriendsScreenState extends State<FriendsScreen> {
     required BuildContext context,
   }) {
     final bottomPaddingForIos = Platform.isIOS ? 8 : 0;
-    final bottomOffset = MediaQuery.of(context).viewInsets.bottom +
-        MediaQuery.of(context).padding.bottom +
-        bottomPaddingForIos;
+    final bottomOffset =
+        MediaQuery.of(context).padding.bottom + bottomPaddingForIos;
 
     final _hasChecked = _checkList.where((e) => e == true).isNotEmpty;
     return Column(

@@ -1,7 +1,6 @@
 import 'dart:ui';
 
 import 'package:get/get.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:poorlex/controller/image_picker.dart';
 import 'package:poorlex/controller/layout.dart';
 
@@ -20,10 +19,12 @@ class BattleController extends GetxController {
     required this.layout,
     required this.imagePickerController,
   });
-  final battleCreate = BattleCreateModel().obs;
+  final _battleCreate = BattleCreateModel().obs;
+  BattleCreateModel get battleCreate => _battleCreate.value;
 
   /// 탐색 배틀 리스트
-  final battleList = <FindingBattleResponse>[].obs;
+  final _battleList = <FindingBattleResponse>[].obs;
+  List<FindingBattleResponse> get battleList => _battleList;
 
   /// 참여중 배틀 리스트
   final _battleListInProgress = <MemberProgressBattleResponse>[].obs;
@@ -31,51 +32,65 @@ class BattleController extends GetxController {
       _battleListInProgress;
 
   /// 완료된 배틀 리스트
-  final _battleListInComplete = <MemberCompleteBattleResponse>[].obs;
-  List<MemberCompleteBattleResponse> get battleListInComplete =>
-      _battleListInComplete;
+  final _battleListInCompleted = <MemberCompleteBattleResponse>[].obs;
+  List<MemberCompleteBattleResponse> get battleListInCompleted =>
+      _battleListInCompleted;
 
   /// battleCreate 초기화
   void initBattleCreate() {
-    battleCreate(BattleCreateModel());
+    _battleCreate(BattleCreateModel());
   }
 
   void changeCurrent(int c) {
-    battleCreate.update((val) {
+    _battleCreate.update((val) {
       val?.current = c;
     });
   }
 
   void changeDifficulty(EBattleDifficulty d) {
-    battleCreate.update((val) {
+    _battleCreate.update((val) {
       val?.difficulty = d;
     });
   }
 
   void changeBudget(int b) {
-    battleCreate.update((val) {
+    _battleCreate.update((val) {
       val?.budget = b;
     });
   }
 
   void changeCount(int c) {
-    battleCreate.update((val) {
+    _battleCreate.update((val) {
       val?.count = c;
     });
   }
 
+  void battleCreateChangeTitle(String c) {
+    _battleCreate.update((val) {
+      val?.title = c;
+    });
+  }
+
+  void battleCreateChangeContent(String c) {
+    _battleCreate.update((val) {
+      val?.content = c;
+    });
+  }
+
   Future<void> getImage() async {
-    final XFile? image = await imagePickerController.getImage();
+    final FileWithName? image = await imagePickerController.getImage();
     if (image != null) {
-      battleCreate.update((val) {
+      _battleCreate.update((val) {
         val?.image = image;
       });
     }
   }
 
   Future<void> getBattle() async {
-    final response = await battlesProvider.getAll();
-    battleList.value = response;
+    final response = await battlesProvider.getAll(
+      status: [BattleStatus.RECRUITING, BattleStatus.RECRUITING_FINISHED],
+    );
+    _battleList(response);
   }
 
   Future<void> getBattleInProgress() async {
@@ -85,20 +100,20 @@ class BattleController extends GetxController {
 
   Future<void> getBattleInComplete() async {
     final response = await battlesProvider.getComplete();
-    _battleListInComplete(response);
+    _battleListInCompleted(response);
   }
 
   Future<bool> saveBattle() async {
-    if (battleCreate.value.image == null) return false;
+    if (_battleCreate.value.image == null) return false;
     layout.setIsLoading(true);
     late bool response;
     try {
       response = await battlesProvider.createBattles(
-        name: battleCreate.value.title,
-        introduction: battleCreate.value.content,
-        budget: battleCreate.value.budget * 10000,
-        maxParticipantSize: battleCreate.value.count,
-        image: battleCreate.value.image!,
+        name: _battleCreate.value.title,
+        introduction: _battleCreate.value.content,
+        budget: _battleCreate.value.budget * 10000,
+        maxParticipantSize: _battleCreate.value.count,
+        image: _battleCreate.value.image!,
       );
     } catch (e) {
       response = false;

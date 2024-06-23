@@ -11,6 +11,7 @@ final imageAssetsByLevels = [
   'assets/level/profile/lv5.png',
 ];
 
+/// [DELETE] 제거 대상
 class UserItem extends StatelessWidget {
   final Image image;
   final Image icon;
@@ -158,9 +159,12 @@ class LevelProfile extends StatelessWidget {
           Container(
               child:
                   Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-            Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [Image.asset(levels[level - 1].image, height: 95)])
+            Column(mainAxisAlignment: MainAxisAlignment.end, children: [
+              Image.asset(
+                levels[level - 1].image,
+                height: 110,
+              )
+            ])
           ]))
         ]));
   }

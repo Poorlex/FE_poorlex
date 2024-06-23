@@ -1,26 +1,48 @@
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:get/get_navigation/get_navigation.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:get/get.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
 import 'package:poorlex/bind/friends.dart';
 import 'package:poorlex/bind/battle/modify_battle.dart';
 import 'package:poorlex/bind/root_bind.dart';
+import 'package:poorlex/controller/firbase_controller.dart';
 import 'package:poorlex/controller/hive_box.dart';
+import 'package:poorlex/controller/local_notification_controller.dart';
+import 'package:poorlex/firebase_options.dart';
 import 'package:poorlex/libs/theme.dart';
 import 'package:poorlex/middleware/auth_middleware.dart';
 import 'package:poorlex/screen/battle/modify_battle_detail.dart';
+import 'package:poorlex/screen/budget/budget_page.dart';
 import 'package:poorlex/screen/friends/friends.dart';
+import 'package:poorlex/screen/my/edit_my_expense.dart';
+import 'package:poorlex/screen/my/my_expense.dart';
+import 'package:poorlex/screen/my/my_expense_detail.dart';
 import 'package:poorlex/screen/my/my_notification.dart';
 import 'package:poorlex/widget/common/webview.dart';
 import 'package:poorlex/widget/gnb_layout.dart';
 import 'package:poorlex/screen/login/login.dart';
-import 'package:poorlex/screen/my/my_expense_input.dart';
+import 'package:poorlex/screen/my/create_my_expense.dart';
 import 'package:poorlex/screen/my/my_option.dart';
 import 'package:poorlex/screen/my/my_profile.dart';
 import 'package:poorlex/screen/battle/battle_create.dart';
 
+/// https://firebase.google.com/docs/cloud-messaging/flutter/receive?hl=ko&authuser=1#apple_platforms_and_android
+@pragma('vm:entry-point')
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  // If you're going to use other Firebase services in the background, such as Firestore,
+  // make sure you call `initializeApp` before using other Firebase services.
+  await Firebase.initializeApp();
+
+  print("Handling a background message: ${message.messageId}");
+}
+
+GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // runApp() 호출 전 Flutter SDK 초기화
@@ -28,6 +50,12 @@ void main() async {
   initializeDateFormatting('ko');
   await dotenv.load(fileName: ".env");
 
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
+  await FirebaseController().init(_firebaseMessagingBackgroundHandler);
+  await LocalNotification().init();
   KakaoSdk.init(
     nativeAppKey: dotenv.get('YOUR_NATIVE_APP_KEY'),
     javaScriptAppKey: dotenv.get('YOUR_JAVASCRIPT_APP_KEY'),
@@ -40,6 +68,8 @@ void main() async {
 
   runApp(
     GetMaterialApp(
+      navigatorKey: navigatorKey,
+      builder: FToastBuilder(),
       initialBinding: RootBind(),
       initialRoute: '/',
       theme: ThemeData(
@@ -88,8 +118,20 @@ void main() async {
         ),
         GetPage(name: '/my/profile', page: () => MyProfile()),
         GetPage(
-          name: '/my/expense-input',
-          page: () => MyExpenseInputPage(),
+          name: '/my/expenditure',
+          page: () => MyExpensePage(),
+        ),
+        GetPage(
+          name: '/my/expense-detail/:expenseId',
+          page: () => MyExpenseDetailPage(),
+        ),
+        GetPage(
+          name: '/my/expense/create',
+          page: () => CreateMyExpensePage(),
+        ),
+        GetPage(
+          name: '/my/expense/edit/:expenseId',
+          page: () => EditMyExpensePage(),
         ),
         GetPage(name: '/my/option', page: () => MyOption()),
         GetPage(
@@ -110,6 +152,10 @@ void main() async {
           page: () => FriendsScreen(),
           binding: FriendsBinding(),
         ),
+        GetPage(
+          name: '/budget',
+          page: () => BudgetPage(),
+        )
       ],
     ),
   );
