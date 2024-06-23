@@ -122,14 +122,14 @@ class _MyExpensePageState extends State<MyExpensePage> {
                 Column(
                   children: [
                     Image.asset(
-                      'assets/my_page/wallet_smile.png',
-                      width: 200,
-                      height: 200,
+                      'assets/empty.png',
+                      width: 160,
+                      height: 160,
                     ),
-                    SizedBox(height: 30),
+                    SizedBox(height: 47),
                     Text(
-                      '지출 내역이 없습니다.',
-                      style: CTextStyles.Title2(color: CColors.gray40),
+                      '입력한 정보가 없습니다.',
+                      style: CTextStyles.Title2(color: CColors.gray50),
                     )
                   ],
                 )

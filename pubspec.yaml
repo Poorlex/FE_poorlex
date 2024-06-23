@@ -101,6 +101,7 @@ flutter:
     - assets/audio/
     - assets/money_bar/
     - assets/battle_page/completed/
+    - assets/
 
   fonts:
     - family: NeoDunggeunmoPro-Regular
