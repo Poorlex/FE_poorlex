@@ -5,6 +5,7 @@ import 'package:poorlex/controller/user.dart';
 import 'package:poorlex/libs/theme.dart';
 import 'package:poorlex/schema/battle_manage_response/battle_manage_response.dart';
 import 'package:poorlex/schema/battle_response/battle_response.dart';
+import 'package:poorlex/schema/participant_ranking_response/participant_ranking_response.dart';
 import 'package:poorlex/widget/common/Icon.dart';
 import 'package:poorlex/widget/common/app_bar.dart';
 import 'package:poorlex/widget/common/buttons.dart';
@@ -36,6 +37,7 @@ class _BattleDetailState extends State<BattleDetail> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       _battleDetail.getDetailById(battleId: widget.battleId);
+      _battleDetail.getBattleRankings(battleId: widget.battleId);
       // _battleDetail.getBattleNotiById(battleId: widget.battleId);
     });
   }
@@ -49,6 +51,8 @@ class _BattleDetailState extends State<BattleDetail> {
   Widget build(BuildContext context) {
     return Obx(
       () {
+        final battleRankings = _battleDetail.battleRankings;
+
         final battleInfo = _battleDetail.battleInfo;
         if (battleInfo == null) {
           return LoadingScreen();
@@ -82,6 +86,7 @@ class _BattleDetailState extends State<BattleDetail> {
                     currentParticipantSize: battleInfo.currentParticipantSize,
                     maxParticipantSize: battleInfo.maxParticipantSize,
                   ),
+                  ..._rankingsWidget(battleRankings: battleRankings),
                 ],
               ),
             ),
@@ -290,67 +295,73 @@ class _BattleDetailState extends State<BattleDetail> {
     );
   }
 
-  Widget _bottomNavigationBar({
+  List<Widget> _rankingsWidget({
+    required List<ParticipantRankingResponse> battleRankings,
+  }) {
+    final user = Get.find<UserController>().userInfo;
+    return battleRankings.map((e) {
+      final label = e.level;
+      return Container(
+        padding: EdgeInsets.only(
+          top: 11,
+          bottom: 8,
+          left: 24,
+        ),
+        color: user?.nickname == e.nickname ? CColors.gray20 : null,
+        child: Row(
+          children: [
+            CProfile(
+              level: label,
+              width: 40,
+              height: 40,
+            ),
+            SizedBox(width: 30),
+            CLevelMedal(
+              level: label,
+              width: 16,
+              height: 16,
+            ),
+            SizedBox(width: 6),
+            Text("${e.nickname}", style: CTextStyles.Body3()),
+          ],
+        ),
+      );
+    }).toList();
+  }
+
+  Widget? _bottomNavigationBar({
     required BattleResponse battleInfo,
   }) {
     final user = Get.find<UserController>().userInfo;
-    final myLevel = user?.levelInfo.level ?? 0;
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Container(
-          padding: EdgeInsets.only(
-            top: 11,
-            bottom: 8,
-            left: 24,
+    if (battleInfo.battleManager.nickname == user?.nickname) {
+      return null;
+    }
+    return CButton(
+      color: CColors.yellow,
+      padding: EdgeInsets.symmetric(vertical: 13.5),
+      type: ButtonTypes.elevated,
+      onPressed: battleInfo.isParticipating
+          ? () async {
+              await _battleDetail.deleteParticipants(
+                battleId: widget.battleId,
+              );
+            }
+          : () async {
+              await _battleDetail.addParticipants(
+                battleId: widget.battleId,
+              );
+            },
+      child: SizedBox(
+        height: 25,
+        width: double.maxFinite,
+        child: Text(
+          battleInfo.isParticipating ? "참여취소" : "참여하기",
+          style: CTextStyles.Title3(
+            color: CColors.black,
           ),
-          color: CColors.gray20,
-          child: Row(
-            children: [
-              CProfile(
-                level: myLevel,
-                width: 40,
-                height: 40,
-              ),
-              SizedBox(width: 30),
-              CLevelMedal(
-                level: myLevel,
-                width: 16,
-                height: 16,
-              ),
-              SizedBox(width: 6),
-              Text("${user?.nickname}", style: CTextStyles.Body3()),
-            ],
-          ),
+          textAlign: TextAlign.center,
         ),
-        CButton(
-          color: CColors.yellow,
-          padding: EdgeInsets.symmetric(vertical: 13.5),
-          type: ButtonTypes.elevated,
-          onPressed: battleInfo.isParticipating
-              ? () async {
-                  await _battleDetail.deleteParticipants(
-                    battleId: widget.battleId,
-                  );
-                }
-              : () async {
-                  await _battleDetail.addParticipants(
-                    battleId: widget.battleId,
-                  );
-                },
-          child: SizedBox(
-            height: 25,
-            width: double.maxFinite,
-            child: Text(
-              battleInfo.isParticipating ? "참여취소" : "참여하기",
-              style: CTextStyles.Title3(
-                color: CColors.black,
-              ),
-              textAlign: TextAlign.center,
-            ),
-          ),
-        )
-      ],
+      ),
     );
   }
 }
