@@ -117,7 +117,7 @@ class BattleController extends GetxController {
           imageUrl: "https://i.ibb.co/KqQtgPr/3.png",
           difficulty: "difficulty",
           budget: 150000,
-          currentParticipant: 3,
+          currentParticipant: 10,
           maxParticipantCount: 10,
         ),
       ],

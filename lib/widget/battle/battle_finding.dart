@@ -74,7 +74,9 @@ class _BattleFindingState extends State<BattleFinding> {
                               Container(
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(1),
-                                  color: CColors.gray20,
+                                  border: Border.all(
+                                    color: CColors.yellow,
+                                  ),
                                 ),
                                 padding: EdgeInsets.symmetric(
                                   horizontal: 3,
@@ -83,7 +85,7 @@ class _BattleFindingState extends State<BattleFinding> {
                                 child: Text(
                                   '모집완료',
                                   style: CTextStyles.Caption1(
-                                    color: Color.fromRGBO(126, 126, 126, 1),
+                                    color: CColors.yellow,
                                   ),
                                 ),
                               ),
