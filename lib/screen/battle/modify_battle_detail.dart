@@ -59,7 +59,7 @@ class _ModifyBattleDetailState extends State<ModifyBattleDetail> {
   Future<void> _modifyDetail() async {
     await _modifyBattle.patchBattle(
       introduction: _introductionController.text,
-      name: _introductionController.text,
+      name: _titleController.text,
     );
     Get.back();
   }

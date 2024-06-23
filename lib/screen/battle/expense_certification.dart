@@ -41,20 +41,10 @@ class _ExpenseCertificationScreenState
   ExpenditureResponse? _expenditureResponse;
   int _totalImageCount = 1;
   Future<void> _getDetailById() async {
-    /// [MOCK DATA]
-    _expenditureResponse = ExpenditureResponse(
-      id: 1,
-      amount: 10000,
-      date: "2024-06-21",
-      description: "약값 지출,,",
-      mainImageUrl: "https://i.ibb.co/ygj74TT/1.jpg",
-      subImageUrl: "https://i.ibb.co/j8YDxmz/2.jpg",
+    final response = await _expendituresProvider.getDetailById(
+      expenditureId: widget.expenditureId,
     );
-
-    // final response = await _expendituresProvider.getDetailById(
-    //   expenditureId: widget.expenditureId,
-    // );
-    // _expenditureResponse = response;
+    _expenditureResponse = response;
     if (_expenditureResponse?.subImageUrl != null) {
       _totalImageCount = 2;
     }

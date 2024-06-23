@@ -276,16 +276,22 @@ class BattlesProvider extends GetConnect {
   }
 
   /// 배틀 탈퇴
-  Future<bool> deleteParticipants({
+  Future<Either<ErrorResponse, bool>> deleteParticipants({
     required int battleId,
   }) async {
     try {
       final response = await delete(
         "/$battleId/participants",
       );
-      return response.statusCode == 200 || response.statusCode == 204;
+
+      if (response.statusCode == 400) {
+        return Left(
+          ErrorResponse(tag: "배틀 탈퇴 에러", message: "방장은 배틀을 나갈 수 없습니다."),
+        );
+      }
+      return Right(response.statusCode == 200 || response.statusCode == 204);
     } catch (e) {
-      return false;
+      return Left(ErrorResponse(tag: "배틀 탈퇴 에러", message: "알 수 없는 에러"));
     }
   }
 
