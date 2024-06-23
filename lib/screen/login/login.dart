@@ -107,6 +107,7 @@ class _LoginState extends State<Login> {
               ),
               SizedBox(height: 41),
               CButton(
+                key: Key("kakao_login"),
                 padding: EdgeInsets.symmetric(horizontal: 20),
                 type: ButtonTypes.elevated,
                 color: CColors.kakaoYellow,
