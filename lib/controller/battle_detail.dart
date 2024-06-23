@@ -62,6 +62,7 @@ class BattleDetailController extends GetxController {
       },
       (r) {
         getDetailById(battleId: battleId);
+        getBattleRankings(battleId: battleId);
       },
     );
   }
@@ -82,6 +83,7 @@ class BattleDetailController extends GetxController {
       (r) {
         if (r) {
           getDetailById(battleId: battleId);
+          getBattleRankings(battleId: battleId);
         }
       },
     );
