@@ -23,6 +23,9 @@ scripts:
   # ios pod 재설치
   ios:pod:restored: cd ios && rm -rf Podfile.lock && pod install --repo-update && flutter clean && flutter pub get && dart pub global activate rps
 
+  # test code의 GenerateMocks 생성에 사용하고 있음.
+  build_runner: dart run build_runner build
+
 dependencies:
   flutter:
     sdk: flutter
@@ -66,6 +69,8 @@ dev_dependencies:
   hive_generator: ^2.0.1
   build_runner: ^2.4.9
   json_serializable: ^6.8.0
+  test: ^1.24.9
+  mockito: ^5.4.4
 
   # pubspec.lock 의존성을 고정하기위해 추가하였습니다.
   # leak_tracker: 10.0.0
