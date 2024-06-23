@@ -283,15 +283,13 @@ class BattlesProvider extends GetConnect {
       final response = await delete(
         "/$battleId/participants",
       );
-
       if (response.statusCode == 400) {
         return Left(
-          ErrorResponse(tag: "배틀 탈퇴 에러", message: "방장은 배틀을 나갈 수 없습니다."),
-        );
+            ErrorResponse(message: "방장은 배틀을 나갈 수 없습니다.", tag: "배틀 탈퇴 에러"));
       }
       return Right(response.statusCode == 200 || response.statusCode == 204);
     } catch (e) {
-      return Left(ErrorResponse(tag: "배틀 탈퇴 에러", message: "알 수 없는 에러"));
+      return Left(ErrorResponse(message: "알수 없는 에러", tag: "배틀 탈퇴 에러"));
     }
   }
 
