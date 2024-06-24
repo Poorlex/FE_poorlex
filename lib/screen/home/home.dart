@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:poorlex/controller/audio_controller.dart';
 import 'package:poorlex/controller/battle.dart';
+import 'package:poorlex/controller/point.dart';
 // import 'package:poorlex/controller/firbase_controller.dart';
 import 'package:poorlex/controller/weekly_budgets.dart';
 import 'package:poorlex/libs/theme.dart';
@@ -38,7 +40,11 @@ class _MainState extends State<Main> {
   // }
 
   late final _budget = Get.find<WeeklyBudgetsController>();
+  late final _point = Get.find<PointController>();
   BattleController battle = Get.find<BattleController>();
+
+  // 예산 설정 안내 문구 상태 변수
+  bool _showBudgetHint = true;
 
   @override
   void initState() {
@@ -48,6 +54,8 @@ class _MainState extends State<Main> {
     // FirebaseController().showFcmToken(context: context);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _budget.getWeeklyBudgets();
+      _point.point();
+      _point.pointLevelBar();
     });
 
     battle.getBattleInProgress();
@@ -71,12 +79,20 @@ class _MainState extends State<Main> {
     return Obx(
       () {
         final budget = _budget.weeklyBudget.value;
+        final point = _point.point.value;
+        final pointLevelBar = _point.pointLevelBar.value;
 
         print('#Home# budget: ${budget}');
+        print('#Home# point: ${point}');
+        print('#Home# pointLevelBar: ${pointLevelBar}');
 
         return Scaffold(
           // 네비게이션 바
-          appBar: NavBar(budget: budget),
+          appBar: NavBar(
+            budget: budget,
+            point: point,
+            pointLevelBar: pointLevelBar,
+          ),
           body: Container(
             width: deviceWidth,
             height: deviceHeight,
@@ -142,7 +158,7 @@ class _MainState extends State<Main> {
                 ),
 
                 // 예산 설정 안내 문구
-                if (budget.exist == false)
+                if (budget.exist == false && _showBudgetHint)
                   Positioned(
                     top: 4,
                     left: 15,
@@ -169,12 +185,40 @@ class _MainState extends State<Main> {
 
                           // 예산 설정 안내 문구 박스
                           Container(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 10,
+                            ),
                             alignment: Alignment.center,
-                            width: 242,
+                            // width: 242,
                             height: 30,
-                            child: Text(
-                              "예산을 설정해야 배틀이 가능해요!",
-                              style: CTextStyles.Body3(),
+                            child: Row(
+                              children: [
+                                Text(
+                                  "예산을 설정해야 배틀이 가능해요!",
+                                  style: CTextStyles.Body3(),
+                                ),
+                                SizedBox(
+                                  width: 30,
+                                  height: 30,
+                                  child: IconButton(
+                                    padding: EdgeInsets.only(left: 10),
+                                    constraints: BoxConstraints(),
+                                    onPressed: () {
+                                      // 예산 설정 알림 상태 업데이트
+                                      setState(() {
+                                        _showBudgetHint = false;
+                                      });
+
+                                      AudioController().play(
+                                        audioType: AudioType.complete,
+                                      );
+                                    },
+                                    icon: Icon(Icons.close),
+                                    iconSize: 20,
+                                    color: CColors.white,
+                                  ),
+                                ),
+                              ],
                             ),
                             decoration: BoxDecoration(
                               color: CColors.purple,
