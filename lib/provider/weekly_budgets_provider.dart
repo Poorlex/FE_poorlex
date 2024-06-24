@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 import 'package:poorlex/controller/user.dart';
@@ -15,6 +17,22 @@ class WeeklyBudgetsProvider extends GetConnect {
       final token = user.userToken;
       request.headers['Authorization'] = 'Bearer $token';
       return request;
+    });
+
+    httpClient.addResponseModifier((request, response) async {
+      // bodyBytes가 Stream<List<int>> 타입이므로 이를 읽어와서 처리합니다.
+      final bodyBytes = await request.bodyBytes.toList();
+      if (bodyBytes.isNotEmpty) {
+        final bodyString = utf8.decode(bodyBytes.expand((x) => x).toList());
+        print('##### REQUEST BODY: $bodyString'); // 요청의 body를 로그로 출력
+      }
+      print(
+        '### REQUEST [method: ${request.method}]'
+        '\n### URL: ${request.url}'
+        '\n### Header : ${request.headers}'
+        '\n### RESPONSE BODY: ${response.body}',
+      );
+      return response;
     });
   }
 
@@ -42,7 +60,7 @@ class WeeklyBudgetsProvider extends GetConnect {
   }) async {
     try {
       final response = await post("", {'budget': budget});
-      print("주간 예산 생성 > $response");
+      print("주간 예산 생성 > ${response.statusCode}");
       return response.status == 201;
     } catch (e) {
       print(e);
