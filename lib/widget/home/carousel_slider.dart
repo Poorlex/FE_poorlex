@@ -63,8 +63,11 @@ class _MainCarouselSliderState extends State<MainCarouselSlider> {
                   _currentIndex = index;
                 });
               },
+              enableInfiniteScroll: widget.battleListInProgress.isNotEmpty,
             ),
-            itemCount: widget.battleListInProgress.length + 1,
+            itemCount: widget.battleListInProgress.isEmpty
+                ? 1
+                : widget.battleListInProgress.length + 1,
             itemBuilder: (BuildContext context, int index, int realIndex) {
               if (index == widget.battleListInProgress.length) {
                 // 마지막 인덱스인 경우
