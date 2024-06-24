@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:poorlex/libs/number_format.dart';
 import 'package:poorlex/libs/theme.dart';
+import 'package:poorlex/schema/point_level_bar_response/point_level_bar_response.dart';
+import 'package:poorlex/schema/point_response/point_response.dart';
 import 'package:poorlex/schema/weekly_budget_response/weekly_budget_response.dart';
 
 import 'package:poorlex/widget/common/buttons.dart';
@@ -11,10 +13,14 @@ import 'package:poorlex/widget/common/buttons.dart';
 /// 유저 정보 반영하기
 class NavBar extends StatefulWidget implements PreferredSizeWidget {
   final WeeklyBudgetResponse budget;
+  final PointResponse point;
+  final PointLevelBarResponse pointLevelBar;
 
   const NavBar({
     super.key,
     required this.budget,
+    required this.point,
+    required this.pointLevelBar,
   });
 
   @override
@@ -30,8 +36,6 @@ class _NavBarState extends State<NavBar> {
   late String budgetWithWon;
   late String budgetMoney;
 
-  String level = '4';
-
   @override
   void initState() {
     super.initState();
@@ -42,6 +46,30 @@ class _NavBarState extends State<NavBar> {
 
     print("### budgetMoney: $budgetMoney");
     print("### budgetWithWon: $budgetWithWon");
+  }
+
+  String getRemainingDaysText() {
+    DateTime now = DateTime.now();
+    int weekday = now.weekday;
+
+    switch (weekday) {
+      case 1:
+        return 'D-6'; // 월요일
+      case 2:
+        return 'D-5'; // 화요일
+      case 3:
+        return 'D-4'; // 수요일
+      case 4:
+        return 'D-3'; // 목요일
+      case 5:
+        return 'D-2'; // 금요일
+      case 6:
+        return 'D-1'; // 토요일
+      case 7:
+        return 'D-day'; // 일요일
+      default:
+        return 'D-?';
+    }
   }
 
   @override
@@ -100,7 +128,7 @@ class _NavBarState extends State<NavBar> {
                             horizontal: 6,
                           ),
                           child: Text(
-                            'D-7',
+                            getRemainingDaysText(),
                             style: CTextStyles.Body3(),
                           ),
                         ),
@@ -119,7 +147,7 @@ class _NavBarState extends State<NavBar> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                'LV.$level',
+                'LV.${widget.point.level}',
                 style: CTextStyles.Body2(color: CColors.yellow),
               ),
               Container(
@@ -129,12 +157,19 @@ class _NavBarState extends State<NavBar> {
                   children: [
                     Container(
                       width: 240 * 0.04,
+                      // width: 240 *
+                      //     widget.pointLevelBar.currentPoint /
+                      //     widget.pointLevelBar.levelRange,
                       child: Container(
                         color: CColors.yellow,
                       ),
                     ),
                     Container(
                       width: 240 * 0.96,
+                      // width: 240 *
+                      //     (widget.pointLevelBar.levelRange -
+                      //         widget.pointLevelBar.currentPoint) /
+                      //     widget.pointLevelBar.levelRange,
                       child: Container(
                         color: CColors.gray20,
                       ),
@@ -143,7 +178,7 @@ class _NavBarState extends State<NavBar> {
                 ),
               ),
               Text(
-                '+256 P',
+                '+${widget.point.totalPoint} P',
                 style: CTextStyles.Body2(color: CColors.yellow),
               ),
             ],
