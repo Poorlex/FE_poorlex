@@ -142,7 +142,6 @@ class _RankingDetailWidget extends State<RankingDetailWidget>
                   child: MoneyBar(
                     money: battleInfo.battleBudget,
                     width: 31,
-                    height: 36,
                   ),
                 ),
                 SizedBox(width: 13),
