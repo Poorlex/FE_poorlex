@@ -7,11 +7,11 @@ class BattleMoneyBar extends StatelessWidget {
   late final int budget;
   late final Image image;
   BattleMoneyBar({super.key, required this.budget}) {
-    if (hardBudget.indexOf((budget / 10000).round()) > -1) {
+    if (budget <= 80000) {
       image = hardImage;
-    } else if (normalBudget.indexOf((budget / 10000).round()) > -1) {
+    } else if (budget <= 140000) {
       image = normalImage;
-    } else if (easyBudget.indexOf((budget / 10000).round()) > -1) {
+    } else {
       image = easyImage;
     }
   }
