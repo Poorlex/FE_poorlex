@@ -142,7 +142,6 @@ class _RankingDetailWidget extends State<RankingDetailWidget>
                   child: MoneyBar(
                     money: battleInfo.battleBudget,
                     width: 31,
-                    height: 36,
                   ),
                 ),
                 SizedBox(width: 13),
@@ -491,6 +490,8 @@ class _GridItemWidget extends StatelessWidget {
               fit: BoxFit.cover,
             ),
             onTap: () {
+              if (item.own) return;
+
               Navigator.push(
                 context,
                 MaterialPageRoute(

@@ -48,7 +48,6 @@ class BattleBox extends StatelessWidget {
                             MoneyBar(
                               money: battle.budgetLeft,
                               width: 48,
-                              height: 56,
                             ),
 
                             SizedBox(width: 18),

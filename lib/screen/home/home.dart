@@ -54,6 +54,7 @@ class _MainState extends State<Main> {
     // FirebaseController().showFcmToken(context: context);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _budget.getWeeklyBudgets();
+      _budget.getLeftWeeklyBudgets();
       _point.point();
       _point.pointLevelBar();
     });
@@ -78,7 +79,8 @@ class _MainState extends State<Main> {
 
     return Obx(
       () {
-        final budget = _budget.weeklyBudget.value;
+        final budget = _budget.weeklyBudget;
+        final budgetLeft = _budget.weeklyBudgetLeft;
         final point = _point.point.value;
         final pointLevelBar = _point.pointLevelBar.value;
 
@@ -90,6 +92,7 @@ class _MainState extends State<Main> {
           // 네비게이션 바
           appBar: NavBar(
             budget: budget,
+            budgetLeft: budgetLeft,
             point: point,
             pointLevelBar: pointLevelBar,
           ),

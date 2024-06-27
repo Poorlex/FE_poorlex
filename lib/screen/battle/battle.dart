@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:poorlex/controller/weekly_budgets.dart';
 import 'package:poorlex/screen/battle/battle_guide_dialog.dart';
 import 'package:poorlex/widget/bottom_sheet/bottom_sheet_with_beggar.dart';
 import 'package:poorlex/widget/common/tab.dart';
@@ -51,6 +52,8 @@ class _BattleState extends State<Battle> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) async {
+      final _budget = Get.find<WeeklyBudgetsController>();
+      if (_budget.weeklyBudgetLeft.exist) return;
       final result = await BottomSheetWithBeggar.show(
         context: context,
         beggarAction: BeggarAction.suggestionBudget,

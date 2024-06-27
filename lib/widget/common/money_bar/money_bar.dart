@@ -15,12 +15,11 @@ class MoneyBar extends StatelessWidget {
 
   final int money;
   final double width;
-  final double height;
+
   const MoneyBar({
     super.key,
     required this.money,
     required this.width,
-    required this.height,
   });
 
   @override
@@ -28,7 +27,6 @@ class MoneyBar extends StatelessWidget {
     final moneyToString = (money / 10000).toStringAsFixed(0);
     return Container(
       width: width,
-      height: height,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(4),
         border: Border.all(

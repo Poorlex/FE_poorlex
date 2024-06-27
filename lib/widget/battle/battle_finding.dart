@@ -41,14 +41,15 @@ class _BattleFindingState extends State<BattleFinding> {
           itemBuilder: (context, index) {
             final findingBattle = list[index];
             return GestureDetector(
-              onTap: () {
-                Get.toNamed(
+              onTap: () async {
+                await Get.toNamed(
                   '/battle/detail',
                   arguments: {
                     'battleId': findingBattle.battleId,
                   },
                   id: GNBLayout.globalKey,
                 );
+                battle.getBattle();
               },
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,

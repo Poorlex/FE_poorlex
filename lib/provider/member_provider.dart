@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:poorlex/controller/user.dart';
 import 'package:poorlex/schema/error_response/error_response.dart';
 import 'package:poorlex/schema/member_alarm_reponse/member_alarm_response.dart';
+import 'package:poorlex/schema/member_profile_response/member_profile_response.dart';
 import 'package:poorlex/schema/my_page_response/my_page_response.dart';
 
 /// [MEMO] Reference
@@ -92,5 +93,24 @@ class MemberProvider extends GetConnect {
       return true;
     }
     return false;
+  }
+
+  Future<Either<ErrorResponse, MemberProfileResponse>> getMemberProfile({
+    required int memberId,
+  }) async {
+    try {
+      final response = await get<MemberProfileResponse>(
+        "$memberId/profile",
+        decoder: (data) {
+          print("data>>> $data");
+          return MemberProfileResponse.fromJson(data);
+        },
+      );
+      return Right(response.body ?? MemberProfileResponse.empty());
+    } catch (e) {
+      return Left(
+        ErrorResponse(tag: "멤버 가져오기 에러", message: "유저 정보를 가져오지 못했습니다."),
+      );
+    }
   }
 }

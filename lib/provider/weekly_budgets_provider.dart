@@ -61,7 +61,7 @@ class WeeklyBudgetsProvider extends GetConnect {
     try {
       final response = await post("", {'budget': budget});
       print("주간 예산 생성 > ${response.statusCode}");
-      return response.status == 201;
+      return response.statusCode == 201;
     } catch (e) {
       print(e);
       return false;

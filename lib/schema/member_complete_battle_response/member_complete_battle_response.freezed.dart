@@ -26,6 +26,7 @@ mixin _$MemberCompleteBattleResponse {
   String get imageUrl => throw _privateConstructorUsedError;
   String get difficulty => throw _privateConstructorUsedError;
   int get pastDay => throw _privateConstructorUsedError;
+  int get budget => throw _privateConstructorUsedError;
   int get budgetLeft => throw _privateConstructorUsedError;
   int get currentParticipantRank => throw _privateConstructorUsedError;
   int get battleParticipantCount => throw _privateConstructorUsedError;
@@ -51,6 +52,7 @@ abstract class $MemberCompleteBattleResponseCopyWith<$Res> {
       String imageUrl,
       String difficulty,
       int pastDay,
+      int budget,
       int budgetLeft,
       int currentParticipantRank,
       int battleParticipantCount,
@@ -76,6 +78,7 @@ class _$MemberCompleteBattleResponseCopyWithImpl<$Res,
     Object? imageUrl = null,
     Object? difficulty = null,
     Object? pastDay = null,
+    Object? budget = null,
     Object? budgetLeft = null,
     Object? currentParticipantRank = null,
     Object? battleParticipantCount = null,
@@ -101,6 +104,10 @@ class _$MemberCompleteBattleResponseCopyWithImpl<$Res,
       pastDay: null == pastDay
           ? _value.pastDay
           : pastDay // ignore: cast_nullable_to_non_nullable
+              as int,
+      budget: null == budget
+          ? _value.budget
+          : budget // ignore: cast_nullable_to_non_nullable
               as int,
       budgetLeft: null == budgetLeft
           ? _value.budgetLeft
@@ -137,6 +144,7 @@ abstract class _$$MemberCompleteBattleResponseImplCopyWith<$Res>
       String imageUrl,
       String difficulty,
       int pastDay,
+      int budget,
       int budgetLeft,
       int currentParticipantRank,
       int battleParticipantCount,
@@ -161,6 +169,7 @@ class __$$MemberCompleteBattleResponseImplCopyWithImpl<$Res>
     Object? imageUrl = null,
     Object? difficulty = null,
     Object? pastDay = null,
+    Object? budget = null,
     Object? budgetLeft = null,
     Object? currentParticipantRank = null,
     Object? battleParticipantCount = null,
@@ -186,6 +195,10 @@ class __$$MemberCompleteBattleResponseImplCopyWithImpl<$Res>
       pastDay: null == pastDay
           ? _value.pastDay
           : pastDay // ignore: cast_nullable_to_non_nullable
+              as int,
+      budget: null == budget
+          ? _value.budget
+          : budget // ignore: cast_nullable_to_non_nullable
               as int,
       budgetLeft: null == budgetLeft
           ? _value.budgetLeft
@@ -217,6 +230,7 @@ class _$MemberCompleteBattleResponseImpl
       required this.imageUrl,
       required this.difficulty,
       required this.pastDay,
+      required this.budget,
       required this.budgetLeft,
       required this.currentParticipantRank,
       required this.battleParticipantCount,
@@ -237,6 +251,8 @@ class _$MemberCompleteBattleResponseImpl
   @override
   final int pastDay;
   @override
+  final int budget;
+  @override
   final int budgetLeft;
   @override
   final int currentParticipantRank;
@@ -247,7 +263,7 @@ class _$MemberCompleteBattleResponseImpl
 
   @override
   String toString() {
-    return 'MemberCompleteBattleResponse(battleId: $battleId, name: $name, imageUrl: $imageUrl, difficulty: $difficulty, pastDay: $pastDay, budgetLeft: $budgetLeft, currentParticipantRank: $currentParticipantRank, battleParticipantCount: $battleParticipantCount, earnedPoint: $earnedPoint)';
+    return 'MemberCompleteBattleResponse(battleId: $battleId, name: $name, imageUrl: $imageUrl, difficulty: $difficulty, pastDay: $pastDay, budget: $budget, budgetLeft: $budgetLeft, currentParticipantRank: $currentParticipantRank, battleParticipantCount: $battleParticipantCount, earnedPoint: $earnedPoint)';
   }
 
   @override
@@ -263,6 +279,7 @@ class _$MemberCompleteBattleResponseImpl
             (identical(other.difficulty, difficulty) ||
                 other.difficulty == difficulty) &&
             (identical(other.pastDay, pastDay) || other.pastDay == pastDay) &&
+            (identical(other.budget, budget) || other.budget == budget) &&
             (identical(other.budgetLeft, budgetLeft) ||
                 other.budgetLeft == budgetLeft) &&
             (identical(other.currentParticipantRank, currentParticipantRank) ||
@@ -282,6 +299,7 @@ class _$MemberCompleteBattleResponseImpl
       imageUrl,
       difficulty,
       pastDay,
+      budget,
       budgetLeft,
       currentParticipantRank,
       battleParticipantCount,
@@ -311,6 +329,7 @@ abstract class _MemberCompleteBattleResponse
       required final String imageUrl,
       required final String difficulty,
       required final int pastDay,
+      required final int budget,
       required final int budgetLeft,
       required final int currentParticipantRank,
       required final int battleParticipantCount,
@@ -329,6 +348,8 @@ abstract class _MemberCompleteBattleResponse
   String get difficulty;
   @override
   int get pastDay;
+  @override
+  int get budget;
   @override
   int get budgetLeft;
   @override

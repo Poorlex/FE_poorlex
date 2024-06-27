@@ -11,6 +11,7 @@ class MemberCompleteBattleResponse with _$MemberCompleteBattleResponse {
     required String imageUrl,
     required String difficulty,
     required int pastDay,
+    required int budget,
     required int budgetLeft,
     required int currentParticipantRank,
     required int battleParticipantCount,
