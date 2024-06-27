@@ -20,7 +20,7 @@ class BarItem {
   });
 }
 
-class BottomBar extends StatefulWidget {
+class BottomBar extends StatelessWidget {
   final int nowPage;
   final void Function(int) changePageIndex;
 
@@ -30,11 +30,6 @@ class BottomBar extends StatefulWidget {
     required this.changePageIndex,
   });
 
-  @override
-  State<BottomBar> createState() => _BottomBarState();
-}
-
-class _BottomBarState extends State<BottomBar> {
   static final barItems = [
     BarItem(
       key: 'home',
@@ -74,8 +69,8 @@ class _BottomBarState extends State<BottomBar> {
   ];
 
   void _onItemTapped(int index) {
-    if (widget.nowPage == index) return;
-    widget.changePageIndex(index);
+    if (nowPage == index) return;
+    changePageIndex(index);
 
     Get.offAllNamed(barItems[index].route, id: GNBLayout.globalKey);
   }
@@ -91,7 +86,7 @@ class _BottomBarState extends State<BottomBar> {
               padding: EdgeInsets.only(bottom: 6),
               child: Column(
                 children: [
-                  if (widget.nowPage == item.key) ...[
+                  if (nowPage == item.key) ...[
                     Image.asset(width: 22, height: 22, item.value.onIcon)
                   ] else ...[
                     Image.asset(width: 22, height: 22, item.value.offIcon)
@@ -102,7 +97,7 @@ class _BottomBarState extends State<BottomBar> {
           );
         },
       ).toList(),
-      currentIndex: widget.nowPage,
+      currentIndex: nowPage,
       selectedItemColor: CColors.yellow,
       unselectedItemColor: CColors.gray30,
       onTap: _onItemTapped,

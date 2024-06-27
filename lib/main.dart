@@ -46,6 +46,11 @@ GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // runApp() 호출 전 Flutter SDK 초기화
+  await integrationInitialized();
+  runApp(MyApp());
+}
+
+Future<void> integrationInitialized() async {
   await HiveBox.initHive();
   initializeDateFormatting('ko');
   await dotenv.load(fileName: ".env");
@@ -65,9 +70,14 @@ void main() async {
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]);
+}
 
-  runApp(
-    GetMaterialApp(
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return GetMaterialApp(
       navigatorKey: navigatorKey,
       builder: FToastBuilder(),
       initialBinding: RootBind(),
@@ -157,6 +167,6 @@ void main() async {
           page: () => BudgetPage(),
         )
       ],
-    ),
-  );
+    );
+  }
 }
