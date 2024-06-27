@@ -14,17 +14,19 @@ class WeeklyBudgetsController extends GetxController {
   final _createWeeklyBudgets = WeeklyBudgetCreateModel().obs;
   WeeklyBudgetCreateModel get createWeeklyBudget => _createWeeklyBudgets.value;
 
-  final Rx<WeeklyBudgetResponse> weeklyBudget = WeeklyBudgetResponse(
+  final Rx<WeeklyBudgetResponse> _weeklyBudget = WeeklyBudgetResponse(
     exist: false,
     amount: 0,
     daysBeforeEnd: 0,
   ).obs;
+  WeeklyBudgetResponse get weeklyBudget => _weeklyBudget.value;
 
-  final Rx<WeeklyBudgetLeftResponse> weeklyBudgetLeft =
+  final Rx<WeeklyBudgetLeftResponse> _weeklyBudgetLeft =
       WeeklyBudgetLeftResponse(
     exist: false,
     amount: 0,
   ).obs;
+  WeeklyBudgetLeftResponse get weeklyBudgetLeft => _weeklyBudgetLeft.value;
 
   void initCreateWeeklyBudget() {
     _createWeeklyBudgets(WeeklyBudgetCreateModel());
@@ -40,7 +42,7 @@ class WeeklyBudgetsController extends GetxController {
   Future<void> getWeeklyBudgets() async {
     try {
       final response = await weeklyBudgetsProvider.getWeeklyBudgets();
-      weeklyBudget(response);
+      _weeklyBudget(response);
     } catch (e) {
       print(e);
     }
@@ -50,7 +52,7 @@ class WeeklyBudgetsController extends GetxController {
   Future<void> getLeftWeeklyBudgets() async {
     try {
       final response = await weeklyBudgetsProvider.getLeftWeeklyBudgets();
-      weeklyBudgetLeft(response);
+      _weeklyBudgetLeft(response);
     } catch (e) {
       print(e);
     }

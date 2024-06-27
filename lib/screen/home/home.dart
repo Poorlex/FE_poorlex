@@ -79,8 +79,8 @@ class _MainState extends State<Main> {
 
     return Obx(
       () {
-        final budget = _budget.weeklyBudget.value;
-        final budgetLeft = _budget.weeklyBudgetLeft.value;
+        final budget = _budget.weeklyBudget;
+        final budgetLeft = _budget.weeklyBudgetLeft;
         final point = _point.point.value;
         final pointLevelBar = _point.pointLevelBar.value;
 
