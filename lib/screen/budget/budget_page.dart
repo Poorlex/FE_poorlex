@@ -62,7 +62,8 @@ class _BudgetPageState extends State<BudgetPage> {
           buttonText: "확인",
         );
       }
-
+      await _weeklyBudgetsController.getWeeklyBudgets();
+      await _weeklyBudgetsController.getLeftWeeklyBudgets();
       await AudioController().play(audioType: AudioType.complete);
       Get.back();
     }
