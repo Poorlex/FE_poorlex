@@ -22,6 +22,7 @@ ExpenditureResponse _$ExpenditureResponseFromJson(Map<String, dynamic> json) {
 mixin _$ExpenditureResponse {
   int get id => throw _privateConstructorUsedError;
   String get date => throw _privateConstructorUsedError;
+  int get memberId => throw _privateConstructorUsedError;
   int get amount => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   String get mainImageUrl => throw _privateConstructorUsedError;
@@ -42,6 +43,7 @@ abstract class $ExpenditureResponseCopyWith<$Res> {
   $Res call(
       {int id,
       String date,
+      int memberId,
       int amount,
       String description,
       String mainImageUrl,
@@ -63,6 +65,7 @@ class _$ExpenditureResponseCopyWithImpl<$Res, $Val extends ExpenditureResponse>
   $Res call({
     Object? id = null,
     Object? date = null,
+    Object? memberId = null,
     Object? amount = null,
     Object? description = null,
     Object? mainImageUrl = null,
@@ -77,6 +80,10 @@ class _$ExpenditureResponseCopyWithImpl<$Res, $Val extends ExpenditureResponse>
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
               as String,
+      memberId: null == memberId
+          ? _value.memberId
+          : memberId // ignore: cast_nullable_to_non_nullable
+              as int,
       amount: null == amount
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
@@ -108,6 +115,7 @@ abstract class _$$ExpenditureResponseImplCopyWith<$Res>
   $Res call(
       {int id,
       String date,
+      int memberId,
       int amount,
       String description,
       String mainImageUrl,
@@ -127,6 +135,7 @@ class __$$ExpenditureResponseImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? date = null,
+    Object? memberId = null,
     Object? amount = null,
     Object? description = null,
     Object? mainImageUrl = null,
@@ -141,6 +150,10 @@ class __$$ExpenditureResponseImplCopyWithImpl<$Res>
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
               as String,
+      memberId: null == memberId
+          ? _value.memberId
+          : memberId // ignore: cast_nullable_to_non_nullable
+              as int,
       amount: null == amount
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
@@ -167,6 +180,7 @@ class _$ExpenditureResponseImpl implements _ExpenditureResponse {
   const _$ExpenditureResponseImpl(
       {required this.id,
       required this.date,
+      required this.memberId,
       required this.amount,
       required this.description,
       required this.mainImageUrl,
@@ -180,6 +194,8 @@ class _$ExpenditureResponseImpl implements _ExpenditureResponse {
   @override
   final String date;
   @override
+  final int memberId;
+  @override
   final int amount;
   @override
   final String description;
@@ -190,7 +206,7 @@ class _$ExpenditureResponseImpl implements _ExpenditureResponse {
 
   @override
   String toString() {
-    return 'ExpenditureResponse(id: $id, date: $date, amount: $amount, description: $description, mainImageUrl: $mainImageUrl, subImageUrl: $subImageUrl)';
+    return 'ExpenditureResponse(id: $id, date: $date, memberId: $memberId, amount: $amount, description: $description, mainImageUrl: $mainImageUrl, subImageUrl: $subImageUrl)';
   }
 
   @override
@@ -200,6 +216,8 @@ class _$ExpenditureResponseImpl implements _ExpenditureResponse {
             other is _$ExpenditureResponseImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.date, date) || other.date == date) &&
+            (identical(other.memberId, memberId) ||
+                other.memberId == memberId) &&
             (identical(other.amount, amount) || other.amount == amount) &&
             (identical(other.description, description) ||
                 other.description == description) &&
@@ -211,8 +229,8 @@ class _$ExpenditureResponseImpl implements _ExpenditureResponse {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, id, date, amount, description, mainImageUrl, subImageUrl);
+  int get hashCode => Object.hash(runtimeType, id, date, memberId, amount,
+      description, mainImageUrl, subImageUrl);
 
   @JsonKey(ignore: true)
   @override
@@ -233,6 +251,7 @@ abstract class _ExpenditureResponse implements ExpenditureResponse {
   const factory _ExpenditureResponse(
       {required final int id,
       required final String date,
+      required final int memberId,
       required final int amount,
       required final String description,
       required final String mainImageUrl,
@@ -245,6 +264,8 @@ abstract class _ExpenditureResponse implements ExpenditureResponse {
   int get id;
   @override
   String get date;
+  @override
+  int get memberId;
   @override
   int get amount;
   @override

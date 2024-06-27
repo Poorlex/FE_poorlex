@@ -490,6 +490,8 @@ class _GridItemWidget extends StatelessWidget {
               fit: BoxFit.cover,
             ),
             onTap: () {
+              if (item.own) return;
+
               Navigator.push(
                 context,
                 MaterialPageRoute(

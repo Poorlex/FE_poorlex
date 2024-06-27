@@ -3,10 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:poorlex/libs/theme.dart';
+import 'package:poorlex/main.dart';
 import 'package:poorlex/provider/expenditures_provider.dart';
+import 'package:poorlex/provider/member_provider.dart';
 import 'package:poorlex/schema/expenditure_response/expenditure_response.dart';
+import 'package:poorlex/schema/member_profile_response/member_profile_response.dart';
+import 'package:poorlex/widget/common/dialog/common_alert.dart';
 import 'package:poorlex/widget/common/image/image_network.dart';
 import 'package:poorlex/widget/common/medal.dart';
+import 'package:poorlex/widget/level/profile.dart';
 import 'package:poorlex/widget/loading_screen.dart';
 
 /// [MEMO] router에 등록되지 않는 페이지입니다.
@@ -26,6 +31,7 @@ class _ExpenseCertificationScreenState
     extends State<ExpenseCertificationScreen> {
   final ExpendituresProvider _expendituresProvider =
       Get.find<ExpendituresProvider>();
+  final MemberProvider _memberProvider = Get.find<MemberProvider>();
 
   final CarouselController _carouselController = CarouselController();
   int _currentIndex = 0;
@@ -39,6 +45,7 @@ class _ExpenseCertificationScreenState
   }
 
   ExpenditureResponse? _expenditureResponse;
+  MemberProfileResponse _memberProfile = MemberProfileResponse.empty();
   int _totalImageCount = 1;
   Future<void> _getDetailById() async {
     final response = await _expendituresProvider.getDetailById(
@@ -49,6 +56,27 @@ class _ExpenseCertificationScreenState
       _totalImageCount = 2;
     }
     setState(() {});
+    await _getMemberProfile();
+  }
+
+  Future<void> _getMemberProfile() async {
+    if (_expenditureResponse == null) return;
+    final response = await _memberProvider.getMemberProfile(
+      memberId: _expenditureResponse!.memberId,
+    );
+
+    await response.fold(
+      (l) async {
+        await commonAlert(
+          context: navigatorKey.currentContext!,
+          message: l.message,
+        );
+      },
+      (r) {
+        _memberProfile = r;
+        setState(() {});
+      },
+    );
   }
 
   @override
@@ -166,15 +194,21 @@ class _ExpenseCertificationScreenState
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Image.asset(
+                      CProfile(
+                        level: _memberProfile.levelInfo.level,
                         width: 40,
                         height: 40,
-                        'assets/ranking/first_profile_60_60.png',
                       ),
                       SizedBox(width: 6),
-                      LevelMedal(level: 1, size: 16),
+                      LevelMedal(
+                        level: _memberProfile.levelInfo.level,
+                        size: 16,
+                      ),
                       SizedBox(width: 6),
-                      Text("최지출", style: CTextStyles.Headline()),
+                      Text(
+                        _memberProfile.nickname,
+                        style: CTextStyles.Headline(),
+                      ),
                     ],
                   ),
                   SizedBox(height: 17),

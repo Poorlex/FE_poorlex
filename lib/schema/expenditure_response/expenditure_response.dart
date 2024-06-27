@@ -9,6 +9,7 @@ class ExpenditureResponse with _$ExpenditureResponse {
   const factory ExpenditureResponse({
     required int id,
     required String date,
+    required int memberId,
     required int amount,
     required String description,
     required String mainImageUrl,

@@ -11,6 +11,7 @@ _$ExpenditureResponseImpl _$$ExpenditureResponseImplFromJson(
     _$ExpenditureResponseImpl(
       id: (json['id'] as num).toInt(),
       date: json['date'] as String,
+      memberId: (json['memberId'] as num).toInt(),
       amount: (json['amount'] as num).toInt(),
       description: json['description'] as String,
       mainImageUrl: json['mainImageUrl'] as String,
@@ -22,6 +23,7 @@ Map<String, dynamic> _$$ExpenditureResponseImplToJson(
     <String, dynamic>{
       'id': instance.id,
       'date': instance.date,
+      'memberId': instance.memberId,
       'amount': instance.amount,
       'description': instance.description,
       'mainImageUrl': instance.mainImageUrl,

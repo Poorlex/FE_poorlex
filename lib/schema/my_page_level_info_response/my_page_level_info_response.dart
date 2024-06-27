@@ -14,4 +14,10 @@ class MyPageLevelInfoResponse with _$MyPageLevelInfoResponse {
 
   factory MyPageLevelInfoResponse.fromJson(Map<String, dynamic> json) =>
       _$MyPageLevelInfoResponseFromJson(json);
+
+  factory MyPageLevelInfoResponse.empty() => MyPageLevelInfoResponse(
+        level: 1,
+        point: 0,
+        pointLeftForLevelUp: 0,
+      );
 }
