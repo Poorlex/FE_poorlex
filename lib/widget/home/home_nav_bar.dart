@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:poorlex/libs/number_format.dart';
 import 'package:poorlex/libs/theme.dart';
 import 'package:poorlex/schema/point_level_bar_response/point_level_bar_response.dart';
 import 'package:poorlex/schema/point_response/point_response.dart';
+import 'package:poorlex/schema/weekly_budget_left_response/weekly_budget_left_response.dart';
 import 'package:poorlex/schema/weekly_budget_response/weekly_budget_response.dart';
 
 import 'package:poorlex/widget/common/buttons.dart';
@@ -15,10 +15,11 @@ class NavBar extends StatefulWidget implements PreferredSizeWidget {
   final WeeklyBudgetResponse budget;
   final PointResponse point;
   final PointLevelBarResponse pointLevelBar;
-
+  final WeeklyBudgetLeftResponse budgetLeft;
   const NavBar({
     super.key,
     required this.budget,
+    required this.budgetLeft,
     required this.point,
     required this.pointLevelBar,
   });
@@ -33,20 +34,6 @@ class NavBar extends StatefulWidget implements PreferredSizeWidget {
 class _NavBarState extends State<NavBar> {
   // 천 단위마다 콤마 표기
   // intl 패키지 사용
-  late String budgetWithWon;
-  late String budgetMoney;
-
-  @override
-  void initState() {
-    super.initState();
-    // 천 단위마다 콤마 표기
-    final formatter = NumberFormat('#,###');
-    budgetMoney = formatter.format(widget.budget.amount);
-    budgetWithWon = formatCurrencyWithWon(widget.budget.amount);
-
-    print("### budgetMoney: $budgetMoney");
-    print("### budgetWithWon: $budgetWithWon");
-  }
 
   String getRemainingDaysText() {
     DateTime now = DateTime.now();
@@ -74,6 +61,12 @@ class _NavBarState extends State<NavBar> {
 
   @override
   Widget build(BuildContext context) {
+    final formatter = NumberFormat('#,###');
+    final budgetLeft = formatter.format(widget.budgetLeft.amount);
+
+    /// 남은 예산 - 예산으로 사용한 금액 표현
+    final usedBudgetMoney =
+        formatter.format(widget.budgetLeft.amount - widget.budget.amount);
     return AppBar(
       toolbarHeight: 90,
       backgroundColor: CColors.black,
@@ -100,7 +93,7 @@ class _NavBarState extends State<NavBar> {
                               // 예산 금액
                               Text(
                                 widget.budget.exist == true
-                                    ? '$budgetMoney'
+                                    ? '$budgetLeft'
                                     : '?',
                                 style: CTextStyles.Body2(),
                               ),
@@ -209,7 +202,7 @@ class _NavBarState extends State<NavBar> {
                       CButton(
                         onPressed: () => Get.toNamed('/budget'),
                         child: Text(
-                          budgetMoney,
+                          budgetLeft,
                           style: CTextStyles.Title3(),
                         ),
                       )
@@ -218,7 +211,7 @@ class _NavBarState extends State<NavBar> {
 
                   // 지출 금액
                   Text(
-                    '-32,000원',
+                    '${usedBudgetMoney}',
                     style: CTextStyles.Body2(
                       color: CColors.purpleLight,
                     ),
