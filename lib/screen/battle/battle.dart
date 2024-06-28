@@ -12,6 +12,7 @@ import 'package:poorlex/widget/battle/battle_money.dart';
 import 'package:poorlex/widget/battle/battle_participant.dart';
 import 'package:poorlex/widget/common/buttons.dart';
 import 'package:poorlex/widget/common/icon.dart';
+import 'package:poorlex/widget/gnb_layout.dart';
 
 class Battle extends StatefulWidget {
   Battle({super.key});
@@ -52,21 +53,34 @@ class _BattleState extends State<Battle> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      final _budget = Get.find<WeeklyBudgetsController>();
-      if (_budget.weeklyBudgetLeft.exist) return;
-      final result = await BottomSheetWithBeggar.show(
-        context: context,
-        beggarAction: BeggarAction.suggestionBudget,
-      );
-
-      if (result == false) {
-        /// [TODO] 예산 설정하러 가기 라우팅
-        print('예산 설정하러 가기');
-        Get.toNamed('/budget');
-      }
+      await _goToBudgetSettingIfNoBudget();
     });
 
     battle.getBattle();
+  }
+
+  Future<void> _goToBudgetSettingIfNoBudget() async {
+    final _budget = Get.find<WeeklyBudgetsController>();
+    await _budget.getLeftWeeklyBudgets();
+    if (_budget.weeklyBudgetLeft.exist) return;
+    final result = await BottomSheetWithBeggar.show(
+      context: context,
+      beggarAction: BeggarAction.suggestionBudget,
+    );
+
+    if (result == false) {
+      await Get.toNamed('/budget');
+      await _goToBudgetSettingIfNoBudget();
+    }
+    if (result == true) {
+      Get.offAllNamed(
+        '/main',
+        id: GNBLayout.globalKey,
+        arguments: {
+          "gnb-index": 0,
+        },
+      );
+    }
   }
 
   @override
