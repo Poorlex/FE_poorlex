@@ -22,7 +22,7 @@ WeeklyBudgetLeftResponse _$WeeklyBudgetLeftResponseFromJson(
 /// @nodoc
 mixin _$WeeklyBudgetLeftResponse {
   bool get exist => throw _privateConstructorUsedError;
-  int get amount => throw _privateConstructorUsedError;
+  int get left => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -36,7 +36,7 @@ abstract class $WeeklyBudgetLeftResponseCopyWith<$Res> {
           $Res Function(WeeklyBudgetLeftResponse) then) =
       _$WeeklyBudgetLeftResponseCopyWithImpl<$Res, WeeklyBudgetLeftResponse>;
   @useResult
-  $Res call({bool exist, int amount});
+  $Res call({bool exist, int left});
 }
 
 /// @nodoc
@@ -54,16 +54,16 @@ class _$WeeklyBudgetLeftResponseCopyWithImpl<$Res,
   @override
   $Res call({
     Object? exist = null,
-    Object? amount = null,
+    Object? left = null,
   }) {
     return _then(_value.copyWith(
       exist: null == exist
           ? _value.exist
           : exist // ignore: cast_nullable_to_non_nullable
               as bool,
-      amount: null == amount
-          ? _value.amount
-          : amount // ignore: cast_nullable_to_non_nullable
+      left: null == left
+          ? _value.left
+          : left // ignore: cast_nullable_to_non_nullable
               as int,
     ) as $Val);
   }
@@ -78,7 +78,7 @@ abstract class _$$WeeklyBudgetLeftResponseImplCopyWith<$Res>
       __$$WeeklyBudgetLeftResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool exist, int amount});
+  $Res call({bool exist, int left});
 }
 
 /// @nodoc
@@ -95,16 +95,16 @@ class __$$WeeklyBudgetLeftResponseImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? exist = null,
-    Object? amount = null,
+    Object? left = null,
   }) {
     return _then(_$WeeklyBudgetLeftResponseImpl(
       exist: null == exist
           ? _value.exist
           : exist // ignore: cast_nullable_to_non_nullable
               as bool,
-      amount: null == amount
-          ? _value.amount
-          : amount // ignore: cast_nullable_to_non_nullable
+      left: null == left
+          ? _value.left
+          : left // ignore: cast_nullable_to_non_nullable
               as int,
     ));
   }
@@ -114,7 +114,7 @@ class __$$WeeklyBudgetLeftResponseImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$WeeklyBudgetLeftResponseImpl implements _WeeklyBudgetLeftResponse {
   const _$WeeklyBudgetLeftResponseImpl(
-      {required this.exist, required this.amount});
+      {required this.exist, required this.left});
 
   factory _$WeeklyBudgetLeftResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$WeeklyBudgetLeftResponseImplFromJson(json);
@@ -122,11 +122,11 @@ class _$WeeklyBudgetLeftResponseImpl implements _WeeklyBudgetLeftResponse {
   @override
   final bool exist;
   @override
-  final int amount;
+  final int left;
 
   @override
   String toString() {
-    return 'WeeklyBudgetLeftResponse(exist: $exist, amount: $amount)';
+    return 'WeeklyBudgetLeftResponse(exist: $exist, left: $left)';
   }
 
   @override
@@ -135,12 +135,12 @@ class _$WeeklyBudgetLeftResponseImpl implements _WeeklyBudgetLeftResponse {
         (other.runtimeType == runtimeType &&
             other is _$WeeklyBudgetLeftResponseImpl &&
             (identical(other.exist, exist) || other.exist == exist) &&
-            (identical(other.amount, amount) || other.amount == amount));
+            (identical(other.left, left) || other.left == left));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, exist, amount);
+  int get hashCode => Object.hash(runtimeType, exist, left);
 
   @JsonKey(ignore: true)
   @override
@@ -160,7 +160,7 @@ class _$WeeklyBudgetLeftResponseImpl implements _WeeklyBudgetLeftResponse {
 abstract class _WeeklyBudgetLeftResponse implements WeeklyBudgetLeftResponse {
   const factory _WeeklyBudgetLeftResponse(
       {required final bool exist,
-      required final int amount}) = _$WeeklyBudgetLeftResponseImpl;
+      required final int left}) = _$WeeklyBudgetLeftResponseImpl;
 
   factory _WeeklyBudgetLeftResponse.fromJson(Map<String, dynamic> json) =
       _$WeeklyBudgetLeftResponseImpl.fromJson;
@@ -168,7 +168,7 @@ abstract class _WeeklyBudgetLeftResponse implements WeeklyBudgetLeftResponse {
   @override
   bool get exist;
   @override
-  int get amount;
+  int get left;
   @override
   @JsonKey(ignore: true)
   _$$WeeklyBudgetLeftResponseImplCopyWith<_$WeeklyBudgetLeftResponseImpl>
