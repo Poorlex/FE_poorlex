@@ -54,84 +54,37 @@ class _MyPageMyAuthState extends State<MyPageMyAuth> {
                 mainAxisSpacing: 17,
                 children:
                     (user.userInfo?.expenditures.take(4) ?? []).map((item) {
-                  return Container(
-                    child: BackgroundImageWithBlack(
-                      image: NetworkImage(item.imageUrl),
-                      height: double.maxFinite,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Text(
-                              cTimeFormat(
-                                  DateTime.parse('${item.date} 00:00:00')
-                                      .millisecondsSinceEpoch,
-                                  'yyyy.MM.dd (E)'),
-                              style:
-                                  CTextStyles.Caption1(color: CColors.gray50)),
-                          SizedBox(height: 13),
-                          Text(
-                            '${makeComma(item.amount)}원',
-                            style: CTextStyles.Headline(),
-                          ),
-                        ],
+                  return GestureDetector(
+                    onTap: () async {
+                      Get.toNamed('/my/expense-detail/${item.id}');
+                    },
+                    child: Container(
+                      child: BackgroundImageWithBlack(
+                        image: NetworkImage(item.imageUrl),
+                        height: double.maxFinite,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text(
+                                cTimeFormat(
+                                    DateTime.parse('${item.date} 00:00:00')
+                                        .millisecondsSinceEpoch,
+                                    'yyyy.MM.dd (E)'),
+                                style: CTextStyles.Caption1(
+                                    color: CColors.gray50)),
+                            SizedBox(height: 13),
+                            Text(
+                              '${makeComma(item.amount)}원',
+                              style: CTextStyles.Headline(),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   );
                 }).toList(),
               ),
-              // Row(
-              //   children: [
-              //     Expanded(
-              //       child: Wrap(
-              //         spacing: 18,
-              //         runSpacing: 18,
-              //         direction: Axis.horizontal,
-              //         alignment: WrapAlignment.start,
-              //         children: (user.userInfo?.expenditures ?? []).map<Widget>(
-              //           (item) {
-              //             final index =
-              //                 user.userInfo?.expenditures.indexOf(item) ?? 0;
-              //             return index < 4
-              //                 ? CButton(
-              //                     onPressed: () => Get.toNamed(
-              //                       '/my/expense-detail/${item.id}',
-              //                     ),
-              //                     child: Container(
-              //                       child: BackgroundImageWithBlack(
-              //                         image: NetworkImage(item.imageUrl),
-              //                         height: 153,
-              //                         child: Column(
-              //                           mainAxisAlignment:
-              //                               MainAxisAlignment.center,
-              //                           crossAxisAlignment:
-              //                               CrossAxisAlignment.center,
-              //                           children: [
-              //                             Text(
-              //                                 cTimeFormat(
-              //                                     DateTime.parse(
-              //                                             '${item.date} 00:00:00')
-              //                                         .millisecondsSinceEpoch,
-              //                                     'yyyy.MM.dd (E)'),
-              //                                 style: CTextStyles.Caption1(
-              //                                     color: CColors.gray50)),
-              //                             SizedBox(height: 13),
-              //                             Text(
-              //                               '${makeComma(item.amount)}원',
-              //                               style: CTextStyles.Headline(),
-              //                             ),
-              //                           ],
-              //                         ),
-              //                       ),
-              //                     ),
-              //                   )
-              //                 : SizedBox.shrink();
-              //           },
-              //         ).toList(),
-              //       ),
-              //     )
-              //   ],
-              // ),
               SizedBox(height: 17),
               GestureDetector(
                 onTap: () {
