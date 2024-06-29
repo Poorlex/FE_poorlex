@@ -28,7 +28,6 @@ class ExpendituresProvider extends GetConnect {
     });
   }
 
-  /// [TEST] x
   /// 지출 상세 조회
   Future<ExpenditureResponse?> getDetailById({
     required int expenditureId,

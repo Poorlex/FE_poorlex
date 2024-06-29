@@ -33,6 +33,9 @@ class UserController extends GetxController {
   final Rxn<ExpenditureResponse> _expenditure = Rxn<ExpenditureResponse>();
   ExpenditureResponse? get expenditure => _expenditure.value;
 
+  final RxList<ExpenditureResponse> _expenditures = <ExpenditureResponse>[].obs;
+  List<ExpenditureResponse> get expenditures => _expenditures;
+
   void expenditureClear() {
     _expenditure(null);
   }
@@ -46,11 +49,16 @@ class UserController extends GetxController {
     await _getUserInfo();
   }
 
-  Future<ExpenditureResponse?> getExpenditure(int id) async {
+  Future<ExpenditureResponse?> getExpenditureById(int id) async {
     final response =
         await expendituresProvider.getDetailById(expenditureId: id);
     _expenditure(response);
     return response;
+  }
+
+  Future<void> getExpenditures() async {
+    final response = await expendituresProvider.getList();
+    _expenditures(response);
   }
 
   Future<bool> patchProfile({
