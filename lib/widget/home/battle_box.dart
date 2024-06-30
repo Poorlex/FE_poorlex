@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'package:poorlex/libs/theme.dart';
 import 'package:poorlex/schema/member_progress_battle_response/member_progress_battle_response.dart';
 import 'package:poorlex/widget/common/money_bar/money_bar.dart';
+import 'package:poorlex/widget/gnb_layout.dart';
 
 class BattleBox extends StatelessWidget {
   final MemberProgressBattleResponse battle;
@@ -99,7 +101,15 @@ class BattleBox extends StatelessWidget {
                                   color: CColors.yellow,
                                 ),
                               ),
-                              onPressed: () {},
+                              onPressed: () {
+                                Get.toNamed(
+                                  '/battle/ranking',
+                                  arguments: {
+                                    'battleId': battle.battleId,
+                                  },
+                                  id: GNBLayout.globalKey,
+                                );
+                              },
                             )
                           ],
                         )
