@@ -57,7 +57,10 @@ class BattleIndexZero extends StatelessWidget {
                       width: 30, height: 22, 'assets/my_page/icon_cooper.png'),
                 ],
               ),
-              onPressed: () => battle.changeDifficulty(EBattleDifficulty.easy),
+              onPressed: () {
+                battle.changeDifficulty(EBattleDifficulty.easy);
+                battle.changeBudget(15);
+              },
             ),
             SizedBox(width: 14),
             CButton(
@@ -80,9 +83,10 @@ class BattleIndexZero extends StatelessWidget {
                       width: 30, height: 22, 'assets/my_page/icon_silver.png'),
                 ],
               ),
-              onPressed: () => battle.changeDifficulty(
-                EBattleDifficulty.normal,
-              ),
+              onPressed: () {
+                battle.changeDifficulty(EBattleDifficulty.normal);
+                battle.changeBudget(9);
+              },
             ),
             SizedBox(width: 14),
             CButton(
@@ -100,14 +104,20 @@ class BattleIndexZero extends StatelessWidget {
                 Image.asset(
                     width: 30, height: 22, 'assets/my_page/icon_gold.png'),
               ]),
-              onPressed: () => battle.changeDifficulty(EBattleDifficulty.hard),
+              onPressed: () {
+                battle.changeDifficulty(EBattleDifficulty.hard);
+                battle.changeBudget(1);
+              },
             ),
           ]),
         ),
         SizedBox(height: 50),
         Row(
           children: [
-            Text('배틀방 예산', style: CTextStyles.Body3(color: CColors.gray40))
+            Text(
+              '배틀방 예산',
+              style: CTextStyles.Body3(color: CColors.gray40),
+            )
           ],
         ),
         SizedBox(height: 20),

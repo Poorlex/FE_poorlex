@@ -141,9 +141,16 @@ class _BattleCreateState extends State<BattleCreate> {
               } else {
                 final battleCreate = battle.battleCreate;
                 final disabledCondition = battleCreate.current == 1 &&
-                        (battleCreate.title.isEmpty ||
-                            battleCreate.image == null ||
-                            battleCreate.content.isEmpty) ||
+                        (
+                            // 배틀방 제목 길이 2~12자, 배틀방 소개글 길이 2~300자, 이미지, 인원수
+                            !(battleCreate.title.length >= 2 &&
+                                    battleCreate.title.length <= 12) ||
+                                battleCreate.title.isEmpty ||
+                                battleCreate.image == null ||
+                                !(battleCreate.content.length >= 2 &&
+                                    battleCreate.content.length <= 300) ||
+                                battleCreate.content.isEmpty) ||
+                    battleCreate.budget == 0 ||
                     battleCreate.current == 2 && battleCreate.count == 0;
                 return CButton(
                   padding: EdgeInsets.symmetric(vertical: 14),
