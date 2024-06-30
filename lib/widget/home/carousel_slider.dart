@@ -19,8 +19,6 @@ class MainCarouselSlider extends StatefulWidget {
 }
 
 class _MainCarouselSliderState extends State<MainCarouselSlider> {
-  int _currentIndex = 0;
-
   @override
   void initState() {
     super.initState();
@@ -65,9 +63,7 @@ class _MainCarouselSliderState extends State<MainCarouselSlider> {
               viewportFraction: 0.9, // 화면 너비의 80%를 차지하도록 설정
               scrollDirection: Axis.horizontal,
               onPageChanged: (index, reason) {
-                setState(() {
-                  _currentIndex = index;
-                });
+                setState(() {});
               },
               enableInfiniteScroll: false,
             ),
