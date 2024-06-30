@@ -91,14 +91,18 @@ class _BudgetPageState extends State<BudgetPage> {
       // 성공 시 Main 페이지의 showSuccessImage 메서드 호출
       Get.find<MainController>().displaySuccessImage();
 
-      Get.back();
+      // 배틀 방 만들기 버튼을 통해서 온 경우
+      if (Get.arguments != null && Get.arguments['fromEmptyBattle'] == true) {
+        Get.toNamed('/battle/create');
+      } else {
+        Get.offAllNamed('/main');
+      }
     }
   }
 
   @override
   void dispose() {
     _priceController.dispose();
-    _weeklyBudgetsController.dispose();
     super.dispose();
   }
 
