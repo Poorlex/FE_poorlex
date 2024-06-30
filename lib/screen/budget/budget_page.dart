@@ -49,11 +49,12 @@ class _BudgetPageState extends State<BudgetPage> {
   }
 
   Future<void> _submit() async {
+    int price = int.parse(
+        _priceController.text.replaceAll('원', '').replaceAll(',', ''));
+
     if (_priceController.text.isEmpty) {
       await commonAlert(context: context, message: '금액을 입력해주세요');
-    } else if (int.parse(
-            _priceController.text.replaceAll('원', '').replaceAll(',', '')) >
-        9999999) {
+    } else if (price > 9999999) {
       await commonAlert(
         context: context,
         message: "0 ~ 9,999,999원 이내로 입력해주세요.",
@@ -65,15 +66,13 @@ class _BudgetPageState extends State<BudgetPage> {
       // [POST] 예산이 없을 때
       if (budget.exist == false) {
         result = await _weeklyBudgetsController.postCreateWeeklyBudgets(
-          budget: int.parse(
-              _priceController.text.replaceAll('원', '').replaceAll(',', '')),
+          budget: price,
         );
       }
       // [PUT] 예산이 있을 떄
       else {
         result = await _weeklyBudgetsController.putCreateWeeklyBudgets(
-          budget: int.parse(
-              _priceController.text.replaceAll('원', '').replaceAll(',', '')),
+          budget: price,
         );
       }
 
