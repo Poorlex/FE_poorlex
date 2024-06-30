@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get/get_rx/get_rx.dart';
+import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:poorlex/controller/audio_controller.dart';
 import 'package:poorlex/controller/battle.dart';
 import 'package:poorlex/controller/point.dart';
@@ -11,6 +13,23 @@ import 'package:poorlex/schema/member_progress_battle_response/member_progress_b
 import 'package:poorlex/widget/home/home_nav_bar.dart';
 import 'package:poorlex/widget/home/carousel_slider.dart';
 import 'package:poorlex/widget/home/home_bottom_button.dart';
+
+class MainController extends GetxController {
+  RxBool showSuccessImage = false.obs;
+  RxDouble opacity = 1.0.obs;
+
+  void displaySuccessImage() {
+    showSuccessImage.value = true;
+    opacity.value = 1.0;
+
+    Future.delayed(Duration(seconds: 2), () {
+      opacity.value = 0.0;
+      Future.delayed(Duration(milliseconds: 500), () {
+        showSuccessImage.value = false;
+      });
+    });
+  }
+}
 
 class Main extends StatefulWidget {
   const Main({super.key});
@@ -38,6 +57,7 @@ class _MainState extends State<Main> {
   //     },
   //   );
   // }
+  late final MainController _mainController;
 
   late final _budget = Get.find<WeeklyBudgetsController>();
   late final _point = Get.find<PointController>();
@@ -49,14 +69,15 @@ class _MainState extends State<Main> {
   @override
   void initState() {
     super.initState();
+    _mainController = Get.put(MainController());
 
     /// 추후에 푸시알림 테스트 할때 사용
     // FirebaseController().showFcmToken(context: context);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _budget.getWeeklyBudgets();
       _budget.getLeftWeeklyBudgets();
-      _point.point();
-      _point.pointLevelBar();
+      _point.getPoint();
+      _point.getPointLevelBar();
     });
 
     battle.getBattleInProgress();
@@ -142,6 +163,37 @@ class _MainState extends State<Main> {
                     ),
                   ),
                 ),
+
+                // 예산 설정 완료 시 Ready 이미지 출력
+                Obx(() {
+                  if (_mainController.showSuccessImage.value) {
+                    return Positioned(
+                      top: 44,
+                      left: 0,
+                      right: 0,
+                      child: Align(
+                        alignment: Alignment.center,
+                        child: AnimatedOpacity(
+                          opacity: _mainController.opacity.value,
+                          duration: Duration(milliseconds: 500),
+                          child: Container(
+                            width: 180,
+                            height: 44,
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                image: AssetImage(
+                                    'assets/main_page/ready.png'), // 성공 이미지 경로
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    );
+                  } else {
+                    return SizedBox.shrink();
+                  }
+                }),
 
                 // 중간 배경 이미지
                 Positioned(
