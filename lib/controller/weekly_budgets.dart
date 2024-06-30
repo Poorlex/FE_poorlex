@@ -72,4 +72,19 @@ class WeeklyBudgetsController extends GetxController {
       return false;
     }
   }
+
+  /// 주간 예산 수정
+  Future<bool> putCreateWeeklyBudgets({
+    required int budget,
+  }) async {
+    try {
+      final result = await weeklyBudgetsProvider.putCreateWeeklyBudgets(
+        budget: budget,
+      );
+      return result;
+    } catch (e) {
+      print(e);
+      return false;
+    }
+  }
 }
