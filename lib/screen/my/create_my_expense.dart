@@ -32,6 +32,7 @@ class _CreateMyExpensePageState extends State<CreateMyExpensePage> {
   void _priceControllerListener() {
     String currentText = _priceController.text;
     String newText = _formatNumber(currentText);
+
     if (currentText != newText) {
       _priceController.value = TextEditingValue(
         text: newText,
@@ -47,9 +48,23 @@ class _CreateMyExpensePageState extends State<CreateMyExpensePage> {
     if (onlyNumbers.isEmpty) {
       return '';
     }
+    int number = int.parse(onlyNumbers);
+    if (number > 99999999) {
+      number = 99999999; // 최대값을 99999999로 제한
+      commonAlert(context: context, message: "0~9,999,999원까지 입력 가능합니다.");
+    }
     final formatter = NumberFormat('#,###');
-    String formatted = formatter.format(int.parse(onlyNumbers));
+    String formatted = formatter.format(number);
     return '$formatted원';
+  }
+
+  void _onTapPriceFiled() {
+    if (_priceController.text.isEmpty) {
+      _priceController.value = TextEditingValue(
+        text: "0원",
+        selection: TextSelection.collapsed(offset: 1),
+      );
+    }
   }
 
   late final _descriptionController = TextEditingController()
@@ -204,6 +219,7 @@ class _CreateMyExpensePageState extends State<CreateMyExpensePage> {
                 ),
                 SizedBox(height: 10),
                 CTextField(
+                  onTap: _onTapPriceFiled,
                   keyType: TextInputType.number,
                   controller: _priceController,
                   placeholder: '금액 입력',

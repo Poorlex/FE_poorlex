@@ -23,6 +23,7 @@ class CTextField extends StatelessWidget {
   final bool isClose;
   final Widget? suffix;
   final double suffixHeight;
+  final void Function()? onTap;
 
   CTextField({
     super.key,
@@ -44,6 +45,7 @@ class CTextField extends StatelessWidget {
     this.suffix,
     this.suffixHeight = 20,
     this.controller,
+    this.onTap,
   })  : this.textStyle = textStyle ?? CTextStyles.Title3(),
         this.hintStyle = hintStyle ?? CTextStyles.Title3(color: CColors.gray40),
         this.labelStyle =
@@ -62,6 +64,7 @@ class CTextField extends StatelessWidget {
     }
     children.add(
       TextField(
+        onTap: onTap,
         controller: controller,
         cursorColor: primaryColor,
         keyboardType: keyType,
