@@ -79,7 +79,7 @@ class _BudgetPageState extends State<BudgetPage> {
       if (result == false) {
         return await commonAlert(
           context: context,
-          message: "0 ~ 9,999,999원 이내로 입력해주세요.",
+          message: "예산 등록 실패",
           buttonText: "확인",
         );
       }
