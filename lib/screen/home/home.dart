@@ -61,7 +61,7 @@ class _MainState extends State<Main> {
 
   late final _budget = Get.find<WeeklyBudgetsController>();
   late final _point = Get.find<PointController>();
-  BattleController battle = Get.find<BattleController>();
+  late final _battle = Get.find<BattleController>();
 
   // 예산 설정 안내 문구 상태 변수
   bool _showBudgetHint = true;
@@ -78,9 +78,8 @@ class _MainState extends State<Main> {
       _budget.getLeftWeeklyBudgets();
       _point.getPoint();
       _point.getPointLevelBar();
+      _battle.getBattleInProgress();
     });
-
-    battle.getBattleInProgress();
 
     /// [MEMO] 1차 배포에 포함안하기 때문에 주석처리
     /// 해당 부분 modal 새로 구현해야합니다.
@@ -99,7 +98,7 @@ class _MainState extends State<Main> {
     return Obx(
       () {
         final List<MemberProgressBattleResponse> battleListInProgress =
-            battle.battleListInProgress;
+            _battle.battleListInProgress;
         final budget = _budget.weeklyBudget;
         final budgetLeft = _budget.weeklyBudgetLeft;
         final point = _point.point.value;
@@ -108,6 +107,7 @@ class _MainState extends State<Main> {
         print('#Home# budget: ${budget}');
         print('#Home# point: ${point}');
         print('#Home# pointLevelBar: ${pointLevelBar}');
+        print('#Home# battleListInProgress: ${battleListInProgress}');
 
         return Scaffold(
           // 네비게이션 바
@@ -302,7 +302,7 @@ class _MainState extends State<Main> {
                                   children: [
                                     MainCarouselSlider(
                                         battleListInProgress:
-                                            battleListInProgress),
+                                            _battle.battleListInProgress),
                                   ],
                                 ),
                               )
@@ -310,7 +310,7 @@ class _MainState extends State<Main> {
                                 children: [
                                   MainCarouselSlider(
                                       battleListInProgress:
-                                          battleListInProgress),
+                                          _battle.battleListInProgress),
                                 ],
                               ),
                       );
