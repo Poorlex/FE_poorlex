@@ -32,6 +32,12 @@ class _MainCarouselSliderState extends State<MainCarouselSlider> {
     final double itemWidth = deviceWidth * 0.88;
     final double carouselHeight = 150;
 
+    // 최근 3개의 슬라이더를 표현하기 위해 리스트를 슬라이싱
+    List<MemberProgressBattleResponse> displayedBattles =
+        widget.battleListInProgress.length > 3
+            ? widget.battleListInProgress.sublist(0, 3)
+            : widget.battleListInProgress;
+
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -43,9 +49,9 @@ class _MainCarouselSliderState extends State<MainCarouselSlider> {
             horizontal: 23,
           ),
           child: Text(
-            _currentIndex == widget.battleListInProgress.length
-                ? '배틀 방 만들기'
-                : '참여 중인 배틀 (${_currentIndex + 1}/${widget.battleListInProgress.length})',
+            displayedBattles.length == 0
+                ? '참여 중인 배틀 (0/3)'
+                : '참여 중인 배틀 (${displayedBattles.length}/3)',
             style: CTextStyles.Body3(color: CColors.black),
           ),
         ),
@@ -63,20 +69,23 @@ class _MainCarouselSliderState extends State<MainCarouselSlider> {
                   _currentIndex = index;
                 });
               },
-              enableInfiniteScroll: widget.battleListInProgress.isNotEmpty,
+              enableInfiniteScroll: false,
             ),
             itemCount: widget.battleListInProgress.isEmpty
                 ? 1
-                : widget.battleListInProgress.length + 1,
+                : (displayedBattles.length <= 2
+                    ? displayedBattles.length + 1
+                    : displayedBattles.length),
             itemBuilder: (BuildContext context, int index, int realIndex) {
-              if (index == widget.battleListInProgress.length) {
-                // 마지막 인덱스인 경우
+              if (index == widget.battleListInProgress.length &&
+                  displayedBattles.length <= 2) {
+                // 0~2개의 슬라이더인 경우 마지막에 '배틀 방 만들기'를 붙임
                 return Container(
                   width: itemWidth,
                   child: EmptyBattle(),
                 );
-              } else {
-                // 일반 샘플 인덱스인 경우
+              } else if (index < displayedBattles.length) {
+                // 일반 참여중 배틀 인덱스인 경우
                 final battle = widget.battleListInProgress[index];
                 return Container(
                   width: itemWidth,
@@ -84,6 +93,8 @@ class _MainCarouselSliderState extends State<MainCarouselSlider> {
                     children: [BattleBox(battle: battle)],
                   ),
                 );
+              } else {
+                return SizedBox.shrink();
               }
             },
           ),
