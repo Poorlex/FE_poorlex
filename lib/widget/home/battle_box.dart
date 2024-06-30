@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 import 'package:poorlex/libs/theme.dart';
 import 'package:poorlex/schema/member_progress_battle_response/member_progress_battle_response.dart';
@@ -15,6 +16,9 @@ class BattleBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final formatter = NumberFormat('#,###');
+    final budgetLeft = formatter.format(battle.budgetLeft);
+
     // print('battle: $battle');
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
@@ -65,7 +69,7 @@ class BattleBox extends StatelessWidget {
                                 ),
                                 SizedBox(height: 10),
                                 Text(
-                                  '남은 예산 : ${battle.budgetLeft} 원',
+                                  '남은 예산 : ${budgetLeft} 원',
                                   style: CTextStyles.Body3(
                                     color: CColors.gray40,
                                   ),
