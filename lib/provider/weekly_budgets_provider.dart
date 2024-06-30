@@ -67,4 +67,18 @@ class WeeklyBudgetsProvider extends GetConnect {
       return false;
     }
   }
+
+  /// 주간 예산 수정
+  Future<bool> putCreateWeeklyBudgets({
+    required int budget,
+  }) async {
+    try {
+      final response = await put("", {'budget': budget});
+      print("주간 예산 수정 > ${response.statusCode}");
+      return response.statusCode == 204;
+    } catch (e) {
+      print(e);
+      return false;
+    }
+  }
 }
