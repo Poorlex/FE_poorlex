@@ -5,13 +5,20 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:poorlex/libs/theme.dart';
 
+///[MEMO] 2024.06.30
+/// 1. 년도는 수정 못하게 막았습니다.
+/// 2. 미래의 날짜를 선택하려면, canSelectFutureDates = true로 넘겨줍니다.
 class CommonDatePicker extends StatefulWidget {
   final void Function(int) onChangeDate;
   final DateTime? initDateTime;
+
+  /// true일 경우 미래날자도 선택 가능합니다.
+  final bool canSelectFutureDates;
   const CommonDatePicker({
     super.key,
     required this.onChangeDate,
     this.initDateTime,
+    this.canSelectFutureDates = false,
   });
 
   @override
@@ -100,6 +107,31 @@ class _CommonDatePickerState extends State<CommonDatePicker> {
         curve: Curves.linear,
       );
     }
+
+    /// [MEMO] 오늘 이후의 날짜일 경우 오늘로 이동
+    final now = DateTime.now();
+    if (generateDate.isAfter(now) && !widget.canSelectFutureDates) {
+      _selectYear = now.year;
+      _selectMonth = now.month;
+      _selectDay = now.day;
+
+      _yearScrollController.animateToItem(
+        _years.indexOf(_selectYear),
+        duration: Duration(milliseconds: 500),
+        curve: Curves.linear,
+      );
+      _monthScrollController.animateToItem(
+        _months.indexOf(_selectMonth),
+        duration: Duration(milliseconds: 500),
+        curve: Curves.linear,
+      );
+      _dayScrollController.animateToItem(
+        _days.indexOf(_selectDay),
+        duration: Duration(milliseconds: 500),
+        curve: Curves.linear,
+      );
+    }
+
     setState(() {});
 
     return DateTime(_selectYear, _selectMonth, _selectDay)
@@ -135,6 +167,7 @@ class _CommonDatePickerState extends State<CommonDatePicker> {
               // mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 _buildPicker(
+                  isNotScrolled: true,
                   onSelectedItemChanged: (p0) {
                     _selectYear = _years[p0];
                     setState(() {});
@@ -234,34 +267,39 @@ class _CommonDatePickerState extends State<CommonDatePicker> {
   }
 
   Widget _buildPicker({
+    /// scroll 동작을 억지로 막습니다.
+    bool isNotScrolled = false,
     required void Function(int) onSelectedItemChanged,
     required List<Widget> children,
     required int initialItemIndex,
     required FixedExtentScrollController scrollController,
   }) {
-    return Expanded(
-      child: Container(
-        height: 272,
-        child: CupertinoPicker(
-          scrollController: scrollController,
-          selectionOverlay: Container(
-            alignment: Alignment.center,
-            decoration: BoxDecoration(
-              border: Border(
-                top: BorderSide(
-                  color: CColors.yellow,
-                ),
-                bottom: BorderSide(
-                  color: CColors.yellow,
-                ),
+    final cupertinoPicker = Container(
+      height: 272,
+      child: CupertinoPicker(
+        scrollController: scrollController,
+        selectionOverlay: Container(
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+            border: Border(
+              top: BorderSide(
+                color: CColors.yellow,
+              ),
+              bottom: BorderSide(
+                color: CColors.yellow,
               ),
             ),
           ),
-          itemExtent: 56,
-          onSelectedItemChanged: onSelectedItemChanged,
-          children: children,
         ),
+        itemExtent: 56,
+        onSelectedItemChanged: onSelectedItemChanged,
+        children: children,
       ),
+    );
+    return Expanded(
+      child: isNotScrolled
+          ? AbsorbPointer(child: cupertinoPicker)
+          : cupertinoPicker,
     );
   }
 }

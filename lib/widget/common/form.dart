@@ -4,7 +4,7 @@ import 'package:poorlex/libs/theme.dart';
 import 'package:poorlex/widget/common/buttons.dart';
 import 'package:poorlex/widget/common/icon.dart';
 
-class CTextField extends StatefulWidget {
+class CTextField extends StatelessWidget {
   final TextEditingController? controller;
   final String placeholder;
   final bool isUnderline;
@@ -23,6 +23,7 @@ class CTextField extends StatefulWidget {
   final bool isClose;
   final Widget? suffix;
   final double suffixHeight;
+  final void Function()? onTap;
 
   CTextField({
     super.key,
@@ -44,6 +45,7 @@ class CTextField extends StatefulWidget {
     this.suffix,
     this.suffixHeight = 20,
     this.controller,
+    this.onTap,
   })  : this.textStyle = textStyle ?? CTextStyles.Title3(),
         this.hintStyle = hintStyle ?? CTextStyles.Title3(color: CColors.gray40),
         this.labelStyle =
@@ -53,73 +55,54 @@ class CTextField extends StatefulWidget {
         this.padding = padding ?? EdgeInsets.symmetric(horizontal: 0);
 
   @override
-  State<CTextField> createState() => _CTextFieldState();
-}
-
-class _CTextFieldState extends State<CTextField> {
-  int size = 0;
-
-  onChange() {
-    setState(() {
-      size = widget.controller!.text.length;
-    });
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    widget.controller?.addListener(onChange);
-  }
-
-  @override
   Widget build(BuildContext context) {
     List<Widget> children = [];
 
-    if (widget.label != null) {
-      children.add(Text(widget.label!, style: widget.labelStyle));
+    if (label != null) {
+      children.add(Text(label!, style: labelStyle));
       children.add(SizedBox(height: 8));
     }
     children.add(
       TextField(
-        controller: widget.controller,
-        cursorColor: widget.primaryColor,
-        keyboardType: widget.keyType,
-        style: widget.textStyle,
-        maxLines: widget.maxLines,
-        maxLength: widget.maxLength,
+        onTap: onTap,
+        controller: controller,
+        cursorColor: primaryColor,
+        keyboardType: keyType,
+        style: textStyle,
+        maxLines: maxLines,
+        maxLength: maxLength,
         decoration: InputDecoration(
-          hintText: widget.placeholder,
-          hintStyle: widget.hintStyle,
-          fillColor: widget.backgroundColor,
+          hintText: placeholder,
+          hintStyle: hintStyle,
+          fillColor: backgroundColor,
           filled: true,
           counterText: '',
-          suffixIcon: widget.suffix != null
-              ? widget.suffix
-              : widget.isClose && size > 0
+          suffixIcon: suffix != null
+              ? suffix
+              : isClose && (controller?.text.length ?? 0) > 0
                   ? CButton(
-                      onPressed: widget.controller?.clear,
+                      onPressed: controller?.clear,
                       child: CIcon(icon: 'close-circle', width: 25, height: 25),
                     )
                   : null,
-          suffixIconConstraints: BoxConstraints(maxHeight: widget.suffixHeight),
-          contentPadding: widget.padding,
+          suffixIconConstraints: BoxConstraints(maxHeight: suffixHeight),
+          contentPadding: padding,
           border: UnderlineInputBorder(
             borderSide: BorderSide(
-              width: widget.underlineWidth,
-              color: widget.isUnderline ? widget.color : Colors.transparent,
+              width: underlineWidth,
+              color: isUnderline ? color : Colors.transparent,
             ),
           ),
           enabledBorder: UnderlineInputBorder(
             borderSide: BorderSide(
-              width: widget.underlineWidth,
-              color: widget.isUnderline ? widget.color : Colors.transparent,
+              width: underlineWidth,
+              color: isUnderline ? color : Colors.transparent,
             ),
           ),
           focusedBorder: UnderlineInputBorder(
             borderSide: BorderSide(
-              width: widget.underlineWidth,
-              color:
-                  widget.isUnderline ? widget.primaryColor : Colors.transparent,
+              width: underlineWidth,
+              color: isUnderline ? primaryColor : Colors.transparent,
             ),
           ),
         ),
@@ -132,15 +115,15 @@ class _CTextFieldState extends State<CTextField> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: children,
         ),
-        widget.maxLength != null
-            ? Positioned(
-                bottom: 10,
-                right: 10,
-                child: Text(
-                  "${size}/${widget.maxLength}",
-                  style: CTextStyles.Caption1(color: CColors.gray30),
-                ))
-            : SizedBox.shrink()
+        if (maxLength != null)
+          Positioned(
+            bottom: 10,
+            right: 10,
+            child: Text(
+              "${controller?.text.length}/$maxLength",
+              style: CTextStyles.Caption1(color: CColors.gray30),
+            ),
+          )
       ],
     );
   }

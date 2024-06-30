@@ -91,7 +91,6 @@ class BattlesProvider extends GetConnect {
     return response.body;
   }
 
-  /// [TEST] x
   /// 회원 배틀 조회 (완료)
   Future<List<MemberCompleteBattleResponse>?> getComplete() async {
     final response = await get(

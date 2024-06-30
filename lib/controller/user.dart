@@ -104,7 +104,7 @@ class UserController extends GetxController {
     return result;
   }
 
-  Future<void> putModifyExpenditures({
+  Future<bool> putModifyExpenditures({
     required int expenditureId,
     required int amount,
     required String description,
@@ -113,7 +113,7 @@ class UserController extends GetxController {
     String? mainImageUrl,
     String? subImageUrl,
   }) async {
-    await expendituresProvider.putModifyExpenditures(
+    final response = await expendituresProvider.putModifyExpenditures(
       expenditureId: expenditureId,
       amount: amount,
       description: description,
@@ -122,6 +122,13 @@ class UserController extends GetxController {
       mainImageUrl: mainImageUrl,
       subImageUrl: subImageUrl,
     );
+    return response.fold((l) {
+      commonAlert(
+        context: navigatorKey.currentContext!,
+        message: l.message,
+      );
+      return false;
+    }, (r) => r);
   }
 
   /// [MEMO] token으로 유저 정보 가져오기 (내부에서만 사용됩니다.)

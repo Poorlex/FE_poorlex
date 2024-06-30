@@ -32,16 +32,27 @@ class BattleParticipant extends GetView<BattleController> {
         shrinkWrap: true,
         itemBuilder: (context, idx) {
           final progressBattle = battleListInProgress[idx];
+
           return GestureDetector(
-            onTap: () {
-              Get.toNamed(
-                '/battle/ranking',
-                arguments: {
-                  'battleId': progressBattle.battleId,
-                },
-                id: GNBLayout.globalKey,
-              );
-            },
+            onTap: progressBattle.dday > 6
+                ? () async {
+                    await Get.toNamed(
+                      '/battle/detail',
+                      arguments: {
+                        'battleId': progressBattle.battleId,
+                      },
+                      id: GNBLayout.globalKey,
+                    );
+                  }
+                : () {
+                    Get.toNamed(
+                      '/battle/ranking',
+                      arguments: {
+                        'battleId': progressBattle.battleId,
+                      },
+                      id: GNBLayout.globalKey,
+                    );
+                  },
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -63,7 +74,9 @@ class BattleParticipant extends GetView<BattleController> {
                           ),
                           padding: EdgeInsets.symmetric(horizontal: 6),
                           child: Text(
-                            '예정',
+                            progressBattle.dday > 6
+                                ? "예정"
+                                : 'D-${progressBattle.dday}',
                             style: CTextStyles.Body3(height: 16 / 14),
                           ),
                         )
@@ -83,7 +96,7 @@ class BattleParticipant extends GetView<BattleController> {
                         Row(
                           children: [
                             Text(
-                              "존버 금액:${formatCurrencyWithWon(progressBattle.budgetLeft)}",
+                              "남은 예산:${formatCurrencyWithWon(progressBattle.budgetLeft)}",
                               style: CTextStyles.Body2(
                                 color: CColors.gray40,
                                 height: 22 / 16,

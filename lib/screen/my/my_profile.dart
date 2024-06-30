@@ -97,7 +97,7 @@ class _MyProfileState extends State<MyProfile> {
                 onPressed: () => Get.back(),
               ),
               Text('프로필 편집', style: CTextStyles.Headline()),
-              SizedBox(width: 26)
+              SizedBox(width: 26),
             ],
           ),
         ),
@@ -121,18 +121,22 @@ class _MyProfileState extends State<MyProfile> {
                         placeholder: '이름을 입력해주세요',
                         primaryColor: CColors.yellow,
                         textStyle: CTextStyles.Title1(
-                            color:
-                                _isReadyName ? CColors.white : CColors.gray30),
+                          color: _isReadyName ? CColors.white : CColors.gray30,
+                        ),
                         controller: _nameController,
                       ),
-                      (_isReadyName
-                          ? SizedBox.shrink()
-                          : Column(children: [
-                              SizedBox(height: 6),
-                              Text('2 ~ 15자 이내로 입력해주세요',
-                                  style: CTextStyles.Caption1(
-                                      color: CColors.purpleLight))
-                            ])),
+                      if (!_isReadyName)
+                        Column(
+                          children: [
+                            SizedBox(height: 6),
+                            Text(
+                              '2 ~ 15자 이내로 입력해주세요',
+                              style: CTextStyles.Caption1(
+                                color: CColors.purpleLight,
+                              ),
+                            )
+                          ],
+                        ),
                       SizedBox(height: 30),
                       CTextField(
                         label: '내 소개',
@@ -161,6 +165,7 @@ class _MyProfileState extends State<MyProfile> {
             children: [
               Expanded(
                 child: CButtonConfirm(
+                  disabled: _nameController.text.length < 2,
                   child: Row(
                     children: [
                       Expanded(

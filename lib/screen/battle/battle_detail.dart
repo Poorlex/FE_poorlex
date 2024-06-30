@@ -12,6 +12,7 @@ import 'package:poorlex/widget/common/buttons.dart';
 import 'package:poorlex/widget/common/dialog/confirm_dialog.dart';
 import 'package:poorlex/widget/common/image/image_asset.dart';
 import 'package:poorlex/widget/common/image/image_network.dart';
+import 'package:poorlex/widget/common/money_bar/money_bar.dart';
 import 'package:poorlex/widget/common/user.dart';
 import 'package:poorlex/widget/gnb_layout.dart';
 import 'package:poorlex/widget/layout.dart';
@@ -217,10 +218,9 @@ class _BattleDetailState extends State<BattleDetail> {
       ),
       child: Row(
         children: [
-          CImageAsset(
-            name: "assets/battle_detail/${battleBudget}won.png",
+          MoneyBar(
+            money: battleBudget,
             width: 36,
-            height: 36,
           ),
           SizedBox(width: 10),
           Text(
