@@ -7,7 +7,7 @@ part 'weekly_budget_left_response.g.dart';
 class WeeklyBudgetLeftResponse with _$WeeklyBudgetLeftResponse {
   const factory WeeklyBudgetLeftResponse({
     required bool exist,
-    required int amount,
+    required int left,
   }) = _WeeklyBudgetLeftResponse;
 
   factory WeeklyBudgetLeftResponse.fromJson(Map<String, dynamic> json) =>

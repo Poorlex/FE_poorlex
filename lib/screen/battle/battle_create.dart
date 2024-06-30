@@ -39,6 +39,7 @@ class _BattleCreateState extends State<BattleCreate> {
         final isSuccess = await battle.saveBattle();
         if (!isSuccess) {
           await battle.getBattle();
+          await battle.getBattleInProgress();
           Get.back();
           return;
         }

@@ -50,6 +50,7 @@ class _BattleFindingState extends State<BattleFinding> {
                   id: GNBLayout.globalKey,
                 );
                 battle.getBattle();
+                battle.getBattleInProgress();
               },
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -103,7 +104,7 @@ class _BattleFindingState extends State<BattleFinding> {
                       ),
                       SizedBox(height: 6),
                       Text(
-                        findingBattle.name,
+                        findingBattle.introduction,
                         style: CTextStyles.Body3(
                           color: CColors.gray40,
                           height: 20 / 14,

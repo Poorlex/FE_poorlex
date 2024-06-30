@@ -13,6 +13,7 @@ import 'package:poorlex/widget/common/dialog/confirm_dialog.dart';
 import 'package:poorlex/widget/common/image/image_asset.dart';
 import 'package:poorlex/widget/common/image/image_network.dart';
 import 'package:poorlex/widget/common/user.dart';
+import 'package:poorlex/widget/gnb_layout.dart';
 import 'package:poorlex/widget/layout.dart';
 import 'package:poorlex/widget/level/medal.dart';
 import 'package:poorlex/widget/level/profile.dart';
@@ -170,7 +171,10 @@ class _BattleDetailState extends State<BattleDetail> {
 
                             if (result == true && mounted) {
                               await _battleDetail.deleteBattle();
-                              Get.offAndToNamed("/battle");
+                              Get.offAndToNamed(
+                                "/battle",
+                                id: GNBLayout.globalKey,
+                              );
                             }
                           },
                           child: Container(

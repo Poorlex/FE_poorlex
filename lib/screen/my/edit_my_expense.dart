@@ -72,7 +72,7 @@ class _EditMyExpensePageState extends State<EditMyExpensePage> {
   Future<void> _getExpenditure() async {
     if (_expenseId != null) {
       final expenditure =
-          await _userController.getExpenditure(int.parse(_expenseId!));
+          await _userController.getExpenditureById(int.parse(_expenseId!));
       if (expenditure?.id != null) {
         _priceController.text = expenditure!.amount.toString();
         _descriptionController.text = expenditure.description.toString();

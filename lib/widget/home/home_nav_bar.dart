@@ -62,11 +62,11 @@ class _NavBarState extends State<NavBar> {
   @override
   Widget build(BuildContext context) {
     final formatter = NumberFormat('#,###');
-    final budgetLeft = formatter.format(widget.budgetLeft.amount);
+    final budgetLeft = formatter.format(widget.budgetLeft.left);
 
     /// 남은 예산 - 예산으로 사용한 금액 표현
     final usedBudgetMoney =
-        formatter.format(widget.budgetLeft.amount - widget.budget.amount);
+        formatter.format(widget.budgetLeft.left - widget.budget.amount);
     return AppBar(
       toolbarHeight: 90,
       backgroundColor: CColors.black,

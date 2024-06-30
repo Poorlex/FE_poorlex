@@ -70,14 +70,14 @@ class _GNBLayoutState extends State<GNBLayout> {
           initialRoute: '/',
           onGenerateRoute: (settings) {
             final arguments = settings.arguments as Map<String, dynamic>?;
+            if (arguments?['gnb-index'] != null) {
+              _changePageIndex(arguments?['gnb-index']);
+            }
             switch (settings.name) {
               case '/main':
                 return GetPageRoute(
                   page: () => Main(),
                   transition: Transition.noTransition,
-                  bindings: [
-                    BattleBind(),
-                  ],
                 );
               case '/goal':
                 return GetPageRoute(

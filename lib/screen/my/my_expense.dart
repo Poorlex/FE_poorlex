@@ -21,6 +21,7 @@ class _MyExpensePageState extends State<MyExpensePage> {
   @override
   void initState() {
     super.initState();
+    _userController.getExpenditures();
   }
 
   @override
@@ -33,7 +34,10 @@ class _MyExpensePageState extends State<MyExpensePage> {
         padding: EdgeInsets.symmetric(vertical: 22),
         child: CIcon(
             icon: 'plus-big', width: 20, height: 20, color: CColors.blackStr),
-        onPressed: () => Get.toNamed('/my/expense/create'),
+        onPressed: () async {
+          await Get.toNamed('/my/expense/create');
+          _userController.getExpenditures();
+        },
       ),
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -70,16 +74,17 @@ class _MyExpensePageState extends State<MyExpensePage> {
             crossAxisSpacing: 17,
           ),
           padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-          itemCount: _userController.userInfo?.expenditures.length,
+          itemCount: _userController.expenditures.length,
           itemBuilder: (context, index) {
-            final item = _userController.userInfo!.expenditures[index];
+            final item = _userController.expenditures[index];
             return GestureDetector(
-              onTap: () {
-                Get.toNamed('/my/expense-detail/${item.id}');
+              onTap: () async {
+                await Get.toNamed('/my/expense-detail/${item.id}');
+                _userController.getExpenditures();
               },
               child: Container(
                 child: BackgroundImageWithBlack(
-                  image: NetworkImage(item.imageUrl),
+                  image: NetworkImage(item.mainImageUrl),
                   height: double.maxFinite,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,

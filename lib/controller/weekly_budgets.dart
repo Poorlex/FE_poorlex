@@ -24,7 +24,7 @@ class WeeklyBudgetsController extends GetxController {
   final Rx<WeeklyBudgetLeftResponse> _weeklyBudgetLeft =
       WeeklyBudgetLeftResponse(
     exist: false,
-    amount: 0,
+    left: 0,
   ).obs;
   WeeklyBudgetLeftResponse get weeklyBudgetLeft => _weeklyBudgetLeft.value;
 

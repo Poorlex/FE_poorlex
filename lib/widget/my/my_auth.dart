@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:collection/collection.dart';
 import 'package:poorlex/controller/audio_controller.dart';
 import 'package:poorlex/libs/string.dart';
-import 'package:poorlex/widget/common/buttons.dart';
 import 'package:poorlex/widget/common/icon.dart';
 import 'package:poorlex/widget/common/other.dart';
 import 'package:poorlex/libs/theme.dart';
@@ -21,24 +19,10 @@ class MyPageMyAuth extends StatefulWidget {
 class _MyPageMyAuthState extends State<MyPageMyAuth> {
   final user = Get.find<UserController>();
   final GlobalKey containerKey = GlobalKey();
-  Size? size;
-
-  void setContainerSize() {
-    if (containerKey.currentContext != null) {
-      final RenderBox renderBox =
-          containerKey.currentContext!.findRenderObject() as RenderBox;
-      setState(() {
-        size = renderBox.size;
-      });
-    }
-  }
 
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      setContainerSize();
-    });
   }
 
   @override
@@ -62,57 +46,44 @@ class _MyPageMyAuthState extends State<MyPageMyAuth> {
                 ],
               ),
               SizedBox(height: 20),
-              Row(
-                children: [
-                  Expanded(
-                    child: Wrap(
-                      spacing: 18,
-                      runSpacing: 18,
-                      direction: Axis.horizontal,
-                      alignment: WrapAlignment.start,
-                      children: (user.userInfo?.expenditures ?? [])
-                          .mapIndexed<Widget>(
-                        (index, e) {
-                          return size != null && index < 4
-                              ? CButton(
-                                  onPressed: () => Get.toNamed(
-                                    '/my/expense-detail/${e.id}',
-                                  ),
-                                  child: Container(
-                                    width: ((size?.width ?? 36) - 18) / 2,
-                                    child: BackgroundImageWithBlack(
-                                      image: NetworkImage(e.imageUrl),
-                                      height: ((size?.width ?? 36) - 18) / 2,
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        children: [
-                                          Text(
-                                              cTimeFormat(
-                                                  DateTime.parse(
-                                                          '${e.date} 00:00:00')
-                                                      .millisecondsSinceEpoch,
-                                                  'yyyy.MM.dd (E)'),
-                                              style: CTextStyles.Caption1(
-                                                  color: CColors.gray50)),
-                                          SizedBox(height: 13),
-                                          Text(
-                                            '${makeComma(e.amount)}원',
-                                            style: CTextStyles.Headline(),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                )
-                              : SizedBox.shrink();
-                        },
-                      ).toList(),
+              GridView.count(
+                physics: NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                crossAxisCount: 2,
+                crossAxisSpacing: 17,
+                mainAxisSpacing: 17,
+                children:
+                    (user.userInfo?.expenditures.take(4) ?? []).map((item) {
+                  return GestureDetector(
+                    onTap: () async {
+                      Get.toNamed('/my/expense-detail/${item.id}');
+                    },
+                    child: Container(
+                      child: BackgroundImageWithBlack(
+                        image: NetworkImage(item.imageUrl),
+                        height: double.maxFinite,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text(
+                                cTimeFormat(
+                                    DateTime.parse('${item.date} 00:00:00')
+                                        .millisecondsSinceEpoch,
+                                    'yyyy.MM.dd (E)'),
+                                style: CTextStyles.Caption1(
+                                    color: CColors.gray50)),
+                            SizedBox(height: 13),
+                            Text(
+                              '${makeComma(item.amount)}원',
+                              style: CTextStyles.Headline(),
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
-                  )
-                ],
+                  );
+                }).toList(),
               ),
               SizedBox(height: 17),
               GestureDetector(

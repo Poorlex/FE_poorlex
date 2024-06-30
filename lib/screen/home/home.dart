@@ -74,11 +74,11 @@ class _MainState extends State<Main> {
   Widget build(BuildContext context) {
     final double deviceWidth = MediaQuery.of(context).size.width;
     final double deviceHeight = MediaQuery.of(context).size.height;
-    final List<MemberProgressBattleResponse> battleListInProgress =
-        battle.battleListInProgress;
 
     return Obx(
       () {
+        final List<MemberProgressBattleResponse> battleListInProgress =
+            battle.battleListInProgress;
         final budget = _budget.weeklyBudget;
         final budgetLeft = _budget.weeklyBudgetLeft;
         final point = _point.point.value;

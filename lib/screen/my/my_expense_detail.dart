@@ -23,7 +23,7 @@ class _MyExpenseDetailPageState extends State<MyExpenseDetailPage> {
 
   void _getExpenditure() async {
     if (_expenseId != null) {
-      await _userController.getExpenditure(int.parse(_expenseId!));
+      await _userController.getExpenditureById(int.parse(_expenseId!));
     }
   }
 
@@ -174,7 +174,9 @@ class OptionButtonModal extends StatelessWidget {
                 Navigator.of(context).pop();
                 await Get.toNamed(
                     '/my/expense/edit/${_userController.expenditure?.id}');
-                _userController.getExpenditure(_userController.expenditure!.id);
+                _userController.getExpenditureById(
+                  _userController.expenditure!.id,
+                );
               },
               child:
                   Row(mainAxisAlignment: MainAxisAlignment.center, children: [
