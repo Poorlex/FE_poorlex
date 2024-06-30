@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:poorlex/controller/audio_controller.dart';
 import 'package:poorlex/controller/image_picker.dart';
-import 'package:poorlex/widget/common/date_picker/common_date_picker.dart';
+import 'package:poorlex/widget/common/date_picker/limited_date_picker.dart';
 import 'package:poorlex/widget/common/dialog/common_alert.dart';
 import 'package:poorlex/widget/common/icon.dart';
 import 'package:poorlex/widget/common/other.dart';
@@ -247,7 +247,7 @@ class _CreateMyExpensePageState extends State<CreateMyExpensePage> {
                     SizedBox(width: 30),
                     Expanded(
                       child: GestureDetector(
-                        onTap: () => CommonDatePicker.show(
+                        onTap: () => LimitedDatePicker.show(
                           context: context,
                           onChangeDate: selectDay,
                         ),

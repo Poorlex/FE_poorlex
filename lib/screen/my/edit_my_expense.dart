@@ -9,7 +9,7 @@ import 'package:poorlex/controller/user.dart';
 import 'package:poorlex/libs/theme.dart';
 import 'package:poorlex/libs/time.dart';
 import 'package:poorlex/widget/common/buttons.dart';
-import 'package:poorlex/widget/common/date_picker/common_date_picker.dart';
+import 'package:poorlex/widget/common/date_picker/limited_date_picker.dart';
 import 'package:poorlex/widget/common/dialog/common_alert.dart';
 import 'package:poorlex/widget/common/form.dart';
 import 'package:poorlex/widget/common/icon.dart';
@@ -258,7 +258,7 @@ class _EditMyExpensePageState extends State<EditMyExpensePage> {
                     SizedBox(width: 30),
                     Expanded(
                       child: GestureDetector(
-                        onTap: () => CommonDatePicker.show(
+                        onTap: () => LimitedDatePicker.show(
                           context: context,
                           onChangeDate: selectDay,
                           initDateTime:
