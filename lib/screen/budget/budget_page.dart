@@ -5,6 +5,7 @@ import 'package:poorlex/controller/audio_controller.dart';
 import 'package:poorlex/controller/weekly_budgets.dart';
 
 import 'package:poorlex/libs/theme.dart';
+import 'package:poorlex/screen/home/home.dart';
 import 'package:poorlex/widget/common/dialog/common_alert.dart';
 import 'package:poorlex/widget/common/form.dart';
 
@@ -17,6 +18,7 @@ class BudgetPage extends StatefulWidget {
 
 class _BudgetPageState extends State<BudgetPage> {
   final _weeklyBudgetsController = Get.find<WeeklyBudgetsController>();
+  late final budget = _weeklyBudgetsController.weeklyBudget;
 
   late final _priceController = TextEditingController()
     ..addListener(() {
@@ -50,21 +52,38 @@ class _BudgetPageState extends State<BudgetPage> {
     if (_priceController.text.isEmpty) {
       await commonAlert(context: context, message: '금액을 입력해주세요');
     } else {
-      final result = await _weeklyBudgetsController.postCreateWeeklyBudgets(
-        budget: int.parse(
-            _priceController.text.replaceAll('원', '').replaceAll(',', '')),
-      );
+      bool result;
+
+      // [POST] 예산이 없을 때
+      if (budget.exist == false) {
+        result = await _weeklyBudgetsController.postCreateWeeklyBudgets(
+          budget: int.parse(
+              _priceController.text.replaceAll('원', '').replaceAll(',', '')),
+        );
+      }
+      // [PUT] 예산이 있을 떄
+      else {
+        result = await _weeklyBudgetsController.putCreateWeeklyBudgets(
+          budget: int.parse(
+              _priceController.text.replaceAll('원', '').replaceAll(',', '')),
+        );
+      }
 
       if (result == false) {
         return await commonAlert(
           context: context,
-          message: "예산 설정 실패",
+          message: "0 ~ 9,999,999원 이내로 입력해주세요.",
           buttonText: "확인",
         );
       }
+
       await _weeklyBudgetsController.getWeeklyBudgets();
       await _weeklyBudgetsController.getLeftWeeklyBudgets();
       await AudioController().play(audioType: AudioType.complete);
+
+      // 성공 시 Main 페이지의 showSuccessImage 메서드 호출
+      Get.find<MainController>().displaySuccessImage();
+
       Get.back();
     }
   }
