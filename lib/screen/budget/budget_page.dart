@@ -51,6 +51,14 @@ class _BudgetPageState extends State<BudgetPage> {
   Future<void> _submit() async {
     if (_priceController.text.isEmpty) {
       await commonAlert(context: context, message: '금액을 입력해주세요');
+    } else if (int.parse(
+            _priceController.text.replaceAll('원', '').replaceAll(',', '')) >
+        9999999) {
+      await commonAlert(
+        context: context,
+        message: "0 ~ 9,999,999원 이내로 입력해주세요.",
+        buttonText: "확인",
+      );
     } else {
       bool result;
 
