@@ -163,7 +163,7 @@ class _BottomSheetWithBeggarState extends State<BottomSheetWithBeggar> {
     return RichText(
       text: TextSpan(
         style: CTextStyles.Body1(),
-        text: "자네가",
+        text: "자네가 ",
         children: [
           TextSpan(
             style: CTextStyles.Body1(color: CColors.yellow),

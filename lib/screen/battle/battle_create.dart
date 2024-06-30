@@ -77,7 +77,13 @@ class _BattleCreateState extends State<BattleCreate> {
                     width: 26,
                     height: 26,
                     color: CColors.whiteStr),
-                onPressed: () => Get.back(),
+                onPressed: () {
+                  if (Get.previousRoute == '/budget') {
+                    Get.offAllNamed('/main');
+                  } else {
+                    Get.back();
+                  }
+                },
               ),
               Text('배틀방 만들기', style: CTextStyles.Headline()),
               SizedBox(width: 26)
