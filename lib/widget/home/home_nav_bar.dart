@@ -32,13 +32,11 @@ class NavBar extends StatefulWidget implements PreferredSizeWidget {
 }
 
 class _NavBarState extends State<NavBar> {
-  // 천 단위마다 콤마 표기
-  // intl 패키지 사용
+  // 현재 요일 계산
+  int weekday = DateTime.now().weekday;
 
+  // 예산 별 디데이 텍스트 계산
   String getRemainingDaysText() {
-    DateTime now = DateTime.now();
-    int weekday = now.weekday;
-
     switch (weekday) {
       case 1:
         return 'D-6'; // 월요일
@@ -62,6 +60,7 @@ class _NavBarState extends State<NavBar> {
   @override
   Widget build(BuildContext context) {
     final formatter = NumberFormat('#,###');
+    final budget = formatter.format(widget.budget.amount);
     final budgetLeft = formatter.format(widget.budgetLeft.left);
 
     /// 남은 예산 - 예산으로 사용한 금액 표현
@@ -93,14 +92,8 @@ class _NavBarState extends State<NavBar> {
                               // 예산 금액
                               Text(
                                 widget.budget.exist == true
-                                    ? '$budgetLeft'
-                                    : '?',
-                                style: CTextStyles.Body2(),
-                              ),
-
-                              // 원
-                              Text(
-                                '원',
+                                    ? '$budget 원'
+                                    : '?원',
                                 style: CTextStyles.Body2(),
                               ),
                             ],
@@ -114,7 +107,8 @@ class _NavBarState extends State<NavBar> {
                         height: 16,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(1),
-                          color: CColors.gray40,
+                          color:
+                              weekday < 5 ? CColors.gray40 : Color(0xFFE33741),
                         ),
                         child: Padding(
                           padding: EdgeInsets.symmetric(
@@ -149,20 +143,18 @@ class _NavBarState extends State<NavBar> {
                 child: Row(
                   children: [
                     Container(
-                      width: 240 * 0.04,
-                      // width: 240 *
-                      //     widget.pointLevelBar.currentPoint /
-                      //     widget.pointLevelBar.levelRange,
+                      width: 240 *
+                          widget.pointLevelBar.currentPoint /
+                          widget.pointLevelBar.levelRange,
                       child: Container(
                         color: CColors.yellow,
                       ),
                     ),
                     Container(
-                      width: 240 * 0.96,
-                      // width: 240 *
-                      //     (widget.pointLevelBar.levelRange -
-                      //         widget.pointLevelBar.currentPoint) /
-                      //     widget.pointLevelBar.levelRange,
+                      width: 240 *
+                          (widget.pointLevelBar.levelRange -
+                              widget.pointLevelBar.currentPoint) /
+                          widget.pointLevelBar.levelRange,
                       child: Container(
                         color: CColors.gray20,
                       ),
@@ -171,7 +163,7 @@ class _NavBarState extends State<NavBar> {
                 ),
               ),
               Text(
-                '+${widget.point.totalPoint} P',
+                '+${widget.pointLevelBar.currentPoint} P',
                 style: CTextStyles.Body2(color: CColors.yellow),
               ),
             ],
@@ -211,7 +203,7 @@ class _NavBarState extends State<NavBar> {
 
                   // 지출 금액
                   Text(
-                    '${usedBudgetMoney}',
+                    '${usedBudgetMoney} 원',
                     style: CTextStyles.Body2(
                       color: CColors.purpleLight,
                     ),
