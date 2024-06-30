@@ -1,8 +1,10 @@
+import 'package:dartz/dartz.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 import 'package:poorlex/controller/image_picker.dart';
 import 'package:poorlex/controller/user.dart';
 import 'package:poorlex/libs/time.dart';
+import 'package:poorlex/schema/error_response/error_response.dart';
 import 'package:poorlex/schema/expenditure_response/expenditure_response.dart';
 
 class ExpendituresProvider extends GetConnect {
@@ -81,7 +83,7 @@ class ExpendituresProvider extends GetConnect {
   ///   - URL만을 전달하는 경우 서브 이미지 변경이 없거나 이미 등록된 메인 이미지가 서브 이미지로 변경됨을 의미합니다.
   ///   - 파일, URL 모두 전달하지 않는 경우 원래 서브 이미지가 없거나 서브 이미지의 삭제를 의미합니다.
   ///   - 파일, URL 모두 전달하는 경우는 URL만을 전달받은 것으로 처리됩니다.
-  Future<bool> putModifyExpenditures({
+  Future<Either<ErrorResponse, bool>> putModifyExpenditures({
     required int expenditureId,
     required int amount,
     required String description,
@@ -106,15 +108,33 @@ class ExpendituresProvider extends GetConnect {
         "mainImageUrl": mainImageUrl,
       if (subImageUrl != null && subImage == null) "subImageUrl": subImageUrl,
     });
-    final response = await put(
-      "/$expenditureId",
-      formData,
-      query: {
-        "amount": amount.toString(),
-        "description": description,
-      },
-    );
-    return response.statusCode == 200;
+    try {
+      final response = await put(
+        "/$expenditureId",
+        formData,
+        query: {
+          "amount": amount.toString(),
+          "description": description,
+        },
+      );
+      if (response.statusCode == 200) {
+        return Right(true);
+      }
+
+      return Left(
+        ErrorResponse(
+          tag: "지출 수정 에러",
+          message: response.body['message'] ?? "message",
+        ),
+      );
+    } catch (e) {
+      return Left(
+        ErrorResponse(
+          tag: "지출 수정 에러",
+          message: e.toString(),
+        ),
+      );
+    }
   }
 
   /// [TEST] x

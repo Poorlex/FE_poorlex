@@ -146,7 +146,7 @@ class _RankingDetailWidget extends State<RankingDetailWidget>
                 ),
                 SizedBox(width: 13),
                 Text(
-                  '빚갚고 돈모으는 절약방',
+                  battleInfo.battleName,
                   style: TextStyle(
                     fontSize: 18,
                     color: CColors.white,

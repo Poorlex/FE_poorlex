@@ -10,6 +10,7 @@ import 'package:poorlex/libs/theme.dart';
 import 'package:poorlex/libs/time.dart';
 import 'package:poorlex/widget/common/buttons.dart';
 import 'package:poorlex/widget/common/date_picker/common_date_picker.dart';
+import 'package:poorlex/widget/common/dialog/common_alert.dart';
 import 'package:poorlex/widget/common/form.dart';
 import 'package:poorlex/widget/common/icon.dart';
 import 'package:poorlex/widget/common/other.dart';
@@ -168,8 +169,16 @@ class _EditMyExpensePageState extends State<EditMyExpensePage> {
 
   Future<void> _submit() async {
     if (_expenseId == null) return;
+    if (_priceController.text.isEmpty) {
+      commonAlert(
+        context: context,
+        message: "배틀 금액을 입력해주세요.",
+      );
+      return;
+    }
+    ;
 
-    await _userController.putModifyExpenditures(
+    final response = await _userController.putModifyExpenditures(
       expenditureId: int.parse(_expenseId!),
       amount:
           int.parse(_priceController.text.replaceAll(RegExp(r'[^0-9]'), '')),
@@ -179,6 +188,7 @@ class _EditMyExpensePageState extends State<EditMyExpensePage> {
       subImage: _subImage,
       subImageUrl: _originSubImage,
     );
+    if (!response) return;
     await AudioController().play(audioType: AudioType.complete);
     Get.back();
   }

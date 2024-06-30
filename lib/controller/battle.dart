@@ -87,10 +87,19 @@ class BattleController extends GetxController {
   }
 
   Future<void> getBattle() async {
-    final response = await battlesProvider.getAll(
-      status: [BattleStatus.RECRUITING, BattleStatus.RECRUITING_FINISHED],
-    );
-    _battleList(response);
+    final [recruitingResponse, recruitingFinishedResponse] = await Future.wait([
+      battlesProvider.getAll(
+        status: [BattleStatus.RECRUITING],
+      ),
+      battlesProvider.getAll(
+        status: [BattleStatus.RECRUITING, BattleStatus.RECRUITING_FINISHED],
+      )
+    ]);
+
+    _battleList([
+      ...recruitingResponse,
+      ...recruitingFinishedResponse,
+    ]);
   }
 
   Future<void> getBattleInProgress() async {
