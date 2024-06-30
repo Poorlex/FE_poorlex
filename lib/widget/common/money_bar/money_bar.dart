@@ -35,6 +35,9 @@ class MoneyBar extends StatelessWidget {
         ),
       ),
       child: Container(
+        padding: EdgeInsets.symmetric(
+          vertical: width > 40 ? 4 : 2,
+        ),
         decoration: BoxDecoration(
           color: _getBackgroundColor(money),
           borderRadius: BorderRadius.circular(2),
