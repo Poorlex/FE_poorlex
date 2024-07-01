@@ -5,6 +5,7 @@ import 'package:poorlex/libs/theme.dart';
 import 'package:poorlex/controller/battle.dart';
 
 import 'package:poorlex/widget/common/form.dart';
+import 'package:poorlex/widget/common/other.dart';
 
 class BattleIndexOne extends StatefulWidget {
   BattleIndexOne({super.key});
@@ -89,12 +90,11 @@ class _BattleIndexOneState extends State<BattleIndexOne> {
         SizedBox(height: 20),
         Obx(() {
           if (_battle.battleCreate.image != null) {
-            return Container(
-              width: 100,
-              height: 100,
-              child: Image.file(
-                _battle.battleCreate.image!.file,
-              ),
+            return BackgroundImageWithRemove(
+              image: Image.file(_battle.battleCreate.image!.file),
+              width: 93,
+              height: 93,
+              onRemove: _battle.removeImage,
             );
           } else {
             return GestureDetector(

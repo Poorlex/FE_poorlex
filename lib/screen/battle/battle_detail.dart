@@ -341,6 +341,8 @@ class _BattleDetailState extends State<BattleDetail> {
       return null;
     }
     return CButton(
+      disabled:
+          battleInfo.currentParticipantSize == battleInfo.maxParticipantSize,
       color: CColors.yellow,
       padding: EdgeInsets.symmetric(vertical: 13.5),
       type: ButtonTypes.elevated,
