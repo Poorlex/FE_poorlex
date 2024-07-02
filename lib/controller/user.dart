@@ -108,6 +108,7 @@ class UserController extends GetxController {
     required int expenditureId,
     required int amount,
     required String description,
+    DateTime? date,
     FileWithName? mainImage,
     FileWithName? subImage,
     String? mainImageUrl,
@@ -121,6 +122,7 @@ class UserController extends GetxController {
       subImage: subImage,
       mainImageUrl: mainImageUrl,
       subImageUrl: subImageUrl,
+      date: date,
     );
     return response.fold((l) {
       commonAlert(
@@ -159,6 +161,6 @@ class UserController extends GetxController {
   /// [MEMO]
   /// 현재 사용자가 인증된 경우 (token 있을 경우) true, 그렇지 않은 경우 false를 반환
   bool isAuthenticated() {
-    return _userToken.value != null;
+    return _userInfo.value != null;
   }
 }

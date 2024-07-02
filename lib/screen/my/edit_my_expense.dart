@@ -176,9 +176,9 @@ class _EditMyExpensePageState extends State<EditMyExpensePage> {
       );
       return;
     }
-    ;
 
     final response = await _userController.putModifyExpenditures(
+      date: DateTime.fromMillisecondsSinceEpoch(_day),
       expenditureId: int.parse(_expenseId!),
       amount:
           int.parse(_priceController.text.replaceAll(RegExp(r'[^0-9]'), '')),

@@ -86,13 +86,19 @@ class BattleController extends GetxController {
     }
   }
 
+  Future<void> removeImage() async {
+    _battleCreate.update((val) {
+      val?.image = null;
+    });
+  }
+
   Future<void> getBattle() async {
     final [recruitingResponse, recruitingFinishedResponse] = await Future.wait([
       battlesProvider.getAll(
         status: [BattleStatus.RECRUITING],
       ),
       battlesProvider.getAll(
-        status: [BattleStatus.RECRUITING, BattleStatus.RECRUITING_FINISHED],
+        status: [BattleStatus.RECRUITING_FINISHED],
       )
     ]);
 

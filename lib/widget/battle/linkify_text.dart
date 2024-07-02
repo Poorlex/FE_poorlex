@@ -8,10 +8,12 @@ import 'package:url_launcher/url_launcher.dart';
 class LinkifyText extends StatelessWidget {
   final String text;
   final TextStyle style;
+  final TextAlign? textAlign;
   const LinkifyText({
     super.key,
     required this.text,
     required this.style,
+    this.textAlign,
   });
 
   @override
@@ -24,6 +26,7 @@ class LinkifyText extends StatelessWidget {
       },
       text: utf8.decode(utf8.encode(text)),
       style: style,
+      textAlign: textAlign,
       linkStyle: TextStyle(color: CColors.brown),
       options: LinkifyOptions(humanize: false),
       contextMenuBuilder: (context, editableTextState) {

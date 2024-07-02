@@ -13,6 +13,7 @@ import 'package:poorlex/schema/member_complete_battle_response/member_complete_b
 import 'package:poorlex/schema/member_progress_battle_response/member_progress_battle_response.dart';
 import 'package:poorlex/schema/participant_ranking_response/participant_ranking_response.dart';
 import 'package:poorlex/schema/vote_response/vote_response.dart';
+import 'package:poorlex/widget/common/dialog/common_alert.dart';
 
 enum BattleStatus {
   RECRUITING,
@@ -129,7 +130,15 @@ class BattlesProvider extends GetConnect {
           "maxParticipantSize": maxParticipantSize.toString(),
         },
       );
-      return response.status == 201;
+      if (response.status == 201) {
+        return true;
+      } else {
+        await commonAlert(
+          context: navigator!.context,
+          message: response.body['message'],
+        );
+        return false;
+      }
     } catch (e) {
       return false;
     }
@@ -265,7 +274,8 @@ class BattlesProvider extends GetConnect {
       if (response.statusCode == 201) {
         return Right(true);
       } else if (response.statusCode == 400) {
-        return Left(ErrorResponse(message: "이미 참여한 배틀입니다.", tag: "배틀 참가 에러"));
+        return Left(
+            ErrorResponse(message: response.body['message'], tag: "배틀 참가 에러"));
       }
 
       throw response;

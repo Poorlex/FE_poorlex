@@ -106,13 +106,23 @@ class BattleBox extends StatelessWidget {
                                 ),
                               ),
                               onPressed: () {
-                                Get.toNamed(
-                                  '/battle/ranking',
-                                  arguments: {
-                                    'battleId': battle.battleId,
-                                  },
-                                  id: GNBLayout.globalKey,
-                                );
+                                if (battle.dday > 6) {
+                                  Get.toNamed(
+                                    '/battle/detail',
+                                    arguments: {
+                                      'battleId': battle.battleId,
+                                    },
+                                    id: GNBLayout.globalKey,
+                                  );
+                                } else {
+                                  Get.toNamed(
+                                    '/battle/ranking',
+                                    arguments: {
+                                      'battleId': battle.battleId,
+                                    },
+                                    id: GNBLayout.globalKey,
+                                  );
+                                }
                               },
                             )
                           ],

@@ -12,6 +12,7 @@ import 'package:poorlex/provider/login_provider.dart';
 import 'package:poorlex/provider/member_provider.dart';
 import 'package:poorlex/provider/point_provider.dart';
 import 'package:poorlex/provider/weekly_budgets_provider.dart';
+import 'package:poorlex/screen/home/home.dart';
 
 class RootBind extends Bindings {
   @override
@@ -22,7 +23,7 @@ class RootBind extends Bindings {
     Get.lazyPut(() => BattlesProvider());
     Get.lazyPut(() => WeeklyBudgetsProvider());
     Get.lazyPut(() => PointProvider());
-
+    Get.put(MainController(), permanent: true);
     Get.put(ImagePickerController(), permanent: true);
     Get.put(LayoutController(), permanent: true);
     Get.put(ApiController(), permanent: true);
