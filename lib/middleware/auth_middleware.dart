@@ -11,7 +11,8 @@ class AuthMiddleware extends GetMiddleware {
     final UserController userController = Get.find<UserController>();
     // 인증되지 않은 경우 로그인 페이지로 리다이렉트
     bool isAuthenticated = userController.isAuthenticated();
-    if (!isAuthenticated && route != '/login') {
+    if (!isAuthenticated) {
+      if (route == '/login') return null;
       return RouteSettings(name: '/login');
     }
 

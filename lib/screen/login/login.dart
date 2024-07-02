@@ -35,7 +35,10 @@ class _LoginState extends State<Login> {
       }
       ;
       await _userController.getAuthentication(socialLoginModel);
-      Get.offAllNamed('/');
+      bool isAuthenticated = _userController.isAuthenticated();
+      if (isAuthenticated) {
+        Get.offAllNamed('/');
+      }
       AudioController().play(audioType: AudioType.congratulation);
     } catch (e) {
       AudioController().play(audioType: AudioType.fail);
@@ -53,7 +56,10 @@ class _LoginState extends State<Login> {
       }
       ;
       await _userController.getAuthentication(socialLoginModel);
-      Get.offAllNamed('/');
+      bool isAuthenticated = _userController.isAuthenticated();
+      if (isAuthenticated) {
+        Get.offAllNamed('/');
+      }
       AudioController().play(audioType: AudioType.congratulation);
     } catch (e) {
       AudioController().play(audioType: AudioType.fail);
@@ -74,7 +80,10 @@ class _LoginState extends State<Login> {
         return;
       }
       await _userController.updateToken(token);
-      Get.offAllNamed('/');
+      bool isAuthenticated = _userController.isAuthenticated();
+      if (isAuthenticated) {
+        Get.offAllNamed('/');
+      }
     } catch (e) {}
   }
 
