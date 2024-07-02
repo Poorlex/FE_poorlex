@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_rx/get_rx.dart';
-import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:poorlex/controller/audio_controller.dart';
 import 'package:poorlex/controller/battle.dart';
 import 'package:poorlex/controller/point.dart';
-// import 'package:poorlex/controller/firbase_controller.dart';
 import 'package:poorlex/controller/weekly_budgets.dart';
 import 'package:poorlex/libs/theme.dart';
 import 'package:poorlex/schema/member_progress_battle_response/member_progress_battle_response.dart';
+import 'package:poorlex/schema/point_level_bar_response/point_level_bar_response.dart';
 
 import 'package:poorlex/widget/home/home_nav_bar.dart';
 import 'package:poorlex/widget/home/carousel_slider.dart';
 import 'package:poorlex/widget/home/home_bottom_button.dart';
+import 'package:poorlex/widget/loading_screen.dart';
 
 class MainController extends GetxController {
   RxBool showSuccessImage = false.obs;
@@ -57,8 +56,7 @@ class _MainState extends State<Main> {
   //     },
   //   );
   // }
-  late final MainController _mainController;
-
+  late final _mainController = Get.find<MainController>();
   late final _budget = Get.find<WeeklyBudgetsController>();
   late final _point = Get.find<PointController>();
   late final _battle = Get.find<BattleController>();
@@ -69,7 +67,6 @@ class _MainState extends State<Main> {
   @override
   void initState() {
     super.initState();
-    _mainController = Get.put(MainController());
 
     /// 추후에 푸시알림 테스트 할때 사용
     // FirebaseController().showFcmToken(context: context);
@@ -102,13 +99,18 @@ class _MainState extends State<Main> {
         final budget = _budget.weeklyBudget;
         final budgetLeft = _budget.weeklyBudgetLeft;
         final point = _point.point.value;
-        final pointLevelBar = _point.pointLevelBar.value;
+        final PointLevelBarResponse pointLevelBar = _point.pointLevelBar.value;
 
         print('#Home# budget: ${budget}');
         print('#Home# point: ${point}');
         print('#Home# pointLevelBar: ${pointLevelBar}');
         print('#Home# battleListInProgress: ${battleListInProgress}');
 
+        /// [MEMO] levelRange == 0일경우 NavBar의 레벨 게이지바에서 에러나옴.
+        /// 임시로 처리하였습니다.
+        if (pointLevelBar.levelRange == 0) {
+          return LoadingScreen();
+        }
         return Scaffold(
           // 네비게이션 바
           appBar: NavBar(

@@ -2,12 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:poorlex/controller/layout.dart';
 
-import 'package:poorlex/widget/common/icon.dart';
 import 'package:poorlex/widget/my/level.dart';
 import 'package:poorlex/widget/my/my_auth.dart';
 import 'package:poorlex/widget/my/profile.dart';
 import 'package:poorlex/widget/my/announcement_list.dart';
-import 'package:poorlex/libs/theme.dart';
 import 'package:poorlex/controller/user.dart';
 
 class MyPage extends StatefulWidget {
