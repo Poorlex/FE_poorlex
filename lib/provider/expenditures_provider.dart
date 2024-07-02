@@ -91,6 +91,7 @@ class ExpendituresProvider extends GetConnect {
     FileWithName? subImage,
     String? mainImageUrl,
     String? subImageUrl,
+    DateTime? date,
   }) async {
     // FormData 객체 생성
     final formData = FormData({
@@ -104,6 +105,7 @@ class ExpendituresProvider extends GetConnect {
           subImage.file,
           filename: subImage.name,
         ),
+      if (date != null) "date": cFormatDateToString(date),
       if (mainImageUrl != null && mainImage == null)
         "mainImageUrl": mainImageUrl,
       if (subImageUrl != null && subImage == null) "subImageUrl": subImageUrl,
